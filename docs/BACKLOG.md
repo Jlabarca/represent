@@ -5,6 +5,10 @@
 > Resolved items: `~~strikethrough~~` + date + one-line resolution.
 > See `DOCS-PROTOCOL.md` Rule 2.
 
+## Active research informing this backlog
+
+- [research/graphify-tested.md](research/graphify-tested.md) — 2026-05-20. Three runs of `safishamsi/graphify` on luz + drwario. Cost measured ($0.15 / 85 files), failure modes documented, action items extracted. **Read this before starting `/represent` skill design.**
+
 ## Visual mode ideas
 
 - **Creature mode** — each file is an animal; class shape drives body plan, line count drives spikes, dependencies drive limbs. Pokémon / dinosaur flavor.
