@@ -1,0 +1,14 @@
+# Claude Code local activation — adopters opt in by renaming .claude/settings.example.json
+.claude/settings.json
+.claude/settings.local.json
+
+# Hook logs (rotated daily under .claude/logs/hooks/YYYY-MM-DD.log)
+.claude/logs/
+
+# run-impl session locks (sibling to *-IMPL.md)
+.*-IMPL.lock
+
+# /handoff ephemeral session resumes — keep the dir + README, ignore the rest
+docs/handoffs/*
+!docs/handoffs/.gitkeep
+!docs/handoffs/README.md
