@@ -255,3 +255,21 @@ No open machine acceptance blocker. Reference content and product usefulness sti
 ### Next
 
 Grafe: larger multi-package scope and unaided navigation, then editor-follow/minimap and incremental indexing. Alegor: unaided re-entry, then an explicitly selected session preview with measured false/missed links. No push or public deployment performed.
+
+## 2026-10-21 — Represent OS, Gource, Dot and Skales research
+
+### Accomplished
+
+Synthesized the detailed Gource/Grafe, Dot/Skales/Alegor and execution-runtime research notes into the standalone [Represent OS design and runtime report](research/reports/Represent%20OS%20design%20and%20runtime.md). Added a protocol-compliant annotated ingestion vector, Ghost and embeddability plans, citation distinctions, and bootstrapping steps. Indexed the report and the accompanying [interactive concept infographic](../experiments/represent-os-concept/index.html), and linked its source-note cluster.
+
+### Findings and recommendations
+
+The local Gource 0.53 exports demonstrate a clear history-replay metaphor, with crowded labels and large raw frame output; they do not demonstrate semantic architecture or browser performance. Original divan Codevis remains unavailable at its checked URL; KDE Codevis is a separate documented project. The exact Skales public repository and guide were researched, but the proprietary application was not run. Dot's screenshot and official help support interaction lessons, not assumptions about its private runtime. Recommend Represent Workspace as a web shell over project artifacts, with optional execution only for workflows that need it.
+
+### Limits
+
+The report and infographic are research artifacts, not an accepted OS/runtime decision or implementation. No provider was provisioned, no container was started, and no paid AI or image generation was used for this work. Visu remains paused; current Grafe/Alegor MVP state is unchanged.
+
+### Next
+
+Review the recommendation before creating any integrated workspace or execution-runner implementation tracker. A future runtime comparison needs a named real task and bounded workload first.

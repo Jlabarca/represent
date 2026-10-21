@@ -124,6 +124,7 @@ Continue **Grafe and Alegor independently in parallel** from the completed local
 - [Reference repository study](research/reports/Represent%20reference%20repository%20study.md): GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. [Inventory](research/reference-repos.json) records pinned commits and source paths. Eraser Diagrams was added for the [ROMPE trials](research/rompe-tool-trials.md).
 - [Graphify field results](research/graphify-tested.md): ignore-awareness, cost, unlabeled clusters and indiscriminate rendering failures remain acceptance constraints.
 - [Living project views report](research/reports/Represent%20living%20project%20views.md): product suite recommendation, Visu MVP, Grafe parallel design, snapshot service direction, and evidence-based UX gates. Names and service roles remain proposals.
+- [Represent OS design and runtime research](research/reports/Represent%20OS%20design%20and%20runtime.md) and [interactive concept infographic](../experiments/represent-os-concept/index.html): Gource’s tested evolution lesson for Grafe, Dot/Skales workflow research for Alegor, and a proposal for a project-centered web workspace with optional execution adapters. **Proposal only; no architecture decision or implementation phase is authorized by this research.** See [source notes](research/research_notes/Represent%20OS%20design%20and%20runtime/).
 
 ## Completed
 

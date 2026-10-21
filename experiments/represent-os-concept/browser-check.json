@@ -1,0 +1,50 @@
+{
+  "result": true,
+  "errors": [],
+  "desktop": {
+    "viewport": "1440x1000",
+    "docWidth": 1440,
+    "title": "Represent OS — research infographic",
+    "initialHasWeb": true,
+    "localHasAgent": true,
+    "localPressed": "true",
+    "localLayerActive": true,
+    "isolatedHasLinux": true,
+    "fullDesktopHasGui": true,
+    "detailsClosed": true,
+    "detailsOpen": true,
+    "focusVisible": true
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "docWidth": 390,
+    "width": 390,
+    "scenarioVisible": true
+  },
+  "baseURL": "http://127.0.0.1:8876/experiments/represent-os-concept/",
+  "localLinkChecks": [
+    {
+      "href": "http://127.0.0.1:8876/docs/research/reports/Represent%20OS%20design%20and%20runtime.md",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "href": "http://127.0.0.1:8876/experiments/represent-os-concept/README.md",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "href": "http://127.0.0.1:8876/experiments/represent-os-concept/poster.png",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "href": "http://127.0.0.1:8876/experiments/represent-os-concept/poster.svg",
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "localLinksResolve": true,
+  "network": "local-only",
+  "reducedMotion": true
+}

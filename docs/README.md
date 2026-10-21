@@ -56,6 +56,11 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [Handoffs index](handoffs/README.md) | Local continuation prompts; kickoff remains intentionally ignored |
 | [Reference repository study](research/reports/Represent%20reference%20repository%20study.md) | Source-grounded reuse/adapt/avoid synthesis |
 | [Living project views report](research/reports/Represent%20living%20project%20views.md) | Suite design: Visu overview, Grafe technical explorer, candidate Alegor history/assistant experience, MVP and full direction |
+| [Represent OS design and runtime](research/reports/Represent%20OS%20design%20and%20runtime.md) | Research recommendation: Gource and Grafe design, Dot/Skales and Alegor, Represent Workspace, and when execution environments are needed |
+| [Represent Workspace infographic](../experiments/represent-os-concept/index.html) | Interactive research artifact comparing workspace and runtime choices; concept only, not a working OS or integrated shell |
+| [Gource and Codevis design notes](research/research_notes/Represent%20OS%20design%20and%20runtime/grafe.md) | Gource export findings, Codevis provenance, and proposed Grafe views |
+| [Dot, Skales, and Alegor notes](research/research_notes/Represent%20OS%20design%20and%20runtime/alegor-dot-skales.md) | Screenshot and documentation evidence, exact Skales research, and companion/workspace proposal |
+| [Runtime and preview notes](research/research_notes/Represent%20OS%20design%20and%20runtime/runtime.md) | Local/container/VM options, staged compute recommendation, and artifact preview boundary |
 | [Reference inventory](research/reference-repos.json) | Local clone origins, exact revisions, licenses and trial scope |
 | [Historical vision and Codevis screenshot analysis](research/research_notes/Represent%20living%20project%20views/original-vision.md) | Synthesis of the local Notion export; source export remains unmodified |
 | [New visual and technical references](research/research_notes/Represent%20living%20project%20views/new-references.md) | GoCity, Algorithm Visualizer adoption signals, and creative-coding findings |
