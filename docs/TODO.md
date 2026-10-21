@@ -20,6 +20,13 @@
 
 ## Sprint: Visu and Grafe product design (2026-10-21)
 
+### Active build: Visu MVP
+
+- [ ] Build and test the headless snapshot/style/update core — [tracker](VISU-MVP-IMPL.md).
+- [ ] Integrate Ghost generation and a minimal accessible web shell.
+- [ ] Exercise ROMPE and Luz with measured cold/warm/overlay/art-change cases; complete implementation UX review.
+- [ ] Research Grafe and Alegor in parallel; gate any implementation on real trial evidence.
+
 Current sprint follows the user's product-quality correction after the ROMPE trial. **“A memorable overview” is the sole tested output accepted as the Represent visual direction.** The poster/box-diagram verdict below is superseded as a product recommendation, while the experiments remain evidence. Full design and current state: [living views report](research/reports/Represent%20living%20project%20views.md), [ROMPE trial verdict](research/rompe-tool-trials.md), and [tracker](REPRESENT-V0-IMPL.md).
 
 - [x] Preserve the earlier PDF, clone/source study, and ROMPE tests as research evidence — evidence: `research/sources/`, `research/reference-repos.json`, `research/rompe-tool-trials.md`.

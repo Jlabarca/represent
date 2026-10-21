@@ -13,6 +13,7 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) | Rules that govern this folder |
 | [CAPABILITIES.md](CAPABILITIES.md) | Promoted capabilities only |
 | [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
+| [VISU-MVP-IMPL.md](VISU-MVP-IMPL.md) | Active illustrated-overview MVP, ROMPE/Luz pilot and incremental updates |
 
 ## Research and source material
 

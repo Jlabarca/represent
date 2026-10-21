@@ -1,5 +1,6 @@
 # Represent — Logbook
 
+
 > Append-only session history. Never edit previous entries.
 > Each session appends: date, accomplishments, decisions, blockers, next steps.
 > See `DOCS-PROTOCOL.md` Rule 2.
@@ -79,3 +80,8 @@
 - The overview's raster text remains small on mobile; the detail layer is readable on demand. The concept reuses existing ROMPE art and hand-authored evidence; it does not implement ingestion, style detection, snapshot persistence, generated updates, animation, or chat.
 
 **Next steps:** Review the suite proposal, then prototype one project-styled Visu overview with source-backed regions and a two-snapshot update. Continue Grafe design in parallel and retain the plane-sync scene for its technical engineering checkpoint.
+
+## 2026-10-21 — Visu implementation kickoff
+
+User authorized building Visu against ROMPE and a non-game project, with parallel Grafe/Alegor exploration. Grounded the plan in the existing Ghost image gateway and actual Luz style tokens. Created VISU-MVP-IMPL.md before source changes; core remains headless and source repositories read-only. Existing gateway needed a loopback-only runtime Compose override; no Ghost tracked configuration changed. Next: implement, run both pilots, measure updates, inspect UI and record mature research boundaries.
+

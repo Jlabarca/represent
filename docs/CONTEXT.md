@@ -24,6 +24,8 @@ The thesis: a project should have an iconic visual identity that reflects its re
 
 ## Current State
 
+**Active implementation (2026-10-21):** [VISU-MVP-IMPL.md](VISU-MVP-IMPL.md) now drives the first real product: a headless, local Visu overview tested on ROMPE and Luz y Luna, with bounded source capture, project style, immutable history and measured cheap updates. Grafe and Alegor remain parallel evidence-led research tracks. The following pre-implementation statement describes the state before this build.
+
 Product pre-implementation, with working reference-tool experiments and a local UI concept. Repo bootstrapped 2026-04-13. No Represent scanner or general renderer has shipped. Ten upstream repositories are inventoried locally; ROMPE's two prompts have been exercised through interactive-diagram, Eraser Diagrams and an illustrated-poster baseline. See [trial results](research/rompe-tool-trials.md), [living views concept](../experiments/rompe/living-overview-concept/index.html), and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 
 ## Key Architecture Decisions (Locked)
