@@ -20,6 +20,8 @@
 
 ## Active sprint: Grafe + Alegor local MVPs (2026-10-21)
 
+Implementation is explicitly authorized in parallel. Follow [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md) for source, real-project, UX and detailed research-document acceptance. Visu is paused throughout.
+
 The tracks progress independently; Visu is not a gate. Keep the shared snapshot/evidence identity composable as it becomes concrete, without requiring cross-track integration before either local workflow is useful.
 
 ### Grafe — source navigation

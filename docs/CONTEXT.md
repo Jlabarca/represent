@@ -6,6 +6,8 @@
 
 ## Current Operating Direction (2026-10-21)
 
+**Build authorized:** Grafe and Alegor MVP implementation now runs in parallel, each with real-project trials, an individual UI/UX improvement round and a detailed research/test genealogy. Trackers: [GRAFE-MVP](GRAFE-MVP-IMPL.md), [ALEGOR-MVP](ALEGOR-MVP-IMPL.md). Visu stays paused. Local zero-AI operation and read-only source roots are the initial implementation boundaries.
+
 Visu MVP work is **paused** after its automatic-discovery iteration. Grafe and Alegor are active, independent product tracks and do not wait for Visu. Their 2026-10-21 restart trials established enough feasibility for both narrow local MVPs: Grafe source navigation and Alegor Git/docs project re-entry. Neither is a shipped product. See [parallel track restart](research/reports/Represent%20parallel%20track%20restart.md), [Grafe trial](../experiments/grafe-restart/README.md), and [Alegor trial](../experiments/alegor-restart/README.md).
 
 ## Latest Product Direction (2026-10-21)
