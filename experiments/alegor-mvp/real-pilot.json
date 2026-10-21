@@ -1,0 +1,2956 @@
+{
+  "schema": "alegor.real-pilot/v1",
+  "generatedAt": "2026-10-21T10:57:09.526Z",
+  "aiCalls": 0,
+  "sourceReposChanged": false,
+  "storeDir": "C:\\Users\\Administrator\\AppData\\Local\\Represent\\alegor",
+  "projects": [
+    {
+      "project": {
+        "id": "represent",
+        "name": "Represent",
+        "color": "#5d7554"
+      },
+      "root": "D:\\ware\\represent",
+      "capturedHead": "34a79ca3cba61ed9fc19972cb6ec335304e1e709",
+      "branch": "codex/represent-v0",
+      "commitCountInHistoryWindow": 22,
+      "boundedHistory": false,
+      "snapshotId": "represent-557d04f2d9961d30",
+      "revision": "557d04f2d9961d309c52f3f5f47478c63ceff4cedac36e91c754c60c89c212f4",
+      "noOpCaptureReused": true,
+      "sourceHeadUnchanged": true,
+      "sourceStatusUnchanged": true,
+      "dirtyState": {
+        "complete": true,
+        "filesHashed": 42,
+        "bytesHashed": 6825196,
+        "note": null
+      },
+      "workingTreeFiles": [
+        {
+          "code": " M",
+          "path": "docs/CONTEXT.md",
+          "contentHash": "bc44dfd4ca7f7aefc4f28b2b722bd963ae96d7f649bd7e32e8067e8d77768cda"
+        },
+        {
+          "code": " M",
+          "path": "docs/README.md",
+          "contentHash": "1ef01919002299fd90c9f4cc525623be1e52b9953a2bab528b6d3d9a86152808"
+        },
+        {
+          "code": " M",
+          "path": "package.json",
+          "contentHash": "b6f91235dd9a0e9d29294a906cdad81402729a9a4ca0b537a1bc43b18c165465"
+        },
+        {
+          "code": " M",
+          "path": "web/grafe/app.mjs",
+          "contentHash": "4d9c310597cdc60187e34969f7e50cfa545b01a8f2cd002a41fccb0d1b25d4c6"
+        },
+        {
+          "code": "??",
+          "path": "CLAUDE.md",
+          "contentHash": "6c19535d2dcf7d2af94a8e9d2937142b1832a86d88aaf8f9d25ba6abdeb1fabb"
+        },
+        {
+          "code": "??",
+          "path": "bin/branch-reaper.ps1",
+          "contentHash": "4bb97fa33df1801345884ae1a521c32885b72d4dc51e7201eaa4b09ed04744ec"
+        },
+        {
+          "code": "??",
+          "path": "bin/branch-reaper.sh",
+          "contentHash": "769d165a22eab19a45d7f5e040886a6959ba7cd15e4c50b9eedbb6d7101869fe"
+        },
+        {
+          "code": "??",
+          "path": "bin/check-impl-phase.ps1",
+          "contentHash": "5b1bfc34a9bbe4fba4f25a832f4ae01779f7bac4e83dc7facae12493d6691037"
+        },
+        {
+          "code": "??",
+          "path": "bin/check-impl-phase.sh",
+          "contentHash": "7579ec9b963de7f108b6575ffa04ae4ee345527c9da09e56a7d6c94ea69c706d"
+        },
+        {
+          "code": "??",
+          "path": "bin/promote-check.py",
+          "contentHash": "4656a0fd1a236d4403104ddb3d9799a46421c96ec8524c40a9986ee106affebc"
+        },
+        {
+          "code": "??",
+          "path": "bin/workflow-git.py",
+          "contentHash": "6d7cfa110d0589217afc7d92c8216c7ce1801fbf2a34ab67e1b1d27fa20d03a2"
+        },
+        {
+          "code": "??",
+          "path": "docs/reference/grafe-mvp.md",
+          "contentHash": "493d5d2fcbbde788043b503eb5be51453bbe41c00c058d8436871901a61431fc"
+        },
+        {
+          "code": "??",
+          "path": "docs/research/alegor-research-and-tests.md",
+          "contentHash": "e7daf338c81c8e81029795c3d0c5f4bec3f6fec82d6c5db3b0b6afeb818a8a70"
+        },
+        {
+          "code": "??",
+          "path": "docs/research/grafe-research-and-tests.md",
+          "contentHash": "93316cd12eca6a8b077c3c014ec58077d12f2844a437a1a0eab1ccc4acd11679"
+        },
+        {
+          "code": "??",
+          "path": "examples/grafe/real-projects.json",
+          "contentHash": "3bb0d2c1f0049d80649d13d21e8a75d9b72a2cbf8dad970e429ef45636428fd0"
+        },
+        {
+          "code": "??",
+          "path": "experiments/alegor-reference-checks/skales-inspection.json",
+          "contentHash": "42527321f6ea879ce184c674e7d7f23642e0dc3fecba2507ae2e444a0d3c5c73"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/README.md",
+          "contentHash": "acb7b5e78d524feb3b7ac0f03018a345e0897240ffffe9ef32e25fa2bf4a17f2"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/browser-check.json",
+          "contentHash": "44832f4dbc6d518a8a3e9e74613dc541ba2990ad328cf02a95e14753ea4031f2"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/initial-real-project-audit.json",
+          "contentHash": "c8539d00d8bb7229da14ce0e14c8bcc388a7110fee299184976dd854f06df2d7"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/plane-sync-dark.png",
+          "contentHash": "e579a144f854424725cbda1b242f0631a409d75bf461614a25e7789f3b210b36"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/plane-sync-light.png",
+          "contentHash": "773eb29c9405261033fe660753258c3194e6fdb7b3ae9adaefad241e868bef07"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/plane-sync-mobile.png",
+          "contentHash": "c160e16a7dc36d2af13b66ed7ab19b0415722e94fcef67b9398bc7d41b55cde7"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-mvp/real-project-audit.json",
+          "contentHash": "c8539d00d8bb7229da14ce0e14c8bcc388a7110fee299184976dd854f06df2d7"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-reference-checks/gource-algorithm-visualizer-last-frame.png",
+          "contentHash": "29c4acc815ad761f1c6adb0cc76dc8753fe36f9d0c23897922e13b8ef3341da3"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-reference-checks/gource-gocity-last-frame.png",
+          "contentHash": "a6e22377e729910203031e58fcd6234c611c971623fc58ed13f08dbd3cbbba51"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-reference-checks/gource-gocity-midframe.png",
+          "contentHash": "0e07a323e7a7fc56460a4e95493a7b2938250b58379fa830973751e79d4638d2"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-reference-checks/gource-run.json",
+          "contentHash": "a42b3469e0b5605a879d29b1e3252ae03f91a7d94d915908675657497c10047b"
+        },
+        {
+          "code": "??",
+          "path": "experiments/grafe-reference-checks/notion-codevis.png",
+          "contentHash": "e105f7d0c9c9997d30f67efdd19356d48951183c64e1fce85e655282208e8306"
+        },
+        {
+          "code": "??",
+          "path": "notion/Go Visual - Auto Mermaid Diagram of your architect 17316a8a3d6580cd9702cfbc5c89b20d.md",
+          "contentHash": "e8ebcad038a39ab501f554d94e0ae7c3c7d16c2ce4bee26944fa973172e5015f"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio d2122e06d68d451c9f980fa24256b9f4.md",
+          "contentHash": "34c16890ba7d9cd81500e26f666334c59f357748e6916ded0cac651a18453db3"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/11 abril Attempt 1d316a8a3d6580aa9dbbf1e1a3df496f.md",
+          "contentHash": "0cd91a1d86d42c786c71dcecef3d9936f6d0db213b75186b709acee055f0daf4"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/Code runtime doctor 31b16a8a3d65809aae3fc0469c228281.md",
+          "contentHash": "0e0f04954366389324781f198b269f1900a7e4e50ac7635d3f9585c82e40c0b2"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/MiniMap 31116a8a3d65801ba934c246225923bf.md",
+          "contentHash": "874f91160e500e75eb4d1c421d104c36f1f920a7c4e8c4733da4a3ee16a3ced0"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/MiniMap/image 1.png",
+          "contentHash": "88a2b3b535fb2a80fd4f40ac03d9985c755839d17675297fd761e1f74be714cf"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/MiniMap/image.png",
+          "contentHash": "b8ece79a76ffa57314562193e55ae4481bc78fe556c0d08197fa2478efa39ade"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/PET 32816a8a3d6580209f8ec360a6088f18.md",
+          "contentHash": "bd8c840f90cc846b8f3c09f1baaab6679f6e2b66a149b57ab08ebb68f1adf3b0"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/Research 26316a8a3d65809d84afd8cce42368e6.md",
+          "contentHash": "fccb9983108743fa81b7f7f22088e73f4adf30cda31f72c3319ca05f8db164f3"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/Untitled.png",
+          "contentHash": "e105f7d0c9c9997d30f67efdd19356d48951183c64e1fce85e655282208e8306"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/What if 31816a8a3d6580129e42f59e492fb5b3.md",
+          "contentHash": "f73a46cf5f48fb3c2fa7fe3dc9019870bacf498be6a1f399e6784da22b6dfa1e"
+        },
+        {
+          "code": "??",
+          "path": "notion/Pixel Clay - Represent Code Graphics Representatio/image.png",
+          "contentHash": "c18f548b0a4fae51a109d42e7c3534515bd74b1f88b6d93b436763a3d1b981b7"
+        },
+        {
+          "code": "??",
+          "path": "scripts/grafe-browser-check.mjs",
+          "contentHash": "3b752199194f1e4131013395ac84a1586fe5a54595c66eb087536fc1b878ad60"
+        },
+        {
+          "code": "??",
+          "path": "scripts/grafe-pilot.mjs",
+          "contentHash": "08625e058b66337a91c0a65c8c38f9242d271d25b9604aecf8b37b11269ceba8"
+        }
+      ],
+      "docs": [
+        {
+          "path": "docs/CONTEXT.md",
+          "hash": "bc44dfd4ca7f7aefc4f28b2b722bd963ae96d7f649bd7e32e8067e8d77768cda",
+          "citations": [
+            {
+              "line": 34,
+              "text": ""
+            },
+            {
+              "line": 35,
+              "text": "**Parallel MVP implementation (2026-10-21):** Grafe and Alegor have separate headless cores, CLIs and local web surfaces under development. Initial tests cover compiler-resolved source relationships and immutable Git/docs history respectively. Real-project trials, live UI/UX checks, independent QA and integration are in progress; the active trackers above hold acceptance evidence. Detailed research records now cover [Grafe, Gource and Codevis](research/grafe-research-and-tests.md) and [Alegor, S"
+            },
+            {
+              "line": 46,
+              "text": ""
+            },
+            {
+              "line": 47,
+              "text": "| Decision | Choice | Reason | Date |"
+            },
+            {
+              "line": 48,
+              "text": "|---|---|---|---|"
+            },
+            {
+              "line": 49,
+              "text": "| AI backend | **Ghost AI pipeline** (not direct provider SDKs) | Reuse Ghost's provider routing, caching, resilience, and cost controls. No per-project API-key plumbing. Providers: Gemini primary, OpenRouter fallback, local Ollama/vLLM (RTX 3090). | 2026-04-13 |"
+            },
+            {
+              "line": 50,
+              "text": "| Embeddability | **First-principle, not afterthought** | Every tool must ship to the broadest public surface possible: web app, VSCode extension, JetBrains extension, desktop (Tauri-class), mobile, CLI, library. Core must be headless and framework-agnostic; surfaces are thin shells. | 2026-04-13 |"
+            },
+            {
+              "line": 51,
+              "text": "| Rendering format | _tbd_ | Likely SVG as v0 portable primitive (works in every surface), canvas/WebGL for interactive v1. Needs a POC to lock. | — |"
+            },
+            {
+              "line": 52,
+              "text": "| Ingestion v0 | _tbd_ | Candidates: git-walk, AST (tree-sitter / Roslyn), `codebase-digest` piped output, IDE-index scrape. Needs a POC to lock. | — |"
+            },
+            {
+              "line": 53,
+              "text": "| Workspace layout | **Monorepo under `D:/ware/represent`** | Shared doctrine + shared core + per-project subfolders. One docs tree at the root. | 2026-04-13 |"
+            },
+            {
+              "line": 54,
+              "text": "| Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |"
+            },
+            {
+              "line": 116,
+              "text": ""
+            },
+            {
+              "line": 117,
+              "text": "Advance **Grafe and Alegor independently in parallel**. For Grafe, pin a larger second TypeScript/JavaScript repository's input scope, audit source-link correctness and relation coverage, and validate a caller-and-tests navigation task. For Alegor, harden the local Git/docs brief with conflict and missing-evidence fixtures, then validate a real re-entry task before adding any explicitly selected session source. Both can begin narrow local MVP implementation now; neither waits for Visu or for the"
+            }
+          ]
+        },
+        {
+          "path": "docs/TODO.md",
+          "hash": "a106ff704f3c4015f54bbd1ed5b3e85fa42871a7ee5d161540348f56e9e321c5",
+          "citations": [
+            {
+              "line": 22,
+              "text": ""
+            },
+            {
+              "line": 23,
+              "text": "Implementation is explicitly authorized in parallel. Follow [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md) for source, real-project, UX and detailed research-document acceptance. Visu is paused throughout."
+            },
+            {
+              "line": 24,
+              "text": ""
+            },
+            {
+              "line": 25,
+              "text": "The tracks progress independently; Visu is not a gate. Keep the shared snapshot/evidence identity composable as it becomes concrete, without requiring cross-track integration before either local workflow is useful."
+            },
+            {
+              "line": 29,
+              "text": "- [x] Decode pinned SCIP TypeScript output and verify fixture occurrences against exact source text: four files, 39 occurrences, zero checked span mismatches."
+            },
+            {
+              "line": 30,
+              "text": "- [x] Decode existing plane-sync SCIP index in summary-only mode: six observed documents, 1,075 symbols, 6,485 occurrences, zero recorded diagnostics and zero span mismatches; source tree remained clean."
+            },
+            {
+              "line": 31,
+              "text": "- [x] Build a runnable focused-symbol browser prototype; browser smoke passed. Evidence: [trial report](../experiments/grafe-restart/README.md)."
+            },
+            {
+              "line": 32,
+              "text": "- [ ] Define the versioned headless snapshot contract and build local TypeScript/JavaScript indexing with explicit scope, typed edges, spans, hashes, versions, and diagnostics."
+            },
+            {
+              "line": 33,
+              "text": "- [ ] Test a second larger repository with pinned file scope and manually audited relations; run a maintainer caller-and-tests navigation task and measure clean and incremental indexing."
+            },
+            {
+              "line": 37,
+              "text": "- [x] Build a deterministic Git/docs brief over seven commits and 78 changed paths; expose the stale CONTEXT/TODO sprint disagreement with separate citations."
+            },
+            {
+              "line": 38,
+              "text": "- [x] Build a runnable static timeline/evidence prototype; 12 browser checks passed."
+            },
+            {
+              "line": 39,
+              "text": "- [x] Test a pinned upstream `sessions` Windows context suite in an isolated copy: corrected experimental fixture/scanner paths yielded 25/25; actual session-folder compatibility remains unverified and the patch is not upstream accepted."
+            },
+            {
+              "line": 40,
+              "text": "- [ ] Turn the Git/docs extractor into a local CLI and web MVP with conflict, missing-citation, deleted-source, and unchanged-state fixtures."
+            },
+            {
+              "line": 41,
+              "text": "- [ ] Validate “what changed / where do I resume?” on one real project task; only then preview a user-selected session source and measure false/missed links."
+            }
+          ]
+        },
+        {
+          "path": "docs/ALEGOR-MVP-IMPL.md",
+          "hash": "07104540ddbeebc9b876e6a813c0779c65ce08bc298f6f9a1f5213183c99c9da",
+          "citations": [
+            {
+              "line": 36,
+              "text": ""
+            },
+            {
+              "line": 37,
+              "text": "1. **Q:** Scope and AI? **Resolution:** A local single-user MVP with CLI/library/web and zero paid calls. No hosted service, autonomous companion actions or universal language/session claims."
+            },
+            {
+              "line": 38,
+              "text": "2. **Q:** State and test roots? **Resolution:** State is outside source repositories; explicit configured roots only. Represent and Plane Sync; controlled copies for changed/deleted/conflicting documents and branch transitions."
+            },
+            {
+              "line": 39,
+              "text": "3. **Q:** Product acceptance? **Resolution:** Automated behavior and real-project task checks plus an actual UI/UX review are required. Human preference remains review feedback, not an invented acceptance result."
+            },
+            {
+              "line": 42,
+              "text": ""
+            },
+            {
+              "line": 43,
+              "text": "Planned, with read-only worker planning complete. Product edits start after this plan commit. Historical prototypes remain available."
+            },
+            {
+              "line": 55,
+              "text": "- [ ] ALEGOR-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior."
+            },
+            {
+              "line": 56,
+              "text": "- [ ] ALEGOR-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation."
+            },
+            {
+              "line": 59,
+              "text": "- [ ] ALEGOR-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes."
+            },
+            {
+              "line": 60,
+              "text": "- [ ] ALEGOR-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence."
+            },
+            {
+              "line": 61,
+              "text": "- [ ] ALEGOR-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings."
+            },
+            {
+              "line": 62,
+              "text": "- [ ] ALEGOR-MVP.2.4 — Complete QA, reference/current-state/index updates and scoped committed promotion."
+            }
+          ]
+        },
+        {
+          "path": "docs/GRAFE-MVP-IMPL.md",
+          "hash": "730674f4ba7b3d487aab6eb36342e5e75fd1fa1b060d075a986d52a94ca63ff3",
+          "citations": [
+            {
+              "line": 36,
+              "text": ""
+            },
+            {
+              "line": 37,
+              "text": "1. **Q:** Scope and AI? **Resolution:** A local single-user MVP with CLI/library/web and zero paid calls. No hosted service, autonomous companion actions or universal language/session claims."
+            },
+            {
+              "line": 38,
+              "text": "2. **Q:** State and test roots? **Resolution:** State is outside source repositories; explicit configured roots only. Plane Sync and Represent (multi-file source); bounded larger JS/TS repository if needed."
+            },
+            {
+              "line": 39,
+              "text": "3. **Q:** Product acceptance? **Resolution:** Automated behavior and real-project task checks plus an actual UI/UX review are required. Human preference remains review feedback, not an invented acceptance result."
+            },
+            {
+              "line": 42,
+              "text": ""
+            },
+            {
+              "line": 43,
+              "text": "Working core, CLI and web surface integrated. Parent core/API verification passed 10/10; the worker browser suite passed 14/14 and parent inspected the corrected screenshots. Real-project and UX evidence exists; final dossier reconciliation, combined verification and promotion remain."
+            },
+            {
+              "line": 55,
+              "text": "- [x] GRAFE-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior. — evidence: src/grafe/{core,cli,server}.mjs; tests/grafe-{core,server}.test.mjs; parent Node runner 10/10, zero skipped (2026-10-21)."
+            },
+            {
+              "line": 56,
+              "text": "- [x] GRAFE-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. — evidence: web/grafe/; experiments/grafe-mvp/browser-check.json 14/14; parent inspected final desktop screenshot after viewport, card overlap and search-row fixes."
+            },
+            {
+              "line": 59,
+              "text": "- [ ] GRAFE-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes."
+            },
+            {
+              "line": 60,
+              "text": "- [ ] GRAFE-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence."
+            },
+            {
+              "line": 61,
+              "text": "- [ ] GRAFE-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings."
+            },
+            {
+              "line": 62,
+              "text": "- [ ] GRAFE-MVP.2.4 — Complete QA, reference/current-state/index updates and scoped committed promotion."
+            }
+          ]
+        },
+        {
+          "path": "docs/REPRESENT-V0-IMPL.md",
+          "hash": "1761f1332735cbd1bdb8f9889afdfab4a8f67dd543c7e6ed9e2339b0e4eacde8",
+          "citations": [
+            {
+              "line": 70,
+              "text": ""
+            },
+            {
+              "line": 71,
+              "text": "1. **Q: What comes before implementation?**"
+            },
+            {
+              "line": 72,
+              "text": "   **Resolution:** Clone, inspect and exercise the selected reference projects, synthesize reuse/adapt/avoid decisions, then settle P0 and build P1. Deliver the first plane-sync scene before P2-P4."
+            },
+            {
+              "line": 73,
+              "text": "   > Rationale: operator's research-first steering on 2026-10-21 supersedes immediately starting a scanner."
+            },
+            {
+              "line": 74,
+              "text": "   > Override: start a separate implementation spike early only on explicit operator direction."
+            },
+            {
+              "line": 75,
+              "text": "   > [!WARNING] Historical sequence superseded for global priority by the user's Visu-first product direction (2026-10-21). Keep the first plane-sync scene as a Grafe engineering checkpoint; it no longer blocks Visu design or its first prototype. See [Latest Steering](#latest-steering-2026-10-21)."
+            },
+            {
+              "line": 76,
+              "text": "2. **Q: Which architecture choices are fixed?**"
+            },
+            {
+              "line": 77,
+              "text": "   **Resolution:** Headless core, Ghost-only AI and the scene/events boundary are fixed. TypeScript/web is a working preference until the source study settles it. Reuse methrep's contract, not its date-only event append algorithm."
+            },
+            {
+              "line": 78,
+              "text": "   > Rationale: the current emitter can miss later same-day events and rewrite on malformed tails; the existing Mermaid renderer skips unknown types."
+            },
+            {
+              "line": 86,
+              "text": ""
+            },
+            {
+              "line": 87,
+              "text": "Reference study and ROMPE trials delivered. PDF copied/read; companion and living-view research reviewed. The user selected the illustrated “A memorable overview” as the quality bar; the earlier recommendation that all three tested renderers form complementary product views is superseded. Upstream interactive-diagram and Eraser outputs remain research instruments, and the image-generation baseline remains an experiment rather than a general Represent renderer. No scanner, enrichment, snapshot se"
+            },
+            {
+              "line": 117,
+              "text": "- [x] REPRESENT-V0.0.1 Preserve/read the PDF, inspect local prior art and bootstrap P0-P4 with the research-first sequence — evidence: research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf; CONTEXT.md; this tracker."
+            },
+            {
+              "line": 118,
+              "text": "- [x] REPRESENT-V0.0.2 Clone pinned reference repositories and inspect real ingestion/model/layout/theme code; record licenses and reusable paths — evidence: research/reference-repos.json; research/research_notes/Represent reference repository study/; research/reports/Represent reference repository study.md."
+            },
+            {
+              "line": 119,
+              "text": "- [x] REPRESENT-V0.0.3 Exercise feasible reference examples; distinguish actual observations from source-only findings; write reuse/adapt/avoid synthesis — evidence: research/rompe-tool-trials.md; ../experiments/rompe/validation/browser-results.json; ../experiments/rompe/eraser-diagrams/README.md."
+            },
+            {
+              "line": 120,
+              "text": "- [ ] REPRESENT-V0.0.4 Record final v0 choices and scan limits in CONTEXT.md; define contract extensions and validation corpus — evidence: pending decision and implementation plan."
+            },
+            {
+              "line": 121,
+              "text": "- [x] REPRESENT-V0.0.5 Run the operator's ROMPE explainer/poster prompts through suitable reference projects, inspect actual output and preserve provenance/corrections — evidence: ../experiments/rompe/index.html; source-audit.md and source-manifest.json under that directory; research/rompe-tool-trials.md."
+            },
+            {
+              "line": 128,
+              "text": "- [ ] REPRESENT-V0.1.1 Implement CLI/library, filtering, bounded syntax/history extraction and scene serialization as one vertical slice — evidence: pending source and fixture tests."
+            },
+            {
+              "line": 129,
+              "text": "- [ ] REPRESENT-V0.1.2 Generate, inspect and show the first plane-sync scene with honest completeness and source evidence — evidence: pending saved scene and inspection."
+            },
+            {
+              "line": 130,
+              "text": "- [ ] REPRESENT-V0.1.3 Benchmark measured small/medium/large inputs, including Ghost; prove deterministic output and bounded behavior — evidence: pending benchmark results."
+            },
+            {
+              "line": 131,
+              "text": "- [x] REPRESENT-V0.1.4 Finish companion research with verified sources, compact context model, scan/diff triggers and three testable interaction modes — evidence: research/companions.md; unverified consumer-companion claims explicitly marked."
+            },
+            {
+              "line": 135,
+              "text": "- [ ] REPRESENT-V0.2.1 Use Ghost's verified transport for compact cluster digests and validated labels/purposes/view specs; no provider SDKs or raw files — evidence: pending adapter/payload tests."
+            },
+            {
+              "line": 136,
+              "text": "- [ ] REPRESENT-V0.2.2 Cache by content and output-affecting configuration; enforce cost reservations across retries, fail closed when price cannot be bounded — evidence: pending cache/budget tests."
+            },
+            {
+              "line": 137,
+              "text": "- [ ] REPRESENT-V0.2.3 Report per-cluster completeness and measure cold/warm/changed-scan cost and latency — evidence: pending reports."
+            },
+            {
+              "line": 141,
+              "text": "- [ ] REPRESENT-V0.3.1 Ship deterministic layered overview/drilldown, search-to-camera, minimap and readable infographic theme — evidence: pending interaction tests and screenshots."
+            },
+            {
+              "line": 142,
+              "text": "- [ ] REPRESENT-V0.3.2 Render an unchanged real methrep scene through the same loader/model/renderer with no domain-specific conversion — evidence: pending fixture hash and paired screenshots."
+            },
+            {
+              "line": 143,
+              "text": "- [ ] REPRESENT-V0.3.3 Implement event playback with stable IDs, explicit invalid-event handling and reproducible replay — evidence: pending replay tests."
+            },
+            {
+              "line": 147,
+              "text": "- [ ] REPRESENT-V0.4.1 Local web panel + CLI path-to-picture with progress/cancel/retry, reusing the headless core — evidence: pending end-to-end checks."
+            },
+            {
+              "line": 148,
+              "text": "- [ ] REPRESENT-V0.4.2 Persist compact project context/prior scene and explain structural diffs; recover from stale/corrupt state — evidence: pending restart/diff tests."
+            },
+            {
+              "line": 149,
+              "text": "- [ ] REPRESENT-V0.4.3 Add scene-grounded follow-ups through Ghost; evaluate ambient/query-first/digest modes before VS Code integration — evidence: pending workflow review."
+            }
+          ]
+        },
+        {
+          "path": "README.md",
+          "hash": "8cef5e0dc3973ee867052bec43459db10ee70e342dc17123f33a19d2aa7dbe82",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Represent"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "> Root workspace for all **LLM-based visual representation** projects under waremoto."
+            },
+            {
+              "line": 4,
+              "text": "> Lives at `D:/ware/represent`. Repo: <https://github.com/Jlabarca/represent>"
+            },
+            {
+              "line": 5,
+              "text": ""
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "> Root workspace for all **LLM-based visual representation** projects under waremoto."
+            },
+            {
+              "line": 4,
+              "text": "> Lives at `D:/ware/represent`. Repo: <https://github.com/Jlabarca/represent>"
+            },
+            {
+              "line": 5,
+              "text": ""
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 3,
+              "text": "> Root workspace for all **LLM-based visual representation** projects under waremoto."
+            },
+            {
+              "line": 4,
+              "text": "> Lives at `D:/ware/represent`. Repo: <https://github.com/Jlabarca/represent>"
+            },
+            {
+              "line": 5,
+              "text": ""
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 4,
+              "text": "> Lives at `D:/ware/represent`. Repo: <https://github.com/Jlabarca/represent>"
+            },
+            {
+              "line": 5,
+              "text": ""
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 5,
+              "text": ""
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 13,
+              "text": "- **Embeddability is a first principle.** Every tool built here must be deployable as broadly as possible: web app, VSCode extension, JetBrains extension, desktop app, mobile app, CLI, and library. The core must be headless and framework-agnostic; surfaces are thin shells."
+            },
+            {
+              "line": 6,
+              "text": "Represent is the umbrella for tools, POCs, and products that turn source code (and other structured inputs) into artistic visual representations — dependency graphs, creatures, cities, blueprints, animated minimaps, 3D meshes. A project should have an iconic visual identity that reflects its real structure, not just a logo. Developers should look at the picture and understand relationships they'd otherwise have to read thousands of lines to recover."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 13,
+              "text": "- **Embeddability is a first principle.** Every tool built here must be deployable as broadly as possible: web app, VSCode extension, JetBrains extension, desktop app, mobile app, CLI, and library. The core must be headless and framework-agnostic; surfaces are thin shells."
+            },
+            {
+              "line": 14,
+              "text": "- **Doctrine first.** Every POC follows [docs/DOCS-PROTOCOL.md](docs/DOCS-PROTOCOL.md) — System Intent / Ingestion Vector / Visualization Spec / Bootstrapping Steps, no exceptions."
+            },
+            {
+              "line": 7,
+              "text": ""
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 13,
+              "text": "- **Embeddability is a first principle.** Every tool built here must be deployable as broadly as possible: web app, VSCode extension, JetBrains extension, desktop app, mobile app, CLI, and library. The core must be headless and framework-agnostic; surfaces are thin shells."
+            },
+            {
+              "line": 14,
+              "text": "- **Doctrine first.** Every POC follows [docs/DOCS-PROTOCOL.md](docs/DOCS-PROTOCOL.md) — System Intent / Ingestion Vector / Visualization Spec / Bootstrapping Steps, no exceptions."
+            },
+            {
+              "line": 8,
+              "text": "Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy."
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 13,
+              "text": "- **Embeddability is a first principle.** Every tool built here must be deployable as broadly as possible: web app, VSCode extension, JetBrains extension, desktop app, mobile app, CLI, and library. The core must be headless and framework-agnostic; surfaces are thin shells."
+            },
+            {
+              "line": 14,
+              "text": "- **Doctrine first.** Every POC follows [docs/DOCS-PROTOCOL.md](docs/DOCS-PROTOCOL.md) — System Intent / Ingestion Vector / Visualization Spec / Bootstrapping Steps, no exceptions."
+            },
+            {
+              "line": 15,
+              "text": ""
+            },
+            {
+              "line": 16,
+              "text": "## Status"
+            },
+            {
+              "line": 9,
+              "text": ""
+            },
+            {
+              "line": 10,
+              "text": "## Core tenets"
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "- **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md)."
+            },
+            {
+              "line": 13,
+              "text": "- **Embeddability is a first principle.** Every tool built here must be deployable as broadly as possible: web app, VSCode extension, JetBrains extension, desktop app, mobile app, CLI, and library. The core must be headless and framework-agnostic; surfaces are thin shells."
+            },
+            {
+              "line": 14,
+              "text": "- **Doctrine first.** Every POC follows [docs/DOCS-PROTOCOL.md](docs/DOCS-PROTOCOL.md) — System Intent / Ingestion Vector / Visualization Spec / Bootstrapping Steps, no exceptions."
+            },
+            {
+              "line": 15,
+              "text": ""
+            },
+            {
+              "line": 16,
+              "text": "## Status"
+            }
+          ]
+        },
+        {
+          "path": "docs/README.md",
+          "hash": "1ef01919002299fd90c9f4cc525623be1e52b9953a2bab528b6d3d9a86152808",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Represent — Docs Index"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Root living documents"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "| Doc | Purpose |"
+            },
+            {
+              "line": 8,
+              "text": "|---|---|"
+            },
+            {
+              "line": 9,
+              "text": "| [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Root living documents"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "| Doc | Purpose |"
+            },
+            {
+              "line": 8,
+              "text": "|---|---|"
+            },
+            {
+              "line": 9,
+              "text": "| [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |"
+            },
+            {
+              "line": 10,
+              "text": "| [TODO.md](TODO.md) | Active sprint tasks |"
+            },
+            {
+              "line": 3,
+              "text": "Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Root living documents"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "| Doc | Purpose |"
+            },
+            {
+              "line": 8,
+              "text": "|---|---|"
+            },
+            {
+              "line": 9,
+              "text": "| [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |"
+            },
+            {
+              "line": 10,
+              "text": "| [TODO.md](TODO.md) | Active sprint tasks |"
+            },
+            {
+              "line": 11,
+              "text": "| [BACKLOG.md](BACKLOG.md) | Deferred ideas, parking lot |"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Root living documents"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "| Doc | Purpose |"
+            },
+            {
+              "line": 8,
+              "text": "|---|---|"
+            },
+            {
+              "line": 9,
+              "text": "| [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |"
+            },
+            {
+              "line": 10,
+              "text": "| [TODO.md](TODO.md) | Active sprint tasks |"
+            },
+            {
+              "line": 11,
+              "text": "| [BACKLOG.md](BACKLOG.md) | Deferred ideas, parking lot |"
+            },
+            {
+              "line": 12,
+              "text": "| [LOGBOOK.md](LOGBOOK.md) | Append-only session history |"
+            }
+          ]
+        },
+        {
+          "path": "docs/handoffs/README.md",
+          "hash": "a4e9e07e4b3dbe1ffc9aa2034679ea0e1751ea8bf8d00f01ac812525c9719ae4",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# docs/handoffs/ — ephemeral session resumes"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Written by the [`/handoff`](../../.claude/skills/handoff/SKILL.md) skill. **Not durable state.**"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "- **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts."
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Written by the [`/handoff`](../../.claude/skills/handoff/SKILL.md) skill. **Not durable state.**"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "- **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts."
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 3,
+              "text": "Written by the [`/handoff`](../../.claude/skills/handoff/SKILL.md) skill. **Not durable state.**"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "- **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts."
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "- **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts."
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 5,
+              "text": "- **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts."
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Lifecycle"
+            },
+            {
+              "line": 6,
+              "text": "- **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history."
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Lifecycle"
+            },
+            {
+              "line": 7,
+              "text": "- **Cold-start optimized.** Each file front-loads read-order + \"you are here\" + the exact resume prompt to paste into a fresh session, so the next session resumes at full fidelity from a few hundred tokens."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Lifecycle"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "```"
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "## Why not just use the LOGBOOK?"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "[`LOGBOOK.md`](../LOGBOOK.md) is the durable, append-only audit trail (what happened, Rule 14). A handoff is the disposable live-resume (what to do next, right now). Different jobs, different lifetimes — don't conflate them. The handoff's \"In flight (NOT yet in LOGBOOK)\" section is the part nothing else captures."
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Lifecycle"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "```"
+            },
+            {
+              "line": 16,
+              "text": "long session nears the smart-zone limit (~120k tokens)"
+            }
+          ]
+        },
+        {
+          "path": "experiments/alegor-research/README.md",
+          "hash": "7c2b8c833b7c604442135dabd9b3b7354217f5052a6fb6ba91000d2c31abfb01",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Alegor research trials"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Local read-only study records for the optional Represent companion/history track. Upstream clones live under ignored `D:/ware/represent/references/alegor-*`; no upstream source changes are kept here."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## `sessions` portability smoke trial (2026-10-21)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- Upstream: [`nicknisi/sessions`](https://github.com/nicknisi/sessions), MIT, local revision `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`."
+            },
+            {
+              "line": 8,
+              "text": "- Environment: Windows 11, Bun 1.1.12."
+            },
+            {
+              "line": 9,
+              "text": "- Setup: `bun install --frozen-lockfile` — completed, 104 packages installed."
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Local read-only study records for the optional Represent companion/history track. Upstream clones live under ignored `D:/ware/represent/references/alegor-*`; no upstream source changes are kept here."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## `sessions` portability smoke trial (2026-10-21)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- Upstream: [`nicknisi/sessions`](https://github.com/nicknisi/sessions), MIT, local revision `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`."
+            },
+            {
+              "line": 8,
+              "text": "- Environment: Windows 11, Bun 1.1.12."
+            },
+            {
+              "line": 9,
+              "text": "- Setup: `bun install --frozen-lockfile` — completed, 104 packages installed."
+            },
+            {
+              "line": 10,
+              "text": "- Command: `bun test src/context.test.ts` from the clone root."
+            },
+            {
+              "line": 3,
+              "text": "Local read-only study records for the optional Represent companion/history track. Upstream clones live under ignored `D:/ware/represent/references/alegor-*`; no upstream source changes are kept here."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## `sessions` portability smoke trial (2026-10-21)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- Upstream: [`nicknisi/sessions`](https://github.com/nicknisi/sessions), MIT, local revision `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`."
+            },
+            {
+              "line": 8,
+              "text": "- Environment: Windows 11, Bun 1.1.12."
+            },
+            {
+              "line": 9,
+              "text": "- Setup: `bun install --frozen-lockfile` — completed, 104 packages installed."
+            },
+            {
+              "line": 10,
+              "text": "- Command: `bun test src/context.test.ts` from the clone root."
+            },
+            {
+              "line": 11,
+              "text": "- Result: 8 pass, 14 fail. Errors originate in `src/context.test.ts` fixture helper: `opts.cwd.replaceAll('/', '-')` does not normalize Windows backslashes. The generated child path contains `C:\\Users\\...` as a segment and `mkdirSync` throws `ENOENT`."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## `sessions` portability smoke trial (2026-10-21)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- Upstream: [`nicknisi/sessions`](https://github.com/nicknisi/sessions), MIT, local revision `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`."
+            },
+            {
+              "line": 8,
+              "text": "- Environment: Windows 11, Bun 1.1.12."
+            },
+            {
+              "line": 9,
+              "text": "- Setup: `bun install --frozen-lockfile` — completed, 104 packages installed."
+            },
+            {
+              "line": 10,
+              "text": "- Command: `bun test src/context.test.ts` from the clone root."
+            },
+            {
+              "line": 11,
+              "text": "- Result: 8 pass, 14 fail. Errors originate in `src/context.test.ts` fixture helper: `opts.cwd.replaceAll('/', '-')` does not normalize Windows backslashes. The generated child path contains `C:\\Users\\...` as a segment and `mkdirSync` throws `ENOENT`."
+            },
+            {
+              "line": 12,
+              "text": "- Interpretation: portability smoke exposed a Windows test-fixture bug; it does not establish that product indexing is broken on Windows. This fixture-driven behavior check was inconclusive. No user transcripts or paid services were involved."
+            }
+          ]
+        },
+        {
+          "path": "experiments/alegor-restart/README.md",
+          "hash": "4d858e589d5dd72b2803186d4ecc39eda59311b26186208b74b736bbb1a4db74",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Alegor re-entry restart"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "This is an isolated experimental prototype, created while Visu work is paused. It reads the current Represent Git history and two project documents to answer “what changed, where is the state written down, and what disagrees?” It does not require Visu's runtime or snapshot format. No personal session directories were enumerated, no transcript was ingested, and no AI or paid model call was made."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "Open [the static prototype](index.html), its [line-numbered source evidence](evidence.html), [the Markdown brief](reentry.md), or [the JSON record](reentry.json). Run the deterministic extractor with Node 22:"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "This is an isolated experimental prototype, created while Visu work is paused. It reads the current Represent Git history and two project documents to answer “what changed, where is the state written down, and what disagrees?” It does not require Visu's runtime or snapshot format. No personal session directories were enumerated, no transcript was ingested, and no AI or paid model call was made."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "Open [the static prototype](index.html), its [line-numbered source evidence](evidence.html), [the Markdown brief](reentry.md), or [the JSON record](reentry.json). Run the deterministic extractor with Node 22:"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 3,
+              "text": "This is an isolated experimental prototype, created while Visu work is paused. It reads the current Represent Git history and two project documents to answer “what changed, where is the state written down, and what disagrees?” It does not require Visu's runtime or snapshot format. No personal session directories were enumerated, no transcript was ingested, and no AI or paid model call was made."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "Open [the static prototype](index.html), its [line-numbered source evidence](evidence.html), [the Markdown brief](reentry.md), or [the JSON record](reentry.json). Run the deterministic extractor with Node 22:"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "Open [the static prototype](index.html), its [line-numbered source evidence](evidence.html), [the Markdown brief](reentry.md), or [the JSON record](reentry.json). Run the deterministic extractor with Node 22:"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 5,
+              "text": "Open [the static prototype](index.html), its [line-numbered source evidence](evidence.html), [the Markdown brief](reentry.md), or [the JSON record](reentry.json). Run the deterministic extractor with Node 22:"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 7,
+              "text": "```powershell"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 8,
+              "text": "node D:/ware/represent/experiments/alegor-restart/reentry.mjs D:/ware/represent D:/ware/represent/experiments/alegor-restart d7b24ac #"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 9,
+              "text": "```"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "The raw [before log](windows-before.log), [after log](windows-after.log), exit codes and [exact two-file diff](windows-path-fix.patch) are retained. This is evidence about this fixture and context suite on this host; it is not a claim that the whole upstream test suite is Windows-ready or that this patch has been accepted upstream. The test fixture and scanner agree on a synthetic Windows slug; the actual Claude Code on-disk slug convention on this host was not independently checked, so connecto"
+            },
+            {
+              "line": 10,
+              "text": ""
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "The raw [before log](windows-before.log), [after log](windows-after.log), exit codes and [exact two-file diff](windows-path-fix.patch) are retained. This is evidence about this fixture and context suite on this host; it is not a claim that the whole upstream test suite is Windows-ready or that this patch has been accepted upstream. The test fixture and scanner agree on a synthetic Windows slug; the actual Claude Code on-disk slug convention on this host was not independently checked, so connecto"
+            },
+            {
+              "line": 11,
+              "text": "At the captured revision `df3233a`, the trial covers **7 commits and 78 unique changed paths** from the suite-direction commit `d7b24ac`. It cites current state from CONTEXT and TODO separately. The extractor deliberately surfaces a stale-state mismatch: CONTEXT's Current Sprint still describes the Visu discovery proof as next, while TODO records the automatic discovery trial, non-game test, manual-update measurement, and browser checks complete. It does not guess which document wins. A syntheti"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "The raw [before log](windows-before.log), [after log](windows-after.log), exit codes and [exact two-file diff](windows-path-fix.patch) are retained. This is evidence about this fixture and context suite on this host; it is not a claim that the whole upstream test suite is Windows-ready or that this patch has been accepted upstream. The test fixture and scanner agree on a synthetic Windows slug; the actual Claude Code on-disk slug convention on this host was not independently checked, so connecto"
+            },
+            {
+              "line": 18,
+              "text": ""
+            },
+            {
+              "line": 19,
+              "text": "## Browser check and limits"
+            },
+            {
+              "line": 12,
+              "text": ""
+            },
+            {
+              "line": 13,
+              "text": "## Windows `sessions` portability trial"
+            },
+            {
+              "line": 14,
+              "text": ""
+            },
+            {
+              "line": 15,
+              "text": "Pinned source: `nicknisi/sessions` commit `9293eb6a8ed7a92c27c9c531061bd20e5b8bd1cb`. An isolated clone of that exact revision lives under the ignored `.represent/alegor-restart-sessions-copy/` directory; the upstream reference checkout was not modified. Install used Bun 1.1.12 and the lockfile. Before the patch, `bun test src/context.test.ts` reproduced **8 pass, 14 fail, one setup error**: the fixture converted `/` only, then attempted to create a child path containing the absolute Windows dri"
+            },
+            {
+              "line": 16,
+              "text": ""
+            },
+            {
+              "line": 17,
+              "text": "The raw [before log](windows-before.log), [after log](windows-after.log), exit codes and [exact two-file diff](windows-path-fix.patch) are retained. This is evidence about this fixture and context suite on this host; it is not a claim that the whole upstream test suite is Windows-ready or that this patch has been accepted upstream. The test fixture and scanner agree on a synthetic Windows slug; the actual Claude Code on-disk slug convention on this host was not independently checked, so connecto"
+            },
+            {
+              "line": 18,
+              "text": ""
+            },
+            {
+              "line": 19,
+              "text": "## Browser check and limits"
+            }
+          ]
+        },
+        {
+          "path": "experiments/grafe-mvp/README.md",
+          "hash": "acb7b5e78d524feb3b7ac0f03018a345e0897240ffffe9ef32e25fa2bf4a17f2",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Grafe MVP validation"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Grafe is a local, zero-model source explorer. These pilots test whether a bounded deterministic index can give useful navigation and evidence on real repositories while keeping manual refresh predictable. It rebuilds the configured source scope on refresh; it does not claim a per-file incremental compiler cache. The dependency is TypeScript 5.9.3, pinned under `src/grafe/` and installed with lifecycle scripts disabled."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Real project pilots"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "The pilot configuration in [`examples/grafe/real-projects.json`](../../examples/grafe/real-projects.json) points to Plane Sync and Represent. The full machine report is in [`real-project-audit.json`](real-project-audit.json). It records selected file and byte counts, symbols, typed relationships, grouped diagnostics, indexing time, no-op identity, and a controlled one-file refresh performed on a temporary copy."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "| Project | Files / bytes | Symbols | Relationships | Diagnostics | Audited lookup |"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Grafe is a local, zero-model source explorer. These pilots test whether a bounded deterministic index can give useful navigation and evidence on real repositories while keeping manual refresh predictable. It rebuilds the configured source scope on refresh; it does not claim a per-file incremental compiler cache. The dependency is TypeScript 5.9.3, pinned under `src/grafe/` and installed with lifecycle scripts disabled."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Real project pilots"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "The pilot configuration in [`examples/grafe/real-projects.json`](../../examples/grafe/real-projects.json) points to Plane Sync and Represent. The full machine report is in [`real-project-audit.json`](real-project-audit.json). It records selected file and byte counts, symbols, typed relationships, grouped diagnostics, indexing time, no-op identity, and a controlled one-file refresh performed on a temporary copy."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "| Project | Files / bytes | Symbols | Relationships | Diagnostics | Audited lookup |"
+            },
+            {
+              "line": 10,
+              "text": "|---|---:|---:|---:|---:|---|"
+            },
+            {
+              "line": 3,
+              "text": "Grafe is a local, zero-model source explorer. These pilots test whether a bounded deterministic index can give useful navigation and evidence on real repositories while keeping manual refresh predictable. It rebuilds the configured source scope on refresh; it does not claim a per-file incremental compiler cache. The dependency is TypeScript 5.9.3, pinned under `src/grafe/` and installed with lifecycle scripts disabled."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Real project pilots"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "The pilot configuration in [`examples/grafe/real-projects.json`](../../examples/grafe/real-projects.json) points to Plane Sync and Represent. The full machine report is in [`real-project-audit.json`](real-project-audit.json). It records selected file and byte counts, symbols, typed relationships, grouped diagnostics, indexing time, no-op identity, and a controlled one-file refresh performed on a temporary copy."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "| Project | Files / bytes | Symbols | Relationships | Diagnostics | Audited lookup |"
+            },
+            {
+              "line": 10,
+              "text": "|---|---:|---:|---:|---:|---|"
+            },
+            {
+              "line": 11,
+              "text": "| Plane Sync | 6 / 101,151 | 75 | 437 | 205 groups | `upsertImpl` has 3 production callers: `fullSync` (`src/index.js:423`), `handlePostLink` (`:712`), and `handleForcedSync` (`:729`). Five dynamic-import test mentions are surfaced as candidates, not confirmed calls. |"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Real project pilots"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "The pilot configuration in [`examples/grafe/real-projects.json`](../../examples/grafe/real-projects.json) points to Plane Sync and Represent. The full machine report is in [`real-project-audit.json`](real-project-audit.json). It records selected file and byte counts, symbols, typed relationships, grouped diagnostics, indexing time, no-op identity, and a controlled one-file refresh performed on a temporary copy."
+            },
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "| Project | Files / bytes | Symbols | Relationships | Diagnostics | Audited lookup |"
+            },
+            {
+              "line": 10,
+              "text": "|---|---:|---:|---:|---:|---|"
+            },
+            {
+              "line": 11,
+              "text": "| Plane Sync | 6 / 101,151 | 75 | 437 | 205 groups | `upsertImpl` has 3 production callers: `fullSync` (`src/index.js:423`), `handlePostLink` (`:712`), and `handleForcedSync` (`:729`). Five dynamic-import test mentions are surfaced as candidates, not confirmed calls. |"
+            },
+            {
+              "line": 12,
+              "text": "| Represent | 34 / 203,769 | 125 | 1,037 | 828 groups | `analyzeProject` has 7 checker-linked test references and no direct production call. Passing it as a constructor value is not treated as a call. |"
+            }
+          ]
+        },
+        {
+          "path": "experiments/grafe-research/README.md",
+          "hash": "0298441bf436c9ef083bfc3464d429b0542ef7ca0ec10f95cc2676c4e1f1dfa7",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# Grafe extractor trials"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Research date: 2026-10-21. Commands ran from `D:/ware/represent` in PowerShell 7. No plane-sync files were intentionally changed; the one temporary file created by SCIP inference was moved here after the run. Final `git -C D:/ware/plane-sync status --short` was empty."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Pinned source and tool revisions"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- dependency-cruiser checkout: MIT, commit `60f8a7ef72cbd69a01f62c61c8efcedd8a67d83c`, moved to ignored `D:/ware/represent/references/grafe-dependency-cruiser`."
+            },
+            {
+              "line": 8,
+              "text": "- SCIP TypeScript checkout: Apache-2.0, commit `e8c40f0dda526a6d008b1ef20ad13b1f38a20798`, moved to ignored `D:/ware/represent/references/grafe-scip-typescript`."
+            },
+            {
+              "line": 9,
+              "text": "- Executed npm package versions were pinned separately: `dependency-cruiser@18.7.0` and `@sourcegraph/scip-typescript@0.4.0`. The SCIP checkout HEAD package version was newer (0.5.0); no source checkout code was run."
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Research date: 2026-10-21. Commands ran from `D:/ware/represent` in PowerShell 7. No plane-sync files were intentionally changed; the one temporary file created by SCIP inference was moved here after the run. Final `git -C D:/ware/plane-sync status --short` was empty."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Pinned source and tool revisions"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- dependency-cruiser checkout: MIT, commit `60f8a7ef72cbd69a01f62c61c8efcedd8a67d83c`, moved to ignored `D:/ware/represent/references/grafe-dependency-cruiser`."
+            },
+            {
+              "line": 8,
+              "text": "- SCIP TypeScript checkout: Apache-2.0, commit `e8c40f0dda526a6d008b1ef20ad13b1f38a20798`, moved to ignored `D:/ware/represent/references/grafe-scip-typescript`."
+            },
+            {
+              "line": 9,
+              "text": "- Executed npm package versions were pinned separately: `dependency-cruiser@18.7.0` and `@sourcegraph/scip-typescript@0.4.0`. The SCIP checkout HEAD package version was newer (0.5.0); no source checkout code was run."
+            },
+            {
+              "line": 10,
+              "text": "- plane-sync input: local `D:/ware/plane-sync`, commit `a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3`; origin remote is `https://github.com/waremoto/plane-sync.git`, but remote file fetch was unavailable during this session. No plane-sync license declaration/file was found."
+            },
+            {
+              "line": 3,
+              "text": "Research date: 2026-10-21. Commands ran from `D:/ware/represent` in PowerShell 7. No plane-sync files were intentionally changed; the one temporary file created by SCIP inference was moved here after the run. Final `git -C D:/ware/plane-sync status --short` was empty."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Pinned source and tool revisions"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- dependency-cruiser checkout: MIT, commit `60f8a7ef72cbd69a01f62c61c8efcedd8a67d83c`, moved to ignored `D:/ware/represent/references/grafe-dependency-cruiser`."
+            },
+            {
+              "line": 8,
+              "text": "- SCIP TypeScript checkout: Apache-2.0, commit `e8c40f0dda526a6d008b1ef20ad13b1f38a20798`, moved to ignored `D:/ware/represent/references/grafe-scip-typescript`."
+            },
+            {
+              "line": 9,
+              "text": "- Executed npm package versions were pinned separately: `dependency-cruiser@18.7.0` and `@sourcegraph/scip-typescript@0.4.0`. The SCIP checkout HEAD package version was newer (0.5.0); no source checkout code was run."
+            },
+            {
+              "line": 10,
+              "text": "- plane-sync input: local `D:/ware/plane-sync`, commit `a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3`; origin remote is `https://github.com/waremoto/plane-sync.git`, but remote file fetch was unavailable during this session. No plane-sync license declaration/file was found."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## Pinned source and tool revisions"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "- dependency-cruiser checkout: MIT, commit `60f8a7ef72cbd69a01f62c61c8efcedd8a67d83c`, moved to ignored `D:/ware/represent/references/grafe-dependency-cruiser`."
+            },
+            {
+              "line": 8,
+              "text": "- SCIP TypeScript checkout: Apache-2.0, commit `e8c40f0dda526a6d008b1ef20ad13b1f38a20798`, moved to ignored `D:/ware/represent/references/grafe-scip-typescript`."
+            },
+            {
+              "line": 9,
+              "text": "- Executed npm package versions were pinned separately: `dependency-cruiser@18.7.0` and `@sourcegraph/scip-typescript@0.4.0`. The SCIP checkout HEAD package version was newer (0.5.0); no source checkout code was run."
+            },
+            {
+              "line": 10,
+              "text": "- plane-sync input: local `D:/ware/plane-sync`, commit `a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3`; origin remote is `https://github.com/waremoto/plane-sync.git`, but remote file fetch was unavailable during this session. No plane-sync license declaration/file was found."
+            },
+            {
+              "line": 11,
+              "text": ""
+            },
+            {
+              "line": 12,
+              "text": "## Fixture"
+            }
+          ]
+        }
+      ],
+      "answers": {
+        "whatChanged": [
+          {
+            "date": "2026-10-21T03:31:59-03:00",
+            "subject": "feat(visu): deliver interactive overview and two-project pilot",
+            "commit": "05b304f6ad",
+            "paths": [
+              "README.md",
+              "docs/CONTEXT.md",
+              "docs/LOGBOOK.md",
+              "docs/README.md",
+              "docs/TODO.md",
+              "docs/VISU-MVP-IMPL.md",
+              "docs/reference/visu-mvp.md",
+              "docs/research/alegor-mvp-research.md",
+              "docs/research/grafe-mvp-research.md",
+              "experiments/alegor-research/README.md",
+              "experiments/grafe-research/README.md",
+              "experiments/grafe-research/dependency-cruiser-trial.json",
+              "experiments/grafe-research/fixture/src/index.js",
+              "experiments/grafe-research/fixture/src/index.ts",
+              "experiments/grafe-research/fixture/src/user.js",
+              "experiments/grafe-research/fixture/src/user.ts",
+              "experiments/grafe-research/fixture/tsconfig.json",
+              "experiments/grafe-research/plane-sync-dependency-cruiser.json",
+              "experiments/grafe-research/plane-sync-generated-tsconfig.json",
+              "experiments/grafe-research/plane-sync-scip-typescript.scip",
+              "experiments/grafe-research/scip-typescript-trial.scip",
+              "experiments/visu-pilot/README.md",
+              "experiments/visu-pilot/browser-check.json",
+              "experiments/visu-pilot/history-desktop.png",
+              "experiments/visu-pilot/luz-desktop.png",
+              "experiments/visu-pilot/luz-mobile.png",
+              "experiments/visu-pilot/luz-overview-v2.png",
+              "experiments/visu-pilot/luz-overview-v3.png",
+              "experiments/visu-pilot/luz-overview.png",
+              "experiments/visu-pilot/measurements.json",
+              "experiments/visu-pilot/rompe-desktop.png",
+              "experiments/visu-pilot/rompe-evidence.png",
+              "experiments/visu-pilot/rompe-overview-v2.png",
+              "experiments/visu-pilot/rompe-overview.png",
+              "scripts/start-visu.ps1",
+              "scripts/visu-browser-check.mjs",
+              "scripts/visu-pilot.mjs",
+              "src/visu/core.mjs",
+              "tests/visu.test.mjs",
+              "web/visu/README.md",
+              "web/visu/app.mjs",
+              "web/visu/index.html",
+              "web/visu/style.css"
+            ]
+          },
+          {
+            "date": "2026-10-21T03:33:57-03:00",
+            "subject": "docs(visu-mvp): promote verified local MVP",
+            "commit": "661ac3c368",
+            "paths": [
+              "docs/CAPABILITIES.md",
+              "docs/CONTEXT.md",
+              "docs/LOGBOOK.md",
+              "docs/README.md",
+              "docs/TODO.md",
+              "docs/impl/VISU-MVP-IMPL.md"
+            ]
+          },
+          {
+            "date": "2026-10-21T05:39:15-03:00",
+            "subject": "docs(visu): plan automatic discovery and grounded manual snapshots",
+            "commit": "5be506a81d",
+            "paths": [
+              "docs/VISU-DISCOVERY-IMPL.md"
+            ]
+          },
+          {
+            "date": "2026-10-21T06:19:04-03:00",
+            "subject": "feat(visu): discover project chapters and keep refreshes manual",
+            "commit": "3023fd26e6",
+            "paths": [
+              "docs/CAPABILITIES.md",
+              "docs/CONTEXT.md",
+              "docs/LOGBOOK.md",
+              "docs/README.md",
+              "docs/TODO.md",
+              "docs/VISU-DISCOVERY-IMPL.md",
+              "docs/reference/visu-discovery.md",
+              "docs/reference/visu-mvp.md",
+              "examples/visu/imagelab.json",
+              "examples/visu/luz.json",
+              "examples/visu/rompe.json",
+              "experiments/visu-discovery/README.md",
+              "experiments/visu-discovery/browser-check.json",
+              "experiments/visu-discovery/imagelab-dark.png",
+              "experiments/visu-discovery/imagelab-light.png",
+              "experiments/visu-discovery/imagelab-mono.png",
+              "experiments/visu-discovery/imagelab.json",
+              "experiments/visu-discovery/imagelab.png",
+              "experiments/visu-discovery/luz-dark.png",
+              "experiments/visu-discovery/luz-mobile.png",
+              "experiments/visu-discovery/luz.json",
+              "experiments/visu-discovery/luz.png",
+              "experiments/visu-discovery/rompe.json",
+              "experiments/visu-discovery/rompe.png",
+              "experiments/visu-discovery/update-proof.json",
+              "package.json",
+              "scripts/start-visu.ps1",
+              "scripts/visu-discovery-browser.mjs",
+              "scripts/visu-discovery-pilot.mjs",
+              "scripts/visu-discovery-update.mjs",
+              "src/visu/analysis.mjs",
+              "src/visu/cli.mjs",
+              "src/visu/core.mjs",
+              "src/visu/discovery.mjs",
+              "src/visu/ghost.mjs",
+              "src/visu/server.mjs",
+              "tests/visu-analysis.test.mjs",
+              "tests/visu-automatic.test.mjs",
+              "tests/visu-discovery.test.mjs",
+              "tests/visu.test.mjs",
+              "web/visu/README.md",
+              "web/visu/app.mjs",
+              "web/visu/index.html",
+              "web/visu/style.css"
+            ]
+          },
+          {
+            "date": "2026-10-21T06:19:58-03:00",
+            "subject": "docs(visu): promote VISU-DISCOVERY.2.3 with verified trial evidence",
+            "commit": "df3233a6fb",
+            "paths": [
+              "docs/LOGBOOK.md",
+              "docs/README.md",
+              "docs/impl/VISU-DISCOVERY-IMPL.md"
+            ]
+          },
+          {
+            "date": "2026-10-21T07:02:31-03:00",
+            "subject": "test(represent): restart Grafe and Alegor with parallel working experiments",
+            "commit": "52266d898c",
+            "paths": [
+              "docs/CONTEXT.md",
+              "docs/LOGBOOK.md",
+              "docs/README.md",
+              "docs/TODO.md",
+              "docs/research/alegor-mvp-research.md",
+              "docs/research/grafe-mvp-research.md",
+              "docs/research/reports/Represent parallel track restart.md",
+              "docs/research/research_notes/Represent parallel track restart/alegor.md",
+              "docs/research/research_notes/Represent parallel track restart/developer-needs.md",
+              "docs/research/research_notes/Represent parallel track restart/grafe.md",
+              "experiments/alegor-restart/README.md",
+              "experiments/alegor-restart/browser-smoke.json",
+              "experiments/alegor-restart/browser-smoke.mjs",
+              "experiments/alegor-restart/evidence.html",
+              "experiments/alegor-restart/index.html",
+              "experiments/alegor-restart/reentry.json",
+              "experiments/alegor-restart/reentry.md",
+              "experiments/alegor-restart/reentry.mjs",
+              "experiments/alegor-restart/synthetic-session.json",
+              "experiments/alegor-restart/windows-after.exit",
+              "experiments/alegor-restart/windows-after.log",
+              "experiments/alegor-restart/windows-before.exit",
+              "experiments/alegor-restart/windows-before.log",
+              "experiments/alegor-restart/windows-path-fix.patch",
+              "experiments/grafe-restart/README.md",
+              "experiments/grafe-restart/fixture-viewer.html",
+              "experiments/grafe-restart/fixture/package.json",
+              "experiments/grafe-restart/fixture/src/account.ts",
+              "experiments/grafe-restart/fixture/src/cli.ts",
+              "experiments/grafe-restart/fixture/src/main.ts",
+              "experiments/grafe-restart/fixture/src/presenter.ts",
+              "experiments/grafe-restart/fixture/tsconfig.json",
+              "experiments/grafe-restart/output/fixture-decoded.json",
+              "experiments/grafe-restart/output/fixture.scip",
+              "experiments/grafe-restart/output/grafe-fixture.png",
+              "experiments/grafe-restart/output/plane-sync-summary.json",
+              "experiments/grafe-restart/run-fixture.ps1",
+              "experiments/grafe-restart/scripts/browser-smoke.cjs",
+              "experiments/grafe-restart/scripts/decode-scip.cjs",
+              "experiments/grafe-restart/scripts/render-viewer.cjs"
+            ]
+          },
+          {
+            "date": "2026-10-21T07:21:22-03:00",
+            "subject": "docs(represent): plan parallel Grafe and Alegor MVP builds",
+            "commit": "e3f4b02000",
+            "paths": [
+              "docs/ALEGOR-MVP-IMPL.md",
+              "docs/CONTEXT.md",
+              "docs/GRAFE-MVP-IMPL.md",
+              "docs/README.md",
+              "docs/TODO.md"
+            ]
+          },
+          {
+            "date": "2026-10-21T07:49:51-03:00",
+            "subject": "feat(grafe): build local source explorer and immutable history",
+            "commit": "34a79ca3cb",
+            "paths": [
+              "docs/GRAFE-MVP-IMPL.md",
+              "docs/LOGBOOK.md",
+              "src/grafe/cli.mjs",
+              "src/grafe/core.mjs",
+              "src/grafe/package-lock.json",
+              "src/grafe/package.json",
+              "src/grafe/server.mjs",
+              "tests/grafe-core.test.mjs",
+              "tests/grafe-server.test.mjs",
+              "web/grafe/app.mjs",
+              "web/grafe/index.html",
+              "web/grafe/style.css"
+            ]
+          }
+        ],
+        "whereToResume": [
+          {
+            "type": "next",
+            "path": "docs/TODO.md",
+            "line": 32,
+            "text": "- [ ] Define the versioned headless snapshot contract and build local TypeScript/JavaScript indexing with explicit scope, typed edges, spans, hashes, versions, and diagnostics."
+          },
+          {
+            "type": "next",
+            "path": "docs/TODO.md",
+            "line": 33,
+            "text": "- [ ] Test a second larger repository with pinned file scope and manually audited relations; run a maintainer caller-and-tests navigation task and measure clean and incremental indexing."
+          },
+          {
+            "type": "next",
+            "path": "docs/TODO.md",
+            "line": 40,
+            "text": "- [ ] Turn the Git/docs extractor into a local CLI and web MVP with conflict, missing-citation, deleted-source, and unchanged-state fixtures."
+          },
+          {
+            "type": "next",
+            "path": "docs/TODO.md",
+            "line": 41,
+            "text": "- [ ] Validate “what changed / where do I resume?” on one real project task; only then preview a user-selected session source and measure false/missed links."
+          },
+          {
+            "type": "next",
+            "path": "docs/ALEGOR-MVP-IMPL.md",
+            "line": 55,
+            "text": "- [ ] ALEGOR-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior."
+          },
+          {
+            "type": "next",
+            "path": "docs/ALEGOR-MVP-IMPL.md",
+            "line": 56,
+            "text": "- [ ] ALEGOR-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation."
+          },
+          {
+            "type": "next",
+            "path": "docs/ALEGOR-MVP-IMPL.md",
+            "line": 59,
+            "text": "- [ ] ALEGOR-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes."
+          },
+          {
+            "type": "next",
+            "path": "docs/ALEGOR-MVP-IMPL.md",
+            "line": 60,
+            "text": "- [ ] ALEGOR-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence."
+          }
+        ],
+        "declaredProjectContext": [
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 35,
+            "text": "**Parallel MVP implementation (2026-10-21):** Grafe and Alegor have separate headless cores, CLIs and local web surfaces under development. Initial tests cover compiler-resolved source relationships and immutable Git/docs history respectively. Real-project trials, live UI/UX checks, independent QA and integration are in progress; the active trackers above hold acceptance evidence. Detailed research records now cover [Grafe, Gource and Codevis](research/grafe-research-and-tests.md) and [Alegor, S"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 47,
+            "text": "| Decision | Choice | Reason | Date |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 48,
+            "text": "|---|---|---|---|"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 49,
+            "text": "| AI backend | **Ghost AI pipeline** (not direct provider SDKs) | Reuse Ghost's provider routing, caching, resilience, and cost controls. No per-project API-key plumbing. Providers: Gemini primary, OpenRouter fallback, local Ollama/vLLM (RTX 3090). | 2026-04-13 |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 50,
+            "text": "| Embeddability | **First-principle, not afterthought** | Every tool must ship to the broadest public surface possible: web app, VSCode extension, JetBrains extension, desktop (Tauri-class), mobile, CLI, library. Core must be headless and framework-agnostic; surfaces are thin shells. | 2026-04-13 |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 51,
+            "text": "| Rendering format | _tbd_ | Likely SVG as v0 portable primitive (works in every surface), canvas/WebGL for interactive v1. Needs a POC to lock. | — |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 52,
+            "text": "| Ingestion v0 | _tbd_ | Candidates: git-walk, AST (tree-sitter / Roslyn), `codebase-digest` piped output, IDE-index scrape. Needs a POC to lock. | — |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 53,
+            "text": "| Workspace layout | **Monorepo under `D:/ware/represent`** | Shared doctrine + shared core + per-project subfolders. One docs tree at the root. | 2026-04-13 |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 54,
+            "text": "| Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |"
+          },
+          {
+            "type": "declared",
+            "path": "docs/CONTEXT.md",
+            "line": 117,
+            "text": "Advance **Grafe and Alegor independently in parallel**. For Grafe, pin a larger second TypeScript/JavaScript repository's input scope, audit source-link correctness and relation coverage, and validate a caller-and-tests navigation task. For Alegor, harden the local Git/docs brief with conflict and missing-evidence fixtures, then validate a real re-entry task before adding any explicitly selected session source. Both can begin narrow local MVP implementation now; neither waits for Visu or for the"
+          },
+          {
+            "type": "declared",
+            "path": "docs/TODO.md",
+            "line": 23,
+            "text": "Implementation is explicitly authorized in parallel. Follow [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md) for source, real-project, UX and detailed research-document acceptance. Visu is paused throughout."
+          },
+          {
+            "type": "declared",
+            "path": "docs/TODO.md",
+            "line": 25,
+            "text": "The tracks progress independently; Visu is not a gate. Keep the shared snapshot/evidence identity composable as it becomes concrete, without requiring cross-track integration before either local workflow is useful."
+          }
+        ],
+        "possibleDisagreement": [],
+        "uncertainty": null
+      }
+    },
+    {
+      "project": {
+        "id": "plane-sync",
+        "name": "Plane Sync",
+        "color": "#3775a8"
+      },
+      "root": "D:\\ware\\plane-sync",
+      "capturedHead": "a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3",
+      "branch": "main",
+      "commitCountInHistoryWindow": 25,
+      "boundedHistory": false,
+      "snapshotId": "plane-sync-4abd7c35bb9fe43a",
+      "revision": "4abd7c35bb9fe43ac8c1c91c985db3a343e3a67342f7fb5bee66ae6f4955358a",
+      "noOpCaptureReused": true,
+      "sourceHeadUnchanged": true,
+      "sourceStatusUnchanged": true,
+      "dirtyState": {
+        "complete": true,
+        "filesHashed": 0,
+        "bytesHashed": 0,
+        "note": null
+      },
+      "workingTreeFiles": [],
+      "docs": [
+        {
+          "path": "docs/PLANE-SYNC-IMPL.md",
+          "hash": "975a519277fd4c175d2e125176abcfa55b6d1875b857d557ca5b46cc6802dbfb",
+          "citations": [
+            {
+              "line": 8,
+              "text": ""
+            },
+            {
+              "line": 9,
+              "text": "- [x] Q1: Linear (cloud) vs Plane (self-hosted)? → **Plane.** Open API + webhooks + MCP, no 250-issue cap, data ownership, fits the dockerize-everything rule. Same bridge design would work against Linear if ever needed. (resolved 2026-07-12, session research)"
+            },
+            {
+              "line": 10,
+              "text": "- [x] Q2: Where does the stack live — GhostWare compose or cognity compose? → **GhostWare** (`Ghost/infrastructure/docker/docker-compose.plane.yml`): Plane serves all Waremoto projects, not just Cognity. (operator: \"part of our ghostware docker compose env\")"
+            },
+            {
+              "line": 11,
+              "text": "- [x] Q3: How to represent Plane's \"started\" state inbound? → **Ignored inbound** for now. Backlog↔In-Progress is not durable in the IMPL markdown (localStorage + live runs only); only checked/strikethrough round-trip. Revisit if a `[>]` in-progress marker ever lands in GhostDev."
+            },
+            {
+              "line": 9,
+              "text": "- [x] Q1: Linear (cloud) vs Plane (self-hosted)? → **Plane.** Open API + webhooks + MCP, no 250-issue cap, data ownership, fits the dockerize-everything rule. Same bridge design would work against Linear if ever needed. (resolved 2026-07-12, session research)"
+            },
+            {
+              "line": 10,
+              "text": "- [x] Q2: Where does the stack live — GhostWare compose or cognity compose? → **GhostWare** (`Ghost/infrastructure/docker/docker-compose.plane.yml`): Plane serves all Waremoto projects, not just Cognity. (operator: \"part of our ghostware docker compose env\")"
+            },
+            {
+              "line": 11,
+              "text": "- [x] Q3: How to represent Plane's \"started\" state inbound? → **Ignored inbound** for now. Backlog↔In-Progress is not durable in the IMPL markdown (localStorage + live runs only); only checked/strikethrough round-trip. Revisit if a `[>]` in-progress marker ever lands in GhostDev."
+            },
+            {
+              "line": 34,
+              "text": ""
+            },
+            {
+              "line": 35,
+              "text": "P2 DONE — live two-way sync verified e2e against the Noomous workspace (`plan.noomous.cl` / :8100), project \"Noomous 1.0\" (`NOO`, uuid `7ba1724f-5b00-4d90-b899-e26953c9335f`), mapped from methrep workspace `cognity-stratum`. TEST.1–5 green (outbound create/update, inbound round-trip Done↔Backlog, echo suppression, HMAC-verified webhook, convert-to-spec spool). Both admin accounts exist (julio@/anibal@noomous.cl). Landmines fixed on the way (see Architecture Notes). P3 designed in [convert-to-spe"
+            },
+            {
+              "line": 61,
+              "text": "- [x] **PLANE-SYNC.1.1** — Ground the GhostDev kanban data model (scene shape, PATCH /step, /watch SSE)"
+            },
+            {
+              "line": 62,
+              "text": "- [x] **PLANE-SYNC.1.2** — Bridge service `src/index.js`: outbound full-sync + SSE trigger + reconcile timer"
+            },
+            {
+              "line": 63,
+              "text": "- [x] **PLANE-SYNC.1.3** — Inbound webhook handler (HMAC verify, state-group mapping, echo suppression)"
+            },
+            {
+              "line": 64,
+              "text": "- [x] **PLANE-SYNC.1.4** — Convert-to-spec spool on `ghostdev` label"
+            },
+            {
+              "line": 65,
+              "text": "- [x] **PLANE-SYNC.1.5** — `docker-compose.plane.yml` (full Plane stack, PLANE_-prefixed env, :8100) + Makefile targets + `.env.example` + `ware.json` registration"
+            },
+            {
+              "line": 68,
+              "text": "- [x] **PLANE-SYNC.2.1** — Operator: admin user, workspace, project, API token, webhook, `sync-config.json` (README checklist) *(done 2026-07-20, automated via ORM/API)*"
+            },
+            {
+              "line": 69,
+              "text": "- [x] **PLANE-SYNC.2.2** — TEST.1 + TEST.2 + TEST.3 pass against the live stack *(+ TEST.4 HMAC + TEST.5 spool, 2026-07-20)*"
+            },
+            {
+              "line": 70,
+              "text": "- [x] **PLANE-SYNC.2.3** — Invite Anibal; map cognity-stratum workspace → Cognity Stratum project *(anibal@noomous.cl created as workspace admin; mapping live. Pending on Anibal: first login + password change)*"
+            },
+            {
+              "line": 73,
+              "text": "- [x] **PLANE-SYNC.3.1** — Host-side spool watcher that runs `/bootstrap-impl` per inbox request and back-links the created IMPL to the originating work item *(shipped as `runner/afkbot.mjs` 2026-07-20; e2e verified with a mock CLI against live Plane — claim/comment/In Progress/back-link/archive. Bonus: `afk` label escalation runs `/run-impl` unattended. Untrusted ticket text goes to the CLI via STDIN, never argv — Node 22 on Windows needs shell:true for `.cmd` (CVE-2024-27980) and shell+argv wo"
+            },
+            {
+              "line": 76,
+              "text": "- [x] **PLANE-SYNC.4.1** — afkbot honours per-project feature flags from `ghostdev.flags.json`, toggled from the GhostDev Command Center's Project Settings node *(shipped 2026-07-21. `afkbot.enabled` pauses spool processing — a paused project's spool files are left untouched, not claimed, so they process normally once re-enabled; `afkbot.autoRun` vetoes the `/run-impl` escalation without suppressing the bootstrap. Flags are re-read every pass, so a toggle applies on the next poll with no restart"
+            }
+          ]
+        },
+        {
+          "path": "README.md",
+          "hash": "4a01aa45cabc95b71086b0b4bdd0a1ad73cfd7f61b9ce341d4bb7a5b988c0e27",
+          "citations": [
+            {
+              "line": 1,
+              "text": "# plane-sync"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Two-way bridge between **GhostDev's methodology daemon (methrep)** and a **self-hosted [Plane](https://plane.so)** instance. IMPL checklist steps appear as Plane work items; moving a Plane card to Done/Cancelled flips the checkbox in the IMPL markdown. The markdown stays the single source of truth."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## How it syncs (fully automatic, event-driven)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```"
+            },
+            {
+              "line": 8,
+              "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+            },
+            {
+              "line": 9,
+              "text": "        │                                            │"
+            },
+            {
+              "line": 2,
+              "text": ""
+            },
+            {
+              "line": 3,
+              "text": "Two-way bridge between **GhostDev's methodology daemon (methrep)** and a **self-hosted [Plane](https://plane.so)** instance. IMPL checklist steps appear as Plane work items; moving a Plane card to Done/Cancelled flips the checkbox in the IMPL markdown. The markdown stays the single source of truth."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## How it syncs (fully automatic, event-driven)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```"
+            },
+            {
+              "line": 8,
+              "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+            },
+            {
+              "line": 9,
+              "text": "        │                                            │"
+            },
+            {
+              "line": 10,
+              "text": "   methrep :5202                                     │"
+            },
+            {
+              "line": 3,
+              "text": "Two-way bridge between **GhostDev's methodology daemon (methrep)** and a **self-hosted [Plane](https://plane.so)** instance. IMPL checklist steps appear as Plane work items; moving a Plane card to Done/Cancelled flips the checkbox in the IMPL markdown. The markdown stays the single source of truth."
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## How it syncs (fully automatic, event-driven)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```"
+            },
+            {
+              "line": 8,
+              "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+            },
+            {
+              "line": 9,
+              "text": "        │                                            │"
+            },
+            {
+              "line": 10,
+              "text": "   methrep :5202                                     │"
+            },
+            {
+              "line": 11,
+              "text": "        │  GET /watch (SSE, fires on any .md change) │"
+            },
+            {
+              "line": 4,
+              "text": ""
+            },
+            {
+              "line": 5,
+              "text": "## How it syncs (fully automatic, event-driven)"
+            },
+            {
+              "line": 6,
+              "text": ""
+            },
+            {
+              "line": 7,
+              "text": "```"
+            },
+            {
+              "line": 8,
+              "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+            },
+            {
+              "line": 9,
+              "text": "        │                                            │"
+            },
+            {
+              "line": 10,
+              "text": "   methrep :5202                                     │"
+            },
+            {
+              "line": 11,
+              "text": "        │  GET /watch (SSE, fires on any .md change) │"
+            },
+            {
+              "line": 12,
+              "text": "        └───────────────► plane-sync ───────────────►│  create/update work item"
+            }
+          ]
+        }
+      ],
+      "answers": {
+        "whatChanged": [
+          {
+            "date": "2026-07-22T02:54:59-04:00",
+            "subject": "fix(afkghost-dispatch): recover the spec name from the run diff (BUG.5)",
+            "commit": "1151a7efc7",
+            "paths": [
+              "runner/afkbot.mjs",
+              "test/dispatch.test.mjs"
+            ]
+          },
+          {
+            "date": "2026-07-22T03:58:14-04:00",
+            "subject": "fix(afkghost-dispatch): retry before burning the once-only back-link (BUG.9)",
+            "commit": "5b4ba2d247",
+            "paths": [
+              "runner/afkbot.mjs",
+              "test/dispatch.test.mjs"
+            ]
+          },
+          {
+            "date": "2026-07-22T12:04:44-04:00",
+            "subject": "docs: soft-delete gotcha when auditing the board from Postgres",
+            "commit": "333cdaa4f8",
+            "paths": [
+              "docs/PLANE-SYNC-IMPL.md"
+            ]
+          },
+          {
+            "date": "2026-07-22T12:52:49-04:00",
+            "subject": "feat(tools): board-structure.js -- parent mirror cards under project epics + phase sub-issues",
+            "commit": "2205ce22fe",
+            "paths": [
+              "docs/board-guide.md",
+              "tools/board-structure.js"
+            ]
+          },
+          {
+            "date": "2026-07-22T13:03:29-04:00",
+            "subject": "fix(tools): board-structure -- skip human cards labeled ghostdev (webhook spools a bootstrap)",
+            "commit": "89c9edfadc",
+            "paths": [
+              "tools/board-structure.js"
+            ]
+          },
+          {
+            "date": "2026-07-22T13:21:25-04:00",
+            "subject": "fix(tools): board-structure -- skip human cards labeled ghostdev (webhook spools a bootstrap)",
+            "commit": "2ac65fcf2a",
+            "paths": [
+              "tools/board-structure.js"
+            ]
+          },
+          {
+            "date": "2026-07-22T14:39:45-04:00",
+            "subject": "fix(convert-to-spec): trigger on the label being ADDED, not being PRESENT",
+            "commit": "b8e9dee9c9",
+            "paths": [
+              "src/index.js",
+              "test/impl-lifecycle.test.mjs"
+            ]
+          },
+          {
+            "date": "2026-08-27T14:12:46-04:00",
+            "subject": "docs: add ticket guide simple PDF",
+            "commit": "a1a91c4fa8",
+            "paths": [
+              "docs/ticket-guide-simple.pdf"
+            ]
+          }
+        ],
+        "whereToResume": [
+          {
+            "type": "unknown",
+            "text": "No explicit open next step was found in the selected project documents.",
+            "path": null,
+            "line": null
+          }
+        ],
+        "declaredProjectContext": [
+          {
+            "type": "declared",
+            "path": "docs/PLANE-SYNC-IMPL.md",
+            "line": 35,
+            "text": "P2 DONE — live two-way sync verified e2e against the Noomous workspace (`plan.noomous.cl` / :8100), project \"Noomous 1.0\" (`NOO`, uuid `7ba1724f-5b00-4d90-b899-e26953c9335f`), mapped from methrep workspace `cognity-stratum`. TEST.1–5 green (outbound create/update, inbound round-trip Done↔Backlog, echo suppression, HMAC-verified webhook, convert-to-spec spool). Both admin accounts exist (julio@/anibal@noomous.cl). Landmines fixed on the way (see Architecture Notes). P3 designed in [convert-to-spe"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 1,
+            "text": "# plane-sync"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 3,
+            "text": "Two-way bridge between **GhostDev's methodology daemon (methrep)** and a **self-hosted [Plane](https://plane.so)** instance. IMPL checklist steps appear as Plane work items; moving a Plane card to Done/Cancelled flips the checkbox in the IMPL markdown. The markdown stays the single source of truth."
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 5,
+            "text": "## How it syncs (fully automatic, event-driven)"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 7,
+            "text": "```"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 8,
+            "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 9,
+            "text": "│                                            │"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 3,
+            "text": "Two-way bridge between **GhostDev's methodology daemon (methrep)** and a **self-hosted [Plane](https://plane.so)** instance. IMPL checklist steps appear as Plane work items; moving a Plane card to Done/Cancelled flips the checkbox in the IMPL markdown. The markdown stays the single source of truth."
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 5,
+            "text": "## How it syncs (fully automatic, event-driven)"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 7,
+            "text": "```"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 8,
+            "text": "GhostDev (*-IMPL.md)                          Plane (self-hosted)"
+          },
+          {
+            "type": "declared",
+            "path": "README.md",
+            "line": 9,
+            "text": "│                                            │"
+          }
+        ],
+        "possibleDisagreement": [],
+        "uncertainty": "No explicit open next step was found in the selected project documents."
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "tool": "Gource v0.53",
+  "target": "D:/ware/represent/references/gocity",
+  "targetRevision": "f2b5f40ced5929a8de100a87fec53bac0d296a06",
+  "targetCommitCount": 114,
+  "command": "& 'C:/Program Files/Gource/cmd/gource.cmd' --viewport 640x360 --output-ppm-stream 'C:/Users/Administrator/.codex/worktrees/grafe-mvp/represent/experiments/grafe-reference-checks/gource-gocity.ppm' --output-framerate 25 --seconds-per-day 0.001 --stop-at-end --max-files 100 --file-idle-time-at-end 3 'D:/ware/represent/references/gocity' #",
+  "runs": [
+    {
+      "exitCode": 0,
+      "approxElapsedSeconds": 24,
+      "frames": 427,
+      "rawPpmBytes": 295148805,
+      "observation": "Final frame dark with only date; idle fade completed."
+    },
+    {
+      "exitCode": 0,
+      "approxElapsedSeconds": 24,
+      "frames": 426,
+      "rawPpmBytes": 294457590,
+      "inspectedFrame": 150,
+      "frameIndexZeroBased": 149,
+      "retainedFrame": {
+        "path": "gource-gocity-midframe.png",
+        "width": 640,
+        "height": 360,
+        "sha256": "0E07A323E7A7FC56460A4E95493A7B2938250B58379FA830973751E79D4638D2"
+      },
+      "observation": "Directory paths, file dots and contributor avatars visible; several labels overlap at 640x360."
+    }
+  ],
+  "frameSizeBytes": 691215,
+  "rawPpmCleanup": "Large raw exports and one-frame PPMs removed from this experiment folder; compact PNG frame retained.",
+  "otherRun": {
+    "target": "D:/ware/represent/references/algorithm-visualizer",
+    "commitCount": 668,
+    "exitCode": 0,
+    "approxElapsedSeconds": 30,
+    "rawPpmBytes": 491453865,
+    "observed": "Opening frame only; empty."
+  },
+  "limitations": [
+    "This checks local history replay rendering, not interactive UX.",
+    "A 12fps export was rejected; accepted values were 25/30/60.",
+    "Shallow one-commit checkouts resulted in 'no commits found'.",
+    "No source code copied; Gource COPYING declares GPL-3.0-or-later."
+  ]
+}

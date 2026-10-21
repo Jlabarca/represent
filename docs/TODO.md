@@ -18,30 +18,31 @@
 - [ ] Sketch the headless core → surface boundary (what the library exposes, what each surface does on top)
 - [ ] Prototype a minimal pipeline: ingest → annotate → Ghost AI prompt → render
 
-## Active sprint: Grafe + Alegor local MVPs (2026-10-21)
+## Active sprint: Grafe + Alegor follow-up validation (2026-10-21)
 
-Implementation is explicitly authorized in parallel. Follow [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md) for source, real-project, UX and detailed research-document acceptance. Visu is paused throughout.
+Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](GRAFE-MVP-IMPL.md), [ALEGOR-MVP](ALEGOR-MVP-IMPL.md). The tracks progress independently; Visu stays paused. Shared identity can evolve without blocking either workflow.
 
-The tracks progress independently; Visu is not a gate. Keep the shared snapshot/evidence identity composable as it becomes concrete, without requiring cross-track integration before either local workflow is useful.
+### Grafe - source navigation
 
-### Grafe — source navigation
+- [x] Decode pinned SCIP fixture/Plane Sync output and build the early focused viewer. [Restart evidence](../experiments/grafe-restart/README.md).
+- [x] Build a headless bounded JS/TS index with typed relations, stable IDs, source spans/hashes, diagnostics, CLI and local web app. [Reference](reference/grafe-mvp.md).
+- [x] Test Plane Sync and the larger integrated Represent source scope; audit caller/test relationships and controlled-copy changes, preserving original source hashes. [Pilot](../experiments/grafe-mvp/README.md).
+- [x] Complete design and implementation UI/UX rounds, 10 core/API tests and 16 browser checks. [Browser evidence](../experiments/grafe-mvp/browser-check.json).
+- [x] Reconcile Notion, Gource, both Codevis identities and reference/test genealogy. [Detailed research](research/grafe-research-and-tests.md).
+- [ ] Validate a larger multi-package JS/TS project and an unaided maintainer caller-and-tests task; measure omissions, memory and indexing cost.
+- [ ] Explore editor-follow/minimap interaction and measured per-file incremental indexing. Current refresh rebuilds the bounded scope.
 
-- [x] Decode pinned SCIP TypeScript output and verify fixture occurrences against exact source text: four files, 39 occurrences, zero checked span mismatches.
-- [x] Decode existing plane-sync SCIP index in summary-only mode: six observed documents, 1,075 symbols, 6,485 occurrences, zero recorded diagnostics and zero span mismatches; source tree remained clean.
-- [x] Build a runnable focused-symbol browser prototype; browser smoke passed. Evidence: [trial report](../experiments/grafe-restart/README.md).
-- [ ] Define the versioned headless snapshot contract and build local TypeScript/JavaScript indexing with explicit scope, typed edges, spans, hashes, versions, and diagnostics.
-- [ ] Test a second larger repository with pinned file scope and manually audited relations; run a maintainer caller-and-tests navigation task and measure clean and incremental indexing.
+### Alegor - project re-entry
 
-### Alegor — project re-entry
+- [x] Complete the original Git/docs brief and static timeline prototype; keep the isolated sessions 25/25 Windows test distinct from personal-session compatibility. [Restart evidence](../experiments/alegor-restart/README.md).
+- [x] Build the local Git/docs library, CLI and web MVP with immutable snapshots, conflicts/unknowns, deleted citations, safe scope and no-op fixtures. [Reference](reference/alegor-mvp.md).
+- [x] Exercise real Represent and Plane Sync re-entry evidence and a disposable Plane Sync clone update; preserve original HEAD/status/document hashes. [Pilot](../experiments/alegor-mvp/README.md).
+- [x] Complete design and implementation UI/UX rounds, 12 core/API tests and citation/theme/mobile/keyboard/range browser checks. [Browser evidence](../experiments/alegor-mvp/browser-check.json).
+- [x] Reconcile original Notion/PET, Skales, sessions/lore/memory-mcp and test genealogy. [Detailed research](research/alegor-research-and-tests.md).
+- [ ] Measure an unaided real maintainer re-entry task, including missed and misleading facts.
+- [ ] Preview one explicitly selected session source and measure false/missed project links before integrating transcripts.
 
-- [x] Build a deterministic Git/docs brief over seven commits and 78 changed paths; expose the stale CONTEXT/TODO sprint disagreement with separate citations.
-- [x] Build a runnable static timeline/evidence prototype; 12 browser checks passed.
-- [x] Test a pinned upstream `sessions` Windows context suite in an isolated copy: corrected experimental fixture/scanner paths yielded 25/25; actual session-folder compatibility remains unverified and the patch is not upstream accepted.
-- [ ] Turn the Git/docs extractor into a local CLI and web MVP with conflict, missing-citation, deleted-source, and unchanged-state fixtures.
-- [ ] Validate “what changed / where do I resume?” on one real project task; only then preview a user-selected session source and measure false/missed links.
-
-Research, prototype and exact limitations are in the [restart report](research/reports/Represent%20parallel%20track%20restart.md), [Grafe experiment](../experiments/grafe-restart/README.md), and [Alegor experiment](../experiments/alegor-restart/README.md). Both tracks made zero paid AI calls. These tasks are a design/build plan, not evidence that either product MVP is complete.
-
+Both MVP workflows made zero AI/API calls. The integrated repository suite passed 57/57. Manual snapshots remain the default. Community opportunities include evidence formats, adapters and fixtures; no market-demand claim has been validated.
 
 ## Paused: Visu MVP (2026-10-21)
 
@@ -60,7 +61,7 @@ Visu implementation and paid refresh work are paused at the completed automatic-
 - [x] Build and test the headless snapshot/style/update core — evidence: [archived tracker](impl/VISU-MVP-IMPL.md), 14 regression cases.
 - [x] Integrate Ghost generation and a minimal accessible web shell — evidence: [reference](reference/visu-mvp.md), actual Ghost ledger and nine browser checks.
 - [x] Exercise ROMPE and Luz with measured cold/warm/overlay/art-change cases; complete implementation UX review — evidence: [pilot](../experiments/visu-pilot/README.md).
-- [x] Restart Grafe and Alegor with independent executable trials and runnable local prototypes — evidence: [parallel restart report](research/reports/Represent%20parallel%20track%20restart.md), [Grafe experiment](../experiments/grafe-restart/README.md), [Alegor experiment](../experiments/alegor-restart/README.md). Both now justify narrow local MVP implementation; neither is shipped or validated for market demand.
+- [x] Restart Grafe and Alegor with independent executable trials and runnable local prototypes — evidence: [parallel restart report](research/reports/Represent%20parallel%20track%20restart.md), [Grafe experiment](../experiments/grafe-restart/README.md), [Alegor experiment](../experiments/alegor-restart/README.md). This historical checkpoint justified local MVP implementation; the completed builds are recorded above. Market demand remains unvalidated.
 
 Paused Visu design context: after the ROMPE trial, **“A memorable overview” is the sole tested output accepted as the Represent visual direction.** The remaining Visu feedback tasks below are deferred while this MVP is paused. The poster/box-diagram verdict is superseded as a product recommendation, while experiments remain evidence. Full design and state: [living views report](research/reports/Represent%20living%20project%20views.md), [ROMPE trial verdict](research/rompe-tool-trials.md), and [tracker](REPRESENT-V0-IMPL.md).
 

@@ -1,0 +1,46 @@
+{
+  "record": "bounded public-documentation review; no runtime test",
+  "checkedAt": "2026-10-21",
+  "origin": "https://github.com/skalesapp/skales.git",
+  "localIgnoredClone": "references/alegor-skales",
+  "head": "7560a4133a816305797546eac0efe67b707b85dd",
+  "headDate": "2026-10-19",
+  "readmeVersion": "12.9.55",
+  "license": {
+    "type": "proprietary End User Licence Agreement",
+    "version": "1.2",
+    "date": "2026-09-14",
+    "source": "references/alegor-skales/LICENSE",
+    "sourceCodeAvailable": false,
+    "repoStatement": "README states the app is proprietary and source is not provided; a prior v7 source snapshot was removed because it no longer described the shipped product."
+  },
+  "examined": [
+    {
+      "file": "README.md",
+      "areas": ["repository status and source availability", "History/sidebar", "pinning and appearance personalization", "Code navigation and run summaries"]
+    },
+    {
+      "file": "docs/skales-guide.html",
+      "areas": ["chat sessions", "project/session links", "Code project and branch context", "parallel worktrees and run reports", "backup and import", "themes and preferences"]
+    },
+    { "file": "LICENSE", "areas": ["proprietary status", "study/reverse-engineering/copying boundaries"] },
+    { "file": "COMMERCIAL-LICENSE.md", "areas": ["proprietary status and use summary"] }
+  ],
+  "documentedInteractionPatterns": [
+    { "pattern": "Sessions are saved and can be browsed/restored from a sidebar history panel; automatic title begins from the first message.", "evidence": "docs/skales-guide.html around line 1447", "verification": "published guide only; app not run" },
+    { "pattern": "Existing coding sessions are listed with branch and change size; status displays project folder, branch and changed line counts.", "evidence": "docs/skales-guide.html around lines 2190 and 2248", "verification": "published guide only; app not run" },
+    { "pattern": "Named parallel tasks can use separate checkouts, branches and sessions; long runs leave a report.", "evidence": "docs/skales-guide.html around lines 2295-2298", "verification": "published guide only; app not run" },
+    { "pattern": "Project chats can be linked and then unlinked without deleting the conversation.", "evidence": "docs/skales-guide.html around line 3136", "verification": "published guide only; app not run" },
+    { "pattern": "Navigation appearance is configurable, including light/dark and accent/background choices.", "evidence": "README.md around lines 235-243", "verification": "published README only; app not run" }
+  ],
+  "notPerformed": [
+    "No Skales application installation, launch or account use.",
+    "No binary inspection, decompilation, reverse engineering or attempt to derive internals.",
+    "No code, text, prompt, tool definition, asset or UI implementation copied into Represent.",
+    "No paid model or user transcript/session data accessed.",
+    "No product runtime test; claims above remain documentation-based, not independently observed."
+  ],
+  "conclusion": "Useful public interaction reference for session recognition, project context, reversibility, and customization. Not a code reuse or test target in the current source distribution. Treat as one product's documented choices, not proof of market demand or active adoption.",
+  "repositoryUrl": "https://github.com/skalesapp/skales",
+  "licenseUrl": "https://github.com/skalesapp/skales/blob/main/LICENSE"
+}

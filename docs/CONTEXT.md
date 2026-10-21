@@ -6,11 +6,13 @@
 
 ## Current Operating Direction (2026-10-21)
 
-**Build authorized:** Grafe and Alegor MVP implementation now runs in parallel, each with real-project trials, an individual UI/UX improvement round and a detailed research/test genealogy. Trackers: [GRAFE-MVP](GRAFE-MVP-IMPL.md), [ALEGOR-MVP](ALEGOR-MVP-IMPL.md). Visu stays paused. Local zero-AI operation and read-only source roots are the initial implementation boundaries.
+**Grafe and Alegor local MVPs are implemented. Visu remains paused.** The two tracks progressed in parallel with separate headless cores, CLIs, web apps, real-project trials, UI/UX rounds and detailed research records. Final scoped promotion is being recorded in [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md).
 
-Visu MVP work is **paused** after its automatic-discovery iteration. Grafe and Alegor are active, independent product tracks and do not wait for Visu. Their 2026-10-21 restart trials established enough feasibility for both narrow local MVPs: Grafe source navigation and Alegor Git/docs project re-entry. Neither is a shipped product. See [parallel track restart](research/reports/Represent%20parallel%20track%20restart.md), [Grafe trial](../experiments/grafe-restart/README.md), and [Alegor trial](../experiments/alegor-restart/README.md).
+Grafe runs at port **8873**; Alegor runs at **8874**. Both use manual snapshots outside read-only source roots and make zero AI calls. See [Grafe usage](reference/grafe-mvp.md) and [Alegor usage](reference/alegor-mvp.md). No public deployment, session connector or cross-tool snapshot interoperability is claimed. Neither track waits for Visu or the other track.
 
 ## Latest Product Direction (2026-10-21)
+
+> **Sequence updated 2026-10-21:** The design below records the earlier Visu-first sequence. The user subsequently authorized Grafe and Alegor implementation in parallel and paused Visu. That newer direction governs active work; the original design rationale is preserved here.
 
 The ROMPE trials established the current visual quality bar: **“A memorable overview”** is the only tested output accepted as a natural Represent product direction. The user's desired product is clean and easy at first glance, with deeper summaries, technical data, and source evidence available through hover, focus, or popups. The overview should detect and adopt each project's own style; the MVP narrows the format/workflow to a dependable illustrated overview and cheap, measurable updates, not to a single art style such as ROMPE's pixel art.
 
@@ -30,6 +32,12 @@ The thesis: a project should have an iconic visual identity that reflects its re
 
 ## Current State
 
+**Parallel MVP completion (2026-10-21):** Grafe provides bounded JS/TS symbol navigation, typed relationships, source excerpts, focused graph/evidence views and manual snapshot history. Alegor provides Git/docs snapshots, timeline/baseline comparison, declared next work, unknown/conflict indicators and captured citations. Both were exercised against Plane Sync and Represent, with changed/deleted-source trials in disposable copies. The integrated suite passed **57/57** (10 Grafe, 12 Alegor, 35 existing Visu); Grafe passed 16 browser checks, and Alegor passed citation/theme/detail/mobile/keyboard/range checks. Each received design and live implementation UX rounds. Zero model/API calls were made for these MVP workflows.
+
+Grafe indexed 51 integrated Represent source files in 952.82ms and six Plane Sync files in 783.95ms. Refresh is a full bounded rebuild with immutable no-op reuse, not per-file incremental compilation. Alegor's real Plane Sync clone trial recorded a docs-only update in 1,534.66ms, unchanged reuse and preserved citations after deletion. Its rule-based selection is limited to 40 first-parent commits and 12 documents; it does not read personal sessions. Detailed source genealogy, actual trials and limitations are in [Grafe research and tests](research/grafe-research-and-tests.md) and [Alegor research and tests](research/alegor-research-and-tests.md). Earlier paragraphs below are historical checkpoints.
+
+### Historical checkpoints — Visu and initial bootstrap
+
 **Automatic Visu iteration (2026-10-21):** Root-only configurations now discover a bounded Git text sample and let Ghost choose six chapters. Manual Capture → Explain → Illustrate separates free source capture, cached text analysis and optional image generation. Current state, intended design and next steps have separate captured citations and progressive detail. Light, dark and high-contrast monochrome are local presentation settings. ImageLab was tested without authored scope/chapters alongside refreshed ROMPE/Luz. A controlled-copy status update cost $0.0144183, retained chapter identities and reused art; unchanged operations cost zero. Thirty-five tests and nine browser checks passed. The new development trial cost $0.28688598 including failed/rejected text requests and three illustrations; the earlier $0.3682722 is separate. See [current reference](reference/visu-discovery.md) and [trial](../experiments/visu-discovery/README.md). Interpretation still needs review when source documents disagree; discovery is a sample, not a repository-wide audit. The curated-MVP description below is historical.
 
 **Working local MVP (2026-10-21):** Visu now runs at local port 8871 with a shared headless core, CLI and web shell. ROMPE and Luz y Luna have actual Ghost-generated illustrations, detected style reasons, captured evidence, optional checklist counts, source snapshots, separate portrait revisions and exports. Fourteen regression tests and nine browser checks pass. Controlled-copy unchanged/detail-only updates made zero AI calls; selected original files retained their hashes. The full trial, including rejected generations, cost $0.3682722 in measured Ghost charges. See [Visu reference](reference/visu-mvp.md), [pilot evidence](../experiments/visu-pilot/README.md) and [archived tracker](impl/VISU-MVP-IMPL.md). Source scope/chapter mapping is curated, styles are heuristic, raster quality still needs inspection, and there is no background watcher. Grafe and Alegor remain parallel research tracks. The following pre-implementation statement describes the state before this build.
@@ -44,6 +52,7 @@ Product pre-implementation, with working reference-tool experiments and a local 
 | Embeddability | **First-principle, not afterthought** | Every tool must ship to the broadest public surface possible: web app, VSCode extension, JetBrains extension, desktop (Tauri-class), mobile, CLI, library. Core must be headless and framework-agnostic; surfaces are thin shells. | 2026-04-13 |
 | Rendering format | _tbd_ | Likely SVG as v0 portable primitive (works in every surface), canvas/WebGL for interactive v1. Needs a POC to lock. | — |
 | Ingestion v0 | _tbd_ | Candidates: git-walk, AST (tree-sitter / Roslyn), `codebase-digest` piped output, IDE-index scrape. Needs a POC to lock. | — |
+| Local MVP ingestion/rendering | **Grafe: TypeScript 5.9.3 checker and focused web graph; Alegor: bounded Git/docs and timeline/evidence UI** | Resolves local MVP choices. The general multi-language pipeline remains open; internal versioned JSON snapshots do not yet implement methrep interchange. | 2026-10-21 |
 | Workspace layout | **Monorepo under `D:/ware/represent`** | Shared doctrine + shared core + per-project subfolders. One docs tree at the root. | 2026-04-13 |
 | Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |
 | Compatibility target | **methrep's `represent.scene/v0` envelope + `events.jsonl`** | Reuse the stable boundary, not methrep's markdown parser or date-only append algorithm. Code metadata belongs in annotations; structural extensions need tests. | 2026-10-21 |
@@ -98,17 +107,16 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 | Milestone | State | Notes |
 |---|---|---|
-| Docs doctrine | ✅ Done | `DOCS-PROTOCOL.md` + root living docs in place |
-| Ghost AI wiring decision | ⬜ Pending | Pick which Ghost protocol(s) the first POC will use |
-| Initial product design brief | ✅ Done | Rule 6 four-section suite proposal is in research/reports/Represent living project views.md; an implementation POC must still name the exact Ghost protocol, cache keys and measurable limits. |
-| Headless core skeleton | ⬜ Pending | Must support all surfaces in the embeddability table |
-| Ingestion pipeline spike | ⬜ Pending | |
-| First visual output | ⬜ Pending | |
-| First embedded surface (web) | ⬜ Pending | |
+| Docs doctrine and suite design | Complete | Protocol and source-grounded suite proposal exist. |
+| Ghost AI wiring | Local Visu implemented | See measured Visu ledger; Grafe/Alegor require no AI. |
+| Headless cores and CLI | Local MVPs implemented | Visu, Grafe, Alegor; IDE/mobile-native shells remain future work. |
+| Ingestion and visual output | Local MVPs tested | Illustrated overview, focused JS/TS graph and Git/docs timeline. |
+| Web surfaces | Local MVPs implemented | Visu 8871 (paused), Grafe 8873, Alegor 8874; no public hosted release. |
+| Real-project and UX validation | Automated local trials complete | Two repositories, controlled copies and screenshots; unaided human validation remains open. |
 
 ## Current Sprint
 
-Advance **Grafe and Alegor independently in parallel**. For Grafe, pin a larger second TypeScript/JavaScript repository's input scope, audit source-link correctness and relation coverage, and validate a caller-and-tests navigation task. For Alegor, harden the local Git/docs brief with conflict and missing-evidence fixtures, then validate a real re-entry task before adding any explicitly selected session source. Both can begin narrow local MVP implementation now; neither waits for Visu or for the other's session connector. Keep Visu paused until separately resumed. The [restart report](research/reports/Represent%20parallel%20track%20restart.md) records measured results, limits, and bootstrapping steps. No standalone Grafe/Alegor product has shipped.
+Continue **Grafe and Alegor independently in parallel** from the completed local MVPs. Next Grafe validation: a larger multi-package JS/TS repository and an unaided caller-and-tests task, followed by measured incremental indexing and editor-follow/minimap exploration. Next Alegor validation: unaided project re-entry and one explicitly selected session-source preview with false/missed-link measurements. Neither waits on Visu or the other track. Keep Visu paused. Broader validation and connectors are follow-up work, not included in completed-MVP claims.
 
 ## Active Research
 
@@ -119,4 +127,4 @@ Advance **Grafe and Alegor independently in parallel**. For Grafe, pin a larger 
 
 ## Completed
 
-No general product capability promoted. Research deliverables: preserved PDF, seven reference checkouts, source-grounded comparison, companion study, and reproducible ROMPE explainer/poster trials. Product implementation remains separate from those experiments.
+Visu's two local slices are promoted and paused. Grafe and Alegor local MVP implementations, real-project/copy trials, UI/UX rounds and detailed research records are complete; scoped promotion records final committed verification. Research includes preserved PDF/Notion analysis, pinned reference checkouts, source-grounded comparison, actual Gource execution, Skales public-material inspection and reproducible ROMPE trials. Automated checks do not establish market demand or human product acceptance.

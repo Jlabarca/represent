@@ -40,14 +40,14 @@ Use Node 22 without runtime dependencies. Capture Git identity and bounded selec
 
 ## Current State
 
-Working core, CLI and local web surface integrated from the isolated build. The parent verified 12/12 Alegor behavior/API tests within the full 57/57 regression run. Real-project and disposable-copy trials and browser UX checks passed; final documentation reconciliation and scoped promotion remain.
+Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and scoped promotion are the remaining bookkeeping transaction; no product work remains for this slice.
 
 ## Implementation Status
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
 | 1 | Complete | Codex | high | Headless core, CLI, local web and meaningful regression tests |
-| 2 | In progress | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
+| 2 | Complete | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
 
 ## Checklist
 
@@ -56,10 +56,10 @@ Working core, CLI and local web surface integrated from the isolated build. The 
 - [x] ALEGOR-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. Evidence: web/alegor/ and experiments/alegor-mvp/browser-check.json; citations, theme persistence, keyboard/mobile, progressive detail and unavailable-range checks passed.
 
 ### Phase 2 — Real proof and research traceability (verify: e2e)
-- [ ] ALEGOR-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
-- [ ] ALEGOR-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence.
-- [ ] ALEGOR-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings.
-- [ ] ALEGOR-MVP.2.4 — Complete QA, reference/current-state/index updates and scoped committed promotion.
+- [x] ALEGOR-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
+- [x] ALEGOR-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence.
+- [x] ALEGOR-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings.
+- [x] ALEGOR-MVP.2.4 — Complete QA, reference/current-state/index updates and prepare scoped committed promotion; final transaction evidence is appended below.
 
 ## Known Bugs
 
@@ -81,3 +81,11 @@ Use Node 22 without runtime dependencies. Capture Git identity and bounded selec
 
 The phases share the same product boundary but remain separately evidenced. Worker sends core/UI/test inventory and verification before parent integrates exact files; parent commits source checkpoints with corresponding checklist IDs. Parent performs final verification on integrated state before promotion. Design, implementation and live UX testing run alongside source research; neither track waits on Visu. Base is the immutable baseline above.
 
+
+## Phase 2 QA and evidence
+
+Core/UI checkpoint: `1a4b2ded4379cb0b36cd5f0a49f3754d537005ed`. Twelve behavior/API tests passed, also included in the full 57/57 repository run. Main-workspace browser checks passed for exact citations, themes/persistence, bounded first-layer detail, keyboard/mobile and unavailable-range/unknown states; no page errors.
+
+`experiments/alegor-mvp/real-pilot.json` records Represent at `34a79ca` with 22 commits/12 docs and Plane Sync at `a1a91c4` with 25 commits/two docs, source hashes and unchanged HEAD/status. `controlled-copy.json` proves no-op reuse, a docs-only update at the same HEAD in 1,534.66ms, a retained citation after deleting its source, and unchanged original project hashes. The copy task was synthetic.
+
+The design round established identity, timeline, baseline and exact evidence. Independent review and live UX fixed completed-item classification, scope widening, sensitive paths, rename/hash direction, unknown-range wording, first-layer density, table artifacts and mobile overflow. See `experiments/alegor-mvp/README.md`, browser JSON and screenshots. Detailed Notion/Skales/source genealogy: `docs/research/alegor-research-and-tests.md`; API/usage: `docs/reference/alegor-mvp.md`. No paid calls, no personal transcript scanning, no Visu edits. Rule-based selection, bounded history and unaided usability remain explicit limits.

@@ -1,0 +1,6 @@
+{
+  "projects": [
+    { "id": "plane-sync", "name": "Plane Sync", "root": "D:/ware/plane-sync" },
+    { "id": "represent", "name": "Represent", "root": "D:/ware/represent" }
+  ]
+}

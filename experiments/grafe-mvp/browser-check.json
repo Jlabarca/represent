@@ -1,0 +1,86 @@
+{
+  "checks": [
+    {
+      "name": "Focused symbol shows real callers and a test candidate",
+      "ok": true,
+      "details": "upsertImpl → fullSync, handlePostLink, handleForcedSync; dynamic-load test mentions are marked candidates"
+    },
+    {
+      "name": "Source excerpt and exact callsite are visible",
+      "ok": true,
+      "details": "source snippets use textContent"
+    },
+    {
+      "name": "Outgoing relationship navigates to its target",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Selected graph is visible in the first desktop viewport",
+      "ok": true,
+      "details": "{\"height\":1000,\"viewport\":1000,\"selectedNode\":{\"x\":585.0849609375,\"y\":531.07373046875,\"width\":196.830078125,\"height\":52.8525390625,\"top\":531.07373046875,\"right\":781.9150390625,\"bottom\":583.92626953125,\"left\":585.0849609375}}"
+    },
+    {
+      "name": "Search results keep compact row sizing",
+      "ok": true,
+      "details": "[42]"
+    },
+    {
+      "name": "Visible graph cards do not overlap",
+      "ok": true,
+      "details": "[{\"x\":368.2074890136719,\"y\":426.2799987792969,\"right\":561.3925170898438,\"bottom\":479.13250732421875},{\"x\":368.2074890136719,\"y\":491.8900146484375,\"right\":561.3925170898438,\"bottom\":544.7424926757812},{\"x\":368.2074890136719,\"y\":557.5,\"right\":561.3925170898438,\"bottom\":610.3525390625},{\"x\":368.2074890136719,\"y\":623.1099853515625,\"right\":561.3925170898438,\"bottom\":675.9625244140625},{\"x\":805.6075439453125,\"y\":426.2799987792969,\"right\":998.79248046875,\"bottom\":479.13250732421875},{\"x\":805.6075439453125,\"y\":491.8900146484375,\"right\":998.79248046875,\"bottom\":544.7424926757812},{\"x\":805.6075439453125,\"y\":557.5,\"right\":998.79248046875,\"bottom\":610.3525390625},{\"x\":805.6075439453125,\"y\":623.1099853515625,\"right\":998.79248046875,\"bottom\":675.9625244140625},{\"x\":805.6075439453125,\"y\":688.719970703125,\"right\":998.79248046875,\"bottom\":741.572509765625},{\"x\":585.0849609375,\"y\":531.07373046875,\"right\":781.9150390625,\"bottom\":583.92626953125}]"
+    },
+    {
+      "name": "Evidence view renders a distinct source list",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Outgoing relationship section uses the correct label",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Dark theme can be applied",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Dark theme preference persists",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Measured palette text contrast meets WCAG AA",
+      "ok": true,
+      "details": "{\"lightMutedOnWhite\":5.068119202641926,\"darkMutedOnPanel\":7.0815646563686805,\"darkTextOnPanel\":14.109629447592466}"
+    },
+    {
+      "name": "Mobile layout avoids horizontal overflow and keeps tap targets usable",
+      "ok": true,
+      "details": "{\"width\":390,\"scrollWidth\":375,\"buttonHeight\":42}"
+    },
+    {
+      "name": "Represent project exposes checker-linked test evidence",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Snapshot history selector is populated",
+      "ok": true,
+      "details": ""
+    },
+    {
+      "name": "Unindexed project clears the previous graph",
+      "ok": true,
+      "details": "Controlled API response; no snapshot or source mutation"
+    },
+    {
+      "name": "Browser ran without script errors",
+      "ok": true,
+      "details": ""
+    }
+  ],
+  "total": 16,
+  "errors": []
+}

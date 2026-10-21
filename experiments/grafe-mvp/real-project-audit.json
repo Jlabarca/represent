@@ -1,0 +1,940 @@
+{
+  "date": "2026-10-21T11:00:43.772Z",
+  "projectCount": 2,
+  "projects": [
+    {
+      "id": "plane-sync",
+      "name": "Plane Sync",
+      "root": "D:\\ware\\plane-sync",
+      "head": "a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3",
+      "sourceFiles": [
+        {
+          "path": "runner/afkbot.mjs",
+          "hash": "c2ac572eaa9877dab88636e256ff7c7a0642b6ad744888d6e2920b76e436cee5",
+          "bytes": 24177
+        },
+        {
+          "path": "src/index.js",
+          "hash": "da99ba6ccd728ff482b6d9f80bf3f1bdb6563701ae7f49bcb00907b580610f84",
+          "bytes": 36758
+        },
+        {
+          "path": "test/dispatch.test.mjs",
+          "hash": "d35abbb9b537d30b9e34862b1582e4e2f88bb97fe3c09109c8f49ae77aff2ed1",
+          "bytes": 14554
+        },
+        {
+          "path": "test/impl-lifecycle.test.mjs",
+          "hash": "b1c16954776fe4c993393a3524c038f748b58965a8e9f812b579bf1539ef1b8a",
+          "bytes": 9811
+        },
+        {
+          "path": "test/links-endpoints.test.mjs",
+          "hash": "9d2c937a0211a14d75ff4bf46894df33a75e81f6d398134d0063beedf4bf5152",
+          "bytes": 6751
+        },
+        {
+          "path": "tools/board-structure.js",
+          "hash": "28d729279c8ee1d0c810c6afa39845b2f928d76f10e06552198f76b2567ad65f",
+          "bytes": 9100
+        }
+      ],
+      "sourceHashesPreserved": true,
+      "snapshotId": "8290f9c45be101bbb7ac6cf4ad3787c4f6d98c443d96f1abb3678e999ab1d588",
+      "cleanRefreshMs": 783.95,
+      "noopRefreshMs": 483.61,
+      "counts": {
+        "files": 6,
+        "bytes": 101151,
+        "candidates": 6,
+        "skipped": 0,
+        "symbols": 75,
+        "edges": 437,
+        "diagnostics": 205,
+        "unresolvedCalls": 711
+      },
+      "scope": [
+        "runner/afkbot.mjs",
+        "src/index.js",
+        "test/dispatch.test.mjs",
+        "test/impl-lifecycle.test.mjs",
+        "test/links-endpoints.test.mjs",
+        "tools/board-structure.js"
+      ],
+      "task": {
+        "symbol": {
+          "id": "function:src/index.js:upsertImpl",
+          "name": "upsertImpl",
+          "file": "src/index.js",
+          "lines": [
+            293,
+            337
+          ]
+        },
+        "productionCallers": [
+          {
+            "file": "src/index.js",
+            "line": 423,
+            "caller": "fullSync",
+            "excerpt": [
+              {
+                "line": 421,
+                "text": "        for (const [implName, implSteps] of byImpl) {"
+              },
+              {
+                "line": 422,
+                "text": "          try {"
+              },
+              {
+                "line": 423,
+                "text": "            await upsertImpl(m.planeProject, implName, implSteps, labelNames);"
+              },
+              {
+                "line": 424,
+                "text": "            await migrateStepCards(m.planeProject, implSteps);"
+              },
+              {
+                "line": 425,
+                "text": "          } catch (e) {"
+              }
+            ]
+          },
+          {
+            "file": "src/index.js",
+            "line": 712,
+            "caller": "handlePostLink",
+            "excerpt": [
+              {
+                "line": 710,
+                "text": "      if (!steps.length) return sendJson(res, 404, { error: `impl '${impl}' not in workspace '${ws}' scene` });"
+              },
+              {
+                "line": 711,
+                "text": "      const labelNames = Array.isArray(m.labels) && m.labels.length ? m.labels : DEFAULT_META_LABELS;"
+              },
+              {
+                "line": 712,
+                "text": "      await upsertImpl(m.planeProject, impl, steps, labelNames);"
+              },
+              {
+                "line": 713,
+                "text": "    }"
+              },
+              {
+                "line": 714,
+                "text": "    saveState();"
+              }
+            ]
+          },
+          {
+            "file": "src/index.js",
+            "line": 729,
+            "caller": "handleForcedSync",
+            "excerpt": [
+              {
+                "line": 727,
+                "text": "  if (state.impls[key]) state.impls[key].lastSig = null; // force the push"
+              },
+              {
+                "line": 728,
+                "text": "  const labelNames = Array.isArray(m.labels) && m.labels.length ? m.labels : DEFAULT_META_LABELS;"
+              },
+              {
+                "line": 729,
+                "text": "  await upsertImpl(m.planeProject, impl, steps, labelNames);"
+              },
+              {
+                "line": 730,
+                "text": "  const rec = state.impls[key];"
+              },
+              {
+                "line": 731,
+                "text": "  if (rec) rec.lastSyncAt = new Date().toISOString();"
+              }
+            ]
+          }
+        ],
+        "resolvedTestReferences": [],
+        "candidateTestMentions": [
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 64,
+            "excerpt": [
+              {
+                "line": 62,
+                "text": ""
+              },
+              {
+                "line": 63,
+                "text": "const mod = await import('../src/index.js');"
+              },
+              {
+                "line": 64,
+                "text": "const { state, metaLabelIds, upsertImpl, archiveVanishedImpls, projectLabels, projectStates } = mod;"
+              },
+              {
+                "line": 65,
+                "text": ""
+              },
+              {
+                "line": 66,
+                "text": "const steps = (implName, statuses) =>"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 88,
+            "excerpt": [
+              {
+                "line": 86,
+                "text": ""
+              },
+              {
+                "line": 87,
+                "text": "test('1.5 — meta card creation includes ghostdev alongside per-mapping labels', async () => {"
+              },
+              {
+                "line": 88,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-X', steps('FEAT-X', ['unchecked', 'checked']), ['dev', 'core']);"
+              },
+              {
+                "line": 89,
+                "text": "  const create = calls.find((c) => c.method === 'POST' && c.url.includes('/issues/'));"
+              },
+              {
+                "line": 90,
+                "text": "  assert.ok(create);"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 98,
+            "excerpt": [
+              {
+                "line": 96,
+                "text": ""
+              },
+              {
+                "line": 97,
+                "text": "test('1.5 — additive-only: update PATCH never carries a labels field', async () => {"
+              },
+              {
+                "line": 98,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-Y', steps('FEAT-Y', ['unchecked', 'unchecked']));"
+              },
+              {
+                "line": 99,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-Y', steps('FEAT-Y', ['checked', 'unchecked']));"
+              },
+              {
+                "line": 100,
+                "text": "  const patch = calls.find((c) => c.method === 'PATCH');"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 99,
+            "excerpt": [
+              {
+                "line": 97,
+                "text": "test('1.5 — additive-only: update PATCH never carries a labels field', async () => {"
+              },
+              {
+                "line": 98,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-Y', steps('FEAT-Y', ['unchecked', 'unchecked']));"
+              },
+              {
+                "line": 99,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-Y', steps('FEAT-Y', ['checked', 'unchecked']));"
+              },
+              {
+                "line": 100,
+                "text": "  const patch = calls.find((c) => c.method === 'PATCH');"
+              },
+              {
+                "line": 101,
+                "text": "  assert.ok(patch, 'second upsert PATCHed the card');"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 106,
+            "excerpt": [
+              {
+                "line": 104,
+                "text": ""
+              },
+              {
+                "line": 105,
+                "text": "test('1.1/1.2 — promoted IMPL: card → completed + one-time comment, never deleted, idempotent', async () => {"
+              },
+              {
+                "line": 106,
+                "text": "  await upsertImpl(PROJECT, 'GONE', steps('GONE', ['checked', 'unchecked']));"
+              },
+              {
+                "line": 107,
+                "text": "  const rec = state.impls[`${PROJECT}/GONE`];"
+              },
+              {
+                "line": 108,
+                "text": "  assert.ok(rec);"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 125,
+            "excerpt": [
+              {
+                "line": 123,
+                "text": ""
+              },
+              {
+                "line": 124,
+                "text": "test('1.1 — impls still in the scene or in other projects are untouched', async () => {"
+              },
+              {
+                "line": 125,
+                "text": "  await upsertImpl(PROJECT, 'ALIVE', steps('ALIVE', ['unchecked']));"
+              },
+              {
+                "line": 126,
+                "text": "  await upsertImpl('proj-2', 'OTHER', steps('OTHER', ['unchecked']));"
+              },
+              {
+                "line": 127,
+                "text": "  calls.length = 0;"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 126,
+            "excerpt": [
+              {
+                "line": 124,
+                "text": "test('1.1 — impls still in the scene or in other projects are untouched', async () => {"
+              },
+              {
+                "line": 125,
+                "text": "  await upsertImpl(PROJECT, 'ALIVE', steps('ALIVE', ['unchecked']));"
+              },
+              {
+                "line": 126,
+                "text": "  await upsertImpl('proj-2', 'OTHER', steps('OTHER', ['unchecked']));"
+              },
+              {
+                "line": 127,
+                "text": "  calls.length = 0;"
+              },
+              {
+                "line": 128,
+                "text": "  await archiveVanishedImpls(PROJECT, new Map([['ALIVE', []]]));"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 135,
+            "excerpt": [
+              {
+                "line": 133,
+                "text": ""
+              },
+              {
+                "line": 134,
+                "text": "test('1.3 — mapping without labels[] falls back to dev/core/feature', async () => {"
+              },
+              {
+                "line": 135,
+                "text": "  await upsertImpl(PROJECT, 'FEAT-Z', steps('FEAT-Z', ['unchecked']));"
+              },
+              {
+                "line": 136,
+                "text": "  const create = calls.find((c) => c.method === 'POST' && c.url.includes('/issues/'));"
+              },
+              {
+                "line": 137,
+                "text": "  const names = create.body.labels.map((id) => mockLabels.find((l) => l.id === id)?.name);"
+              }
+            ]
+          },
+          {
+            "file": "test/impl-lifecycle.test.mjs",
+            "line": 142,
+            "excerpt": [
+              {
+                "line": 140,
+                "text": ""
+              },
+              {
+                "line": 141,
+                "text": "test('regression — self-created ghostdev-labeled card does not spool convert-to-spec', async () => {"
+              },
+              {
+                "line": 142,
+                "text": "  await upsertImpl(PROJECT, 'SELF', steps('SELF', ['unchecked']));"
+              },
+              {
+                "line": 143,
+                "text": "  const rec = state.impls[`${PROJECT}/SELF`];"
+              },
+              {
+                "line": 144,
+                "text": "  calls.length = 0;"
+              }
+            ]
+          }
+        ]
+      },
+      "worktreeStatusPreserved": true
+    },
+    {
+      "id": "represent",
+      "name": "Represent",
+      "root": "D:\\ware\\represent",
+      "head": "34a79ca3cba61ed9fc19972cb6ec335304e1e709",
+      "sourceFiles": [
+        {
+          "path": "experiments/alegor-restart/browser-smoke.mjs",
+          "hash": "e7e1eb4d926667063002d0c732008c857bc4f47d62c23001ffb12e793af3d8b1",
+          "bytes": 2668
+        },
+        {
+          "path": "experiments/alegor-restart/reentry.mjs",
+          "hash": "d78ae0b3910afe481d7ba2737da87dca652279b687c3ad90c2276e0234704ced",
+          "bytes": 10578
+        },
+        {
+          "path": "experiments/grafe-research/fixture/src/index.js",
+          "hash": "65d6b8b0a2b044fa3e910e8f780927019ebdda52a4c3cc03196845885711478c",
+          "bytes": 88
+        },
+        {
+          "path": "experiments/grafe-research/fixture/src/index.ts",
+          "hash": "7e21c182190b7ec301387468e41d6a3ec698075b4bfb174b729fec6fb0f8a33f",
+          "bytes": 93
+        },
+        {
+          "path": "experiments/grafe-research/fixture/src/user.js",
+          "hash": "8d70e18681dafec02b07116f7fbb5ec6ab41ffeb1019e08837290c88ad9f73be",
+          "bytes": 49
+        },
+        {
+          "path": "experiments/grafe-research/fixture/src/user.ts",
+          "hash": "21e81fdc73e123fdffab6ee57b624fdc756f1708b43aba2efb1f2177215b468d",
+          "bytes": 57
+        },
+        {
+          "path": "experiments/grafe-restart/fixture/src/account.ts",
+          "hash": "b1b4dcd368a62d0da4d57e287c342488c502d72a8ac0ac3c01307885979eb486",
+          "bytes": 134
+        },
+        {
+          "path": "experiments/grafe-restart/fixture/src/cli.ts",
+          "hash": "fb5c6e4e8afbe39a17c68984c0acb73733582a50bce1b53a31a1f83924e64ca3",
+          "bytes": 57
+        },
+        {
+          "path": "experiments/grafe-restart/fixture/src/main.ts",
+          "hash": "37977c8aacf635a46a7ff97572d7e513cfb5ef6bf2a1949b07d40e603e650cac",
+          "bytes": 224
+        },
+        {
+          "path": "experiments/grafe-restart/fixture/src/presenter.ts",
+          "hash": "5941f7b64c546ddfd16c1a9981bef3f0f7de18ee923669bb2a61bec6324cb9bb",
+          "bytes": 168
+        },
+        {
+          "path": "experiments/grafe-restart/scripts/browser-smoke.cjs",
+          "hash": "ff9bc0b3e2bcaa7b33716a73d8c131f5d845e673f5aa74d69da654f6f3eb4d48",
+          "bytes": 1356
+        },
+        {
+          "path": "experiments/grafe-restart/scripts/decode-scip.cjs",
+          "hash": "1ec8bc56ba79194b4350a9c63897441d2ba93c7812bbbc770609b9b3009af3f3",
+          "bytes": 4566
+        },
+        {
+          "path": "experiments/grafe-restart/scripts/render-viewer.cjs",
+          "hash": "0dfba2d3ea47aa2a9d8a3ee650b6bf228082a1f5940b933b933ef72bffefc729",
+          "bytes": 4047
+        },
+        {
+          "path": "experiments/rompe/eraser-diagrams/generate-inputs.mjs",
+          "hash": "fe0a7d456fea909244a2a09cdda98bc87d9faa8025ce312c740fd8fe72941a40",
+          "bytes": 12504
+        },
+        {
+          "path": "experiments/rompe/interactive-diagram/generate.mjs",
+          "hash": "e518d60c62bced1e90274ca5455bc6152b6a3cbe1069347da3f5463afd0e667e",
+          "bytes": 2134
+        },
+        {
+          "path": "experiments/rompe/interactive-diagram/validate.mjs",
+          "hash": "598f40736f5e045a32ae4ef40d7b6b0624fb7b5c9a17eb5f8976eca494882e16",
+          "bytes": 1614
+        },
+        {
+          "path": "experiments/rompe/living-overview-concept/validate.cjs",
+          "hash": "65b98ed007384b1fa0b31746f264cc35c77467780d0c721bb5f879ed2d87ec41",
+          "bytes": 7350
+        },
+        {
+          "path": "experiments/rompe/validation/browser-tests.cjs",
+          "hash": "741573fcc7333c200bbdf906da361a81ed4de2b34c436e8a6c98b959f76a1b89",
+          "bytes": 5591
+        },
+        {
+          "path": "scripts/alegor-browser-check.mjs",
+          "hash": "adb747ad4ec769a4f1c880bdc45e97c5c0ac9c0d2fb9f195769d284b4f3992d7",
+          "bytes": 5229
+        },
+        {
+          "path": "scripts/alegor-copy-pilot.mjs",
+          "hash": "ae46b4febb256357e2785480926d5147cea6cede1c414d5e00235d6d46ed654c",
+          "bytes": 4484
+        },
+        {
+          "path": "scripts/alegor-pilot.mjs",
+          "hash": "88bad1023eeccadeb2734facf3985ef5150b5c17d4b8f9ecf57812e2fa2bed25",
+          "bytes": 3291
+        },
+        {
+          "path": "scripts/grafe-browser-check.mjs",
+          "hash": "3b752199194f1e4131013395ac84a1586fe5a54595c66eb087536fc1b878ad60",
+          "bytes": 6900
+        },
+        {
+          "path": "scripts/grafe-pilot.mjs",
+          "hash": "08625e058b66337a91c0a65c8c38f9242d271d25b9604aecf8b37b11269ceba8",
+          "bytes": 6152
+        },
+        {
+          "path": "scripts/visu-browser-check.mjs",
+          "hash": "eda027f7cd0fce9ed85b85135b842f8e62c35b20ed54d49787f000266f4d2215",
+          "bytes": 4047
+        },
+        {
+          "path": "scripts/visu-discovery-browser.mjs",
+          "hash": "2dd96e912117d6eda69a728c28b8e0c9cd539c9e943694ed30efb617e738fd04",
+          "bytes": 4633
+        },
+        {
+          "path": "scripts/visu-discovery-pilot.mjs",
+          "hash": "5cee886cdb57a9694ac1411596bdb948eae8ab7c9f70a4c83d8cadd5ed6764e2",
+          "bytes": 2380
+        },
+        {
+          "path": "scripts/visu-discovery-update.mjs",
+          "hash": "8bbeea0a5ea72679e57f5de9d1ab69d46101dfba7a752fba629bf26e2d14abf8",
+          "bytes": 4273
+        },
+        {
+          "path": "scripts/visu-pilot.mjs",
+          "hash": "82cc221616eb04d4ead0bc780ec820a25272c4f46b719f24ad5fc0a69644462d",
+          "bytes": 4579
+        },
+        {
+          "path": "src/alegor/cli.mjs",
+          "hash": "81f8ea4c8e39faa09b5736d9a8a7b74fc32bb0cd615cfcf49273164f55053c5b",
+          "bytes": 2475
+        },
+        {
+          "path": "src/alegor/core.mjs",
+          "hash": "991848752f1f02d4864fec2b312e0160cfa2ecdac25f79b9edb2932fa50e2f01",
+          "bytes": 21785
+        },
+        {
+          "path": "src/alegor/server.mjs",
+          "hash": "1862d65d9cc102b5d264866f25d6967fc9b1ec59ba57d8922ee51cdf6d10bef9",
+          "bytes": 5291
+        },
+        {
+          "path": "src/grafe/cli.mjs",
+          "hash": "89d172755769b23a1f21e243d23aaf4ad729ee88889b19afe5fa5d73b96ad382",
+          "bytes": 2115
+        },
+        {
+          "path": "src/grafe/core.mjs",
+          "hash": "605c3d63daa887915504f4bcc31d04bfe8e73a4aa4838ac69a63354ae6e4e250",
+          "bytes": 20225
+        },
+        {
+          "path": "src/grafe/server.mjs",
+          "hash": "b61937341c66816091bf219a89d23a1aff0b4e6d85cd10fa271eb959073894cf",
+          "bytes": 8480
+        },
+        {
+          "path": "src/visu/analysis.mjs",
+          "hash": "caf01201b32623df1aeead210e6dc1f3655b4b1cf87ad17b0721dbdf517eb38d",
+          "bytes": 12477
+        },
+        {
+          "path": "src/visu/cli.mjs",
+          "hash": "0cbd795e1535bb8ce03661b7219c4dc2fcae546c2e771b11a7b2466bc476179f",
+          "bytes": 2206
+        },
+        {
+          "path": "src/visu/core.mjs",
+          "hash": "e507a8716172e140a5dc5b25319e7916df234da0ada388f04f719b9d64f3044a",
+          "bytes": 27844
+        },
+        {
+          "path": "src/visu/discovery.mjs",
+          "hash": "52a7cc5879e2c406ff6410506be0d42d6a812bc5f1d2f9a281125af98eaa15b5",
+          "bytes": 12060
+        },
+        {
+          "path": "src/visu/ghost.mjs",
+          "hash": "61d423e3553255875e860cfb7d4b2f110991d772382738917abd63c876161200",
+          "bytes": 7898
+        },
+        {
+          "path": "src/visu/server.mjs",
+          "hash": "feb0428f0d7d5e3e85d1c9d94fa3e44873b9118daaff99b10504eaaff6f779ce",
+          "bytes": 3731
+        },
+        {
+          "path": "tests/alegor-core.test.mjs",
+          "hash": "c6d1dadbe31cd0eac41439d95e291103ef763271b0742b346cd69cd1567fc4ae",
+          "bytes": 11521
+        },
+        {
+          "path": "tests/alegor-server.test.mjs",
+          "hash": "3985ec193d84a432912211d6596eeeb5bd8eb566b3455267f200801ad982fca9",
+          "bytes": 3484
+        },
+        {
+          "path": "tests/grafe-core.test.mjs",
+          "hash": "6f980627746e74f333aeb61d14b42af4ada2407829cf6a2ab8150ea82438118e",
+          "bytes": 5721
+        },
+        {
+          "path": "tests/grafe-server.test.mjs",
+          "hash": "43a7eab43b2436388efd03e2ee967d068d0fa82abbf0f2e57c35b035f53e5406",
+          "bytes": 3926
+        },
+        {
+          "path": "tests/visu-analysis.test.mjs",
+          "hash": "5a5ca3b220adde2c65e838283fd5cacb8de59512f7a393d970efe5c48dcbfd3f",
+          "bytes": 7763
+        },
+        {
+          "path": "tests/visu-automatic.test.mjs",
+          "hash": "6dec6d4f0e46659650f8e688416c9a7d142d38ff0784c84eac838edce5490cbd",
+          "bytes": 6286
+        },
+        {
+          "path": "tests/visu-discovery.test.mjs",
+          "hash": "5d15b8bff397b2032738a70e5d179f64e2271c12a8d293ac9281ebd43f0aaeef",
+          "bytes": 4753
+        },
+        {
+          "path": "tests/visu.test.mjs",
+          "hash": "dedcfb57489a137b90ec81346b6e89ada2b90ce44aa55481ef43741417d66fdd",
+          "bytes": 12350
+        },
+        {
+          "path": "web/alegor/app.mjs",
+          "hash": "95ca306ead7f9bd05bf6fe4d0a506bd9cb2162a889535a977595d5e14d241462",
+          "bytes": 17066
+        },
+        {
+          "path": "web/grafe/app.mjs",
+          "hash": "4d9c310597cdc60187e34969f7e50cfa545b01a8f2cd002a41fccb0d1b25d4c6",
+          "bytes": 15554
+        },
+        {
+          "path": "web/visu/app.mjs",
+          "hash": "e53fbd373af30653d2a26020df1c6ea9672091e28969369ef95e35a5424d8be0",
+          "bytes": 33211
+        }
+      ],
+      "sourceHashesPreserved": true,
+      "snapshotId": "8a2d09e64249c78181c6f708e6fcde01440605ee0cc2be8f7732d9554bc81a62",
+      "cleanRefreshMs": 952.82,
+      "noopRefreshMs": 841.82,
+      "counts": {
+        "files": 51,
+        "bytes": 347468,
+        "candidates": 51,
+        "skipped": 0,
+        "symbols": 244,
+        "edges": 2036,
+        "diagnostics": 1449,
+        "unresolvedCalls": 4314
+      },
+      "scope": [
+        "experiments/alegor-restart/browser-smoke.mjs",
+        "experiments/alegor-restart/reentry.mjs",
+        "experiments/grafe-research/fixture/src/index.js",
+        "experiments/grafe-research/fixture/src/index.ts",
+        "experiments/grafe-research/fixture/src/user.js",
+        "experiments/grafe-research/fixture/src/user.ts",
+        "experiments/grafe-restart/fixture/src/account.ts",
+        "experiments/grafe-restart/fixture/src/cli.ts",
+        "experiments/grafe-restart/fixture/src/main.ts",
+        "experiments/grafe-restart/fixture/src/presenter.ts",
+        "experiments/grafe-restart/scripts/browser-smoke.cjs",
+        "experiments/grafe-restart/scripts/decode-scip.cjs",
+        "experiments/grafe-restart/scripts/render-viewer.cjs",
+        "experiments/rompe/eraser-diagrams/generate-inputs.mjs",
+        "experiments/rompe/interactive-diagram/generate.mjs",
+        "experiments/rompe/interactive-diagram/validate.mjs",
+        "experiments/rompe/living-overview-concept/validate.cjs",
+        "experiments/rompe/validation/browser-tests.cjs",
+        "scripts/alegor-browser-check.mjs",
+        "scripts/alegor-copy-pilot.mjs",
+        "scripts/alegor-pilot.mjs",
+        "scripts/grafe-browser-check.mjs",
+        "scripts/grafe-pilot.mjs",
+        "scripts/visu-browser-check.mjs",
+        "scripts/visu-discovery-browser.mjs",
+        "scripts/visu-discovery-pilot.mjs",
+        "scripts/visu-discovery-update.mjs",
+        "scripts/visu-pilot.mjs",
+        "src/alegor/cli.mjs",
+        "src/alegor/core.mjs",
+        "src/alegor/server.mjs",
+        "src/grafe/cli.mjs",
+        "src/grafe/core.mjs",
+        "src/grafe/server.mjs",
+        "src/visu/analysis.mjs",
+        "src/visu/cli.mjs",
+        "src/visu/core.mjs",
+        "src/visu/discovery.mjs",
+        "src/visu/ghost.mjs",
+        "src/visu/server.mjs",
+        "tests/alegor-core.test.mjs",
+        "tests/alegor-server.test.mjs",
+        "tests/grafe-core.test.mjs",
+        "tests/grafe-server.test.mjs",
+        "tests/visu-analysis.test.mjs",
+        "tests/visu-automatic.test.mjs",
+        "tests/visu-discovery.test.mjs",
+        "tests/visu.test.mjs",
+        "web/alegor/app.mjs",
+        "web/grafe/app.mjs",
+        "web/visu/app.mjs"
+      ],
+      "task": {
+        "symbol": {
+          "id": "function:src/visu/analysis.mjs:analyzeProject",
+          "name": "analyzeProject",
+          "file": "src/visu/analysis.mjs",
+          "lines": [
+            85,
+            104
+          ]
+        },
+        "productionCallers": [],
+        "resolvedTestReferences": [
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 40,
+            "excerpt": [
+              {
+                "line": 38,
+                "text": "  const g=ghost(async(url,options)=>{calls++;request=JSON.parse(options.body);return response({usage:{total_tokens:123},choices:[{message:{content:JSON.stringify({regions:Array.from({length:6},(_,i)=>chapter(`chapter-${i+1}`,i))})}}]});});"
+              },
+              {
+                "line": 39,
+                "text": "  const previous={regions:[chapter('chapter-1',0,{label:'Workshop',visual:'Old workshop scene'})]};"
+              },
+              {
+                "line": 40,
+                "text": "  const result=await analyzeProject(g,{name:'Starling Workshop',sources,previous,changedPaths:['docs/plan.md']});"
+              },
+              {
+                "line": 41,
+                "text": "  assert.equal(calls,1);assert.equal(request.model,'json');assert.ok(request.max_tokens<=6500);"
+              },
+              {
+                "line": 42,
+                "text": "  assert.match(request.messages[0].content,/untrusted DATA/);"
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 54,
+            "excerpt": [
+              {
+                "line": 52,
+                "text": "  const bad=Array.from({length:6},(_,i)=>chapter(`bad-${i}`,i,{currentEvidence:[999]}));"
+              },
+              {
+                "line": 53,
+                "text": "  const g=ghost(async()=>response({choices:[{message:{content:JSON.stringify({regions:bad})}}]},{cost:'0.004'}));"
+              },
+              {
+                "line": 54,
+                "text": "  await assert.rejects(analyzeProject(g,{name:'Starling Workshop',sources}),error=>error.message.includes('Invalid currentEvidence')&&error.metrics.costUsd===0.004);"
+              },
+              {
+                "line": 55,
+                "text": "});"
+              },
+              {
+                "line": 56,
+                "text": ""
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 59,
+            "excerpt": [
+              {
+                "line": 57,
+                "text": "test('keeps HTTP failure cost and does not retry',async()=>{"
+              },
+              {
+                "line": 58,
+                "text": "  let calls=0;const g=ghost(async()=>{calls++;return response({}, {status:502,cost:'0.009'});});"
+              },
+              {
+                "line": 59,
+                "text": "  await assert.rejects(analyzeProject(g,{name:'Starling Workshop',sources}),error=>error.message.includes('HTTP 502')&&error.metrics.costUsd===0.009);"
+              },
+              {
+                "line": 60,
+                "text": "  assert.equal(calls,1);"
+              },
+              {
+                "line": 61,
+                "text": "});"
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 66,
+            "excerpt": [
+              {
+                "line": 64,
+                "text": "  const noEvidence=Array.from({length:6},(_,i)=>chapter(`uncited-${i}`,i,{designEvidence:[]}));"
+              },
+              {
+                "line": 65,
+                "text": "  const g=ghost(async()=>response({choices:[{message:{content:JSON.stringify({regions:noEvidence})}}]}));"
+              },
+              {
+                "line": 66,
+                "text": "  const result=await analyzeProject(g,{name:'Starling Workshop',sources});"
+              },
+              {
+                "line": 67,
+                "text": "  assert.match(result.regions[0].intendedDesign,/^Unknown/);assert.equal(result.warnings.length,6);assert.ok(result.regions[0].currentEvidence.length);"
+              },
+              {
+                "line": 68,
+                "text": "});"
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 73,
+            "excerpt": [
+              {
+                "line": 71,
+                "text": "  const unknown=Array.from({length:6},(_,i)=>chapter(`unknown-${i}`,i,{currentState:'Unknown — source excerpts do not establish what runs.',currentEvidence:[],intendedDesign:'Unknown — no target is documented in the selected sources.',designEvidence:[],nextSteps:'Unknown — no next action is evidenced.',nextEvidence:[],evidence:[i]}));"
+              },
+              {
+                "line": 72,
+                "text": "  const g=ghost(async()=>response({choices:[{message:{content:JSON.stringify({regions:unknown})}}]}));"
+              },
+              {
+                "line": 73,
+                "text": "  const result=await analyzeProject(g,{name:'Starling Workshop',sources});"
+              },
+              {
+                "line": 74,
+                "text": "  assert.equal(result.regions[0].currentEvidence.length,0);"
+              },
+              {
+                "line": 75,
+                "text": "});"
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 80,
+            "excerpt": [
+              {
+                "line": 78,
+                "text": "  const bad=Array.from({length:6},(_,i)=>chapter(`empty-${i}`,i,{currentEvidence:[]}));"
+              },
+              {
+                "line": 79,
+                "text": "  const g=ghost(async()=>response({choices:[{message:{content:JSON.stringify({regions:bad})}}]}));"
+              },
+              {
+                "line": 80,
+                "text": "  const result=await analyzeProject(g,{name:'Starling Workshop',sources});assert.match(result.regions[0].currentState,/^Unknown/);assert.equal(result.regions[0].currentEvidence.length,0);"
+              },
+              {
+                "line": 81,
+                "text": "});"
+              },
+              {
+                "line": 82,
+                "text": ""
+              }
+            ]
+          },
+          {
+            "file": "tests/visu-analysis.test.mjs",
+            "line": 87,
+            "excerpt": [
+              {
+                "line": 85,
+                "text": "  const rows=[chapter('existing-b',0,{label:'Changed label',visual:'New market festival',visualChanged:true}),chapter('new-c',1),chapter('existing-a',2,{label:'Changed title',visual:'Unneeded alternate scene'})];"
+              },
+              {
+                "line": 86,
+                "text": "  const g=ghost(async()=>response({choices:[{message:{content:JSON.stringify({regions:[...rows,...Array.from({length:3},(_,i)=>chapter(`new-${i}`,i+3))]})}}]}));"
+              },
+              {
+                "line": 87,
+                "text": "  const result=await analyzeProject(g,{name:'Starling Workshop',sources,previous:prior});"
+              },
+              {
+                "line": 88,
+                "text": "  assert.deepEqual(result.regions.slice(0,2).map(r=>r.id),['existing-a','existing-b']);"
+              },
+              {
+                "line": 89,
+                "text": "  assert.equal(result.regions[0].label,'First');assert.equal(result.regions[0].visual,'Existing gear scene');"
+              }
+            ]
+          }
+        ],
+        "candidateTestMentions": []
+      },
+      "worktreeStatusPreserved": true
+    }
+  ],
+  "refreshCopy": {
+    "fileCount": 6,
+    "initialSnapshotId": "8290f9c45be101bbb7ac6cf4ad3787c4f6d98c443d96f1abb3678e999ab1d588",
+    "noopSnapshotId": "8290f9c45be101bbb7ac6cf4ad3787c4f6d98c443d96f1abb3678e999ab1d588",
+    "changedSnapshotId": "eb338f923d63119828665c35880d8643eba2ac31a9e8031e172c8c8f139a5a5f",
+    "modifiedFile": "runner/afkbot.mjs",
+    "unchangedSymbolIdsStable": true,
+    "sourceCopyOnly": true
+  },
+  "notes": [
+    "Graph edges are resolved by the pinned TypeScript checker against captured in-scope files.",
+    "Test references from statically resolved source are checker-backed; dynamic-load mentions are marked text-match candidates.",
+    "This is local-only and makes no AI calls."
+  ]
+}

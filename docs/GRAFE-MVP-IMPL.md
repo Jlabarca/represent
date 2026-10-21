@@ -40,26 +40,26 @@ Use a pinned TypeScript compiler API adapter instead of depending on an opaque S
 
 ## Current State
 
-Working core, CLI and web surface integrated. Parent core/API verification passed 10/10; the worker browser suite passed 14/14 and parent inspected the corrected screenshots. Real-project and UX evidence exists; final dossier reconciliation, combined verification and promotion remain.
+Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and scoped promotion are the remaining bookkeeping transaction; no product work remains for this slice.
 
 ## Implementation Status
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
 | 1 | Complete | Codex | high | Headless core, CLI, local web and meaningful regression tests |
-| 2 | In progress | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
+| 2 | Complete | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
 
 ## Checklist
 
 ### Phase 1 — Working local product (verify: integration)
 - [x] GRAFE-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior. — evidence: src/grafe/{core,cli,server}.mjs; tests/grafe-{core,server}.test.mjs; parent Node runner 10/10, zero skipped (2026-10-21).
-- [x] GRAFE-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. — evidence: web/grafe/; experiments/grafe-mvp/browser-check.json 14/14; parent inspected final desktop screenshot after viewport, card overlap and search-row fixes.
+- [x] GRAFE-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. — evidence: web/grafe/; experiments/grafe-mvp/browser-check.json 16/16; parent inspected final desktop screenshot after viewport, card overlap and search-row fixes.
 
 ### Phase 2 — Real proof and research traceability (verify: e2e)
-- [ ] GRAFE-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
-- [ ] GRAFE-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence.
-- [ ] GRAFE-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings.
-- [ ] GRAFE-MVP.2.4 — Complete QA, reference/current-state/index updates and scoped committed promotion.
+- [x] GRAFE-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
+- [x] GRAFE-MVP.2.2 — Complete design and implementation UI/UX rounds; fix observed defects and save browser evidence.
+- [x] GRAFE-MVP.2.3 — Deliver detailed source/repository/Notion genealogy distinguishing considered, inspected and executed; reconcile actual build findings.
+- [x] GRAFE-MVP.2.4 — Complete QA, reference/current-state/index updates and prepare scoped committed promotion; final transaction evidence is appended below.
 
 ## Known Bugs
 
@@ -85,3 +85,11 @@ The phases share the same product boundary but remain separately evidenced. Work
 ## Phase 1 QA
 
 The core and UI boxes share the snapshot/API boundary and are committed together as one integration checkpoint (GRAFE-MVP.1.1 and .1.2). New tests cover actual relation errors and snapshot behavior; source files were integrated from the isolated worker, never copied with node_modules. Final promotion still requires phase 2 evidence and verification at the committed implementation HEAD.
+
+## Phase 2 QA and evidence
+
+Core/UI checkpoint: `34a79ca3cba61ed9fc19972cb6ec335304e1e709`; parent integration added outgoing navigation, candidate labels and empty-project graph regressions. Ten behavior/API tests passed, and the final main-workspace browser suite passed 16/16 with zero page errors. The full repository suite passed 57/57.
+
+Plane Sync: six files, 75 symbols, 437 relations, 783.95ms. Integrated Represent: 51 files, 244 symbols, 2,036 relations, 952.82ms. `experiments/grafe-mvp/real-project-audit.json` preserves exact HEAD/file hashes, no-op identity, changed-copy identity and unaffected-symbol stability. Original source HEAD/status/hashes stayed unchanged. The initial 34-file trial is retained separately.
+
+The design round chose focused neighborhoods and evidence disclosure. Live review fixed class-field ownership, false same-name links, Evidence switching, outgoing navigation, candidate wording, viewport stretch, overlapping nodes and search row geometry. See `experiments/grafe-mvp/README.md`, browser JSON and screenshots. Detailed Notion/Gource/Codevis genealogy: `docs/research/grafe-research-and-tests.md`; actual API/usage: `docs/reference/grafe-mvp.md`. No paid calls, no copied upstream implementation, no Visu edits. Larger-project coverage and unaided usability remain limits, not acceptance blockers.

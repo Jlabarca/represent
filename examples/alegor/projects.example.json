@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "id": "represent",
+      "name": "Represent",
+      "root": "D:/ware/represent",
+      "color": "#5d7554"
+    },
+    {
+      "id": "plane-sync",
+      "name": "Plane Sync",
+      "root": "D:/ware/plane-sync",
+      "color": "#3775a8"
+    }
+  ]
+}

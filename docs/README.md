@@ -27,6 +27,10 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 
 | Document | Purpose |
 |---|---|
+| [Grafe MVP](reference/grafe-mvp.md) | Local JS/TS explorer, source evidence, manual history, API and limitations |
+| [Grafe MVP trials](../experiments/grafe-mvp/README.md) | Two real repositories, controlled updates, measured scope and UX checks |
+| [Alegor MVP](reference/alegor-mvp.md) | Local Git/docs re-entry, timeline, captured citations, API and limitations |
+| [Alegor MVP trials](../experiments/alegor-mvp/README.md) | Real re-entry evidence, disposable-copy updates and UX checks |
 | [Visu automatic discovery](reference/visu-discovery.md) | Root-only scope and chapters, manual paid stages, current/design detail, themes and cache limits |
 | [Automatic Visu trial and costs](../experiments/visu-discovery/README.md) | ImageLab/Luz/ROMPE outputs, measured cheap update, original $0.37 breakdown and browser evidence |
 | [Parallel Grafe + Alegor restart](research/reports/Represent%20parallel%20track%20restart.md) | Independent scope, measured prototypes, boundaries, and next MVP gates |
@@ -39,6 +43,8 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 
 | Document | Purpose |
 |---|---|
+| [Grafe detailed research and tests](research/grafe-research-and-tests.md) | Repository genealogy, direct Notion traceability, Codevis identities, Gource execution and design consequences |
+| [Alegor detailed research and tests](research/alegor-research-and-tests.md) | Repository genealogy, Skales inspection, original Notion intent and re-entry evidence |
 | [Grafe MVP research](research/grafe-mvp-research.md) | Pinned extractor trials, real plane-sync evidence, DX opportunities and maturity gate |
 | [Alegor MVP research](research/alegor-mvp-research.md) | Re-entry companion design, session-memory references, Windows trial and maturity gate |
 | [Grafe restart notes](research/research_notes/Represent%20parallel%20track%20restart/grafe.md) | Current source-navigation design and measured feasibility |

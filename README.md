@@ -15,7 +15,16 @@ Multiple concrete projects will live here. They share one doctrine, one AI backe
 
 ## Status
 
-**Visu MVP is runnable locally.** It captures selected project evidence, detects a style direction, creates illustrated overviews through Ghost, and keeps source/art history with detail on demand. ROMPE and Luz y Luna are the first tested projects. [Usage and boundaries](docs/reference/visu-mvp.md) · [Actual pilot results](experiments/visu-pilot/README.md). Grafe and Alegor remain parallel research/design tracks.
+**Grafe and Alegor local MVPs are runnable. Visu development is paused.** Both active tracks were built in parallel, tested on Represent and Plane Sync, and received separate UI/UX improvement rounds. Manual captures make no AI calls.
+
+| Tool | Local UI | Purpose | Documentation |
+|---|---|---|---|
+| Grafe | http://127.0.0.1:8873/ | Focused JS/TS source graph, callers, related tests and excerpts | [Usage](docs/reference/grafe-mvp.md) · [Research and tests](docs/research/grafe-research-and-tests.md) |
+| Alegor | http://127.0.0.1:8874/ | Git/docs project re-entry, timeline, comparisons and citations | [Usage](docs/reference/alegor-mvp.md) · [Research and tests](docs/research/alegor-research-and-tests.md) |
+
+The integrated suite passed 57/57 tests. Source projects remained unchanged; controlled mutations used disposable copies. These are bounded local MVPs with explicit unresolved-source/history limits and no public deployment.
+
+**Visu's existing MVP** captures project evidence, detects style, creates illustrated overviews through Ghost and keeps history with detail on demand. [Usage](docs/reference/visu-discovery.md) · [Pilot results](experiments/visu-discovery/README.md). Its existing surface can still be opened while development is paused:
 
 ```powershell
 node D:/ware/represent/src/visu/cli.mjs serve #
@@ -27,7 +36,7 @@ Then open `http://127.0.0.1:8871`. Saved history and scans work without a key; g
 
 Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html), the [living-overview interaction concept](experiments/rompe/living-overview-concept/index.html), and [trial findings](docs/research/rompe-tool-trials.md). Ten upstream checkouts inform the [v0 tracker](docs/REPRESENT-V0-IMPL.md); a general scanner and renderer remain planned.
 
-**Current product direction (2026-10-21):** build toward one Represent suite with Visu's project-styled memorable overview first, while designing Grafe's technical explorer in parallel. The plane-sync scan is a Grafe engineering checkpoint, not a global product gate. See [docs/CONTEXT.md](docs/CONTEXT.md) and the [living project views design](docs/research/reports/Represent%20living%20project%20views.md).
+**Historical product direction (superseded by the parallel build above):** build toward one Represent suite with Visu's project-styled memorable overview first, while designing Grafe's technical explorer in parallel. The plane-sync scan is a Grafe engineering checkpoint, not a global product gate. See [docs/CONTEXT.md](docs/CONTEXT.md) and the [living project views design](docs/research/reports/Represent%20living%20project%20views.md).
 
 ## Docs
 

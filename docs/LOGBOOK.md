@@ -219,3 +219,21 @@ No open acceptance blocker. Rule-based source selection and the 40-commit histor
 ### Next
 
 Publish the completed real-project/copy trials and source genealogy, then verify both tracks at their committed implementation state and promote together.
+
+## 2026-10-21 — Integrated MVP trials, UX and research reconciliation
+
+### Accomplished
+
+Both main-workspace MVPs passed the 57/57 regression suite. Grafe's final browser run passed 16/16 with zero errors; Alegor's citation, theme persistence, progressive disclosure, mobile/keyboard, project-switch and unavailable-range checks passed. Both were tested on Represent and Plane Sync, including copy-only changes and source-preservation proofs. Detailed per-track dossiers now separate inspected references, executable trials, adopted ideas and remaining limits.
+
+### Decisions
+
+Manual local snapshots, zero model calls, evidence before interpretation. Grafe uses a bounded full rebuild and explicit candidates/diagnostics; Alegor uses captured Git/docs and leaves absent next steps unknown. Main Notion notes were read directly, Gource was executed, divan/codevis remains unavailable at its exact URL, and Skales's public documentation/distribution was inspected without claiming private source or an app run.
+
+### Blockers / limits
+
+No known acceptance failure remains. Neither broad monorepo coverage nor unaided human usability is established. Personal session ingestion, IDE integration, runtime tracing, generic scene interoperability and hosted service remain later work. Visu implementation and paid refreshes were untouched.
+
+### Next
+
+Verify focused suites at the committed implementation HEAD, promote both trackers with their references, then continue independent larger-project and re-entry validation tracks.

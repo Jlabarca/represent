@@ -1,0 +1,28 @@
+{
+  "schema": "alegor.browser-check/v1",
+  "baseUrl": "http://127.0.0.1:8874/",
+  "desktop": {
+    "viewport": "1440x1000",
+    "citationsOpenEvidenceLine": true,
+    "themeToggleWorks": true,
+    "themePersistsOnReload": true,
+    "unavailableRangeShowsReason": true,
+    "rangeTest": "synthetic intercepted API response",
+    "projectStateFirstLayerClaims": 5,
+    "markdownTableScaffoldingHidden": true,
+    "fullHashesHiddenBehindDetails": true
+  },
+  "mobile": {
+    "viewport": "390x844",
+    "horizontalOverflow": false,
+    "keyboardCanFocusControl": true
+  },
+  "projectSwitchShowsUnknownWhenNoOpenTask": true,
+  "screenshots": [
+    "screenshots/alegor-desktop.png",
+    "screenshots/alegor-desktop-dark.png",
+    "screenshots/alegor-range-unavailable.png",
+    "screenshots/alegor-plane-sync.png",
+    "screenshots/alegor-mobile.png"
+  ]
+}

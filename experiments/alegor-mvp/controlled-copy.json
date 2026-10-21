@@ -1,0 +1,44 @@
+{
+  "schema": "alegor.real-copy-pilot/1",
+  "capturedAt": "2026-10-21T10:59:37.125Z",
+  "source": "D:\\ware\\plane-sync",
+  "sourceHead": "a1a91c4fa80888c2be0a7898dfb91bf7e42c5cd3",
+  "copiedDocuments": [
+    {
+      "path": "docs/PLANE-SYNC-IMPL.md",
+      "hash": "975a519277fd4c175d2e125176abcfa55b6d1875b857d557ca5b46cc6802dbfb"
+    },
+    {
+      "path": "README.md",
+      "hash": "4a01aa45cabc95b71086b0b4bdd0a1ad73cfd7f61b9ce341d4bb7a5b988c0e27"
+    }
+  ],
+  "sourceHeadStatusAndDocumentHashesPreserved": true,
+  "modelApiCalls": 0,
+  "measurementsMs": {
+    "firstCapture": 1161.29,
+    "noOp": 1412.97,
+    "docsOnlyUpdate": 1534.66
+  },
+  "baselineRevision": "adef00dac027440f74f2776a8aa012fb8b0bd553ef2bcda4188b4ef721e73178",
+  "noOpRevision": "adef00dac027440f74f2776a8aa012fb8b0bd553ef2bcda4188b4ef721e73178",
+  "updatedRevision": "e14e10f8aef5c6e39f4930094d32581106db27dde874f2c4d6eaf8c4a70483e0",
+  "noOpReused": true,
+  "docUpdatePreservedHead": true,
+  "newCommitCount": 0,
+  "observedChanges": [
+    {
+      "path": "docs/TODO.md",
+      "before": "clean",
+      "after": "??:c3104c1340e8c893989fdf8298d81a5a305eda9743b48acc9a89d4f45c7baf38"
+    }
+  ],
+  "declaredTrialTask": {
+    "type": "next",
+    "path": "docs/TODO.md",
+    "line": 5,
+    "text": "- [ ] Verify the sync retry behavior in this disposable trial."
+  },
+  "citationSurvivesSourceDeletion": true,
+  "limitation": "The added task is a deliberately authored test marker in a disposable copy, not a real Plane Sync requirement."
+}
