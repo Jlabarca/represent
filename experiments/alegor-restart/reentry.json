@@ -1,0 +1,251 @@
+{
+  "schema": "alegor.reentry-experiment/v0",
+  "generatedAt": "2026-10-21T09:57:28.837Z",
+  "source": {
+    "repository": "https://github.com/Jlabarca/represent",
+    "base": "d7b24ac580aebe4b9ad0aac1cc9584841add5832",
+    "head": "df3233a6fb81f0f6c98a9eeb0c27f5490d49da7a",
+    "commitCount": 7,
+    "changedPathCount": 78
+  },
+  "observed": [
+    {
+      "sha": "30c12d9567",
+      "date": "2026-10-21T03:02:40-03:00",
+      "subject": "docs(visu): record bounded MVP implementation and pilot plan",
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/LOGBOOK.md",
+        "docs/README.md",
+        "docs/TODO.md",
+        "docs/VISU-MVP-IMPL.md"
+      ]
+    },
+    {
+      "sha": "d13a2b65e4",
+      "date": "2026-10-21T03:25:15-03:00",
+      "subject": "feat(visu): implement headless snapshot and Ghost pipeline",
+      "paths": [
+        "docs/LOGBOOK.md",
+        "docs/VISU-MVP-IMPL.md",
+        "examples/visu/luz.json",
+        "examples/visu/rompe.json",
+        "package.json",
+        "src/visu/cli.mjs",
+        "src/visu/core.mjs",
+        "src/visu/ghost.mjs",
+        "src/visu/server.mjs",
+        "tests/visu.test.mjs"
+      ]
+    },
+    {
+      "sha": "05b304f6ad",
+      "date": "2026-10-21T03:31:59-03:00",
+      "subject": "feat(visu): deliver interactive overview and two-project pilot",
+      "paths": [
+        "README.md",
+        "docs/CONTEXT.md",
+        "docs/LOGBOOK.md",
+        "docs/README.md",
+        "docs/TODO.md",
+        "docs/VISU-MVP-IMPL.md",
+        "docs/reference/visu-mvp.md",
+        "docs/research/alegor-mvp-research.md",
+        "docs/research/grafe-mvp-research.md",
+        "experiments/alegor-research/README.md",
+        "experiments/grafe-research/README.md",
+        "experiments/grafe-research/dependency-cruiser-trial.json",
+        "experiments/grafe-research/fixture/src/index.js",
+        "experiments/grafe-research/fixture/src/index.ts",
+        "experiments/grafe-research/fixture/src/user.js",
+        "experiments/grafe-research/fixture/src/user.ts",
+        "experiments/grafe-research/fixture/tsconfig.json",
+        "experiments/grafe-research/plane-sync-dependency-cruiser.json",
+        "experiments/grafe-research/plane-sync-generated-tsconfig.json",
+        "experiments/grafe-research/plane-sync-scip-typescript.scip",
+        "experiments/grafe-research/scip-typescript-trial.scip",
+        "experiments/visu-pilot/README.md",
+        "experiments/visu-pilot/browser-check.json",
+        "experiments/visu-pilot/history-desktop.png",
+        "experiments/visu-pilot/luz-desktop.png",
+        "experiments/visu-pilot/luz-mobile.png",
+        "experiments/visu-pilot/luz-overview-v2.png",
+        "experiments/visu-pilot/luz-overview-v3.png",
+        "experiments/visu-pilot/luz-overview.png",
+        "experiments/visu-pilot/measurements.json",
+        "experiments/visu-pilot/rompe-desktop.png",
+        "experiments/visu-pilot/rompe-evidence.png",
+        "experiments/visu-pilot/rompe-overview-v2.png",
+        "experiments/visu-pilot/rompe-overview.png",
+        "scripts/start-visu.ps1",
+        "scripts/visu-browser-check.mjs",
+        "scripts/visu-pilot.mjs",
+        "src/visu/core.mjs",
+        "tests/visu.test.mjs",
+        "web/visu/README.md",
+        "web/visu/app.mjs",
+        "web/visu/index.html",
+        "web/visu/style.css"
+      ]
+    },
+    {
+      "sha": "661ac3c368",
+      "date": "2026-10-21T03:33:57-03:00",
+      "subject": "docs(visu-mvp): promote verified local MVP",
+      "paths": [
+        ".gitignore",
+        "docs/CAPABILITIES.md",
+        "docs/CONTEXT.md",
+        "docs/LOGBOOK.md",
+        "docs/README.md",
+        "docs/TODO.md",
+        "docs/VISU-MVP-IMPL.md",
+        "docs/impl/VISU-MVP-IMPL.md"
+      ]
+    },
+    {
+      "sha": "5be506a81d",
+      "date": "2026-10-21T05:39:15-03:00",
+      "subject": "docs(visu): plan automatic discovery and grounded manual snapshots",
+      "paths": [
+        "docs/VISU-DISCOVERY-IMPL.md"
+      ]
+    },
+    {
+      "sha": "3023fd26e6",
+      "date": "2026-10-21T06:19:04-03:00",
+      "subject": "feat(visu): discover project chapters and keep refreshes manual",
+      "paths": [
+        "docs/CAPABILITIES.md",
+        "docs/CONTEXT.md",
+        "docs/LOGBOOK.md",
+        "docs/README.md",
+        "docs/TODO.md",
+        "docs/VISU-DISCOVERY-IMPL.md",
+        "docs/reference/visu-discovery.md",
+        "docs/reference/visu-mvp.md",
+        "examples/visu/imagelab.json",
+        "examples/visu/luz.json",
+        "examples/visu/rompe.json",
+        "experiments/visu-discovery/README.md",
+        "experiments/visu-discovery/browser-check.json",
+        "experiments/visu-discovery/imagelab-dark.png",
+        "experiments/visu-discovery/imagelab-light.png",
+        "experiments/visu-discovery/imagelab-mono.png",
+        "experiments/visu-discovery/imagelab.json",
+        "experiments/visu-discovery/imagelab.png",
+        "experiments/visu-discovery/luz-dark.png",
+        "experiments/visu-discovery/luz-mobile.png",
+        "experiments/visu-discovery/luz.json",
+        "experiments/visu-discovery/luz.png",
+        "experiments/visu-discovery/rompe.json",
+        "experiments/visu-discovery/rompe.png",
+        "experiments/visu-discovery/update-proof.json",
+        "package.json",
+        "scripts/start-visu.ps1",
+        "scripts/visu-discovery-browser.mjs",
+        "scripts/visu-discovery-pilot.mjs",
+        "scripts/visu-discovery-update.mjs",
+        "src/visu/analysis.mjs",
+        "src/visu/cli.mjs",
+        "src/visu/core.mjs",
+        "src/visu/discovery.mjs",
+        "src/visu/ghost.mjs",
+        "src/visu/server.mjs",
+        "tests/visu-analysis.test.mjs",
+        "tests/visu-automatic.test.mjs",
+        "tests/visu-discovery.test.mjs",
+        "tests/visu.test.mjs",
+        "web/visu/README.md",
+        "web/visu/app.mjs",
+        "web/visu/index.html",
+        "web/visu/style.css"
+      ]
+    },
+    {
+      "sha": "df3233a6fb",
+      "date": "2026-10-21T06:19:58-03:00",
+      "subject": "docs(visu): promote VISU-DISCOVERY.2.3 with verified trial evidence",
+      "paths": [
+        "docs/LOGBOOK.md",
+        "docs/README.md",
+        "docs/VISU-DISCOVERY-IMPL.md",
+        "docs/impl/VISU-DISCOVERY-IMPL.md"
+      ]
+    }
+  ],
+  "declared": [
+    {
+      "label": "Current-state declaration",
+      "source": {
+        "path": "docs/CONTEXT.md",
+        "line": 15
+      },
+      "text": "See the [living project views design](research/reports/Represent%20living%20project%20views.md) for the complete recommendation and [research verdict](research/rompe-tool-trials.md) for the corrected interpretation of trial results."
+    },
+    {
+      "label": "TODO declares discovery work complete",
+      "source": {
+        "path": "docs/TODO.md",
+        "line": 23
+      },
+      "text": "### Completed build: automatic Visu discovery\n\n- [x] Choose bounded source scope and six chapters from project identity/root alone; test ImageLab without an authored overview — evidence: [trial report](../experiments/visu-discovery/README.md).\n- [x] Separate specific current state, intended design and next steps with inspectable quotations; refresh Luz/ROMPE — evidence: saved project JSON and generated art in the trial folder.\n- [x] Keep capture, explanation and illustration manual; verify no-op caching and a $0.0144183 status refresh with zero image calls — evidence: [update proof](../experiments/visu-discovery/update-proof.json).\n- [x] Add persistent dark/high-contrast monochrome and complete a second UX pass — evidence: 35 regression tests and [nine browser checks](../experiments/visu-discovery/browser-check.json).\n- [ ] Collect corrections for stale-document interpretation and chapter usefulness; improve evidence selection before claiming dependable project-state understanding."
+    },
+    {
+      "label": "CONTEXT next-step statement",
+      "source": {
+        "path": "docs/CONTEXT.md",
+        "line": 103
+      },
+      "text": "## Current Sprint\n\nDesign the Visu MVP around an updateable, project-styled overview with optional source-backed detail and local snapshots. Read the [living views report](research/reports/Represent%20living%20project%20views.md), inspect the [ROMPE comparison](../experiments/rompe/index.html), and use the [trial verdict](research/rompe-tool-trials.md). Next proof: test the same constrained overview workflow on ROMPE and a non-game repository, measure update/cache/image work, and refine style inference and the snapshot interaction. In parallel, maintain the Grafe design; the old plane-sync scene can serve as its engineering checkpoint after the shared evidence/snapshot design is concrete. No scanner, hosted companion, or full animated renderer has shipped."
+    }
+  ],
+  "unresolved": [
+    {
+      "label": "Current-step mismatch",
+      "sources": [
+        {
+          "path": "docs/CONTEXT.md",
+          "line": 103
+        },
+        {
+          "path": "docs/TODO.md",
+          "line": 23
+        }
+      ],
+      "note": "CONTEXT still describes discovery as the next proof; TODO records automatic discovery, a non-game test, manual update cost, and browser checks as complete. This experiment records the conflict; it does not decide which document is authoritative."
+    }
+  ],
+  "correlationTrial": {
+    "sessionId": "fixture-alegor-reentry-001",
+    "synthetic": true,
+    "project": "D:/ware/represent",
+    "basis": [
+      "fixture project path equals this repository root",
+      "edited file path overlaps changed Git paths"
+    ],
+    "overlap": [
+      "docs/CONTEXT.md",
+      "docs/research/alegor-mvp-research.md"
+    ],
+    "evidence": [
+      {
+        "path": "docs/CONTEXT.md",
+        "changedInRange": [
+          "30c12d9567",
+          "05b304f6ad",
+          "661ac3c368",
+          "3023fd26e6"
+        ]
+      },
+      {
+        "path": "docs/research/alegor-mvp-research.md",
+        "changedInRange": [
+          "05b304f6ad"
+        ]
+      }
+    ],
+    "interpretation": "candidate link only; shared paths do not prove the session caused any commit"
+  },
+  "deterministicDigest": "5f6df93875a4d4471185f3bfba211be832d793f3504ac55d183df86a5bfcad9c"
+}

@@ -1,0 +1,634 @@
+{
+  "schema": "grafe-scip-audit/1",
+  "index": "D:\\ware\\represent\\experiments\\grafe-restart\\output\\fixture.scip",
+  "tool": {
+    "name": "scip-typescript",
+    "version": "0.4.0",
+    "arguments": []
+  },
+  "projectRoot": "file:///D:/ware/represent/experiments/grafe-restart/fixture",
+  "documentCount": 4,
+  "documents": [
+    {
+      "path": "src\\account.ts",
+      "occurrenceCount": 9,
+      "symbolCount": 6,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "occurrences": [
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 0,
+            "endLine": 1,
+            "endColumn": 0
+          },
+          "exactText": "",
+          "excerpt": "export interface Account { id: string; active: boolean }",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 17,
+            "endLine": 1,
+            "endColumn": 24
+          },
+          "exactText": "Account",
+          "excerpt": "export interface Account { id: string; active: boolean }",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#id.",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 27,
+            "endLine": 1,
+            "endColumn": 29
+          },
+          "exactText": "id",
+          "excerpt": "export interface Account { id: string; active: boolean }",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#active.",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 39,
+            "endLine": 1,
+            "endColumn": 45
+          },
+          "exactText": "active",
+          "excerpt": "export interface Account { id: string; active: boolean }",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/loadAccount.",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 2,
+            "startColumn": 13,
+            "endLine": 2,
+            "endColumn": 24
+          },
+          "exactText": "loadAccount",
+          "excerpt": "export const loadAccount = (id: string): Account => ({ id, active: true });",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "local 1",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 2,
+            "startColumn": 28,
+            "endLine": 2,
+            "endColumn": 30
+          },
+          "exactText": "id",
+          "excerpt": "export const loadAccount = (id: string): Account => ({ id, active: true });",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 2,
+            "startColumn": 41,
+            "endLine": 2,
+            "endColumn": 48
+          },
+          "exactText": "Account",
+          "excerpt": "export const loadAccount = (id: string): Account => ({ id, active: true });",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#id.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 2,
+            "startColumn": 55,
+            "endLine": 2,
+            "endColumn": 57
+          },
+          "exactText": "id",
+          "excerpt": "export const loadAccount = (id: string): Account => ({ id, active: true });",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#active.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 2,
+            "startColumn": 59,
+            "endLine": 2,
+            "endColumn": 65
+          },
+          "exactText": "active",
+          "excerpt": "export const loadAccount = (id: string): Account => ({ id, active: true });",
+          "spanMatchesSource": true
+        }
+      ]
+    },
+    {
+      "path": "src\\presenter.ts",
+      "occurrenceCount": 10,
+      "symbolCount": 3,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "occurrences": [
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 0,
+            "endLine": 1,
+            "endColumn": 0
+          },
+          "exactText": "",
+          "excerpt": "import type { Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "symbol-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 14,
+            "endLine": 1,
+            "endColumn": 21
+          },
+          "exactText": "Account",
+          "excerpt": "import type { Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "module-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 29,
+            "endLine": 1,
+            "endColumn": 40
+          },
+          "exactText": "\"./account\"",
+          "excerpt": "import type { Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 2,
+            "startColumn": 16,
+            "endLine": 2,
+            "endColumn": 30
+          },
+          "exactText": "presentAccount",
+          "excerpt": "export function presentAccount(account: Account): string {",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().(account)",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 2,
+            "startColumn": 31,
+            "endLine": 2,
+            "endColumn": 38
+          },
+          "exactText": "account",
+          "excerpt": "export function presentAccount(account: Account): string {",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 2,
+            "startColumn": 40,
+            "endLine": 2,
+            "endColumn": 47
+          },
+          "exactText": "Account",
+          "excerpt": "export function presentAccount(account: Account): string {",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().(account)",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 3,
+            "startColumn": 9,
+            "endLine": 3,
+            "endColumn": 16
+          },
+          "exactText": "account",
+          "excerpt": "  return account.active ? `account:${account.id}` : \"inactive\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#active.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 3,
+            "startColumn": 17,
+            "endLine": 3,
+            "endColumn": 23
+          },
+          "exactText": "active",
+          "excerpt": "  return account.active ? `account:${account.id}` : \"inactive\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().(account)",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 3,
+            "startColumn": 37,
+            "endLine": 3,
+            "endColumn": 44
+          },
+          "exactText": "account",
+          "excerpt": "  return account.active ? `account:${account.id}` : \"inactive\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#id.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 3,
+            "startColumn": 45,
+            "endLine": 3,
+            "endColumn": 47
+          },
+          "exactText": "id",
+          "excerpt": "  return account.active ? `account:${account.id}` : \"inactive\";",
+          "spanMatchesSource": true
+        }
+      ]
+    },
+    {
+      "path": "src\\main.ts",
+      "occurrenceCount": 14,
+      "symbolCount": 4,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "occurrences": [
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 0,
+            "endLine": 1,
+            "endColumn": 0
+          },
+          "exactText": "",
+          "excerpt": "import { loadAccount, type Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/loadAccount.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "symbol-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 9,
+            "endLine": 1,
+            "endColumn": 20
+          },
+          "exactText": "loadAccount",
+          "excerpt": "import { loadAccount, type Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "symbol-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 27,
+            "endLine": 1,
+            "endColumn": 34
+          },
+          "exactText": "Account",
+          "excerpt": "import { loadAccount, type Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "module-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 42,
+            "endLine": 1,
+            "endColumn": 53
+          },
+          "exactText": "\"./account\"",
+          "excerpt": "import { loadAccount, type Account } from \"./account\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "symbol-import",
+          "range": {
+            "startLine": 2,
+            "startColumn": 9,
+            "endLine": 2,
+            "endColumn": 23
+          },
+          "exactText": "presentAccount",
+          "excerpt": "import { presentAccount } from \"./presenter\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "module-import",
+          "range": {
+            "startLine": 2,
+            "startColumn": 31,
+            "endLine": 2,
+            "endColumn": 44
+          },
+          "exactText": "\"./presenter\"",
+          "excerpt": "import { presentAccount } from \"./presenter\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/run().",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 3,
+            "startColumn": 16,
+            "endLine": 3,
+            "endColumn": 19
+          },
+          "exactText": "run",
+          "excerpt": "export function run(id: string): string {",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/run().(id)",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 3,
+            "startColumn": 20,
+            "endLine": 3,
+            "endColumn": 22
+          },
+          "exactText": "id",
+          "excerpt": "export function run(id: string): string {",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "local 2",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 4,
+            "startColumn": 8,
+            "endLine": 4,
+            "endColumn": 15
+          },
+          "exactText": "account",
+          "excerpt": "  const account: Account = loadAccount(id);",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/Account#",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 4,
+            "startColumn": 17,
+            "endLine": 4,
+            "endColumn": 24
+          },
+          "exactText": "Account",
+          "excerpt": "  const account: Account = loadAccount(id);",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`account.ts`/loadAccount.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "call",
+          "range": {
+            "startLine": 4,
+            "startColumn": 27,
+            "endLine": 4,
+            "endColumn": 38
+          },
+          "exactText": "loadAccount",
+          "excerpt": "  const account: Account = loadAccount(id);",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/run().(id)",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 4,
+            "startColumn": 39,
+            "endLine": 4,
+            "endColumn": 41
+          },
+          "exactText": "id",
+          "excerpt": "  const account: Account = loadAccount(id);",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`presenter.ts`/presentAccount().",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "call",
+          "range": {
+            "startLine": 5,
+            "startColumn": 9,
+            "endLine": 5,
+            "endColumn": 23
+          },
+          "exactText": "presentAccount",
+          "excerpt": "  return presentAccount(account);",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "local 2",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "reference",
+          "range": {
+            "startLine": 5,
+            "startColumn": 24,
+            "endLine": 5,
+            "endColumn": 31
+          },
+          "exactText": "account",
+          "excerpt": "  return presentAccount(account);",
+          "spanMatchesSource": true
+        }
+      ]
+    },
+    {
+      "path": "src\\cli.ts",
+      "occurrenceCount": 6,
+      "symbolCount": 1,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "occurrences": [
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`cli.ts`/",
+          "roleBits": 1,
+          "role": "definition",
+          "usage": "definition",
+          "range": {
+            "startLine": 1,
+            "startColumn": 0,
+            "endLine": 1,
+            "endColumn": 0
+          },
+          "exactText": "",
+          "excerpt": "import { run } from \"./main\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/run().",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "symbol-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 9,
+            "endLine": 1,
+            "endColumn": 12
+          },
+          "exactText": "run",
+          "excerpt": "import { run } from \"./main\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "module-import",
+          "range": {
+            "startLine": 1,
+            "startColumn": 20,
+            "endLine": 1,
+            "endColumn": 28
+          },
+          "exactText": "\"./main\"",
+          "excerpt": "import { run } from \"./main\";",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm typescript 5.9.3 lib/`lib.dom.d.ts`/console.",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "call",
+          "range": {
+            "startLine": 2,
+            "startColumn": 0,
+            "endLine": 2,
+            "endColumn": 7
+          },
+          "exactText": "console",
+          "excerpt": "console.log(run(\"A-17\"));",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm typescript 5.9.3 lib/`lib.dom.d.ts`/Console#log().",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "call",
+          "range": {
+            "startLine": 2,
+            "startColumn": 8,
+            "endLine": 2,
+            "endColumn": 11
+          },
+          "exactText": "log",
+          "excerpt": "console.log(run(\"A-17\"));",
+          "spanMatchesSource": true
+        },
+        {
+          "symbol": "scip-typescript npm grafe-nav-fixture 0.0.0 src/`main.ts`/run().",
+          "roleBits": 0,
+          "role": "reference/unspecified",
+          "usage": "call",
+          "range": {
+            "startLine": 2,
+            "startColumn": 12,
+            "endLine": 2,
+            "endColumn": 15
+          },
+          "exactText": "run",
+          "excerpt": "console.log(run(\"A-17\"));",
+          "spanMatchesSource": true
+        }
+      ]
+    }
+  ]
+}

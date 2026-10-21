@@ -1,0 +1,26 @@
+diff --git a/src/context.test.ts b/src/context.test.ts
+index e2dee3d..83fb9b9 100644
+--- a/src/context.test.ts
++++ b/src/context.test.ts
+@@ -62,7 +62,7 @@ function writeClaudeSession(opts: {
+   createdAt?: string;
+   gitBranch?: string;
+ }): string {
+-  const slug = opts.cwd.replaceAll('/', '-');
++  const slug = opts.cwd.replaceAll('\\', '-').replaceAll(':', '').replaceAll('/', '-');
+   const projDir = join(claudeDir, slug);
+   mkdirSync(projDir, { recursive: true });
+   const id = `sess-${seq++}`;
+diff --git a/src/scanner.ts b/src/scanner.ts
+index d374e5d..18203c1 100644
+--- a/src/scanner.ts
++++ b/src/scanner.ts
+@@ -134,7 +134,7 @@ export async function scanSessions(
+   searchQuery: string,
+ ): Promise<SessionResult[]> {
+   const searchAll = repoRoot === '';
+-  const claudePrefix = repoRoot ? repoRoot.replaceAll('/', '-') : '';
++  const claudePrefix = repoRoot ? repoRoot.replaceAll('\\', '-').replaceAll(':', '').replaceAll('/', '-') : '';
+   const normalizedQuery = searchQuery.toLowerCase();
+ 
+   const scans: Promise<SessionResult[]>[] = [];

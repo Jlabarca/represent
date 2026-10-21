@@ -1,0 +1,262 @@
+bun test v1.1.12 (43f0913c)
+
+src\context.test.ts:
+
+# Unhandled error between tests
+-------------------------------
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\normal-repo"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:207:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:197:3
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:153:1
+-------------------------------
+
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-a"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:114:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:112:84
+(fail) indexed-columns > files_touched round-trips through JSON and closing_assistant is captured
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-tier"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:143:7
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:139:76
+(fail) two-tier > with 12 sessions and limit 10, recent has 10 and headlines has 2
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\dotfiles\wt\main"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:160:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:154:94
+(fail) worktree aggregation > aggregates sessions across worktrees with branch labels and excludes a -v2 sibling
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\narrow\wt\main"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:182:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:178:56
+(fail) worktree aggregation > worktreeOnly narrows to the current worktree
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-branch"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:239:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:237:79
+(fail) branch > the indexed branch (from logs) wins over the worktree-derived label
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-nobranch"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:247:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:245:72
+(fail) branch > falls back to branchLabel when the session carries no branch
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-sig"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:257:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:254:78
+(fail) significance > a trivial session is demoted out of the detail tier into headlines
+(pass) empty-state > a repo with no sessions yields isEmpty true and empty tiers [47.00ms]
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\search-rank"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:293:20
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:290:89
+(fail) searchSessions > ranks by bm25 relevance, not recency — the stronger match wins even when older
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\search-or"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:311:16
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:309:88
+(fail) searchSessions > OR recall: a multi-word query still matches when only some terms are present
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\search-stem"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:319:16
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:317:87
+(fail) searchSessions > porter stemming connects inflected forms ("refactor" matches "refactoring")
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\search-asst"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:326:16
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:324:84
+(fail) searchSessions > assistant message text is searchable (a term only in the reply is found)
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\search-empty"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:339:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:337:58
+(fail) searchSessions > a term that appears nowhere returns no matches
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\proj-filecap"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:351:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:348:92
+(fail) files cap > a 40-file session is capped in the primer while fileCount reports the true total
+(pass) files cap > the primer renderer counts hidden files from fileCount, not the capped array
+(pass) cli > renderMarkdown produces two-tier headings, intent, files, and earlier bullets
+(pass) cli > renderMarkdown on an empty primer emits the empty-state line and no tier headings
+(pass) cli > --full widens per-session detail (shows divergent opening, no file truncation)
+(pass) cli > parseContextArgs parses flags
+(pass) cli > parseContextArgs defaults
+(pass) cli > parseContextArgs rejects unknown flags via die [16.00ms]
+62 |   createdAt?: string;
+63 |   gitBranch?: string;
+64 | }): string {
+65 |   const slug = opts.cwd.replaceAll('/', '-');
+66 |   const projDir = join(claudeDir, slug);
+67 |   mkdirSync(projDir, { recursive: true });
+       ^
+ENOENT: No such file or directory
+   errno: -2
+ syscall: "mkdir"
+   path: "C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\claude\C:\Users\Administrator\AppData\Local\Temp\sessions-ctx-HYiwO1\mcp-parity"
+
+      at writeClaudeSession (D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:67:3)
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:517:5
+      at D:\ware\represent\.represent\alegor-restart-sessions-copy\src\context.test.ts:515:94
+(fail) mcp > the primer JSON the MCP tool serializes round-trips to the renderer-consumed shape
+
+ 8 pass
+ 14 fail
+ 1 error
+ 35 expect() calls
+Ran 22 tests across 1 files. [191.00ms]

@@ -1,0 +1,51 @@
+bun test v1.1.12 (43f0913c)
+
+src\context.test.ts:
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) indexed-columns > files_touched round-trips through JSON and closing_assistant is captured [63.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) two-tier > with 12 sessions and limit 10, recent has 10 and headlines has 2 [31.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) worktree aggregation > normal repo, sibling worktrees > aggregates from the main worktree [15.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) worktree aggregation > normal repo, sibling worktrees > aggregates from the linked worktree, where the container resolves to the linked path [16.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) worktree aggregation > normal repo, sibling worktrees > worktreeOnly still narrows to one sibling
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) worktree aggregation > aggregates sessions across worktrees with branch labels and excludes a -v2 sibling [31.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) worktree aggregation > worktreeOnly narrows to the current worktree [32.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) branch > the indexed branch (from logs) wins over the worktree-derived label [15.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) branch > falls back to branchLabel when the session carries no branch [31.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) significance > a trivial session is demoted out of the detail tier into headlines [32.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) empty-state > a repo with no sessions yields isEmpty true and empty tiers [15.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) searchSessions > ranks by bm25 relevance, not recency — the stronger match wins even when older [32.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) searchSessions > OR recall: a multi-word query still matches when only some terms are present [15.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) searchSessions > porter stemming connects inflected forms ("refactor" matches "refactoring") [15.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) searchSessions > assistant message text is searchable (a term only in the reply is found) [16.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) searchSessions > a term that appears nowhere returns no matches [31.00ms]
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) files cap > a 40-file session is capped in the primer while fileCount reports the true total [31.00ms]
+(pass) files cap > the primer renderer counts hidden files from fileCount, not the capped array
+(pass) cli > renderMarkdown produces two-tier headings, intent, files, and earlier bullets
+(pass) cli > renderMarkdown on an empty primer emits the empty-state line and no tier headings
+(pass) cli > --full widens per-session detail (shows divergent opening, no file truncation)
+(pass) cli > parseContextArgs parses flags
+(pass) cli > parseContextArgs defaults
+(pass) cli > parseContextArgs rejects unknown flags via die
+sessions: vault archive failed (No such file or directory); continuing without archiving
+(pass) mcp > the primer JSON the MCP tool serializes round-trips to the renderer-consumed shape [47.00ms]
+
+ 25 pass
+ 0 fail
+ 78 expect() calls
+Ran 25 tests across 1 files. [651.00ms]

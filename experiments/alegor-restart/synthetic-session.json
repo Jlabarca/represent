@@ -1,0 +1,11 @@
+{
+  "sessionId": "fixture-alegor-reentry-001",
+  "synthetic": true,
+  "project": "D:/ware/represent",
+  "createdAt": "2026-10-21T12:00:00.000Z",
+  "editedFiles": [
+    "docs/CONTEXT.md",
+    "docs/research/alegor-mvp-research.md"
+  ],
+  "intent": "Test whether a session with explicit project and edited-file metadata can be linked to a Git change set without claiming causality."
+}

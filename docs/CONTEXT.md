@@ -4,6 +4,10 @@
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
 > Updated: 2026-10-21
 
+## Current Operating Direction (2026-10-21)
+
+Visu MVP work is **paused** after its automatic-discovery iteration. Grafe and Alegor are active, independent product tracks and do not wait for Visu. Their 2026-10-21 restart trials established enough feasibility for both narrow local MVPs: Grafe source navigation and Alegor Git/docs project re-entry. Neither is a shipped product. See [parallel track restart](research/reports/Represent%20parallel%20track%20restart.md), [Grafe trial](../experiments/grafe-restart/README.md), and [Alegor trial](../experiments/alegor-restart/README.md).
+
 ## Latest Product Direction (2026-10-21)
 
 The ROMPE trials established the current visual quality bar: **“A memorable overview”** is the only tested output accepted as a natural Represent product direction. The user's desired product is clean and easy at first glance, with deeper summaries, technical data, and source evidence available through hover, focus, or popups. The overview should detect and adopt each project's own style; the MVP narrows the format/workflow to a dependable illustrated overview and cheap, measurable updates, not to a single art style such as ROMPE's pixel art.
@@ -102,7 +106,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-Design the Visu MVP around an updateable, project-styled overview with optional source-backed detail and local snapshots. Read the [living views report](research/reports/Represent%20living%20project%20views.md), inspect the [ROMPE comparison](../experiments/rompe/index.html), and use the [trial verdict](research/rompe-tool-trials.md). Next proof: test the same constrained overview workflow on ROMPE and a non-game repository, measure update/cache/image work, and refine style inference and the snapshot interaction. In parallel, maintain the Grafe design; the old plane-sync scene can serve as its engineering checkpoint after the shared evidence/snapshot design is concrete. No scanner, hosted companion, or full animated renderer has shipped.
+Advance **Grafe and Alegor independently in parallel**. For Grafe, pin a larger second TypeScript/JavaScript repository's input scope, audit source-link correctness and relation coverage, and validate a caller-and-tests navigation task. For Alegor, harden the local Git/docs brief with conflict and missing-evidence fixtures, then validate a real re-entry task before adding any explicitly selected session source. Both can begin narrow local MVP implementation now; neither waits for Visu or for the other's session connector. Keep Visu paused until separately resumed. The [restart report](research/reports/Represent%20parallel%20track%20restart.md) records measured results, limits, and bootstrapping steps. No standalone Grafe/Alegor product has shipped.
 
 ## Active Research
 

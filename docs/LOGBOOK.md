@@ -147,3 +147,21 @@ Complete scoped promotion, then collect product feedback on automatically chosen
 ## 2026-10-21 — Promote Visu automatic discovery
 
 Promoted VISU-DISCOVERY-IMPL to impl/ with reference/visu-discovery.md. Implementation commit 3023fd26 contains the scoped feature and trial evidence. Recorded 44/44 checks (35 regression, nine browser) at that HEAD; promotion checker passed all machine gates. Unrelated methodology files and Notion sources were excluded. Next: user review of chapter relevance and source interpretation; human review remains distinct from automated verification. No deployment or push was performed.
+
+## 2026-10-21 — Restart Grafe and Alegor independently
+
+### Accomplished
+
+While Visu is paused, completed parallel feasibility work for Grafe and Alegor. Grafe decoded a four-file TypeScript fixture (39 occurrences, zero checked source-span mismatches) and a saved six-document plane-sync index (1,075 symbols, 6,485 occurrences, zero span mismatches), and produced a focused-symbol browser prototype. Alegor produced a cited Git/docs re-entry brief over seven commits and 78 paths, surfaced conflicting sprint state, and produced a static timeline/evidence prototype. Its browser prototype passed 12 checks. The pinned `sessions` Windows context suite passed 25/25 after an isolated two-line experimental scanner/fixture path normalization; actual Claude session-folder compatibility remains unverified. No paid AI calls were made. See [parallel restart report](research/reports/Represent%20parallel%20track%20restart.md) and the [Grafe](../experiments/grafe-restart/README.md) and [Alegor](../experiments/alegor-restart/README.md) records.
+
+### Decisions
+
+Begin narrow local MVP implementation for both tracks in parallel; neither waits on Visu or the other track. Grafe starts with explicit-scope TypeScript/JavaScript navigation and source evidence. Alegor starts with Git/docs re-entry and visible conflicts; a user-selected session connector follows after local task validation. Shared project/snapshot identity should be reused when concrete, not treated as a prerequisite. These prototypes do not establish product-market fit or shipped MVP status.
+
+### Blockers / limits
+
+Grafe's real-project index scope was not pinned when originally generated, and six observed files do not prove full coverage or scaling. The AST overlay classified syntax but did not independently verify every semantic relation. Alegor's session linkage input was synthetic; the context-suite patch was local and not upstream accepted. No representative user study, willingness-to-pay research, or session-correlation accuracy measurement has been done.
+
+### Next
+
+For Grafe, pin a second larger repository's exact file set, audit relation and span correctness, then run a caller-and-tests task. For Alegor, add deterministic conflict/deleted-citation fixtures, validate a real project re-entry task, then preview an explicitly selected session corpus and measure false/missed links. Keep Visu paused unless reprioritized.

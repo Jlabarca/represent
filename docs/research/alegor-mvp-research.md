@@ -2,6 +2,8 @@
 
 > Research snapshot: 2026-10-21. Proposal only; no Alegor implementation is approved by this note. Alegor is a product role, not a mascot. It should make returning to a project and understanding its history easier across Represent's views and AI tools.
 
+> **Status update — 2026-10-21:** The earlier “not mature yet” gate has been superseded by the measured restart experiment. Alegor is ready to begin a narrow local Git/docs re-entry MVP independently of Visu and Grafe; selected real session-source validation remains a later gate for session integration, not for the Git/docs MVP. No standalone product has shipped and demand remains unvalidated. See [the current parallel-track report](reports/Represent%20parallel%20track%20restart.md), [measured Alegor experiment](../../experiments/alegor-restart/README.md), and [active tasks](../TODO.md).
+
 ## System Intent
 
 Alegor is the optional companion/history surface for a project. Its first job is **re-entry**: help a developer answer “where did I leave off, what changed, and why?” with links to dated project snapshots, saved Visu/Grafe views, decisions, work-in-progress, and the sessions that contain their reasoning. The user’s old Notion note describes a related personal pain: juggling five to ten concurrent assistant sessions makes conversations easy to confuse. A second note imagines a “code runtime doctor” that explains workflow strengths and weaknesses, starting with Unity profiling data. These are useful user-originated hypotheses, not market-wide validation.

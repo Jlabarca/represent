@@ -2,6 +2,8 @@
 
 > Research snapshot: 2026-10-21. This is a proposal, not current implementation state. No product code was changed.
 
+> **Status update — 2026-10-21:** The earlier “not mature yet” gate has been superseded by measured restart experiments. Grafe is ready to begin a narrow local source-navigation MVP, independently of Visu and Alegor. This is not a shipped product or market validation. See [the current parallel-track report](reports/Represent%20parallel%20track%20restart.md), [measured Grafe experiment](../../experiments/grafe-restart/README.md), and [active tasks](../TODO.md).
+
 ## System Intent
 
 Grafe is Represent's technical explorer: a developer-facing, source-linked view for understanding a repository, investigating change impact, and checking claims made by humans or AI tools. It should improve on the Codevis screenshot's useful idea—code snippets in focused nodes—while avoiding an unreadable whole-repository hairball. The product value is navigation and evidence, not merely drawing every edge. A developer should be able to start from a repository or changed file, move between project/package/symbol scopes, focus one question, inspect why an item is shown, and open the exact source location.

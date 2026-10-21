@@ -27,6 +27,9 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 |---|---|
 | [Visu automatic discovery](reference/visu-discovery.md) | Root-only scope and chapters, manual paid stages, current/design detail, themes and cache limits |
 | [Automatic Visu trial and costs](../experiments/visu-discovery/README.md) | ImageLab/Luz/ROMPE outputs, measured cheap update, original $0.37 breakdown and browser evidence |
+| [Parallel Grafe + Alegor restart](research/reports/Represent%20parallel%20track%20restart.md) | Independent scope, measured prototypes, boundaries, and next MVP gates |
+| [Grafe restart experiment](../experiments/grafe-restart/README.md) | SCIP/AST source-span checks, focused symbol viewer, and limits |
+| [Alegor restart experiment](../experiments/alegor-restart/README.md) | Git/docs re-entry brief, conflict evidence, Windows connector trial, and limits |
 | [Visu MVP](reference/visu-mvp.md) | Local headless illustrated overview, source/style capture, Ghost generation, snapshots, API and usage |
 | [Visu pilot evidence](../experiments/visu-pilot/README.md) | ROMPE/Luz actual art, rejected attempts, costs, update benchmarks and UI captures |
 
@@ -36,6 +39,9 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 |---|---|
 | [Grafe MVP research](research/grafe-mvp-research.md) | Pinned extractor trials, real plane-sync evidence, DX opportunities and maturity gate |
 | [Alegor MVP research](research/alegor-mvp-research.md) | Re-entry companion design, session-memory references, Windows trial and maturity gate |
+| [Grafe restart notes](research/research_notes/Represent%20parallel%20track%20restart/grafe.md) | Current source-navigation design and measured feasibility |
+| [Alegor restart notes](research/research_notes/Represent%20parallel%20track%20restart/alegor.md) | Current Git/docs re-entry design and measured feasibility |
+| [Developer needs evidence](research/research_notes/Represent%20parallel%20track%20restart/developer-needs.md) | Sourced DX pains and open-source opportunity hypotheses; not market validation |
 | [Graphify field results](research/graphify-tested.md) | Measured failure cases and lessons |
 | [Companions](research/companions.md) | Sourced interaction patterns and A/B approaches |
 | [Interactive Atlas source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved 18-page source conversation; proposals are not verified facts |

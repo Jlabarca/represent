@@ -1,0 +1,90 @@
+{
+  "schema": "grafe-scip-audit/1",
+  "index": "D:\\ware\\represent\\experiments\\grafe-research\\plane-sync-scip-typescript.scip",
+  "tool": {
+    "name": "scip-typescript",
+    "version": "0.4.0",
+    "arguments": []
+  },
+  "projectRoot": "file:///D:/ware/plane-sync",
+  "documentCount": 6,
+  "documents": [
+    {
+      "path": "runner\\afkbot.mjs",
+      "occurrenceCount": 1431,
+      "symbolCount": 206,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 206,
+        "symbol-import": 9,
+        "call": 375,
+        "reference": 841
+      }
+    },
+    {
+      "path": "src\\index.js",
+      "occurrenceCount": 2243,
+      "symbolCount": 389,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 389,
+        "symbol-import": 9,
+        "reference": 1355,
+        "call": 490
+      }
+    },
+    {
+      "path": "test\\dispatch.test.mjs",
+      "occurrenceCount": 1003,
+      "symbolCount": 176,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 176,
+        "symbol-import": 11,
+        "reference": 527,
+        "call": 289
+      }
+    },
+    {
+      "path": "test\\impl-lifecycle.test.mjs",
+      "occurrenceCount": 623,
+      "symbolCount": 120,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 120,
+        "symbol-import": 9,
+        "reference": 340,
+        "call": 154
+      }
+    },
+    {
+      "path": "test\\links-endpoints.test.mjs",
+      "occurrenceCount": 662,
+      "symbolCount": 112,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 112,
+        "symbol-import": 9,
+        "reference": 431,
+        "call": 110
+      }
+    },
+    {
+      "path": "tools\\board-structure.js",
+      "occurrenceCount": 523,
+      "symbolCount": 72,
+      "diagnosticCount": 0,
+      "spanMismatchCount": 0,
+      "usageCounts": {
+        "definition": 72,
+        "reference": 158,
+        "call": 293
+      }
+    }
+  ]
+}
