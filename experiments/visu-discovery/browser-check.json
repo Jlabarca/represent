@@ -1,0 +1,117 @@
+{
+  "at": "2026-10-21T09:10:25.789Z",
+  "checks": [
+    "Root-only ImageLab has six automatically selected chapters and generated art",
+    "Current state, intended design and next steps are separate with captured citations",
+    "Measured key text contrast ≥4.5:1 in light/dark, ≥7:1 in monochrome",
+    "Monochrome artwork is a local CSS transformation",
+    "Appearance persists after reload",
+    "Luz exposes specific catalog, storefront and future wholesale topics",
+    "Keyboard disclosure closes and returns focus",
+    "390px viewport fits and tap detail remains usable",
+    "Browsing, themes and history cause no POSTs, JavaScript errors or failing requests"
+  ],
+  "ratios": [
+    {
+      "theme": "light",
+      "pairs": [
+        {
+          "selector": ".chapter-explanation>p",
+          "ratio": 14.703125776404296
+        },
+        {
+          "selector": ".chapter-explanation h3",
+          "ratio": 6.146579597951653
+        },
+        {
+          "selector": ".region-summary",
+          "ratio": 6.921777701738895
+        },
+        {
+          "selector": ".region-detail",
+          "ratio": 4.618631001035948
+        },
+        {
+          "selector": ".source-card summary",
+          "ratio": 6.290423908030389
+        },
+        {
+          "selector": "#project-name",
+          "ratio": 13.380561765027398
+        },
+        {
+          "selector": "#project-description",
+          "ratio": 5.1674947626183965
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "pairs": [
+        {
+          "selector": ".chapter-explanation>p",
+          "ratio": 13.297433278713454
+        },
+        {
+          "selector": ".chapter-explanation h3",
+          "ratio": 8.35572107268677
+        },
+        {
+          "selector": ".region-summary",
+          "ratio": 8.451374227303635
+        },
+        {
+          "selector": ".region-detail",
+          "ratio": 8.451374227303635
+        },
+        {
+          "selector": ".source-card summary",
+          "ratio": 6.290423908030389
+        },
+        {
+          "selector": "#project-name",
+          "ratio": 15.369478746882859
+        },
+        {
+          "selector": "#project-description",
+          "ratio": 9.768292409966815
+        }
+      ]
+    },
+    {
+      "theme": "mono",
+      "pairs": [
+        {
+          "selector": ".chapter-explanation>p",
+          "ratio": 21
+        },
+        {
+          "selector": ".chapter-explanation h3",
+          "ratio": 21
+        },
+        {
+          "selector": ".region-summary",
+          "ratio": 21
+        },
+        {
+          "selector": ".region-detail",
+          "ratio": 21
+        },
+        {
+          "selector": ".source-card summary",
+          "ratio": 11.880724447295039
+        },
+        {
+          "selector": "#project-name",
+          "ratio": 21
+        },
+        {
+          "selector": "#project-description",
+          "ratio": 15.328417894601541
+        }
+      ]
+    }
+  ],
+  "posts": [],
+  "errors": []
+}

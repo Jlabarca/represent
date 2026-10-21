@@ -125,3 +125,21 @@ None for this slice. Grafe and Alegor remain evidence-led parallel design tracks
 ### Next
 
 Review both projects in Visu, collect semantic/art corrections, then prioritize general chapter extraction and richer style evidence. For Grafe, validate multi-file symbol/source accuracy. For Alegor, validate a real project re-entry task against opted-in session evidence.
+
+## 2026-10-21 — Automatic Visu discovery and manual refresh
+
+### Accomplished
+
+Implemented root-only safe Git discovery, bounded cited six-chapter Ghost analysis, version/model-aware caching, independent image reuse, manual capture/explain/illustrate and persistent dark/high-contrast monochrome. Real ImageLab trial required no authored sources or overview; refreshed Luz/ROMPE through the same pipeline. UX review fixed inspector overlap and text contrast, then condensed explanations and citations behind disclosure. Thirty-five regression tests and nine browser checks pass; screenshots and raw measurements are saved in experiments/visu-discovery/.
+
+### Decisions
+
+Keep snapshots and both paid actions manual. Default text route is Ghost gemini-flash after Flash Lite struggled with historical/current conflicts. The measured controlled-copy status update cost $0.0144183, reused art and preserved all six chapter identities with zero image calls; unchanged operations made no AI calls. All thirty original selected Luz files retained their hashes. This iteration cost $0.28688598 including rejected experiments and three images. The earlier $0.3682722 was $0.3536370 images plus $0.0146352 text, routed Ghost LiteLLM → OpenRouter → Google; both reports preserve failures.
+
+### Blockers / limits
+
+No unresolved automated-test failures. Bounded source selection and six chapters are heuristic. Some source interpretations still confuse stale notes and implementation gates; validated quotations are review evidence, not proof of semantic correctness. The UI separates source-reported current state, intended design and next work. Grafe/Alegor remain parallel research tracks.
+
+### Next
+
+Complete scoped promotion, then collect product feedback on automatically chosen chapters and source conflicts. Future improvements should target semantic selection and corrections before adding automatic paid refreshes.

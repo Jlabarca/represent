@@ -7,4 +7,5 @@
 
 | Capability | Verb it gives you | Reference | Promoted |
 |---|---|---|---|
+| Visu automatic scope and explanation | Select sources and chapters from a Git root; manually refresh cited state/design detail while reusing art; switch dark/monochrome locally | [reference/visu-discovery.md](reference/visu-discovery.md) | 2026-10-21 |
 | Visu local illustrated overview | Capture selected project evidence, detect style, generate through Ghost, compare snapshots and export history | [reference/visu-mvp.md](reference/visu-mvp.md) | 2026-10-21 |

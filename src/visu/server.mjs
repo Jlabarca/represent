@@ -28,7 +28,7 @@ export async function serve(visu,{port=8871,webRoot}={}) {
         const bytes=await fs.readFile(path.join(visu.store,'assets',p.split('/').at(-1)));
         res.writeHead(200,{'Content-Type':'image/png','Cache-Control':'private,max-age=31536000,immutable'});return res.end(bytes);
       }
-      const match=/^\/api\/projects\/([a-z0-9-]+)(?:\/(scan|generate|style|export))?$/.exec(p);
+      const match=/^\/api\/projects\/([a-z0-9-]+)(?:\/(scan|analyze|generate|style|export))?$/.exec(p);
       if(!match) return json(404,{error:'Not found'});
       const [,id,action]=match;
       if(req.method==='GET'&&!action) return json(200,await visu.bundle(id));
@@ -39,7 +39,7 @@ export async function serve(visu,{port=8871,webRoot}={}) {
       if(!req.headers['content-type']?.startsWith('application/json')) return json(415,{error:'JSON required'});
       let body='';for await(const chunk of req){body+=chunk;if(body.length>8192)throw new Error('Request body too large');}
       const data=body?JSON.parse(body):{};
-      return json(200,action==='scan'?await visu.scan(id):action==='style'?await visu.style(id,data.profile):await visu.generate(id));
+      return json(200,action==='scan'?await visu.scan(id):action==='analyze'?await visu.analyze(id):action==='style'?await visu.style(id,data.profile):await visu.generate(id));
     } catch(e) { json(e.code==='ENOENT'?404:400,{error:e.message}); }
   });
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,'127.0.0.1',resolve);});

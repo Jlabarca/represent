@@ -1,0 +1,1450 @@
+{
+  "at": "2026-10-21T09:06:27.871Z",
+  "project": "luz",
+  "configuration": {
+    "id": "luz",
+    "root": "D:/ware/luz",
+    "name": "Luz y Luna"
+  },
+  "sourceScope": [
+    {
+      "path": "backend/package.json",
+      "role": "detail",
+      "reason": "Project manifest identifies its runtime and dependencies.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 51,
+      "hash": "78cc946c0a6a00b32800bb61fd4bce6a89b00ef42a0ce14a85c8f2fd3be9f5a8"
+    },
+    {
+      "path": "docs/CONTEXT.md",
+      "role": "detail",
+      "reason": "Current context, tracked work, or an active implementation plan. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 124,
+      "hash": "79782f8d234984ae6e063ece201793399cee76e8a3d10fd9502c1e50db7f603b"
+    },
+    {
+      "path": "docs/design/improvement-ideas.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 164,
+      "hash": "6e9076378adae59adacda470c86eb41c9f523c0118e142a19910fb36c1473b0f"
+    },
+    {
+      "path": "docs/design/product-expansion-shipping-economics.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 203,
+      "hash": "63d08d7a726ed53bf2783d3a20e28fc36f7b725ddede2ea4dfc04f0ec8f87d6a"
+    },
+    {
+      "path": "docs/design/wholesale-jewelry-saas.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 188,
+      "hash": "17d74abbf1a9963becf7a546aff86e5d364bb47666b683ed618f8d991234f94d"
+    },
+    {
+      "path": "docs/DJOYAS-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 217,
+      "hash": "32e8aceeae3558dbd91e4a2fc118a4412701359a12ab464d8ed9f68ba70a17df"
+    },
+    {
+      "path": "docs/guides/cloudflare-cdn-rules.md",
+      "role": "art",
+      "reason": "Project documentation provides a human-readable explanation. Linked from the project overview/current context.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 104,
+      "hash": "a4cc03a97075210b6e8a92516b8bfd8232384a2b4d47b43da6887467d41d6382"
+    },
+    {
+      "path": "docs/reference/catalog-layers.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 197,
+      "hash": "12dbde051db6ba01869bc92c39b7ae8e2c0ea6208f97c5fbb556f30de0ec2f59"
+    },
+    {
+      "path": "docs/reference/djoyas-v3.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 30,
+      "hash": "cd0cad5dd0ecdf5361edd9a78f0e2fd47029f201b036bb5810e0cdf1fac79aea"
+    },
+    {
+      "path": "docs/reference/filters-v3.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 111,
+      "hash": "be59b864374591f4ea9e2474ba929f717036666df32041f1e15fd14ee1f1a8ff"
+    },
+    {
+      "path": "docs/reference/homepage.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 223,
+      "hash": "8a1b32422895bb5673691d7c3a20e0e93851c34e72e101864051fee931163d6d"
+    },
+    {
+      "path": "docs/reference/performance.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 298,
+      "hash": "184658de0e9466a2bd6cc8b0361f63e9cc543b61e0a91940cdbc743a425f0266"
+    },
+    {
+      "path": "docs/reference/troubleshooting.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 293,
+      "hash": "ee16ee4100b33b0f7ec002c8e86b50916cad2e0a90b0d55a1992b385f18ced94"
+    },
+    {
+      "path": "docs/TODO.md",
+      "role": "detail",
+      "reason": "Current context, tracked work, or an active implementation plan.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 107,
+      "hash": "a16e9106e453be902ce4361739904cc10c71ee0e9e65b32c82c4870536d9af25"
+    },
+    {
+      "path": "docs/WHOLESALE-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 171,
+      "hash": "c64368237eab1d53e9b9c7002e418a3b7d95144b2e322168d634cf7a97636623"
+    },
+    {
+      "path": "README.md",
+      "role": "art",
+      "reason": "Root README introduces the project and its purpose.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 168,
+      "hash": "b1cb062e3901185a7ad8291517ebc183e6998a8d135f2477db9afe820e666d65"
+    },
+    {
+      "path": "solace-api/src/admin/routes/analytics/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 11,
+      "hash": "f43f20d4f41debc8b80e27b046a28c2b83181a3767f465ef927d3d467e5272c7"
+    },
+    {
+      "path": "solace-api/src/admin/routes/back-in-stock/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 10,
+      "hash": "9586cfa58416c6a4440881efbe86a72374dd9c937d909aacc3dba033fafed152"
+    },
+    {
+      "path": "solace-api/src/admin/routes/catalog-sync/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 10,
+      "hash": "657f8672d7a9b161ff3b5bcb07cb72568fca97e29613af7657f622b5eae391f8"
+    },
+    {
+      "path": "solace-api/src/admin/routes/dashboard/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 11,
+      "hash": "cdf7ee924cc4e92ae62f1738ff852d8ffc4673300feec097129af3e52c4545d3"
+    },
+    {
+      "path": "solace-api/src/admin/routes/inventory/restock/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 11,
+      "hash": "8d65e8abf6cf0c03eddc1271eaee1cd94e51e04d1ea129f7ef3bf259daa63ff7"
+    },
+    {
+      "path": "solace-api/src/admin/routes/layers/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 11,
+      "hash": "0d1f45b1d32c7e62e2f00f3d30f7f4b64feea09f2297aff5859d104b5afbefb2"
+    },
+    {
+      "path": "solace-api/src/admin/routes/offline-sales/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 11,
+      "hash": "631eac89e63c81c03a2a1adc2a8e62ed745dfb0941959383418575e9a4582c91"
+    },
+    {
+      "path": "solace-api/src/admin/routes/orders/bulk-manage/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 12,
+      "hash": "936677e2c0b2f3ecb72dfa9d75f8b108d41aea3d55f30e8c0702982fd458c05d"
+    },
+    {
+      "path": "solace-store/postcss.config.js",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 6,
+      "hash": "6bbbfd323867a78af8d7ee348a179835202fc7a71f4c2b3e3f34de6f5f895c76"
+    },
+    {
+      "path": "solace-store/preset/theme/animations.js",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 16,
+      "hash": "a87b00bdc32ab1b1fa01eb0fe0e48794cef325cba3e14aed5c47bd047a2fd0aa"
+    },
+    {
+      "path": "solace-store/preset/theme/colors.js",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 135,
+      "hash": "981bdf000c29d897279a9b249e011b26a416668539381b6e1880f379b9a2d44e"
+    },
+    {
+      "path": "solace-store/preset/theme/typography.js",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 19,
+      "hash": "9a8171ac90d76e82c506c3ded64a43235cbd1403a0253d66692d938f4ec11875"
+    },
+    {
+      "path": "solace-store/src/app/(main)/privacy-policy/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 33,
+      "hash": "a694b41ef38b29dc90f1797bcda5048b328a238e1967ab283e9c557f3a4262b1"
+    },
+    {
+      "path": "solace-store/src/app/(main)/terms-of-use/page.tsx",
+      "role": "art",
+      "reason": "Application page or layout shows the implemented experience and visual identity.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 33,
+      "hash": "af621ac5abbe90737e7f3175955bad72c914a865e8ef6e3f256c34e6b4fb0eb4"
+    }
+  ],
+  "discovery": {
+    "inventory": "git",
+    "filesSeen": 1133,
+    "candidates": 1024,
+    "selected": 30,
+    "skipped": 109,
+    "estimatedBytes": 139206,
+    "scopeCapped": true,
+    "scopeNote": "Source scope is capped; the selected files are a ranked sample, not a complete inventory.",
+    "limits": {
+      "maxFiles": 20000,
+      "maxFileBytes": 1048576,
+      "maxSources": 30,
+      "maxSelectedBytes": 600000,
+      "maxCharsPerFile": 10000
+    },
+    "categories": {
+      "current": 4,
+      "identity": 2,
+      "design": 3,
+      "reference": 6,
+      "code": 10,
+      "style": 4,
+      "docs": 1
+    }
+  },
+  "snapshotId": "ef5495bc04345ff19dcd11a1",
+  "viewId": "e757c159c929687afd3714f4",
+  "style": {
+    "profile": "editorial",
+    "confidence": "high",
+    "palette": [
+      "#f7f4ef",
+      "#1c1917",
+      "#b69d72"
+    ],
+    "fonts": [
+      "Cormorant Garamond",
+      "sans-serif body"
+    ],
+    "direction": "Refined editorial illustration, warm cream paper, charcoal typography, delicate silver and muted gold, sculptural jewelry photography-inspired objects and fine line work",
+    "signals": [
+      {
+        "path": "docs/design/improvement-ideas.md",
+        "line": 81,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/design/product-expansion-shipping-economics.md",
+        "line": 10,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/design/wholesale-jewelry-saas.md",
+        "line": 1,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/reference/catalog-layers.md",
+        "line": 1,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/reference/djoyas-v3.md",
+        "line": 1,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/reference/filters-v3.md",
+        "line": 1,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/reference/homepage.md",
+        "line": 16,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "docs/reference/performance.md",
+        "line": 11,
+        "reason": "Observed editorial serif typography",
+        "profile": "editorial"
+      },
+      {
+        "path": "README.md",
+        "line": 3,
+        "reason": "Jewelry product context",
+        "profile": "editorial"
+      },
+      {
+        "path": "solace-store/preset/theme/typography.js",
+        "line": 5,
+        "reason": "Observed editorial serif typography",
+        "profile": "editorial"
+      }
+    ],
+    "note": "Derived from selected text/tokens; owned images were not analyzed."
+  },
+  "analysisStatus": "ready",
+  "chapters": [
+    {
+      "id": "project-overview",
+      "label": "Project Overview",
+      "summary": "Luz y Luna is a Chilean jewelry e-commerce storefront built on Medusa 2.0, Next.js 16, and Strapi 5. It is currently in a pre-launch phase with core checkout functionality and most infrastructure complete, serving as the single source of truth for project state and architecture decisions.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.35,
+      "visual": "A radiant Chilean moonstone, intricately carved and polished, sits prominently on a dark, reflective surface, casting a soft, ethereal glow. Its facets shimmer, reflecting the foundational technologies it embodies.",
+      "visualChanged": true,
+      "currentState": "The Luz y Luna project, an e-commerce storefront for Chilean jewelry, is currently in a pre-launch phase. The core checkout is functional, and most infrastructure is complete. The system is built on Medusa 2.0 for the backend, Next.js 16 for the storefront, and Strapi 5 as the CMS. MercadoPago and bank transfers handle payments, while Chilexpress manages shipping. Email notifications are handled by Resend. Google OAuth social authentication is in progress. The entire stack is containerized using Docker Compose and hosted on a Windows 11 machine via Cloudflare Tunnel. Key optimizations like ISR, `generateStaticParams`, cache tags, `React.cache()` for request deduplication, Suspense with skeleton screens, and AVIF/WebP image optimization are in place. Important pre-launch blockers related to email notifications, bank transfer details, MercadoPago IPN URL, and social media links have been addressed.",
+      "intendedDesign": "The project intends to maintain `luzyluna.cl` as the public URL, routed via Cloudflare Tunnel. The architecture decisions regarding the e-commerce engine (Medusa 2.0), CMS (Strapi 5), and storefront framework (Next.js 16) are locked. The wholesale strategy is to first develop an AI inventory tool to achieve workflow lock-in, followed by a multi-vendor marketplace to gain a network effect. Performance goals aim for a local-file navigation feel, utilizing Next.js 16 features like ISR, RSC, streaming, and View Transitions. Cloudflare CDN rules are designed to cache static assets and optimized images at the edge.",
+      "nextSteps": "The immediate next steps include provisioning a key for the GhostWare AI Gateway and confirming its functionality for the Wholesale Jewelry SaaS initiative. Further steps for the Wholesale project include setting up the `GEMINI_API_KEY` and implementing the single-piece capture flow. SEO technical fixes for product and category metadata, sitemap generation, and OG image generation for product pages are also planned. Additionally, the QR tracking system is designed but not yet implemented.",
+      "currentEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Living Architecture Document\n\n> THE single source of truth for project state, architecture decisions, and next steps.\n> Updated: 2026-05-07\n\n## What Is This Project?\n\nChilean jewelry e-commerce storefront for the brand **Luz y Luna**. Built on Medusa 2.0 (backend), Next.js 16 (storefront), and Strapi 5 (CMS). Currently in pre-launch phase with core checkout functional and most infrastructure complete.\n\nPublic URL: `luzyluna.cl` (via Cloudflare Tunnel)\n\n## Architecture Decisions (Locked)\n\n| Decision | Choice | Rationale | Date |\n|---|---|---|---|\n| E-commerce engine | Medusa 2.0 | Open source, extensible, Node.js ecosystem | 2025 |\n| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |"
+        },
+        {
+          "path": "docs/DJOYAS-IMPL.md",
+          "startLine": 1,
+          "quote": "# Djoyas Collection Sync — Implementation Tracker\n\n> Living design + status doc for the Djoyas supplier sync system.\n> See `scraper/` for the Python scraper codebase.\n> Follows DOCS-PROTOCOL.md Rule 12 (FEATURE-IMPL pattern; Rule 11 is now \"Root is ALL CAPS Only\" post-amendment).\n> Updated: 2026-05-23\n\n---\n\n## AI Continuation Prompt\n\nTo continue this work in a fresh session:\n\n1. Read `docs/DJOYAS-IMPL.md` (this file) — current state, checklist, known issues\n2. Read `scraper/medusa_client.py` — Medusa API wrapper (sync_product, get_product_by_handle)\n3. Read `scraper/discovery.py` — sitemap URL discovery for djoyas.cl\n4. Read `scraper/main.py` — original full-sync entrypoint\n5. Read `scraper/models.py` — Product pydantic model"
+        },
+        {
+          "path": "README.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna\n\nChilean jewelry e-commerce store. Fully containerized stack serving [luzyluna.cl](https://luzyluna.cl).\n\n## Stack\n\n| Service | Tech | Container | Public URL |\n|---------|------|-----------|------------|\n| Storefront | Next.js 16 + React 18 | `solace-storefront` | luzyluna.cl |\n| API | Medusa 2.0 (v2.12.5) | `solace-medusa` | api.luzyluna.cl |\n| CMS | Strapi 5 | `solace-strapi` | cms.luzyluna.cl |\n| Database (Medusa) | PostgreSQL 15 | `solace-pg` | — |\n| Database (Strapi) | PostgreSQL 15 | `strapi-pg` | — |\n| Cache | Valkey (Redis-compatible) | `solace-redis` | — |\n| Tunnel | Cloudflare Tunnel | `solace-tunnel` | — |\n\n## Quick Start\n"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 92,
+          "quote": "\n## Pre-Launch Blockers\n\n| # | Issue | Status | Action |\n|---|---|---|---|\n| B1 | Email notifications | Done | Verify `RESEND_API_KEY` is set in production `.env` |\n| B2 | Bank transfer placeholder email | Done | Replaced with `contacto@luzyluna.cl` in payment-container + bank-transfer email template |\n| B3 | MercadoPago IPN URL | Done | Registered + verified live (200 from MP infra IP 35.186.182.146) |\n| B4 | Social media links | Done | Instagram, Facebook, WhatsApp links wired in `footer/index.tsx` |\n\n## Performance Status\n\n| Optimization | Status |\n|---|---|\n| `staleTimes` (30s dynamic, 5min static) | Done |\n| `optimizePackageImports` (expanded set) | Done |\n| Brand font via `next/font` | Done |\n| Web vitals tracking in PostHog | Done |"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Living Architecture Document\n\n> THE single source of truth for project state, architecture decisions, and next steps.\n> Updated: 2026-05-07\n\n## What Is This Project?\n\nChilean jewelry e-commerce storefront for the brand **Luz y Luna**. Built on Medusa 2.0 (backend), Next.js 16 (storefront), and Strapi 5 (CMS). Currently in pre-launch phase with core checkout functional and most infrastructure complete.\n\nPublic URL: `luzyluna.cl` (via Cloudflare Tunnel)\n\n## Architecture Decisions (Locked)\n\n| Decision | Choice | Rationale | Date |\n|---|---|---|---|\n| E-commerce engine | Medusa 2.0 | Open source, extensible, Node.js ecosystem | 2025 |\n| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Multi-Vendor Luz y Luna + AI Inventory\n\n> **Status**: Design / research proposal — not yet greenlit for implementation\n> **Date**: 2026-05-06\n> **Author**: julio + claude\n> **Goal**: Turn Luz y Luna into a *platform* for Chilean jewelry wholesalers (the \"Comunidad Feliz of jewelry stores\") and build an AI-driven inventory tool that makes managing 20,000+ SKUs feasible for a one-person back-office.\n\n---\n\n## 1. The Problem (and the Wedge)\n\nWalked into a Chilean jewelry store with ~20,000 distinct SKUs in physical stock. Their public website lists ~100 products. Why? Because keeping a real-time online inventory of jewelry is operationally impossible without tooling — every piece is small, near-identical to neighbours, and the catalogue churns daily. This same store sells *primarily* to minor vendors (B2B / wholesale), not retail walk-ins.\n\nThis pattern repeats across Chile — many wholesale jewelers in this exact bind:\n\n- **Have**: deep physical inventory, walk-in B2B clients, no time to photograph/catalog\n- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 1,
+          "quote": "# Cloudflare CDN Cache Rules — Luz y Luna\n\n> Step-by-step configuration for the Cloudflare dashboard.\n> Domain: `luzyluna.cl`\n\n## Overview\n\nCloudflare Tunnel routes traffic but doesn't cache by default. These rules cache static assets at the edge, reducing round-trips to the origin Windows machine.\n\n## Cache Rules (Dashboard → Caching → Cache Rules)\n\nCreate these rules in order. Each rule is evaluated top-to-bottom; first match wins.\n\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 13,
+          "quote": "\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |\n| **When** | URI Path starts with `/_next/static/` |\n| **Then** | Cache eligible, Edge TTL = 1 year (31536000s) |\n| **Browser TTL** | 1 year |\n| **Cache Key** | Default |\n\n**Why forever**: `/_next/static/` files have content hashes in their filenames — they're immutable. A new deploy creates new filenames.\n\n### Rule 2: Next.js Optimized Images (cache 7 days)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js optimized images |"
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/TODO.md",
+          "startLine": 1,
+          "quote": "# TODO — Luz y Luna\n\n> Active sprint task tracker. Mirrors the next-up phase from each FEATURE-IMPL.md.\n> Completed sprints roll up into [CONTEXT.md](CONTEXT.md) \"Completed Iterations\".\n> Updated: 2026-05-07\n\n---\n\n## GhostWare AI Gateway — Phase 1 (provision luz key + host-dev smoke)\n\n> Tracker: [GHOSTWARE-AI-GATEWAY-IMPL.md](GHOSTWARE-AI-GATEWAY-IMPL.md). Bootstrapped 2026-05-31. Operator/infra phase — no luz code.\n\n- [ ] GHOSTWARE-AI-GATEWAY.1.1 Add a `provision_key` line for luz (label `luz-solace-api`, a `max_budget`, models `cheap`/`smart`/`gemini-flash`) to `Ghost/infrastructure/docker/litellm/provision-keys.sh`\n- [ ] GHOSTWARE-AI-GATEWAY.1.2 Run `make ai-gateway-provision-keys`; capture the issued virtual key into the operator secret store (do NOT commit)\n- [ ] GHOSTWARE-AI-GATEWAY.1.3 Smoke from host dev: `POST localhost:4000/v1/chat/completions` with `model:\"cheap\"`, JSON-mode body, Bearer key; confirm 200 + parseable choice\n- [ ] GHOSTWARE-AI-GATEWAY.1.4 Confirm spend appears at `:4000/ui` under the luz key, with expected `max_budget` / 80% Slack alert\n- [ ] GHOSTWARE-AI-GATEWAY.1.5 Record gateway base URL, alias list, and key-location reference in the IMPL\n"
+        },
+        {
+          "path": "docs/design/improvement-ideas.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Improvement Ideas\n\n> Generated 2026-03-21 from a full codebase audit.\n> Covers current state through commit `5928515`.\n\n---\n\n## 20 Practical Improvements\n\n### 1. Product JSON-LD Structured Data\nAdd `<script type=\"application/ld+json\">` to product detail pages with Schema.org `Product` markup — name, price, currency, availability, images, brand. Google Shopping and rich snippets depend on this. Chilean e-commerce competition is low enough that structured data alone could land you in rich results. Touches `solace-store/src/modules/products/templates/index.tsx`.\n\n**Effort: S**\n\n---\n\n### 2. Dynamic Sitemap Generation\nThere's no `sitemap.ts` anywhere. Next.js App Router supports `app/sitemap.ts` that auto-generates XML from your product/collection/blog data. Without it, Google is discovering pages only by crawling links — you're leaving indexing speed on the table. One file, three data fetches (products, collections, blog slugs), done."
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 80,
+          "quote": "\n## SEO technical — Phase 1 (metadata fixes + static files)\n\n> Tracker: [SEO-IMPL.md](SEO-IMPL.md). Bootstrapped 2026-05-15 — start when current sprints allow.\n\n- [ ] SEO.1.1 Fix product `generateMetadata` description (`products/[handle]/page.tsx` — uses title twice)\n- [ ] SEO.1.2 Fix absolute canonical on category pages (`categories/[...category]/layout.tsx`)\n- [ ] SEO.1.3 Translate Blog index metadata to Spanish (`blog/page.tsx`)\n- [ ] SEO.1.4 Translate Shop page metadata to Spanish (`shop/layout.tsx`)\n- [ ] SEO.1.5 Fix blog post metadata — description + OG image (`blog/[slug]/page.tsx`)\n- [ ] SEO.1.6 Add `public/llms.txt` — site summary for AI crawlers\n\n## Pre-launch blockers\n\n> See [CONTEXT.md](CONTEXT.md) \"Pre-Launch Blockers\" table.\n\n- [ ] B2 — Replace placeholder bank-transfer email in `payment-container/index.tsx:70`\n- [ ] B3 — Register MercadoPago webhook URL in MP Dashboard"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 40,
+          "quote": "\n## FB Marketplace Adapter — Phase 1 (browser session + bootstrap)\n\n- [ ] FB-MARKETPLACE-ADAPTER.1.1 Create `catalog-sync/browser/__init__.py` and `session.py` (BrowserSession + stealth)\n- [ ] FB-MARKETPLACE-ADAPTER.1.2 `BrowserSession.start(headless)` honors `DISPLAY=:99`, `new_page()` applies stealth\n- [ ] FB-MARKETPLACE-ADAPTER.1.3 Create `catalog-sync/scripts/fb-bootstrap.py` (headed login, profile persist)\n- [ ] FB-MARKETPLACE-ADAPTER.1.4 Manual smoke: bootstrap creates `data/chrome_profile_fb/`; second run lands authenticated\n\n## Wholesale jewelry SaaS — Phase 1 (v0 single-piece capture)\n\n> Tracker: [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). Plan approved-pending — DO NOT start until operator confirms WHOLESALE.1 plan.\n\n- [ ] WHOLESALE.1.1 — Provision `GEMINI_API_KEY` in `solace-api/.env` (and `.env.example`)\n- [ ] WHOLESALE.1.2 — Add `@google/generative-ai` dependency to `solace-api/package.json`\n- [ ] WHOLESALE.1.3 — Create `src/lib/vision/jewelry-prompt.ts` (prompt + Zod schema + parser)\n- [ ] WHOLESALE.1.4 — Create `src/api/admin/inventory/ingest/route.ts` (POST handler)\n- [ ] WHOLESALE.1.5 — Create `src/admin/routes/inventory/capture/page.tsx` (camera input + draft form host)\n- [ ] WHOLESALE.1.6 — Create `src/admin/routes/inventory/capture/components/draft-form.tsx` (confidence-driven chips)"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 113,
+          "quote": "| Homepage nested Suspense streaming | Done |\n| PPR / `cacheComponents` | Skipped — incompatible with offline API at build |\n| Edge runtime expansion | Skipped — already on key pages |\n| Bundle analysis | Done — no leaks found |\n\nRemaining P3 infra items: Brotli compression, image CDN evaluation. CDN caching rules documented in [guides/cloudflare-cdn-rules.md](guides/cloudflare-cdn-rules.md). See [reference/performance.md](reference/performance.md).\n\n## Current Sprint\n\n- Google OAuth: **Done** — full flow working (code exchange → customer create → token refresh → cookie set)\n- QR tracking system (design complete, not yet implemented)\n- 20-item site improvement batch (SEO, UX, accessibility, admin) — implemented, pending review"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Living Architecture Document\n\n> THE single source of truth for project state, architecture decisions, and next steps.\n> Updated: 2026-05-07\n\n## What Is This Project?\n\nChilean jewelry e-commerce storefront for the brand **Luz y Luna**. Built on Medusa 2.0 (backend), Next.js 16 (storefront), and Strapi 5 (CMS). Currently in pre-launch phase with core checkout functional and most infrastructure complete.\n\nPublic URL: `luzyluna.cl` (via Cloudflare Tunnel)\n\n## Architecture Decisions (Locked)\n\n| Decision | Choice | Rationale | Date |\n|---|---|---|---|\n| E-commerce engine | Medusa 2.0 | Open source, extensible, Node.js ecosystem | 2025 |\n| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |"
+        },
+        {
+          "path": "docs/DJOYAS-IMPL.md",
+          "startLine": 1,
+          "quote": "# Djoyas Collection Sync — Implementation Tracker\n\n> Living design + status doc for the Djoyas supplier sync system.\n> See `scraper/` for the Python scraper codebase.\n> Follows DOCS-PROTOCOL.md Rule 12 (FEATURE-IMPL pattern; Rule 11 is now \"Root is ALL CAPS Only\" post-amendment).\n> Updated: 2026-05-23\n\n---\n\n## AI Continuation Prompt\n\nTo continue this work in a fresh session:\n\n1. Read `docs/DJOYAS-IMPL.md` (this file) — current state, checklist, known issues\n2. Read `scraper/medusa_client.py` — Medusa API wrapper (sync_product, get_product_by_handle)\n3. Read `scraper/discovery.py` — sitemap URL discovery for djoyas.cl\n4. Read `scraper/main.py` — original full-sync entrypoint\n5. Read `scraper/models.py` — Product pydantic model"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 1,
+          "quote": "# TODO — Luz y Luna\n\n> Active sprint task tracker. Mirrors the next-up phase from each FEATURE-IMPL.md.\n> Completed sprints roll up into [CONTEXT.md](CONTEXT.md) \"Completed Iterations\".\n> Updated: 2026-05-07\n\n---\n\n## GhostWare AI Gateway — Phase 1 (provision luz key + host-dev smoke)\n\n> Tracker: [GHOSTWARE-AI-GATEWAY-IMPL.md](GHOSTWARE-AI-GATEWAY-IMPL.md). Bootstrapped 2026-05-31. Operator/infra phase — no luz code.\n\n- [ ] GHOSTWARE-AI-GATEWAY.1.1 Add a `provision_key` line for luz (label `luz-solace-api`, a `max_budget`, models `cheap`/`smart`/`gemini-flash`) to `Ghost/infrastructure/docker/litellm/provision-keys.sh`\n- [ ] GHOSTWARE-AI-GATEWAY.1.2 Run `make ai-gateway-provision-keys`; capture the issued virtual key into the operator secret store (do NOT commit)\n- [ ] GHOSTWARE-AI-GATEWAY.1.3 Smoke from host dev: `POST localhost:4000/v1/chat/completions` with `model:\"cheap\"`, JSON-mode body, Bearer key; confirm 200 + parseable choice\n- [ ] GHOSTWARE-AI-GATEWAY.1.4 Confirm spend appears at `:4000/ui` under the luz key, with expected `max_budget` / 80% Slack alert\n- [ ] GHOSTWARE-AI-GATEWAY.1.5 Record gateway base URL, alias list, and key-location reference in the IMPL\n"
+        },
+        {
+          "path": "README.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna\n\nChilean jewelry e-commerce store. Fully containerized stack serving [luzyluna.cl](https://luzyluna.cl).\n\n## Stack\n\n| Service | Tech | Container | Public URL |\n|---------|------|-----------|------------|\n| Storefront | Next.js 16 + React 18 | `solace-storefront` | luzyluna.cl |\n| API | Medusa 2.0 (v2.12.5) | `solace-medusa` | api.luzyluna.cl |\n| CMS | Strapi 5 | `solace-strapi` | cms.luzyluna.cl |\n| Database (Medusa) | PostgreSQL 15 | `solace-pg` | — |\n| Database (Strapi) | PostgreSQL 15 | `strapi-pg` | — |\n| Cache | Valkey (Redis-compatible) | `solace-redis` | — |\n| Tunnel | Cloudflare Tunnel | `solace-tunnel` | — |\n\n## Quick Start\n"
+        },
+        {
+          "path": "docs/design/improvement-ideas.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Improvement Ideas\n\n> Generated 2026-03-21 from a full codebase audit.\n> Covers current state through commit `5928515`.\n\n---\n\n## 20 Practical Improvements\n\n### 1. Product JSON-LD Structured Data\nAdd `<script type=\"application/ld+json\">` to product detail pages with Schema.org `Product` markup — name, price, currency, availability, images, brand. Google Shopping and rich snippets depend on this. Chilean e-commerce competition is low enough that structured data alone could land you in rich results. Touches `solace-store/src/modules/products/templates/index.tsx`.\n\n**Effort: S**\n\n---\n\n### 2. Dynamic Sitemap Generation\nThere's no `sitemap.ts` anywhere. Next.js App Router supports `app/sitemap.ts` that auto-generates XML from your product/collection/blog data. Without it, Google is discovering pages only by crawling links — you're leaving indexing speed on the table. One file, three data fetches (products, collections, blog slugs), done."
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Multi-Vendor Luz y Luna + AI Inventory\n\n> **Status**: Design / research proposal — not yet greenlit for implementation\n> **Date**: 2026-05-06\n> **Author**: julio + claude\n> **Goal**: Turn Luz y Luna into a *platform* for Chilean jewelry wholesalers (the \"Comunidad Feliz of jewelry stores\") and build an AI-driven inventory tool that makes managing 20,000+ SKUs feasible for a one-person back-office.\n\n---\n\n## 1. The Problem (and the Wedge)\n\nWalked into a Chilean jewelry store with ~20,000 distinct SKUs in physical stock. Their public website lists ~100 products. Why? Because keeping a real-time online inventory of jewelry is operationally impossible without tooling — every piece is small, near-identical to neighbours, and the catalogue churns daily. This same store sells *primarily* to minor vendors (B2B / wholesale), not retail walk-ins.\n\nThis pattern repeats across Chile — many wholesale jewelers in this exact bind:\n\n- **Have**: deep physical inventory, walk-in B2B clients, no time to photograph/catalog\n- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 1,
+          "quote": "# Cloudflare CDN Cache Rules — Luz y Luna\n\n> Step-by-step configuration for the Cloudflare dashboard.\n> Domain: `luzyluna.cl`\n\n## Overview\n\nCloudflare Tunnel routes traffic but doesn't cache by default. These rules cache static assets at the edge, reducing round-trips to the origin Windows machine.\n\n## Cache Rules (Dashboard → Caching → Cache Rules)\n\nCreate these rules in order. Each rule is evaluated top-to-bottom; first match wins.\n\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        }
+      ],
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/DJOYAS-IMPL.md",
+        "README.md",
+        "docs/design/wholesale-jewelry-saas.md",
+        "docs/guides/cloudflare-cdn-rules.md",
+        "docs/TODO.md",
+        "docs/design/improvement-ideas.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "catalog-management",
+      "label": "Layered Catalog & Sync",
+      "summary": "Luz y Luna implements a layered catalog model that combines supplier-synced (Djoyas) and manually-curated (Luz) products, enabling visual merging, overrides, and per-product visibility control.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.35,
+      "visual": "A jeweler's workbench, meticulously organized. On one side, a stream of raw, uncut gemstones flows from a 'Djoyas' sieve, representing supplier data. On the other, a craftsman carefully sets polished, unique pieces into custom settings labeled 'Luz Curated', demonstrating the merging and overriding process.",
+      "visualChanged": true,
+      "currentState": "The Djoyas V3 layered catalog system has been shipped and promoted as of 2026-06-01, having gone through 7 phases. It uses `djoyas-synced` (scraper) and `luz-curated` (operator) layers, composed at render by visual+metadata fingerprints. Products can be hidden using `metadata.layer_policy.hidden` and `status` toggles (draft/published). The system includes an admin UX (`/app/layers`) for a BI dashboard, a \"Vincular con Luna\" review queue, and a `product-override-action` widget in the product detail sidebar. This widget allows cloning synced products into `luz-curated` drafts, pre-filling details and establishing a shared fingerprint for overrides. The daily sync process uses Python scrapers (`scraper/sync.py`) scheduled via Docker, replacing an earlier Windows Task Scheduler design. Deduplication uses `metadata.source_url`, and the delta algorithm relies on URL set subtraction.",
+      "intendedDesign": "The layered catalog model is designed for `djoyas-synced` (priority 0, scraper) and `luz-curated` (priority 10, operator) layers, with visibility falling through to lower layers if an upper layer is toggled off. A composite `phash:dhash:metahash` fingerprint with `product_fingerprint_index` and BK-tree is intended for auto-merging, though `FINGERPRINT_AUTO_MERGE` is currently set to `false` until a tuning gate is met. The sorting default will be \"Más vendidos\" (`-sales_rank`) based on nightly `compute-sales-rank.ts` updates. All `/cl/*` HTML routes are `force-dynamic` to ensure fresh data. Unit tests are in place for the merge logic, covering various override and hide scenarios.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 1,
+          "quote": "# Catalog layers, overrides & hiding (DJOYAS-V3)\n\nHow synced (supplier) products and manually-curated products coexist on the\nstorefront, how to override or hide them, and what the daily sync will and won't\ntouch. Behavior reference — for status/roadmap see `docs/CONTEXT.md` and the\n`DJOYAS-V3-IMPL.md` checklist.\n\n## The layer model\n\nEvery product carries layer metadata:\n\n```jsonc\nmetadata: {\n  layer:        { id, source, sourced_at, fingerprint },   // which layer + visual identity\n  overrides:    { base_product_id, fields, hides_base },    // only on override rows\n  layer_policy: { included, hidden }                        // per-product policy flags\n}\n```"
+        },
+        {
+          "path": "docs/reference/djoyas-v3.md",
+          "startLine": 1,
+          "quote": "# Djoyas V3 — Layered Catalog (reference index)\n\n> DJOYAS-V3 shipped the layered catalog + home redesign across 7 phases\n> (fingerprint engine → layer merge → taxonomy → PLP → home → admin override UX).\n> Build log archived at [impl/DJOYAS-V3-IMPL.md](../impl/DJOYAS-V3-IMPL.md).\n> Promoted 2026-06-01.\n\nThe V3 surface is documented where operators already look, not duplicated here:\n\n| Topic | Doc |\n|---|---|\n| Catalog layers, overrides, per-product hide, fingerprint linking, drift alerts, admin UX | [catalog-layers.md](catalog-layers.md) |\n| PLP filters-v3 sidebar — category tree, price slider, ring-size + collection facets, page-local facet data | [filters-v3.md](filters-v3.md) |\n| Home redesign — material gateway, sub-category strip, trust strip, mega-menu | [homepage.md](homepage.md) |\n| V2 supplier-sync baseline V3 layers on top of | [djoyas-v2.md](djoyas-v2.md) |\n| Original design research | [../research/djoyas-v3-mirror.md](../research/djoyas-v3-mirror.md) |\n\n## Key facts"
+        },
+        {
+          "path": "solace-api/src/admin/routes/catalog-sync/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArrowPath } from \"@medusajs/icons\"\nimport CatalogSyncPage from \"./catalog-sync-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Catalog Sync\",\n  icon: ArrowPath,\n})\n\nexport default CatalogSyncPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/layers/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\n\nimport LayersPage from \"./layers-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Capas\",\n  icon: SquareTwoStack,\n})\n\nexport default LayersPage"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/DJOYAS-IMPL.md",
+          "startLine": 69,
+          "quote": "\n### Key Design Decisions\n\n| Decision | Choice | Rationale |\n| --- | --- | --- |\n| Scraper language | Python (keep existing) | AI extraction uses LangChain + OpenRouter — no TS equivalent needed |\n| Schedule mechanism | Docker (`solace-scraper` service in `docker-compose.full.yml`, `scheduler.py` CMD) | Managed by the same `luz.bat`/`luz.sh` as the rest of the stack; `SYNC_HOUR` env controls firing time (default 03:00). Replaces an earlier Windows Task Scheduler design that was never deployed. |\n| Deduplication key | `metadata.source_url` | Already stored by `sync_product`. Enables exact URL match without DB schema changes. |\n| Collection strategy | Single \"Djoyas\" collection | Clarity for store admin. Category taxonomy handles subcategories. |\n| Delta algorithm | URL set subtraction | Discover all sitemap URLs → remove those already in Medusa → process remainder |\n| Backfill scope | Products with `collection_id = null` or title \"General\" | Catches both the truly uncollectioned and the \"General\" legacy default |\n\n---\n\n## Current State (2026-04-17)\n\n### What's done\n"
+        },
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 113,
+          "quote": "- Organise the storefront freely with collections and/or the V3.3 **categories**\n  (what the PLP actually lists by). Neither affects supplier tracking.\n\n> History: before V3.6.1c the reconcile filtered by a `\"Djoyas\"` collection that\n> doesn't exist, so it silently matched nothing and was inert. Keying off the\n> layer fixed both the tracking and this use case. The BI \"No disponibles\" KPI\n> (`/app/layers`) surfaces synced products the reconcile took down (draft).\n\n## Admin UX (DJOYAS-V3.6)\n\nBeyond the `/app/layers` BI dashboard + \"Vincular con Luna\" review queue (V3.6.4),\nthe layer model is driven from two places in the admin:\n\n### On the product page — `product-override-action` widget (V3.6.1 / V3.6.1b)\n\nA panel in the product detail sidebar (`product.details.side.after`) showing the\nproduct's current layer (a badge) plus:\n"
+        },
+        {
+          "path": "docs/DJOYAS-IMPL.md",
+          "startLine": 81,
+          "quote": "---\n\n## Current State (2026-04-17)\n\n### What's done\n\n- `scraper/backfill_collection.py` — **run**: 4,317 products assigned to Djoyas collection (collection has since grown to 5,365 via daily syncs)\n- `scraper/backfill_metadata.py` — **run**: 3,900 products matched to djoyas.cl source URLs (90% match rate via title normalization)\n- `scraper/backfill_specs.py` — **run 2026-05-23 (v2 P1)**: 4,928 / 5,365 products (92%) now carry `metadata.specs` from the Djoyas ficha-técnica table\n- `scraper/medusa_client.py` — fixed: Djoyas collection, 2x price markup, configurable stock, `get_known_source_urls()`, `skip_existing` param, `set_product_status()`, `get_djoyas_products()`\n- `scraper/html_extractor.py` — **new**: JSON-LD parser replacing LLM extractor. Zero cost, instant extraction.\n- `scraper/crawler.py` — updated: uses `html_extractor` instead of `AIExtractor`\n- `scraper/sync.py` — **new + tested**: 3-phase sync (availability check, delta discovery, import). First full run in progress (771 new products).\n\n### What's missing\n\n- Windows Task Scheduler entry for daily 3am `sync.py` run\n- 417 products (~10%) couldn't be matched to source URLs (title divergence too high)"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 1,
+          "quote": "# Catalog layers, overrides & hiding (DJOYAS-V3)\n\nHow synced (supplier) products and manually-curated products coexist on the\nstorefront, how to override or hide them, and what the daily sync will and won't\ntouch. Behavior reference — for status/roadmap see `docs/CONTEXT.md` and the\n`DJOYAS-V3-IMPL.md` checklist.\n\n## The layer model\n\nEvery product carries layer metadata:\n\n```jsonc\nmetadata: {\n  layer:        { id, source, sourced_at, fingerprint },   // which layer + visual identity\n  overrides:    { base_product_id, fields, hides_base },    // only on override rows\n  layer_policy: { included, hidden }                        // per-product policy flags\n}\n```"
+        },
+        {
+          "path": "docs/reference/djoyas-v3.md",
+          "startLine": 1,
+          "quote": "# Djoyas V3 — Layered Catalog (reference index)\n\n> DJOYAS-V3 shipped the layered catalog + home redesign across 7 phases\n> (fingerprint engine → layer merge → taxonomy → PLP → home → admin override UX).\n> Build log archived at [impl/DJOYAS-V3-IMPL.md](../impl/DJOYAS-V3-IMPL.md).\n> Promoted 2026-06-01.\n\nThe V3 surface is documented where operators already look, not duplicated here:\n\n| Topic | Doc |\n|---|---|\n| Catalog layers, overrides, per-product hide, fingerprint linking, drift alerts, admin UX | [catalog-layers.md](catalog-layers.md) |\n| PLP filters-v3 sidebar — category tree, price slider, ring-size + collection facets, page-local facet data | [filters-v3.md](filters-v3.md) |\n| Home redesign — material gateway, sub-category strip, trust strip, mega-menu | [homepage.md](homepage.md) |\n| V2 supplier-sync baseline V3 layers on top of | [djoyas-v2.md](djoyas-v2.md) |\n| Original design research | [../research/djoyas-v3-mirror.md](../research/djoyas-v3-mirror.md) |\n\n## Key facts"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/djoyas-v3.md",
+          "startLine": 17,
+          "quote": "\n## Key facts\n\n- **Layers**: `djoyas-synced` (p0, scraper) + `luz-curated` (p10, operator), composed at\n  render by `metadata.layer.fingerprint` in `mergeLayerProducts`. Toggle a layer off →\n  the store falls through to the layer below (visibility, never destruction).\n- **Fingerprint**: composite `phash:dhash:metahash`; `product_fingerprint_index` table +\n  BK-tree. Auto-merge OFF (`FINGERPRINT_AUTO_MERGE=false`) until the ≥200-pair tuning gate.\n- **Sort**: \"Más vendidos\" (`-sales_rank`) default; nightly `compute-sales-rank.ts` (03:15).\n  Pre-launch it is flat (zero orders → all ranks 0); gains signal organically.\n- **Caching**: all `/cl/*` HTML routes are `force-dynamic` (`Cache-Control: no-store`,\n  `cf-cache: DYNAMIC`) — never edge-cached, always fresh from origin.\n- **Merge unit tests**: `npm run test:unit` in `solace-store` (11 cases — base/override/\n  null-fallthrough/hides-base/layer-disabled/fingerless/order/multi-base/layer_policy.hidden)."
+        },
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 125,
+          "quote": "\n### On the product page — `product-override-action` widget (V3.6.1 / V3.6.1b)\n\nA panel in the product detail sidebar (`product.details.side.after`) showing the\nproduct's current layer (a badge) plus:\n\n- **Sobrescribir** — only on a synced base (`djoyas-synced`, not already\n  overridden). Calls `POST /admin/layers/override`, which clones the product into\n  a new **draft `luz-curated`** product pre-filled from the base (title,\n  description, images, options, variants + prices, categories, collection) via\n  `createProductsWorkflow`, stamps `overrides.base_product_id` + `hides_base` and\n  the **shared fingerprint** (synthesised + back-stamped on the base if absent —\n  same resolver as the candidates queue), then opens the clone to edit. Idempotent:\n  if an override already exists for that base it just opens it.\n- **Ocultar del sitio** — a switch (any product) that toggles\n  `metadata.layer_policy.hidden` + `status` via `POST /admin/layers/hide`\n  (hidden ⇒ `draft`, restored ⇒ `published`). This is the one-click UX over the\n  Caso 2 hide flag; the product stays synced."
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 1,
+          "quote": "# Catalog layers, overrides & hiding (DJOYAS-V3)\n\nHow synced (supplier) products and manually-curated products coexist on the\nstorefront, how to override or hide them, and what the daily sync will and won't\ntouch. Behavior reference — for status/roadmap see `docs/CONTEXT.md` and the\n`DJOYAS-V3-IMPL.md` checklist.\n\n## The layer model\n\nEvery product carries layer metadata:\n\n```jsonc\nmetadata: {\n  layer:        { id, source, sourced_at, fingerprint },   // which layer + visual identity\n  overrides:    { base_product_id, fields, hides_base },    // only on override rows\n  layer_policy: { included, hidden }                        // per-product policy flags\n}\n```"
+        },
+        {
+          "path": "docs/reference/djoyas-v3.md",
+          "startLine": 1,
+          "quote": "# Djoyas V3 — Layered Catalog (reference index)\n\n> DJOYAS-V3 shipped the layered catalog + home redesign across 7 phases\n> (fingerprint engine → layer merge → taxonomy → PLP → home → admin override UX).\n> Build log archived at [impl/DJOYAS-V3-IMPL.md](../impl/DJOYAS-V3-IMPL.md).\n> Promoted 2026-06-01.\n\nThe V3 surface is documented where operators already look, not duplicated here:\n\n| Topic | Doc |\n|---|---|\n| Catalog layers, overrides, per-product hide, fingerprint linking, drift alerts, admin UX | [catalog-layers.md](catalog-layers.md) |\n| PLP filters-v3 sidebar — category tree, price slider, ring-size + collection facets, page-local facet data | [filters-v3.md](filters-v3.md) |\n| Home redesign — material gateway, sub-category strip, trust strip, mega-menu | [homepage.md](homepage.md) |\n| V2 supplier-sync baseline V3 layers on top of | [djoyas-v2.md](djoyas-v2.md) |\n| Original design research | [../research/djoyas-v3-mirror.md](../research/djoyas-v3-mirror.md) |\n\n## Key facts"
+        },
+        {
+          "path": "solace-api/src/admin/routes/catalog-sync/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArrowPath } from \"@medusajs/icons\"\nimport CatalogSyncPage from \"./catalog-sync-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Catalog Sync\",\n  icon: ArrowPath,\n})\n\nexport default CatalogSyncPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/layers/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\n\nimport LayersPage from \"./layers-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Capas\",\n  icon: SquareTwoStack,\n})\n\nexport default LayersPage"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/DJOYAS-IMPL.md",
+          "startLine": 69,
+          "quote": "\n### Key Design Decisions\n\n| Decision | Choice | Rationale |\n| --- | --- | --- |\n| Scraper language | Python (keep existing) | AI extraction uses LangChain + OpenRouter — no TS equivalent needed |\n| Schedule mechanism | Docker (`solace-scraper` service in `docker-compose.full.yml`, `scheduler.py` CMD) | Managed by the same `luz.bat`/`luz.sh` as the rest of the stack; `SYNC_HOUR` env controls firing time (default 03:00). Replaces an earlier Windows Task Scheduler design that was never deployed. |\n| Deduplication key | `metadata.source_url` | Already stored by `sync_product`. Enables exact URL match without DB schema changes. |\n| Collection strategy | Single \"Djoyas\" collection | Clarity for store admin. Category taxonomy handles subcategories. |\n| Delta algorithm | URL set subtraction | Discover all sitemap URLs → remove those already in Medusa → process remainder |\n| Backfill scope | Products with `collection_id = null` or title \"General\" | Catches both the truly uncollectioned and the \"General\" legacy default |\n\n---\n\n## Current State (2026-04-17)\n\n### What's done\n"
+        },
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 113,
+          "quote": "- Organise the storefront freely with collections and/or the V3.3 **categories**\n  (what the PLP actually lists by). Neither affects supplier tracking.\n\n> History: before V3.6.1c the reconcile filtered by a `\"Djoyas\"` collection that\n> doesn't exist, so it silently matched nothing and was inert. Keying off the\n> layer fixed both the tracking and this use case. The BI \"No disponibles\" KPI\n> (`/app/layers`) surfaces synced products the reconcile took down (draft).\n\n## Admin UX (DJOYAS-V3.6)\n\nBeyond the `/app/layers` BI dashboard + \"Vincular con Luna\" review queue (V3.6.4),\nthe layer model is driven from two places in the admin:\n\n### On the product page — `product-override-action` widget (V3.6.1 / V3.6.1b)\n\nA panel in the product detail sidebar (`product.details.side.after`) showing the\nproduct's current layer (a badge) plus:\n"
+        },
+        {
+          "path": "docs/reference/djoyas-v3.md",
+          "startLine": 17,
+          "quote": "\n## Key facts\n\n- **Layers**: `djoyas-synced` (p0, scraper) + `luz-curated` (p10, operator), composed at\n  render by `metadata.layer.fingerprint` in `mergeLayerProducts`. Toggle a layer off →\n  the store falls through to the layer below (visibility, never destruction).\n- **Fingerprint**: composite `phash:dhash:metahash`; `product_fingerprint_index` table +\n  BK-tree. Auto-merge OFF (`FINGERPRINT_AUTO_MERGE=false`) until the ≥200-pair tuning gate.\n- **Sort**: \"Más vendidos\" (`-sales_rank`) default; nightly `compute-sales-rank.ts` (03:15).\n  Pre-launch it is flat (zero orders → all ranks 0); gains signal organically.\n- **Caching**: all `/cl/*` HTML routes are `force-dynamic` (`Cache-Control: no-store`,\n  `cf-cache: DYNAMIC`) — never edge-cached, always fresh from origin.\n- **Merge unit tests**: `npm run test:unit` in `solace-store` (11 cases — base/override/\n  null-fallthrough/hides-base/layer-disabled/fingerless/order/multi-base/layer_policy.hidden)."
+        }
+      ],
+      "paths": [
+        "docs/reference/catalog-layers.md",
+        "docs/reference/djoyas-v3.md",
+        "solace-api/src/admin/routes/catalog-sync/page.tsx",
+        "solace-api/src/admin/routes/layers/page.tsx",
+        "docs/CONTEXT.md",
+        "docs/DJOYAS-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "storefront-features",
+      "label": "Storefront Experience",
+      "summary": "The Luz y Luna storefront, powered by Next.js 16, offers a rich user experience with a redesigned homepage, advanced product listing page filters, and essential content pages.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.35,
+      "visual": "A customer, with a thoughtful expression, navigates a beautifully designed jewelry display. Interactive filters glow like tiny lamps on the side, guiding their gaze through rows of shimmering necklaces and rings, while a warm, inviting homepage banner draws them in.",
+      "visualChanged": true,
+      "currentState": "The storefront homepage, redesigned as part of DJOYAS-V3.5, redirects `/` to `/{countryCode}` and renders via `HomeTemplate`. It includes a Hero carousel, a Material Gateway with two oversized tiles, a SubCategoryStrip with circular icons, Recommended Products, a Trust Strip, and an Explore Blog section. The V2 Strapi Collections grid and Mid-banner have been retired in favor of category-driven sections. Product Listing Page (PLP) filters (filters-v3, DJOYAS-V3.4.1) replace V2 dropdowns and are located at `solace-store/src/modules/store/components/filters-v3/`. These filters compute page-local facet data (category counts, price min/max, talla values) from the current 48-item result page. Components include a collapsible left sidebar (with grid-density persistence), category tree, price range slider, collection facet, and ring-size facet. Basic content pages like Privacy Policy and Terms of Use are implemented.",
+      "intendedDesign": "The homepage structure (DJOYAS-V3.5) is designed to be highly modular, allowing sections to be added, removed, or reordered by editing `page.tsx`. Most visual content for the homepage sections (Hero slides, Collection tiles, Mid-banner) is CMS-driven via Strapi. The PLP filters are designed with a page-local rule, where all facet ranges and counts are derived from the current result page, accepting the tradeoff that counts/bounds may shift with pagination. The price range slider commits changes via a window-level `pointerup`/`touchend` listener, causing a full reload. The storefront also leverages the View Transitions API for shared element transitions for product images.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 1,
+          "quote": "# PLP filters & layout — `filters-v3` (DJOYAS-V3.4.1)\n\nThe product-listing-page (PLP) filter sidebar + grid shell. Replaced the V2\n`filters/` dropdowns. Lives in\n[`solace-store/src/modules/store/components/filters-v3/`](../../solace-store/src/modules/store/components/filters-v3/).\nUsed by the store template (`/cl/shop`) and category template\n(`/cl/categories/<handle>`). Behavior reference — for status see the\n`DJOYAS-V3-IMPL.md` checklist.\n\n## Data flow\n\n```\ntemplate (server)                       filters-v3/index.tsx (server)\n  getRegion + listCategories                computes PAGE-LOCAL facet data from `results`:\n  search({...url params}) ───results──►       · category counts  (results[].categories)\n       │                                       · price min/max    (results[].variants.calculated_price)\n       │                                       · talla values     (results[].options \"Talla\")\n       ▼                                     renders client facet controls in <AccordionSection>"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 1,
+          "quote": "# Homepage — How It Works & How to Redesign It\n\n## What happens when you visit https://luzyluna.cl/\n\n1. **Middleware redirects `/` → `/cl`**\n   Handled in [solace-store/src/proxy.ts](../solace-store/src/proxy.ts) (middleware).\n   It reads `x-vercel-ip-country` (or falls back to `NEXT_PUBLIC_DEFAULT_REGION=cl`) and issues a 307 redirect to `/{countryCode}`.\n\n2. **Route renders `[countryCode]/(main)/page.tsx` → `HomeTemplate`**\n   `page.tsx` is a thin wrapper (JSON-LD + sr-only h1) that renders\n   [modules/home/templates/index.tsx](../solace-store/src/modules/home/templates/index.tsx),\n   the V3.5 orchestrator.\n\n---\n\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```"
+        },
+        {
+          "path": "solace-store/src/app/(main)/privacy-policy/page.tsx",
+          "startLine": 1,
+          "quote": "import { Heading, Text } from \"@medusajs/ui\"\n\nexport default function PrivacyPolicyPage() {\n    return (\n        <div className=\"py-12 px-6 max-w-4xl mx-auto\">\n            <Heading level=\"h1\" className=\"text-3xl mb-6\">Política de Privacidad</Heading>\n            <div className=\"prose prose-blue max-w-none text-ui-fg-subtle space-y-4\">\n                <Text>\n                    En Luz y Luna, nos tomamos muy en serio su privacidad. Esta política describe cómo recopilamos, utilizamos y protegemos su información personal.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">1. Información que Recopilamos</Heading>\n                <Text>\n                    Recopilamos información cuando usted realiza un pedido o se registra en nuestro sitio. Esto puede incluir su nombre, correo electrónico, dirección y número de teléfono.\n                </Text>\n\n           "
+        },
+        {
+          "path": "solace-store/src/app/(main)/terms-of-use/page.tsx",
+          "startLine": 1,
+          "quote": "import { Heading, Text } from \"@medusajs/ui\"\n\nexport default function TermsOfUsePage() {\n    return (\n        <div className=\"py-12 px-6 max-w-4xl mx-auto\">\n            <Heading level=\"h1\" className=\"text-3xl mb-6\">Términos de Uso</Heading>\n            <div className=\"prose prose-blue max-w-none text-ui-fg-subtle space-y-4\">\n                <Text>\n                    Bienvenido a Luz y Luna. Al acceder y utilizar este sitio web, usted acepta cumplir con los siguientes términos y condiciones de uso.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">1. Uso del Sitio</Heading>\n                <Text>\n                    El contenido de las páginas de este sitio web es para su información general y uso solamente. Está sujeto a cambios sin previo aviso.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">2. Propiedad Intelec"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 31,
+          "quote": "\n## Components\n\n| File | Role |\n|---|---|\n| `index.tsx` | **server** — computes page-local facet data, composes the accordion sections |\n| `plp-layout.tsx` | **client** — collapsible left sidebar + grid shell; sidebar collapse + **grid-density** state persisted in localStorage; mobile uses the drawer |\n| `accordion-section.tsx` | client — one collapsible facet section (all collapsed by default) |\n| `category-tree-facet.tsx` | client — nested category links + page-local counts; active leaf highlighted, `max-h-80` scroll. Tree is **pruned** in `index.tsx` to categories present in the current result set (ancestors of present leaves + the active category kept). |\n| `price-range-slider.tsx` | client — dual-thumb continuous price slider → `minPrice`/`maxPrice`. Bounds come from the backend `price_range` (scope max, **stable** — see below); `step=1` so bounds are exact. Commits on release via a **window-level** `pointerup`/`touchend` listener (armed on pointer-down) + `window.location`, deferred two rAFs behind a blocking **spinner overlay** (`useRouter().push` and a programmatic `<Link>` click both no-op from this sidebar subtree, so the apply is a full reload). No-op releases skip the reload. |\n| `collection-facet.tsx` | client — page-local collections present in `results` as `<Link>` rows → `collection` param; **plain (non-accordion) section under `<Suspense>`** (reads `useSearchParams` and is always rendered). |\n| `ring-size-facet.tsx` | client — `option:Talla` checkboxes → `talla` param; only rendered inside a category that has Talla (Q8) |\n| `grid-density-slider.tsx` | client — card-size slider → `--plp-card` CSS var; value owned/persisted by `plp-layout` |\n| `active-filters.tsx` | client — removable chips for the active `collection` + `talla` + price range + \"Limpiar\" |\n| `filters-drawer.tsx` | client — mobile drawer wrapper (forked from V2; V2 `filters/` retired) |\n\n## URL params ↔ backend\n"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 15,
+          "quote": "\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```\n/cl\n├── <Hero>               ← Strapi: carousel (HeroBanner)\n├── <MaterialGateway>    ← Medusa categories: two oversized tiles → silver / enchapadas roots\n├── <SubCategoryStrip>   ← Medusa categories: circular icons (metadata.home_feature=true)\n├── <RecommendedProducts>← Medusa: featured strip\n├── <TrustStrip>         ← static: 4 retail tiles (Envío / WhatsApp / Garantía / Pago seguro)\n└── <ExploreBlog>        ← Strapi: latest blog posts\n```\n\n> The V2 Strapi Collections grid + Mid-banner were retired from the home flow in\n> favour of the category-driven gateway + sub-category strip. The header also\n> gained a category **mega-menu** ([modules/layout/components/mega-menu](../solace-store/src/modules/layout/components/mega-menu/index.tsx),\n> wired as the \"Store\" dropdown), with child thumbnails from `category.metadata.thumbnail`.\n"
+        },
+        {
+          "path": "solace-store/src/app/(main)/privacy-policy/page.tsx",
+          "startLine": 17,
+          "quote": "                <Heading level=\"h2\" className=\"text-xl mt-8\">2. Uso de la Información</Heading>\n                <Text>\n                    Cualquier información que recopilamos puede ser utilizada para procesar sus transacciones y mejorar nuestro servicio al cliente.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">3. Protección de Datos</Heading>\n                <Text>\n                    Implementamos una variedad de medidas de seguridad para mantener la seguridad de su información personal cuando realiza un pedido.\n                </Text>\n\n                <Text className=\"mt-12 text-sm italic\">\n                    Última actualización: Febrero 2026\n                </Text>\n            </div>\n        </div>\n    )\n}"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 1,
+          "quote": "# Homepage — How It Works & How to Redesign It\n\n## What happens when you visit https://luzyluna.cl/\n\n1. **Middleware redirects `/` → `/cl`**\n   Handled in [solace-store/src/proxy.ts](../solace-store/src/proxy.ts) (middleware).\n   It reads `x-vercel-ip-country` (or falls back to `NEXT_PUBLIC_DEFAULT_REGION=cl`) and issues a 307 redirect to `/{countryCode}`.\n\n2. **Route renders `[countryCode]/(main)/page.tsx` → `HomeTemplate`**\n   `page.tsx` is a thin wrapper (JSON-LD + sr-only h1) that renders\n   [modules/home/templates/index.tsx](../solace-store/src/modules/home/templates/index.tsx),\n   the V3.5 orchestrator.\n\n---\n\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```"
+        },
+        {
+          "path": "docs/design/improvement-ideas.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Improvement Ideas\n\n> Generated 2026-03-21 from a full codebase audit.\n> Covers current state through commit `5928515`.\n\n---\n\n## 20 Practical Improvements\n\n### 1. Product JSON-LD Structured Data\nAdd `<script type=\"application/ld+json\">` to product detail pages with Schema.org `Product` markup — name, price, currency, availability, images, brand. Google Shopping and rich snippets depend on this. Chilean e-commerce competition is low enough that structured data alone could land you in rich results. Touches `solace-store/src/modules/products/templates/index.tsx`.\n\n**Effort: S**\n\n---\n\n### 2. Dynamic Sitemap Generation\nThere's no `sitemap.ts` anywhere. Next.js App Router supports `app/sitemap.ts` that auto-generates XML from your product/collection/blog data. Without it, Google is discovering pages only by crawling links — you're leaving indexing speed on the table. One file, three data fetches (products, collections, blog slugs), done."
+        },
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 31,
+          "quote": "\n## Components\n\n| File | Role |\n|---|---|\n| `index.tsx` | **server** — computes page-local facet data, composes the accordion sections |\n| `plp-layout.tsx` | **client** — collapsible left sidebar + grid shell; sidebar collapse + **grid-density** state persisted in localStorage; mobile uses the drawer |\n| `accordion-section.tsx` | client — one collapsible facet section (all collapsed by default) |\n| `category-tree-facet.tsx` | client — nested category links + page-local counts; active leaf highlighted, `max-h-80` scroll. Tree is **pruned** in `index.tsx` to categories present in the current result set (ancestors of present leaves + the active category kept). |\n| `price-range-slider.tsx` | client — dual-thumb continuous price slider → `minPrice`/`maxPrice`. Bounds come from the backend `price_range` (scope max, **stable** — see below); `step=1` so bounds are exact. Commits on release via a **window-level** `pointerup`/`touchend` listener (armed on pointer-down) + `window.location`, deferred two rAFs behind a blocking **spinner overlay** (`useRouter().push` and a programmatic `<Link>` click both no-op from this sidebar subtree, so the apply is a full reload). No-op releases skip the reload. |\n| `collection-facet.tsx` | client — page-local collections present in `results` as `<Link>` rows → `collection` param; **plain (non-accordion) section under `<Suspense>`** (reads `useSearchParams` and is always rendered). |\n| `ring-size-facet.tsx` | client — `option:Talla` checkboxes → `talla` param; only rendered inside a category that has Talla (Q8) |\n| `grid-density-slider.tsx` | client — card-size slider → `--plp-card` CSS var; value owned/persisted by `plp-layout` |\n| `active-filters.tsx` | client — removable chips for the active `collection` + `talla` + price range + \"Limpiar\" |\n| `filters-drawer.tsx` | client — mobile drawer wrapper (forked from V2; V2 `filters/` retired) |\n\n## URL params ↔ backend\n"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 15,
+          "quote": "\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```\n/cl\n├── <Hero>               ← Strapi: carousel (HeroBanner)\n├── <MaterialGateway>    ← Medusa categories: two oversized tiles → silver / enchapadas roots\n├── <SubCategoryStrip>   ← Medusa categories: circular icons (metadata.home_feature=true)\n├── <RecommendedProducts>← Medusa: featured strip\n├── <TrustStrip>         ← static: 4 retail tiles (Envío / WhatsApp / Garantía / Pago seguro)\n└── <ExploreBlog>        ← Strapi: latest blog posts\n```\n\n> The V2 Strapi Collections grid + Mid-banner were retired from the home flow in\n> favour of the category-driven gateway + sub-category strip. The header also\n> gained a category **mega-menu** ([modules/layout/components/mega-menu](../solace-store/src/modules/layout/components/mega-menu/index.tsx),\n> wired as the \"Store\" dropdown), with child thumbnails from `category.metadata.thumbnail`.\n"
+        },
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 17,
+          "quote": "       │                                       · talla values     (results[].options \"Talla\")\n       ▼                                     renders client facet controls in <AccordionSection>\n  /store/search (backend)                          │\n  (route.ts + query-config.ts)                     ▼\n   index query + graph-enrich          client facets write URL params (router.push)\n   metadata/inventory/categories               minPrice/maxPrice, talla, collection, type, price…\n       ▲                                             │\n       └──────────── search() action (search/actions.ts) forwards them ◄──┘\n                     minPrice→price_from, maxPrice→price_to, talla[]→talla[], …\n```\n\n**Page-local rule (Q6):** all facet ranges/counts come from the current 48-item\nresult page, not a global aggregate. Accepted tradeoff: counts/bounds shift as\nyou paginate.\n\n## Components\n\n| File | Role |"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 62,
+          "quote": "\n## How to Modify the Homepage\n\n### Collections section gotchas\n- Requires **at least 3 entries** in Strapi — fewer than 3 renders nothing ([collections/index.tsx:92](../solace-store/src/modules/home/components/collections/index.tsx#L92))\n- Each entry's `Handle` field must **exactly match** a collection handle in Medusa (case-sensitive)\n- Entries must be **Published** in Strapi (not Draft)\n- Currently set up with: `Aros`, `collares-enchapados`, `conjuntos-plata925`\n- To edit: Strapi admin → Collections content type\n\n### Add or reorder sections\nEdit `page.tsx`. Each section is a self-contained component — add, remove, or reorder the JSX blocks.\n\n### Change section content (images, text, CTAs)\nUse Strapi admin (`/admin`). Most visual content is CMS-driven:\n- Hero slides → `HeroBanner` content type\n- Collection tiles → `CollectionsMain`\n- Mid-banner → `MidBanner`"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 1,
+          "quote": "# PLP filters & layout — `filters-v3` (DJOYAS-V3.4.1)\n\nThe product-listing-page (PLP) filter sidebar + grid shell. Replaced the V2\n`filters/` dropdowns. Lives in\n[`solace-store/src/modules/store/components/filters-v3/`](../../solace-store/src/modules/store/components/filters-v3/).\nUsed by the store template (`/cl/shop`) and category template\n(`/cl/categories/<handle>`). Behavior reference — for status see the\n`DJOYAS-V3-IMPL.md` checklist.\n\n## Data flow\n\n```\ntemplate (server)                       filters-v3/index.tsx (server)\n  getRegion + listCategories                computes PAGE-LOCAL facet data from `results`:\n  search({...url params}) ───results──►       · category counts  (results[].categories)\n       │                                       · price min/max    (results[].variants.calculated_price)\n       │                                       · talla values     (results[].options \"Talla\")\n       ▼                                     renders client facet controls in <AccordionSection>"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 1,
+          "quote": "# Homepage — How It Works & How to Redesign It\n\n## What happens when you visit https://luzyluna.cl/\n\n1. **Middleware redirects `/` → `/cl`**\n   Handled in [solace-store/src/proxy.ts](../solace-store/src/proxy.ts) (middleware).\n   It reads `x-vercel-ip-country` (or falls back to `NEXT_PUBLIC_DEFAULT_REGION=cl`) and issues a 307 redirect to `/{countryCode}`.\n\n2. **Route renders `[countryCode]/(main)/page.tsx` → `HomeTemplate`**\n   `page.tsx` is a thin wrapper (JSON-LD + sr-only h1) that renders\n   [modules/home/templates/index.tsx](../solace-store/src/modules/home/templates/index.tsx),\n   the V3.5 orchestrator.\n\n---\n\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```"
+        },
+        {
+          "path": "docs/design/improvement-ideas.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna — Improvement Ideas\n\n> Generated 2026-03-21 from a full codebase audit.\n> Covers current state through commit `5928515`.\n\n---\n\n## 20 Practical Improvements\n\n### 1. Product JSON-LD Structured Data\nAdd `<script type=\"application/ld+json\">` to product detail pages with Schema.org `Product` markup — name, price, currency, availability, images, brand. Google Shopping and rich snippets depend on this. Chilean e-commerce competition is low enough that structured data alone could land you in rich results. Touches `solace-store/src/modules/products/templates/index.tsx`.\n\n**Effort: S**\n\n---\n\n### 2. Dynamic Sitemap Generation\nThere's no `sitemap.ts` anywhere. Next.js App Router supports `app/sitemap.ts` that auto-generates XML from your product/collection/blog data. Without it, Google is discovering pages only by crawling links — you're leaving indexing speed on the table. One file, three data fetches (products, collections, blog slugs), done."
+        },
+        {
+          "path": "solace-store/src/app/(main)/privacy-policy/page.tsx",
+          "startLine": 1,
+          "quote": "import { Heading, Text } from \"@medusajs/ui\"\n\nexport default function PrivacyPolicyPage() {\n    return (\n        <div className=\"py-12 px-6 max-w-4xl mx-auto\">\n            <Heading level=\"h1\" className=\"text-3xl mb-6\">Política de Privacidad</Heading>\n            <div className=\"prose prose-blue max-w-none text-ui-fg-subtle space-y-4\">\n                <Text>\n                    En Luz y Luna, nos tomamos muy en serio su privacidad. Esta política describe cómo recopilamos, utilizamos y protegemos su información personal.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">1. Información que Recopilamos</Heading>\n                <Text>\n                    Recopilamos información cuando usted realiza un pedido o se registra en nuestro sitio. Esto puede incluir su nombre, correo electrónico, dirección y número de teléfono.\n                </Text>\n\n           "
+        },
+        {
+          "path": "solace-store/src/app/(main)/terms-of-use/page.tsx",
+          "startLine": 1,
+          "quote": "import { Heading, Text } from \"@medusajs/ui\"\n\nexport default function TermsOfUsePage() {\n    return (\n        <div className=\"py-12 px-6 max-w-4xl mx-auto\">\n            <Heading level=\"h1\" className=\"text-3xl mb-6\">Términos de Uso</Heading>\n            <div className=\"prose prose-blue max-w-none text-ui-fg-subtle space-y-4\">\n                <Text>\n                    Bienvenido a Luz y Luna. Al acceder y utilizar este sitio web, usted acepta cumplir con los siguientes términos y condiciones de uso.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">1. Uso del Sitio</Heading>\n                <Text>\n                    El contenido de las páginas de este sitio web es para su información general y uso solamente. Está sujeto a cambios sin previo aviso.\n                </Text>\n\n                <Heading level=\"h2\" className=\"text-xl mt-8\">2. Propiedad Intelec"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/filters-v3.md",
+          "startLine": 31,
+          "quote": "\n## Components\n\n| File | Role |\n|---|---|\n| `index.tsx` | **server** — computes page-local facet data, composes the accordion sections |\n| `plp-layout.tsx` | **client** — collapsible left sidebar + grid shell; sidebar collapse + **grid-density** state persisted in localStorage; mobile uses the drawer |\n| `accordion-section.tsx` | client — one collapsible facet section (all collapsed by default) |\n| `category-tree-facet.tsx` | client — nested category links + page-local counts; active leaf highlighted, `max-h-80` scroll. Tree is **pruned** in `index.tsx` to categories present in the current result set (ancestors of present leaves + the active category kept). |\n| `price-range-slider.tsx` | client — dual-thumb continuous price slider → `minPrice`/`maxPrice`. Bounds come from the backend `price_range` (scope max, **stable** — see below); `step=1` so bounds are exact. Commits on release via a **window-level** `pointerup`/`touchend` listener (armed on pointer-down) + `window.location`, deferred two rAFs behind a blocking **spinner overlay** (`useRouter().push` and a programmatic `<Link>` click both no-op from this sidebar subtree, so the apply is a full reload). No-op releases skip the reload. |\n| `collection-facet.tsx` | client — page-local collections present in `results` as `<Link>` rows → `collection` param; **plain (non-accordion) section under `<Suspense>`** (reads `useSearchParams` and is always rendered). |\n| `ring-size-facet.tsx` | client — `option:Talla` checkboxes → `talla` param; only rendered inside a category that has Talla (Q8) |\n| `grid-density-slider.tsx` | client — card-size slider → `--plp-card` CSS var; value owned/persisted by `plp-layout` |\n| `active-filters.tsx` | client — removable chips for the active `collection` + `talla` + price range + \"Limpiar\" |\n| `filters-drawer.tsx` | client — mobile drawer wrapper (forked from V2; V2 `filters/` retired) |\n\n## URL params ↔ backend\n"
+        },
+        {
+          "path": "docs/reference/homepage.md",
+          "startLine": 15,
+          "quote": "\n## Current Homepage Structure (DJOYAS-V3.5)\n\n```\n/cl\n├── <Hero>               ← Strapi: carousel (HeroBanner)\n├── <MaterialGateway>    ← Medusa categories: two oversized tiles → silver / enchapadas roots\n├── <SubCategoryStrip>   ← Medusa categories: circular icons (metadata.home_feature=true)\n├── <RecommendedProducts>← Medusa: featured strip\n├── <TrustStrip>         ← static: 4 retail tiles (Envío / WhatsApp / Garantía / Pago seguro)\n└── <ExploreBlog>        ← Strapi: latest blog posts\n```\n\n> The V2 Strapi Collections grid + Mid-banner were retired from the home flow in\n> favour of the category-driven gateway + sub-category strip. The header also\n> gained a category **mega-menu** ([modules/layout/components/mega-menu](../solace-store/src/modules/layout/components/mega-menu/index.tsx),\n> wired as the \"Store\" dropdown), with child thumbnails from `category.metadata.thumbnail`.\n"
+        }
+      ],
+      "paths": [
+        "docs/reference/filters-v3.md",
+        "docs/reference/homepage.md",
+        "solace-store/src/app/(main)/privacy-policy/page.tsx",
+        "solace-store/src/app/(main)/terms-of-use/page.tsx",
+        "docs/CONTEXT.md",
+        "docs/design/improvement-ideas.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "wholesale-platform",
+      "label": "Wholesale Jewelry SaaS",
+      "summary": "Luz y Luna is planning a multi-vendor wholesale jewelry SaaS platform, starting with an AI-driven inventory tool to address operational challenges for wholesalers.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.75,
+      "visual": "A bustling jewelry market, where a single, glowing smartphone projects holographic images of thousands of jewelry pieces. A shop owner, amazed, scans a new piece with their phone, watching as the holographic catalog instantly updates, connecting them to a network of eager buyers.",
+      "visualChanged": true,
+      "currentState": "The Wholesale Jewelry SaaS is a design and research proposal, not yet greenlit for implementation. The initial phase, WHOLESALE.0, a pilot store contract, is a hard precondition for any source code development (WHOLESALE.1). Currently, no code has been written; only the design document and implementation tracker exist. WHOLESALE.1, focusing on v0 single-piece capture using a Medusa admin route, Gemini ingest endpoint, and draft form, is 'plan-approved-pending' and awaits the WHOLESALE.0 precondition. The wholesale strategy is to first implement an AI inventory tool to achieve workflow lock-in, followed by a multi-vendor marketplace, using Gemini 2.5 Flash directly for v0.",
+      "intendedDesign": "The platform aims to turn Luz y Luna into a multi-vendor platform for Chilean jewelry wholesalers, offering an AI-driven inventory tool to manage 20,000+ SKUs. The core problem it addresses is the operational impossibility of maintaining real-time online inventory for physical stock. The strategic architecture involves starting with the `@techlabi/medusa-marketplace-plugin` for lower migration cost and validating the multi-vendor thesis before potentially graduating to MercurJS, which offers a full fork of Medusa workflows. MercadoPago's 'Marketplace' mode with split payments is considered for multi-vendor transactions.",
+      "nextSteps": "The immediate next steps involve fulfilling the WHOLESALE.0 precondition: securing a signed pilot agreement with at least one store and hand-cataloging 200 SKUs to validate demand. Once WHOLESALE.0 is satisfied, WHOLESALE.1 can proceed, which includes provisioning `GEMINI_API_KEY`, adding `@google/generative-ai` to `solace-api`, creating a `jewelry-prompt.ts` with Zod schema and parser, and implementing admin routes for inventory ingest (`route.ts`) and capture (`page.tsx`, `draft-form.tsx`). Future phases include Sale-by-photo, Ghost.VisionJewelry integration, image standardization, and a knowledge base with pgvector and SigLIP embeddings.",
+      "currentEvidence": [
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Implementation Tracker\n\n> Living design + status doc for the multi-vendor wholesale jewelry platform — AI inventory tool first, marketplace later.\n> See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) for the full research and architecture.\n> Follows DOCS-PROTOCOL.md Rule 12 (waremoto methodology, Rules 13 + 14 also applied).\n> Updated: 2026-05-09\n\n---\n\n## Preconditions\n\n> Operator decision 2026-05-09: **WHOLESALE.0 (pilot demand validation) is a hard precondition for WHOLESALE.1 (v0 capture flow).**\n\n- [ ] **WHOLESALE.0 — Pilot store contract.** A signed pilot agreement with at least one named store (operator-driven, not engineering work) before any P1 source code is written. Until WHOLESALE.0 is satisfied, P1's checkboxes do not flip to in-progress and no Gemini API key is provisioned.\n\n**Why .0 gates .1:** WHOLESALE.1 builds the operator-facing capture flow. Without a confirmed pilot store, \"is the operator going to use this\" is unanswered — shipping v0 against a hypothetical user is the failure mode the .0 step exists to prevent. v0 is *not* the validation tool; the *contract conversation* is. v0 is the tool the contract enables.\n\n---"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Multi-Vendor Luz y Luna + AI Inventory\n\n> **Status**: Design / research proposal — not yet greenlit for implementation\n> **Date**: 2026-05-06\n> **Author**: julio + claude\n> **Goal**: Turn Luz y Luna into a *platform* for Chilean jewelry wholesalers (the \"Comunidad Feliz of jewelry stores\") and build an AI-driven inventory tool that makes managing 20,000+ SKUs feasible for a one-person back-office.\n\n---\n\n## 1. The Problem (and the Wedge)\n\nWalked into a Chilean jewelry store with ~20,000 distinct SKUs in physical stock. Their public website lists ~100 products. Why? Because keeping a real-time online inventory of jewelry is operationally impossible without tooling — every piece is small, near-identical to neighbours, and the catalogue churns daily. This same store sells *primarily* to minor vendors (B2B / wholesale), not retail walk-ins.\n\nThis pattern repeats across Chile — many wholesale jewelers in this exact bind:\n\n- **Have**: deep physical inventory, walk-in B2B clients, no time to photograph/catalog\n- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 113,
+          "quote": "\n**Approval required before edits.** Operator: review this plan and approve before any of the above files are written.\n\n---\n\n## Current State (2026-05-07)\n\nNothing built yet. Design doc and this IMPL exist; no source files touched.\n\n### What's done\n- Research and architecture: [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md)\n- Open Questions resolved with sane defaults (this doc)\n- Plan for WHOLESALE.1 drafted (this doc, above)\n\n### What's missing\n- Everything in the WHOLESALE.1 file list\n- `GEMINI_API_KEY` provisioning (Google AI Studio → key → `.env`)\n- Pilot store contract (Phase 0 in the design doc — not an engineering task but a hard prerequisite for P2 onward)"
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 161,
+          "quote": "\n## Implementation Status\n\n| Phase | State | Model | Description |\n|---|---|---|---|\n| WHOLESALE.0 | not started | n/a | Pilot store contract + 200 SKUs hand-cataloged manually (validates demand, not code) |\n| WHOLESALE.1 | **plan-approved-pending** | Sonnet | v0 single-piece capture: Medusa admin route + Gemini ingest endpoint + draft form |\n| WHOLESALE.2 | not started | Sonnet | Sale-by-photo + review queue (uses existing inventory module) |\n| WHOLESALE.3 | not started | Opus | Ghost.VisionJewelry GhostApp + provider failover + local vLLM (after prompt schema stable) |\n| WHOLESALE.4 | not started | Opus | Image standardization pipeline (rembg local + Photoroom opt-in) |\n| WHOLESALE.5 | not started | Opus | Knowledge-base: generalize scraper + pgvector + SigLIP embeddings |"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Multi-Vendor Luz y Luna + AI Inventory\n\n> **Status**: Design / research proposal — not yet greenlit for implementation\n> **Date**: 2026-05-06\n> **Author**: julio + claude\n> **Goal**: Turn Luz y Luna into a *platform* for Chilean jewelry wholesalers (the \"Comunidad Feliz of jewelry stores\") and build an AI-driven inventory tool that makes managing 20,000+ SKUs feasible for a one-person back-office.\n\n---\n\n## 1. The Problem (and the Wedge)\n\nWalked into a Chilean jewelry store with ~20,000 distinct SKUs in physical stock. Their public website lists ~100 products. Why? Because keeping a real-time online inventory of jewelry is operationally impossible without tooling — every piece is small, near-identical to neighbours, and the catalogue churns daily. This same store sells *primarily* to minor vendors (B2B / wholesale), not retail walk-ins.\n\nThis pattern repeats across Chile — many wholesale jewelers in this exact bind:\n\n- **Have**: deep physical inventory, walk-in B2B clients, no time to photograph/catalog\n- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 86,
+          "quote": "\n## 3. Part A — Multi-Vendor Marketplace on Medusa\n\n### 3.1 The three viable paths\n\n| Option | What it is | Pros | Cons |\n|---|---|---|---|\n| **Mercur** ([mercurjs.com](https://www.mercurjs.com/), [GitHub](https://github.com/mercurjs/mercur)) | Open-source multi-vendor accelerator built on Medusa 2.0 by Rigby | Already does order splitting, vendor onboarding, payouts (Stripe), seller API, commissions, return escalation. Apache-2.0. Mature. | Stripe-first — we use MercadoPago. Heavy: it's a *full fork* of Medusa workflows, not a plugin. Migrating our existing single-tenant store is non-trivial. |\n| **@techlabi/medusa-marketplace-plugin** ([npm](https://www.npmjs.com/package/@techlabi/medusa-marketplace-plugin)) | Lightweight plugin — adds vendor stores + super-admin | Drops into our existing [solace-api/medusa-config.ts](../../solace-api/medusa-config.ts) as a Medusa plugin. Lower migration cost. | Less feature-complete: no built-in payment splitting, no payout system, no vendor portal — we'd build those. |\n| **Custom (Marketplace Recipe)** | Hand-roll using [Medusa's marketplace recipe](https://docs.medusajs.com/resources/recipes/marketplace/examples/vendors) | Full control. We already extend Medusa heavily ([modules/](../../solace-api/src/modules/), [admin/routes/](../../solace-api/src/admin/routes/)). | Months of work. Reinventing what Mercur already shipped. |\n\n**Recommendation: start with the @techlabi plugin, plan to graduate to Mercur if traction proves out.** Reasons:\n1. We already have a single-tenant production Medusa with custom MP + Chilexpress + Resend modules. Forking to Mercur means re-doing all that integration work.\n2. The plugin path lets us stay on our medusa-config.ts and validate the multi-vendor *thesis* (will stores actually onboard? will buyers actually cross-shop?) before paying the migration tax.\n3. Mercur's Stripe-first split-payment design is the biggest blocker. MercadoPago **does support split payments via \"Marketplace\" mode (using `mark"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 17,
+          "quote": "- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow\n\nExisting reference cases:\n\n| Reference | What they do | Lesson |\n|---|---|---|\n| [djoyas.com](https://djoyas.com) (we already scrape it — see [docs/DJOYAS-IMPL.md](../DJOYAS-IMPL.md)) | National Chilean jewelry wholesale catalogue with online ordering | Proves there is demand, but they own the inventory — not a multi-vendor platform |\n| [comunidadfeliz.cl](https://www.comunidadfeliz.cl/) | SaaS for building/condo administrators in Chile, founded 2015, regional growth | A vertical SaaS with a sticky workflow + a mobile app for the \"consumer side\" — model to copy |\n\n**Our wedge** = `djoyas.com - \"we own the stock\"` + `comunidadfeliz.cl + \"for jewelry stores\"`.\nA multi-vendor wholesale jewelry marketplace where each store is a tenant, the inventory tool is the reason they stay (workflow lock-in), and the storefront is the reason their buyers come back (network effect lock-in).\n\nSingle-line pitch: **\"List 20,000 pieces with your phone in a week, sell them to 200 minor vendors who shop in one place.\"**\n\n---\n\n## 2. Strategic Architecture (TL;DR)"
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Implementation Tracker\n\n> Living design + status doc for the multi-vendor wholesale jewelry platform — AI inventory tool first, marketplace later.\n> See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) for the full research and architecture.\n> Follows DOCS-PROTOCOL.md Rule 12 (waremoto methodology, Rules 13 + 14 also applied).\n> Updated: 2026-05-09\n\n---\n\n## Preconditions\n\n> Operator decision 2026-05-09: **WHOLESALE.0 (pilot demand validation) is a hard precondition for WHOLESALE.1 (v0 capture flow).**\n\n- [ ] **WHOLESALE.0 — Pilot store contract.** A signed pilot agreement with at least one named store (operator-driven, not engineering work) before any P1 source code is written. Until WHOLESALE.0 is satisfied, P1's checkboxes do not flip to in-progress and no Gemini API key is provisioned.\n\n**Why .0 gates .1:** WHOLESALE.1 builds the operator-facing capture flow. Without a confirmed pilot store, \"is the operator going to use this\" is unanswered — shipping v0 against a hypothetical user is the failure mode the .0 step exists to prevent. v0 is *not* the validation tool; the *contract conversation* is. v0 is the tool the contract enables.\n\n---"
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 113,
+          "quote": "\n**Approval required before edits.** Operator: review this plan and approve before any of the above files are written.\n\n---\n\n## Current State (2026-05-07)\n\nNothing built yet. Design doc and this IMPL exist; no source files touched.\n\n### What's done\n- Research and architecture: [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md)\n- Open Questions resolved with sane defaults (this doc)\n- Plan for WHOLESALE.1 drafted (this doc, above)\n\n### What's missing\n- Everything in the WHOLESALE.1 file list\n- `GEMINI_API_KEY` provisioning (Google AI Studio → key → `.env`)\n- Pilot store contract (Phase 0 in the design doc — not an engineering task but a hard prerequisite for P2 onward)"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 40,
+          "quote": "\n## FB Marketplace Adapter — Phase 1 (browser session + bootstrap)\n\n- [ ] FB-MARKETPLACE-ADAPTER.1.1 Create `catalog-sync/browser/__init__.py` and `session.py` (BrowserSession + stealth)\n- [ ] FB-MARKETPLACE-ADAPTER.1.2 `BrowserSession.start(headless)` honors `DISPLAY=:99`, `new_page()` applies stealth\n- [ ] FB-MARKETPLACE-ADAPTER.1.3 Create `catalog-sync/scripts/fb-bootstrap.py` (headed login, profile persist)\n- [ ] FB-MARKETPLACE-ADAPTER.1.4 Manual smoke: bootstrap creates `data/chrome_profile_fb/`; second run lands authenticated\n\n## Wholesale jewelry SaaS — Phase 1 (v0 single-piece capture)\n\n> Tracker: [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). Plan approved-pending — DO NOT start until operator confirms WHOLESALE.1 plan.\n\n- [ ] WHOLESALE.1.1 — Provision `GEMINI_API_KEY` in `solace-api/.env` (and `.env.example`)\n- [ ] WHOLESALE.1.2 — Add `@google/generative-ai` dependency to `solace-api/package.json`\n- [ ] WHOLESALE.1.3 — Create `src/lib/vision/jewelry-prompt.ts` (prompt + Zod schema + parser)\n- [ ] WHOLESALE.1.4 — Create `src/api/admin/inventory/ingest/route.ts` (POST handler)\n- [ ] WHOLESALE.1.5 — Create `src/admin/routes/inventory/capture/page.tsx` (camera input + draft form host)\n- [ ] WHOLESALE.1.6 — Create `src/admin/routes/inventory/capture/components/draft-form.tsx` (confidence-driven chips)"
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 161,
+          "quote": "\n## Implementation Status\n\n| Phase | State | Model | Description |\n|---|---|---|---|\n| WHOLESALE.0 | not started | n/a | Pilot store contract + 200 SKUs hand-cataloged manually (validates demand, not code) |\n| WHOLESALE.1 | **plan-approved-pending** | Sonnet | v0 single-piece capture: Medusa admin route + Gemini ingest endpoint + draft form |\n| WHOLESALE.2 | not started | Sonnet | Sale-by-photo + review queue (uses existing inventory module) |\n| WHOLESALE.3 | not started | Opus | Ghost.VisionJewelry GhostApp + provider failover + local vLLM (after prompt schema stable) |\n| WHOLESALE.4 | not started | Opus | Image standardization pipeline (rembg local + Photoroom opt-in) |\n| WHOLESALE.5 | not started | Opus | Knowledge-base: generalize scraper + pgvector + SigLIP embeddings |"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Implementation Tracker\n\n> Living design + status doc for the multi-vendor wholesale jewelry platform — AI inventory tool first, marketplace later.\n> See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) for the full research and architecture.\n> Follows DOCS-PROTOCOL.md Rule 12 (waremoto methodology, Rules 13 + 14 also applied).\n> Updated: 2026-05-09\n\n---\n\n## Preconditions\n\n> Operator decision 2026-05-09: **WHOLESALE.0 (pilot demand validation) is a hard precondition for WHOLESALE.1 (v0 capture flow).**\n\n- [ ] **WHOLESALE.0 — Pilot store contract.** A signed pilot agreement with at least one named store (operator-driven, not engineering work) before any P1 source code is written. Until WHOLESALE.0 is satisfied, P1's checkboxes do not flip to in-progress and no Gemini API key is provisioned.\n\n**Why .0 gates .1:** WHOLESALE.1 builds the operator-facing capture flow. Without a confirmed pilot store, \"is the operator going to use this\" is unanswered — shipping v0 against a hypothetical user is the failure mode the .0 step exists to prevent. v0 is *not* the validation tool; the *contract conversation* is. v0 is the tool the contract enables.\n\n---"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 1,
+          "quote": "# Wholesale Jewelry SaaS — Multi-Vendor Luz y Luna + AI Inventory\n\n> **Status**: Design / research proposal — not yet greenlit for implementation\n> **Date**: 2026-05-06\n> **Author**: julio + claude\n> **Goal**: Turn Luz y Luna into a *platform* for Chilean jewelry wholesalers (the \"Comunidad Feliz of jewelry stores\") and build an AI-driven inventory tool that makes managing 20,000+ SKUs feasible for a one-person back-office.\n\n---\n\n## 1. The Problem (and the Wedge)\n\nWalked into a Chilean jewelry store with ~20,000 distinct SKUs in physical stock. Their public website lists ~100 products. Why? Because keeping a real-time online inventory of jewelry is operationally impossible without tooling — every piece is small, near-identical to neighbours, and the catalogue churns daily. This same store sells *primarily* to minor vendors (B2B / wholesale), not retail walk-ins.\n\nThis pattern repeats across Chile — many wholesale jewelers in this exact bind:\n\n- **Have**: deep physical inventory, walk-in B2B clients, no time to photograph/catalog\n- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 113,
+          "quote": "\n**Approval required before edits.** Operator: review this plan and approve before any of the above files are written.\n\n---\n\n## Current State (2026-05-07)\n\nNothing built yet. Design doc and this IMPL exist; no source files touched.\n\n### What's done\n- Research and architecture: [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md)\n- Open Questions resolved with sane defaults (this doc)\n- Plan for WHOLESALE.1 drafted (this doc, above)\n\n### What's missing\n- Everything in the WHOLESALE.1 file list\n- `GEMINI_API_KEY` provisioning (Google AI Studio → key → `.env`)\n- Pilot store contract (Phase 0 in the design doc — not an engineering task but a hard prerequisite for P2 onward)"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 86,
+          "quote": "\n## 3. Part A — Multi-Vendor Marketplace on Medusa\n\n### 3.1 The three viable paths\n\n| Option | What it is | Pros | Cons |\n|---|---|---|---|\n| **Mercur** ([mercurjs.com](https://www.mercurjs.com/), [GitHub](https://github.com/mercurjs/mercur)) | Open-source multi-vendor accelerator built on Medusa 2.0 by Rigby | Already does order splitting, vendor onboarding, payouts (Stripe), seller API, commissions, return escalation. Apache-2.0. Mature. | Stripe-first — we use MercadoPago. Heavy: it's a *full fork* of Medusa workflows, not a plugin. Migrating our existing single-tenant store is non-trivial. |\n| **@techlabi/medusa-marketplace-plugin** ([npm](https://www.npmjs.com/package/@techlabi/medusa-marketplace-plugin)) | Lightweight plugin — adds vendor stores + super-admin | Drops into our existing [solace-api/medusa-config.ts](../../solace-api/medusa-config.ts) as a Medusa plugin. Lower migration cost. | Less feature-complete: no built-in payment splitting, no payout system, no vendor portal — we'd build those. |\n| **Custom (Marketplace Recipe)** | Hand-roll using [Medusa's marketplace recipe](https://docs.medusajs.com/resources/recipes/marketplace/examples/vendors) | Full control. We already extend Medusa heavily ([modules/](../../solace-api/src/modules/), [admin/routes/](../../solace-api/src/admin/routes/)). | Months of work. Reinventing what Mercur already shipped. |\n\n**Recommendation: start with the @techlabi plugin, plan to graduate to Mercur if traction proves out.** Reasons:\n1. We already have a single-tenant production Medusa with custom MP + Chilexpress + Resend modules. Forking to Mercur means re-doing all that integration work.\n2. The plugin path lets us stay on our medusa-config.ts and validate the multi-vendor *thesis* (will stores actually onboard? will buyers actually cross-shop?) before paying the migration tax.\n3. Mercur's Stripe-first split-payment design is the biggest blocker. MercadoPago **does support split payments via \"Marketplace\" mode (using `mark"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 40,
+          "quote": "\n## FB Marketplace Adapter — Phase 1 (browser session + bootstrap)\n\n- [ ] FB-MARKETPLACE-ADAPTER.1.1 Create `catalog-sync/browser/__init__.py` and `session.py` (BrowserSession + stealth)\n- [ ] FB-MARKETPLACE-ADAPTER.1.2 `BrowserSession.start(headless)` honors `DISPLAY=:99`, `new_page()` applies stealth\n- [ ] FB-MARKETPLACE-ADAPTER.1.3 Create `catalog-sync/scripts/fb-bootstrap.py` (headed login, profile persist)\n- [ ] FB-MARKETPLACE-ADAPTER.1.4 Manual smoke: bootstrap creates `data/chrome_profile_fb/`; second run lands authenticated\n\n## Wholesale jewelry SaaS — Phase 1 (v0 single-piece capture)\n\n> Tracker: [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). Plan approved-pending — DO NOT start until operator confirms WHOLESALE.1 plan.\n\n- [ ] WHOLESALE.1.1 — Provision `GEMINI_API_KEY` in `solace-api/.env` (and `.env.example`)\n- [ ] WHOLESALE.1.2 — Add `@google/generative-ai` dependency to `solace-api/package.json`\n- [ ] WHOLESALE.1.3 — Create `src/lib/vision/jewelry-prompt.ts` (prompt + Zod schema + parser)\n- [ ] WHOLESALE.1.4 — Create `src/api/admin/inventory/ingest/route.ts` (POST handler)\n- [ ] WHOLESALE.1.5 — Create `src/admin/routes/inventory/capture/page.tsx` (camera input + draft form host)\n- [ ] WHOLESALE.1.6 — Create `src/admin/routes/inventory/capture/components/draft-form.tsx` (confidence-driven chips)"
+        },
+        {
+          "path": "docs/WHOLESALE-IMPL.md",
+          "startLine": 161,
+          "quote": "\n## Implementation Status\n\n| Phase | State | Model | Description |\n|---|---|---|---|\n| WHOLESALE.0 | not started | n/a | Pilot store contract + 200 SKUs hand-cataloged manually (validates demand, not code) |\n| WHOLESALE.1 | **plan-approved-pending** | Sonnet | v0 single-piece capture: Medusa admin route + Gemini ingest endpoint + draft form |\n| WHOLESALE.2 | not started | Sonnet | Sale-by-photo + review queue (uses existing inventory module) |\n| WHOLESALE.3 | not started | Opus | Ghost.VisionJewelry GhostApp + provider failover + local vLLM (after prompt schema stable) |\n| WHOLESALE.4 | not started | Opus | Image standardization pipeline (rembg local + Photoroom opt-in) |\n| WHOLESALE.5 | not started | Opus | Knowledge-base: generalize scraper + pgvector + SigLIP embeddings |"
+        },
+        {
+          "path": "docs/design/wholesale-jewelry-saas.md",
+          "startLine": 17,
+          "quote": "- **Lack**: searchable digital inventory, online ordering for their vendor customers, anything resembling stock accuracy\n- **Don't want**: another desktop ERP from 2008 with a \"import CSV\" workflow\n\nExisting reference cases:\n\n| Reference | What they do | Lesson |\n|---|---|---|\n| [djoyas.com](https://djoyas.com) (we already scrape it — see [docs/DJOYAS-IMPL.md](../DJOYAS-IMPL.md)) | National Chilean jewelry wholesale catalogue with online ordering | Proves there is demand, but they own the inventory — not a multi-vendor platform |\n| [comunidadfeliz.cl](https://www.comunidadfeliz.cl/) | SaaS for building/condo administrators in Chile, founded 2015, regional growth | A vertical SaaS with a sticky workflow + a mobile app for the \"consumer side\" — model to copy |\n\n**Our wedge** = `djoyas.com - \"we own the stock\"` + `comunidadfeliz.cl + \"for jewelry stores\"`.\nA multi-vendor wholesale jewelry marketplace where each store is a tenant, the inventory tool is the reason they stay (workflow lock-in), and the storefront is the reason their buyers come back (network effect lock-in).\n\nSingle-line pitch: **\"List 20,000 pieces with your phone in a week, sell them to 200 minor vendors who shop in one place.\"**\n\n---\n\n## 2. Strategic Architecture (TL;DR)"
+        }
+      ],
+      "paths": [
+        "docs/WHOLESALE-IMPL.md",
+        "docs/design/wholesale-jewelry-saas.md",
+        "docs/CONTEXT.md",
+        "docs/TODO.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "admin-tools",
+      "label": "Medusa Admin Enhancements",
+      "summary": "The Medusa admin panel for Luz y Luna includes custom routes and functionalities to streamline operations, such as offline sales management, stock alerts, and bulk order handling.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.75,
+      "visual": "Inside a digital control room, a single operator confidently manages a complex array of screens. One monitor displays a real-time sales velocity chart, another shows stock alerts, and a third allows for quick entry of offline sales, all integrated seamlessly into a comprehensive dashboard.",
+      "visualChanged": true,
+      "currentState": "The Medusa admin panel has several custom routes and enhancements: `offline-sales` for recording feria/Instagram/WhatsApp sales as real Medusa orders, a `catalog-sync` page, `layers` page, `back-in-stock` notifications, `analytics` for sales velocity, `inventory/restock` for quick restock actions, and `orders/bulk-manage` for bulk order operations. Other features include a \"Select All\" mode for bulk product operations, a custom collection widget, a channel filter triple switch (Online | All | Offline) on dashboards, price history sparkline charts, and automatic low-stock email alerts via Resend.",
+      "intendedDesign": "The `offline-sales` page is designed to attribute physical sales to `metadata.sales_channel_type = \"offline\"` for accurate revenue reporting and inventory management. The `bulk-manage` orders route is intended to simplify managing multiple orders. The `/app/layers` BI dashboard and \"Vincular con Luna\" review queue are designed to provide insights and management tools for the layered catalog model. All custom admin routes are defined using `@medusajs/admin-sdk`, ensuring integration with the Medusa admin interface.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "solace-api/src/admin/routes/analytics/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ChartBar } from \"@medusajs/icons\"\nimport SalesVelocityPage from \"./sales-velocity-page\"\n\nexport const config = defineRouteConfig({\n  label: \"velocity.navLabel\",\n  icon: ChartBar,\n  translationNs: \"bulk\",\n})\n\nexport default SalesVelocityPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/back-in-stock/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { BellAlert } from \"@medusajs/icons\"\nimport BackInStockPage from \"./back-in-stock-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Avisos de stock\",\n  icon: BellAlert,\n})\n\nexport default BackInStockPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/catalog-sync/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArrowPath } from \"@medusajs/icons\"\nimport CatalogSyncPage from \"./catalog-sync-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Catalog Sync\",\n  icon: ArrowPath,\n})\n\nexport default CatalogSyncPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/dashboard/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ChartBar } from \"@medusajs/icons\"\nimport DashboardPage from \"./dashboard-page\"\n\nexport const config = defineRouteConfig({\n  label: \"dashboard.navLabel\",\n  icon: ChartBar,\n  translationNs: \"bulk\",\n})\n\nexport default DashboardPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/inventory/restock/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\nimport QuickRestockPage from \"./quick-restock-page\"\n\nexport const config = defineRouteConfig({\n  label: \"restock.navLabel\",\n  icon: SquareTwoStack,\n  translationNs: \"bulk\",\n})\n\nexport default QuickRestockPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/layers/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\n\nimport LayersPage from \"./layers-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Capas\",\n  icon: SquareTwoStack,\n})\n\nexport default LayersPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/offline-sales/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { CurrencyDollarSolid } from \"@medusajs/icons\"\nimport OfflineSalesPage from \"./offline-sales-page\"\n\nexport const config = defineRouteConfig({\n  label: \"offlineSales.navLabel\",\n  icon: CurrencyDollarSolid,\n  translationNs: \"bulk\",\n})\n\nexport default OfflineSalesPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/orders/bulk-manage/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArchiveBox } from \"@medusajs/icons\"\nimport BulkManagePage from \"./bulk-manage-page\"\n\nexport const config = defineRouteConfig({\n  label: \"orders.navLabel\",\n  icon: ArchiveBox,\n  nested: \"/orders\",\n  translationNs: \"bulk\",\n})\n\nexport default BulkManagePage"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "solace-api/src/admin/routes/offline-sales/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { CurrencyDollarSolid } from \"@medusajs/icons\"\nimport OfflineSalesPage from \"./offline-sales-page\"\n\nexport const config = defineRouteConfig({\n  label: \"offlineSales.navLabel\",\n  icon: CurrencyDollarSolid,\n  translationNs: \"bulk\",\n})\n\nexport default OfflineSalesPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/orders/bulk-manage/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArchiveBox } from \"@medusajs/icons\"\nimport BulkManagePage from \"./bulk-manage-page\"\n\nexport const config = defineRouteConfig({\n  label: \"orders.navLabel\",\n  icon: ArchiveBox,\n  nested: \"/orders\",\n  translationNs: \"bulk\",\n})\n\nexport default BulkManagePage"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/catalog-layers.md",
+          "startLine": 113,
+          "quote": "- Organise the storefront freely with collections and/or the V3.3 **categories**\n  (what the PLP actually lists by). Neither affects supplier tracking.\n\n> History: before V3.6.1c the reconcile filtered by a `\"Djoyas\"` collection that\n> doesn't exist, so it silently matched nothing and was inert. Keying off the\n> layer fixed both the tracking and this use case. The BI \"No disponibles\" KPI\n> (`/app/layers`) surfaces synced products the reconcile took down (draft).\n\n## Admin UX (DJOYAS-V3.6)\n\nBeyond the `/app/layers` BI dashboard + \"Vincular con Luna\" review queue (V3.6.4),\nthe layer model is driven from two places in the admin:\n\n### On the product page — `product-override-action` widget (V3.6.1 / V3.6.1b)\n\nA panel in the product detail sidebar (`product.details.side.after`) showing the\nproduct's current layer (a badge) plus:\n"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 76,
+          "quote": "\n### Infrastructure\n- Docker Compose: Postgres x2, Redis, Medusa, Strapi, Next.js, Cloudflare Tunnel\n- Healthcheck-based startup ordering\n- Strapi webhook → granular cache tag invalidation\n- Standalone Next.js output for minimal Docker images\n- Cloudflare CDN cache rules documented (see [guides/cloudflare-cdn-rules.md](guides/cloudflare-cdn-rules.md))\n\n### Admin\n- \"Select All\" mode for bulk product operations\n- Custom collection widget (with CSS cleanup on unmount)\n- Offline sales page (record feria/Instagram/WhatsApp sales as real Medusa orders)\n- Channel filter triple switch (Online | All | Offline) on dashboard, sales velocity, exports\n- Price history sparkline chart in price log\n- Automatic low-stock email alerts via Resend (`GET /admin/alerts/low-stock`)\n- Back-in-stock notification trigger (`POST /admin/alerts/back-in-stock`)\n\n## Pre-Launch Blockers"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "solace-api/src/admin/routes/analytics/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ChartBar } from \"@medusajs/icons\"\nimport SalesVelocityPage from \"./sales-velocity-page\"\n\nexport const config = defineRouteConfig({\n  label: \"velocity.navLabel\",\n  icon: ChartBar,\n  translationNs: \"bulk\",\n})\n\nexport default SalesVelocityPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/back-in-stock/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { BellAlert } from \"@medusajs/icons\"\nimport BackInStockPage from \"./back-in-stock-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Avisos de stock\",\n  icon: BellAlert,\n})\n\nexport default BackInStockPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/catalog-sync/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArrowPath } from \"@medusajs/icons\"\nimport CatalogSyncPage from \"./catalog-sync-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Catalog Sync\",\n  icon: ArrowPath,\n})\n\nexport default CatalogSyncPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/dashboard/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ChartBar } from \"@medusajs/icons\"\nimport DashboardPage from \"./dashboard-page\"\n\nexport const config = defineRouteConfig({\n  label: \"dashboard.navLabel\",\n  icon: ChartBar,\n  translationNs: \"bulk\",\n})\n\nexport default DashboardPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/inventory/restock/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\nimport QuickRestockPage from \"./quick-restock-page\"\n\nexport const config = defineRouteConfig({\n  label: \"restock.navLabel\",\n  icon: SquareTwoStack,\n  translationNs: \"bulk\",\n})\n\nexport default QuickRestockPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/layers/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { SquareTwoStack } from \"@medusajs/icons\"\n\nimport LayersPage from \"./layers-page\"\n\nexport const config = defineRouteConfig({\n  label: \"Capas\",\n  icon: SquareTwoStack,\n})\n\nexport default LayersPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/offline-sales/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { CurrencyDollarSolid } from \"@medusajs/icons\"\nimport OfflineSalesPage from \"./offline-sales-page\"\n\nexport const config = defineRouteConfig({\n  label: \"offlineSales.navLabel\",\n  icon: CurrencyDollarSolid,\n  translationNs: \"bulk\",\n})\n\nexport default OfflineSalesPage"
+        },
+        {
+          "path": "solace-api/src/admin/routes/orders/bulk-manage/page.tsx",
+          "startLine": 1,
+          "quote": "import { defineRouteConfig } from \"@medusajs/admin-sdk\"\nimport { ArchiveBox } from \"@medusajs/icons\"\nimport BulkManagePage from \"./bulk-manage-page\"\n\nexport const config = defineRouteConfig({\n  label: \"orders.navLabel\",\n  icon: ArchiveBox,\n  nested: \"/orders\",\n  translationNs: \"bulk\",\n})\n\nexport default BulkManagePage"
+        }
+      ],
+      "paths": [
+        "solace-api/src/admin/routes/analytics/page.tsx",
+        "solace-api/src/admin/routes/back-in-stock/page.tsx",
+        "solace-api/src/admin/routes/catalog-sync/page.tsx",
+        "solace-api/src/admin/routes/dashboard/page.tsx",
+        "solace-api/src/admin/routes/inventory/restock/page.tsx",
+        "solace-api/src/admin/routes/layers/page.tsx",
+        "solace-api/src/admin/routes/offline-sales/page.tsx",
+        "solace-api/src/admin/routes/orders/bulk-manage/page.tsx",
+        "docs/CONTEXT.md",
+        "docs/reference/catalog-layers.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "core-platform-services",
+      "label": "Core Platform Services",
+      "summary": "Luz y Luna's core services include MercadoPago for payments, Chilexpress for shipping, Resend for emails, and Cloudflare CDN for performance, all configured for the Chilean market.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.75,
+      "visual": "A network of shimmering golden threads connects various services: a secure vault with a MercadoPago logo, a delivery truck emblazoned with Chilexpress navigating a Chilean landscape, and a cascade of digital messages flowing from a Resend beacon, all orchestrated under the watchful eye of Cloudflare's protective shield.",
+      "visualChanged": true,
+      "currentState": "Luz y Luna utilizes MercadoPago Checkout Pro (redirect) as its primary payment gateway, which is dominant in Chile and eliminates PCI scope. Bank transfer is also available as a custom, zero-fee option. Chilexpress API is integrated as a custom fulfillment provider, chosen for its strong API coverage in Chile. Resend is used as the conditional email notification provider for transactional emails. Cloudflare Tunnel handles hosting, and Cloudflare CDN cache rules are documented to optimize static assets and Next.js optimized images. MercadoPago's IPN URL has been registered and verified, and a troubleshooting guide exists for various MercadoPago and hydration issues. `STORE_URL` is configured for MercadoPago `back_urls` and `auto_return` in `service.ts`.",
+      "intendedDesign": "MercadoPago is chosen due to its dominance in Chile and its ability to offer a secure, no-PCI-scope solution. Chilexpress is selected as the primary shipping provider due to its API coverage. Resend is the email provider of choice for its simple API and transactional focus. Cloudflare CDN rules are designed to cache `/_next/static/` files forever due to their immutable content hashes and `/_next/image` files for 7 days, including query strings. There is a strategic opinion against immediately adopting a multi-courier aggregator like Shipit until higher volume and dimensional variety justify the cost, emphasizing the need to capture real per-product weight and dimensions first.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/reference/troubleshooting.md",
+          "startLine": 1,
+          "quote": "# Troubleshooting Guide\n\nA comprehensive log of every issue encountered during the MercadoPago payment integration and hydration error fixes, with the root cause and solution for each.\n\n---\n\n## Table of Contents\n\n1. [MercadoPago `invalid_auto_return` Error](#1-mercadopago-invalid_auto_return-error)\n2. [MercadoPago `unit_price invalid` Error](#2-mercadopago-unit_price-invalid-error)\n3. [MercadoPago Input Data Structure Mismatch](#3-mercadopago-input-data-structure-mismatch)\n4. [\"Payment sessions are required to complete cart\"](#4-payment-sessions-are-required-to-complete-cart)\n5. [Session Not Authorized / Order Completes Without MercadoPago Redirect](#5-session-not-authorized--order-completes-without-mercadopago-redirect)\n6. [Hydration Mismatch on Payment Radio Buttons](#6-hydration-mismatch-on-payment-radio-buttons)\n7. [Duplicate Payment Provider Entry](#7-duplicate-payment-provider-entry)\n8. [Missing Email Notification Provider](#8-missing-email-notification-provider)\n9. [401 on `/store/customers/me` for Guest Users](#9-401-on-storecustomersme-for-guest-users)\n10. [Uncontrolled to Controlled Input Warning](#10-uncontrolled-to-controlled-input-warning)"
+        },
+        {
+          "path": "README.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna\n\nChilean jewelry e-commerce store. Fully containerized stack serving [luzyluna.cl](https://luzyluna.cl).\n\n## Stack\n\n| Service | Tech | Container | Public URL |\n|---------|------|-----------|------------|\n| Storefront | Next.js 16 + React 18 | `solace-storefront` | luzyluna.cl |\n| API | Medusa 2.0 (v2.12.5) | `solace-medusa` | api.luzyluna.cl |\n| CMS | Strapi 5 | `solace-strapi` | cms.luzyluna.cl |\n| Database (Medusa) | PostgreSQL 15 | `solace-pg` | — |\n| Database (Strapi) | PostgreSQL 15 | `strapi-pg` | — |\n| Cache | Valkey (Redis-compatible) | `solace-redis` | — |\n| Tunnel | Cloudflare Tunnel | `solace-tunnel` | — |\n\n## Quick Start\n"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 1,
+          "quote": "# Cloudflare CDN Cache Rules — Luz y Luna\n\n> Step-by-step configuration for the Cloudflare dashboard.\n> Domain: `luzyluna.cl`\n\n## Overview\n\nCloudflare Tunnel routes traffic but doesn't cache by default. These rules cache static assets at the edge, reducing round-trips to the origin Windows machine.\n\n## Cache Rules (Dashboard → Caching → Cache Rules)\n\nCreate these rules in order. Each rule is evaluated top-to-bottom; first match wins.\n\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/troubleshooting.md",
+          "startLine": 52,
+          "quote": "\nconst preferenceData = {\n    body: {\n        items: [...],\n        back_urls: {\n            success: `${storeUrl}/checkout?step=review`,\n            failure: `${storeUrl}/cart`,\n            pending: `${storeUrl}/checkout?step=payment`\n        },\n        ...(isHttps ? { auto_return: \"approved\" } : {}),\n        external_reference: `session_${Date.now()}`\n    }\n};\n```\n\n### File Changed\n- [service.ts](file:///d:/ware/luz/solace-api/src/modules/payment-mercadopago/service.ts)\n- `solace-api/.env` — added `STORE_URL=https://luzyluna.cl`"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 76,
+          "quote": "\n### Infrastructure\n- Docker Compose: Postgres x2, Redis, Medusa, Strapi, Next.js, Cloudflare Tunnel\n- Healthcheck-based startup ordering\n- Strapi webhook → granular cache tag invalidation\n- Standalone Next.js output for minimal Docker images\n- Cloudflare CDN cache rules documented (see [guides/cloudflare-cdn-rules.md](guides/cloudflare-cdn-rules.md))\n\n### Admin\n- \"Select All\" mode for bulk product operations\n- Custom collection widget (with CSS cleanup on unmount)\n- Offline sales page (record feria/Instagram/WhatsApp sales as real Medusa orders)\n- Channel filter triple switch (Online | All | Offline) on dashboard, sales velocity, exports\n- Price history sparkline chart in price log\n- Automatic low-stock email alerts via Resend (`GET /admin/alerts/low-stock`)\n- Back-in-stock notification trigger (`POST /admin/alerts/back-in-stock`)\n\n## Pre-Launch Blockers"
+        },
+        {
+          "path": "docs/reference/troubleshooting.md",
+          "startLine": 65,
+          "quote": "```\n\n### File Changed\n- [service.ts](file:///d:/ware/luz/solace-api/src/modules/payment-mercadopago/service.ts)\n- `solace-api/.env` — added `STORE_URL=https://luzyluna.cl`\n\n---\n\n## 2. MercadoPago `unit_price invalid` Error\n\n### Symptoms\n\nMercadoPago API rejects the preference creation with:\n\n```json\n{ \"message\": \"unit_price invalid\", \"status\": 400 }\n```\n"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 92,
+          "quote": "\n## Pre-Launch Blockers\n\n| # | Issue | Status | Action |\n|---|---|---|---|\n| B1 | Email notifications | Done | Verify `RESEND_API_KEY` is set in production `.env` |\n| B2 | Bank transfer placeholder email | Done | Replaced with `contacto@luzyluna.cl` in payment-container + bank-transfer email template |\n| B3 | MercadoPago IPN URL | Done | Registered + verified live (200 from MP infra IP 35.186.182.146) |\n| B4 | Social media links | Done | Instagram, Facebook, WhatsApp links wired in `footer/index.tsx` |\n\n## Performance Status\n\n| Optimization | Status |\n|---|---|\n| `staleTimes` (30s dynamic, 5min static) | Done |\n| `optimizePackageImports` (expanded set) | Done |\n| Brand font via `next/font` | Done |\n| Web vitals tracking in PostHog | Done |"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/design/product-expansion-shipping-economics.md",
+          "startLine": 1,
+          "quote": "# Product Expansion & Shipping Economics — making an aggregator worth it\n\n> Design doc / frozen snapshot, 2026-05-30. Strategy for deliberately growing the catalog so a\n> multi-courier aggregator (Shipit) flips from *overkill* to *worth it*, and how it plugs into the\n> shipping + catalog infrastructure we already run.\n>\n> Related: [research/shipping-aggregators.md](../research/shipping-aggregators.md) ·\n> [reference/shipping-fulfillment.md](../reference/shipping-fulfillment.md) ·\n> [BACKLOG.md → Shipit](../BACKLOG.md) · [research/multi-brand-multitenancy.md](../research/multi-brand-multitenancy.md) ·\n> [reference/catalog-sync.md](../reference/catalog-sync.md) · [design/wholesale-jewelry-saas.md](wholesale-jewelry-saas.md)\n\n---\n\n## TL;DR — opinion\n\n**Don't buy a tool to fix a problem you don't have yet.** An aggregator is a *consequence* of a\nvaried, high-volume catalog — not a *cause* of one. So the order of operations is the whole point:\nprove demand → grow volume → add dimensional variety → *then* Shipit pays for itself. Reaching for"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 1,
+          "quote": "# Cloudflare CDN Cache Rules — Luz y Luna\n\n> Step-by-step configuration for the Cloudflare dashboard.\n> Domain: `luzyluna.cl`\n\n## Overview\n\nCloudflare Tunnel routes traffic but doesn't cache by default. These rules cache static assets at the edge, reducing round-trips to the origin Windows machine.\n\n## Cache Rules (Dashboard → Caching → Cache Rules)\n\nCreate these rules in order. Each rule is evaluated top-to-bottom; first match wins.\n\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/design/product-expansion-shipping-economics.md",
+          "startLine": 13,
+          "quote": "\n## TL;DR — opinion\n\n**Don't buy a tool to fix a problem you don't have yet.** An aggregator is a *consequence* of a\nvaried, high-volume catalog — not a *cause* of one. So the order of operations is the whole point:\nprove demand → grow volume → add dimensional variety → *then* Shipit pays for itself. Reaching for\nit first is paying $70k/mo to solve nothing.\n\nMy honest read:\n\n- **Right now, do nothing aggregator-shaped.** Flat-rate pricing + Chilexpress for labels is correct\n  for a uniform jewelry catalog: $0 fixed cost, predictable price, all the\n  [automation already built](../reference/shipping-fulfillment.md). The aggregator is a *trigger*\n  (\"when ≥300 orders/mo **and** mixed dims\"), not a to-do.\n- **The one thing worth doing now, regardless:** capture **real per-product weight & dimensions** in\n  Medusa. It tightens flat-rate margins today *and* is the hard prerequisite for the aggregator later\n  — and it kills the \"quote ≠ charge\" worry by making declared = actual. Today the courier package is\n  hardcoded ([types.ts `JEWELRY_PACKAGE`](../../solace-api/src/modules/fulfillment-chilexpress/types.ts))."
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 13,
+          "quote": "\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |\n| **When** | URI Path starts with `/_next/static/` |\n| **Then** | Cache eligible, Edge TTL = 1 year (31536000s) |\n| **Browser TTL** | 1 year |\n| **Cache Key** | Default |\n\n**Why forever**: `/_next/static/` files have content hashes in their filenames — they're immutable. A new deploy creates new filenames.\n\n### Rule 2: Next.js Optimized Images (cache 7 days)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js optimized images |"
+        },
+        {
+          "path": "docs/design/product-expansion-shipping-economics.md",
+          "startLine": 33,
+          "quote": "  dimensional variety that justify Shipit, without diluting Luz y Luna's jewelry brand, and reuses the\n  storefront, checkout, [catalog-sync](../reference/catalog-sync.md) and fulfillment verbatim.\n- **The trap to avoid:** sinking import capital into bulk inventory to chase this. Dropship/sample-\n  validate every SKU first; bulk-import only proven winners.\n- **Bottom line:** this doc is a *roadmap*, not a sprint. The aggregator is genuinely months out for a\n  solo, pre-launch operator. Build the catalog that earns it; let the numbers pull the trigger.\n\n---\n\n## Thesis\n\nA uniform jewelry catalog (tiny, light, always in the courier's minimum bracket) makes an aggregator\npointless — flat rates + one courier give a predictable, $0-fixed-cost shipping setup (see the\n\"overkill\" reasoning in [shipping-aggregators.md §5](../research/shipping-aggregators.md)). An\naggregator only earns its monthly fee on **two levers a jewelry-only catalog lacks**:\n\n1. **Volume** — enough orders/month that the fixed fee amortizes to cents per order.\n2. **Dimensional variety** — parcels that differ in size/weight, so the *cheapest carrier differs per"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 25,
+          "quote": "\n### Rule 2: Next.js Optimized Images (cache 7 days)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js optimized images |\n| **When** | URI Path starts with `/_next/image` |\n| **Then** | Cache eligible, Edge TTL = 7 days (604800s) |\n| **Browser TTL** | 1 day |\n| **Cache Key** | Include query string |\n\n**Why 7 days**: Image optimization params are in the query string (`?url=...&w=...&q=...`). The same params always produce the same output. Browser TTL is shorter to allow quality/format updates.\n\n### Rule 3: Strapi Uploads (cache 24h)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Strapi uploads |"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/reference/troubleshooting.md",
+          "startLine": 1,
+          "quote": "# Troubleshooting Guide\n\nA comprehensive log of every issue encountered during the MercadoPago payment integration and hydration error fixes, with the root cause and solution for each.\n\n---\n\n## Table of Contents\n\n1. [MercadoPago `invalid_auto_return` Error](#1-mercadopago-invalid_auto_return-error)\n2. [MercadoPago `unit_price invalid` Error](#2-mercadopago-unit_price-invalid-error)\n3. [MercadoPago Input Data Structure Mismatch](#3-mercadopago-input-data-structure-mismatch)\n4. [\"Payment sessions are required to complete cart\"](#4-payment-sessions-are-required-to-complete-cart)\n5. [Session Not Authorized / Order Completes Without MercadoPago Redirect](#5-session-not-authorized--order-completes-without-mercadopago-redirect)\n6. [Hydration Mismatch on Payment Radio Buttons](#6-hydration-mismatch-on-payment-radio-buttons)\n7. [Duplicate Payment Provider Entry](#7-duplicate-payment-provider-entry)\n8. [Missing Email Notification Provider](#8-missing-email-notification-provider)\n9. [401 on `/store/customers/me` for Guest Users](#9-401-on-storecustomersme-for-guest-users)\n10. [Uncontrolled to Controlled Input Warning](#10-uncontrolled-to-controlled-input-warning)"
+        },
+        {
+          "path": "README.md",
+          "startLine": 1,
+          "quote": "# Luz y Luna\n\nChilean jewelry e-commerce store. Fully containerized stack serving [luzyluna.cl](https://luzyluna.cl).\n\n## Stack\n\n| Service | Tech | Container | Public URL |\n|---------|------|-----------|------------|\n| Storefront | Next.js 16 + React 18 | `solace-storefront` | luzyluna.cl |\n| API | Medusa 2.0 (v2.12.5) | `solace-medusa` | api.luzyluna.cl |\n| CMS | Strapi 5 | `solace-strapi` | cms.luzyluna.cl |\n| Database (Medusa) | PostgreSQL 15 | `solace-pg` | — |\n| Database (Strapi) | PostgreSQL 15 | `strapi-pg` | — |\n| Cache | Valkey (Redis-compatible) | `solace-redis` | — |\n| Tunnel | Cloudflare Tunnel | `solace-tunnel` | — |\n\n## Quick Start\n"
+        },
+        {
+          "path": "docs/design/product-expansion-shipping-economics.md",
+          "startLine": 1,
+          "quote": "# Product Expansion & Shipping Economics — making an aggregator worth it\n\n> Design doc / frozen snapshot, 2026-05-30. Strategy for deliberately growing the catalog so a\n> multi-courier aggregator (Shipit) flips from *overkill* to *worth it*, and how it plugs into the\n> shipping + catalog infrastructure we already run.\n>\n> Related: [research/shipping-aggregators.md](../research/shipping-aggregators.md) ·\n> [reference/shipping-fulfillment.md](../reference/shipping-fulfillment.md) ·\n> [BACKLOG.md → Shipit](../BACKLOG.md) · [research/multi-brand-multitenancy.md](../research/multi-brand-multitenancy.md) ·\n> [reference/catalog-sync.md](../reference/catalog-sync.md) · [design/wholesale-jewelry-saas.md](wholesale-jewelry-saas.md)\n\n---\n\n## TL;DR — opinion\n\n**Don't buy a tool to fix a problem you don't have yet.** An aggregator is a *consequence* of a\nvaried, high-volume catalog — not a *cause* of one. So the order of operations is the whole point:\nprove demand → grow volume → add dimensional variety → *then* Shipit pays for itself. Reaching for"
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 1,
+          "quote": "# Cloudflare CDN Cache Rules — Luz y Luna\n\n> Step-by-step configuration for the Cloudflare dashboard.\n> Domain: `luzyluna.cl`\n\n## Overview\n\nCloudflare Tunnel routes traffic but doesn't cache by default. These rules cache static assets at the edge, reducing round-trips to the origin Windows machine.\n\n## Cache Rules (Dashboard → Caching → Cache Rules)\n\nCreate these rules in order. Each rule is evaluated top-to-bottom; first match wins.\n\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |"
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 17,
+          "quote": "| CMS | Strapi 5 | Headless, self-hosted, webhook revalidation | 2025 |\n| Storefront framework | Next.js 16 (App Router) | ISR, RSC, streaming, View Transitions | 2025 |\n| Payment: primary | MercadoPago Checkout Pro (redirect) | Dominant in Chile, no PCI scope | 2026-01 |\n| Payment: manual | Bank transfer (custom provider) | Zero-fee option for customers | 2026-01 |\n| Shipping | Chilexpress API (custom fulfillment provider) | Best API coverage in Chile | 2026-02 |\n| Email | Resend (conditional provider) | Simple API, transactional focus | 2026-02 |\n| Auth: social | Google OAuth (@medusajs/auth-google) | In progress — callback flow debugged, not yet live | 2026-03 |\n| Hosting | Single Windows 11 machine + Cloudflare Tunnel | Cost-zero infra, sufficient for launch traffic | 2025 |\n| Image optimization | Next.js built-in (AVIF/WebP) | Enabled, `unoptimized: false` | 2026-03 |\n| Transitions | View Transitions API | Shared element transitions for product images | 2026-03 |\n| Wholesale strategy | AI inventory tool first, multi-vendor later | Inventory tool is the workflow lock-in; marketplace is the network effect — lock-in earns the network effect, not the reverse. See [design/wholesale-jewelry-saas.md](design/wholesale-jewelry-saas.md) and [WHOLESALE-IMPL.md](WHOLESALE-IMPL.md). | 2026-05 |\n| Wholesale vision provider (v0) | Gemini 2.5 Flash direct (no Ghost) | `Ghost.VisionJewelry` doesn't exist; building it before the prompt schema stabilises means cross-service iteration on every chip change. Direct Gemini in v0, Ghost in P3. | 2026-05 |\n| Adopted maremoto-method harness | Imported skills + hooks + statusline | Adopting the cross-project methodology layer extracted from waremoto. | 2026-05-11 |\n\n## What's Built\n\n### DJOYAS-V3 — layered catalog + home redesign (2026-05-31, Phases 0–6 deployed)\n- **Layered catalog**: `djoyas-synced` (scraper) vs `luz-curated` (operator) layers composed at render by visual+metadata fingerprint; overrides, per-product hide, layer toggle."
+        },
+        {
+          "path": "docs/reference/troubleshooting.md",
+          "startLine": 52,
+          "quote": "\nconst preferenceData = {\n    body: {\n        items: [...],\n        back_urls: {\n            success: `${storeUrl}/checkout?step=review`,\n            failure: `${storeUrl}/cart`,\n            pending: `${storeUrl}/checkout?step=payment`\n        },\n        ...(isHttps ? { auto_return: \"approved\" } : {}),\n        external_reference: `session_${Date.now()}`\n    }\n};\n```\n\n### File Changed\n- [service.ts](file:///d:/ware/luz/solace-api/src/modules/payment-mercadopago/service.ts)\n- `solace-api/.env` — added `STORE_URL=https://luzyluna.cl`"
+        },
+        {
+          "path": "docs/design/product-expansion-shipping-economics.md",
+          "startLine": 13,
+          "quote": "\n## TL;DR — opinion\n\n**Don't buy a tool to fix a problem you don't have yet.** An aggregator is a *consequence* of a\nvaried, high-volume catalog — not a *cause* of one. So the order of operations is the whole point:\nprove demand → grow volume → add dimensional variety → *then* Shipit pays for itself. Reaching for\nit first is paying $70k/mo to solve nothing.\n\nMy honest read:\n\n- **Right now, do nothing aggregator-shaped.** Flat-rate pricing + Chilexpress for labels is correct\n  for a uniform jewelry catalog: $0 fixed cost, predictable price, all the\n  [automation already built](../reference/shipping-fulfillment.md). The aggregator is a *trigger*\n  (\"when ≥300 orders/mo **and** mixed dims\"), not a to-do.\n- **The one thing worth doing now, regardless:** capture **real per-product weight & dimensions** in\n  Medusa. It tightens flat-rate margins today *and* is the hard prerequisite for the aggregator later\n  — and it kills the \"quote ≠ charge\" worry by making declared = actual. Today the courier package is\n  hardcoded ([types.ts `JEWELRY_PACKAGE`](../../solace-api/src/modules/fulfillment-chilexpress/types.ts))."
+        },
+        {
+          "path": "docs/guides/cloudflare-cdn-rules.md",
+          "startLine": 13,
+          "quote": "\n### Rule 1: Next.js Static Assets (cache forever)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js static assets |\n| **When** | URI Path starts with `/_next/static/` |\n| **Then** | Cache eligible, Edge TTL = 1 year (31536000s) |\n| **Browser TTL** | 1 year |\n| **Cache Key** | Default |\n\n**Why forever**: `/_next/static/` files have content hashes in their filenames — they're immutable. A new deploy creates new filenames.\n\n### Rule 2: Next.js Optimized Images (cache 7 days)\n\n| Field | Value |\n|-------|-------|\n| **Rule name** | Next.js optimized images |"
+        }
+      ],
+      "paths": [
+        "docs/reference/troubleshooting.md",
+        "README.md",
+        "docs/guides/cloudflare-cdn-rules.md",
+        "docs/CONTEXT.md",
+        "docs/design/product-expansion-shipping-economics.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    }
+  ],
+  "art": {
+    "hash": "eca1d792ba1a1f7f851af08dacbb64deac5109d5fff600e8e6945e216900cda3",
+    "url": "/api/assets/eca1d792ba1a1f7f851af08dacbb64deac5109d5fff600e8e6945e216900cda3",
+    "sourceSnapshotId": "ef5495bc04345ff19dcd11a1",
+    "dependencyHash": "9d26fdaba5d2fc6c3a157ccdfd6e8a00e49da735ee3f7777ad68a4d28c073ee4",
+    "chapterSignature": "ef6b62209f00d8db6317093c54f3c26515c3311f162ae0ad831207054727a2d1",
+    "model": "image-gen",
+    "mime": "image/png",
+    "width": 1264,
+    "height": 848,
+    "createdAt": "2026-10-21T09:01:25.350Z",
+    "promptHash": "c5f3d3592c4bbf64a1aa7ded7d2dfe5303ff9f7500a2b6dd2b57e0768c32bebe"
+  },
+  "ledger": [
+    {
+      "id": "19c242a1-2af1-4740-b5ed-ffc6aafc9bc5",
+      "at": "2026-10-21T08:52:50.949Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0.0019518,
+      "cacheHit": false,
+      "snapshotId": "ef5495bc04345ff19dcd11a1",
+      "httpStatus": 200,
+      "callId": "1188d036-359a-47c1-9319-f5549a1eb35f",
+      "usage": {
+        "completion_tokens": 2243,
+        "prompt_tokens": 10546,
+        "total_tokens": 12789,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0019518,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0019518,
+          "upstream_inference_prompt_cost": 0.0010546,
+          "upstream_inference_completions_cost": 0.0008972
+        }
+      },
+      "durationMs": 9030.151099999995,
+      "sourceCount": 30,
+      "excerptCount": 75,
+      "approxBytes": 31680,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "4304e9d2-0fb9-454e-ad81-634f60cf5c9c",
+      "at": "2026-10-21T08:54:01.016Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.00093608,
+      "cacheHit": false,
+      "snapshotId": "ef5495bc04345ff19dcd11a1",
+      "httpStatus": 200,
+      "callId": "db786874-9485-4dab-b215-dc3e3c67def5",
+      "usage": {
+        "completion_tokens": 1942,
+        "prompt_tokens": 10546,
+        "total_tokens": 12488,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 9948,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.00093608,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00093608,
+          "upstream_inference_prompt_cost": 0.00015928,
+          "upstream_inference_completions_cost": 0.0007768
+        }
+      },
+      "durationMs": 7796.409900000001,
+      "sourceCount": 30,
+      "excerptCount": 75,
+      "approxBytes": 31680
+    },
+    {
+      "id": "6bacd063-8b05-4198-94c0-a9714d9072ca",
+      "at": "2026-10-21T08:57:06.124Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0,
+      "cacheHit": false,
+      "snapshotId": "ef5495bc04345ff19dcd11a1",
+      "httpStatus": 429,
+      "callId": "b59f44af-815b-46d8-b60c-360a3ab7ad5e",
+      "durationMs": 9347.7705,
+      "sourceCount": 30,
+      "excerptCount": 69,
+      "approxBytes": 63991,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "4b69ed44-00f3-4f58-a48a-acb325fae84d",
+      "at": "2026-10-21T08:58:53.664Z",
+      "model": "gemini-flash",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0165783,
+      "cacheHit": false,
+      "snapshotId": "ef5495bc04345ff19dcd11a1",
+      "httpStatus": 200,
+      "callId": "04313229-8843-48ee-85ac-3aa5fa53a445",
+      "usage": {
+        "completion_tokens": 4245,
+        "prompt_tokens": 19886,
+        "total_tokens": 24131,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0165783,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0165783,
+          "upstream_inference_prompt_cost": 0.0059658,
+          "upstream_inference_completions_cost": 0.0106125
+        }
+      },
+      "durationMs": 21154.574500000002,
+      "sourceCount": 30,
+      "excerptCount": 69,
+      "approxBytes": 63991
+    },
+    {
+      "id": "b2309a31-fa79-4ca4-8767-2e2732042ffd",
+      "at": "2026-10-21T09:01:16.070Z",
+      "model": "image-gen",
+      "stage": "image",
+      "status": "success",
+      "costUsd": 0.0675335,
+      "cacheHit": false,
+      "promptHash": "c5f3d3592c4bbf64a1aa7ded7d2dfe5303ff9f7500a2b6dd2b57e0768c32bebe",
+      "snapshotId": "ef5495bc04345ff19dcd11a1",
+      "httpStatus": 200,
+      "callId": "51a86471-05a0-41cf-bc6b-e1f9d1490cdf",
+      "durationMs": 9246.032,
+      "usage": {
+        "completion_tokens": 1120,
+        "prompt_tokens": 667,
+        "total_tokens": 1787,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 1120
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0675335,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0675335,
+          "upstream_inference_prompt_cost": 0.0003335,
+          "upstream_inference_completions_cost": 0.0672
+        }
+      },
+      "responseModel": "image-gen"
+    }
+  ],
+  "measuredCostUsd": 0.08699968,
+  "unknownCostAttempts": 0,
+  "originalHashes": {
+    "backend/package.json": "78cc946c0a6a00b32800bb61fd4bce6a89b00ef42a0ce14a85c8f2fd3be9f5a8",
+    "docs/CONTEXT.md": "5dd04735b7b32ba21e5a3b9a804ac49fd3336e48d94440631191f5202d84726a",
+    "docs/design/improvement-ideas.md": "c4ad1efc0266ad73b72bdc5f3bf5500491b1d3f549d959814030a1eda0a06115",
+    "docs/design/product-expansion-shipping-economics.md": "f589966d647443c6620906298f5313679205fe7d8254e8a36f6b424b6c3e0a59",
+    "docs/design/wholesale-jewelry-saas.md": "0650eba970fdd4d2454cde190364ce3ffb87867e3dec6a53a25f3a2121999275",
+    "docs/DJOYAS-IMPL.md": "2cbfeec02d8c2834c6c50e5187106ec855269e9fbf09e5f7c0c7c08fddeff41a",
+    "docs/guides/cloudflare-cdn-rules.md": "8ac5f187c918cd2819456b4bf4dc304867b0ced8ce5d9e133cec9c4b5738f5f1",
+    "docs/reference/catalog-layers.md": "9eea733561d5ab067674f86e84ed7097312653d2c039e8a7707b32ec3021b004",
+    "docs/reference/djoyas-v3.md": "339a55e3423cabe83cabe19ecfa104a80afc3c876f82207dc8916a21600901b5",
+    "docs/reference/filters-v3.md": "909722075067f62b74cdabc1a4d51bdb309d83fecd8acf331453337ccebd9d83",
+    "docs/reference/homepage.md": "fc800e1633924c57a3e9f7595c7ec5672daad6c3d26c8f5fa6f389dca746eaac",
+    "docs/reference/performance.md": "fc0a99fae98764aaf23cc731fcb051f4d115d313c5f0e2b16ce43fa4042f3992",
+    "docs/reference/troubleshooting.md": "1d72021ad42b87338e387501acdec110deff796997b243eea14a0c7cada0d45b",
+    "docs/TODO.md": "b314908890f001a629c07a1aef8127e08ff9f22b0a6e153110816395178d24ab",
+    "docs/WHOLESALE-IMPL.md": "fee116a569ed37136e7ff0c7e1f5ed2729024b0c379ef6b42a2e88d882ce4408",
+    "README.md": "b1cb062e3901185a7ad8291517ebc183e6998a8d135f2477db9afe820e666d65",
+    "solace-api/src/admin/routes/analytics/page.tsx": "1e5046a4b1f62fd4f97457a32e40847e891b2e8da9a4a965124222f5c5735d6c",
+    "solace-api/src/admin/routes/back-in-stock/page.tsx": "113a084f7cafefc21c3d439eff0b33414b952072b5fe529545cbae00ddf2bf1a",
+    "solace-api/src/admin/routes/catalog-sync/page.tsx": "fe3ee86e9e5a5d1ecb447263b6b0573357b27a3d8f763cf3408827086d24db6a",
+    "solace-api/src/admin/routes/dashboard/page.tsx": "580f2c6b73e3167dd0105ac1d589877049819a47403aa1136cb89f25822e1020",
+    "solace-api/src/admin/routes/inventory/restock/page.tsx": "89dfa0bfa34dc335ba95c859a86e7b88ccac37fbcd6d7a4a983a11d4c8c697b6",
+    "solace-api/src/admin/routes/layers/page.tsx": "1d21274ee2f5d9d84715e04f485e2bffe85d1690453f130f0c25b3a652813ce7",
+    "solace-api/src/admin/routes/offline-sales/page.tsx": "5b71736dfa57206902795315704f1e76d977c6bca74d5b90b34bb687885b0b54",
+    "solace-api/src/admin/routes/orders/bulk-manage/page.tsx": "d59ecb1dd5e9008942b4f467ddfb3d23f55efb1257c65335735897fb067da554",
+    "solace-store/postcss.config.js": "251ecddd4672c9cf467547e3dc535de00ad2129df26e7e7ae728fa4e5ac45fc5",
+    "solace-store/preset/theme/animations.js": "f61777bc82e2e5131a066591c91d6f93db33cfb12019d3e7474cf14fecf076a1",
+    "solace-store/preset/theme/colors.js": "f1be915e735bb88f9f7ca139ec61576f5caf4d1cb4d4818a39a60fdb1b3c909a",
+    "solace-store/preset/theme/typography.js": "ea7f7040bac0b2cd89b7603356c2bc24dca8e122bad64c2ed90a481ebaac9215",
+    "solace-store/src/app/(main)/privacy-policy/page.tsx": "85cf6b7ff809ced2bbe549d3d72ad427fcb1f065224acd37f375e1e935d6e2f8",
+    "solace-store/src/app/(main)/terms-of-use/page.tsx": "5085c8a788dcd0b77edc7af71644ad589397feb280fc1899949630484ee7dc4b"
+  }
+}

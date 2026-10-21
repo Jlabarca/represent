@@ -9,7 +9,7 @@ import {serve} from '../src/visu/server.mjs';
 
 async function fixture(t) {
   const dir=await fs.mkdtemp(path.join(os.tmpdir(),'visu-test-')),root=path.join(dir,'source'),store=path.join(dir,'store');await fs.mkdir(root);
-  t.after(()=>fs.rm(dir,{recursive:true,force:true}));
+  t.after(()=>fs.rm(dir,{recursive:true,force:true,maxRetries:4,retryDelay:50}));
   await fs.writeFile(path.join(root,'design.md'),'# Story\nA documented retro pixel-art world.\n');
   await fs.writeFile(path.join(root,'progress.md'),'Plan pending.\n');
   const manifest={id:'test',name:'Test',description:'Fixture',root,sources:[{path:'design.md',role:'art'},{path:'progress.md',role:'detail'}],regions:[{id:'story',label:'Story',paths:['design.md','progress.md']}]};

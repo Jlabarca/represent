@@ -17,7 +17,9 @@ const snapshotFor = (id) => state.bundle?.snapshots?.find(s => s.id === id) || n
 const shortId = id => id ? String(id).slice(0, 8) : '—';
 const dateLabel = value => { if (!value) return 'Date unknown'; const d = new Date(value); return Number.isNaN(+d) ? String(value) : new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(d); };
 function toast(message, error = false) { const el = $('#toast'); el.textContent = message; el.classList.toggle('error', error); el.classList.add('visible'); clearTimeout(toast.timer); toast.timer = setTimeout(() => el.classList.remove('visible'), 4200); }
-function setBusy(kind) { state.busy = Boolean(kind); for(const id of ['project-switch','style-select','export-button']) document.getElementById(id).disabled=state.busy; $('#scan-button').disabled = state.busy; $('#generate-button').disabled = state.busy || !state.bundle?.capabilities?.generateEnabled; $('#scan-button').innerHTML = kind === 'scan' ? '<span class="loader loader-small"></span> Scanning…' : '<span aria-hidden="true">⟳</span> Scan for changes'; $('#generate-button').innerHTML = kind === 'generate' ? '<span class="loader loader-small"></span> Creating…' : '<span aria-hidden="true">✳</span> Create overview'; $('#loading-art').hidden = kind !== 'generate'; }
+function setBusy(kind) { state.busy = Boolean(kind); for(const id of ['project-switch','style-select','theme-select','export-button']) document.getElementById(id).disabled=state.busy; $('#scan-button').disabled = state.busy; $('#analyze-button').disabled=state.busy||(!state.bundle?.latestSnapshotId||!state.bundle?.capabilities?.analyzeEnabled); $('#generate-button').disabled = state.busy || !state.bundle?.capabilities?.generateEnabled || (state.bundle?.project?.automatic && state.bundle?.views?.find(v=>v.id===state.bundle.latestViewId)?.analysisStatus!=='ready'); $('#scan-button').innerHTML = kind === 'scan' ? '<span class="loader loader-small"></span> Capturing…' : '<span aria-hidden="true">◉</span> Capture snapshot'; $('#analyze-button').innerHTML = kind === 'analyze' ? '<span class="loader loader-small"></span> Explaining…' : '<span aria-hidden="true">≋</span> Explain snapshot'; $('#generate-button').innerHTML = kind === 'generate' ? '<span class="loader loader-small"></span> Creating…' : '<span aria-hidden="true">✳</span> Create illustration'; $('#loading-art').hidden = kind !== 'generate'; }
+function setTheme(value) { const theme = ['light','dark','mono'].includes(value) ? value : 'light'; document.body.dataset.theme = theme; $('#theme-select').value = theme; try { localStorage.setItem('represent-visu-theme', theme); } catch {} }
+function initTheme() { let saved = 'light'; try { saved = localStorage.getItem('represent-visu-theme') || 'light'; } catch {} setTheme(saved); $('#theme-select').addEventListener('change', e => setTheme(e.target.value)); }
 function paintStyle() {
   const view = currentView(), snap = snapshotFor(view?.snapshotId) || state.bundle?.snapshots?.at(-1), style = view?.style || snap?.style || {};
   const profile = style.profile || 'neutral'; document.body.dataset.style = profile;
@@ -33,13 +35,14 @@ function paintHeader() {
   $('#snapshot-count').textContent = String(b.snapshots?.length || 0);
   $('#snapshot-label').textContent = snap ? `Snapshot ${shortId(snap.id)} · ${dateLabel(snap.createdAt)}` : 'No source snapshot yet';
   const fresh = view?.freshness || 'missing'; const f = $('#freshness'); f.className = `freshness ${fresh}`; f.textContent = fresh === 'fresh' ? 'Matches captured inputs' : fresh === 'stale' ? 'Overview needs refresh' : 'No overview yet';
-  $('#generate-button').disabled = state.busy || !b.capabilities?.generateEnabled;
+  $('#generate-button').disabled = state.busy || !b.capabilities?.generateEnabled || (b.project?.automatic && b.views?.find(v=>v.id===b.latestViewId)?.analysisStatus!=='ready'); $('#analyze-button').disabled = state.busy || (!b.latestSnapshotId||!b.capabilities?.analyzeEnabled);
   if (!b.capabilities?.generateEnabled && b.capabilities?.message) $('#generate-button').title = b.capabilities.message;
   const ledger = b.ledger || [], latestRun = [...ledger].reverse().find(item => item.status === 'success' || item.status === 'succeeded');
-  $('#activity-text').textContent = latestRun ? `Latest image run · ${latestRun.model || 'model unknown'} · ${latestRun.costUsd == null ? 'cost unknown' : `$${Number(latestRun.costUsd).toFixed(4)}`} · ${latestRun.durationMs == null ? 'duration unknown' : `${(latestRun.durationMs / 1000).toFixed(1)}s`}${latestRun.cacheHit ? ' · cache hit' : ''}` : 'Snapshots stay local. Generation sends selected evidence through Ghost.';
+  $('#activity-text').textContent = latestRun ? `Latest AI request · ${latestRun.model || 'model unknown'} · ${latestRun.costUsd == null ? 'cost unknown' : `$${Number(latestRun.costUsd).toFixed(4)}`} · ${latestRun.durationMs == null ? 'duration unknown' : `${(latestRun.durationMs / 1000).toFixed(1)}s`}${latestRun.cacheHit ? ' · cache hit' : ''}` : 'Snapshots stay local. Generation sends selected evidence through Ghost.';
   paintStyle();
   const usage=$('#usage-records');usage.replaceChildren();
-  const scope=document.createElement('p');scope.textContent=`Selected scope: ${p.scope.map(s=>`${s.path} (${s.role})`).join(' · ')}`;usage.append(scope);
+  const scope=document.createElement('p');scope.textContent=`Captured scope: ${(snap?.scope||p.scope||[]).map(s=>`${s.path} (${s.kind||s.role}) — ${s.reason||"Explicitly selected"}`).join(' · ')||'No source paths are listed.'}`;usage.append(scope);
+  const discovery=$('#discovery-notes');discovery.replaceChildren();const latestSnapshot=snap||snapshotFor(state.bundle.latestSnapshotId),rawDiscovery=latestSnapshot?.discovery||[],items=Array.isArray(rawDiscovery)?rawDiscovery:Object.entries(rawDiscovery).map(([key,value])=>typeof value==='string'?`${key}: ${value}`:{path:key,...(value&&typeof value==='object'?value:{reason:String(value)})});for(const note of items){const line=document.createElement('p');line.textContent=typeof note==='string'?note:[note.path,note.reason||note.why||note.message].filter(Boolean).join(' — ')||JSON.stringify(note);discovery.append(line);}
   for(const row of b.ledger||[]){const line=document.createElement('p');line.textContent=`${dateLabel(row.at)} · ${row.stage||'image'} · ${row.model} · ${row.status} · ${typeof row.costUsd==='number'?`$${row.costUsd.toFixed(6)}`:'cost unknown'} · ${row.durationMs?`${(row.durationMs/1000).toFixed(1)}s`:'duration unknown'}`;usage.append(line);}
 }
 async function loadImage() {
@@ -58,7 +61,7 @@ function regionButton(region, index, selected) {
 }
 function paintPins() {
   const pins = $('#pins'); pins.replaceChildren(); const regions = currentView()?.regions || [];
-  const hasArt = Boolean(currentView()?.art?.url); pins.hidden = !hasArt; $('#art-frame').classList.toggle('has-regions', hasArt && regions.length > 0);
+  const view=currentView(),hasArt=Boolean(view?.art?.url),mismatch=Boolean(view?.chapterSignature&&view?.art&&view.art.chapterSignature!==view.chapterSignature); pins.hidden = !hasArt||mismatch; $('#art-frame').classList.toggle('has-regions', hasArt && !mismatch && regions.length > 0);
   regions.slice(0, 12).forEach((region, i) => pins.append(regionButton(region, i, region.id === state.selectedRegionId)));
 }
 function sourceCard(source) {
@@ -68,26 +71,53 @@ function sourceCard(source) {
 }
 function showRegion(id, focusPanel = false) {
   const region = currentView()?.regions?.find(r => r.id === id); if (!region) return;
+  $('#inspector').dataset.side=Number(region.x)>.6?'left':'right';
   state.selectedRegionId = id; $('#pins').querySelectorAll('.pin').forEach(pin => { const selected = pin.dataset.regionId === id; pin.classList.toggle('selected', selected); pin.setAttribute('aria-pressed', String(selected)); }); const box = $('#inspector-content'); box.replaceChildren(); box.hidden = false; $('.inspector-empty').hidden = true;
   const close = document.createElement('button'); close.type = 'button'; close.className = 'inspector-close icon-button'; close.setAttribute('aria-label', 'Close region details'); close.textContent = '×'; close.addEventListener('click', () => closeInspector(true));
   const num = currentView().regions.indexOf(region) + 1; const eyebrow = document.createElement('span'); eyebrow.className = 'eyebrow'; eyebrow.textContent = `REGION ${String(num).padStart(2, '0')}`;
   const title = document.createElement('h2'); title.textContent = region.label || 'Project region'; const summary = document.createElement('p'); summary.className = 'region-summary'; summary.textContent = region.summary || 'No short explanation has been recorded.';
   const status = document.createElement('span'); status.className = `status-chip ${String(region.status || 'observed').toLowerCase().replace(/[^a-z0-9-]/g, '-')}`; status.textContent = region.status || 'Status unknown';
-  const detail = document.createElement('p'); detail.className = 'region-detail'; detail.textContent = region.detail || 'No additional technical detail was captured for this region.';
-  const sourcesTitle = document.createElement('h3'); sourcesTitle.className = 'source-title'; sourcesTitle.textContent = `Evidence · ${region.sources?.length || 0}`;
+  const view=currentView(),pending=view.analysisStatus==='pending';
+  if(pending){const warning=document.createElement('p');warning.className='analysis-warning';warning.textContent='This explanation is waiting for an update. The saved text below may describe the previous snapshot; explain again before relying on it.';box.append(warning);}
+  const chapterMismatch=Boolean(view?.chapterSignature&&view?.art&&view.art.chapterSignature!==view.chapterSignature);
+  if(chapterMismatch){const warning=document.createElement('p');warning.className='analysis-warning';warning.textContent='The illustration belongs to an earlier chapter. Markers are hidden until matching art is generated.';box.append(warning);}
+  const current=region.currentState||region.detail||'Current implementation state has not been recorded separately.';
+  const intended=region.intendedDesign||'Intended design has not been recorded separately.';
+  const next=region.nextSteps||'No next steps have been recorded.';
+  const difference=document.createElement('p');difference.className='chapter-difference';difference.textContent=region.mainDifference||'The current state and intended design below are separate evidence-backed descriptions; no direct comparison was recorded.';if(region.mainDifference)box.append(difference);
+  appendChapter(box,'Current state · source-reported',current,region.currentEvidence||region.sources||[]);
+  appendChapter(box,'Intended design',intended,region.designEvidence||[]);
+  appendChapter(box,'Next steps',next,region.nextEvidence||[]);
+  if(region.visual){const visual=document.createElement('p');visual.className='region-detail';visual.textContent=region.visual;box.append(visual);}
+  const sourcesTitle = document.createElement('h3'); sourcesTitle.className = 'source-title'; sourcesTitle.textContent = `Captured sources · ${region.sources?.length || 0}`;
   const sources = document.createElement('div'); sources.className = 'source-list'; (region.sources || []).forEach(s => sources.append(sourceCard(s)));
   const origin=document.createElement('p');origin.className='region-detail';origin.textContent=region.summaryOrigin||'Saved editorial interpretation';
   const citations=document.createElement('div');
   for(const e of region.storyEvidence||[]){const c=document.createElement('details');c.className='source-card';const s=document.createElement('summary');s.textContent=`Summary evidence · ${e.path}:${e.startLine||1}`;const q=document.createElement('p');q.textContent=e.quote;c.append(s,q);citations.append(c);}
   const progress=document.createElement('p');progress.className='region-detail';progress.textContent=(region.progress||[]).map(p=>`${p.done} of ${p.total} captured checklist items checked in ${p.path}. This is a selected excerpt, not overall project completion.`).join(' ');
-  box.append(close, eyebrow, title, summary, status, detail, progress, origin, citations, sourcesTitle, sources); if (focusPanel) close.focus();
+  box.prepend(close, eyebrow, title, summary, status); box.append(progress, origin, citations, sourcesTitle, sources); if (focusPanel) close.focus();
+}
+function appendChapter(parent,label,value,evidence){
+  const section=document.createElement('section');section.className='chapter-explanation';
+  const heading=document.createElement('h3');heading.textContent=label;
+  const full=Array.isArray(value)?value.map(item=>typeof item==='string'?item:item?.text||JSON.stringify(item)).join(' · '):typeof value==='string'?value:value?.text||JSON.stringify(value);
+  const text=document.createElement('p');
+  const sentence=full.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim()||full;
+  text.textContent=sentence.length>280?sentence.slice(0,260).replace(/\s+\S*$/,'')+'…':sentence;
+  section.append(heading,text);
+  if(text.textContent!==full){const more=document.createElement('details');more.className='chapter-more';const title=document.createElement('summary');title.textContent='More detail';const detail=document.createElement('p');detail.textContent=full;more.append(title,detail);section.append(more);}
+  if(evidence?.length){
+    const group=document.createElement('details');group.className='chapter-evidence';const title=document.createElement('summary');title.textContent=`Sources · ${evidence.length}`;group.append(title);
+    for(const item of evidence){const detail=document.createElement('details');detail.className='source-card chapter-quote';const summary=document.createElement('summary');summary.textContent=`${item.path||'Evidence'}${item.startLine?` · line ${item.startLine}`:''}`;const quote=document.createElement('p');quote.textContent=item.quote||item.text||'No captured quotation.';detail.append(summary,quote);group.append(detail);}section.append(group);
+  }
+  parent.append(section);
 }
 function closeInspector(returnFocus = false) { const previous = state.selectedRegionId; state.selectedRegionId = null; $('#inspector-content').hidden = true; $('.inspector-empty').hidden = false; $('#pins').querySelectorAll('.pin').forEach(pin => { pin.classList.remove('selected'); pin.setAttribute('aria-pressed', 'false'); }); if (returnFocus && previous) { const pin = [...$('#pins').querySelectorAll('.pin')].find(el => el.dataset.regionId === previous); if (pin) { state.suppressNextPinFocus = true; pin.focus(); } } }
 function paintOverview() {
   const view = currentView(); paintHeader(); paintPins(); loadImage();
   if (state.selectedRegionId && view?.regions?.some(r => r.id === state.selectedRegionId)) showRegion(state.selectedRegionId, false); else closeInspector();
-  const hasArt = Boolean(view?.art?.url); $('#art-status').textContent = view?.freshness === 'stale' ? 'This portrait reflects an earlier snapshot' : hasArt ? `Portrait · ${shortId(view.art.sourceSnapshotId || view.snapshotId)}` : '';
-  $('#art-caption-text').textContent = view?.regions?.length ? 'Region markers are navigation aids. Evidence and source lines live in the detail panel.' : 'The picture is a guide; scan the project to prepare its evidence layer.';
+  const hasArt = Boolean(view?.art?.url),mismatch=Boolean(view?.chapterSignature&&view?.art&&view.art.chapterSignature!==view.chapterSignature); $('#art-status').textContent = mismatch ? 'Earlier chapter illustration · markers hidden' : view?.freshness === 'stale' ? 'This portrait reflects an earlier snapshot' : hasArt ? `Portrait · ${shortId(view.art.sourceSnapshotId || view.snapshotId)}` : '';
+  $('#art-caption-text').textContent = view?.analysisStatus==='pending' ? 'Explanation pending · Existing chapter text may describe the previous snapshot. Use Explain snapshot to refresh it.' : view?.regions?.length ? 'Region markers are navigation aids. Evidence and source lines live in the detail panel.' : 'The picture is a guide; capture a snapshot, then explain it and create an illustration.';
   paintOutline();
 }
 function paintOutline() {
@@ -139,10 +169,11 @@ async function refreshProjects() {
   } catch (e) { $('#welcome').hidden = false; $('#workspace').hidden = true; $('#project-list').innerHTML = '<div class="empty-project"><span class="eyebrow">LOCAL SERVICE</span><h2>Visu could not connect</h2><p>Keep this page open and check that the local Visu service is running.</p></div>'; toast(`Connection error: ${e.message}`, true); }
 }
 async function runScan() { setBusy('scan'); try { const b = await json(projectPath('/scan'), { method: 'POST', body: '{}' }); paintBundle(b, b.result); } catch (e) { toast(`Scan failed: ${e.message}`, true); } finally { setBusy(null); } }
+async function runAnalyze() { if(!state.bundle?.latestSnapshotId)return toast('Capture a snapshot before asking for an explanation.'); setBusy('analyze');try{const b=await json(projectPath('/analyze'),{method:'POST',body:JSON.stringify({snapshotId:state.bundle.latestSnapshotId})});paintBundle(b);toast('Snapshot explanation updated. Current state, intended design, and next steps are shown separately.');}catch(e){toast(`Explanation failed. The saved explanation remains available; it may need refreshing. ${e.message}`,true);}finally{setBusy(null);} }
 async function runGenerate() { if (!state.bundle?.capabilities?.generateEnabled) return toast(state.bundle?.capabilities?.message || 'Image generation is not configured for this workspace.'); setBusy('generate'); try { const b = await json(projectPath('/generate'), { method: 'POST', body: '{}' }); paintBundle(b); toast('Overview updated. Its source snapshot and generation record are saved.'); } catch (e) { toast(`Generation failed. Your saved overview is unchanged. ${e.message}`, true); } finally { setBusy(null); } }
 async function setStyle(profile) { if(state.busy)return;state.style = profile;setBusy('style');try { paintBundle(await json(projectPath('/style'), { method: 'POST', body: JSON.stringify({ profile }) })); toast(profile === 'auto' ? 'Using detected project style.' : `Using ${profile} direction.`); } catch (e) {$('#style-select').value=state.bundle?.styleOverride||'auto';toast(`Could not update visual direction: ${e.message}`, true); }finally{setBusy(null);} }
 async function exportHistory() { try { const response = await api(projectPath('/export')); const data = await response.json(); const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${(state.bundle?.project?.name || 'represent').toLowerCase().replace(/[^a-z0-9]+/g, '-')}-history.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); toast('Project history exported.'); } catch (e) { toast(`Export failed: ${e.message}`, true); } }
-$('#scan-button').addEventListener('click', runScan); $('#generate-button').addEventListener('click', runGenerate); $('#export-button').addEventListener('click', exportHistory);
+initTheme(); $('#scan-button').addEventListener('click', runScan); $('#analyze-button').addEventListener('click',runAnalyze); $('#generate-button').addEventListener('click', runGenerate); $('#export-button').addEventListener('click', exportHistory);
 $('#project-switch').addEventListener('change',e=>{if(e.target.value)openProject(e.target.value);});
 $('.brand').addEventListener('click',e=>{e.preventDefault();if(!state.busy)refreshProjects();});
 $('#progress-toggle').addEventListener('change',paintPins);

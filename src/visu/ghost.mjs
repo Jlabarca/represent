@@ -26,11 +26,11 @@ export function imageInfo(bytes, mime) {
 }
 
 export class Ghost {
-  constructor({ url='http://127.0.0.1:4000',key,model='image-gen',timeoutMs=240000,fetcher=fetch }) {
+  constructor({ url='http://127.0.0.1:4000',key,model='image-gen',analysisModel='gemini-flash',timeoutMs=240000,fetcher=fetch }) {
     const parsed=new URL(url);
     if(!['127.0.0.1','localhost','[::1]'].includes(parsed.hostname)||parsed.protocol!=='http:') throw new Error('MVP Ghost endpoint must be loopback HTTP');
     if(!key) throw new Error('Ghost virtual key required');
-    this.url=url.replace(/\/$/,'');this.key=key;this.model=model;this.timeoutMs=timeoutMs;this.fetcher=fetcher;
+    this.url=url.replace(/\/$/,'');this.key=key;this.model=model;this.analysisModel=analysisModel;this.timeoutMs=timeoutMs;this.fetcher=fetcher;
   }
   async summarize(regions,sources) {
     const start=performance.now();let metrics={model:'json',costUsd:null};

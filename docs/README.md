@@ -24,6 +24,8 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 
 | Document | Purpose |
 |---|---|
+| [Visu automatic discovery](reference/visu-discovery.md) | Root-only scope and chapters, manual paid stages, current/design detail, themes and cache limits |
+| [Automatic Visu trial and costs](../experiments/visu-discovery/README.md) | ImageLab/Luz/ROMPE outputs, measured cheap update, original $0.37 breakdown and browser evidence |
 | [Visu MVP](reference/visu-mvp.md) | Local headless illustrated overview, source/style capture, Ghost generation, snapshots, API and usage |
 | [Visu pilot evidence](../experiments/visu-pilot/README.md) | ROMPE/Luz actual art, rejected attempts, costs, update benchmarks and UI captures |
 

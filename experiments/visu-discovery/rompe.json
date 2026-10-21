@@ -1,0 +1,956 @@
+{
+  "at": "2026-10-21T09:06:27.906Z",
+  "project": "rompe",
+  "configuration": {
+    "id": "rompe",
+    "root": "G:/ro/RagnarokRebuildTcp",
+    "name": "ROMPE"
+  },
+  "sourceScope": [
+    {
+      "path": "deploy/edge/break-ws/pub/index.html",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 1,
+      "hash": "0e245c72ac21e01c2d1b02efbbb7bd63e1ab0cf757b92c1a224a975c9f26be9e"
+    },
+    {
+      "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 127,
+      "hash": "1f4fb2dafccdbe0801d6f4c710092c77680c25eab8479d9da3f291ace15b91c0"
+    },
+    {
+      "path": "docs/CARAVAN-LAYER-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 111,
+      "hash": "03dc3a7685367cf22626bae5f42a393e29cd63be30ae576cdfbfb627e72c2c0a"
+    },
+    {
+      "path": "docs/CONTEXT.md",
+      "role": "detail",
+      "reason": "Current context, tracked work, or an active implementation plan. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 33,
+      "hash": "3f397fcf24c268b84c617fb0547f4f1ed63c567a8eb8338316800cec5b9c244f"
+    },
+    {
+      "path": "docs/CRAFT-JOBS-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 127,
+      "hash": "945c1eb0a1c3a6f13dffab12b52f676ed20bc08453a0d36f23937759740dd27b"
+    },
+    {
+      "path": "docs/CRAFTING-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 114,
+      "hash": "b18dfd9b1748ebd1d935e4acad49af909f9c84b7ad3845636aa2891dedcfa060"
+    },
+    {
+      "path": "docs/design/asset-independence-tracker.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 162,
+      "hash": "852815860205e1aa34ca6ac6aaf73d8fcaf1fc70816e3dcdb1e0095d9b92c626"
+    },
+    {
+      "path": "docs/design/groups.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 155,
+      "hash": "cfd8c095deac0ab3908f1f9f202a57a73c93b9192ed40fbfbe647344fd3950b4"
+    },
+    {
+      "path": "docs/design/legal-risk.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 144,
+      "hash": "1c8985c09dc523389e709d4cd1baed48bfbf5c8df335ca6c5f750034b49a50eb"
+    },
+    {
+      "path": "docs/design/rompe-sandbox.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 155,
+      "hash": "c38b97425a707d8484356ba7f730e2f31736a8ff4748345691edc37db9d707b7"
+    },
+    {
+      "path": "docs/design/sky-and-time.md",
+      "role": "art",
+      "reason": "Design or product document explains intent and structure. Linked from the project overview/current context.",
+      "kind": "design",
+      "startLine": 1,
+      "endLine": 152,
+      "hash": "cd5c1da6ab6699d7a163a3bf52667bd0cac96622821896cfefe7ab4a4c59d3a7"
+    },
+    {
+      "path": "docs/FIRST-15-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 109,
+      "hash": "36396e471586991a1cd9dd181ac1038b89ae4b55293045658ef29d57bb3bf7a2"
+    },
+    {
+      "path": "docs/README.md",
+      "role": "art",
+      "reason": "Nested README adds secondary project context. Linked from the project overview/current context.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 21,
+      "hash": "569879c33baa1623febebc93170407c008404f1c8b692cf60c1d64ea62f4b3d9"
+    },
+    {
+      "path": "docs/reference/1hp-plants-hit.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 175,
+      "hash": "55e1bf8b91dbbb2f6c218be78e341442a2b5c0b15a253bcc8cbcab5ca6e0863d"
+    },
+    {
+      "path": "docs/reference/map-tags.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 160,
+      "hash": "ed50a22bdc33c69b83c67eee1751721daf68fe305a16942c52e7a5a0254ddc3f"
+    },
+    {
+      "path": "docs/reference/maqui-window-style.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 104,
+      "hash": "81375532dc4fa93f3ee5505c49cf817a1067216912a6de7ac28c6fda8a504a7b"
+    },
+    {
+      "path": "docs/reference/monster-transitions.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 19,
+      "hash": "176f9a24f1c79c94824084a06effe91bae43815b5496c0cd54ad7a25e29a919d"
+    },
+    {
+      "path": "docs/reference/water.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 125,
+      "hash": "7f5d8d23f84ef2f8061c582ae6ac08b4829b7c11d06e22058538de220e6b88e4"
+    },
+    {
+      "path": "docs/reference/window-settings-stack.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 121,
+      "hash": "5ce4b95f30ce82ebda6333c9fa0cdff5a0c864c7e945a1fc9d55b73b22aa7a14"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "role": "art",
+      "reason": "Project documentation provides a human-readable explanation. Linked from the project overview/current context.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 276,
+      "hash": "7ac470414afdb6ed4e0b5ec785bbe424d9044226cc0bc892d1e0ae0916d866d5"
+    },
+    {
+      "path": "Other/RoScriptVSCodeSyntaxHighlighting/package.json",
+      "role": "detail",
+      "reason": "Project manifest identifies its runtime and dependencies.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 25,
+      "hash": "8421842c1fcb87b91919eb864891746c13bcbedd325b348b9b1da1c1ba1879d8"
+    },
+    {
+      "path": "Other/RoWikiGenerator/Program.cs",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 225,
+      "hash": "7582971023cad57f6de4c688ceabb465f33e02345c5652ae3fd7f0bd233f7519"
+    },
+    {
+      "path": "README.md",
+      "role": "art",
+      "reason": "Root README introduces the project and its purpose.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 110,
+      "hash": "395eb28ef7718a10d5cdc2256bb6132a81b94e35f13f56ec703b8d49526d29e1"
+    },
+    {
+      "path": "RebuildClient/Assets/3rdParty/CheckIfMobileForUnityWebGL/package.json",
+      "role": "detail",
+      "reason": "Project manifest identifies its runtime and dependencies.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 23,
+      "hash": "9452b48f1a756cce39cc98537b396fe9f06a844182830f32c672d3f3a2c6e9d9"
+    },
+    {
+      "path": "RebuildClient/Assets/WebGLTemplates/Better2020/index.html",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 161,
+      "hash": "2f21035f70378e98cba1bd866b11e481e29a98c0e041a65359321d76f352fadd"
+    },
+    {
+      "path": "RebuildClient/Assets/WebGLTemplates/Better2020/TemplateData/style.css",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 146,
+      "hash": "c4206efada8ddb77d09d1807aa77ee8d296f4bb4b6a59108299e08aab8a7e9f9"
+    },
+    {
+      "path": "RebuildClient/Assets/WebGLTemplates/ORO/index.html",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 200,
+      "hash": "078c8358b45aea4fd86b653e6299dff45e68eda9d642f55472fb8d58ca23b4e6"
+    },
+    {
+      "path": "RebuildClient/Assets/WebGLTemplates/Ragnarok/TemplateData/style.css",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 16,
+      "hash": "48330ce7635cdda6494cb48f85ede99c8fa2f1df3625eb7995a734ae917776e8"
+    },
+    {
+      "path": "RoLlmService/Program.cs",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 196,
+      "hash": "7de96ca9edb92351b6def69042ca3f045d294e7203167e232c10260d8479722e"
+    },
+    {
+      "path": "RoRebuildServer/DataToClientUtility/Program.cs",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 287,
+      "hash": "fd3349371d9bac15bd0682647020d1638669ecc3809f994e229cb42fc7d5cd19"
+    }
+  ],
+  "discovery": {
+    "inventory": "git",
+    "filesSeen": 9070,
+    "candidates": 8674,
+    "selected": 30,
+    "skipped": 396,
+    "estimatedBytes": 236503,
+    "scopeCapped": true,
+    "scopeNote": "Source scope is capped; the selected files are a ranked sample, not a complete inventory.",
+    "limits": {
+      "maxFiles": 20000,
+      "maxFileBytes": 1048576,
+      "maxSources": 30,
+      "maxSelectedBytes": 600000,
+      "maxCharsPerFile": 10000
+    },
+    "categories": {
+      "current": 6,
+      "identity": 3,
+      "design": 5,
+      "reference": 6,
+      "code": 6,
+      "style": 2,
+      "docs": 2
+    }
+  },
+  "snapshotId": "cfd15a23b1ebc848f77b0c6e",
+  "viewId": "b4773133affcc761bfda0025",
+  "style": {
+    "profile": "retro",
+    "confidence": "medium",
+    "palette": [
+      "#263d52",
+      "#e6c787",
+      "#77a180"
+    ],
+    "fonts": [
+      "pixel-inspired display",
+      "readable sans"
+    ],
+    "direction": "Handcrafted isometric pixel-art world, warm parchment labels, charming detailed game landscapes, clear visual journey",
+    "signals": [
+      {
+        "path": "docs/design/asset-independence-tracker.md",
+        "line": 131,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/design/groups.md",
+        "line": 4,
+        "reason": "Explicit retro / pixel-art language",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/design/legal-risk.md",
+        "line": 18,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/design/rompe-sandbox.md",
+        "line": 24,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/design/sky-and-time.md",
+        "line": 6,
+        "reason": "Explicit retro / pixel-art language",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/README.md",
+        "line": 20,
+        "reason": "Explicit retro / pixel-art language",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/README.md",
+        "line": 11,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/reference/1hp-plants-hit.md",
+        "line": 83,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/reference/monster-transitions.md",
+        "line": 3,
+        "reason": "Explicit retro / pixel-art language",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/reference/water.md",
+        "line": 3,
+        "reason": "Explicit retro / pixel-art language",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/reference/water.md",
+        "line": 19,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "docs/ROADMAP.md",
+        "line": 33,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "Other/RoWikiGenerator/Program.cs",
+        "line": 17,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      },
+      {
+        "path": "README.md",
+        "line": 1,
+        "reason": "Classic RPG context; visual inference, not an asset audit",
+        "profile": "retro"
+      }
+    ],
+    "note": "Derived from selected text/tokens; owned images were not analyzed."
+  },
+  "analysisStatus": "ready",
+  "chapters": [
+    {
+      "id": "player-account-roster",
+      "label": "Player Account Roster",
+      "summary": "The player account roster will support up to 12 characters and manage companions, main character swapping, and login. It integrates with existing grouping mechanics and is a core part of the ROMPE Sandbox plan, currently in the plan-only stage.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.35,
+      "visual": "A dozen character cards fanned out on a table, representing the account roster, with one card highlighted as the 'main' character and another slightly offset as the 'companion'.",
+      "visualChanged": true,
+      "currentState": "The account roster is in a \"plan-only\" status, with no code yet implemented. It is identified as \"S4 Account roster v0\" of the ROMPE Sandbox. Open questions and architectural decisions are being documented.",
+      "intendedDesign": "The design specifies an account supporting a roster of 12 characters, with one companion following the player's real character and other companions on a shared HUD. Players will be able to swap their main character at a Kafra and log in to the last main character played. The system will integrate with CommandGrants for owned bodies and manage player progression and an Account page hosted by the Binder.",
+      "nextSteps": "The immediate next step is to begin implementation at phase \"ACCOUNT-ROSTER.1a.1\". This involves reading the current implementation tracker, the ROMPE Sandbox design section 9, groups design sections 0-4, and GROUPS-IMPL phases 1 and 2a, as well as relevant server code files.",
+      "currentEvidence": [
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# ACCOUNT-ROSTER — Implementation Tracker\n\n> Living design+status doc for **your account, a roster of 12**: the account as a party tag, one companion following\n> you (your real character, run as an owned body under the CommandGrants owner lease), companions on the shared pet\n> side of the HUD, swapping the main at a Kafra, login to the last main, Training, and the Account page that the Binder\n> hosts. Slice **S4 Account roster v0** of the ROMPE Sandbox.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Revised:** 2026-10-21 (audit verdict REVISE, 19 items) ·\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> Design: [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system)\n> ([§9.4](design/rompe-sandbox.md#94-companions-are-cards), [§9.7](design/rompe-sandbox.md#97-swapping-the-main),\n> [§9.8](design/rompe-sandbox.md#98-progression), build order [§19](design/rompe-sandbox.md#19-build-order)) · grouping:\n> [design/groups.md §0 G-D1](design/groups.md#0-operator-decisions-2026-10-20),\n> [§3 rung 1a](design/groups.md#3-the-relation-ladder-after-this-design),\n> [§4 P5–P9](design/groups.md#4-party-empowered), [§10](design/groups.md#10-build-order) · path:\n> [design/player-path-content.md §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> (`ob.6`, `hk.2`) · Spawn Cards impact: [research/spawn-cards-sandbox-impact.md](research/spawn-cards-sandbox-impact.md)\n> (changes 1, 3, 6) · bots: [reference/bots.md](reference/bots.md), [reference/bot-layers.md](reference/bot-layers.md).\n> Not here: trade, adopt, hire, rent (KAFRA-HIRE); slot count and DB (SANDBOX-DATA); parties, P6, P9, the auto party and"
+        },
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 61,
+          "quote": "\n## AI Continuation Prompt\n\nRead in order:\n1. This file: Open Questions, Architecture (\"wrong or thin\" first, then Decisions and Agreements), then the first\n   unchecked box.\n2. [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system),\n   [design/groups.md §0–§4](design/groups.md#0-operator-decisions-2026-10-20), and GROUPS-IMPL phases 1 and 2a.\n3. `Simulation/World.cs` (`CreatePlayer` :1216, `CreateBotPlayerCore` :1441, `PerformMoves` :2218),\n   `Database/Requests/SaveCharacterRequest.cs`, `Simulation/CommandGrants.cs`, `EntityComponents/Bot/ImpersonationService.cs`.\n\n**Working state:** plan only, no code yet. Start at **ACCOUNT-ROSTER.1a.1**.\n\n**House rules:** commit by pathspec only; no new `PacketType` (channel `account`); server phases in a worktree, client\nphases one at a time in the main tree; agents never call `run_tests`; live checks under `/lockinput` and `/camera`.\n\n**Naming:** `ACCOUNT-ROSTER.{phase}.{n}` (phases 1a, 1b, 2–7).\n"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# ACCOUNT-ROSTER — Implementation Tracker\n\n> Living design+status doc for **your account, a roster of 12**: the account as a party tag, one companion following\n> you (your real character, run as an owned body under the CommandGrants owner lease), companions on the shared pet\n> side of the HUD, swapping the main at a Kafra, login to the last main, Training, and the Account page that the Binder\n> hosts. Slice **S4 Account roster v0** of the ROMPE Sandbox.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Revised:** 2026-10-21 (audit verdict REVISE, 19 items) ·\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> Design: [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system)\n> ([§9.4](design/rompe-sandbox.md#94-companions-are-cards), [§9.7](design/rompe-sandbox.md#97-swapping-the-main),\n> [§9.8](design/rompe-sandbox.md#98-progression), build order [§19](design/rompe-sandbox.md#19-build-order)) · grouping:\n> [design/groups.md §0 G-D1](design/groups.md#0-operator-decisions-2026-10-20),\n> [§3 rung 1a](design/groups.md#3-the-relation-ladder-after-this-design),\n> [§4 P5–P9](design/groups.md#4-party-empowered), [§10](design/groups.md#10-build-order) · path:\n> [design/player-path-content.md §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> (`ob.6`, `hk.2`) · Spawn Cards impact: [research/spawn-cards-sandbox-impact.md](research/spawn-cards-sandbox-impact.md)\n> (changes 1, 3, 6) · bots: [reference/bots.md](reference/bots.md), [reference/bot-layers.md](reference/bot-layers.md).\n> Not here: trade, adopt, hire, rent (KAFRA-HIRE); slot count and DB (SANDBOX-DATA); parties, P6, P9, the auto party and"
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 61,
+          "quote": "\n## AI Continuation Prompt\n\nRead in order:\n1. This file: Open Questions, Architecture (\"wrong or thin\" first, then Decisions and Agreements), then the first\n   unchecked box.\n2. [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system),\n   [design/groups.md §0–§4](design/groups.md#0-operator-decisions-2026-10-20), and GROUPS-IMPL phases 1 and 2a.\n3. `Simulation/World.cs` (`CreatePlayer` :1216, `CreateBotPlayerCore` :1441, `PerformMoves` :2218),\n   `Database/Requests/SaveCharacterRequest.cs`, `Simulation/CommandGrants.cs`, `EntityComponents/Bot/ImpersonationService.cs`.\n\n**Working state:** plan only, no code yet. Start at **ACCOUNT-ROSTER.1a.1**.\n\n**House rules:** commit by pathspec only; no new `PacketType` (channel `account`); server phases in a worktree, client\nphases one at a time in the main tree; agents never call `run_tests`; live checks under `/lockinput` and `/camera`.\n\n**Naming:** `ACCOUNT-ROSTER.{phase}.{n}` (phases 1a, 1b, 2–7).\n"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# ACCOUNT-ROSTER — Implementation Tracker\n\n> Living design+status doc for **your account, a roster of 12**: the account as a party tag, one companion following\n> you (your real character, run as an owned body under the CommandGrants owner lease), companions on the shared pet\n> side of the HUD, swapping the main at a Kafra, login to the last main, Training, and the Account page that the Binder\n> hosts. Slice **S4 Account roster v0** of the ROMPE Sandbox.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Revised:** 2026-10-21 (audit verdict REVISE, 19 items) ·\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> Design: [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system)\n> ([§9.4](design/rompe-sandbox.md#94-companions-are-cards), [§9.7](design/rompe-sandbox.md#97-swapping-the-main),\n> [§9.8](design/rompe-sandbox.md#98-progression), build order [§19](design/rompe-sandbox.md#19-build-order)) · grouping:\n> [design/groups.md §0 G-D1](design/groups.md#0-operator-decisions-2026-10-20),\n> [§3 rung 1a](design/groups.md#3-the-relation-ladder-after-this-design),\n> [§4 P5–P9](design/groups.md#4-party-empowered), [§10](design/groups.md#10-build-order) · path:\n> [design/player-path-content.md §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> (`ob.6`, `hk.2`) · Spawn Cards impact: [research/spawn-cards-sandbox-impact.md](research/spawn-cards-sandbox-impact.md)\n> (changes 1, 3, 6) · bots: [reference/bots.md](reference/bots.md), [reference/bot-layers.md](reference/bot-layers.md).\n> Not here: trade, adopt, hire, rent (KAFRA-HIRE); slot count and DB (SANDBOX-DATA); parties, P6, P9, the auto party and"
+        },
+        {
+          "path": "docs/ACCOUNT-ROSTER-IMPL.md",
+          "startLine": 61,
+          "quote": "\n## AI Continuation Prompt\n\nRead in order:\n1. This file: Open Questions, Architecture (\"wrong or thin\" first, then Decisions and Agreements), then the first\n   unchecked box.\n2. [design/rompe-sandbox.md §9](design/rompe-sandbox.md#9-your-account-a-roster-of-12-core-system),\n   [design/groups.md §0–§4](design/groups.md#0-operator-decisions-2026-10-20), and GROUPS-IMPL phases 1 and 2a.\n3. `Simulation/World.cs` (`CreatePlayer` :1216, `CreateBotPlayerCore` :1441, `PerformMoves` :2218),\n   `Database/Requests/SaveCharacterRequest.cs`, `Simulation/CommandGrants.cs`, `EntityComponents/Bot/ImpersonationService.cs`.\n\n**Working state:** plan only, no code yet. Start at **ACCOUNT-ROSTER.1a.1**.\n\n**House rules:** commit by pathspec only; no new `PacketType` (channel `account`); server phases in a worktree, client\nphases one at a time in the main tree; agents never call `run_tests`; live checks under `/lockinput` and `/camera`.\n\n**Naming:** `ACCOUNT-ROSTER.{phase}.{n}` (phases 1a, 1b, 2–7).\n"
+        }
+      ],
+      "paths": [
+        "docs/ACCOUNT-ROSTER-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "reworked-crafting-jobs",
+      "label": "Reworked Crafting Jobs",
+      "summary": "The crafting system is being overhauled, turning the Blacksmith into a \"forge\" capable of Masterpiece quality items with an optional minigame, and the Alchemist into a \"still\" with a skill tree and brewing. This replaces older Episode 8 crafting designs.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.35,
+      "visual": "A blacksmith's forge glowing with heat, surrounded by tools and various raw materials. Nearby, an alchemist's still bubbles with colorful concoctions, surrounded by intricate diagrams and ingredient vials.",
+      "visualChanged": true,
+      "currentState": "The reworked crafting jobs are currently in a \"plan-only\" status, encompassing slices S5 and S10 of the ROMPE Sandbox build order. Existing server-side item effects for Mini Furnace and hammers are inert. Weapon Repair is blocked pending the completion of RISK-ZONES.4b.",
+      "intendedDesign": "The Blacksmith role will become a 'forge', allowing for crafting items up to Masterpiece quality, including an optional minigame. The Alchemist will become a 'still' with a real skill tree and brewing mechanics. Tempering operations will be available anywhere through the Crafting Book, without requiring tool items. Ore Discovery will credit players with loot priority, and crafting success will not spend materials if focus or material pools are insufficient, resulting in 0% return.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFT-JOBS — Implementation Tracker\n\n> Living design+status doc for **the reworked crafting jobs**. The Blacksmith becomes the forge: quality up to\n> Masterpiece, the account crafter door and an optional forge minigame. The Alchemist becomes the still: a real skill tree\n> and brewing. This covers slices **S5 + S10** of the ROMPE Sandbox build order.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20, [design/rompe-sandbox.md](design/rompe-sandbox.md)).\n> Design: [§6.4 three doors](design/rompe-sandbox.md#64-three-doors-to-a-craft) ·\n> [§6.5 forge minigame](design/rompe-sandbox.md#65-the-forge-minigame-optional) ·\n> [§7 crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) ·\n> [§10.3 Focus and guards](design/rompe-sandbox.md#103-focus-and-the-self-sufficiency-guards) ·\n> [§11 jobs reworked](design/rompe-sandbox.md#11-jobs-reworked-d8) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§17 GhostShell Break](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> the `want-craft` loop in [design/player-path-content.md](design/player-path-content.md).\n> Skill authoring: [reference/ro-skills.md §8](reference/ro-skills.md#8-adding-a-new-skill--the-path) · precedent:\n> [JOBS-2-2-IMPL.md](JOBS-2-2-IMPL.md) · supersedes [EPISODE-8-IMPL.md](EPISODE-8-IMPL.md) **EP8.4.2** (Blacksmith\n> forging economy) and **EP8.3.3** (Alchemist tree). Platform: [reference/quest-platform.md](reference/quest-platform.md)."
+        },
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 113,
+          "quote": "  material return, Albion-style. **With no pool, or not enough Focus, the craft still succeeds at 0% return and nothing\n  is spent.** It is never free. RISK-ZONES counts `focus.spent`; door 2 does not count it again.\n- **D9 — tempering anywhere, no tool items.** Iron and Steel Tempering and stone making run from the Crafting Book for a\n  holder of the skill, anywhere. Mini Furnace and the hammers stay inert (`Script/Items/ItemEffects.txt:93-96`).\n- **D10 — wear belongs to RISK-ZONES.4b.** Weapon Repair (phase 2b) calls `CraftWear.Repair` (RISK-ZONES.4b.3). It\n  stays blocked until that lands and the wear bit layout is settled (see Architecture Notes).\n- **D11 — Ore Discovery gets its pinned effect.** One draw from rAthena's `ORE` group per kill, credited to the player\n  with **loot priority**, not the first attacker (`mob.cpp:3357-3358` uses `first_sd`, which is the top damage dealer\n  after the 30% first-attack bonus, `mob.cpp:3050-3058`). ORO's equivalent is `Monster.GetTopContributor`\n  (`Monster.cs:1025`), after `BoostDamageContributionOfFirstAttacker` (`:969`). Dial `OreDiscoveryDrops`, default on\n  (vanilla). The ORO effect (extra Surge yield) waits for the Surge layer (rompe-sandbox §12.4, not built).\n- **D12 — naming.** \"Forge\" is taken: `ORO.Editor.Forge` is Mapforge's namespace. Code says **Smithing / Anvil / Still**;\n  the player word stays \"forge\". Window ids equal quest ids: `forge-smith` and `forge-still`.\n- **D13 — mod channel only.** No `PacketType` or `AdminAction` change. Door actions ride CRAFTING's `crafting-book`\n  window verb. The minigame rides the `quest-platform` channel with optional extra fields."
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFT-JOBS — Implementation Tracker\n\n> Living design+status doc for **the reworked crafting jobs**. The Blacksmith becomes the forge: quality up to\n> Masterpiece, the account crafter door and an optional forge minigame. The Alchemist becomes the still: a real skill tree\n> and brewing. This covers slices **S5 + S10** of the ROMPE Sandbox build order.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20, [design/rompe-sandbox.md](design/rompe-sandbox.md)).\n> Design: [§6.4 three doors](design/rompe-sandbox.md#64-three-doors-to-a-craft) ·\n> [§6.5 forge minigame](design/rompe-sandbox.md#65-the-forge-minigame-optional) ·\n> [§7 crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) ·\n> [§10.3 Focus and guards](design/rompe-sandbox.md#103-focus-and-the-self-sufficiency-guards) ·\n> [§11 jobs reworked](design/rompe-sandbox.md#11-jobs-reworked-d8) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§17 GhostShell Break](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> the `want-craft` loop in [design/player-path-content.md](design/player-path-content.md).\n> Skill authoring: [reference/ro-skills.md §8](reference/ro-skills.md#8-adding-a-new-skill--the-path) · precedent:\n> [JOBS-2-2-IMPL.md](JOBS-2-2-IMPL.md) · supersedes [EPISODE-8-IMPL.md](EPISODE-8-IMPL.md) **EP8.4.2** (Blacksmith\n> forging economy) and **EP8.3.3** (Alchemist tree). Platform: [reference/quest-platform.md](reference/quest-platform.md)."
+        },
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 113,
+          "quote": "  material return, Albion-style. **With no pool, or not enough Focus, the craft still succeeds at 0% return and nothing\n  is spent.** It is never free. RISK-ZONES counts `focus.spent`; door 2 does not count it again.\n- **D9 — tempering anywhere, no tool items.** Iron and Steel Tempering and stone making run from the Crafting Book for a\n  holder of the skill, anywhere. Mini Furnace and the hammers stay inert (`Script/Items/ItemEffects.txt:93-96`).\n- **D10 — wear belongs to RISK-ZONES.4b.** Weapon Repair (phase 2b) calls `CraftWear.Repair` (RISK-ZONES.4b.3). It\n  stays blocked until that lands and the wear bit layout is settled (see Architecture Notes).\n- **D11 — Ore Discovery gets its pinned effect.** One draw from rAthena's `ORE` group per kill, credited to the player\n  with **loot priority**, not the first attacker (`mob.cpp:3357-3358` uses `first_sd`, which is the top damage dealer\n  after the 30% first-attack bonus, `mob.cpp:3050-3058`). ORO's equivalent is `Monster.GetTopContributor`\n  (`Monster.cs:1025`), after `BoostDamageContributionOfFirstAttacker` (`:969`). Dial `OreDiscoveryDrops`, default on\n  (vanilla). The ORO effect (extra Surge yield) waits for the Surge layer (rompe-sandbox §12.4, not built).\n- **D12 — naming.** \"Forge\" is taken: `ORO.Editor.Forge` is Mapforge's namespace. Code says **Smithing / Anvil / Still**;\n  the player word stays \"forge\". Window ids equal quest ids: `forge-smith` and `forge-still`.\n- **D13 — mod channel only.** No `PacketType` or `AdminAction` change. Door actions ride CRAFTING's `crafting-book`\n  window verb. The minigame rides the `quest-platform` channel with optional extra fields."
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFT-JOBS — Implementation Tracker\n\n> Living design+status doc for **the reworked crafting jobs**. The Blacksmith becomes the forge: quality up to\n> Masterpiece, the account crafter door and an optional forge minigame. The Alchemist becomes the still: a real skill tree\n> and brewing. This covers slices **S5 + S10** of the ROMPE Sandbox build order.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20, [design/rompe-sandbox.md](design/rompe-sandbox.md)).\n> Design: [§6.4 three doors](design/rompe-sandbox.md#64-three-doors-to-a-craft) ·\n> [§6.5 forge minigame](design/rompe-sandbox.md#65-the-forge-minigame-optional) ·\n> [§7 crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) ·\n> [§10.3 Focus and guards](design/rompe-sandbox.md#103-focus-and-the-self-sufficiency-guards) ·\n> [§11 jobs reworked](design/rompe-sandbox.md#11-jobs-reworked-d8) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§17 GhostShell Break](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> the `want-craft` loop in [design/player-path-content.md](design/player-path-content.md).\n> Skill authoring: [reference/ro-skills.md §8](reference/ro-skills.md#8-adding-a-new-skill--the-path) · precedent:\n> [JOBS-2-2-IMPL.md](JOBS-2-2-IMPL.md) · supersedes [EPISODE-8-IMPL.md](EPISODE-8-IMPL.md) **EP8.4.2** (Blacksmith\n> forging economy) and **EP8.3.3** (Alchemist tree). Platform: [reference/quest-platform.md](reference/quest-platform.md)."
+        },
+        {
+          "path": "docs/CRAFT-JOBS-IMPL.md",
+          "startLine": 113,
+          "quote": "  material return, Albion-style. **With no pool, or not enough Focus, the craft still succeeds at 0% return and nothing\n  is spent.** It is never free. RISK-ZONES counts `focus.spent`; door 2 does not count it again.\n- **D9 — tempering anywhere, no tool items.** Iron and Steel Tempering and stone making run from the Crafting Book for a\n  holder of the skill, anywhere. Mini Furnace and the hammers stay inert (`Script/Items/ItemEffects.txt:93-96`).\n- **D10 — wear belongs to RISK-ZONES.4b.** Weapon Repair (phase 2b) calls `CraftWear.Repair` (RISK-ZONES.4b.3). It\n  stays blocked until that lands and the wear bit layout is settled (see Architecture Notes).\n- **D11 — Ore Discovery gets its pinned effect.** One draw from rAthena's `ORE` group per kill, credited to the player\n  with **loot priority**, not the first attacker (`mob.cpp:3357-3358` uses `first_sd`, which is the top damage dealer\n  after the 30% first-attack bonus, `mob.cpp:3050-3058`). ORO's equivalent is `Monster.GetTopContributor`\n  (`Monster.cs:1025`), after `BoostDamageContributionOfFirstAttacker` (`:969`). Dial `OreDiscoveryDrops`, default on\n  (vanilla). The ORO effect (extra Surge yield) waits for the Surge layer (rompe-sandbox §12.4, not built).\n- **D12 — naming.** \"Forge\" is taken: `ORO.Editor.Forge` is Mapforge's namespace. Code says **Smithing / Anvil / Still**;\n  the player word stays \"forge\". Window ids equal quest ids: `forge-smith` and `forge-still`.\n- **D13 — mod channel only.** No `PacketType` or `AdminAction` change. Door actions ride CRAFTING's `crafting-book`\n  window verb. The minigame rides the `quest-platform` channel with optional extra fields."
+        }
+      ],
+      "paths": [
+        "docs/CRAFT-JOBS-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "crafting-book-v0",
+      "label": "Crafting Book v0",
+      "summary": "Crafting Book v0, part of the ROMPE Sandbox, features unlocked recipes, a Material Atlas, Kafra workshops for crafting, and salvage. It tracks player 'Want' for recipes and integrates with Ledger and other core systems, currently in \"plan-only\" status.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.35,
+      "visual": "An open, elaborately bound book displaying numerous crafting recipes. Beside it, a bustling Kafra workshop with various materials and tools, and a pile of discarded items ready for salvage.",
+      "visualChanged": true,
+      "currentState": "Crafting Book v0 is in a \"plan-only\" status, covering slices S1-S2 of the ROMPE Sandbox core plan. All recipes are unlocked. The system integrates with SANDBOX-DATA, LEDGER, KAFRA-LINK, FIRST-15, CRAFT-JOBS, KAFRA-BOARD, SANDBOX-OPS, RISK-ZONES, and KAFRA-HIRE. There is no existing crafting documentation in the `reference/` or `impl/` directories.",
+      "intendedDesign": "The Crafting Book v0 will allow players to turn a desired recipe (a \"Want\") into a Ledger Errand. A Material Atlas will inform players where to find materials. The Kafra workshop will serve as the first of three crafting doors, offering Normal quality crafting for a fee. The system will also include a salvage mechanic that returns a share of materials.",
+      "nextSteps": "The immediate next step is to read the implementation tracker for Crafting, specifically the Open Questions and Architecture sections, and then proceed with the first unchecked box. This is part of a continuation prompt for AI agents.",
+      "currentEvidence": [
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFTING — Implementation Tracker\n\n> Living design+status doc for **Crafting Book v0** (slices S1–S2 of the ROMPE Sandbox core plan): every recipe is\n> unlocked, **Want** turns a recipe into a Ledger Errand, the **Material Atlas** says where each material comes from, the\n> **Kafra workshop** is the first of three craft doors (Normal quality, a fee), and **salvage** gives a share back.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20).\n> Design: [design/rompe-sandbox.md §6](design/rompe-sandbox.md#6-crafting-for-people-who-hate-crafting) (6.1–6.4, 6.6,\n> 6.7) · [§7 the crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) and\n> [§7.1](design/rompe-sandbox.md#71-the-data-change-to-make-first) · [§8.1 sockets](design/rompe-sandbox.md#81-sockets-everywhere-d15) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§16.3 tracking fields](design/rompe-sandbox.md#163-new-tracking-fields) ·\n> [§19 build order](design/rompe-sandbox.md#19-build-order) · [design/player-path-content.md §3, loop `want-craft`](design/player-path-content.md#3-loops-the-tracking-unit),\n> [§4, steps ob.4, ob.7, hk.1](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> and [§8 tracking rules](design/player-path-content.md#8-tracking-rules) ·\n> data: [player-path/sandbox.json](player-path/sandbox.json) `loops[want-craft]`, lane `sandbox-crafting` in\n> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;"
+        },
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 17,
+          "quote": "> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;\n> client read: 6), LEDGER (specs: 1.2; `ActivityPayout`: 2; `ILedgerApi`: 3.7; voice: 4.4; client state: 5.1; storage\n> counts: 6.3; nudges: 6.4; Want metrics: 6.8), KAFRA-LINK (`map:` resolver: 5.2), FIRST-15 (the starter Want: 3.1–3.3),\n> CRAFT-JOBS (door 2: 2a.1; brew rows: 4b.1), KAFRA-BOARD (commissions: 6, 8), SANDBOX-OPS (recorder: 3a.6; Atlas gate: 2.4;\n> Atlas views: 4; dial domains: 3b.6; live tab: 5.5; hand-off: 6.9), RISK-ZONES (`risk` tag: 1a.1; line ids: 4a.1, 4a.5;\n> valuation: 3.4, 4b.5), KAFRA-HIRE (`KafraHire.IsLent`: 1a.3).\n> Template: [FEATURE-IMPL.template.md](FEATURE-IMPL.template.md). Follows DOCS-PROTOCOL.md Rules 12–15.\n> Updated: 2026-10-21 (audit revision)\n> Prior-art sweep: 2026-10-21 — checked CAPABILITIES.md + reference/ + impl/ (CAPABILITIES has no crafting row;\n> reference/ has no crafting doc: `expanded-loot.md` §4 holds the one-message wire ceiling, `inventory-window.md` the\n> popover, `maqui-windows.md` the catalog rules, and `ui.md:508-528` an unbuilt `MaquiCraftingWindow` sketch; impl/ has\n> nothing on crafting: `impl/planned/ECONOMY-SUITE-IMPL.md` is the parked economy observatory, and EPISODE-8 EP8.4.2 is\n> superseded by CRAFT-JOBS)\n\n## AI Continuation Prompt\n\nRead in order: this file (Open Questions, Architecture, then the first unchecked box);"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFTING — Implementation Tracker\n\n> Living design+status doc for **Crafting Book v0** (slices S1–S2 of the ROMPE Sandbox core plan): every recipe is\n> unlocked, **Want** turns a recipe into a Ledger Errand, the **Material Atlas** says where each material comes from, the\n> **Kafra workshop** is the first of three craft doors (Normal quality, a fee), and **salvage** gives a share back.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20).\n> Design: [design/rompe-sandbox.md §6](design/rompe-sandbox.md#6-crafting-for-people-who-hate-crafting) (6.1–6.4, 6.6,\n> 6.7) · [§7 the crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) and\n> [§7.1](design/rompe-sandbox.md#71-the-data-change-to-make-first) · [§8.1 sockets](design/rompe-sandbox.md#81-sockets-everywhere-d15) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§16.3 tracking fields](design/rompe-sandbox.md#163-new-tracking-fields) ·\n> [§19 build order](design/rompe-sandbox.md#19-build-order) · [design/player-path-content.md §3, loop `want-craft`](design/player-path-content.md#3-loops-the-tracking-unit),\n> [§4, steps ob.4, ob.7, hk.1](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> and [§8 tracking rules](design/player-path-content.md#8-tracking-rules) ·\n> data: [player-path/sandbox.json](player-path/sandbox.json) `loops[want-craft]`, lane `sandbox-crafting` in\n> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;"
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 17,
+          "quote": "> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;\n> client read: 6), LEDGER (specs: 1.2; `ActivityPayout`: 2; `ILedgerApi`: 3.7; voice: 4.4; client state: 5.1; storage\n> counts: 6.3; nudges: 6.4; Want metrics: 6.8), KAFRA-LINK (`map:` resolver: 5.2), FIRST-15 (the starter Want: 3.1–3.3),\n> CRAFT-JOBS (door 2: 2a.1; brew rows: 4b.1), KAFRA-BOARD (commissions: 6, 8), SANDBOX-OPS (recorder: 3a.6; Atlas gate: 2.4;\n> Atlas views: 4; dial domains: 3b.6; live tab: 5.5; hand-off: 6.9), RISK-ZONES (`risk` tag: 1a.1; line ids: 4a.1, 4a.5;\n> valuation: 3.4, 4b.5), KAFRA-HIRE (`KafraHire.IsLent`: 1a.3).\n> Template: [FEATURE-IMPL.template.md](FEATURE-IMPL.template.md). Follows DOCS-PROTOCOL.md Rules 12–15.\n> Updated: 2026-10-21 (audit revision)\n> Prior-art sweep: 2026-10-21 — checked CAPABILITIES.md + reference/ + impl/ (CAPABILITIES has no crafting row;\n> reference/ has no crafting doc: `expanded-loot.md` §4 holds the one-message wire ceiling, `inventory-window.md` the\n> popover, `maqui-windows.md` the catalog rules, and `ui.md:508-528` an unbuilt `MaquiCraftingWindow` sketch; impl/ has\n> nothing on crafting: `impl/planned/ECONOMY-SUITE-IMPL.md` is the parked economy observatory, and EPISODE-8 EP8.4.2 is\n> superseded by CRAFT-JOBS)\n\n## AI Continuation Prompt\n\nRead in order: this file (Open Questions, Architecture, then the first unchecked box);"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 1,
+          "quote": "# CRAFTING — Implementation Tracker\n\n> Living design+status doc for **Crafting Book v0** (slices S1–S2 of the ROMPE Sandbox core plan): every recipe is\n> unlocked, **Want** turns a recipe into a Ledger Errand, the **Material Atlas** says where each material comes from, the\n> **Kafra workshop** is the first of three craft doors (Normal quality, a fee), and **salvage** gives a share back.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment\n> 2026-10-20).\n> Design: [design/rompe-sandbox.md §6](design/rompe-sandbox.md#6-crafting-for-people-who-hate-crafting) (6.1–6.4, 6.6,\n> 6.7) · [§7 the crafted tier](design/rompe-sandbox.md#7-the-crafted-tier) and\n> [§7.1](design/rompe-sandbox.md#71-the-data-change-to-make-first) · [§8.1 sockets](design/rompe-sandbox.md#81-sockets-everywhere-d15) ·\n> [§15 every activity pays](design/rompe-sandbox.md#15-progression-every-activity-pays) ·\n> [§16.3 tracking fields](design/rompe-sandbox.md#163-new-tracking-fields) ·\n> [§19 build order](design/rompe-sandbox.md#19-build-order) · [design/player-path-content.md §3, loop `want-craft`](design/player-path-content.md#3-loops-the-tracking-unit),\n> [§4, steps ob.4, ob.7, hk.1](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours)\n> and [§8 tracking rules](design/player-path-content.md#8-tracking-rules) ·\n> data: [player-path/sandbox.json](player-path/sandbox.json) `loops[want-craft]`, lane `sandbox-crafting` in\n> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;"
+        },
+        {
+          "path": "docs/CRAFTING-IMPL.md",
+          "startLine": 17,
+          "quote": "> [player-path/path-design.json](player-path/path-design.json).\n> Siblings (ids re-checked in the 2026-10-21 consistency pass): SANDBOX-DATA (CraftInfo, `CraftedItemFactory`: 5a, 5a.6;\n> client read: 6), LEDGER (specs: 1.2; `ActivityPayout`: 2; `ILedgerApi`: 3.7; voice: 4.4; client state: 5.1; storage\n> counts: 6.3; nudges: 6.4; Want metrics: 6.8), KAFRA-LINK (`map:` resolver: 5.2), FIRST-15 (the starter Want: 3.1–3.3),\n> CRAFT-JOBS (door 2: 2a.1; brew rows: 4b.1), KAFRA-BOARD (commissions: 6, 8), SANDBOX-OPS (recorder: 3a.6; Atlas gate: 2.4;\n> Atlas views: 4; dial domains: 3b.6; live tab: 5.5; hand-off: 6.9), RISK-ZONES (`risk` tag: 1a.1; line ids: 4a.1, 4a.5;\n> valuation: 3.4, 4b.5), KAFRA-HIRE (`KafraHire.IsLent`: 1a.3).\n> Template: [FEATURE-IMPL.template.md](FEATURE-IMPL.template.md). Follows DOCS-PROTOCOL.md Rules 12–15.\n> Updated: 2026-10-21 (audit revision)\n> Prior-art sweep: 2026-10-21 — checked CAPABILITIES.md + reference/ + impl/ (CAPABILITIES has no crafting row;\n> reference/ has no crafting doc: `expanded-loot.md` §4 holds the one-message wire ceiling, `inventory-window.md` the\n> popover, `maqui-windows.md` the catalog rules, and `ui.md:508-528` an unbuilt `MaquiCraftingWindow` sketch; impl/ has\n> nothing on crafting: `impl/planned/ECONOMY-SUITE-IMPL.md` is the parked economy observatory, and EPISODE-8 EP8.4.2 is\n> superseded by CRAFT-JOBS)\n\n## AI Continuation Prompt\n\nRead in order: this file (Open Questions, Architecture, then the first unchecked box);"
+        }
+      ],
+      "paths": [
+        "docs/CRAFTING-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "first-15-minutes-onboarding",
+      "label": "First 15 Minutes Onboarding",
+      "summary": "The 'FIRST-15' system is designed to guide new characters through their initial 15 minutes, starting in a living field outside their town. It provides essential items, a borrowed companion, and aims for job level 10 quickly, built as a hidden ambient map mode.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.75,
+      "visual": "A newly spawned character stands in a vibrant, grassy field, a Poporing monster nearby. A friendly, high-level companion materializes beside them, ready for adventure.",
+      "visualChanged": true,
+      "currentState": "FIRST-15 is in a \"plan-only\" status as of 2026-10-21, part of slice S1 of the ROMPE Sandbox core plan. It is intended to be a hidden ambient map mode with a per-character run. The starter field for new characters defaults to prt_fild08 for Prontera and Izlude, with other start towns disabled until their specific tests and recipe checks pass. This retains the Classic Return D18 design of starting in a random classic town.",
+      "intendedDesign": "New characters will be born in a living field outside their start town, equipped with a Poporing with a knife, three First Aid kits, a \"Want,\" a craft, and a borrowed level-80 companion, aiming to reach job level 10 around minute 12. The player's save point will be determined by the chosen start town, using `StartCityCatalog.PickSavePoint`.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 1,
+          "quote": "# FIRST-15 — Implementation Tracker\n\n> Living design+status doc for **FIRST-15**, the first 15 minutes of a fresh character: born in a living field outside\n> its start town, a Poporing with a knife inside, First Aid ×3, a Want, a craft, a borrowed level-80 companion, and job\n> level 10 at about minute 12. Built as a hidden ambient map mode plus a per-character run.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · Updated: 2026-10-21 (revised after audit, against the siblings'\n> same-day revisions)\n> **Design:** [rompe-sandbox §4.1](design/rompe-sandbox.md#41-principles) ·\n> [§4.2 The first 15 minutes](design/rompe-sandbox.md#42-the-first-15-minutes-a-sketch-to-playtest-not-a-script-to-ship) ·\n> [§4.3 The first two hours](design/rompe-sandbox.md#43-the-first-two-hours) ·\n> [§3.2 How the Link speaks](design/rompe-sandbox.md#32-how-it-speaks) ·\n> [§19 Build order (S1)](design/rompe-sandbox.md#19-build-order) ·\n> [player-path-content §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours) ·\n> [§8 Tracking rules](design/player-path-content.md#8-tracking-rules) · board data\n> [`player-path/sandbox.json`](player-path/sandbox.json) (`onboarding`, ids `ob.*` and `hk.*`) ·\n> platform: [reference/event-layer.md](reference/event-layer.md) §3, §4.4 · [reference/map-modes.md](reference/map-modes.md)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20), slice **S1 — The first 15 minutes**.\n> **Siblings (referenced, never owned here):** SANDBOX-DATA · KAFRA-LINK · LEDGER · CRAFTING · RISK-ZONES · ACCOUNT-ROSTER ·"
+        },
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 28,
+          "quote": "\n## Open Questions\n\n> Spec Kit-style clarify step. ≤3 items, auto-resolved with Rule 13 defaults on 2026-10-21. The operator can override\n> any of them before the owning phase starts.\n\n1. **Q:** Which field is the starter field, and whose save point does a new character get?\n   **Resolution:** Keep Classic Return D18 (\"start in a random classic town\", `design/classic-return.md:625`, `:815`).\n   The field is keyed by start town: `fields.toml` has one row per `Kind=Start` town, and the save point stays the town\n   `StartCityCatalog.PickSavePoint` drew (`Networking/NetworkManager.cs:1643`). Prontera (1) and Izlude (6) both open\n   onto **prt_fild08**, the reference row, built and proven first. Geffen → `gef_fild07`, Payon → `pay_fild01` and\n   Alberta → `pay_fild03` ship disabled and turn on when their row test (1b.4) and the recipe coverage check (3.3) pass.\n   A town with no enabled row starts as today, with no run. (auto-resolved 2026-10-21)\n   > Rationale: D18 is an operator decision, and the first draft overrode it silently by pinning everyone to Prontera.\n   > rompe-sandbox §4.1 only says \"outside the starter city\", which any start town meets. prt_fild08 is the best\n   > reference: the gate warps run both ways (`Script/Warps/Towns/Prontera.txt:12`, `Script/Warps/Fields/PronteraFields.txt:52`),\n   > Kafra Sorin stands at the south gate (`Script/Npcs/Kafra.txt:481`), the fauna is level 1–6 with Jellopy at 70–75%\n   > (`Db/DropData.csv:209`, `:70`), and path bots already hunt it (PPB run 4). Izlude also warps onto it"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 1,
+          "quote": "# FIRST-15 — Implementation Tracker\n\n> Living design+status doc for **FIRST-15**, the first 15 minutes of a fresh character: born in a living field outside\n> its start town, a Poporing with a knife inside, First Aid ×3, a Want, a craft, a borrowed level-80 companion, and job\n> level 10 at about minute 12. Built as a hidden ambient map mode plus a per-character run.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · Updated: 2026-10-21 (revised after audit, against the siblings'\n> same-day revisions)\n> **Design:** [rompe-sandbox §4.1](design/rompe-sandbox.md#41-principles) ·\n> [§4.2 The first 15 minutes](design/rompe-sandbox.md#42-the-first-15-minutes-a-sketch-to-playtest-not-a-script-to-ship) ·\n> [§4.3 The first two hours](design/rompe-sandbox.md#43-the-first-two-hours) ·\n> [§3.2 How the Link speaks](design/rompe-sandbox.md#32-how-it-speaks) ·\n> [§19 Build order (S1)](design/rompe-sandbox.md#19-build-order) ·\n> [player-path-content §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours) ·\n> [§8 Tracking rules](design/player-path-content.md#8-tracking-rules) · board data\n> [`player-path/sandbox.json`](player-path/sandbox.json) (`onboarding`, ids `ob.*` and `hk.*`) ·\n> platform: [reference/event-layer.md](reference/event-layer.md) §3, §4.4 · [reference/map-modes.md](reference/map-modes.md)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20), slice **S1 — The first 15 minutes**.\n> **Siblings (referenced, never owned here):** SANDBOX-DATA · KAFRA-LINK · LEDGER · CRAFTING · RISK-ZONES · ACCOUNT-ROSTER ·"
+        },
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 28,
+          "quote": "\n## Open Questions\n\n> Spec Kit-style clarify step. ≤3 items, auto-resolved with Rule 13 defaults on 2026-10-21. The operator can override\n> any of them before the owning phase starts.\n\n1. **Q:** Which field is the starter field, and whose save point does a new character get?\n   **Resolution:** Keep Classic Return D18 (\"start in a random classic town\", `design/classic-return.md:625`, `:815`).\n   The field is keyed by start town: `fields.toml` has one row per `Kind=Start` town, and the save point stays the town\n   `StartCityCatalog.PickSavePoint` drew (`Networking/NetworkManager.cs:1643`). Prontera (1) and Izlude (6) both open\n   onto **prt_fild08**, the reference row, built and proven first. Geffen → `gef_fild07`, Payon → `pay_fild01` and\n   Alberta → `pay_fild03` ship disabled and turn on when their row test (1b.4) and the recipe coverage check (3.3) pass.\n   A town with no enabled row starts as today, with no run. (auto-resolved 2026-10-21)\n   > Rationale: D18 is an operator decision, and the first draft overrode it silently by pinning everyone to Prontera.\n   > rompe-sandbox §4.1 only says \"outside the starter city\", which any start town meets. prt_fild08 is the best\n   > reference: the gate warps run both ways (`Script/Warps/Towns/Prontera.txt:12`, `Script/Warps/Fields/PronteraFields.txt:52`),\n   > Kafra Sorin stands at the south gate (`Script/Npcs/Kafra.txt:481`), the fauna is level 1–6 with Jellopy at 70–75%\n   > (`Db/DropData.csv:209`, `:70`), and path bots already hunt it (PPB run 4). Izlude also warps onto it"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 1,
+          "quote": "# FIRST-15 — Implementation Tracker\n\n> Living design+status doc for **FIRST-15**, the first 15 minutes of a fresh character: born in a living field outside\n> its start town, a Poporing with a knife inside, First Aid ×3, a Want, a craft, a borrowed level-80 companion, and job\n> level 10 at about minute 12. Built as a hidden ambient map mode plus a per-character run.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · Updated: 2026-10-21 (revised after audit, against the siblings'\n> same-day revisions)\n> **Design:** [rompe-sandbox §4.1](design/rompe-sandbox.md#41-principles) ·\n> [§4.2 The first 15 minutes](design/rompe-sandbox.md#42-the-first-15-minutes-a-sketch-to-playtest-not-a-script-to-ship) ·\n> [§4.3 The first two hours](design/rompe-sandbox.md#43-the-first-two-hours) ·\n> [§3.2 How the Link speaks](design/rompe-sandbox.md#32-how-it-speaks) ·\n> [§19 Build order (S1)](design/rompe-sandbox.md#19-build-order) ·\n> [player-path-content §4](design/player-path-content.md#4-onboarding-the-first-15-minutes-and-the-first-two-hours) ·\n> [§8 Tracking rules](design/player-path-content.md#8-tracking-rules) · board data\n> [`player-path/sandbox.json`](player-path/sandbox.json) (`onboarding`, ids `ob.*` and `hk.*`) ·\n> platform: [reference/event-layer.md](reference/event-layer.md) §3, §4.4 · [reference/map-modes.md](reference/map-modes.md)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20), slice **S1 — The first 15 minutes**.\n> **Siblings (referenced, never owned here):** SANDBOX-DATA · KAFRA-LINK · LEDGER · CRAFTING · RISK-ZONES · ACCOUNT-ROSTER ·"
+        },
+        {
+          "path": "docs/FIRST-15-IMPL.md",
+          "startLine": 28,
+          "quote": "\n## Open Questions\n\n> Spec Kit-style clarify step. ≤3 items, auto-resolved with Rule 13 defaults on 2026-10-21. The operator can override\n> any of them before the owning phase starts.\n\n1. **Q:** Which field is the starter field, and whose save point does a new character get?\n   **Resolution:** Keep Classic Return D18 (\"start in a random classic town\", `design/classic-return.md:625`, `:815`).\n   The field is keyed by start town: `fields.toml` has one row per `Kind=Start` town, and the save point stays the town\n   `StartCityCatalog.PickSavePoint` drew (`Networking/NetworkManager.cs:1643`). Prontera (1) and Izlude (6) both open\n   onto **prt_fild08**, the reference row, built and proven first. Geffen → `gef_fild07`, Payon → `pay_fild01` and\n   Alberta → `pay_fild03` ship disabled and turn on when their row test (1b.4) and the recipe coverage check (3.3) pass.\n   A town with no enabled row starts as today, with no run. (auto-resolved 2026-10-21)\n   > Rationale: D18 is an operator decision, and the first draft overrode it silently by pinning everyone to Prontera.\n   > rompe-sandbox §4.1 only says \"outside the starter city\", which any start town meets. prt_fild08 is the best\n   > reference: the gate warps run both ways (`Script/Warps/Towns/Prontera.txt:12`, `Script/Warps/Fields/PronteraFields.txt:52`),\n   > Kafra Sorin stands at the south gate (`Script/Npcs/Kafra.txt:481`), the fauna is level 1–6 with Jellopy at 70–75%\n   > (`Db/DropData.csv:209`, `:70`), and path bots already hunt it (PPB run 4). Izlude also warps onto it"
+        }
+      ],
+      "paths": [
+        "docs/FIRST-15-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "caravan-event-layer",
+      "label": "Caravan Event Layer",
+      "summary": "The Caravan layer is a planned scheduled event where Kafra Corp wagons travel between cities, guarded by escorts and attacked by raiders. It's a core component of the ROMPE Sandbox, integrating risk zones and group mechanics.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.75,
+      "visual": "A robust Kafra Corp wagon, pulled by Peco Pecos, rolls along a dusty road between two distant cities. Armed escorts flank it, while shadowy figures lurk in the surrounding wilderness, poised to raid.",
+      "visualChanged": true,
+      "currentState": "The Caravan event layer is in a \"plan-only\" status as of 2026-10-21, designated as Slice S6 Caravan v0. It is defined as a scheduled event where a Kafra Corp wagon travels between cities. The wagon itself is implemented as a monster objective (`CARAVAN_WAGON` 7020) with `AiEmpty`, no EXP, and no drops, spawned and managed by a `CaravanArena`.",
+      "intendedDesign": "The Caravan event will involve player escorts guarding the wagon and raiders attempting to break it. Consigned goods will be transported within the wagon. The route's risk color (blue, yellow, red, black) will influence who can join the raid side, a pay multiplier, and the spill mechanic. PvP gates on red and black maps will allow player interaction with escorts, while sealed matches will override this.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 1,
+          "quote": "# CARAVAN-LAYER — Implementation Tracker\n\n> Living design+status doc for the **Caravan** event layer: a scheduled Kafra Corp wagon pulled by Peco Pecos rolls\n> down one map leg between two cities. Escorts guard it, raiders try to break it, consigned goods ride in it.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Slice:** S6 Caravan v0 · Updated: 2026-10-21 (revised after audit)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> **Design:** [design/rompe-sandbox.md §12.1](design/rompe-sandbox.md#121-caravan-express--wayfarer--invasion-chassis) ·\n> sides: [design/groups.md §7.1](design/groups.md#71-sides-on-pvp-maps-and-in-war-modes-g-d14-g-d15),\n> [§8.1](design/groups.md#81-the-entity-table), [§8.3](design/groups.md#83-what-needs-review-and-fixing-in-the-factionspvp-code) ·\n> cargo: [rompe-sandbox §13.2](design/rompe-sandbox.md#132-warehouses-d14) · spill:\n> [§10.4](design/rompe-sandbox.md#104-the-grave-core-system) · risk: [§10](design/rompe-sandbox.md#10-risk-zones-ambient-rule-layer) ·\n> pay: [§15](design/rompe-sandbox.md#15-progression-every-activity-pays) · Merchant rights:\n> [§11.3](design/rompe-sandbox.md#113-merchant-the-trader) · Break views: [§17](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> player path: [design/player-path-content.md](design/player-path-content.md) (loop `haul`, beats ob.5 and hk.6),\n> [player-path/sandbox.json](player-path/sandbox.json) (`haul`, lane `sandbox-caravan`).\n> **Chassis trackers:** [impl/KAFRA-EXPRESS-IMPL.md](impl/KAFRA-EXPRESS-IMPL.md) (promoted),\n> [WAYFARER-LAYER-IMPL.md](WAYFARER-LAYER-IMPL.md), [INVASION-LAYER-IMPL.md](INVASION-LAYER-IMPL.md) · platform:\n> [reference/event-layer.md](reference/event-layer.md) §3, §4.4, §6."
+        },
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 49,
+          "quote": "   > the field: wild monsters, and the PvP gate on red and black maps (groups §7.1). It matches groups §3's \"outside the\n   > match Neutral\". Spawn Cards duels and Clash keep `Open = false`, so their suites stay green unedited.\n   > Override: grant everyone `Open = false` for a sealed match; the field then cannot touch escorts.\n2. **Q:** What body is the wagon: a monster objective or a bot Player?\n   **Resolution:** A monster. ORO-original row `CARAVAN_WAGON` (7020), `AiEmpty`, no EXP, no drops, HP from the dial at\n   spawn. It is spawned and removed through one `CaravanArena` file. That is event-layer invariant 13's third deliberate\n   exception, after Spawn Cards and Invasion, with the same teardown proof. The exception text goes into\n   reference/event-layer.md in CARAVAN-LAYER.2.4, the box that ships the arena. The wagon walks by\n   `Monster.IssueMoveOrder`, driven by `WayfarerWalker` through `CaravanWagonBody : IWayfarerBody`.\n   > Rationale: the design and groups §8.1 call it an objective entity. Monsters already follow a leader\n   > (`SetupEscort`), take move orders, and hold Engagement teams (Clash structures). A bot Player body would turn a\n   > broken wagon into a player death (respawn, death penalty, an Overmind slot) and add PvP-gate cases.\n   > Override: if monsters cannot cross portals cleanly when multi-map routes arrive, switch the body to a drafted bot\n   > Player (\"teamster\") behind the same `IWayfarerBody` seam; the rules do not change.\n3. **Q:** How does the route's risk colour shape a run?\n   **Resolution:** Three dials read the colour of the route map (`RiskZones.ColourOf`, RISK-ZONES.1b.1; an untagged map\n   counts as yellow): who may join the raid side (`CaravanHumanRaidMinRisk`, an int code 0 blue, 1 yellow, 2 red,\n   3 black, default 1, so blue roads are raided by bandit bots only), a pay multiplier per colour, and the spill. A"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 1,
+          "quote": "# CARAVAN-LAYER — Implementation Tracker\n\n> Living design+status doc for the **Caravan** event layer: a scheduled Kafra Corp wagon pulled by Peco Pecos rolls\n> down one map leg between two cities. Escorts guard it, raiders try to break it, consigned goods ride in it.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Slice:** S6 Caravan v0 · Updated: 2026-10-21 (revised after audit)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> **Design:** [design/rompe-sandbox.md §12.1](design/rompe-sandbox.md#121-caravan-express--wayfarer--invasion-chassis) ·\n> sides: [design/groups.md §7.1](design/groups.md#71-sides-on-pvp-maps-and-in-war-modes-g-d14-g-d15),\n> [§8.1](design/groups.md#81-the-entity-table), [§8.3](design/groups.md#83-what-needs-review-and-fixing-in-the-factionspvp-code) ·\n> cargo: [rompe-sandbox §13.2](design/rompe-sandbox.md#132-warehouses-d14) · spill:\n> [§10.4](design/rompe-sandbox.md#104-the-grave-core-system) · risk: [§10](design/rompe-sandbox.md#10-risk-zones-ambient-rule-layer) ·\n> pay: [§15](design/rompe-sandbox.md#15-progression-every-activity-pays) · Merchant rights:\n> [§11.3](design/rompe-sandbox.md#113-merchant-the-trader) · Break views: [§17](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> player path: [design/player-path-content.md](design/player-path-content.md) (loop `haul`, beats ob.5 and hk.6),\n> [player-path/sandbox.json](player-path/sandbox.json) (`haul`, lane `sandbox-caravan`).\n> **Chassis trackers:** [impl/KAFRA-EXPRESS-IMPL.md](impl/KAFRA-EXPRESS-IMPL.md) (promoted),\n> [WAYFARER-LAYER-IMPL.md](WAYFARER-LAYER-IMPL.md), [INVASION-LAYER-IMPL.md](INVASION-LAYER-IMPL.md) · platform:\n> [reference/event-layer.md](reference/event-layer.md) §3, §4.4, §6."
+        },
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 49,
+          "quote": "   > the field: wild monsters, and the PvP gate on red and black maps (groups §7.1). It matches groups §3's \"outside the\n   > match Neutral\". Spawn Cards duels and Clash keep `Open = false`, so their suites stay green unedited.\n   > Override: grant everyone `Open = false` for a sealed match; the field then cannot touch escorts.\n2. **Q:** What body is the wagon: a monster objective or a bot Player?\n   **Resolution:** A monster. ORO-original row `CARAVAN_WAGON` (7020), `AiEmpty`, no EXP, no drops, HP from the dial at\n   spawn. It is spawned and removed through one `CaravanArena` file. That is event-layer invariant 13's third deliberate\n   exception, after Spawn Cards and Invasion, with the same teardown proof. The exception text goes into\n   reference/event-layer.md in CARAVAN-LAYER.2.4, the box that ships the arena. The wagon walks by\n   `Monster.IssueMoveOrder`, driven by `WayfarerWalker` through `CaravanWagonBody : IWayfarerBody`.\n   > Rationale: the design and groups §8.1 call it an objective entity. Monsters already follow a leader\n   > (`SetupEscort`), take move orders, and hold Engagement teams (Clash structures). A bot Player body would turn a\n   > broken wagon into a player death (respawn, death penalty, an Overmind slot) and add PvP-gate cases.\n   > Override: if monsters cannot cross portals cleanly when multi-map routes arrive, switch the body to a drafted bot\n   > Player (\"teamster\") behind the same `IWayfarerBody` seam; the rules do not change.\n3. **Q:** How does the route's risk colour shape a run?\n   **Resolution:** Three dials read the colour of the route map (`RiskZones.ColourOf`, RISK-ZONES.1b.1; an untagged map\n   counts as yellow): who may join the raid side (`CaravanHumanRaidMinRisk`, an int code 0 blue, 1 yellow, 2 red,\n   3 black, default 1, so blue roads are raided by bandit bots only), a pay multiplier per colour, and the spill. A"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 1,
+          "quote": "# CARAVAN-LAYER — Implementation Tracker\n\n> Living design+status doc for the **Caravan** event layer: a scheduled Kafra Corp wagon pulled by Peco Pecos rolls\n> down one map leg between two cities. Escorts guard it, raiders try to break it, consigned goods ride in it.\n> **Status:** Plan-only · **Opened:** 2026-10-21 · **Slice:** S6 Caravan v0 · Updated: 2026-10-21 (revised after audit)\n> **Parent:** the ROMPE Sandbox core plan (CLAUDE.md charter amendment 2026-10-20).\n> **Design:** [design/rompe-sandbox.md §12.1](design/rompe-sandbox.md#121-caravan-express--wayfarer--invasion-chassis) ·\n> sides: [design/groups.md §7.1](design/groups.md#71-sides-on-pvp-maps-and-in-war-modes-g-d14-g-d15),\n> [§8.1](design/groups.md#81-the-entity-table), [§8.3](design/groups.md#83-what-needs-review-and-fixing-in-the-factionspvp-code) ·\n> cargo: [rompe-sandbox §13.2](design/rompe-sandbox.md#132-warehouses-d14) · spill:\n> [§10.4](design/rompe-sandbox.md#104-the-grave-core-system) · risk: [§10](design/rompe-sandbox.md#10-risk-zones-ambient-rule-layer) ·\n> pay: [§15](design/rompe-sandbox.md#15-progression-every-activity-pays) · Merchant rights:\n> [§11.3](design/rompe-sandbox.md#113-merchant-the-trader) · Break views: [§17](design/rompe-sandbox.md#17-ghostshell-break-the-management-zone) ·\n> player path: [design/player-path-content.md](design/player-path-content.md) (loop `haul`, beats ob.5 and hk.6),\n> [player-path/sandbox.json](player-path/sandbox.json) (`haul`, lane `sandbox-caravan`).\n> **Chassis trackers:** [impl/KAFRA-EXPRESS-IMPL.md](impl/KAFRA-EXPRESS-IMPL.md) (promoted),\n> [WAYFARER-LAYER-IMPL.md](WAYFARER-LAYER-IMPL.md), [INVASION-LAYER-IMPL.md](INVASION-LAYER-IMPL.md) · platform:\n> [reference/event-layer.md](reference/event-layer.md) §3, §4.4, §6."
+        },
+        {
+          "path": "docs/CARAVAN-LAYER-IMPL.md",
+          "startLine": 49,
+          "quote": "   > the field: wild monsters, and the PvP gate on red and black maps (groups §7.1). It matches groups §3's \"outside the\n   > match Neutral\". Spawn Cards duels and Clash keep `Open = false`, so their suites stay green unedited.\n   > Override: grant everyone `Open = false` for a sealed match; the field then cannot touch escorts.\n2. **Q:** What body is the wagon: a monster objective or a bot Player?\n   **Resolution:** A monster. ORO-original row `CARAVAN_WAGON` (7020), `AiEmpty`, no EXP, no drops, HP from the dial at\n   spawn. It is spawned and removed through one `CaravanArena` file. That is event-layer invariant 13's third deliberate\n   exception, after Spawn Cards and Invasion, with the same teardown proof. The exception text goes into\n   reference/event-layer.md in CARAVAN-LAYER.2.4, the box that ships the arena. The wagon walks by\n   `Monster.IssueMoveOrder`, driven by `WayfarerWalker` through `CaravanWagonBody : IWayfarerBody`.\n   > Rationale: the design and groups §8.1 call it an objective entity. Monsters already follow a leader\n   > (`SetupEscort`), take move orders, and hold Engagement teams (Clash structures). A bot Player body would turn a\n   > broken wagon into a player death (respawn, death penalty, an Overmind slot) and add PvP-gate cases.\n   > Override: if monsters cannot cross portals cleanly when multi-map routes arrive, switch the body to a drafted bot\n   > Player (\"teamster\") behind the same `IWayfarerBody` seam; the rules do not change.\n3. **Q:** How does the route's risk colour shape a run?\n   **Resolution:** Three dials read the colour of the route map (`RiskZones.ColourOf`, RISK-ZONES.1b.1; an untagged map\n   counts as yellow): who may join the raid side (`CaravanHumanRaidMinRisk`, an int code 0 blue, 1 yellow, 2 red,\n   3 black, default 1, so blue roads are raided by bandit bots only), a pay multiplier per colour, and the spill. A"
+        }
+      ],
+      "paths": [
+        "docs/CARAVAN-LAYER-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "sky-and-time-of-day-system",
+      "label": "Sky & Time of Day System",
+      "summary": "A P0 in-progress day/night cycle system for ROMPE. It visually changes over time based on server or local time, driven by visual data, not code. It uses 32-bit pixel art for sky and light, with enclosed maps having no cycle.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.75,
+      "visual": "A dynamic pixel-art sky gradually shifts from a vibrant morning orange to a deep twilight blue, casting changing light over a classic Ragnarok landscape. Stars begin to twinkle, and a crescent moon rises.",
+      "visualChanged": true,
+      "currentState": "The sky and time of day system is P0 in progress. Currently, no sky is rendered; the `Default-Skybox` is unused in 232 scenes, and `IGfxService.SetSkybox` has no callers. There are no sky/star/moon shaders or sprites. The existing default skyboxes use the built-in procedural sky.",
+      "intendedDesign": "The system will feature a day/night cycle as a live visual layer, driven by either server time or local time, with administrative controls to switch it off or pin it to a specific hour. Day and night behavior will be map-group specific visual data. The sky will be rendered as good-looking 32-bit pixel art, compatible with the lighting. Enclosed maps (dungeons, interiors) will have no cycle and a fixed sky setting. The system aims for performant rendering on WebGPU.",
+      "nextSteps": "The immediate next step is for the tracker (SKY-TIME-IMPL.md) to be updated, especially for the P0 in-progress items, and to resolve the \"sun in every cave\" lesson into rule 3 in section 3 of the design.",
+      "currentEvidence": [
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 1,
+          "quote": "# Sky & Time of Day — Design\n\n> **Operator direction, 2026-10-18.** A day/night cycle built *on* the visual layer system: a live layer that\n> changes over time, visible in the Visual tab overriding the config values it touches, driven by server time or\n> local time, which an admin can switch off or pin to a specific hour. How day and night behave per map group is\n> visual data, not code. TPS/FPS look at the sky, so the sky must be good-looking 32-bit pixel art that works with\n> the light. Enclosed maps (dungeons, interiors) get no cycle and a proper sky setting. Design only; performant on\n> WebGPU.\n> Status: **P0 in progress** (2026-10-19). §12 answered by the operator 2026-10-19. Tracker:\n> [../SKY-TIME-IMPL.md](../SKY-TIME-IMPL.md).\n> Grounding: a read-only sweep of the client, server and docs on 2026-10-18. \"Today\" claims carry a file reference\n> (C = `RebuildClient/Assets/Scripts`); line numbers drift.\n> Related: [../research/oro-look-system.md](../research/oro-look-system.md) (the capability/values rule this follows),\n> [../reference/visual-layers.md](../reference/visual-layers.md), [../reference/map-tags.md](../reference/map-tags.md),\n> backlog item **CAMVIEW-SKY** (`docs/BACKLOG.md:313`), which this design closes.\n\n---\n"
+        },
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 33,
+          "quote": "flowchart LR\n    SC[\"Server WorldClock<br/>source · day length · anchor\"] -->|\"WorldClockState packet<br/>on login + on change\"| CC[\"Client WorldClock<br/>hour = f(server now)\"]\n    CC --> TD[\"TimeOfDayDriver<br/>≤4 Hz, no alloc\"]\n    CAS[\"Cascade P-10..50<br/>(resolves timeProfile, sky)\"] --> TD\n    PROF[\"visual/time/&lt;profile&gt;/*.json<br/>keyframes\"] --> TD\n    TD -->|\"time-of-day @ P60<br/>(only the fields it touches)\"| SVC[\"VisualConfigService<br/>quiet partial apply\"]\n    TD -->|\"sky uniforms\"| SKY[\"ORO/PixelSky material<br/>one draw, TPS/FPS only\"]\n```\n\n---\n\n## 2. What exists today (and what it means for this design)\n\n- **No sky is rendered.** `Default-Skybox` sits in 232 scenes but is deliberately unused, so caves don't get a sun\n  (`CameraViewController.cs:70-73`). `IGfxService.SetSkybox` (`C/ORO/Services/GfxService.cs:20`) has no callers. Six\n  `Assets/Materials/Skybox*.mat` use the built-in procedural sky; `skyclouds.mat` and `JunoClouds.prefab` are unused.\n  There are no sky/star/moon shaders or sprites. → The sky is greenfield. The \"sun in every cave\" lesson becomes rule 3\n  in §3."
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 1,
+          "quote": "# Sky & Time of Day — Design\n\n> **Operator direction, 2026-10-18.** A day/night cycle built *on* the visual layer system: a live layer that\n> changes over time, visible in the Visual tab overriding the config values it touches, driven by server time or\n> local time, which an admin can switch off or pin to a specific hour. How day and night behave per map group is\n> visual data, not code. TPS/FPS look at the sky, so the sky must be good-looking 32-bit pixel art that works with\n> the light. Enclosed maps (dungeons, interiors) get no cycle and a proper sky setting. Design only; performant on\n> WebGPU.\n> Status: **P0 in progress** (2026-10-19). §12 answered by the operator 2026-10-19. Tracker:\n> [../SKY-TIME-IMPL.md](../SKY-TIME-IMPL.md).\n> Grounding: a read-only sweep of the client, server and docs on 2026-10-18. \"Today\" claims carry a file reference\n> (C = `RebuildClient/Assets/Scripts`); line numbers drift.\n> Related: [../research/oro-look-system.md](../research/oro-look-system.md) (the capability/values rule this follows),\n> [../reference/visual-layers.md](../reference/visual-layers.md), [../reference/map-tags.md](../reference/map-tags.md),\n> backlog item **CAMVIEW-SKY** (`docs/BACKLOG.md:313`), which this design closes.\n\n---\n"
+        },
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 33,
+          "quote": "flowchart LR\n    SC[\"Server WorldClock<br/>source · day length · anchor\"] -->|\"WorldClockState packet<br/>on login + on change\"| CC[\"Client WorldClock<br/>hour = f(server now)\"]\n    CC --> TD[\"TimeOfDayDriver<br/>≤4 Hz, no alloc\"]\n    CAS[\"Cascade P-10..50<br/>(resolves timeProfile, sky)\"] --> TD\n    PROF[\"visual/time/&lt;profile&gt;/*.json<br/>keyframes\"] --> TD\n    TD -->|\"time-of-day @ P60<br/>(only the fields it touches)\"| SVC[\"VisualConfigService<br/>quiet partial apply\"]\n    TD -->|\"sky uniforms\"| SKY[\"ORO/PixelSky material<br/>one draw, TPS/FPS only\"]\n```\n\n---\n\n## 2. What exists today (and what it means for this design)\n\n- **No sky is rendered.** `Default-Skybox` sits in 232 scenes but is deliberately unused, so caves don't get a sun\n  (`CameraViewController.cs:70-73`). `IGfxService.SetSkybox` (`C/ORO/Services/GfxService.cs:20`) has no callers. Six\n  `Assets/Materials/Skybox*.mat` use the built-in procedural sky; `skyclouds.mat` and `JunoClouds.prefab` are unused.\n  There are no sky/star/moon shaders or sprites. → The sky is greenfield. The \"sun in every cave\" lesson becomes rule 3\n  in §3."
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 33,
+          "quote": "flowchart LR\n    SC[\"Server WorldClock<br/>source · day length · anchor\"] -->|\"WorldClockState packet<br/>on login + on change\"| CC[\"Client WorldClock<br/>hour = f(server now)\"]\n    CC --> TD[\"TimeOfDayDriver<br/>≤4 Hz, no alloc\"]\n    CAS[\"Cascade P-10..50<br/>(resolves timeProfile, sky)\"] --> TD\n    PROF[\"visual/time/&lt;profile&gt;/*.json<br/>keyframes\"] --> TD\n    TD -->|\"time-of-day @ P60<br/>(only the fields it touches)\"| SVC[\"VisualConfigService<br/>quiet partial apply\"]\n    TD -->|\"sky uniforms\"| SKY[\"ORO/PixelSky material<br/>one draw, TPS/FPS only\"]\n```\n\n---\n\n## 2. What exists today (and what it means for this design)\n\n- **No sky is rendered.** `Default-Skybox` sits in 232 scenes but is deliberately unused, so caves don't get a sun\n  (`CameraViewController.cs:70-73`). `IGfxService.SetSkybox` (`C/ORO/Services/GfxService.cs:20`) has no callers. Six\n  `Assets/Materials/Skybox*.mat` use the built-in procedural sky; `skyclouds.mat` and `JunoClouds.prefab` are unused.\n  There are no sky/star/moon shaders or sprites. → The sky is greenfield. The \"sun in every cave\" lesson becomes rule 3\n  in §3."
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 1,
+          "quote": "# Sky & Time of Day — Design\n\n> **Operator direction, 2026-10-18.** A day/night cycle built *on* the visual layer system: a live layer that\n> changes over time, visible in the Visual tab overriding the config values it touches, driven by server time or\n> local time, which an admin can switch off or pin to a specific hour. How day and night behave per map group is\n> visual data, not code. TPS/FPS look at the sky, so the sky must be good-looking 32-bit pixel art that works with\n> the light. Enclosed maps (dungeons, interiors) get no cycle and a proper sky setting. Design only; performant on\n> WebGPU.\n> Status: **P0 in progress** (2026-10-19). §12 answered by the operator 2026-10-19. Tracker:\n> [../SKY-TIME-IMPL.md](../SKY-TIME-IMPL.md).\n> Grounding: a read-only sweep of the client, server and docs on 2026-10-18. \"Today\" claims carry a file reference\n> (C = `RebuildClient/Assets/Scripts`); line numbers drift.\n> Related: [../research/oro-look-system.md](../research/oro-look-system.md) (the capability/values rule this follows),\n> [../reference/visual-layers.md](../reference/visual-layers.md), [../reference/map-tags.md](../reference/map-tags.md),\n> backlog item **CAMVIEW-SKY** (`docs/BACKLOG.md:313`), which this design closes.\n\n---\n"
+        },
+        {
+          "path": "docs/design/sky-and-time.md",
+          "startLine": 33,
+          "quote": "flowchart LR\n    SC[\"Server WorldClock<br/>source · day length · anchor\"] -->|\"WorldClockState packet<br/>on login + on change\"| CC[\"Client WorldClock<br/>hour = f(server now)\"]\n    CC --> TD[\"TimeOfDayDriver<br/>≤4 Hz, no alloc\"]\n    CAS[\"Cascade P-10..50<br/>(resolves timeProfile, sky)\"] --> TD\n    PROF[\"visual/time/&lt;profile&gt;/*.json<br/>keyframes\"] --> TD\n    TD -->|\"time-of-day @ P60<br/>(only the fields it touches)\"| SVC[\"VisualConfigService<br/>quiet partial apply\"]\n    TD -->|\"sky uniforms\"| SKY[\"ORO/PixelSky material<br/>one draw, TPS/FPS only\"]\n```\n\n---\n\n## 2. What exists today (and what it means for this design)\n\n- **No sky is rendered.** `Default-Skybox` sits in 232 scenes but is deliberately unused, so caves don't get a sun\n  (`CameraViewController.cs:70-73`). `IGfxService.SetSkybox` (`C/ORO/Services/GfxService.cs:20`) has no callers. Six\n  `Assets/Materials/Skybox*.mat` use the built-in procedural sky; `skyclouds.mat` and `JunoClouds.prefab` are unused.\n  There are no sky/star/moon shaders or sprites. → The sky is greenfield. The \"sun in every cave\" lesson becomes rule 3\n  in §3."
+        }
+      ],
+      "paths": [
+        "docs/design/sky-and-time.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    }
+  ],
+  "art": {
+    "hash": "3de6c3868a8784e2f3879974320acce94b18140d34d28daddeae86e878d10972",
+    "url": "/api/assets/3de6c3868a8784e2f3879974320acce94b18140d34d28daddeae86e878d10972",
+    "sourceSnapshotId": "cfd15a23b1ebc848f77b0c6e",
+    "dependencyHash": "04fd062633e697278d79c2a6e3178d539a9d28193b7adbc4de5c19866ba89f87",
+    "chapterSignature": "b50543381ae322cc3378c85ef6a1817acc17a1954553e98e3c494777f4a5aab9",
+    "model": "image-gen",
+    "mime": "image/png",
+    "width": 1264,
+    "height": 848,
+    "createdAt": "2026-10-21T09:03:21.236Z",
+    "promptHash": "12b0d932b55d7dc811ace300220b58677ad81e5977e529e06151ce6f1fdb9a4b"
+  },
+  "ledger": [
+    {
+      "id": "e0b14c04-bf89-4ed2-aed6-e9b334941690",
+      "at": "2026-10-21T08:54:48.799Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.002035,
+      "cacheHit": false,
+      "snapshotId": "cfd15a23b1ebc848f77b0c6e",
+      "httpStatus": 200,
+      "callId": "ef72a3fe-9738-469b-b8eb-4018ebf34227",
+      "usage": {
+        "completion_tokens": 1608,
+        "prompt_tokens": 13918,
+        "total_tokens": 15526,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.002035,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.002035,
+          "upstream_inference_prompt_cost": 0.0013918,
+          "upstream_inference_completions_cost": 0.0006432
+        }
+      },
+      "durationMs": 5545.899900000004,
+      "sourceCount": 30,
+      "excerptCount": 74,
+      "approxBytes": 43819
+    },
+    {
+      "id": "0b8ee791-25a4-4460-9532-c70a90882509",
+      "at": "2026-10-21T08:59:39.033Z",
+      "model": "gemini-flash",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0.0133419,
+      "cacheHit": false,
+      "snapshotId": "cfd15a23b1ebc848f77b0c6e",
+      "httpStatus": 200,
+      "callId": "a513ee06-f39e-4712-87b0-743568c1300a",
+      "usage": {
+        "completion_tokens": 2886,
+        "prompt_tokens": 20423,
+        "total_tokens": 23309,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0133419,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0133419,
+          "upstream_inference_prompt_cost": 0.0061269,
+          "upstream_inference_completions_cost": 0.007215
+        }
+      },
+      "durationMs": 15435.940999999992,
+      "sourceCount": 30,
+      "excerptCount": 52,
+      "approxBytes": 63533,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "c6dbb6d7-1c26-4c5b-8b47-45543a5bfcd1",
+      "at": "2026-10-21T09:01:10.283Z",
+      "model": "gemini-flash",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0125119,
+      "cacheHit": false,
+      "snapshotId": "cfd15a23b1ebc848f77b0c6e",
+      "httpStatus": 200,
+      "callId": "383df488-c3c5-44a6-b310-97ed6d6d5306",
+      "usage": {
+        "completion_tokens": 2554,
+        "prompt_tokens": 20423,
+        "total_tokens": 22977,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0125119,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0125119,
+          "upstream_inference_prompt_cost": 0.0061269,
+          "upstream_inference_completions_cost": 0.006385
+        }
+      },
+      "durationMs": 13918.0717,
+      "sourceCount": 30,
+      "excerptCount": 52,
+      "approxBytes": 63533
+    },
+    {
+      "id": "28dee278-577f-49ca-a7d3-151d24719b0a",
+      "at": "2026-10-21T09:03:07.453Z",
+      "model": "image-gen",
+      "stage": "image",
+      "status": "success",
+      "costUsd": 0.0674915,
+      "cacheHit": false,
+      "promptHash": "12b0d932b55d7dc811ace300220b58677ad81e5977e529e06151ce6f1fdb9a4b",
+      "snapshotId": "cfd15a23b1ebc848f77b0c6e",
+      "httpStatus": 200,
+      "callId": "f91c99ab-5225-4383-9e63-21811bea961d",
+      "durationMs": 13740.9468,
+      "usage": {
+        "completion_tokens": 1120,
+        "prompt_tokens": 583,
+        "total_tokens": 1703,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 1120
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0674915,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0674915,
+          "upstream_inference_prompt_cost": 0.0002915,
+          "upstream_inference_completions_cost": 0.0672
+        }
+      },
+      "responseModel": "image-gen"
+    }
+  ],
+  "measuredCostUsd": 0.0953803,
+  "unknownCostAttempts": 0,
+  "originalHashes": {
+    "deploy/edge/break-ws/pub/index.html": "fc3db05e1a4165ee459cfba347abcb73dbe2fe30633c63eefeb06924b9bfa948",
+    "docs/ACCOUNT-ROSTER-IMPL.md": "ca88d77e37c7b82135aef2a4e1a8714e933575ad936db4034059bc017cb4769a",
+    "docs/CARAVAN-LAYER-IMPL.md": "056e548c82d0195919115c4329ea4e8e25a4dd4c450b483b50ae470704e81668",
+    "docs/CONTEXT.md": "067c2f6718fb3a5c95dbd8ab3fdd263eaa1dcedde0bd771310ca5c658f98744f",
+    "docs/CRAFT-JOBS-IMPL.md": "c00d0848470a6a9002bd8a083b9fb8cb4872fc60e377ea6f8b62eec689ad843e",
+    "docs/CRAFTING-IMPL.md": "df3c2ba3cf73030dc87514bd201f9d056be851e8a0bad9582e1f2d0beeb330f5",
+    "docs/design/asset-independence-tracker.md": "d7d06d7d444f6be4a971ccab846e650b6608f37a7cc247e62f9e6aa0f4c61959",
+    "docs/design/groups.md": "fa7b66493483bc44926f80abeaea80377c05726ff9eadf0e062302e3226c90a8",
+    "docs/design/legal-risk.md": "b9b09518a4041a956263f29f8e84c0abf3dd262538b4a15c0e6345789a52c5ef",
+    "docs/design/rompe-sandbox.md": "675b6ff082711e8f2a4d5e64f6d0c151ccd415cb39cf69efa30f9c39d1306df6",
+    "docs/design/sky-and-time.md": "e02886a4f67eeab2b3a4cfd2746c2b77db86ab02c6a280a1b762901b23977c76",
+    "docs/FIRST-15-IMPL.md": "5947abfd3cdf08dcb0c80ac5aa6efd7972cfcb051d350816c366b88f04bfe666",
+    "docs/README.md": "b58be4f3408dea1df0f6804df986a0fe2e8a692dc951965818d5939b3ef677d7",
+    "docs/reference/1hp-plants-hit.md": "be309f7f8a992cf46135ede76c01d5e44ad777a27ea77dbf227cd7fd047be5e7",
+    "docs/reference/map-tags.md": "dc74709539123a46ba82e528fd460825bf38c5bbf28d514ce83a3947f7e95723",
+    "docs/reference/maqui-window-style.md": "5f1a81fa834c85d187c5e6237748c8338acfc42681eeb4ed4e735c281bd6d1b2",
+    "docs/reference/monster-transitions.md": "1321fc790d3e0b2f97c2da50601b6f0b9b29ed57d3581c2fdceb6217920e8160",
+    "docs/reference/water.md": "69ef6065d4a37b30d427b48fbffcb0857b40e538de084fe013b53d420ff27911",
+    "docs/reference/window-settings-stack.md": "596ef74cc148b8d9632e0600e2403ca83b744c1ebd55103053015dddb93f963c",
+    "docs/ROADMAP.md": "350124a0edd97d25833a93a59500162ee8f7dae02ae8dd008f2f68115461cc6a",
+    "Other/RoScriptVSCodeSyntaxHighlighting/package.json": "b3c19e0151c2392b19bcf10efcc8a8996e3954a171e5bd9c2b610c01c9015afd",
+    "Other/RoWikiGenerator/Program.cs": "e589737f81b221b6e47ebba6fd0c14de34a14d1abb214ce200cd2cc6421adf1a",
+    "README.md": "48dc659e75ceaf619c39b64567b3b4227c2b676d012456961867454fc78f2269",
+    "RebuildClient/Assets/3rdParty/CheckIfMobileForUnityWebGL/package.json": "ba645f1231242cf43bc30d3245a7f80594a8e035c9e5227c75b273eba34cd042",
+    "RebuildClient/Assets/WebGLTemplates/Better2020/index.html": "7526b8a62f90d69accc732df5eca5072f6649fed20b9837f660cb09f25ad174c",
+    "RebuildClient/Assets/WebGLTemplates/Better2020/TemplateData/style.css": "47b098beaf85ffcdc112ab0b5d040f3bd4a65f23c0f9097feb17e79d0a1071bd",
+    "RebuildClient/Assets/WebGLTemplates/ORO/index.html": "f77d96b905c5a8e5b39246f1121fb70852af11c1e1132b0d388073d66c1fa901",
+    "RebuildClient/Assets/WebGLTemplates/Ragnarok/TemplateData/style.css": "e56d705d19907b89bad7994b453e24b69eb6c98886c74e7a5084d250adf91d9f",
+    "RoLlmService/Program.cs": "5b16ce220f97eb994755ba80040715b620adc05eec78a2658350f819925d5822",
+    "RoRebuildServer/DataToClientUtility/Program.cs": "3982ea3660ba7da83b95ebbbc8838e0dcacced271552051b24ae1dce6b8cd7dc"
+  }
+}

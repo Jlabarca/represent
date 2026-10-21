@@ -1,0 +1,141 @@
+{
+  "at": "2026-10-21T09:05:11.162Z",
+  "project": "luz",
+  "notice": "Paid text analysis of a disposable copy; original source files were never written. No image request permitted.",
+  "observations": [
+    {
+      "case": "unchanged capture",
+      "classification": "unchanged",
+      "changedFiles": [],
+      "metrics": {
+        "aiCalls": 0,
+        "imageCalls": 0,
+        "cacheHit": true,
+        "durationMs": 385.0450000000001,
+        "bytesRead": 138885
+      }
+    },
+    {
+      "case": "unchanged explanation",
+      "cacheHit": true,
+      "aiCalls": 0,
+      "imageCalls": 0
+    },
+    {
+      "case": "unchanged illustration",
+      "cacheHit": true,
+      "imageCalls": 0
+    },
+    {
+      "case": "excluded file",
+      "classification": "unchanged",
+      "changedFiles": [],
+      "metrics": {
+        "aiCalls": 0,
+        "imageCalls": 0,
+        "cacheHit": true,
+        "durationMs": 375.1827000000003,
+        "bytesRead": 138885
+      }
+    },
+    {
+      "case": "status capture",
+      "classification": "details-only",
+      "changedFiles": [
+        "docs/CONTEXT.md"
+      ],
+      "metrics": {
+        "aiCalls": 0,
+        "imageCalls": 0,
+        "cacheHit": false,
+        "durationMs": 326.18690000000015,
+        "bytesRead": 139239
+      }
+    },
+    {
+      "case": "status explanation",
+      "cacheHit": false,
+      "aiCalls": 1,
+      "imageCalls": 0,
+      "artHash": "eca1d792ba1a1f7f851af08dacbb64deac5109d5fff600e8e6945e216900cda3",
+      "artReused": true,
+      "artFreshness": "fresh",
+      "chapterIdentityStable": true
+    }
+  ],
+  "ledger": [
+    {
+      "id": "df6e7e2f-b034-4b10-9511-01484806d9f4",
+      "at": "2026-10-21T09:04:54.802Z",
+      "model": "gemini-flash",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0144183,
+      "cacheHit": false,
+      "snapshotId": "5029720c5ba85c894906ed3a",
+      "httpStatus": 200,
+      "callId": "4a51ae41-4626-4286-9ccb-4f9e554e2efc",
+      "usage": {
+        "completion_tokens": 3354,
+        "prompt_tokens": 20111,
+        "total_tokens": 23465,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0144183,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0144183,
+          "upstream_inference_prompt_cost": 0.0060333,
+          "upstream_inference_completions_cost": 0.008385
+        }
+      },
+      "durationMs": 16187.922199999999,
+      "sourceCount": 30,
+      "excerptCount": 69,
+      "approxBytes": 63422
+    }
+  ],
+  "measuredNewCostUsd": 0.0144183,
+  "imageAttempts": 0,
+  "originalSourcesUnchanged": {
+    "backend/package.json": true,
+    "docs/CONTEXT.md": true,
+    "docs/design/improvement-ideas.md": true,
+    "docs/design/product-expansion-shipping-economics.md": true,
+    "docs/design/wholesale-jewelry-saas.md": true,
+    "docs/DJOYAS-IMPL.md": true,
+    "docs/guides/cloudflare-cdn-rules.md": true,
+    "docs/reference/catalog-layers.md": true,
+    "docs/reference/djoyas-v3.md": true,
+    "docs/reference/filters-v3.md": true,
+    "docs/reference/homepage.md": true,
+    "docs/reference/performance.md": true,
+    "docs/reference/troubleshooting.md": true,
+    "docs/TODO.md": true,
+    "docs/WHOLESALE-IMPL.md": true,
+    "README.md": true,
+    "solace-api/src/admin/routes/analytics/page.tsx": true,
+    "solace-api/src/admin/routes/back-in-stock/page.tsx": true,
+    "solace-api/src/admin/routes/catalog-sync/page.tsx": true,
+    "solace-api/src/admin/routes/dashboard/page.tsx": true,
+    "solace-api/src/admin/routes/inventory/restock/page.tsx": true,
+    "solace-api/src/admin/routes/layers/page.tsx": true,
+    "solace-api/src/admin/routes/offline-sales/page.tsx": true,
+    "solace-api/src/admin/routes/orders/bulk-manage/page.tsx": true,
+    "solace-store/postcss.config.js": true,
+    "solace-store/preset/theme/animations.js": true,
+    "solace-store/preset/theme/colors.js": true,
+    "solace-store/preset/theme/typography.js": true,
+    "solace-store/src/app/(main)/privacy-policy/page.tsx": true,
+    "solace-store/src/app/(main)/terms-of-use/page.tsx": true
+  }
+}

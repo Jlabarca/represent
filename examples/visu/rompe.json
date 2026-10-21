@@ -1,22 +1,5 @@
 {
-  "id":"rompe",
-  "name":"ROMPE",
-  "description":"A living world of risk, craft and companions",
-  "root":"G:/ro/RagnarokRebuildTcp",
-  "evidenceLabel":"Design intent · not implementation proof",
-  "sources":[
-    {"path":"CLAUDE.md","role":"style","startLine":1,"endLine":140},
-    {"path":"docs/design/rompe-sandbox.md","role":"art"},
-    {"path":"docs/design/groups.md","role":"art"},
-    {"path":"docs/design/player-path-content.md","role":"art","endLine":244},
-    {"path":"docs/TODO.md","role":"detail","endLine":180}
-  ],
-  "regions":[
-    {"id":"journey","label":"Learn by playing","summary":"A welcoming first journey introduces the game's loops through play. Onboarding timings are playtest sketches.","paths":["docs/design/player-path-content.md"],"x":0.16,"y":0.34},
-    {"id":"world","label":"Choose your risk","summary":"Blue, Yellow, Red and Black areas create a risk ladder. Loot depends on zone, flags, gear and named-map exceptions; open the source for exact rules.","paths":["docs/design/rompe-sandbox.md"],"x":0.5,"y":0.34},
-    {"id":"craft","label":"Craft, carry, trade","summary":"Gathering, crafted equipment, local warehouses and hauling connect the world economy. Crafted gear is deliberately losable.","paths":["docs/design/rompe-sandbox.md"],"x":0.84,"y":0.34},
-    {"id":"roster","label":"Build your account","summary":"An account roster can contain up to twelve characters. This is roster capacity, not twelve active companions.","paths":["docs/design/rompe-sandbox.md","docs/design/groups.md"],"x":0.16,"y":0.75},
-    {"id":"groups","label":"Find your people","summary":"Party is temporary; guild is permanent. These are parallel groupings. Promotion ends the old party, and events may override party rules.","paths":["docs/design/groups.md"],"x":0.5,"y":0.75},
-    {"id":"evolution","label":"A world in the making","summary":"A candidate game design with unresolved tuning questions. Kafra guidance, invasions and world dials shape the intended adventure.","paths":["docs/design/rompe-sandbox.md","docs/TODO.md"],"x":0.84,"y":0.75}
-  ]
+  "id": "rompe",
+  "root": "G:/ro/RagnarokRebuildTcp",
+  "name": "ROMPE"
 }

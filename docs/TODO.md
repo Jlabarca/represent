@@ -20,6 +20,14 @@
 
 ## Sprint: Visu and Grafe product design (2026-10-21)
 
+### Completed build: automatic Visu discovery
+
+- [x] Choose bounded source scope and six chapters from project identity/root alone; test ImageLab without an authored overview — evidence: [trial report](../experiments/visu-discovery/README.md).
+- [x] Separate specific current state, intended design and next steps with inspectable quotations; refresh Luz/ROMPE — evidence: saved project JSON and generated art in the trial folder.
+- [x] Keep capture, explanation and illustration manual; verify no-op caching and a $0.0144183 status refresh with zero image calls — evidence: [update proof](../experiments/visu-discovery/update-proof.json).
+- [x] Add persistent dark/high-contrast monochrome and complete a second UX pass — evidence: 35 regression tests and [nine browser checks](../experiments/visu-discovery/browser-check.json).
+- [ ] Collect corrections for stale-document interpretation and chapter usefulness; improve evidence selection before claiming dependable project-state understanding.
+
 ### Completed build: Visu MVP
 
 - [x] Build and test the headless snapshot/style/update core — evidence: [archived tracker](impl/VISU-MVP-IMPL.md), 14 regression cases.

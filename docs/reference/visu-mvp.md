@@ -1,5 +1,7 @@
 # Visu MVP
 
+> **Historical curated workflow, superseded for default configurations on 2026-10-21.** See [automatic discovery and manual snapshots](visu-discovery.md) for the current root-only workflow, text-model choice and UI themes. Explicit manifests and saved history described below remain compatible.
+
 ## Overview
 
 Visu is Represent's local illustrated project overview. It captures a bounded set of files, infers one of three visual directions, prepares a source-linked story through Ghost, and generates an illustrated cover. The web view adds keyboard/touch/hover detail, captured source excerpts, optional checklist counts, snapshot history, separate portrait revisions and JSON export. It is a working narrow MVP; it does not discover arbitrary project architecture or animate semantic art layers.

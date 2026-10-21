@@ -1,0 +1,1320 @@
+{
+  "at": "2026-10-21T09:06:27.840Z",
+  "project": "imagelab",
+  "configuration": {
+    "id": "imagelab",
+    "name": "ImageLab",
+    "root": "D:/ware/imagelab"
+  },
+  "sourceScope": [
+    {
+      "path": "docs/BACKLOG.md",
+      "role": "art",
+      "reason": "Project documentation provides a human-readable explanation. Linked from the project overview/current context.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 36,
+      "hash": "419bf1a55f6d3c476e376e2eb073dc65564cd2aa419f60c3b08c4d2e4b8b176e"
+    },
+    {
+      "path": "docs/CAPABILITIES.md",
+      "role": "art",
+      "reason": "Project documentation provides a human-readable explanation.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 10,
+      "hash": "8bb89991eadd34a0e97e889a58123c653e9d86a6b5fbf7d9a7123c1ad64c5db3"
+    },
+    {
+      "path": "docs/CONTEXT.md",
+      "role": "detail",
+      "reason": "Current context, tracked work, or an active implementation plan. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 93,
+      "hash": "d4d4e20a90561e8534411a69274a646e46d15392f9a49144b3d660bce58113ed"
+    },
+    {
+      "path": "docs/evidence/curate-2/EVIDENCE.md",
+      "role": "art",
+      "reason": "Project documentation provides a human-readable explanation.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 88,
+      "hash": "78b27ddb14291826485af9ba628df9877ed3a92089de401902b15249617031de"
+    },
+    {
+      "path": "docs/IMAGELAB-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 94,
+      "hash": "582c09f7ef6af860921cb4736433427874cd25d4e5adff51506f2550e865bc06"
+    },
+    {
+      "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 132,
+      "hash": "2c482caa388e64a3a24ead3272af2c91f9812066a03c1cd542ad238e604c5977"
+    },
+    {
+      "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+      "role": "detail",
+      "reason": "An implementation tracker records active work and project state. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 115,
+      "hash": "a47b988a13d1fc05e2da26f1bf1fb6c2269e970995296f8128d6d49285025846"
+    },
+    {
+      "path": "docs/README.md",
+      "role": "art",
+      "reason": "Nested README adds secondary project context. Linked from the project overview/current context.",
+      "kind": "docs",
+      "startLine": 1,
+      "endLine": 80,
+      "hash": "a455ee8438ef3fa23d9848fca2b9b31aefb386dc0dfe0124a330d8c044ab8698"
+    },
+    {
+      "path": "docs/reference/contract-v0.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 156,
+      "hash": "cfcf8b3184ba0d3ae81088f3e18b936d7782919bc9a9bcad684327a6b9c0d0f2"
+    },
+    {
+      "path": "docs/reference/imagelab-curate.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 142,
+      "hash": "78b24224a101a7d54ed62bcd10e57b9e0cc8c767ac5f15247d0ff8cd932005c3"
+    },
+    {
+      "path": "docs/reference/imagelab-studio.md",
+      "role": "art",
+      "reason": "Current system reference explains concrete product behavior. Linked from the project overview/current context.",
+      "kind": "reference",
+      "startLine": 1,
+      "endLine": 145,
+      "hash": "eeeb222567f3cd56bb5eb329d60b42ed22ae43b37476244b590a61a62f2f1ef8"
+    },
+    {
+      "path": "docs/TODO.md",
+      "role": "detail",
+      "reason": "Current context, tracked work, or an active implementation plan. Linked from the project overview/current context.",
+      "kind": "current",
+      "startLine": 1,
+      "endLine": 100,
+      "hash": "5640fca35a2967f1b909cf1add5ea9ac1e493dfd4dc0c1cb09c2fe5cafd3f945"
+    },
+    {
+      "path": "pyproject.toml",
+      "role": "detail",
+      "reason": "Project manifest identifies its runtime and dependencies.",
+      "kind": "identity",
+      "startLine": 1,
+      "endLine": 41,
+      "hash": "17ad31925053a4628fb2af698eae614e7c8fb41bc2ded88003997359e058ccb0"
+    },
+    {
+      "path": "src/imagelab/__init__.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 3,
+      "hash": "4ec67842280270629adb6064b37fc0b4a8d83906ea0b8d07d38e8d18bf431802"
+    },
+    {
+      "path": "src/imagelab/__main__.py",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 97,
+      "hash": "ca9a8f67ef47f90ff45baff0dacfa909134c8e85e26c352b50b1928634f5a897"
+    },
+    {
+      "path": "src/imagelab/animations.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 229,
+      "hash": "5dee2e56bcaca200b1e9b3325834cbd4aa609f427b401ec529fa1abe3440f8d9"
+    },
+    {
+      "path": "src/imagelab/api/__init__.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 1,
+      "hash": "044c30ed33cc08c7ad64b5042ab93dbf2798e711c3ffa7fa1d2719c9bac2fcaf"
+    },
+    {
+      "path": "src/imagelab/api/app.py",
+      "role": "art",
+      "reason": "Runtime entry point provides concrete implementation evidence.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 106,
+      "hash": "ba5f2a6cdf7c90ff933efcd8ecf435c7245bcd814f96c0db4fa8ced15a899de6"
+    },
+    {
+      "path": "src/imagelab/api/auth.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 59,
+      "hash": "cf4e62b7295ec21c19481f0da6df5a250aa82eb26c236b98960cc104c3d156fe"
+    },
+    {
+      "path": "src/imagelab/api/context.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 64,
+      "hash": "206adfab81eecb7193993cd8ca10226c91ff72d3870754470596055a417a0f27"
+    },
+    {
+      "path": "src/imagelab/api/errors.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 111,
+      "hash": "b8a5429e728bad6e8509a198b0a4b4c59f473b39664c9eaede7720158823ec1d"
+    },
+    {
+      "path": "src/imagelab/api/models.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 257,
+      "hash": "ffbacf22a1917ca14e0c3e5ff76c221dcd83b4047eef65f8ab8dbc860bf2dfac"
+    },
+    {
+      "path": "src/imagelab/api/routes_animations.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 169,
+      "hash": "9f8a9c011113f95550941ea9213e4e00f414d0aeb2ceb4f1b1abc2d4fafe6982"
+    },
+    {
+      "path": "src/imagelab/api/routes_artifacts.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 47,
+      "hash": "fef42ab56220a98ab502c4823cddedb4da1c3ab3c924d02bb6515f4f04703993"
+    },
+    {
+      "path": "src/imagelab/api/routes_bench.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 253,
+      "hash": "b671fc07ec5a0b6b7ddb3c228048c094b398cb26b49c729a4230bcd1130f5bc2"
+    },
+    {
+      "path": "src/imagelab/api/routes_curation.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 129,
+      "hash": "94cd44bbebe4895d720225a3de5eee29a71f58f13a598476e2fe3a5661cb0abd"
+    },
+    {
+      "path": "src/imagelab/bench_store.py",
+      "role": "detail",
+      "reason": "Source file offers supporting implementation detail.",
+      "kind": "code",
+      "startLine": 1,
+      "endLine": 213,
+      "hash": "056229aabe6651365c10a337db5f74d7582c556e4daa3a547359d3c1d5671256"
+    },
+    {
+      "path": "themes/methodology-infographic.yaml",
+      "role": "style",
+      "reason": "Design tokens or visual styling define the project’s own look.",
+      "kind": "style",
+      "startLine": 1,
+      "endLine": 130,
+      "hash": "977a9362cef8dc42fcd421221d2d9b7b8148baa7b812535d4177140879b8af59"
+    }
+  ],
+  "discovery": {
+    "inventory": "git",
+    "filesSeen": 190,
+    "candidates": 137,
+    "selected": 28,
+    "skipped": 53,
+    "estimatedBytes": 161338,
+    "scopeCapped": true,
+    "scopeNote": "Source scope is capped; the selected files are a ranked sample, not a complete inventory.",
+    "limits": {
+      "maxFiles": 20000,
+      "maxFileBytes": 1048576,
+      "maxSources": 30,
+      "maxSelectedBytes": 600000,
+      "maxCharsPerFile": 10000
+    },
+    "categories": {
+      "current": 5,
+      "identity": 1,
+      "design": 0,
+      "reference": 3,
+      "code": 14,
+      "style": 1,
+      "docs": 4
+    }
+  },
+  "snapshotId": "da0d4b5005878663e499a44a",
+  "viewId": "d7564b4a16d983bca4558fd0",
+  "style": {
+    "profile": "neutral",
+    "confidence": "low",
+    "palette": [
+      "#f5f3ee",
+      "#26323d",
+      "#647d91"
+    ],
+    "fonts": [
+      "serif title",
+      "sans-serif body"
+    ],
+    "direction": "Restrained editorial atlas, tactile illustration, clear readable typography, calm blue and warm paper",
+    "signals": [],
+    "note": "Insufficient evidence; neutral fallback."
+  },
+  "analysisStatus": "ready",
+  "chapters": [
+    {
+      "id": "imagelab-service-api",
+      "label": "imagelab Service API",
+      "summary": "The imagelab service API is a Python FastAPI application providing image generation, job management, artifact retrieval, style/provider listings, and health checks. It runs on loopback only at `http://127.0.0.1:5630` and requires a service token for all requests, including 404s and `/health`.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.35,
+      "visual": "A secure, fortified harbor where ships (requests) dock, each needing a specific ceremonial token to pass through a gate, with internal operations concealed from the outside.",
+      "visualChanged": true,
+      "currentState": "The imagelab service, built with FastAPI, is running on `http://127.0.0.1:5630`. All 12 routes are secured with a mandatory `X-Ghost-Service-Token` header, validated by an ASGI middleware before routing. It passed 347 tests. Core functionalities include settings, manifest management, storage, and reindexing. No OpenAPI or `/docs` routes are exposed. The `serve` command is available via `python -m imagelab serve`.",
+      "intendedDesign": "The service API adheres to 'contract v0' for basic operations and uses additive proposals for extended features. It is designed to be loopback-only and containerized, preventing non-loopback hosts outside containers. Errors follow a standard P-5 shape, and JSON bodies are strictly validated, rejecting unknown fields and incorrect types. The service refuses to start if the configured service token is empty.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "src/imagelab/api/app.py",
+          "startLine": 1,
+          "quote": "\"\"\"App factory. Docs and OpenAPI routes are off; the token middleware is outermost.\n\nRoute order matters: the SSE router (``/jobs/events``) is included before the jobs router\n(``/jobs/{id}``) so the literal path is never swallowed by the parameter (P-6).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nfrom collections.abc import AsyncIterator, Mapping\nfrom contextlib import asynccontextmanager\n\nfrom fastapi import APIRouter, FastAPI\n\nfrom ..jobs.runner import JobRunner, recover_interrupted\nfrom ..providers import build_providers\nfrom ..providers.base import Provider\nfrom ..settings import Settings"
+        },
+        {
+          "path": "src/imagelab/api/auth.py",
+          "startLine": 1,
+          "quote": "\"\"\"Service-token auth as pure ASGI middleware, outside the router.\n\nA FastAPI dependency would only guard matched routes: an unknown path would answer 404 without\na token and reveal what exists. Here the check runs before routing, so every request (404, 405,\n422 and ``/health`` included) needs ``X-Ghost-Service-Token``. Fail closed: an empty configured\ntoken refuses to build the middleware; a missing or wrong header is the same 401.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport hashlib\nimport hmac\n\nfrom starlette.types import ASGIApp, Receive, Scope, Send\n\nfrom .errors import error_response\n\nTOKEN_HEADER = \"x-ghost-service-token\""
+        },
+        {
+          "path": "src/imagelab/__main__.py",
+          "startLine": 17,
+          "quote": "    ``Settings``, which refuses a non-loopback host outside the container and an empty token.\"\"\"\n    import uvicorn\n\n    from .api.app import create_app\n    from .settings import Settings, SettingsError\n\n    try:\n        settings = Settings.from_env()\n    except SettingsError as e:\n        print(f\"imagelab: refusing to start: {e}\", file=sys.stderr)\n        return 2\n    app = create_app(settings)\n    print(\n        f\"imagelab listening on http://{settings.host}:{settings.port} \"\n        f\"(data: {settings.data_dir}); every request needs X-Ghost-Service-Token\",\n        flush=True,\n    )\n    uvicorn.run("
+        },
+        {
+          "path": "src/imagelab/api/app.py",
+          "startLine": 33,
+          "quote": "from .errors import install_error_handlers\n\n\ndef mount(app: FastAPI, router: APIRouter) -> None:\n    \"\"\"Put a router's routes straight onto the app, in order.\n\n    ``app.include_router`` wraps the routes in a private lazy ``_IncludedRouter`` (FastAPI 0.14x),\n    which hides them from ``app.routes``. The auth test and the route-order test (P-6) need the\n    flat, ordered list, so routes are mounted flat. No prefixes or dependencies are used.\n    \"\"\"\n    app.router.routes.extend(router.routes)\n\n\ndef create_app(\n    settings: Settings,\n    *,\n    store: Store | None = None,\n    providers: Mapping[str, Provider] | None = None,"
+        },
+        {
+          "path": "src/imagelab/api/auth.py",
+          "startLine": 17,
+          "quote": "\nTOKEN_HEADER = \"x-ghost-service-token\"\n_HEADER_BYTES = TOKEN_HEADER.encode(\"latin-1\")\n\n\ndef _digest(value: bytes) -> bytes:\n    return hashlib.sha256(value).digest()\n\n\nclass TokenAuthMiddleware:\n    def __init__(self, app: ASGIApp, token: str):\n        if not token or not token.strip():\n            raise ValueError(\"service token is empty: refusing to build an unauthenticated app\")\n        self.app = app\n        self._expected = _digest(token.encode(\"utf-8\"))\n\n    def _ok(self, scope: Scope) -> bool:\n        provided = b\"\""
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 81,
+          "quote": "\n### Design constraints\n\n- **Contract v0 is fixed.** The four contract lines and their field names are unchanged. Everything this IMPL adds is listed under § Proposals and is additive.\n- **Token on every request**, `/health` included. Header `X-Ghost-Service-Token`, value from `IMAGELAB_SERVICE_TOKEN`, constant-time compare. Empty token = the service refuses to start. OpenAPI/docs routes are disabled.\n- **Loopback only.** Host mode refuses a non-loopback `IMAGELAB_HOST` unless `IMAGELAB_IN_CONTAINER=1`; the compose publish is `127.0.0.1:5630:5630`.\n- **It spends money.** `n` is capped (`IMAGELAB_MAX_N`, default 8), a spend cap (`IMAGELAB_SPEND_CAP_USD`) refuses jobs once the ledger reaches it, health checks never generate, and the gateway key is imagelab's own virtual key (`IMAGELAB_GATEWAY_KEY`), never the operator key.\n- **Any image is explainable from its manifest alone.** Raw, intermediate and final images are all artifacts; a failed job still writes an error manifest.\n- **Deterministic post.** Post steps are pure functions of (image, params); pxlab's k-means is seeded. Provider seeds are recorded as requested; `seed_honoured` says whether the provider claims to honour it.\n- **pxlab is not forked.** imagelab calls `pxlab.post`, `pxlab.sheet`, `pxlab.color` only. It never calls `pxlab.gen` (its `gemini_image()` defaults to the dead `gemini-2.5-flash-image`).\n\n### Existing surface (grounding, 2026-10-03)\n\n- **pxlab**, `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/` on branch `claude/frontera-ai-pixelart-gen-925w85` (worktree; never touch `G:/ro/RagnarokRebuildTcp`). No packaging; `requirements.txt` = numpy, pillow, scipy, requests, gradio_client, proper-pixel-art, unfake."
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "src/imagelab/api/app.py",
+          "startLine": 1,
+          "quote": "\"\"\"App factory. Docs and OpenAPI routes are off; the token middleware is outermost.\n\nRoute order matters: the SSE router (``/jobs/events``) is included before the jobs router\n(``/jobs/{id}``) so the literal path is never swallowed by the parameter (P-6).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nfrom collections.abc import AsyncIterator, Mapping\nfrom contextlib import asynccontextmanager\n\nfrom fastapi import APIRouter, FastAPI\n\nfrom ..jobs.runner import JobRunner, recover_interrupted\nfrom ..providers import build_providers\nfrom ..providers.base import Provider\nfrom ..settings import Settings"
+        },
+        {
+          "path": "src/imagelab/api/auth.py",
+          "startLine": 1,
+          "quote": "\"\"\"Service-token auth as pure ASGI middleware, outside the router.\n\nA FastAPI dependency would only guard matched routes: an unknown path would answer 404 without\na token and reveal what exists. Here the check runs before routing, so every request (404, 405,\n422 and ``/health`` included) needs ``X-Ghost-Service-Token``. Fail closed: an empty configured\ntoken refuses to build the middleware; a missing or wrong header is the same 401.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport hashlib\nimport hmac\n\nfrom starlette.types import ASGIApp, Receive, Scope, Send\n\nfrom .errors import error_response\n\nTOKEN_HEADER = \"x-ghost-service-token\""
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "src/imagelab/__main__.py",
+          "startLine": 17,
+          "quote": "    ``Settings``, which refuses a non-loopback host outside the container and an empty token.\"\"\"\n    import uvicorn\n\n    from .api.app import create_app\n    from .settings import Settings, SettingsError\n\n    try:\n        settings = Settings.from_env()\n    except SettingsError as e:\n        print(f\"imagelab: refusing to start: {e}\", file=sys.stderr)\n        return 2\n    app = create_app(settings)\n    print(\n        f\"imagelab listening on http://{settings.host}:{settings.port} \"\n        f\"(data: {settings.data_dir}); every request needs X-Ghost-Service-Token\",\n        flush=True,\n    )\n    uvicorn.run("
+        },
+        {
+          "path": "src/imagelab/api/app.py",
+          "startLine": 33,
+          "quote": "from .errors import install_error_handlers\n\n\ndef mount(app: FastAPI, router: APIRouter) -> None:\n    \"\"\"Put a router's routes straight onto the app, in order.\n\n    ``app.include_router`` wraps the routes in a private lazy ``_IncludedRouter`` (FastAPI 0.14x),\n    which hides them from ``app.routes``. The auth test and the route-order test (P-6) need the\n    flat, ordered list, so routes are mounted flat. No prefixes or dependencies are used.\n    \"\"\"\n    app.router.routes.extend(router.routes)\n\n\ndef create_app(\n    settings: Settings,\n    *,\n    store: Store | None = None,\n    providers: Mapping[str, Provider] | None = None,"
+        }
+      ],
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/reference/contract-v0.md",
+        "src/imagelab/api/app.py",
+        "src/imagelab/api/auth.py",
+        "src/imagelab/__main__.py",
+        "docs/IMAGELAB-IMPL.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "imagelab-dashboard-view",
+      "label": "GhostShell Dashboard View",
+      "summary": "The GhostShell `/x/imagelab` view in the Ghost.Dashboard application provides user interfaces for image generation, gallery browsing, job monitoring, and content inspection, connecting to the imagelab service via a proxy and typed client.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.35,
+      "visual": "A control room with multiple screens, each displaying different views: a canvas for generating images, a gallery wall of past creations, a live feed of ongoing jobs, and a detailed inspector window for individual artifacts.",
+      "visualChanged": true,
+      "currentState": "The GhostShell `/x/imagelab` view is built, including the `imagelab` layer, `/proxy/imagelab` (with an allow-list and token), the gate row, and a typed client. It encompasses Generate, Gallery, Jobs, Inspector, and Providers pages, all supported by seven tested view-model utilities with 98 tests. However, it has never been rendered in a browser, and its end-to-end Playwright tests are written but not yet run. Currently, the UI views are waiting for the relevant commits to be pushed.",
+      "intendedDesign": "The Dashboard views are intended to provide a rich interactive experience, offering capabilities like judging images with verdicts and stars, batch curation, filtering artifacts, and building procedural RO monster animations. It should also support animation playback and editing, tileset generation with previews, and blind style benchmarking.",
+      "nextSteps": "The next steps for the GhostShell views are blocked until IMAGELAB.5 and IMAGELAB.6 commits are pushed. Once pushed, STUDIO.5 (service-side bench runs/sorts) can begin, followed by the views' development.",
+      "currentEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 49,
+          "quote": "   (IMAGELAB.5/6 commits and Rompe `6d38ca7c0`, unpushed). How do studio views proceed?\n   **Resolution:** **Views wait.** STUDIO.5 starts only after those commits are pushed. Phases 1-4\n   are service-side and proceed now. A second, parallel `/x/imagelab` layer would fork the\n   operator's unpushed one.\n   > Override: none sensible; pushing is a one-command operator step (IMAGELAB.7.9).\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark\n---\nflowchart LR\n    subgraph Studio[\"/x/imagelab (GhostShell)\"]\n        GEN[\"Studio<br/>(Leonardo-style generate)\"]\n        ANI[\"Animator<br/>player + editor\"]\n        TIL[\"Tilesets<br/>generate + tiled preview\"]"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 1,
+          "quote": "# CURATE.2 evidence (P2, curation in GhostShell)\n\nWorktree `D:/ware/Ghost/apps/gd-curate`, branch `curate/dash`. For the orchestrator to transcribe into\n`D:/ware/imagelab/docs/IMAGELAB-CURATE-IMPL.md` (not edited from here). The Ghost app repo has no\n`docs/` or `LOGBOOK.md`, so the Rule 14 plan and the logbook entry live in this file.\n\n## Plan - CURATE.2\n\n- Shared files get single added lines/blocks only: `imagelabProxyAllow.ts` (2 rows), `imagelabClient.ts`\n  (`imagelabCurationUrl`), `imagelabTypes.ts` (curation types, 3 optional row fields, 4 optional query\n  fields), `useImagelab.ts` (3 methods), `playwright.config.ts` (testMatch gains `-curate`).\n- Logic in pure utils, tested first (red, then green): `imagelabCuration.ts` (toggles, PUT body, per-id\n  serialised committer, 409 -> reread -> reapply once), `imagelabTriage.ts` (state machine, keys, queue\n  query), `imagelabGallery.ts` (verdict / min stars / tag / show discarded filter, counts).\n- Row model: a list row has verdict, stars, tags but NOT version or note. Never-judged rows are written at\n  version 0 with no read; any other row reads the document first; a stale write (409) reads again and\n  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 17,
+          "quote": "  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result\n  cards, Gallery cards, Inspector; `IlDiscardedBadge`; `useImagelabCuration` (shared state, optimistic,\n  Undo toast); Gallery chips + selects + switch; Triage page; ref picker / Use as ref / Variations default\n  to non-discarded.\n- Discarded handling: the service hides discarded by default. Gallery loads with `include_discarded=true`\n  so counts and \"show discarded\" work on what is loaded; the ref picker asks for them only behind a switch.\n\n## Checklist (tick in the tracker with this evidence)\n\n- [x] **CURATE.2.1** proxy rows, client methods, types. `GET`/`PUT artifacts/<id>/curation`, `POST curation/batch`\n  allowed with exact methods; nothing next to them. Tests: `test/imagelabCurationClient.test.ts` (4),\n  `test/imagelabProxyAllow.test.ts` still green. Client: `getCuration`, `putCuration`, `batchCuration`,\n  `imagelabCurationUrl`; list query carries `verdict`, `min_stars`, `tag`, `include_discarded`.\n- [x] **CURATE.2.2** verdict control on Studio result cards, Gallery cards, Inspector; optimistic update, Undo\n  toast, 409 handling, targets >= 32 px. E2E: `Studio: judge a result, undo it, discard it`, `409: a verdict set\n  elsewhere does not lose the click or the other tab's tags`, `Inspector: verdict control...`, `phone width...`\n  (asserts every verdict and star button is >= 32 px and no sideways scroll at 375 px)."
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 49,
+          "quote": "   (IMAGELAB.5/6 commits and Rompe `6d38ca7c0`, unpushed). How do studio views proceed?\n   **Resolution:** **Views wait.** STUDIO.5 starts only after those commits are pushed. Phases 1-4\n   are service-side and proceed now. A second, parallel `/x/imagelab` layer would fork the\n   operator's unpushed one.\n   > Override: none sensible; pushing is a one-command operator step (IMAGELAB.7.9).\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark\n---\nflowchart LR\n    subgraph Studio[\"/x/imagelab (GhostShell)\"]\n        GEN[\"Studio<br/>(Leonardo-style generate)\"]\n        ANI[\"Animator<br/>player + editor\"]\n        TIL[\"Tilesets<br/>generate + tiled preview\"]"
+        }
+      ],
+      "nextEvidence": [
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 49,
+          "quote": "   (IMAGELAB.5/6 commits and Rompe `6d38ca7c0`, unpushed). How do studio views proceed?\n   **Resolution:** **Views wait.** STUDIO.5 starts only after those commits are pushed. Phases 1-4\n   are service-side and proceed now. A second, parallel `/x/imagelab` layer would fork the\n   operator's unpushed one.\n   > Override: none sensible; pushing is a one-command operator step (IMAGELAB.7.9).\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark\n---\nflowchart LR\n    subgraph Studio[\"/x/imagelab (GhostShell)\"]\n        GEN[\"Studio<br/>(Leonardo-style generate)\"]\n        ANI[\"Animator<br/>player + editor\"]\n        TIL[\"Tilesets<br/>generate + tiled preview\"]"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 1,
+          "quote": "# CURATE.2 evidence (P2, curation in GhostShell)\n\nWorktree `D:/ware/Ghost/apps/gd-curate`, branch `curate/dash`. For the orchestrator to transcribe into\n`D:/ware/imagelab/docs/IMAGELAB-CURATE-IMPL.md` (not edited from here). The Ghost app repo has no\n`docs/` or `LOGBOOK.md`, so the Rule 14 plan and the logbook entry live in this file.\n\n## Plan - CURATE.2\n\n- Shared files get single added lines/blocks only: `imagelabProxyAllow.ts` (2 rows), `imagelabClient.ts`\n  (`imagelabCurationUrl`), `imagelabTypes.ts` (curation types, 3 optional row fields, 4 optional query\n  fields), `useImagelab.ts` (3 methods), `playwright.config.ts` (testMatch gains `-curate`).\n- Logic in pure utils, tested first (red, then green): `imagelabCuration.ts` (toggles, PUT body, per-id\n  serialised committer, 409 -> reread -> reapply once), `imagelabTriage.ts` (state machine, keys, queue\n  query), `imagelabGallery.ts` (verdict / min stars / tag / show discarded filter, counts).\n- Row model: a list row has verdict, stars, tags but NOT version or note. Never-judged rows are written at\n  version 0 with no read; any other row reads the document first; a stale write (409) reads again and\n  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 17,
+          "quote": "  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result\n  cards, Gallery cards, Inspector; `IlDiscardedBadge`; `useImagelabCuration` (shared state, optimistic,\n  Undo toast); Gallery chips + selects + switch; Triage page; ref picker / Use as ref / Variations default\n  to non-discarded.\n- Discarded handling: the service hides discarded by default. Gallery loads with `include_discarded=true`\n  so counts and \"show discarded\" work on what is loaded; the ref picker asks for them only behind a switch.\n\n## Checklist (tick in the tracker with this evidence)\n\n- [x] **CURATE.2.1** proxy rows, client methods, types. `GET`/`PUT artifacts/<id>/curation`, `POST curation/batch`\n  allowed with exact methods; nothing next to them. Tests: `test/imagelabCurationClient.test.ts` (4),\n  `test/imagelabProxyAllow.test.ts` still green. Client: `getCuration`, `putCuration`, `batchCuration`,\n  `imagelabCurationUrl`; list query carries `verdict`, `min_stars`, `tag`, `include_discarded`.\n- [x] **CURATE.2.2** verdict control on Studio result cards, Gallery cards, Inspector; optimistic update, Undo\n  toast, 409 handling, targets >= 32 px. E2E: `Studio: judge a result, undo it, discard it`, `409: a verdict set\n  elsewhere does not lose the click or the other tab's tags`, `Inspector: verdict control...`, `phone width...`\n  (asserts every verdict and star button is >= 32 px and no sideways scroll at 375 px)."
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 49,
+          "quote": "   (IMAGELAB.5/6 commits and Rompe `6d38ca7c0`, unpushed). How do studio views proceed?\n   **Resolution:** **Views wait.** STUDIO.5 starts only after those commits are pushed. Phases 1-4\n   are service-side and proceed now. A second, parallel `/x/imagelab` layer would fork the\n   operator's unpushed one.\n   > Override: none sensible; pushing is a one-command operator step (IMAGELAB.7.9).\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark\n---\nflowchart LR\n    subgraph Studio[\"/x/imagelab (GhostShell)\"]\n        GEN[\"Studio<br/>(Leonardo-style generate)\"]\n        ANI[\"Animator<br/>player + editor\"]\n        TIL[\"Tilesets<br/>generate + tiled preview\"]"
+        }
+      ],
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/IMAGELAB-IMPL.md",
+        "docs/IMAGELAB-STUDIO-IMPL.md",
+        "docs/evidence/curate-2/EVIDENCE.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "image-curation",
+      "label": "Image Curation & Motion Sets",
+      "summary": "imagelab enables human curation of generated images via verdicts and tags, and can procedurally generate RO monster animation sets from a single still, an additive capability to contract v0.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.35,
+      "visual": "A diligent artisan in a studio, carefully examining image prints, sorting them into piles (good, bad, discard), and meticulously animating a monster puppet with intricate, predefined movements based on a single chosen pose.",
+      "visualChanged": true,
+      "currentState": "imagelab currently supports human verdict recording for generated images, including `good`, `bad`, `discard`, `unrated`, 0-5 stars, tags, and notes. This is managed via `PUT /artifacts/{id}/curation` and `POST /curation/batch` routes, and artifacts can be filtered by these criteria. The motion engine can turn a chosen still into a five-motion RO monster animation set, with exports available in `ro-monster` format. Discarded items are soft-deleted, hidden from default lists but still accessible.",
+      "intendedDesign": "The curation system is designed with an optimistic update mechanism in the UI, handling 409 conflicts by reloading and reapplying changes. The motion engine is a pure function that generates byte-identical frames for the same inputs. Exports will bake in RO conventions, including action indexing and mirrored directions. Batch curation UI and export of additional pet motions are in the backlog.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 1,
+          "quote": "# imagelab curation and monster motion sets (IMAGELAB-CURATE)\n\n> As built 2026-10-06 (P1-P5 of [impl/IMAGELAB-CURATE-IMPL.md](../impl/IMAGELAB-CURATE-IMPL.md)).\n> What is NOT here: the Unity-side render proof, AI polish and the in-game use of an imported set live in\n> [IMAGELAB-RO-MONSTER-IMPL.md](../IMAGELAB-RO-MONSTER-IMPL.md).\n> Wire shapes of the existing routes: [contract-v0.md](contract-v0.md). Exports and the `oro`/`ro-monster`\n> formats: [imagelab-studio.md](imagelab-studio.md).\n\n## Overview\n\nimagelab can now (a) record a human verdict on every generated image and (b) turn one chosen still into a\nfive-motion RO monster animation set **without calling a model**. Both are additive to contract v0: the\nmanifest schema is untouched and no new job kind exists.\n\n| Capability | Entry point | Cost |\n|---|---|---|\n| Judge an image: `good` / `bad` / `discard` / `unrated`, stars 0-5, tags, note | `PUT /artifacts/{id}/curation`, `POST /curation/batch` | none |\n| Filter lists by verdict, stars, tag | `GET /artifacts?verdict=&min_stars=&tag=&include_discarded=` | none |"
+        },
+        {
+          "path": "docs/CAPABILITIES.md",
+          "startLine": 1,
+          "quote": "# CAPABILITIES.md — shipped, promoted, easy to forget\n\n<!-- Written by /promote-impl as part of the Rule-12 sequence: one line per promoted capability. Keep <50 lines. -->\n<!-- Read at design time: state-prime injects a pointer here on design-shaped prompts. Before asserting any -->\n<!-- \"X has no Y\" / \"Z is the only ...\" claim in a research doc or IMPL header, verify it against this table -->\n<!-- (DOCS-PROTOCOL Rule 17). Root cause this fixes: promotion moves capabilities OUT of the attention surface. -->\n\n| Capability | Verb it gives you | Reference | Promoted |\n|---|---|---|---|\n| Curate generated images, build a procedural RO monster motion set | `PUT /artifacts/{id}/curation`, `POST /motion/build`, export `ro-monster`; GhostShell `/x/imagelab/triage` and `/animate` | [reference/imagelab-curate.md](reference/imagelab-curate.md) | 2026-10-09 |"
+        },
+        {
+          "path": "src/imagelab/api/routes_curation.py",
+          "startLine": 1,
+          "quote": "\"\"\"Curation (CURATE.1, P-33), additive to contract v0.\n\n``GET /artifacts/{id}/curation`` · ``PUT /artifacts/{id}/curation`` (the next version; a stale\n``base_version`` is ``409 version_conflict``) · ``POST /curation/batch`` (one verdict for many\nids, atomic per id, per-id results). A verdict is data beside the artifact: ``discard`` only\nhides it from default lists, it never touches artifact files, the ledger or animations.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Annotated, Any\n\nfrom fastapi import APIRouter, Request\nfrom pydantic import BaseModel, ConfigDict, Field, StringConstraints, field_validator\n\nfrom ..curation import (\n    MAX_NOTE,\n    MAX_TAGS,"
+        },
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 49,
+          "quote": "- **Discard is soft.** It is a verdict value. Default lists hide it, `include_discarded=true` (or asking for\n  `verdict=discard` by name) shows it, and the artifact files, the ledger and every reference to the id keep\n  working (an animation that already uses a discarded frame still exports).\n- **The motion engine is a pure function** `(sprite, archetype, knobs, seed) -> frames`: nearest-neighbour warps\n  about a bottom-centre feet pivot, no new colours except a named hit flash and a dissolve for `dead`. The same\n  inputs give byte-identical frames (golden-hash tests pin the five recipes).\n- **The export bakes the RO convention in**: action index `motion*8+direction`, mirrored directions 1, 2, 3, one\n  or two views, per-motion loop, wrapped atlas of unique cells.\n\n## Key Files\n\n| File | Role |\n|---|---|\n| `src/imagelab/curation.py:85` | `CurationDoc` model; `:138` `CurationStore` (atomic sidecar writes, version counter) |\n| `src/imagelab/api/routes_curation.py:78` | `GET`/`PUT /artifacts/{id}/curation`, `:109` `POST /curation/batch` |\n| `src/imagelab/store.py:79` | the rebuildable `curation` index table; list filters join it (`:495`) |\n| `src/imagelab/reindex.py` | rebuilds the index from sidecars; reports `curation_corrupt` |\n| `src/imagelab/motion/archetypes.yaml` | archetype data: motions, frame counts, durations, loop flags, knob bounds |"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 17,
+          "quote": "  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result\n  cards, Gallery cards, Inspector; `IlDiscardedBadge`; `useImagelabCuration` (shared state, optimistic,\n  Undo toast); Gallery chips + selects + switch; Triage page; ref picker / Use as ref / Variations default\n  to non-discarded.\n- Discarded handling: the service hides discarded by default. Gallery loads with `include_discarded=true`\n  so counts and \"show discarded\" work on what is loaded; the ref picker asks for them only behind a switch.\n\n## Checklist (tick in the tracker with this evidence)\n\n- [x] **CURATE.2.1** proxy rows, client methods, types. `GET`/`PUT artifacts/<id>/curation`, `POST curation/batch`\n  allowed with exact methods; nothing next to them. Tests: `test/imagelabCurationClient.test.ts` (4),\n  `test/imagelabProxyAllow.test.ts` still green. Client: `getCuration`, `putCuration`, `batchCuration`,\n  `imagelabCurationUrl`; list query carries `verdict`, `min_stars`, `tag`, `include_discarded`.\n- [x] **CURATE.2.2** verdict control on Studio result cards, Gallery cards, Inspector; optimistic update, Undo\n  toast, 409 handling, targets >= 32 px. E2E: `Studio: judge a result, undo it, discard it`, `409: a verdict set\n  elsewhere does not lose the click or the other tab's tags`, `Inspector: verdict control...`, `phone width...`\n  (asserts every verdict and star button is >= 32 px and no sideways scroll at 375 px)."
+        },
+        {
+          "path": "src/imagelab/api/routes_curation.py",
+          "startLine": 33,
+          "quote": "ArtifactId = Annotated[str, StringConstraints(pattern=r\"^art_[0-9A-Za-z]+$\", max_length=64)]\n\n\nclass CurationPut(BaseModel):\n    model_config = ConfigDict(extra=\"forbid\", strict=True)\n    base_version: int = Field(ge=0)  # the version the caller saw; 0 when there was no sidecar\n    verdict: Verdict\n    stars: int = Field(default=0, ge=0, le=5)\n    tags: list[Tag] = Field(default_factory=list, max_length=MAX_TAGS)\n    note: str = Field(default=\"\", max_length=MAX_NOTE)\n\n    @field_validator(\"tags\", mode=\"before\")\n    @classmethod\n    def _tags(cls, v):\n        return lower_tags(v)  # the 32-char limit is checked on what would be stored (422, not 500)\n\n\nclass CurationBatch(BaseModel):"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/BACKLOG.md",
+          "startLine": 1,
+          "quote": "# BACKLOG.md — Non-blocking Ideas + Deferred Work\n\n> Items here are NOT on the critical path. When an item becomes active, move it to [TODO.md](TODO.md).\n> Mark resolved items with `~~strikethrough~~` + date + one-line resolution.\n\n---\n\n## Ideas\n\n- **GET /motion/archetypes** (CURATE gap, 2026-10-06): service should expose the archetype knob bounds so the dashboard stops mirroring them in imagelabMotion.ts; bounds mismatch detected only by the service's 422 text on the page.\n- **Batch-curation UI** (CURATE gap, 2026-10-06): tag editing and note editing UI for single stills; batch verdict and tag/note edits on filtered sets (the `POST /curation/batch` client method exists but no UI).\n- **Animation document cleanup** (CURATE gap, 2026-10-06): two-still motion builds leave two extra animation documents named \"(front build)\" and \"(back build)\" alongside the composed one; no cleanup route exists (named for user discovery, not trash).\n- **Pet motions export** (CURATE gap, 2026-10-06): motions 5-8 (Special, Performance1-3) defined in `archetypes.yaml` but no recipes (recipe: null); `POST /motion/build` refuses archetype pet with 422. Add recipes and export path after main arc is judged.\n- **Preview write-grant gating** (CURATE gap, 2026-10-06): `POST /motion/build?preview=1` requires write permission (POST gate). A read-only viewer sees the picker but preview errors 403; consider a separate read-only preview route or moving it off the write gate.\n\n## Deferred\n\n- {deferred-item-1} — deferred because {reason}."
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 1,
+          "quote": "# CURATE.2 evidence (P2, curation in GhostShell)\n\nWorktree `D:/ware/Ghost/apps/gd-curate`, branch `curate/dash`. For the orchestrator to transcribe into\n`D:/ware/imagelab/docs/IMAGELAB-CURATE-IMPL.md` (not edited from here). The Ghost app repo has no\n`docs/` or `LOGBOOK.md`, so the Rule 14 plan and the logbook entry live in this file.\n\n## Plan - CURATE.2\n\n- Shared files get single added lines/blocks only: `imagelabProxyAllow.ts` (2 rows), `imagelabClient.ts`\n  (`imagelabCurationUrl`), `imagelabTypes.ts` (curation types, 3 optional row fields, 4 optional query\n  fields), `useImagelab.ts` (3 methods), `playwright.config.ts` (testMatch gains `-curate`).\n- Logic in pure utils, tested first (red, then green): `imagelabCuration.ts` (toggles, PUT body, per-id\n  serialised committer, 409 -> reread -> reapply once), `imagelabTriage.ts` (state machine, keys, queue\n  query), `imagelabGallery.ts` (verdict / min stars / tag / show discarded filter, counts).\n- Row model: a list row has verdict, stars, tags but NOT version or note. Never-judged rows are written at\n  version 0 with no read; any other row reads the document first; a stale write (409) reads again and\n  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result"
+        },
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 49,
+          "quote": "- **Discard is soft.** It is a verdict value. Default lists hide it, `include_discarded=true` (or asking for\n  `verdict=discard` by name) shows it, and the artifact files, the ledger and every reference to the id keep\n  working (an animation that already uses a discarded frame still exports).\n- **The motion engine is a pure function** `(sprite, archetype, knobs, seed) -> frames`: nearest-neighbour warps\n  about a bottom-centre feet pivot, no new colours except a named hit flash and a dissolve for `dead`. The same\n  inputs give byte-identical frames (golden-hash tests pin the five recipes).\n- **The export bakes the RO convention in**: action index `motion*8+direction`, mirrored directions 1, 2, 3, one\n  or two views, per-motion loop, wrapped atlas of unique cells.\n\n## Key Files\n\n| File | Role |\n|---|---|\n| `src/imagelab/curation.py:85` | `CurationDoc` model; `:138` `CurationStore` (atomic sidecar writes, version counter) |\n| `src/imagelab/api/routes_curation.py:78` | `GET`/`PUT /artifacts/{id}/curation`, `:109` `POST /curation/batch` |\n| `src/imagelab/store.py:79` | the rebuildable `curation` index table; list filters join it (`:495`) |\n| `src/imagelab/reindex.py` | rebuilds the index from sidecars; reports `curation_corrupt` |\n| `src/imagelab/motion/archetypes.yaml` | archetype data: motions, frame counts, durations, loop flags, knob bounds |"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 17,
+          "quote": "  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result\n  cards, Gallery cards, Inspector; `IlDiscardedBadge`; `useImagelabCuration` (shared state, optimistic,\n  Undo toast); Gallery chips + selects + switch; Triage page; ref picker / Use as ref / Variations default\n  to non-discarded.\n- Discarded handling: the service hides discarded by default. Gallery loads with `include_discarded=true`\n  so counts and \"show discarded\" work on what is loaded; the ref picker asks for them only behind a switch.\n\n## Checklist (tick in the tracker with this evidence)\n\n- [x] **CURATE.2.1** proxy rows, client methods, types. `GET`/`PUT artifacts/<id>/curation`, `POST curation/batch`\n  allowed with exact methods; nothing next to them. Tests: `test/imagelabCurationClient.test.ts` (4),\n  `test/imagelabProxyAllow.test.ts` still green. Client: `getCuration`, `putCuration`, `batchCuration`,\n  `imagelabCurationUrl`; list query carries `verdict`, `min_stars`, `tag`, `include_discarded`.\n- [x] **CURATE.2.2** verdict control on Studio result cards, Gallery cards, Inspector; optimistic update, Undo\n  toast, 409 handling, targets >= 32 px. E2E: `Studio: judge a result, undo it, discard it`, `409: a verdict set\n  elsewhere does not lose the click or the other tab's tags`, `Inspector: verdict control...`, `phone width...`\n  (asserts every verdict and star button is >= 32 px and no sideways scroll at 375 px)."
+        },
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 113,
+          "quote": "   `unrated`, to a batch or to a pack. Judgements save as you go.\n3. Open **Animate**: pick a `good` still (the picker lists only good, finished stills; discarded never\n   appear), optionally a second still as the **back view**, tune knobs, watch all five motions loop. **Save**\n   builds the artifacts and opens the animation in the Animator for hand edits.\n4. Export `ro-monster` from the Animator, or `GET` the route above, and hand the zip to an importer.\n\n## Caveats\n\n- **Unity use is not proven by this IMPL.** The importer exists on the Rompe `develop` line (`RoMonsterImporter`)\n  and imports the zip, but the runtime has no loop flag and nothing reads the sidecar. See\n  [IMAGELAB-RO-MONSTER-IMPL.md](../IMAGELAB-RO-MONSTER-IMPL.md).\n- **One view assumes facing right.** Cells are drawn facing screen right; directions 1, 2, 3 are mirrored at draw\n  time. Nothing checks that a generated still actually faces right.\n- **Procedural motion is a baseline, not art.** It reads well on small silhouettes; a still whose parts should move\n  independently (wings, arms) moves as one blob. AI polish is parked (RM.4).\n- **Two-still save** leaves two extra named animation documents (\"(front build)\" and \"(back build)\") next to the\n  composed one, plus their frame artifacts; there is no cleanup route yet.\n- **Dashboard keeps a copy of the knob bounds** (`imagelabMotion.ts`); a service-side change shows up as a 422 until"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 1,
+          "quote": "# imagelab curation and monster motion sets (IMAGELAB-CURATE)\n\n> As built 2026-10-06 (P1-P5 of [impl/IMAGELAB-CURATE-IMPL.md](../impl/IMAGELAB-CURATE-IMPL.md)).\n> What is NOT here: the Unity-side render proof, AI polish and the in-game use of an imported set live in\n> [IMAGELAB-RO-MONSTER-IMPL.md](../IMAGELAB-RO-MONSTER-IMPL.md).\n> Wire shapes of the existing routes: [contract-v0.md](contract-v0.md). Exports and the `oro`/`ro-monster`\n> formats: [imagelab-studio.md](imagelab-studio.md).\n\n## Overview\n\nimagelab can now (a) record a human verdict on every generated image and (b) turn one chosen still into a\nfive-motion RO monster animation set **without calling a model**. Both are additive to contract v0: the\nmanifest schema is untouched and no new job kind exists.\n\n| Capability | Entry point | Cost |\n|---|---|---|\n| Judge an image: `good` / `bad` / `discard` / `unrated`, stars 0-5, tags, note | `PUT /artifacts/{id}/curation`, `POST /curation/batch` | none |\n| Filter lists by verdict, stars, tag | `GET /artifacts?verdict=&min_stars=&tag=&include_discarded=` | none |"
+        },
+        {
+          "path": "docs/BACKLOG.md",
+          "startLine": 1,
+          "quote": "# BACKLOG.md — Non-blocking Ideas + Deferred Work\n\n> Items here are NOT on the critical path. When an item becomes active, move it to [TODO.md](TODO.md).\n> Mark resolved items with `~~strikethrough~~` + date + one-line resolution.\n\n---\n\n## Ideas\n\n- **GET /motion/archetypes** (CURATE gap, 2026-10-06): service should expose the archetype knob bounds so the dashboard stops mirroring them in imagelabMotion.ts; bounds mismatch detected only by the service's 422 text on the page.\n- **Batch-curation UI** (CURATE gap, 2026-10-06): tag editing and note editing UI for single stills; batch verdict and tag/note edits on filtered sets (the `POST /curation/batch` client method exists but no UI).\n- **Animation document cleanup** (CURATE gap, 2026-10-06): two-still motion builds leave two extra animation documents named \"(front build)\" and \"(back build)\" alongside the composed one; no cleanup route exists (named for user discovery, not trash).\n- **Pet motions export** (CURATE gap, 2026-10-06): motions 5-8 (Special, Performance1-3) defined in `archetypes.yaml` but no recipes (recipe: null); `POST /motion/build` refuses archetype pet with 422. Add recipes and export path after main arc is judged.\n- **Preview write-grant gating** (CURATE gap, 2026-10-06): `POST /motion/build?preview=1` requires write permission (POST gate). A read-only viewer sees the picker but preview errors 403; consider a separate read-only preview route or moving it off the write gate.\n\n## Deferred\n\n- {deferred-item-1} — deferred because {reason}."
+        },
+        {
+          "path": "docs/CAPABILITIES.md",
+          "startLine": 1,
+          "quote": "# CAPABILITIES.md — shipped, promoted, easy to forget\n\n<!-- Written by /promote-impl as part of the Rule-12 sequence: one line per promoted capability. Keep <50 lines. -->\n<!-- Read at design time: state-prime injects a pointer here on design-shaped prompts. Before asserting any -->\n<!-- \"X has no Y\" / \"Z is the only ...\" claim in a research doc or IMPL header, verify it against this table -->\n<!-- (DOCS-PROTOCOL Rule 17). Root cause this fixes: promotion moves capabilities OUT of the attention surface. -->\n\n| Capability | Verb it gives you | Reference | Promoted |\n|---|---|---|---|\n| Curate generated images, build a procedural RO monster motion set | `PUT /artifacts/{id}/curation`, `POST /motion/build`, export `ro-monster`; GhostShell `/x/imagelab/triage` and `/animate` | [reference/imagelab-curate.md](reference/imagelab-curate.md) | 2026-10-09 |"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 1,
+          "quote": "# CURATE.2 evidence (P2, curation in GhostShell)\n\nWorktree `D:/ware/Ghost/apps/gd-curate`, branch `curate/dash`. For the orchestrator to transcribe into\n`D:/ware/imagelab/docs/IMAGELAB-CURATE-IMPL.md` (not edited from here). The Ghost app repo has no\n`docs/` or `LOGBOOK.md`, so the Rule 14 plan and the logbook entry live in this file.\n\n## Plan - CURATE.2\n\n- Shared files get single added lines/blocks only: `imagelabProxyAllow.ts` (2 rows), `imagelabClient.ts`\n  (`imagelabCurationUrl`), `imagelabTypes.ts` (curation types, 3 optional row fields, 4 optional query\n  fields), `useImagelab.ts` (3 methods), `playwright.config.ts` (testMatch gains `-curate`).\n- Logic in pure utils, tested first (red, then green): `imagelabCuration.ts` (toggles, PUT body, per-id\n  serialised committer, 409 -> reread -> reapply once), `imagelabTriage.ts` (state machine, keys, queue\n  query), `imagelabGallery.ts` (verdict / min stars / tag / show discarded filter, counts).\n- Row model: a list row has verdict, stars, tags but NOT version or note. Never-judged rows are written at\n  version 0 with no read; any other row reads the document first; a stale write (409) reads again and\n  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result"
+        },
+        {
+          "path": "src/imagelab/api/routes_curation.py",
+          "startLine": 1,
+          "quote": "\"\"\"Curation (CURATE.1, P-33), additive to contract v0.\n\n``GET /artifacts/{id}/curation`` · ``PUT /artifacts/{id}/curation`` (the next version; a stale\n``base_version`` is ``409 version_conflict``) · ``POST /curation/batch`` (one verdict for many\nids, atomic per id, per-id results). A verdict is data beside the artifact: ``discard`` only\nhides it from default lists, it never touches artifact files, the ledger or animations.\n\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Annotated, Any\n\nfrom fastapi import APIRouter, Request\nfrom pydantic import BaseModel, ConfigDict, Field, StringConstraints, field_validator\n\nfrom ..curation import (\n    MAX_NOTE,\n    MAX_TAGS,"
+        },
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 49,
+          "quote": "- **Discard is soft.** It is a verdict value. Default lists hide it, `include_discarded=true` (or asking for\n  `verdict=discard` by name) shows it, and the artifact files, the ledger and every reference to the id keep\n  working (an animation that already uses a discarded frame still exports).\n- **The motion engine is a pure function** `(sprite, archetype, knobs, seed) -> frames`: nearest-neighbour warps\n  about a bottom-centre feet pivot, no new colours except a named hit flash and a dissolve for `dead`. The same\n  inputs give byte-identical frames (golden-hash tests pin the five recipes).\n- **The export bakes the RO convention in**: action index `motion*8+direction`, mirrored directions 1, 2, 3, one\n  or two views, per-motion loop, wrapped atlas of unique cells.\n\n## Key Files\n\n| File | Role |\n|---|---|\n| `src/imagelab/curation.py:85` | `CurationDoc` model; `:138` `CurationStore` (atomic sidecar writes, version counter) |\n| `src/imagelab/api/routes_curation.py:78` | `GET`/`PUT /artifacts/{id}/curation`, `:109` `POST /curation/batch` |\n| `src/imagelab/store.py:79` | the rebuildable `curation` index table; list filters join it (`:495`) |\n| `src/imagelab/reindex.py` | rebuilds the index from sidecars; reports `curation_corrupt` |\n| `src/imagelab/motion/archetypes.yaml` | archetype data: motions, frame counts, durations, loop flags, knob bounds |"
+        },
+        {
+          "path": "docs/evidence/curate-2/EVIDENCE.md",
+          "startLine": 17,
+          "quote": "  reapplies the change once; a second 409 reloads what is stored and says so.\n- UI: `IlVerdict` (Good / Bad / Discard + 5 stars, 32 px targets, 150 ms ease colour only) on Studio result\n  cards, Gallery cards, Inspector; `IlDiscardedBadge`; `useImagelabCuration` (shared state, optimistic,\n  Undo toast); Gallery chips + selects + switch; Triage page; ref picker / Use as ref / Variations default\n  to non-discarded.\n- Discarded handling: the service hides discarded by default. Gallery loads with `include_discarded=true`\n  so counts and \"show discarded\" work on what is loaded; the ref picker asks for them only behind a switch.\n\n## Checklist (tick in the tracker with this evidence)\n\n- [x] **CURATE.2.1** proxy rows, client methods, types. `GET`/`PUT artifacts/<id>/curation`, `POST curation/batch`\n  allowed with exact methods; nothing next to them. Tests: `test/imagelabCurationClient.test.ts` (4),\n  `test/imagelabProxyAllow.test.ts` still green. Client: `getCuration`, `putCuration`, `batchCuration`,\n  `imagelabCurationUrl`; list query carries `verdict`, `min_stars`, `tag`, `include_discarded`.\n- [x] **CURATE.2.2** verdict control on Studio result cards, Gallery cards, Inspector; optimistic update, Undo\n  toast, 409 handling, targets >= 32 px. E2E: `Studio: judge a result, undo it, discard it`, `409: a verdict set\n  elsewhere does not lose the click or the other tab's tags`, `Inspector: verdict control...`, `phone width...`\n  (asserts every verdict and star button is >= 32 px and no sideways scroll at 375 px)."
+        },
+        {
+          "path": "src/imagelab/api/routes_curation.py",
+          "startLine": 33,
+          "quote": "ArtifactId = Annotated[str, StringConstraints(pattern=r\"^art_[0-9A-Za-z]+$\", max_length=64)]\n\n\nclass CurationPut(BaseModel):\n    model_config = ConfigDict(extra=\"forbid\", strict=True)\n    base_version: int = Field(ge=0)  # the version the caller saw; 0 when there was no sidecar\n    verdict: Verdict\n    stars: int = Field(default=0, ge=0, le=5)\n    tags: list[Tag] = Field(default_factory=list, max_length=MAX_TAGS)\n    note: str = Field(default=\"\", max_length=MAX_NOTE)\n\n    @field_validator(\"tags\", mode=\"before\")\n    @classmethod\n    def _tags(cls, v):\n        return lower_tags(v)  # the 32-char limit is checked on what would be stored (422, not 500)\n\n\nclass CurationBatch(BaseModel):"
+        }
+      ],
+      "paths": [
+        "docs/reference/imagelab-curate.md",
+        "docs/CAPABILITIES.md",
+        "src/imagelab/api/routes_curation.py",
+        "docs/evidence/curate-2/EVIDENCE.md",
+        "docs/BACKLOG.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "ro-monster-consumption",
+      "label": "RO Monster Consumption",
+      "summary": "This project focuses on proving the Unity import and runtime behavior of generated RO monster animation sets, including render verification, loop flag semantics, and integration into Frontera versions, with AI polish parked behind a measured gate.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.16666666666666666,
+      "y": 0.75,
+      "visual": "A miniature monster, freshly imported into a virtual game world, takes its first tentative steps. A developer observes closely on a large monitor, verifying its animation loops and pivots against a reference while noting any visual glitches.",
+      "visualChanged": true,
+      "currentState": "The Unity-side RO monster consumption is currently in-flight. The importer (`RoMonsterImporter`) is committed on Rompe `develop` (`454298a02`, `ec69df05d`). It compiles with no Editor errors, and a procedural slime zip imported successfully, yielding 40 slots with uniform durations. Initial render proof found a Tight-mesh defect (fixed) and a renderer limit (monster even slots), with RM.1-RM.5 remaining open. Pivot and mirroring pass their initial checks, and odd slot facing maps correctly to world facing.",
+      "intendedDesign": "The importer will be editor-only, residing in `ORO.Editor`, and will never overwrite version 0 of a shipped monster. Imported sets will be versions. A per-motion loop flag will be kept in the sidecar for viewers, with runtime handling via state machine for attack/hit/dead states. The first imported set will target an unused test class ID in a Frontera version, not a shipped monster's version 0.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-RO-MONSTER — Implementation Tracker\n\n> Make a generated RO monster usable in the game client. [IMAGELAB-CURATE](impl/IMAGELAB-CURATE-IMPL.md) ended at\n> a verified `ro-monster` zip; this IMPL covers the consume side: prove the Unity import renders correctly, decide\n> what the runtime does with the loop flag, let a Frontera version carry the imported set so it shows on a real\n> map, and keep the AI-polish idea parked behind a measured gate.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-09 (local session, split out of IMAGELAB-CURATE).\n> Depends on [reference/imagelab-curate.md](reference/imagelab-curate.md) and the Rompe `develop` commit\n> `454298a02` (OroAnim port + `RoMonsterImporter`).\n>\n> verify: none claimed yet. The importer parser and slot planner have EditMode tests (31 passed through a\n> reflection driver, 2026-10-09); nothing here is verified in a running client until RM.1 has evidence.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [reference/imagelab-curate.md](reference/imagelab-curate.md): what imagelab produces and its caveats."
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 65,
+          "quote": "| IMAGELAB-RO-MONSTER (consume side: Unity render proof, runtime semantics, Frontera version, parked AI polish) | 🔄 In-flight | 2026-10-09, [IMAGELAB-RO-MONSTER-IMPL.md](IMAGELAB-RO-MONSTER-IMPL.md): importer `454298a02` + FullRect fix `ec69df05d` on Rompe `develop`; render proof found a Tight-mesh defect (fixed) and a renderer limit (monster even slots); RM.1-RM.5 open |\n\n---\n\n## Current Sprint\n\n**IMAGELAB** (2026-10-03)\n\nGoal: run [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) phases 1-6 (token-free), then hand phase 7 to the operator.\n\nContract v0 proposals P-1..P-15 in the IMPL are additive and not locked; P-9..P-12 go beyond the brief's list.\n\nSee [TODO.md](TODO.md) for the active checklist.\n\nActive tracks:\n\n- Service: contract v0, providers, styles, manifests\n- View: GhostShell `/x/imagelab`"
+        },
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 63,
+          "quote": "\n### Design constraints\n\n- **Editor-only importer.** It lives in `ORO.Editor`; nothing in AOT assemblies references it.\n- **Never overwrite version 0.** A shipped monster keeps its original art; imported sets are versions.\n- **Evidence or UNVERIFIED.** A box is ticked only with an observed result (screenshot, log line, test count).\n\n## Current State (2026-10-09)\n\nImporter and tests committed on Rompe `develop` (`454298a02`, 12 files; FullRect fix `ec69df05d`). Compiles with 0 console errors in the live Editor. A real zip (a procedurally animated slime) imported OK: 40 slots, uniform durations, asset + sidecar written.\n\n**Render proof, first pass (2026-10-09, real `RoSpriteAnimator` path in the logged-in `guild_vs3` world, input locked):**\n\n| Property | Result |\n|---|---|\n| Pivot | PASS: the cell bottom-centre is the entity origin; feet sit on the marker, same as a vanilla Drops reference |\n| Mirroring | PASS: `IsMirror` set on slots 1, 2, 3; mesh U reversed for exactly those; the mirrored slots sit 1 px left (mirrored pivot 54) |\n| Facing | PASS for odd slots: world facing maps to slots 1,1,3,3,5,5,7,7 at camera rot 0 and rotates with the camera |"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-RO-MONSTER — Implementation Tracker\n\n> Make a generated RO monster usable in the game client. [IMAGELAB-CURATE](impl/IMAGELAB-CURATE-IMPL.md) ended at\n> a verified `ro-monster` zip; this IMPL covers the consume side: prove the Unity import renders correctly, decide\n> what the runtime does with the loop flag, let a Frontera version carry the imported set so it shows on a real\n> map, and keep the AI-polish idea parked behind a measured gate.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-09 (local session, split out of IMAGELAB-CURATE).\n> Depends on [reference/imagelab-curate.md](reference/imagelab-curate.md) and the Rompe `develop` commit\n> `454298a02` (OroAnim port + `RoMonsterImporter`).\n>\n> verify: none claimed yet. The importer parser and slot planner have EditMode tests (31 passed through a\n> reflection driver, 2026-10-09); nothing here is verified in a running client until RM.1 has evidence.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [reference/imagelab-curate.md](reference/imagelab-curate.md): what imagelab produces and its caveats."
+        },
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 63,
+          "quote": "\n### Design constraints\n\n- **Editor-only importer.** It lives in `ORO.Editor`; nothing in AOT assemblies references it.\n- **Never overwrite version 0.** A shipped monster keeps its original art; imported sets are versions.\n- **Evidence or UNVERIFIED.** A box is ticked only with an observed result (screenshot, log line, test count).\n\n## Current State (2026-10-09)\n\nImporter and tests committed on Rompe `develop` (`454298a02`, 12 files; FullRect fix `ec69df05d`). Compiles with 0 console errors in the live Editor. A real zip (a procedurally animated slime) imported OK: 40 slots, uniform durations, asset + sidecar written.\n\n**Render proof, first pass (2026-10-09, real `RoSpriteAnimator` path in the logged-in `guild_vs3` world, input locked):**\n\n| Property | Result |\n|---|---|\n| Pivot | PASS: the cell bottom-centre is the entity origin; feet sit on the marker, same as a vanilla Drops reference |\n| Mirroring | PASS: `IsMirror` set on slots 1, 2, 3; mesh U reversed for exactly those; the mirrored slots sit 1 px left (mirrored pivot 54) |\n| Facing | PASS for odd slots: world facing maps to slots 1,1,3,3,5,5,7,7 at camera rot 0 and rotates with the camera |"
+        },
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 33,
+          "quote": "\n**Naming convention**: `RM.{phase}.{n}`.\n\n## Open Questions\n\n1. **Q:** Where does a per-motion loop live at runtime, given `RoAction` has no loop flag?\n   **Resolution:** ___ (operator) — **default-accept: sidecar + state machine.** Attack and hit end through the\n   state machine, dead holds via `SpriteState.Dead`, so no runtime loop flag is needed for the monster set; keep the\n   flag in the sidecar for viewers and revisit only if a motion is added that must play once outside those states.\n2. **Q:** Discard/purge policy (carried from CURATE.6.2). **Resolution:** ___ (operator) — **default-accept: soft\n   discard stays; add an explicit, confirm-gated \"purge discarded\" later only if disk pressure shows.**\n3. **Q:** Which monster class receives the first imported set for the in-game check? **Resolution:** ___ — **default-\n   accept: an unused test class id in a Frontera version (never a shipped monster's version 0).**\n\n## Architecture\n\n```mermaid\n---"
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-RO-MONSTER — Implementation Tracker\n\n> Make a generated RO monster usable in the game client. [IMAGELAB-CURATE](impl/IMAGELAB-CURATE-IMPL.md) ended at\n> a verified `ro-monster` zip; this IMPL covers the consume side: prove the Unity import renders correctly, decide\n> what the runtime does with the loop flag, let a Frontera version carry the imported set so it shows on a real\n> map, and keep the AI-polish idea parked behind a measured gate.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-09 (local session, split out of IMAGELAB-CURATE).\n> Depends on [reference/imagelab-curate.md](reference/imagelab-curate.md) and the Rompe `develop` commit\n> `454298a02` (OroAnim port + `RoMonsterImporter`).\n>\n> verify: none claimed yet. The importer parser and slot planner have EditMode tests (31 passed through a\n> reflection driver, 2026-10-09); nothing here is verified in a running client until RM.1 has evidence.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [reference/imagelab-curate.md](reference/imagelab-curate.md): what imagelab produces and its caveats."
+        },
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 65,
+          "quote": "| IMAGELAB-RO-MONSTER (consume side: Unity render proof, runtime semantics, Frontera version, parked AI polish) | 🔄 In-flight | 2026-10-09, [IMAGELAB-RO-MONSTER-IMPL.md](IMAGELAB-RO-MONSTER-IMPL.md): importer `454298a02` + FullRect fix `ec69df05d` on Rompe `develop`; render proof found a Tight-mesh defect (fixed) and a renderer limit (monster even slots); RM.1-RM.5 open |\n\n---\n\n## Current Sprint\n\n**IMAGELAB** (2026-10-03)\n\nGoal: run [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) phases 1-6 (token-free), then hand phase 7 to the operator.\n\nContract v0 proposals P-1..P-15 in the IMPL are additive and not locked; P-9..P-12 go beyond the brief's list.\n\nSee [TODO.md](TODO.md) for the active checklist.\n\nActive tracks:\n\n- Service: contract v0, providers, styles, manifests\n- View: GhostShell `/x/imagelab`"
+        },
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 63,
+          "quote": "\n### Design constraints\n\n- **Editor-only importer.** It lives in `ORO.Editor`; nothing in AOT assemblies references it.\n- **Never overwrite version 0.** A shipped monster keeps its original art; imported sets are versions.\n- **Evidence or UNVERIFIED.** A box is ticked only with an observed result (screenshot, log line, test count).\n\n## Current State (2026-10-09)\n\nImporter and tests committed on Rompe `develop` (`454298a02`, 12 files; FullRect fix `ec69df05d`). Compiles with 0 console errors in the live Editor. A real zip (a procedurally animated slime) imported OK: 40 slots, uniform durations, asset + sidecar written.\n\n**Render proof, first pass (2026-10-09, real `RoSpriteAnimator` path in the logged-in `guild_vs3` world, input locked):**\n\n| Property | Result |\n|---|---|\n| Pivot | PASS: the cell bottom-centre is the entity origin; feet sit on the marker, same as a vanilla Drops reference |\n| Mirroring | PASS: `IsMirror` set on slots 1, 2, 3; mesh U reversed for exactly those; the mirrored slots sit 1 px left (mirrored pivot 54) |\n| Facing | PASS for odd slots: world facing maps to slots 1,1,3,3,5,5,7,7 at camera rot 0 and rotates with the camera |"
+        },
+        {
+          "path": "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+          "startLine": 33,
+          "quote": "\n**Naming convention**: `RM.{phase}.{n}`.\n\n## Open Questions\n\n1. **Q:** Where does a per-motion loop live at runtime, given `RoAction` has no loop flag?\n   **Resolution:** ___ (operator) — **default-accept: sidecar + state machine.** Attack and hit end through the\n   state machine, dead holds via `SpriteState.Dead`, so no runtime loop flag is needed for the monster set; keep the\n   flag in the sidecar for viewers and revisit only if a motion is added that must play once outside those states.\n2. **Q:** Discard/purge policy (carried from CURATE.6.2). **Resolution:** ___ (operator) — **default-accept: soft\n   discard stays; add an explicit, confirm-gated \"purge discarded\" later only if disk pressure shows.**\n3. **Q:** Which monster class receives the first imported set for the in-game check? **Resolution:** ___ — **default-\n   accept: an unused test class id in a Frontera version (never a shipped monster's version 0).**\n\n## Architecture\n\n```mermaid\n---"
+        },
+        {
+          "path": "docs/reference/imagelab-curate.md",
+          "startLine": 113,
+          "quote": "   `unrated`, to a batch or to a pack. Judgements save as you go.\n3. Open **Animate**: pick a `good` still (the picker lists only good, finished stills; discarded never\n   appear), optionally a second still as the **back view**, tune knobs, watch all five motions loop. **Save**\n   builds the artifacts and opens the animation in the Animator for hand edits.\n4. Export `ro-monster` from the Animator, or `GET` the route above, and hand the zip to an importer.\n\n## Caveats\n\n- **Unity use is not proven by this IMPL.** The importer exists on the Rompe `develop` line (`RoMonsterImporter`)\n  and imports the zip, but the runtime has no loop flag and nothing reads the sidecar. See\n  [IMAGELAB-RO-MONSTER-IMPL.md](../IMAGELAB-RO-MONSTER-IMPL.md).\n- **One view assumes facing right.** Cells are drawn facing screen right; directions 1, 2, 3 are mirrored at draw\n  time. Nothing checks that a generated still actually faces right.\n- **Procedural motion is a baseline, not art.** It reads well on small silhouettes; a still whose parts should move\n  independently (wings, arms) moves as one blob. AI polish is parked (RM.4).\n- **Two-still save** leaves two extra named animation documents (\"(front build)\" and \"(back build)\") next to the\n  composed one, plus their frame artifacts; there is no cleanup route yet.\n- **Dashboard keeps a copy of the knob bounds** (`imagelabMotion.ts`); a service-side change shows up as a 422 until"
+        }
+      ],
+      "paths": [
+        "docs/IMAGELAB-RO-MONSTER-IMPL.md",
+        "docs/CONTEXT.md",
+        "docs/reference/imagelab-curate.md"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "asset-studio-features",
+      "label": "2D Asset Studio Features",
+      "summary": "imagelab is expanding into a 2D asset studio, offering style packs, animation generation and editing, tileset generation, and blind style benchmarking, with Frontera tooling moving out of Unity.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.5,
+      "y": 0.75,
+      "visual": "A bustling workshop filled with artists creating pixel art, 3D-to-2D renders, and animated sprites. One section focuses on assembling modular tilesets, while another conducts blind tests of various artistic styles on a series of canvases.",
+      "visualChanged": true,
+      "currentState": "The 2D asset studio features are actively being built. STUDIO.1, 2, 3, and 4 are complete on the service side. This includes four benchmark packs (`pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos`), animation documents with versioned edits and exports (P-29, `gif`, `strip`, `aseprite`, `oro`, `ro-monster` formats supported), `tileset` job kinds with `grid` and `wang16` layouts, and direct `fal`/`pixellab` providers with per-pack preferences (P-30). However, no real images have passed through the new packs, and no live calls have been made to providers; all tests use `httpx.MockTransport`.",
+      "intendedDesign": "The studio will provide a Leonardo-style generate surface, an animation generator/player/editor, and a tileset generator. Frontera tooling related to generation, styles, and review will move out of the Unity HF Dashboard into `/x/imagelab`. The post-processing steps (`prerender`, `hd2d`, `tileset`) are designed to be pure, deterministic, and bit-stable, returning images and reports. `tileset` jobs will include specified layouts like `grid`, `wang16`, and `blob47` (deferred).",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-STUDIO — Implementation Tracker\n\n> imagelab grows from \"contract v0 + three styles\" into a **2D asset studio**: style packs for any\n> look (pixel art and pre-rendered 3D-to-2D), a Leonardo-style generate surface, an **animation\n> generator + player + editor**, a **tileset generator**, and a blind style bench. The Frontera\n> tooling moves out of the Unity HF Dashboard into it, so ORO games can be built from scratch with\n> RO assets at minimal or zero. It is the image brother of Toma (video): Toma's keyframes come from here.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-05 (cloud session, `/bootstrap-impl`).\n> Depends on [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) (phases 1-6 built; phase 7 operator-gated).\n>\n> verify: unit (service side, STUDIO.1-4: `make test`, token-free, no live provider call). No `.runs` rail is kept in this repo, so no run record backs the claim; the evidence is the per-box test names below and the Current State count. STUDIO.6 (Rompe, Unity) claims no tier: it is unverified in Unity.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md): § Contract v0 as built, § Proposals, and the phase 7 boxes.\n   This IMPL builds on it and never changes a v0 line."
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 1,
+          "quote": "# imagelab studio (as built)\n\n## Overview\n\n> The 2D asset studio that grew on top of imagelab contract v0: style packs, the `prerender` and\n> `hd2d` steps, the `tileset` job kind, versioned animation documents with exports, and the direct\n> `fal` and `pixellab` providers, plus bench runs with blind sorts and `ref_strength` (STUDIO.5\n> service side). Describes the **service as it runs after STUDIO.1-4 and the P-31/P-32 routes** plus the\n> Rompe-side importer (STUDIO.6). Everything here is additive to [contract-v0.md](contract-v0.md)\n> and listed there as proposals P-27..P-32. Source of truth for *what runs*: `src/imagelab/`.\n> Updated: 2026-10-05\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark"
+        },
+        {
+          "path": "src/imagelab/animations.py",
+          "startLine": 1,
+          "quote": "\"\"\"Animation documents (STUDIO.2, P-29): frames -> artifacts, durations, pivots, tags.\n\nAn animation is a document, not a job. Each version is an immutable JSON file\n(``<data>/animations/<id>/v<N>.json``) -- the same \"file is truth\" rule as artifact manifests,\nand small enough that listing scans the directory instead of indexing it. An edit writes the\nnext version and records ``parent_version``; it never rewrites an existing file, so a frame\nshown in the Animator stays explainable from its artifact manifest.\n\nExports are derived on read: ``gif``, ``strip`` (PNG, one cell per frame), ``aseprite`` (the\n``--data`` json-array format with ``frameTags``) and ``oro`` (zip: ``atlas.png`` + ``anim.json``,\nwhat the ORO Unity importer reads, so a game needs no RO ``.spr/.act``).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport io\nimport json\nimport os"
+        },
+        {
+          "path": "src/imagelab/api/routes_animations.py",
+          "startLine": 1,
+          "quote": "\"\"\"Animation documents (STUDIO.2, P-29). Additive to contract v0; Toma uses none of it.\n\n``POST /animations`` (from a job's frames, or a frame list) · ``GET /animations`` (latest\nversion of each) · ``GET /animations/{id}`` (``?version=``) · ``PUT /animations/{id}`` (an edit\n-> the next version; ``base_version`` must be the latest, else ``409 version_conflict``) ·\n``GET /animations/{id}/export?format=gif|strip|aseprite|oro|ro-monster``.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nfrom typing import Annotated, Any\n\nfrom fastapi import APIRouter, Request\nfrom fastapi.responses import Response\nfrom pydantic import BaseModel, ConfigDict, Field\n\nfrom ..animations import MAX_PIVOT, AnimationError, AnimationStore"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 97,
+          "quote": "- **Tilesets are a job kind** (`tileset`) with a declared layout (`grid`, `wang16`, `blob47`): one\n  template image, sliced, a seam-error metric per edge, and an optional seam fix.\n- **Frontera leaves Unity.** The HF Dashboard Frontera tab keeps only what needs the Editor:\n  importing an imagelab animation into a Frontera version (atlas + rects + timings), the Divergence\n  Gate, and the ledger. Generation, styles and review move to `/x/imagelab`.\n\n## Current State (2026-10-05)\n\nSTUDIO.1 complete (cloud session): four benchmark packs (`pixel-ro`, `pixel-bof4`,\n`prerender-dkc`, `hd2d-tos`) on two new step modules, a 6×4 bench spec, and an end-to-end mock\ntest per pack. `make test` → 392 passed, 1 skipped. **No real image has gone through the new packs\nyet**: anonymous HF ZeroGPU quota is exhausted and no key exists. That waits for IMAGELAB.7.2 /\nan `HF_TOKEN`. STUDIO.2-4 complete (cloud session): animation documents with versioned edits and exports (P-29), the `tileset` kind with grid + wang16 (P-28), and direct `fal` / `pixellab` providers with per-pack preferences (P-30). Every provider path is tested against `httpx.MockTransport` only: **no live call has been made**. A review pass then landed seven fix commits (`db61eb3`, `57f5c95`, `e6bf709`, `598d261`, `8cae446`, `38965d8`, `26b6415`): `seam_fix` blends per axis and `seam_error` also checks the middle line; a non-looping animation exports a GIF with no loop block; animation pivots, frame count and sheet area are bounded, bare frame ids are validated and animation work runs off the event loop; a tileset job cannot disable `fit_grid` and the runner checks the sheet is the exact grid; `matte_defringe` keeps a minimum ramp when `lo >= hi`; the tileset preview is capped at 2048 px a side and seams are measured on boundary lines only; provider-unavailable reasons name `IMAGELAB_FAL_KEY` / `IMAGELAB_PIXELLAB_KEY`. Golden-hash pins for the hd2d and tileset steps followed (`8a3865f`, `tests/test_post_golden.py`, 7 tests)."
+        },
+        {
+          "path": "src/imagelab/animations.py",
+          "startLine": 33,
+          "quote": "ANIM_ID = re.compile(r\"^anim_[0-9A-Za-z]+$\")\n_VFILE = re.compile(r\"^v(\\d+)\\.json$\")\nMAX_PIVOT = 4096  # schema bound; the store further requires the pivot inside its frame\nMAX_FRAMES = 512\nMAX_SHEET_PIXELS = 32_000_000  # strip/atlas area cap (128 MB of RGBA) before anything allocates\nEXPORT_FORMATS = (\"gif\", \"strip\", \"aseprite\", \"oro\", \"ro-monster\")\n\n\nclass AnimationError(Exception):\n    def __init__(self, code: str, message: str):\n        super().__init__(message)\n        self.code = code\n\n\nclass AnimationStore:\n    def __init__(self, data_dir: Path):\n        self.data_dir = Path(data_dir)\n        self.root = self.data_dir / \"animations\""
+        },
+        {
+          "path": "src/imagelab/api/routes_animations.py",
+          "startLine": 17,
+          "quote": "\nfrom ..animations import MAX_PIVOT, AnimationError, AnimationStore\nfrom .context import check_job_id, ctx, not_found\nfrom .errors import ApiError\n\nrouter = APIRouter()\n\n\nArtifactId = Annotated[str, Field(pattern=r\"^art_[0-9A-Za-z]+$\")]\nPivotCoord = Annotated[int, Field(ge=0, le=MAX_PIVOT)]\n\n\nclass FrameIn(BaseModel):\n    model_config = ConfigDict(extra=\"forbid\", strict=True)\n    artifact_id: ArtifactId\n    duration_ms: int = Field(default=100, ge=10, le=10_000)\n    pivot: list[PivotCoord] | None = Field(default=None, min_length=2, max_length=2)\n    flip: bool = False"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-STUDIO — Implementation Tracker\n\n> imagelab grows from \"contract v0 + three styles\" into a **2D asset studio**: style packs for any\n> look (pixel art and pre-rendered 3D-to-2D), a Leonardo-style generate surface, an **animation\n> generator + player + editor**, a **tileset generator**, and a blind style bench. The Frontera\n> tooling moves out of the Unity HF Dashboard into it, so ORO games can be built from scratch with\n> RO assets at minimal or zero. It is the image brother of Toma (video): Toma's keyframes come from here.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-05 (cloud session, `/bootstrap-impl`).\n> Depends on [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) (phases 1-6 built; phase 7 operator-gated).\n>\n> verify: unit (service side, STUDIO.1-4: `make test`, token-free, no live provider call). No `.runs` rail is kept in this repo, so no run record backs the claim; the evidence is the per-box test names below and the Current State count. STUDIO.6 (Rompe, Unity) claims no tier: it is unverified in Unity.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md): § Contract v0 as built, § Proposals, and the phase 7 boxes.\n   This IMPL builds on it and never changes a v0 line."
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 1,
+          "quote": "# imagelab studio (as built)\n\n## Overview\n\n> The 2D asset studio that grew on top of imagelab contract v0: style packs, the `prerender` and\n> `hd2d` steps, the `tileset` job kind, versioned animation documents with exports, and the direct\n> `fal` and `pixellab` providers, plus bench runs with blind sorts and `ref_strength` (STUDIO.5\n> service side). Describes the **service as it runs after STUDIO.1-4 and the P-31/P-32 routes** plus the\n> Rompe-side importer (STUDIO.6). Everything here is additive to [contract-v0.md](contract-v0.md)\n> and listed there as proposals P-27..P-32. Source of truth for *what runs*: `src/imagelab/`.\n> Updated: 2026-10-05\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark"
+        },
+        {
+          "path": "src/imagelab/animations.py",
+          "startLine": 1,
+          "quote": "\"\"\"Animation documents (STUDIO.2, P-29): frames -> artifacts, durations, pivots, tags.\n\nAn animation is a document, not a job. Each version is an immutable JSON file\n(``<data>/animations/<id>/v<N>.json``) -- the same \"file is truth\" rule as artifact manifests,\nand small enough that listing scans the directory instead of indexing it. An edit writes the\nnext version and records ``parent_version``; it never rewrites an existing file, so a frame\nshown in the Animator stays explainable from its artifact manifest.\n\nExports are derived on read: ``gif``, ``strip`` (PNG, one cell per frame), ``aseprite`` (the\n``--data`` json-array format with ``frameTags``) and ``oro`` (zip: ``atlas.png`` + ``anim.json``,\nwhat the ORO Unity importer reads, so a game needs no RO ``.spr/.act``).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport io\nimport json\nimport os"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 97,
+          "quote": "- **Tilesets are a job kind** (`tileset`) with a declared layout (`grid`, `wang16`, `blob47`): one\n  template image, sliced, a seam-error metric per edge, and an optional seam fix.\n- **Frontera leaves Unity.** The HF Dashboard Frontera tab keeps only what needs the Editor:\n  importing an imagelab animation into a Frontera version (atlas + rects + timings), the Divergence\n  Gate, and the ledger. Generation, styles and review move to `/x/imagelab`.\n\n## Current State (2026-10-05)\n\nSTUDIO.1 complete (cloud session): four benchmark packs (`pixel-ro`, `pixel-bof4`,\n`prerender-dkc`, `hd2d-tos`) on two new step modules, a 6×4 bench spec, and an end-to-end mock\ntest per pack. `make test` → 392 passed, 1 skipped. **No real image has gone through the new packs\nyet**: anonymous HF ZeroGPU quota is exhausted and no key exists. That waits for IMAGELAB.7.2 /\nan `HF_TOKEN`. STUDIO.2-4 complete (cloud session): animation documents with versioned edits and exports (P-29), the `tileset` kind with grid + wang16 (P-28), and direct `fal` / `pixellab` providers with per-pack preferences (P-30). Every provider path is tested against `httpx.MockTransport` only: **no live call has been made**. A review pass then landed seven fix commits (`db61eb3`, `57f5c95`, `e6bf709`, `598d261`, `8cae446`, `38965d8`, `26b6415`): `seam_fix` blends per axis and `seam_error` also checks the middle line; a non-looping animation exports a GIF with no loop block; animation pivots, frame count and sheet area are bounded, bare frame ids are validated and animation work runs off the event loop; a tileset job cannot disable `fit_grid` and the runner checks the sheet is the exact grid; `matte_defringe` keeps a minimum ramp when `lo >= hi`; the tileset preview is capped at 2048 px a side and seams are measured on boundary lines only; provider-unavailable reasons name `IMAGELAB_FAL_KEY` / `IMAGELAB_PIXELLAB_KEY`. Golden-hash pins for the hd2d and tileset steps followed (`8a3865f`, `tests/test_post_golden.py`, 7 tests)."
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 111,
+          "quote": "\n### The steps\n\nAll steps are pure, deterministic and bit-stable (no k-means, no unseeded randomness); each\nreturns `(image, report)` and the report lands in `post_steps[].report`.\n\n#### prerender ([post/prerender.py](../../src/imagelab/post/prerender.py))\n\nA pre-rendered sprite is not pixel art: there is no grid to recover. The chain applies the SNES\nconstraint to a render.\n\n| Step | Params | What it does |\n|---|---|---|\n| `matte_defringe` | `lo=0.04`, `hi=0.25` | Soft matte against the border's modal colour: alpha ramps 0..1 as RGB distance goes `lo`..`hi`, but only in the region connected to the border (inner highlights stay opaque). Partial pixels are un-mixed (`c = (obs - (1-a)*bg)/a`) to remove the halo. An image already carrying alpha (more than 2% of pixels under 250) is returned as is, `matted:false`. `hi` is held at least `lo + 0.001`. |\n| `downscale_area` | `height=64`, `alpha=\"binary\"\\|\"soft\"`, `threshold=128` | Trims to the opaque bbox, premultiplied box resample so the content is `height` px tall. `binary` thresholds alpha; `soft` keeps it. |\n| `rgb555` | none | Snaps each channel to 32 levels. Registered, not in any default chain. |\n| `palette_limit` | `colours=15`, `rgb555=false` | Median-cut over opaque pixels only, each pixel to its nearest entry; `rgb555` snaps the palette to 15-bit first. Report lists the palette hexes. |\n"
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 128,
+          "quote": "\n#### hd2d ([post/hd2d.py](../../src/imagelab/post/hd2d.py))\n\nFull colour, soft alpha, no palette lock. Reuses `matte_defringe` and `downscale_area` from\nprerender and adds `unsharp` (`amount=0.5`, `radius=1.0`): `rgb + amount*(rgb - blur(rgb))` with\nan alpha-weighted blur so transparent pixels' colour cannot bleed a halo. Alpha is untouched.\n\n#### tileset ([post/tileset.py](../../src/imagelab/post/tileset.py))\n\n`TILESET_REGISTRY` = `fit_grid`, `seam_fix`, plus prerender's `palette_limit`. See the next\nsection for how a job strings them together.\n\n### The tileset kind (P-28)\n\n`POST /jobs` with `kind: \"tileset\"` and a `tileset` object (`TilesetSpec`, strict):\n\n| Field | Default | Bounds |\n|---|---|---|"
+        },
+        {
+          "path": "docs/BACKLOG.md",
+          "startLine": 33,
+          "quote": "\n- **STUDIO blob47 tilesets** (from IMAGELAB-STUDIO STUDIO.3, 2026-10-05): compose the 47-tile blob set from the same two materials as `wang16`. Deferred until wang16 output is judged on a real provider.\n- **PixelLab async endpoints** (from IMAGELAB-STUDIO STUDIO.4, 2026-10-05): `/generate-8-rotations-v3` and `/animate-with-skeleton-v3` (+ `/estimate-skeleton` for motion transfer from RO frames) are job-and-poll APIs; they belong with animation documents (a rotation set or a skeleton cycle becomes an animation). Needs a key to verify the poll shape.\n- **Rotate dev secrets before prod** (operator, 2026-10-05): imagelab service token + gateway virtual key are throwaway-grade dev values. Tracked as IMAGELAB.7.11 in [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md)."
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 1,
+          "quote": "# IMAGELAB-STUDIO — Implementation Tracker\n\n> imagelab grows from \"contract v0 + three styles\" into a **2D asset studio**: style packs for any\n> look (pixel art and pre-rendered 3D-to-2D), a Leonardo-style generate surface, an **animation\n> generator + player + editor**, a **tileset generator**, and a blind style bench. The Frontera\n> tooling moves out of the Unity HF Dashboard into it, so ORO games can be built from scratch with\n> RO assets at minimal or zero. It is the image brother of Toma (video): Toma's keyframes come from here.\n> Follows DOCS-PROTOCOL.md Rule 12. Bootstrapped 2026-10-05 (cloud session, `/bootstrap-impl`).\n> Depends on [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) (phases 1-6 built; phase 7 operator-gated).\n>\n> verify: unit (service side, STUDIO.1-4: `make test`, token-free, no live provider call). No `.runs` rail is kept in this repo, so no run record backs the claim; the evidence is the per-box test names below and the Current State count. STUDIO.6 (Rompe, Unity) claims no tier: it is unverified in Unity.\n\n## AI Continuation Prompt\n\nRead in order:\n\n1. [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md): § Contract v0 as built, § Proposals, and the phase 7 boxes.\n   This IMPL builds on it and never changes a v0 line."
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 1,
+          "quote": "# imagelab studio (as built)\n\n## Overview\n\n> The 2D asset studio that grew on top of imagelab contract v0: style packs, the `prerender` and\n> `hd2d` steps, the `tileset` job kind, versioned animation documents with exports, and the direct\n> `fal` and `pixellab` providers, plus bench runs with blind sorts and `ref_strength` (STUDIO.5\n> service side). Describes the **service as it runs after STUDIO.1-4 and the P-31/P-32 routes** plus the\n> Rompe-side importer (STUDIO.6). Everything here is additive to [contract-v0.md](contract-v0.md)\n> and listed there as proposals P-27..P-32. Source of truth for *what runs*: `src/imagelab/`.\n> Updated: 2026-10-05\n\n## Architecture\n\n```mermaid\n---\nconfig:\n  theme: dark"
+        },
+        {
+          "path": "src/imagelab/__main__.py",
+          "startLine": 1,
+          "quote": "\"\"\"``python -m imagelab <command>``: ``serve`` (the API), ``reindex`` (repair the index) and\n``token`` (mint the service token into ``.env``) and ``live-bench`` (STUDIO.7).\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport os\nimport sys\nfrom pathlib import Path\n\nfrom .reindex import reindex\nfrom .store import Store\n\n\ndef serve() -> int:\n    \"\"\"Run the API. There is deliberately no --host flag: the bind address comes from\n    ``Settings``, which refuses a non-loopback host outside the container and an empty token.\"\"\"\n    import uvicorn"
+        },
+        {
+          "path": "src/imagelab/animations.py",
+          "startLine": 1,
+          "quote": "\"\"\"Animation documents (STUDIO.2, P-29): frames -> artifacts, durations, pivots, tags.\n\nAn animation is a document, not a job. Each version is an immutable JSON file\n(``<data>/animations/<id>/v<N>.json``) -- the same \"file is truth\" rule as artifact manifests,\nand small enough that listing scans the directory instead of indexing it. An edit writes the\nnext version and records ``parent_version``; it never rewrites an existing file, so a frame\nshown in the Animator stays explainable from its artifact manifest.\n\nExports are derived on read: ``gif``, ``strip`` (PNG, one cell per frame), ``aseprite`` (the\n``--data`` json-array format with ``frameTags``) and ``oro`` (zip: ``atlas.png`` + ``anim.json``,\nwhat the ORO Unity importer reads, so a game needs no RO ``.spr/.act``).\n\"\"\"\n\nfrom __future__ import annotations\n\nimport io\nimport json\nimport os"
+        },
+        {
+          "path": "src/imagelab/api/routes_animations.py",
+          "startLine": 1,
+          "quote": "\"\"\"Animation documents (STUDIO.2, P-29). Additive to contract v0; Toma uses none of it.\n\n``POST /animations`` (from a job's frames, or a frame list) · ``GET /animations`` (latest\nversion of each) · ``GET /animations/{id}`` (``?version=``) · ``PUT /animations/{id}`` (an edit\n-> the next version; ``base_version`` must be the latest, else ``409 version_conflict``) ·\n``GET /animations/{id}/export?format=gif|strip|aseprite|oro|ro-monster``.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport asyncio\nfrom typing import Annotated, Any\n\nfrom fastapi import APIRouter, Request\nfrom fastapi.responses import Response\nfrom pydantic import BaseModel, ConfigDict, Field\n\nfrom ..animations import MAX_PIVOT, AnimationError, AnimationStore"
+        },
+        {
+          "path": "docs/IMAGELAB-STUDIO-IMPL.md",
+          "startLine": 97,
+          "quote": "- **Tilesets are a job kind** (`tileset`) with a declared layout (`grid`, `wang16`, `blob47`): one\n  template image, sliced, a seam-error metric per edge, and an optional seam fix.\n- **Frontera leaves Unity.** The HF Dashboard Frontera tab keeps only what needs the Editor:\n  importing an imagelab animation into a Frontera version (atlas + rects + timings), the Divergence\n  Gate, and the ledger. Generation, styles and review move to `/x/imagelab`.\n\n## Current State (2026-10-05)\n\nSTUDIO.1 complete (cloud session): four benchmark packs (`pixel-ro`, `pixel-bof4`,\n`prerender-dkc`, `hd2d-tos`) on two new step modules, a 6×4 bench spec, and an end-to-end mock\ntest per pack. `make test` → 392 passed, 1 skipped. **No real image has gone through the new packs\nyet**: anonymous HF ZeroGPU quota is exhausted and no key exists. That waits for IMAGELAB.7.2 /\nan `HF_TOKEN`. STUDIO.2-4 complete (cloud session): animation documents with versioned edits and exports (P-29), the `tileset` kind with grid + wang16 (P-28), and direct `fal` / `pixellab` providers with per-pack preferences (P-30). Every provider path is tested against `httpx.MockTransport` only: **no live call has been made**. A review pass then landed seven fix commits (`db61eb3`, `57f5c95`, `e6bf709`, `598d261`, `8cae446`, `38965d8`, `26b6415`): `seam_fix` blends per axis and `seam_error` also checks the middle line; a non-looping animation exports a GIF with no loop block; animation pivots, frame count and sheet area are bounded, bare frame ids are validated and animation work runs off the event loop; a tileset job cannot disable `fit_grid` and the runner checks the sheet is the exact grid; `matte_defringe` keeps a minimum ramp when `lo >= hi`; the tileset preview is capped at 2048 px a side and seams are measured on boundary lines only; provider-unavailable reasons name `IMAGELAB_FAL_KEY` / `IMAGELAB_PIXELLAB_KEY`. Golden-hash pins for the hd2d and tileset steps followed (`8a3865f`, `tests/test_post_golden.py`, 7 tests)."
+        },
+        {
+          "path": "docs/reference/imagelab-studio.md",
+          "startLine": 111,
+          "quote": "\n### The steps\n\nAll steps are pure, deterministic and bit-stable (no k-means, no unseeded randomness); each\nreturns `(image, report)` and the report lands in `post_steps[].report`.\n\n#### prerender ([post/prerender.py](../../src/imagelab/post/prerender.py))\n\nA pre-rendered sprite is not pixel art: there is no grid to recover. The chain applies the SNES\nconstraint to a render.\n\n| Step | Params | What it does |\n|---|---|---|\n| `matte_defringe` | `lo=0.04`, `hi=0.25` | Soft matte against the border's modal colour: alpha ramps 0..1 as RGB distance goes `lo`..`hi`, but only in the region connected to the border (inner highlights stay opaque). Partial pixels are un-mixed (`c = (obs - (1-a)*bg)/a`) to remove the halo. An image already carrying alpha (more than 2% of pixels under 250) is returned as is, `matted:false`. `hi` is held at least `lo + 0.001`. |\n| `downscale_area` | `height=64`, `alpha=\"binary\"\\|\"soft\"`, `threshold=128` | Trims to the opaque bbox, premultiplied box resample so the content is `height` px tall. `binary` thresholds alpha; `soft` keeps it. |\n| `rgb555` | none | Snaps each channel to 32 levels. Registered, not in any default chain. |\n| `palette_limit` | `colours=15`, `rgb555=false` | Median-cut over opaque pixels only, each pixel to its nearest entry; `rgb555` snaps the palette to 15-bit first. Report lists the palette hexes. |\n"
+        }
+      ],
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/IMAGELAB-STUDIO-IMPL.md",
+        "docs/reference/imagelab-studio.md",
+        "src/imagelab/animations.py",
+        "src/imagelab/api/routes_animations.py",
+        "docs/BACKLOG.md",
+        "src/imagelab/__main__.py"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    },
+    {
+      "id": "core-api-jobs-artifacts",
+      "label": "Core API: Jobs & Artifacts",
+      "summary": "The imagelab API provides essential routes for managing image generation jobs, tracking their progress, cancelling them, and retrieving generated artifacts and their manifests, while enforcing strict access control and data validation.",
+      "detail": "Read the captured evidence below. Source documents may describe plans rather than implemented behavior.",
+      "status": "Source-reported · runtime not audited",
+      "x": 0.8333333333333334,
+      "y": 0.75,
+      "visual": "A busy postal sorting facility where packages (jobs) are received, tracked through various processing stages, and then delivered (artifacts). A strict security checkpoint ensures only authorized personnel can access the facility.",
+      "visualChanged": true,
+      "currentState": "The imagelab API provides `POST /jobs` for creation, `GET /jobs/{id}` for status, `GET /jobs/events` for real-time updates via Server-Sent Events (SSE), and `DELETE /jobs/{id}` for cancellation. Artifacts are retrieved via `GET /artifacts/{id}` (bytes) and `GET /artifacts/{id}/manifest` (JSON sidecar). All these core routes are built and secured with token-based authentication. The `GET /jobs` route is a proposed addition for querying jobs by status, style, or kind.",
+      "intendedDesign": "The `POST /jobs` request model is strictly validated both statically and against live service state, refusing invalid inputs without calling a provider. `GET /jobs/events` is designed to provide a snapshot of non-terminal jobs on connect, followed by job-specific updates, with reconnection support. `DELETE /jobs/{id}` is idempotent, cancelling queued jobs immediately or running jobs at the next step boundary without deleting artifacts. The proposed `GET /jobs` route would offer paginated job listings with filtering capabilities.",
+      "nextSteps": "Unknown — not established by the captured evidence.",
+      "currentEvidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "src/imagelab/api/routes_artifacts.py",
+          "startLine": 1,
+          "quote": "\"\"\"``GET /artifacts/{id}`` (bytes) · ``GET /artifacts/{id}/manifest`` (sidecar JSON).\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Any\n\nfrom fastapi import APIRouter, Request\nfrom fastapi.responses import FileResponse, JSONResponse\n\nfrom ..manifest.writer import ArtifactNotServable, read_artifact\nfrom .context import check_artifact_id, ctx\nfrom .errors import ApiError\n\nrouter = APIRouter()\n\n_MEDIA = {\".png\": \"image/png\", \".jpg\": \"image/jpeg\", \".jpeg\": \"image/jpeg\", \".webp\": \"image/webp\"}\n\n"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 55,
+          "quote": "\n## Sprint 3 — IMAGELAB phase 3 (API contract v0, queue, SSE, auth)\n\nMirror of [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) P3.\n\n- [x] IMAGELAB.3.1 — App factory, token middleware on every request, P-5 errors.\n- [x] IMAGELAB.3.2 — Request model and live validation.\n- [x] IMAGELAB.3.3 — Provider interface, mock provider, job runner.\n- [x] IMAGELAB.3.4 — Job and artifact routes.\n- [x] IMAGELAB.3.5 — SSE.\n- [x] IMAGELAB.3.6 — Registry routes, lists, reference upload.\n- [x] IMAGELAB.3.7 — `make run`, interrupted-job recovery, mock e2e.\n\nNext: IMAGELAB.4.1 (gateway provider).\n\n---\n\n## Sprint 4 — IMAGELAB phase 4 (providers, cost, retarget, container, contract reference)"
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 93,
+          "quote": "\n### `GET /jobs/events`\n\nStatus: **v0**; the shape is **proposed** (P-3).\n\nServer-sent events. Registered before `/jobs/{id}` so the literal path is never read as an id (P-6). On connect: `event: snapshot` once with every non-terminal job; then `event: job` on every state or progress change; a `: keepalive` comment every 15 s. Every event has a strictly increasing `id:`; reconnect with `Last-Event-ID` to replay what was missed (no snapshot then). An id that cannot be replayed gets a fresh snapshot.\n\n```json\n{\"jobs\": [{\"id\": \"job_01M41YJZZQ24AYDB2SW1K857V0\", \"kind\": \"still\", \"status\": \"running\", \"style\": \"pixelart\", \"provider\": \"mock\", \"model\": \"mock-1\", \"created_at\": \"2026-10-03T22:36:36.727753+00:00\", \"started_at\": \"2026-10-03T22:36:36.734283+00:00\", \"finished_at\": null, \"progress\": {\"done\": 0, \"total\": 1}, \"artifacts\": [], \"error\": null}]}\n```\n\nThe block above is the `data:` of the `snapshot` event; a `job` event's `data:` is one bare job body.\n\n### `DELETE /jobs/{id}`\n\nStatus: **v0**; the semantics are **proposed** (P-4, P-18).\n\nIdempotent. Cancels a queued job at once, or a running one at its next step boundary (an image already being generated by a provider is not interrupted; it is already billed). Waits up to 2 s for the running job to reach a boundary and answers `200` with the job body in whatever state it is in. On a terminal job it is a no-op `200`. Unknown id: `404`. It never deletes artifacts."
+        },
+        {
+          "path": "src/imagelab/api/routes_artifacts.py",
+          "startLine": 17,
+          "quote": "\n\ndef _read(request: Request, artifact_id: str):\n    check_artifact_id(artifact_id)\n    try:\n        return read_artifact(ctx(request).store.data_dir, artifact_id)\n    except ArtifactNotServable:  # missing, or bytes without a manifest: never served\n        raise ApiError(\"not_found\", \"no such artifact\") from None\n\n\n@router.get(\"/artifacts/{artifact_id}\")\nasync def get_artifact_bytes(request: Request, artifact_id: str) -> FileResponse:\n    manifest, path = _read(request, artifact_id)\n    if path is None:\n        raise ApiError(\"not_found\", \"artifact has no image bytes (it is an error manifest)\")\n    return FileResponse(\n        path,\n        media_type=_MEDIA.get(path.suffix.lower(), \"application/octet-stream\"),"
+        }
+      ],
+      "designEvidence": [
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "src/imagelab/api/models.py",
+          "startLine": 1,
+          "quote": "\"\"\"``POST /jobs`` request model (P-1, P-12, P-13) and the checks that need live state.\n\nTwo layers, both ending in the same P-5 ``invalid_request`` (422):\n\n- :class:`JobRequest` is static shape: types, bounds, unknown fields refused. Pydantic strict\n  mode, so ``true`` is not an int and ``\"2\"`` is not a count.\n- :func:`validate_job_request` needs the running service: the ``n`` cap (settings), refs that\n  must exist (store), the style (registry + availability), provider and model (providers) and\n  the ``post[]`` merge (the style's chain).\n\nNothing here touches a provider: a refused request never spends money.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom collections.abc import Mapping\nfrom dataclasses import dataclass, field"
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 93,
+          "quote": "\n### `GET /jobs/events`\n\nStatus: **v0**; the shape is **proposed** (P-3).\n\nServer-sent events. Registered before `/jobs/{id}` so the literal path is never read as an id (P-6). On connect: `event: snapshot` once with every non-terminal job; then `event: job` on every state or progress change; a `: keepalive` comment every 15 s. Every event has a strictly increasing `id:`; reconnect with `Last-Event-ID` to replay what was missed (no snapshot then). An id that cannot be replayed gets a fresh snapshot.\n\n```json\n{\"jobs\": [{\"id\": \"job_01M41YJZZQ24AYDB2SW1K857V0\", \"kind\": \"still\", \"status\": \"running\", \"style\": \"pixelart\", \"provider\": \"mock\", \"model\": \"mock-1\", \"created_at\": \"2026-10-03T22:36:36.727753+00:00\", \"started_at\": \"2026-10-03T22:36:36.734283+00:00\", \"finished_at\": null, \"progress\": {\"done\": 0, \"total\": 1}, \"artifacts\": [], \"error\": null}]}\n```\n\nThe block above is the `data:` of the `snapshot` event; a `job` event's `data:` is one bare job body.\n\n### `DELETE /jobs/{id}`\n\nStatus: **v0**; the semantics are **proposed** (P-4, P-18).\n\nIdempotent. Cancels a queued job at once, or a running one at its next step boundary (an image already being generated by a provider is not interrupted; it is already billed). Waits up to 2 s for the running job to reach a boundary and answers `200` with the job body in whatever state it is in. On a terminal job it is a no-op `200`. Unknown id: `404`. It never deletes artifacts."
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 105,
+          "quote": "\n### `DELETE /jobs/{id}`\n\nStatus: **v0**; the semantics are **proposed** (P-4, P-18).\n\nIdempotent. Cancels a queued job at once, or a running one at its next step boundary (an image already being generated by a provider is not interrupted; it is already billed). Waits up to 2 s for the running job to reach a boundary and answers `200` with the job body in whatever state it is in. On a terminal job it is a no-op `200`. Unknown id: `404`. It never deletes artifacts.\n\n### `GET /jobs`\n\nStatus: **proposed** (P-9).\n\nQuery: `status`, `style`, `kind` (`still`, `sheet`, `retarget` or `tileset`), `limit` (default 50, max 200), `before` (an id cursor). Newest first.\n\n```json\n{\"jobs\": [], \"next\": null}\n```\n\n`jobs[]` items are the `GET /jobs/{id}` body; `next` is the cursor for the next page or null."
+        }
+      ],
+      "nextEvidence": [],
+      "evidence": [
+        {
+          "path": "docs/CONTEXT.md",
+          "startLine": 1,
+          "quote": "# CONTEXT.md — imagelab Project State\n\n> Single source of truth for current state, architecture decisions, and active sprint.\n> Updated: 2026-10-05\n\n---\n\n## What's Running\n\n| Component | State | Notes |\n|---|---|---|\n| imagelab core (settings, manifest, store, reindex) | Built (IMAGELAB.1) | `src/imagelab/` |\n| imagelab post chains + styles (`pixelart`, `ps1-lowpoly`, `realism`, sheets) | Built (IMAGELAB.2) | `src/imagelab/post/`, `src/imagelab/styles/`; 124 tests green; pxlab via `make pxlab` |\n| imagelab service (FastAPI, :5630) | Built (IMAGELAB.3-4) | `src/imagelab/api/`, `jobs/`, `providers/`; `make run` (host) or `make dev` (container); 12 routes, token on all; 347 tests green; providers `mock`, `gateway` (unavailable until `IMAGELAB_GATEWAY_KEY`), `comfyui` stub; `retarget` runs on the mock |\n| Container | Built (IMAGELAB.4.6) | `Dockerfile`, `compose.yml` (`name: imagelab`, `127.0.0.1:5630:5630`), `make dev/down/logs/status/token`; verified healthy once, then taken down |\n| GhostShell `/x/imagelab` view | Built (IMAGELAB.5-6), never rendered | layer `imagelab`, `/proxy/imagelab` (allow-list, token, SSE), gate row, typed client, and the Generate / Gallery / Jobs / Inspector / Providers pages on seven tested view-model utils (98 tests) in `Ghost/apps/Ghost.Dashboard` (commits `850a13e`..`c455bbd`, not pushed); not opened in a browser (IMAGELAB.7.6); `test/e2e/imagelab.spec.ts` written, not run |\n| Style packs (STUDIO.1) | Built 2026-10-05 | `pixel-ro`, `pixel-bof4`, `prerender-dkc`, `hd2d-tos` (`src/imagelab/post/prerender.py`, `hd2d.py`, `styles/__init__.py`); bench spec `bench/packs.yaml`; mock-only so far |\n| Animations, tilesets, providers v2 (STUDIO.2-4) | Built 2026-10-05 | `/animations` (versioned, gif/strip/aseprite/oro exports), `kind: tileset` (grid, wang16), `fal` + `pixellab` providers with pack `prefers`; mocked only |"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 1,
+          "quote": "# imagelab — Implementation Tracker\n\n> Living design+status doc for the imagelab service (image contract v0) and its GhostShell `/x/imagelab` view.\n> See `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` for the feature brief and `D:/ware/toma/docs/design/architecture.md` § \"Image brother contract (`imagelab`) — v0\" for the contract Toma consumes.\n> Follows DOCS-PROTOCOL.md Rule 12.\n> Updated: 2026-10-03\n> Prior-art sweep: 2026-10-03 — `docs/CAPABILITIES.md`, `docs/reference/`, `docs/impl/` are empty (repo born today). Prior art outside the repo is listed under Architecture § Existing surface.\n\n## AI Continuation Prompt\n\nA fresh AI session picking up this work should read, in order:\n\n1. `D:/ware/toma/docs/prompts/frontera-imagegen-session.md` — the brief: placement, contract v0, auth rule, views, done-when.\n2. `D:/ware/toma/docs/design/architecture.md` (lines 95-112) — contract v0 as Toma sees it, style mapping, the \"unspecified in v0\" list.\n3. This file — the phase you were given, its boxes, § Contract v0 as built and § Proposals.\n4. Only for your phase: P2 → `G:/ro/rompe-frontera-pixelgen/tools/frontera/pixelgen/pxlab/post.py`; P4 → `D:/ware/Ghost/docs/impl/parked/AI-GATEWAY-IMAGE-GEN-IMPL.md`; P5/P6 → the Dashboard files in § Key Files Reference.\n\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today."
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 1,
+          "quote": "# imagelab contract v0 (as built)\n\n> The HTTP surface of imagelab as it runs today (after IMAGELAB.4), route by route, with real bodies.\n> Contract v0 is the brief's four lines (`POST /jobs`, `GET /jobs/{id}` + `GET /jobs/events` + `DELETE /jobs/{id}`, `GET /artifacts/{id}` + manifest, `GET /styles|/providers|/health`); everything else here is an additive clarification that is **proposed** until the operator confirms it with the Toma session (IMAGELAB.7.8).\n> Source of truth for *why*: [IMAGELAB-IMPL.md](../IMAGELAB-IMPL.md) § Proposals. Source of truth for *what runs*: `src/imagelab/api/`. `tests/test_contract_doc.py` fails when this file and the routes disagree.\n> Updated: 2026-10-03\n\nLegend. **v0** = in the brief's contract, field names unchanged. **proposed** = additive, not locked.\n\n## Conventions\n\n- **Base URL.** `http://127.0.0.1:5630` (loopback only). From the dashboard container: `http://host.docker.internal:5630`.\n- **Auth, every request, every path, `/health` and 404s included.** Header `X-Ghost-Service-Token: <IMAGELAB_SERVICE_TOKEN>`. Missing or wrong: `401` with the same body in both cases. The service refuses to start with an empty token. Callers: the dashboard proxy (injects it), Toma (`TOMA_IMAGELAB_TOKEN`, reserved), curl. There is no user auth inside imagelab.\n- **No docs routes.** `/docs`, `/redoc` and `/openapi.json` do not exist (they answer 401 without a token, 404 with one).\n- **JSON bodies** are strict: unknown fields are refused with `422`; `true` is not an int and `\"2\"` is not a count.\n- **Ids** are sortable and prefixed: `job_<ULID>`, `art_<ULID>`. A malformed id is `404`, not `422`.\n- **Errors** (P-5, proposed) always have this shape, with the HTTP status of the code:\n"
+        },
+        {
+          "path": "src/imagelab/api/models.py",
+          "startLine": 1,
+          "quote": "\"\"\"``POST /jobs`` request model (P-1, P-12, P-13) and the checks that need live state.\n\nTwo layers, both ending in the same P-5 ``invalid_request`` (422):\n\n- :class:`JobRequest` is static shape: types, bounds, unknown fields refused. Pydantic strict\n  mode, so ``true`` is not an int and ``\"2\"`` is not a count.\n- :func:`validate_job_request` needs the running service: the ``n`` cap (settings), refs that\n  must exist (store), the style (registry + availability), provider and model (providers) and\n  the ``post[]`` merge (the style's chain).\n\nNothing here touches a provider: a refused request never spends money.\n\"\"\"\n\nfrom __future__ import annotations\n\nimport re\nfrom collections.abc import Mapping\nfrom dataclasses import dataclass, field"
+        },
+        {
+          "path": "src/imagelab/api/routes_artifacts.py",
+          "startLine": 1,
+          "quote": "\"\"\"``GET /artifacts/{id}`` (bytes) · ``GET /artifacts/{id}/manifest`` (sidecar JSON).\"\"\"\n\nfrom __future__ import annotations\n\nfrom typing import Any\n\nfrom fastapi import APIRouter, Request\nfrom fastapi.responses import FileResponse, JSONResponse\n\nfrom ..manifest.writer import ArtifactNotServable, read_artifact\nfrom .context import check_artifact_id, ctx\nfrom .errors import ApiError\n\nrouter = APIRouter()\n\n_MEDIA = {\".png\": \"image/png\", \".jpg\": \"image/jpeg\", \".jpeg\": \"image/jpeg\", \".webp\": \"image/webp\"}\n\n"
+        },
+        {
+          "path": "docs/IMAGELAB-IMPL.md",
+          "startLine": 17,
+          "quote": "\n**Working state**: phases 1-6 built (store, post chains, the HTTP service, the gateway and ComfyUI-stub providers, cost and spend cap, `retarget`, the container, the contract reference, the Dashboard layer, proxy and typed client, and the five views on tested view-models). 5.7 and 6.7 are open on a foreign red test, a repo-wide typecheck baseline and an unrun Playwright spec. Phases 1-6 are token-free builds, strictly ordered, one agent each. Phase 7 is operator-gated. Read `docs/reference/contract-v0.md` for what the API does today.\n\n**What this IMPL is NOT**: no gateway config edit and no `make ai-gateway-apply` (propose only); no paid generation in phases 1-6; no ComfyUI install or real ComfyUI workflow (stub + health only); no LoRA training; no fork or edit of pxlab code (the one Rompe-side edit is a `pyproject.toml`); no Toma client (`toma still` belongs to Toma); no edits to `D:/ware/Ghost` outside `apps/Ghost.Dashboard`; no user auth inside imagelab.\n\n**Naming convention**: `IMAGELAB.{phase}.{n}` — e.g. `IMAGELAB.2.1` for phase 2, task 1.\n\n**Hard rules for every phase agent**\n\n- Python 3.12 via `uv` only (host `python` is 3.8.10). Never a bare dev server: use the Makefile / compose targets.\n- All tests token-free: gateway mocked with `httpx.MockTransport`, fixtures synthetic. No secrets in git; `.env` is gitignored, `.env.example` is committed.\n- Commits: `git add <new files>` then `git commit -m \"...\" -- <paths>`. Closed taxonomy (feat/polish/fix/refactor/docs/test). Never `--no-verify`. Never add another session's files.\n- Push: imagelab may be pushed to `origin`. Ghost.Dashboard and the Rompe worktree are **not** pushed by phases 1-6.\n- Shared Dashboard files (`nuxt.config.ts`, `server/utils/identity/extensions.ts`, `server/utils/backendServiceToken.ts`): single added lines only. A Toma session appends at the same array ends; on a textual conflict keep both lines.\n- Rule 22: tick a box only with its evidence (test id or command → exit 0).\n\n## Open Questio"
+        },
+        {
+          "path": "docs/TODO.md",
+          "startLine": 55,
+          "quote": "\n## Sprint 3 — IMAGELAB phase 3 (API contract v0, queue, SSE, auth)\n\nMirror of [IMAGELAB-IMPL.md](IMAGELAB-IMPL.md) P3.\n\n- [x] IMAGELAB.3.1 — App factory, token middleware on every request, P-5 errors.\n- [x] IMAGELAB.3.2 — Request model and live validation.\n- [x] IMAGELAB.3.3 — Provider interface, mock provider, job runner.\n- [x] IMAGELAB.3.4 — Job and artifact routes.\n- [x] IMAGELAB.3.5 — SSE.\n- [x] IMAGELAB.3.6 — Registry routes, lists, reference upload.\n- [x] IMAGELAB.3.7 — `make run`, interrupted-job recovery, mock e2e.\n\nNext: IMAGELAB.4.1 (gateway provider).\n\n---\n\n## Sprint 4 — IMAGELAB phase 4 (providers, cost, retarget, container, contract reference)"
+        },
+        {
+          "path": "docs/reference/contract-v0.md",
+          "startLine": 93,
+          "quote": "\n### `GET /jobs/events`\n\nStatus: **v0**; the shape is **proposed** (P-3).\n\nServer-sent events. Registered before `/jobs/{id}` so the literal path is never read as an id (P-6). On connect: `event: snapshot` once with every non-terminal job; then `event: job` on every state or progress change; a `: keepalive` comment every 15 s. Every event has a strictly increasing `id:`; reconnect with `Last-Event-ID` to replay what was missed (no snapshot then). An id that cannot be replayed gets a fresh snapshot.\n\n```json\n{\"jobs\": [{\"id\": \"job_01M41YJZZQ24AYDB2SW1K857V0\", \"kind\": \"still\", \"status\": \"running\", \"style\": \"pixelart\", \"provider\": \"mock\", \"model\": \"mock-1\", \"created_at\": \"2026-10-03T22:36:36.727753+00:00\", \"started_at\": \"2026-10-03T22:36:36.734283+00:00\", \"finished_at\": null, \"progress\": {\"done\": 0, \"total\": 1}, \"artifacts\": [], \"error\": null}]}\n```\n\nThe block above is the `data:` of the `snapshot` event; a `job` event's `data:` is one bare job body.\n\n### `DELETE /jobs/{id}`\n\nStatus: **v0**; the semantics are **proposed** (P-4, P-18).\n\nIdempotent. Cancels a queued job at once, or a running one at its next step boundary (an image already being generated by a provider is not interrupted; it is already billed). Waits up to 2 s for the running job to reach a boundary and answers `200` with the job body in whatever state it is in. On a terminal job it is a no-op `200`. Unknown id: `404`. It never deletes artifacts."
+        }
+      ],
+      "paths": [
+        "docs/CONTEXT.md",
+        "docs/IMAGELAB-IMPL.md",
+        "docs/reference/contract-v0.md",
+        "src/imagelab/api/routes_artifacts.py",
+        "docs/TODO.md",
+        "src/imagelab/api/models.py"
+      ],
+      "summaryOrigin": "Ghost analysis · captured references checked; interpretation requires review"
+    }
+  ],
+  "art": {
+    "hash": "a6c9da63956bd9f83dc7008bdfb5f14ee5c77c51123745d924bede197d536c25",
+    "url": "/api/assets/a6c9da63956bd9f83dc7008bdfb5f14ee5c77c51123745d924bede197d536c25",
+    "sourceSnapshotId": "da0d4b5005878663e499a44a",
+    "dependencyHash": "d10eb3735ad6d9eb70e74f9bab95c19dca4e006fc3ce81e3d39c9018ce379056",
+    "chapterSignature": "f29a9e061b2c7e49aa8b033ac36d4ab8161d257a7810eef598b00c17bfcb7be7",
+    "model": "image-gen",
+    "mime": "image/png",
+    "width": 1264,
+    "height": 848,
+    "createdAt": "2026-10-21T09:01:15.904Z",
+    "promptHash": "5f37178dfd21bc536cfaa3536aac027b5958377e29d6bf79b3c049f9190ba7f7"
+  },
+  "ledger": [
+    {
+      "id": "6c4dda70-393a-425e-8384-5ecc4eaa7931",
+      "at": "2026-10-21T08:48:02.314Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0,
+      "cacheHit": false,
+      "snapshotId": "a1f2279c951c3bd24856377e",
+      "httpStatus": 429,
+      "callId": "4fccc37b-2ceb-4438-addf-da3f4685674a",
+      "durationMs": 8146.142000000001,
+      "sourceCount": 28,
+      "excerptCount": 76,
+      "approxBytes": 35665,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "8d8236fd-d9fe-462c-84a4-ea1ad6fad256",
+      "at": "2026-10-21T08:49:15.012Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0.0022233,
+      "cacheHit": false,
+      "snapshotId": "a1f2279c951c3bd24856377e",
+      "httpStatus": 200,
+      "callId": "50e6fc82-47b2-4781-b597-6d522323e889",
+      "usage": {
+        "completion_tokens": 2632,
+        "prompt_tokens": 11705,
+        "total_tokens": 14337,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0022233,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0022233,
+          "upstream_inference_prompt_cost": 0.0011705,
+          "upstream_inference_completions_cost": 0.0010528
+        }
+      },
+      "durationMs": 11050.309500000001,
+      "sourceCount": 28,
+      "excerptCount": 76,
+      "approxBytes": 35665,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "316f55cb-b3de-4955-99f6-7c5720313382",
+      "at": "2026-10-21T08:50:31.519Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "failed",
+      "costUsd": 0.0020335,
+      "cacheHit": false,
+      "snapshotId": "a1f2279c951c3bd24856377e",
+      "httpStatus": 200,
+      "callId": "c6acca1f-0ac4-4b97-93e5-9c62a0f58176",
+      "usage": {
+        "completion_tokens": 2149,
+        "prompt_tokens": 11739,
+        "total_tokens": 13888,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0020335,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0020335,
+          "upstream_inference_prompt_cost": 0.0011739,
+          "upstream_inference_completions_cost": 0.0008596
+        }
+      },
+      "durationMs": 8907.4617,
+      "sourceCount": 28,
+      "excerptCount": 76,
+      "approxBytes": 35665,
+      "error": "Analysis request or evidence validation failed"
+    },
+    {
+      "id": "e60f9916-a610-425f-abc9-102c8024fd82",
+      "at": "2026-10-21T08:52:27.493Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0018403,
+      "cacheHit": false,
+      "snapshotId": "da0d4b5005878663e499a44a",
+      "httpStatus": 200,
+      "callId": "763842d4-b17d-40cc-b2e9-730f333bb1f7",
+      "usage": {
+        "completion_tokens": 1616,
+        "prompt_tokens": 11939,
+        "total_tokens": 13555,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0018403,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0018403,
+          "upstream_inference_prompt_cost": 0.0011939,
+          "upstream_inference_completions_cost": 0.0006464
+        }
+      },
+      "durationMs": 6221.3632,
+      "sourceCount": 28,
+      "excerptCount": 76,
+      "approxBytes": 36998
+    },
+    {
+      "id": "c3c7d93a-3db7-4f51-9554-bdfb64fac514",
+      "at": "2026-10-21T08:56:54.379Z",
+      "model": "json",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0028053,
+      "cacheHit": false,
+      "snapshotId": "da0d4b5005878663e499a44a",
+      "httpStatus": 200,
+      "callId": "649beecf-0f48-455f-9380-5fc3418ea098",
+      "usage": {
+        "completion_tokens": 1765,
+        "prompt_tokens": 20993,
+        "total_tokens": 22758,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0028053,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0028053,
+          "upstream_inference_prompt_cost": 0.0020993,
+          "upstream_inference_completions_cost": 0.000706
+        }
+      },
+      "durationMs": 7397.209400000001,
+      "sourceCount": 28,
+      "excerptCount": 63,
+      "approxBytes": 63805
+    },
+    {
+      "id": "ad8c6be0-c032-44d6-946d-aee7a43ee330",
+      "at": "2026-10-21T08:58:21.448Z",
+      "model": "gemini-flash",
+      "stage": "analysis",
+      "status": "success",
+      "costUsd": 0.0136903,
+      "cacheHit": false,
+      "snapshotId": "da0d4b5005878663e499a44a",
+      "httpStatus": 200,
+      "callId": "974619a9-ac19-461c-9def-e9f74dcc5b74",
+      "usage": {
+        "completion_tokens": 3016,
+        "prompt_tokens": 20501,
+        "total_tokens": 23517,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.0136903,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0136903,
+          "upstream_inference_prompt_cost": 0.0061503,
+          "upstream_inference_completions_cost": 0.00754
+        }
+      },
+      "durationMs": 17144.8818,
+      "sourceCount": 28,
+      "excerptCount": 63,
+      "approxBytes": 63805
+    },
+    {
+      "id": "977c863f-d81c-41ba-a060-4897c56a20c2",
+      "at": "2026-10-21T09:01:05.607Z",
+      "model": "image-gen",
+      "stage": "image",
+      "status": "success",
+      "costUsd": 0.067495,
+      "cacheHit": false,
+      "promptHash": "5f37178dfd21bc536cfaa3536aac027b5958377e29d6bf79b3c049f9190ba7f7",
+      "snapshotId": "da0d4b5005878663e499a44a",
+      "httpStatus": 200,
+      "callId": "143fc40a-51da-45c8-8840-458f9a05bf31",
+      "durationMs": 10267.9305,
+      "usage": {
+        "completion_tokens": 1120,
+        "prompt_tokens": 590,
+        "total_tokens": 1710,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 0,
+          "image_tokens": 1120
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0,
+          "cache_write_tokens": 0
+        },
+        "cost": 0.067495,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.067495,
+          "upstream_inference_prompt_cost": 0.000295,
+          "upstream_inference_completions_cost": 0.0672
+        }
+      },
+      "responseModel": "image-gen"
+    }
+  ],
+  "measuredCostUsd": 0.09008769999999999,
+  "unknownCostAttempts": 0,
+  "originalHashes": {
+    "docs/BACKLOG.md": "03bcd87ab6a85f610926b5eef18dab104875ae298f279a8f3b7a4123fd2d8778",
+    "docs/CAPABILITIES.md": "153b3e8133cac07d4ffd048232d57e301a1aebb593496653a2191376265debf3",
+    "docs/CONTEXT.md": "a1524b73710ff0117f98362bb68ec028550b2b493080a227cdeb078068b6ceaa",
+    "docs/evidence/curate-2/EVIDENCE.md": "04b40a6934eb286cfcc892121b1fd8e8b1969d24b7b9282f7e959410954173c4",
+    "docs/IMAGELAB-IMPL.md": "604d1322eb1ce46c0475e86b66cc7183c8abb1c1bd061ae7946feac5904b6cc5",
+    "docs/IMAGELAB-RO-MONSTER-IMPL.md": "b8862315e71976eef9df208f3572b7476d86ea8d3a92ac29a931e9b746326f13",
+    "docs/IMAGELAB-STUDIO-IMPL.md": "61affde9d676bbecbd18660d2a57a4a0b701dd7c85cfc435e0ec4fb016ec7a0a",
+    "docs/README.md": "0c02a4081e75934f5ad7eed6eebce00a204fa3c3477cab8b12ce39f9b1219976",
+    "docs/reference/contract-v0.md": "1808a1bac793c6ae16871c2c446d08beed78ed9c227b241ed138e5fe24ed3588",
+    "docs/reference/imagelab-curate.md": "96272513339c1a62ff0f40e1a1ec7f62adba4869faa20720875bd4c6db93e616",
+    "docs/reference/imagelab-studio.md": "4b67080981d10172057b3bf2d932b96f0b15100e58b37bb1a2b62aeb68af8334",
+    "docs/TODO.md": "fd2b4a8b09499a80921396bca8e57e43b518f465c72aa3115b8e5e4b6398bcb6",
+    "pyproject.toml": "a19b0bdcc7781d18502202bf63b47f4483ce6a27cb67ffd525113c3337a9d5c1",
+    "src/imagelab/__init__.py": "25b9568ff2395a0d5795d547bf8930bc0bce23359188ccdddb6b20ade69fe7a7",
+    "src/imagelab/__main__.py": "291ee14ece7d0e956b018892d40f335d471ee6bcde96f86a354c5a72a0db5c45",
+    "src/imagelab/animations.py": "523edeae8261d7cb2072666b152fd02f598307343276ae3fb70a50d2a8f79ca2",
+    "src/imagelab/api/__init__.py": "6232020005b0b4af5fc6f39e372a969870467b702ec275afb3c09c82c823c008",
+    "src/imagelab/api/app.py": "4c38dd32b36fe2469c3ba49ec26d0b0b79a73f538615d2c50d3e16ad381163a8",
+    "src/imagelab/api/auth.py": "17051dd39b0975a7acb1f0ca92e88d6f9999f73365c02a9df7989826457b5f02",
+    "src/imagelab/api/context.py": "b1eed320d9494fefe9fb7fdabf074322b317e89ce39804bd77abb3953a57c757",
+    "src/imagelab/api/errors.py": "eda78f6b7f96590e8c24990e0aacc86b886ce927a1ff658da79621d25962c301",
+    "src/imagelab/api/models.py": "58747c9c42b95ee05cfe281cff570a962e88563d56c8d95ca753fa8cbac1b10b",
+    "src/imagelab/api/routes_animations.py": "9e58d973e2955b6e0b55f515633d9867c2d0ce1312eee961172c71954dd01120",
+    "src/imagelab/api/routes_artifacts.py": "c479ac2a239a8fae249f1e206c1dc84d43fdb923c83726ca55c0d550ca665c61",
+    "src/imagelab/api/routes_bench.py": "9084b411529e254c8c473a9f5b8008c89be98b6d5093ec67a233243d717b2282",
+    "src/imagelab/api/routes_curation.py": "bba8c7783d21de6220b3ae1997db59cd021623992c14949d2b5c38b455e052b7",
+    "src/imagelab/bench_store.py": "cbc37a5a69d076859543f2e4c1fb0e46bed05715dbc19f00766b1e5d852aa8f4",
+    "themes/methodology-infographic.yaml": "1468de598a57b9d55de0affcdf5876bab9414348d3cdf6e8219e13a9bc8028ab"
+  }
+}
