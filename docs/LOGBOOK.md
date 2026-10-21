@@ -24,3 +24,20 @@
 **Next steps:**
 - Pick the inaugural visual mode and write the first `research/{mode}.md` POC brief.
 - Decide the v0 ingestion strategy.
+
+## 2026-10-21 — Represent v0 bootstrap and reference study
+
+**Accomplishments:**
+- Copied and read the 18-page Interactive Atlas PDF under `research/sources/`.
+- Read the prepared kickoff, original vision/presence proposals, graphify results and methrep contract/emitters.
+- Bootstrapped `REPRESENT-V0-IMPL.md` with P0-P4, evidence gates, source scope and auto-resolved questions. Started reference and companion research.
+
+**Decisions:**
+- Follow the operator's research-first sequence: clone, study/use, synthesize, design, build.
+- Preserve headless/Ghost-only commitments and the scene/events boundary; evaluate language and renderer against actual reference code.
+- Include JavaScript in P1; plane-sync has 19 tracked files and belongs in the small target tier.
+- Use branch `codex/represent-v0`; keep pre-existing methodology rollout changes outside task commits.
+
+**Blockers:** None for research. Browser/runtime availability and reference execution limits will be recorded as evidence, not assumed successful.
+
+**Next steps:** Finish reference trials/synthesis, record P0 decisions, then produce the first plane-sync scene before P2-P4.

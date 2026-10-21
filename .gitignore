@@ -12,3 +12,10 @@
 docs/handoffs/*
 !docs/handoffs/.gitkeep
 !docs/handoffs/README.md
+
+# Local upstream study checkouts; tracked research records origins and pinned revisions.
+/references/
+/node_modules/
+/dist/
+/tmp/
+/.represent/

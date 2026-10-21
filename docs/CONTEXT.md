@@ -2,7 +2,7 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-04-13
+> Updated: 2026-10-21
 
 ## What is Represent
 
@@ -14,7 +14,7 @@ The thesis: a project should have an iconic visual identity that reflects its re
 
 ## Current State
 
-Pre-implementation. Repo bootstrapped 2026-04-13. Docs doctrine in place; no code, no sub-projects yet.
+Pre-implementation. Repo bootstrapped 2026-04-13. Documentation and methodology tooling exist; no Represent scanner or renderer has shipped. Reference-repository research and the v0 bootstrap are now active. See [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 
 ## Key Architecture Decisions (Locked)
 
@@ -25,6 +25,15 @@ Pre-implementation. Repo bootstrapped 2026-04-13. Docs doctrine in place; no cod
 | Rendering format | _tbd_ | Likely SVG as v0 portable primitive (works in every surface), canvas/WebGL for interactive v1. Needs a POC to lock. | — |
 | Ingestion v0 | _tbd_ | Candidates: git-walk, AST (tree-sitter / Roslyn), `codebase-digest` piped output, IDE-index scrape. Needs a POC to lock. | — |
 | Workspace layout | **Monorepo under `D:/ware/represent`** | Shared doctrine + shared core + per-project subfolders. One docs tree at the root. | 2026-04-13 |
+| Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |
+| Compatibility target | **methrep's `represent.scene/v0` envelope + `events.jsonl`** | Reuse the stable boundary, not methrep's markdown parser or date-only append algorithm. Code metadata belongs in annotations; structural extensions need tests. | 2026-10-21 |
+| First delivery gate | **First real plane-sync scene before enrichment, renderer or shell implementation** | Keep the P0-P4 kickoff, with source study ahead of P1. The actual tracked plane-sync tree is small (19 files), and requires JavaScript support. | 2026-10-21 |
+
+### V0 decisions under evaluation
+
+The historical Unity/.NET design remains a possible future renderer, especially for spatial themes. For the first companion, TypeScript plus a light web renderer is the working hypothesis: one language for a headless CLI/library and browser surfaces, with accessible text and easier host integration. The deciding evidence is source study and local trials, not bundle size alone; the earlier presence-universe brief explicitly treated payload size as a non-issue.
+
+The supplied Interactive Atlas PDF is preserved under [research/sources/](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf). Its useful direction is an evidence-grounded interactive model with overview and focused explanations, not an all-nodes graph. Its product rankings, prices and library claims are research leads, not verified facts.
 
 ## Surface Targets (Embeddability)
 
@@ -67,11 +76,13 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-Bootstrapping. First concrete task is to land a research/ POC that survives Rule 6 validation.
+Reference study and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md): inspect and exercise related projects, record reuse/adapt/avoid decisions, settle P0, then build the first deterministic plane-sync scan. P2-P4 remain downstream of that first-scene checkpoint.
 
 ## Active Research
 
-_None yet._ POCs land under `docs/research/` and get referenced here.
+- [Companion interaction research](research/companions.md): ambient panel, query-first and change-digest alternatives; verified capabilities separated from inferred design rules.
+- Reference repository study: GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. Local clones live in ignored `references/`; the research records pinned commits and source paths.
+- [Graphify field results](research/graphify-tested.md): ignore-awareness, cost, unlabeled clusters and indiscriminate rendering failures remain acceptance constraints.
 
 ## Completed
 
