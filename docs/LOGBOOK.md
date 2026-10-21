@@ -143,3 +143,7 @@ No unresolved automated-test failures. Bounded source selection and six chapters
 ### Next
 
 Complete scoped promotion, then collect product feedback on automatically chosen chapters and source conflicts. Future improvements should target semantic selection and corrections before adding automatic paid refreshes.
+
+## 2026-10-21 — Promote Visu automatic discovery
+
+Promoted VISU-DISCOVERY-IMPL to impl/ with reference/visu-discovery.md. Implementation commit 3023fd26 contains the scoped feature and trial evidence. Recorded 44/44 checks (35 regression, nine browser) at that HEAD; promotion checker passed all machine gates. Unrelated methodology files and Notion sources were excluded. Next: user review of chapter relevance and source interpretation; human review remains distinct from automated verification. No deployment or push was performed.

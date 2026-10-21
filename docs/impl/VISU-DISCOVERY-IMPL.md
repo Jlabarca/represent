@@ -1,11 +1,11 @@
 # Visu discovery — Implementation Tracker
 
-> Updated: 2026-10-21. User-authorized implementation on codex/represent-v0.
+> Promoted: 2026-10-21. User-authorized implementation on codex/represent-v0. Implementation commit 3023fd26; 44/44 checks recorded at that HEAD; promotion checker passed every machine gate.
 > Prior-art sweep: existing Visu core/reference/archived MVP checked; curated source/chapter mapping already works.
 
 ## AI Continuation Prompt
 
-Read CONTEXT.md, DOCS-PROTOCOL.md and reference/visu-mvp.md. Extend the existing local MVP, preserve its historical snapshots and unrelated working-tree changes. Parent owns integration and tracker; isolated workers own discovery, analysis, and UI files. All paid calls use Ghost. Sources remain read-only; mutation tests use temporary copies. Complete actual root-only ImageLab trial and specific Luz state/design explanations.
+This is the archived implementation record. For current behavior read ../CONTEXT.md, ../DOCS-PROTOCOL.md and ../reference/visu-discovery.md. Preserve historical snapshots and unrelated working-tree changes. All paid calls use Ghost. Source projects remain read-only; mutation tests use temporary copies. Root-only ImageLab trial and specific Luz state/design explanations were completed; semantic limitations are recorded below.
 
 ## Architecture
 

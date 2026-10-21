@@ -18,6 +18,7 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 
 | Document | Purpose |
 |---|---|
+| [Visu automatic discovery](impl/VISU-DISCOVERY-IMPL.md) | Completed root-only scope/chapters, manual cheap refresh, themes and actual trial evidence |
 | [Visu MVP](impl/VISU-MVP-IMPL.md) | Completed local illustrated-overview slice, implementation evidence and pilot |
 
 ## Implementation reference
