@@ -40,20 +40,20 @@ Use a pinned TypeScript compiler API adapter instead of depending on an opaque S
 
 ## Current State
 
-Planned, with read-only worker planning complete. Product edits start after this plan commit. Historical prototypes remain available.
+Working core, CLI and web surface integrated. Parent core/API verification passed 10/10; the worker browser suite passed 14/14 and parent inspected the corrected screenshots. Real-project and UX evidence exists; final dossier reconciliation, combined verification and promotion remain.
 
 ## Implementation Status
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| 1 | Planned | Codex | high | Headless core, CLI, local web and meaningful regression tests |
-| 2 | Planned | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
+| 1 | Complete | Codex | high | Headless core, CLI, local web and meaningful regression tests |
+| 2 | In progress | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
 
 ## Checklist
 
 ### Phase 1 — Working local product (verify: integration)
-- [ ] GRAFE-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior.
-- [ ] GRAFE-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation.
+- [x] GRAFE-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior. — evidence: src/grafe/{core,cli,server}.mjs; tests/grafe-{core,server}.test.mjs; parent Node runner 10/10, zero skipped (2026-10-21).
+- [x] GRAFE-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. — evidence: web/grafe/; experiments/grafe-mvp/browser-check.json 14/14; parent inspected final desktop screenshot after viewport, card overlap and search-row fixes.
 
 ### Phase 2 — Real proof and research traceability (verify: e2e)
 - [ ] GRAFE-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
@@ -63,7 +63,7 @@ Planned, with read-only worker planning complete. Product edits start after this
 
 ## Known Bugs
 
-None identified before implementation. Scope limits and unverified claims must be documented as such rather than hidden.
+No open known acceptance bugs. Resolved during review: false same-name edges, missing class-field arrow ownership, nonfunctional evidence toggle, stretched desktop layout, overlapping graph cards, and immutable-history/store path validation. Dynamic test mentions remain explicitly labeled candidates; unsupported language/runtime relationships remain outside scope.
 
 ## What Needs Testing
 
@@ -81,3 +81,7 @@ Use a pinned TypeScript compiler API adapter instead of depending on an opaque S
 
 The phases share the same product boundary but remain separately evidenced. Worker sends core/UI/test inventory and verification before parent integrates exact files; parent commits source checkpoints with corresponding checklist IDs. Parent performs final verification on integrated state before promotion. Design, implementation and live UX testing run alongside source research; neither track waits on Visu. Base is the immutable baseline above.
 
+
+## Phase 1 QA
+
+The core and UI boxes share the snapshot/API boundary and are committed together as one integration checkpoint (GRAFE-MVP.1.1 and .1.2). New tests cover actual relation errors and snapshot behavior; source files were integrated from the isolated worker, never copied with node_modules. Final promotion still requires phase 2 evidence and verification at the committed implementation HEAD.

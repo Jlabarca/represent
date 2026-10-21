@@ -16,6 +16,7 @@ docs/handoffs/*
 # Local upstream study checkouts; tracked research records origins and pinned revisions.
 /references/
 /node_modules/
+/src/grafe/node_modules/
 /dist/
 /tmp/
 /.represent/

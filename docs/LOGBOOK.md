@@ -165,3 +165,39 @@ Grafe's real-project index scope was not pinned when originally generated, and s
 ### Next
 
 For Grafe, pin a second larger repository's exact file set, audit relation and span correctness, then run a caller-and-tests task. For Alegor, add deterministic conflict/deleted-citation fixtures, validate a real project re-entry task, then preview an explicitly selected session corpus and measure false/missed links. Keep Visu paused unless reprioritized.
+
+## 2026-10-21 — Build Grafe and Alegor MVPs in parallel
+
+### Accomplished
+
+Recorded separate implementation plans in GRAFE-MVP-IMPL.md and ALEGOR-MVP-IMPL.md at e3f4b02 before product edits. Two isolated build worktrees and two research workers have disjoint file ownership. Real-project trials, individual design/implementation UX rounds and detailed research/test genealogies are required for both tracks.
+
+### Decisions
+
+Continue on the existing codex/represent-v0 integration branch. Grafe uses a pinned TypeScript compiler adapter for JS/TS; Alegor starts with zero-dependency Git/docs re-entry. Both operate locally without paid AI, keep state outside scanned roots, and never execute scanned-project scripts. Visu code and paid refreshes remain paused. Gource/Codevis and Skales/original Notion are explicit research checks, not assumed earlier coverage.
+
+### Blockers / limits
+
+None before implementation. Personal transcript integration is outside this slice; technical inference and document interpretation must expose unsupported or uncertain evidence.
+
+### Next
+
+Integrate each independently tested core/UI, run real-project and copy-based change trials, inspect screenshots and fix UX findings, then verify and promote both tracks with measured evidence.
+
+## 2026-10-21 — Grafe core and web integration
+
+### Accomplished
+
+Integrated the bounded TypeScript-checker source explorer, CLI, immutable local history and focused graph/evidence UI. Parent Node verification passed 10/10 with zero skips; worker browser checks passed 14/14, and parent visually inspected corrected screenshots.
+
+### Decisions
+
+Treat dynamic test mentions as candidates, never confirmed test coverage. Keep manual full-scope rebuilds and content-addressed no-op reuse explicit.
+
+### Blockers / limits
+
+No open core/UI acceptance blocker. Full-repository semantic coverage, runtime dispatch and per-file incremental caching are not claimed.
+
+### Next
+
+Complete integrated pilot evidence, detailed dossier reconciliation and parallel Alegor integration before final promotion.
