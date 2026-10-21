@@ -85,3 +85,7 @@
 
 User authorized building Visu against ROMPE and a non-game project, with parallel Grafe/Alegor exploration. Grounded the plan in the existing Ghost image gateway and actual Luz style tokens. Created VISU-MVP-IMPL.md before source changes; core remains headless and source repositories read-only. Existing gateway needed a loopback-only runtime Compose override; no Ghost tracked configuration changed. Next: implement, run both pilots, measure updates, inspect UI and record mature research boundaries.
 
+
+## 2026-10-21 — Visu headless core and Ghost checkpoint
+
+Implemented bounded manifests, safe source capture, heuristic style profiles, immutable content identities, view/art lineage, source-role update classification, checklist evidence and a shared CLI/library/local API. Ghost json and image-gen routes now produce validated story citations and PNGs with measured attempt ledgers, no silent retry and persistent call limits. Thirteen regression cases pass. A read-only agent audit found concrete bugs in role keys, missing evidence, PNG validation and Windows store containment; fixed them. Real ROMPE/Luz generation and controlled-copy tests produced evidence; original selected file hashes remained unchanged during those tests. Next: complete UI/pilot documentation, browser checks and promotion audit.

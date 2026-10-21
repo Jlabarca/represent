@@ -62,16 +62,16 @@ Plan recorded before implementation. Ghost gateway startup required replacing it
 
 | Phase | State | Model | Description |
 |---|---|---|---|
-| 1 | Ready | Codex | Capture, style, immutable history, update classification |
-| 2 | Ready | Codex | Ghost adapter, measured budget/cache, CLI and local API |
-| 3 | Ready | Codex | Browser shell, two-project pilot, UX improvements and QA |
+| 1 | Verified | Codex | Capture, style, immutable history, update classification |
+| 2 | Verified | Codex | Ghost adapter, measured budget/cache, CLI and local API |
+| 3 | In progress | Codex | Browser shell, two-project pilot, UX improvements and QA |
 
 ## Checklist
 
-- [ ] VISU-MVP.1.1 — Bounded manifests, safe capture and source-backed style profiles.
-- [ ] VISU-MVP.1.2 — Immutable snapshots/views, no-op dedup, conservative art freshness and regression tests.
-- [ ] VISU-MVP.2.1 — Ghost image adapter, attempt ledger, limits, cache and failure semantics.
-- [ ] VISU-MVP.2.2 — Shared CLI/library/API, source-preserving exports and local access boundary.
+- [x] VISU-MVP.1.1 — Bounded manifests, safe capture and source-backed style profiles — evidence: src/visu/core.mjs, examples/visu/, scope/style regression tests.
+- [x] VISU-MVP.1.2 — Immutable snapshots/views, no-op dedup, conservative art freshness and regression tests — evidence: 13 tests in tests/visu.test.mjs; controlled-copy pilot preserves original hashes.
+- [x] VISU-MVP.2.1 — Ghost image adapter, attempt ledger, limits, cache and failure semantics — evidence: src/visu/ghost.mjs; real Ghost ledger records successful images, rejected story attempts and measured cost.
+- [x] VISU-MVP.2.2 — Shared CLI/library/API, source-preserving exports and local access boundary — evidence: src/visu/cli.mjs, server.mjs; authenticated API and export tests.
 - [ ] VISU-MVP.3.1 — Accessible art-first UI with history, details and explicit design/implementation UX rounds.
 - [ ] VISU-MVP.3.2 — ROMPE/Luz live trial, controlled-copy update measurements, QA, reference documentation and scoped promotion.
 
@@ -92,5 +92,7 @@ None yet. Runtime/generation problems must be recorded with actual evidence rath
 Planned ownership: parent src/visu/, examples/visu/, tests/, scripts/, package.json and docs; isolated frontend worker web/visu/ only. Research workers own their named research notes and experiments. Source repositories are read-only; all controlled mutation tests use copies.
 
 ## Architecture Notes
+
+Phase 1/2 checkpoint is collapsed into one foundational core commit: the safe capture, atomic store, adapter and API tests form one usable headless slice and share the same initial files. All four box IDs are retained in the commit message. Source inspection found and fixed role-change cache invalidation, Windows case/junction containment, missing-source generation, incomplete PNG validation, recipe-only view revisions and CLI asset export. The story stage now selects numbered captured excerpts under a schema; validation checks reference existence, not semantic entailment. The dollar setting is a measured-spend stop threshold, while attempt counts are the hard local bound.
 
 Design UX round: simplify to Overview / History / Evidence. Put generation behind an explicit action with a scope/price caveat, keep progress optional, and expose style reasons. Never conflate art creation date with source currency. Implementation UX round must be driven by actual browser inspection after integration.

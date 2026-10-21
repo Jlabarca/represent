@@ -1,0 +1,116 @@
+{
+  "id": "luz",
+  "name": "Luz y Luna",
+  "description": "From discovery to a piece worth keeping",
+  "root": "D:/ware/luz",
+  "evidenceLabel": "Source-reported · runtime not audited",
+  "sources": [
+    {
+      "path": "README.md",
+      "role": "art"
+    },
+    {
+      "path": "docs/reference/homepage.md",
+      "role": "art"
+    },
+    {
+      "path": "docs/reference/catalog-layers.md",
+      "role": "art"
+    },
+    {
+      "path": "solace-store/src/app/layout.tsx",
+      "role": "style"
+    },
+    {
+      "path": "solace-store/preset/plugins/colors.js",
+      "role": "style"
+    },
+    {
+      "path": "solace-store/preset/theme/typography.js",
+      "role": "style"
+    },
+    {
+      "path": "solace-store/src/modules/home/components/material-gateway/index.tsx",
+      "role": "art"
+    },
+    {
+      "path": "solace-store/src/modules/home/components/trust-strip/index.tsx",
+      "role": "art"
+    },
+    {
+      "path": "docs/CONTEXT.md",
+      "role": "detail",
+      "endLine": 180
+    }
+  ],
+  "regions": [
+    {
+      "id": "discovery",
+      "label": "Discover the collection",
+      "summary": "An editorial storefront leads from hero imagery to materials and curated products.",
+      "paths": [
+        "docs/reference/homepage.md"
+      ],
+      "x": 0.16,
+      "y": 0.34,
+      "visual": "An elegant cream storefront window with three beautifully lit jewelry pieces and a flowing ribbon that invites exploration. No UI screens."
+    },
+    {
+      "id": "materials",
+      "label": "Silver and gold tones",
+      "summary": "Material gateways distinguish silver and plated jewelry. Product categories guide browsing.",
+      "paths": [
+        "solace-store/src/modules/home/components/material-gateway/index.tsx"
+      ],
+      "x": 0.5,
+      "y": 0.34,
+      "visual": "Two sculptural archways: brushed silver on the left, muted gold on the right. A ring and a pendant on stone plinths."
+    },
+    {
+      "id": "catalog",
+      "label": "One coherent catalog",
+      "summary": "Catalog layers connect product information and the storefront's browsing structure.",
+      "paths": [
+        "docs/reference/catalog-layers.md"
+      ],
+      "x": 0.84,
+      "y": 0.34,
+      "visual": "An open jewel box with organized velvet compartments, necklaces and rings, fine flowing lines connecting the collection."
+    },
+    {
+      "id": "stories",
+      "label": "Stories and inspiration",
+      "summary": "Strapi supplies editorial hero content and blog posts; Medusa supplies commerce and catalog data.",
+      "paths": [
+        "docs/reference/homepage.md",
+        "README.md"
+      ],
+      "x": 0.16,
+      "y": 0.75,
+      "visual": "An open editorial magazine with photographic jewelry shapes and botanical illustrations. All pages without letters."
+    },
+    {
+      "id": "trust",
+      "label": "Confidence to choose",
+      "summary": "The storefront communicates delivery, WhatsApp help, guarantees and secure payment. These are presented promises, not audited service outcomes.",
+      "paths": [
+        "solace-store/src/modules/home/components/trust-strip/index.tsx"
+      ],
+      "x": 0.5,
+      "y": 0.75,
+      "visual": "A beautifully wrapped small gift box, a protective glass dome and a tiny unlettered delivery van."
+    },
+    {
+      "id": "system",
+      "label": "Behind the experience",
+      "summary": "A storefront, commerce backend and content system support the customer journey. Implementation context remains available in the evidence panel.",
+      "paths": [
+        "README.md",
+        "docs/CONTEXT.md"
+      ],
+      "x": 0.84,
+      "y": 0.75,
+      "visual": "Three graceful architectural pavilions connected by delicate metallic threads, representing the quiet system behind the experience."
+    }
+  ]
+}
