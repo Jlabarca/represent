@@ -1,0 +1,92 @@
+{
+  "passed": true,
+  "count": 20,
+  "checks": [
+    {
+      "name": "poster loads at default revision",
+      "passed": true
+    },
+    {
+      "name": "detail panel starts collapsed",
+      "passed": true
+    },
+    {
+      "name": "detail markers are disabled while hidden",
+      "passed": true
+    },
+    {
+      "name": "keyboard tab skips all hidden markers and panel controls",
+      "passed": true
+    },
+    {
+      "name": "detail markers become enabled",
+      "passed": true
+    },
+    {
+      "name": "enabled markers enter keyboard tab order",
+      "passed": true
+    },
+    {
+      "name": "economy explanation and evidence appear",
+      "passed": true
+    },
+    {
+      "name": "risk detail explains conditional loot and links sources",
+      "passed": true
+    },
+    {
+      "name": "close action collapses details and returns focus to marker",
+      "passed": true
+    },
+    {
+      "name": "status layer is visible and explicitly planned",
+      "passed": true
+    },
+    {
+      "name": "status layer turns off cleanly",
+      "passed": true
+    },
+    {
+      "name": "marker supports keyboard activation",
+      "passed": true
+    },
+    {
+      "name": "timeline selects the actual first artwork",
+      "passed": true
+    },
+    {
+      "name": "timeline states this is the same source snapshot",
+      "passed": true
+    },
+    {
+      "name": "timeline returns to revised artwork",
+      "passed": true
+    },
+    {
+      "name": "mobile layout fits viewport without horizontal overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile detail is automatically brought into view",
+      "passed": true
+    },
+    {
+      "name": "mobile detail text is visible and readable size",
+      "passed": true
+    },
+    {
+      "name": "mobile source links remain visible",
+      "passed": true
+    },
+    {
+      "name": "mobile close restores focus to selected marker",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "viewports": [
+    "1440×1100 desktop",
+    "390×844 mobile"
+  ],
+  "externalRequests": 0
+}

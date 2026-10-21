@@ -1,8 +1,10 @@
 # ROMPE: practical explainer and poster trials
 
+> **User verdict (2026-10-21):** Of the tested outputs, only the illustrated **“A memorable overview”** is a convincing direction for Represent. The box-based inspector and controlled diagrams remain useful research/authoring tools, but are not the product's primary visual direction. This supersedes the earlier three-complementary-product recommendation below while preserving its trial measurements. See the [living project views report](reports/Represent%20living%20project%20views.md).
+
 ## System Intent
 
-**Use an interactive inspector for exploration, controlled diagrams for exact details, and an illustrated poster for the overview.** These trials exercised the two [ROMPE prompts](G:/ro/RagnarokRebuildTcp/docs/research/sandbox-explainer-prompts.md) against a planned Albion-inspired sandbox inside retro Ragnarok. They supersede immediate scanner work; they do not change the earlier repository study's historical findings.
+**Use “A memorable overview” as Represent's tested visual direction.** These trials exercised the two [ROMPE prompts](G:/ro/RagnarokRebuildTcp/docs/research/sandbox-explainer-prompts.md) against a planned Albion-inspired sandbox inside retro Ragnarok. They superseded immediate scanner work at the time; they do not change the earlier repository study's historical findings. The user's later product direction makes an updateable, style-aware overview the next design priority.
 
 This was **agent-authored content → native configuration → real renderer**, not autonomous natural-language generation by the GitHub tools. No model/API comparison was performed. The [source audit](../../experiments/rompe/source-audit.md) and [manifest](../../experiments/rompe/source-manifest.json) record source revision, hashes, read scope and qualifications. This establishes document fidelity, not implemented gameplay.
 
@@ -47,6 +49,10 @@ Reproduction instructions live in the [interactive trial README](../../experimen
 The isolated headless Playwright run records **14 passing checks**, all ten tab audits plus poster audit without conflicts, detail/source-anchor behavior, zoom/fit and SVG export. It records no external requests or errors. Mobile has no horizontal overflow, but fit-view labels are too small to read: passing geometry is insufficient. See [desktop](../../experiments/rompe/validation/loop-desktop.png), [mobile](../../experiments/rompe/validation/loop-mobile.png) and [export](../../experiments/rompe/validation/loop-export.svg).
 
 The exact renderer sources are [interactive-diagram](https://github.com/LizardLiang/interactive-diagram/tree/1e252e62fd07631e71316179bc00861f52c6292b) and [eraser-diagrams](https://github.com/eraserlabs/eraser-diagrams/tree/1f5eefd53fa42010dd86321e600d68fdce37b30d). Eraser retained PNGs; it supplied no standalone SVG output flag. Image generation used the built-in image tool, **not a GitHub renderer or Ghost integration**; its [prompt](../../experiments/rompe/imagegen/prompt.txt) and [refinement](../../experiments/rompe/imagegen/refinement.txt) preserve the authoring record.
+
+## Earlier experiment recommendation (superseded as product direction)
+
+The original trial author recommended three complementary views sharing evidence: interactive exploration, reproducible diagrams for detail, and an illustrated poster for orientation. The user later selected only the poster-like “A memorable overview” as a product direction. Retain the inspector and diagrams as research instruments and possible technical-authoring references; they do not set Visu's visual language.
 
 ## Decision and source questions
 

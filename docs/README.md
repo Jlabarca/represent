@@ -23,12 +23,19 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [Interactive Atlas source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved 18-page source conversation; proposals are not verified facts |
 | [Handoffs index](handoffs/README.md) | Local continuation prompts; kickoff remains intentionally ignored |
 | [Reference repository study](research/reports/Represent%20reference%20repository%20study.md) | Source-grounded reuse/adapt/avoid synthesis |
+| [Living project views report](research/reports/Represent%20living%20project%20views.md) | Suite design: Visu overview, Grafe technical explorer, candidate Alegor history/assistant experience, MVP and full direction |
 | [Reference inventory](research/reference-repos.json) | Local clone origins, exact revisions, licenses and trial scope |
+| [Historical vision and Codevis screenshot analysis](research/research_notes/Represent%20living%20project%20views/original-vision.md) | Synthesis of the local Notion export; source export remains unmodified |
+| [New visual and technical references](research/research_notes/Represent%20living%20project%20views/new-references.md) | GoCity, Algorithm Visualizer adoption signals, and creative-coding findings |
+| [Living suite architecture notes](research/research_notes/Represent%20living%20project%20views/product-architecture.md) | Detailed MVP/full-product, snapshot, workflow, UX, and open-decision synthesis |
+| [New reference evidence JSON](research/research_notes/Represent%20living%20project%20views/new-references.json) | Pinned repository revisions, observations, and limits |
+| [ROMPE and living overview concepts](../experiments/rompe/living-overview-concept/index.html) | Local concept artifact for a style-aware overview and snapshot interactions; not a shipped product |
 | [Ingestion notes](research/research_notes/Represent%20reference%20repository%20study/ingestion.md) | GitNexus and CodeBoarding source evidence |
 | [Visualization notes](research/research_notes/Represent%20reference%20repository%20study/visualization.md) | interactive-diagram and CodeCharta source evidence |
 | [Spatial/history notes](research/research_notes/Represent%20reference%20repository%20study/spatial-history.md) | Git City and Gource source evidence |
 | [ROMPE tool trials](research/rompe-tool-trials.md) | Actual explainer/poster outputs, browser checks and limitations |
 | [ROMPE comparison gallery](../experiments/rompe/index.html) | Local interactive and image artifacts with reproduction records |
+| [Living overview concept](../experiments/rompe/living-overview-concept/index.html) | Concept interaction for an illustrated overview and snapshot history; not product implementation |
 
 ## Subfolders
 

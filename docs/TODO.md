@@ -18,7 +18,23 @@
 - [ ] Sketch the headless core → surface boundary (what the library exposes, what each surface does on top)
 - [ ] Prototype a minimal pipeline: ingest → annotate → Ghost AI prompt → render
 
-## Sprint: Reference study → first scene (2026-10-21)
+## Sprint: Visu and Grafe product design (2026-10-21)
+
+Current sprint follows the user's product-quality correction after the ROMPE trial. **“A memorable overview” is the sole tested output accepted as the Represent visual direction.** The poster/box-diagram verdict below is superseded as a product recommendation, while the experiments remain evidence. Full design and current state: [living views report](research/reports/Represent%20living%20project%20views.md), [ROMPE trial verdict](research/rompe-tool-trials.md), and [tracker](REPRESENT-V0-IMPL.md).
+
+- [x] Preserve the earlier PDF, clone/source study, and ROMPE tests as research evidence — evidence: `research/sources/`, `research/reference-repos.json`, `research/rompe-tool-trials.md`.
+- [x] Review Notion-era technical/visual ideas and new GoCity, creative-coding, and Algorithm Visualizer references — evidence: `research/research_notes/Represent living project views/` and `Represent living project views.md`.
+- [x] Record the product direction, naming recommendation, Visu/Grafe parallel design, MVP sequence, proposed companion role, and UX gates — evidence: `research/reports/Represent living project views.md`.
+- [ ] Review Visu and Grafe design tracks as separate product experiences over shared evidence and snapshots.
+- [ ] Prototype one project-styled Visu overview with semantic detail regions; validate ROMPE and one non-game project.
+- [ ] Measure incremental refresh work, cache behavior, generation cost/latency, freshness, readability, and user correction rate; set pilot thresholds from observed data.
+- [ ] Design the local snapshot timeline and comparison workflow; keep Alegor's service boundary provisional.
+- [ ] Continue Grafe design; retain the first plane-sync scene as a technical checkpoint, not a blocker for Visu product proof.
+
+## Historical sprint: Reference study → first scene (2026-10-21)
+
+> [!WARNING]
+> **SUPERSEDED —** The Visu and Grafe product-design sprint above now sets the active priority. This earlier scanner-first gate remains a technical checkpoint for Grafe, not a global blocker for Visu. The completed research evidence remains valid. Preserved per DOCS-PROTOCOL.md Rule 5.
 
 Full scope and evidence: [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 

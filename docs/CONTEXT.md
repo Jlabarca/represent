@@ -4,6 +4,16 @@
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
 > Updated: 2026-10-21
 
+## Latest Product Direction (2026-10-21)
+
+The ROMPE trials established the current visual quality bar: **“A memorable overview”** is the only tested output accepted as a natural Represent product direction. The user's desired product is clean and easy at first glance, with deeper summaries, technical data, and source evidence available through hover, focus, or popups. The overview should detect and adopt each project's own style; the MVP narrows the format/workflow to a dependable illustrated overview and cheap, measurable updates, not to a single art style such as ROMPE's pixel art.
+
+The product should be designed in two equally serious tracks: **Visu**, the illustrated overview that can grow into an animated interactive scene, and **Grafe**, a technical explorer improving on the Codevis idea with source/code detail inside focused nodes. Share project identity, evidence, and snapshot lineage. Implementation need not happen in parallel: the first product proof is an updateable Visu overview; the earlier plane-sync scan becomes a Grafe engineering checkpoint rather than the global gate for all product work. **Alegor** is a candidate name for a project/history companion; its exact product/service boundary remains a proposal, and the user's only fixed constraint is that it is not a mascot.
+
+Branding recommendation for review: **Represent** (suite), **Visu** (illustrated overview), **Grafe** (technical explorer), **Alegor** (candidate companion). Names and any `alegor.ai` domain styling are provisional; domain and trademark availability have not been checked. A local-first snapshot workflow is the MVP direction. Hosted sync, embeds, sharing, or subscription budgets are later service proposals, not current commitments.
+
+See the [living project views design](research/reports/Represent%20living%20project%20views.md) for the complete recommendation and [research verdict](research/rompe-tool-trials.md) for the corrected interpretation of trial results.
+
 ## What is Represent
 
 Represent is the **root workspace for all LLM-based visual representation projects** under waremoto. It lives at `D:/ware/represent` (repo: <https://github.com/Jlabarca/represent>). Multiple concrete projects — different visualization modes, different ingestion strategies, different output surfaces — will live here as sub-projects under one shared doctrine, one AI backend, and one embeddability target.
@@ -14,7 +24,7 @@ The thesis: a project should have an iconic visual identity that reflects its re
 
 ## Current State
 
-Product pre-implementation, with working reference-tool experiments. Repo bootstrapped 2026-04-13. No Represent scanner or general renderer has shipped. Seven upstream repositories are cloned locally; ROMPE's two prompts have been exercised through interactive-diagram, Eraser Diagrams and an illustrated-poster baseline. See [trial results](research/rompe-tool-trials.md) and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
+Product pre-implementation, with working reference-tool experiments and a local UI concept. Repo bootstrapped 2026-04-13. No Represent scanner or general renderer has shipped. Ten upstream repositories are inventoried locally; ROMPE's two prompts have been exercised through interactive-diagram, Eraser Diagrams and an illustrated-poster baseline. See [trial results](research/rompe-tool-trials.md), [living views concept](../experiments/rompe/living-overview-concept/index.html), and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 
 ## Key Architecture Decisions (Locked)
 
@@ -27,9 +37,19 @@ Product pre-implementation, with working reference-tool experiments. Repo bootst
 | Workspace layout | **Monorepo under `D:/ware/represent`** | Shared doctrine + shared core + per-project subfolders. One docs tree at the root. | 2026-04-13 |
 | Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |
 | Compatibility target | **methrep's `represent.scene/v0` envelope + `events.jsonl`** | Reuse the stable boundary, not methrep's markdown parser or date-only append algorithm. Code metadata belongs in annotations; structural extensions need tests. | 2026-10-21 |
-| First delivery gate | **First real plane-sync scene before enrichment, renderer or shell implementation** | Keep the P0-P4 kickoff, with source study ahead of P1. The actual tracked plane-sync tree is small (19 files), and requires JavaScript support. | 2026-10-21 |
-| Current validation case | **ROMPE game-design prompts before scanner implementation** | Operator explicitly requested hands-on use of existing tools. These are upstream-renderer experiments, not a premature P3 product implementation. | 2026-10-21 |
+| First delivery gate | **Historical technical checkpoint: first real plane-sync scene for the Grafe ingestion track** | The original scanner-first P0-P4 kickoff preceded the tested Visu direction. The plane-sync scene remains a useful engineering checkpoint, but is no longer the global product gate. | 2026-10-21 |
+| Current validation case | **ROMPE poster establishes the visual bar; validate style transfer on another project** | The user selected “A memorable overview” as the only tested output that fits Represent. Box-based tools remain useful research instruments, not the product's main visual direction. | 2026-10-21 |
 | Document visualization boundary | **Audited facts → selected view → renderer** | The trials found real prompt/source discrepancies; valid layout alone cannot establish correct rules. Share provenance and qualifications across explainer and poster outputs. | 2026-10-21 |
+
+> [!WARNING]
+> **Historical gate superseded 2026-10-21:** The initial bootstrap recorded these choices before the user clarified that the illustrated overview is the product-quality bar. Preserve them here as the original technical sequence; they are not current global gates.
+>
+> | Historical choice | Original rationale |
+> |---|---|
+> | **First real plane-sync scene before enrichment, renderer or shell implementation** | Keep the P0-P4 kickoff, with source study ahead of P1. The actual tracked plane-sync tree is small (19 files), and requires JavaScript support. |
+> | **ROMPE game-design prompts before scanner implementation** | Operator explicitly requested hands-on use of existing tools. These are upstream-renderer experiments, not a premature P3 product implementation. |
+>
+> The plane-sync scene remains a Grafe engineering checkpoint. The ROMPE test remains the visual reference; validate the overview workflow on a non-game project to test style transfer.
 
 ### V0 decisions under evaluation
 
@@ -70,7 +90,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 |---|---|---|
 | Docs doctrine | ✅ Done | `DOCS-PROTOCOL.md` + root living docs in place |
 | Ghost AI wiring decision | ⬜ Pending | Pick which Ghost protocol(s) the first POC will use |
-| First POC brief | ⬜ Pending | Needs a Rule 6 research/ entry |
+| Initial product design brief | ✅ Done | Rule 6 four-section suite proposal is in research/reports/Represent living project views.md; an implementation POC must still name the exact Ghost protocol, cache keys and measurable limits. |
 | Headless core skeleton | ⬜ Pending | Must support all surfaces in the embeddability table |
 | Ingestion pipeline spike | ⬜ Pending | |
 | First visual output | ⬜ Pending | |
@@ -78,13 +98,14 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-Hands-on ROMPE tool trials are delivered before new scanner code, following the operator's latest steering. Review [the local comparison](../experiments/rompe/index.html) and [findings](research/rompe-tool-trials.md). The original plane-sync checkpoint stays queued; choose implementation libraries only after a parser feasibility spike. P2-P4 remain downstream of the first scene.
+Design the Visu MVP around an updateable, project-styled overview with optional source-backed detail and local snapshots. Read the [living views report](research/reports/Represent%20living%20project%20views.md), inspect the [ROMPE comparison](../experiments/rompe/index.html), and use the [trial verdict](research/rompe-tool-trials.md). Next proof: test the same constrained overview workflow on ROMPE and a non-game repository, measure update/cache/image work, and refine style inference and the snapshot interaction. In parallel, maintain the Grafe design; the old plane-sync scene can serve as its engineering checkpoint after the shared evidence/snapshot design is concrete. No scanner, hosted companion, or full animated renderer has shipped.
 
 ## Active Research
 
 - [Companion interaction research](research/companions.md): ambient panel, query-first and change-digest alternatives; verified capabilities separated from inferred design rules.
 - [Reference repository study](research/reports/Represent%20reference%20repository%20study.md): GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. [Inventory](research/reference-repos.json) records pinned commits and source paths. Eraser Diagrams was added for the [ROMPE trials](research/rompe-tool-trials.md).
 - [Graphify field results](research/graphify-tested.md): ignore-awareness, cost, unlabeled clusters and indiscriminate rendering failures remain acceptance constraints.
+- [Living project views report](research/reports/Represent%20living%20project%20views.md): product suite recommendation, Visu MVP, Grafe parallel design, snapshot service direction, and evidence-based UX gates. Names and service roles remain proposals.
 
 ## Completed
 

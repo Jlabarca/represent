@@ -58,3 +58,24 @@
 **Blockers:** No blocker for delivered trials. Mobile fit-view text is too small; Eraser labels can exceed the requested visible line/word limits. These are experiment findings, not hidden passes. Full-app execution of the other five reference projects is not claimed.
 
 **Next steps:** Review the trials, settle remaining product/parser choices, then implement the first headless scan; do not promote P0-P4 from these experiments.
+
+## 2026-10-21 — Living project views and suite design
+
+**Accomplishments:**
+- Read the local Notion-era Represent notes and synthesized them with the ROMPE tool verdict and new GoCity, Algorithm Visualizer, and creative-coding research.
+- Wrote the four-section [living project views report](research/reports/Represent%20living%20project%20views.md), including annotated ingestion scope, Visu MVP, full animated Visu, parallel Grafe design, candidate Alegor role, local-first snapshots, future service options, and UX gates.
+- Updated the reference inventory with three new studies and indexed their notes. Left the Notion export and prior research source notes unchanged.
+- Reconciled CONTEXT, TODO, tracker, README, and this logbook: Visu's style-aware memorable overview is now the first product proof; plane-sync remains a Grafe engineering checkpoint, not the global gate.
+- Added the local [living-overview concept](../experiments/rompe/living-overview-concept/index.html): parent visually inspected the desktop and its saved validation records 20 passing checks across desktop/mobile, zero external requests, keyboard marker behavior, source-linked detail, focus restoration, planned-status toggling, and mobile detail scrolling. Its timeline switches between two poster revisions of the **same** audited ROMPE source snapshot; it does not demonstrate two project snapshots or project evolution.
+
+**Decisions / recommendations:**
+- The operator accepted “A memorable overview” as the only tested output that fits Represent. Box-based tools remain useful research instruments.
+- Recommend one Represent suite with Visu, Grafe, and a candidate Alegor companion/history experience; do not imply separate products/accounts or claim an unverified domain. The assistant/history boundary is proposed, not user-fixed.
+- Narrow MVP output/workflow, while keeping style per project. Test ROMPE and a non-game repository. Design both Visu and Grafe seriously over shared source evidence and immutable snapshots.
+
+**Blockers / limits:**
+- No scanner, generated project view, durable snapshot service, hosted companion, or product renderer is implemented. The local living-overview page is a concept artifact.
+- Automated style detection, image-region freshness, incremental image regeneration, affordability and adoption have not been established. Measure them in a pilot; do not invent cost/usage claims.
+- The overview's raster text remains small on mobile; the detail layer is readable on demand. The concept reuses existing ROMPE art and hand-authored evidence; it does not implement ingestion, style detection, snapshot persistence, generated updates, animation, or chat.
+
+**Next steps:** Review the suite proposal, then prototype one project-styled Visu overview with source-backed regions and a two-snapshot update. Continue Grafe design in parallel and retain the plane-sync scene for its technical engineering checkpoint.

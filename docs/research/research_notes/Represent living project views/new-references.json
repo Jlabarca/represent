@@ -1,0 +1,117 @@
+{
+  "schema": "represent.reference-repositories/v1",
+  "observedAt": "2026-10-21",
+  "repositories": [
+    {
+      "name": "GoCity",
+      "url": "https://github.com/rodrigo-brito/gocity",
+      "clonePath": "references/gocity",
+      "head": "f2b5f40ced5929a8de100a87fec53bac0d296a06",
+      "license": "MIT",
+      "signals": {
+        "stars": "1.8k",
+        "forks": "140",
+        "watching": "27",
+        "commits": "114",
+        "signalPrecision": "GitHub displayed counts; abbreviated values are approximate",
+        "source": "https://github.com/rodrigo-brito/gocity"
+      },
+      "inspection": [
+        "README.md",
+        "pkg/analyzer/analyzer.go",
+        "pkg/analyzer/visitor.go",
+        "pkg/model/node.go",
+        "pkg/model/position.go"
+      ],
+      "transferable": [
+        "AST-backed deterministic structural facts",
+        "hierarchy plus stable source links",
+        "compact spatial encoding with hover details",
+        "separate processing and rendering stages"
+      ],
+      "limits": [
+        "Go-only parser in this repository",
+        "structural metrics do not infer semantics, runtime behavior, or dependency relations",
+        "paper user feedback is a small historical survey"
+      ]
+    },
+    {
+      "name": "Awesome Creative Coding",
+      "url": "https://github.com/terkelg/awesome-creative-coding",
+      "clonePath": "references/awesome-creative-coding",
+      "head": "9643124b4a883e20dfb1b79df69505418728dbeb",
+      "license": "CC0-1.0 (README statement)",
+      "signals": {
+        "stars": "15.5k",
+        "forks": "1.0k",
+        "watching": "386",
+        "commits": "421",
+        "signalPrecision": "GitHub displayed counts; abbreviated values are approximate",
+        "source": "https://github.com/terkelg/awesome-creative-coding"
+      },
+      "inspection": ["readme.md", "contributing.md"],
+      "transferable": [
+        "discovery index for rendering techniques, graphics libraries, interaction design, and learning resources"
+      ],
+      "limits": [
+        "curated links are not a codebase analyzer or an integrated renderer",
+        "the list itself cannot determine which graphics stack fits Represent"
+      ]
+    },
+    {
+      "name": "Algorithm Visualizer",
+      "url": "https://github.com/algorithm-visualizer/algorithm-visualizer",
+      "clonePath": "references/algorithm-visualizer",
+      "head": "18de2edf6b629e843ee4bcedfa2208d22b253f0f",
+      "license": "MIT",
+      "signals": {
+        "stars": "48.9k",
+        "forks": "7.6k",
+        "watching": "1.2k",
+        "commits": "668",
+        "signalPrecision": "GitHub displayed counts; abbreviated values are approximate",
+        "source": "https://github.com/algorithm-visualizer/algorithm-visualizer"
+      },
+      "inspection": [
+        "README.md",
+        "src/files/skeletons/code.js",
+        "src/components/VisualizationViewer/index.js",
+        "src/core/tracers/"
+      ],
+      "transferable": [
+        "synchronized code and visualization playback",
+        "typed tracer adapters with reusable renderers",
+        "detail can emerge progressively as events are replayed"
+      ],
+      "limits": [
+        "requires explicit visualization commands in instrumented example code",
+        "does not automatically infer an arbitrary repository's architecture",
+        "GitHub popularity signals do not establish current active-user count"
+      ]
+    }
+  ],
+  "gocityPaper": {
+    "url": "https://homepages.dcc.ufmg.br/~mtov/pub/2019-saner-gocity.pdf",
+    "reportedUniqueUsers": {
+      "count": "23K",
+      "period": "2018-11",
+      "qualification": "paper-reported, not independently verified current telemetry"
+    },
+    "developerFeedback": {
+      "contacted": 60,
+      "responded": 12,
+      "architectureQuestionResponded": 11,
+      "architecturePositive": 8,
+      "maintenanceQuestionResponded": 10,
+      "maintenancePositive": 6,
+      "qualification": "small response sample; authors state results do not generalize beyond selected popular non-organizational Go projects"
+    }
+  },
+  "codevisScreenshot": {
+    "visibleUrl": "https://github.com/divan/codevis/cmd/codevis",
+    "localFile": "notion/Pixel Clay - Represent Code Graphics Representatio/Untitled.png",
+    "ownerRouteCheckedAt": "2026-10-21",
+    "ownerRouteStatus": 404,
+    "qualification": "404 does not distinguish private, deleted, or moved repository"
+  }
+}

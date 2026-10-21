@@ -54,5 +54,29 @@
     "fullSHA": "1f5eefd53fa42010dd86321e600d68fdce37b30d",
     "license": "MIT",
     "trialStatus": "CLI built locally; four ROMPE JSON inputs validated and four PNGs rendered; manually inspected; some text exceeds requested line/word limits"
+  },
+  {
+    "name": "gocity",
+    "origin": "https://github.com/rodrigo-brito/gocity",
+    "path": "D:/ware/represent/references/gocity",
+    "fullSHA": "f2b5f40ced5929a8de100a87fec53bac0d296a06",
+    "license": "MIT",
+    "trialStatus": "Source inspection only; AST-backed deterministic structural facts; hierarchy plus stable source links; compact spatial encoding with hover details; separate processing and rendering stages. Go-only parser in this repository; structural metrics do not infer semantics, runtime behavior, or dependency relations; paper user feedback is a small historical survey"
+  },
+  {
+    "name": "awesome-creative-coding",
+    "origin": "https://github.com/terkelg/awesome-creative-coding",
+    "path": "D:/ware/represent/references/awesome-creative-coding",
+    "fullSHA": "9643124b4a883e20dfb1b79df69505418728dbeb",
+    "license": "CC0-1.0 (README statement)",
+    "trialStatus": "Source inspection only; discovery index for rendering techniques, graphics libraries, interaction design, and learning resources. curated links are not a codebase analyzer or an integrated renderer; the list itself cannot determine which graphics stack fits Represent"
+  },
+  {
+    "name": "algorithm-visualizer",
+    "origin": "https://github.com/algorithm-visualizer/algorithm-visualizer",
+    "path": "D:/ware/represent/references/algorithm-visualizer",
+    "fullSHA": "18de2edf6b629e843ee4bcedfa2208d22b253f0f",
+    "license": "MIT",
+    "trialStatus": "Source inspection only; synchronized code and visualization playback; typed tracer adapters with reusable renderers; detail can emerge progressively as events are replayed. requires explicit visualization commands in instrumented example code; does not automatically infer an arbitrary repository's architecture; GitHub popularity signals do not establish current active-user count"
   }
 ]

@@ -15,7 +15,9 @@ Multiple concrete projects will live here. They share one doctrine, one AI backe
 
 ## Status
 
-Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html) and [trial findings](docs/research/rompe-tool-trials.md). Seven upstream checkouts inform the research-first [v0 tracker](docs/REPRESENT-V0-IMPL.md); a general scanner and renderer remain planned. See [docs/CONTEXT.md](docs/CONTEXT.md) for current state.
+Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html), the [living-overview interaction concept](experiments/rompe/living-overview-concept/index.html), and [trial findings](docs/research/rompe-tool-trials.md). Ten upstream checkouts inform the [v0 tracker](docs/REPRESENT-V0-IMPL.md); a general scanner and renderer remain planned.
+
+**Current product direction (2026-10-21):** build toward one Represent suite with Visu's project-styled memorable overview first, while designing Grafe's technical explorer in parallel. The plane-sync scan is a Grafe engineering checkpoint, not a global product gate. See [docs/CONTEXT.md](docs/CONTEXT.md) and the [living project views design](docs/research/reports/Represent%20living%20project%20views.md).
 
 ## Docs
 

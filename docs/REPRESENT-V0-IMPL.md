@@ -7,7 +7,22 @@
 
 ## AI Continuation Prompt
 
-Read CONTEXT.md, this tracker, DOCS-PROTOCOL.md, the reference-repository study, and research/companions.md. Study working upstream projects before implementing; record source evidence and actual trial results separately. Preserve the supplied PDF and earlier design ideas. All AI goes through Ghost; keep the core headless. The first implementation checkpoint is a real `scene.yaml` for `D:/ware/plane-sync`, shown before P2-P4 implementation. Do not extend methrep to parse code or modify sibling repositories. Check current git status: unrelated methodology rollout changes existed before this work. Use exact-path commits and evidence on completed boxes.
+Read CONTEXT.md, this tracker, DOCS-PROTOCOL.md, the living project views report, reference studies, and the ROMPE trial verdict. Preserve older ideas and distinguish accepted direction from proposals. Current product-design priority is an updateable, project-styled Visu overview, with Grafe designed in parallel over shared evidence/snapshot identities. The plane-sync scene is a Grafe engineering checkpoint, not a global prerequisite for Visu. All AI goes through Ghost; keep the core headless. Do not extend methrep to parse code or modify sibling repositories. Check current git status for unrelated changes; use exact-path commits and evidence on completed boxes.
+
+<details>
+<summary>Historical continuation prompt (superseded 2026-10-21; preserved under Rule 5)</summary>
+
+> Read CONTEXT.md, this tracker, DOCS-PROTOCOL.md, the reference-repository study, and research/companions.md. Study working upstream projects before implementing; record source evidence and actual trial results separately. Preserve the supplied PDF and earlier design ideas. All AI goes through Ghost; keep the core headless. The first implementation checkpoint is a real `scene.yaml` for `D:/ware/plane-sync`, shown before P2-P4 implementation. Do not extend methrep to parse code or modify sibling repositories. Check current git status: unrelated methodology rollout changes existed before this work. Use exact-path commits and evidence on completed boxes.
+
+</details>
+
+## Latest Steering (2026-10-21)
+
+The user judged **“A memorable overview”** the only tested ROMPE output that makes sense as a Represent tool. Visu's key promise is to infer project style and produce a simple, attractive infographic with optional short/technical/source-linked detail. The MVP should keep the overview and refresh workflow narrow; style profiles should vary by project, and ROMPE pixel art is a reference rather than a universal theme. Build a cheap update loop through deterministic extraction, changed-evidence synthesis, caching and measured generation operations. No cost claim is established yet.
+
+Design **Visu** and **Grafe** as parallel product tracks, not one poster with a hidden graph mode. Visu's full direction is an animated and interactive illustrated scene, where motion communicates evidence-backed flow or change; label explanatory models as conceptual unless runtime traces support them. Grafe should improve on the historical Codevis idea with source/code inside focused nodes, source navigation, filtering, and progressive detail. Both share project identity, evidence, and immutable snapshots. The first Visu proof can precede implementation of both full products.
+
+Recommended names for evaluation are Represent (suite), Visu (overview), Grafe (technical view), and Alegor (candidate companion). The user asked for branding advice and fixed only that Alegor is not a mascot; its product/service role is still a proposal. Local snapshot history is a reasonable MVP. Hosted sync, embedding, export services, sharing, or subscription budgets are future service options, with no price/domain availability asserted. Full rationale and journeys are in [the living views report](research/reports/Represent%20living%20project%20views.md).
 
 ## System Intent
 
@@ -57,6 +72,7 @@ Methrep defines the compatibility target: `schema`, `view`, `scope`, `nodes`, `e
    **Resolution:** Clone, inspect and exercise the selected reference projects, synthesize reuse/adapt/avoid decisions, then settle P0 and build P1. Deliver the first plane-sync scene before P2-P4.
    > Rationale: operator's research-first steering on 2026-10-21 supersedes immediately starting a scanner.
    > Override: start a separate implementation spike early only on explicit operator direction.
+   > [!WARNING] Historical sequence superseded for global priority by the user's Visu-first product direction (2026-10-21). Keep the first plane-sync scene as a Grafe engineering checkpoint; it no longer blocks Visu design or its first prototype. See [Latest Steering](#latest-steering-2026-10-21).
 2. **Q: Which architecture choices are fixed?**
    **Resolution:** Headless core, Ghost-only AI and the scene/events boundary are fixed. TypeScript/web is a working preference until the source study settles it. Reuse methrep's contract, not its date-only event append algorithm.
    > Rationale: the current emitter can miss later same-day events and rewrite on malformed tails; the existing Mermaid renderer skips unknown types.
@@ -68,7 +84,7 @@ Methrep defines the compatibility target: `schema`, `view`, `scope`, `nodes`, `e
 
 ## Current State (2026-10-21)
 
-Reference study and ROMPE trials delivered. PDF copied/read; companion research reviewed. User redirected the immediate test case to two game-design prompts before scanner work. Upstream interactive-diagram and Eraser outputs plus an image-generation baseline exist under experiments/rompe; they are experiments, not the generic Represent renderer. No scanner, enrichment or companion shell implemented. No promoted capability claimed.
+Reference study and ROMPE trials delivered. PDF copied/read; companion and living-view research reviewed. The user selected the illustrated “A memorable overview” as the quality bar; the earlier recommendation that all three tested renderers form complementary product views is superseded. Upstream interactive-diagram and Eraser outputs remain research instruments, and the image-generation baseline remains an experiment rather than a general Represent renderer. No scanner, enrichment, snapshot service, or companion shell implemented. No promoted capability claimed. The first plane-sync scene remains useful for Grafe's engineering path; it is no longer the global gate ahead of Visu design/prototyping.
 
 ## Known Bugs
 
@@ -105,6 +121,9 @@ Model columns are future execution hints; they are not claims about completed wo
 - [x] REPRESENT-V0.0.5 Run the operator's ROMPE explainer/poster prompts through suitable reference projects, inspect actual output and preserve provenance/corrections — evidence: ../experiments/rompe/index.html; source-audit.md and source-manifest.json under that directory; research/rompe-tool-trials.md.
 
 ### P1 — First deterministic scene
+
+> [!WARNING]
+> **Historical scanner-first gate superseded for global product sequencing (2026-10-21).** P1's plane-sync scene remains the Grafe technical checkpoint. Visu product design and its first overview/update prototype can proceed before that scene; see [Latest Steering](#latest-steering-2026-10-21).
 
 - [ ] REPRESENT-V0.1.1 Implement CLI/library, filtering, bounded syntax/history extraction and scene serialization as one vertical slice — evidence: pending source and fixture tests.
 - [ ] REPRESENT-V0.1.2 Generate, inspect and show the first plane-sync scene with honest completeness and source evidence — evidence: pending saved scene and inspection.
