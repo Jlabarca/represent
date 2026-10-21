@@ -1,7 +1,8 @@
 # Visu MVP — Implementation Tracker
 
 > Living design and status. Updated: 2026-10-21.
-> Source: [living project views](research/reports/Represent%20living%20project%20views.md).
+> Source: [living project views](../research/reports/Represent%20living%20project%20views.md).
+> Completed local MVP. Current implementation: [reference](../reference/visu-mvp.md). Archived 2026-10-21 after green scoped verification.
 > Follows DOCS-PROTOCOL.md Rule 15.
 > Prior-art sweep: CAPABILITIES.md, reference/, impl/, package manifests and experiments checked. Existing ROMPE HTML is a static concept; no reusable Visu core exists.
 
@@ -27,7 +28,7 @@ Turn selected project evidence into an illustrated, project-styled overview with
 
 ## Visualization Spec
 
-Use the approved [ROMPE poster](../experiments/rompe/imagegen/rompe-poster-v2.png) as a quality reference. The generated illustration is the main surface, with a few stable interactive regions. Initial composition is a bounded six-region poster recipe. Style is inferred from source signals and can be overridden. Unknown style uses a neutral editorial profile. Detail uses hover, focus and tap; sources are immutable captured excerpts. Timeline thumbnails distinguish source snapshots from art revisions. The full animated semantic scene remains future work.
+Use the approved [ROMPE poster](../../experiments/rompe/imagegen/rompe-poster-v2.png) as a quality reference. The generated illustration is the main surface, with a few stable interactive regions. Initial composition is a bounded six-region poster recipe. Style is inferred from source signals and can be overridden. Unknown style uses a neutral editorial profile. Detail uses hover, focus and tap; sources are immutable captured excerpts. Timeline thumbnails distinguish source snapshots from art revisions. The full animated semantic scene remains future work.
 
 ## Architecture
 

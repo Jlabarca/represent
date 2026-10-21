@@ -107,3 +107,21 @@ None for the bounded local Visu slice. Public-release naming/licensing, generali
 ### Next
 
 Run final scoped QA and promotion checks; use the two-project MVP for user review and collect corrections before widening scope.
+
+## 2026-10-21 — Promote Visu MVP
+
+### Accomplished
+
+Promoted VISU-MVP-IMPL to impl/ + reference/visu-mvp.md. Scoped implementation commits d13a2b6 and 05b304f contain the working core, UI, tests and two-project evidence. The actual runner passed 14/14 tests at 05b304f; nine browser checks passed with no failed requests. Promotion checker passed every machine gate. Added the capability row and archived tracker index.
+
+### Decisions
+
+Promotion denotes the documented bounded local MVP, not general architecture inference or automatic art correctness. Reference content still awaits human product review. Historical research and failed attempts remain preserved. Local runtime verification records are ignored rather than committed.
+
+### Blockers
+
+None for this slice. Grafe and Alegor remain evidence-led parallel design tracks; their research does not yet justify independent MVP implementation.
+
+### Next
+
+Review both projects in Visu, collect semantic/art corrections, then prioritize general chapter extraction and richer style evidence. For Grafe, validate multi-file symbol/source accuracy. For Alegor, validate a real project re-entry task against opted-in session evidence.

@@ -7,3 +7,4 @@
 
 | Capability | Verb it gives you | Reference | Promoted |
 |---|---|---|---|
+| Visu local illustrated overview | Capture selected project evidence, detect style, generate through Ghost, compare snapshots and export history | [reference/visu-mvp.md](reference/visu-mvp.md) | 2026-10-21 |

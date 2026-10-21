@@ -20,9 +20,9 @@
 
 ## Sprint: Visu and Grafe product design (2026-10-21)
 
-### Active build: Visu MVP
+### Completed build: Visu MVP
 
-- [x] Build and test the headless snapshot/style/update core — evidence: [tracker](VISU-MVP-IMPL.md), 14 regression cases.
+- [x] Build and test the headless snapshot/style/update core — evidence: [archived tracker](impl/VISU-MVP-IMPL.md), 14 regression cases.
 - [x] Integrate Ghost generation and a minimal accessible web shell — evidence: [reference](reference/visu-mvp.md), actual Ghost ledger and nine browser checks.
 - [x] Exercise ROMPE and Luz with measured cold/warm/overlay/art-change cases; complete implementation UX review — evidence: [pilot](../experiments/visu-pilot/README.md).
 - [x] Research Grafe and Alegor in parallel; gate any implementation on real trial evidence — evidence: [Grafe](research/grafe-mvp-research.md), [Alegor](research/alegor-mvp-research.md). Neither independently shippable MVP is mature yet; next work is multi-file symbol accuracy and real re-entry validation respectively.
@@ -33,9 +33,10 @@ Current sprint follows the user's product-quality correction after the ROMPE tri
 - [x] Review Notion-era technical/visual ideas and new GoCity, creative-coding, and Algorithm Visualizer references — evidence: `research/research_notes/Represent living project views/` and `Represent living project views.md`.
 - [x] Record the product direction, naming recommendation, Visu/Grafe parallel design, MVP sequence, proposed companion role, and UX gates — evidence: `research/reports/Represent living project views.md`.
 - [ ] Review Visu and Grafe design tracks as separate product experiences over shared evidence and snapshots.
-- [ ] Prototype one project-styled Visu overview with semantic detail regions; validate ROMPE and one non-game project.
-- [ ] Measure incremental refresh work, cache behavior, generation cost/latency, freshness, readability, and user correction rate; set pilot thresholds from observed data.
-- [ ] Design the local snapshot timeline and comparison workflow; keep Alegor's service boundary provisional.
+- [x] Prototype one project-styled Visu overview with semantic detail regions; validate ROMPE and one non-game project — evidence: [pilot](../experiments/visu-pilot/README.md).
+- [x] Measure incremental refresh work, cache behavior, generation cost/latency and freshness — evidence: [measurements](../experiments/visu-pilot/measurements.json).
+- [ ] Gather user readability/correction feedback and calibrate thresholds; machine checks do not establish acceptance.
+- [x] Design and implement the local snapshot timeline and comparison workflow; keep Alegor's service boundary provisional — evidence: [Visu reference](reference/visu-mvp.md).
 - [ ] Continue Grafe design; retain the first plane-sync scene as a technical checkpoint, not a blocker for Visu product proof.
 
 ## Historical sprint: Reference study → first scene (2026-10-21)
