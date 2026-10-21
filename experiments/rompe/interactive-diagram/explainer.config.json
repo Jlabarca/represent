@@ -1,0 +1,1236 @@
+{
+  "title": "ROMPE · Albion inside Ragnarok · Design explainer",
+  "tabs": [
+    {
+      "id": "overview",
+      "label": "01 · Start here",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "pitch",
+          "label": "Albion inside Ragnarok",
+          "description": "ROMPE is “Albion Online inside Ragnarok Online”: classic jobs, monsters and cards meet a player economy where choosing a place means choosing risk. The design argues that nostalgia alone is a narrow market, while hunting, crafting, trade and loss give players reasons to return. ORO adds these as layers over classic rules. This is an accepted design plan, not a claim that the whole sandbox is shipped.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#lessons-L15\" target=\"_blank\" rel=\"noopener\">Read source: lessons, line 15</a>",
+            "<a href=\"sources.html#sandbox-L9\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 9</a>"
+          ]
+        },
+        {
+          "id": "read",
+          "label": "Choose a view\nClick for evidence",
+          "description": "Each view answers one question. Click a card for context and a source link. Hover traces a connected chain. Drag, zoom, Fit, and export use the upstream renderer.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#prompts-L16\" target=\"_blank\" rel=\"noopener\">Read source: prompts, line 16</a>"
+          ]
+        },
+        {
+          "id": "status",
+          "label": "Accepted plan\nNot all shipped",
+          "description": "The player-path table calls fight shipped; trade, guild-war, defend, cards and minigames partial; Want/craft, account, risk, gather, haul, rift and explore design-only. Source details are a snapshot, not a current runtime audit.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L81\" target=\"_blank\" rel=\"noopener\">Read source: path, line 81</a>"
+          ]
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "loop",
+      "label": "02 · The economy",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "want",
+          "label": "Want\nPick any recipe",
+          "description": "Every recipe is unlocked. Pick the thing you want to make.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L244\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 244</a>"
+          ]
+        },
+        {
+          "id": "ledger",
+          "label": "Ledger\nFind materials",
+          "description": "The Ledger is your goal tracker. The Material Atlas points to monsters, maps, Surges and market prices.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L251\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 251</a>",
+            "<a href=\"sources.html#sandbox-L270\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 270</a>"
+          ]
+        },
+        {
+          "id": "gather",
+          "label": "Hunt · Gather · Buy",
+          "description": "Fight for drops, harvest a Surge or buy missing materials.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L270\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 270</a>",
+            "<a href=\"sources.html#sandbox-L596\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 596</a>"
+          ]
+        },
+        {
+          "id": "craft",
+          "label": "Craft\nThree ways",
+          "description": "Use a Kafra workshop; your own Blacksmith or Alchemist; or commission another player. Player crafters own the high-quality end.",
+          "x": 930,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L278\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 278</a>"
+          ]
+        },
+        {
+          "id": "cards",
+          "label": "Socket cards",
+          "description": "Weapons have at least one socket. Classic cards remain part of the design; the combined card overhaul is planned.",
+          "x": 930,
+          "y": 230,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L337\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 337</a>"
+          ]
+        },
+        {
+          "id": "risk",
+          "label": "Wear into risk\nChoose a colour",
+          "description": "Risk belongs to the map. Read the border before taking valuables across it.",
+          "x": 620,
+          "y": 230,
+          "w": 240,
+          "h": 100,
+          "type": "external",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L472\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 472</a>"
+          ]
+        },
+        {
+          "id": "grave",
+          "label": "Die? A Grave\nLoss follows zone rules",
+          "description": "Blue/yellow drop nothing. Red drops inventory plus equipped crafted if flagged. Black drops everything; ordinary black requires crafted gear. Named abyss maps also permit and loot vanilla gear. A share of dropped items is destroyed; 30% is a starting dial.",
+          "x": 310,
+          "y": 230,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L502\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 502</a>",
+            "<a href=\"sources.html#sandbox-L479\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 479</a>"
+          ]
+        },
+        {
+          "id": "demand",
+          "label": "Replace what was lost",
+          "description": "Destroyed and lost goods create demand for materials and crafts. A Grave holds what actually drops, not automatically every item in every zone.",
+          "x": 0,
+          "y": 230,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L504\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 504</a>",
+            "<a href=\"sources.html#sandbox-L298\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 298</a>"
+          ]
+        },
+        {
+          "id": "survive",
+          "label": "Survive? Sell or ship",
+          "description": "Sell on the per-city board, or consign bulk goods to a caravan. Death is not required to participate in the economy.",
+          "x": 620,
+          "y": 440,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L625\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 625</a>",
+            "<a href=\"sources.html#sandbox-L632\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 632</a>"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "want",
+          "to": "ledger",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "ledger",
+          "to": "gather",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "gather",
+          "to": "craft",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "craft",
+          "to": "cards",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "cards",
+          "to": "risk",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "risk",
+          "to": "grave",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "grave",
+          "to": "demand",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "demand",
+          "to": "want",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "risk",
+          "to": "survive",
+          "label": "survive",
+          "style": "sync"
+        },
+        {
+          "from": "survive",
+          "to": "want",
+          "label": "trade",
+          "style": "sync"
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "label": "03 · Risk colours",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "blue",
+          "label": "BLUE · Safe\nNo drops",
+          "description": "Ambient PvP is off; no death drops. Event sides can still fight under the soft Off rule. Hard town PvpOff blocks even event sides. Up to three companions; any gear. Counts are tunable dials.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L479\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 479</a>",
+            "<a href=\"sources.html#groups-L248\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 248</a>",
+            "<a href=\"sources.html#groups-L310\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 310</a>"
+          ]
+        },
+        {
+          "id": "yellow",
+          "label": "YELLOW · Flag to fight\nNo drops",
+          "description": "Opt-in PvP. No death drops, but crafted durability wears. Up to two companions. Any gear.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L480\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 480</a>"
+          ]
+        },
+        {
+          "id": "red",
+          "label": "RED · PvP on\nBag + flagged crafted",
+          "description": "Inventory drops; equipped crafted gear also drops if flagged. One companion. Any gear. Red is not blanket full-equipment loot.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L481\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 481</a>"
+          ]
+        },
+        {
+          "id": "black",
+          "label": "BLACK · Crafted only\nEverything drops",
+          "description": "PvP on. Full loot. One companion, lootable. Ordinary black zones only allow crafted equipment.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L482\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 482</a>"
+          ]
+        },
+        {
+          "id": "abyss",
+          "label": "ABYSS · Named exception\nVanilla can drop too",
+          "description": "Named abyss black maps permit vanilla gear and loot it too. Which exact maps qualify remains open.",
+          "x": 0,
+          "y": 380,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L483\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 483</a>"
+          ]
+        },
+        {
+          "id": "border",
+          "label": "Read the border\nKnow your carried value",
+          "description": "The planned border banner and carried-value meter make risk visible before entry. A Grave destroys a share of what dropped, then exposes the remainder.",
+          "x": 310,
+          "y": 380,
+          "w": 240,
+          "h": 100,
+          "type": "external",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L510\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 510</a>"
+          ]
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "onboarding",
+      "label": "04 · First 15 minutes",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "minute0",
+          "label": "0′ · Knife-eating slime",
+          "description": "A glowing Poporing has a knife inside. Learn by fighting toward it.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L154\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 154</a>"
+          ]
+        },
+        {
+          "id": "minute3",
+          "label": "3′ · First Aid ×3",
+          "description": "First Aid heals triple in the starter field only. This is a starter-zone dial, not a global formula change.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L156\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 156</a>"
+          ]
+        },
+        {
+          "id": "minute5",
+          "label": "5′ · First Want",
+          "description": "Jellopy opens a recipe goal with a live material counter.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L158\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 158</a>"
+          ]
+        },
+        {
+          "id": "minute6",
+          "label": "6–8′ · Caravan passes",
+          "description": "See stronger players and bots escort a caravan; glimpse a black-zone Grave in the feed.",
+          "x": 930,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L159\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 159</a>"
+          ]
+        },
+        {
+          "id": "minute8",
+          "label": "8′ · Borrowed hero",
+          "description": "Rent a level-80 companion for two minutes. The initial build may use a scripted companion until Kafra Hire exists.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L160\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 160</a>",
+            "<a href=\"sources.html#sandbox-L758\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 758</a>"
+          ]
+        },
+        {
+          "id": "minute10",
+          "label": "10′ · First craft",
+          "description": "One-tap craft at the city gate workshop makes a crafted T1 knife.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "external",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L161\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 161</a>"
+          ]
+        },
+        {
+          "id": "minute12",
+          "label": "12′ · Job change",
+          "description": "At job level 10, the first job is offered without a job quest.",
+          "x": 620,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L162\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 162</a>"
+          ]
+        },
+        {
+          "id": "minute15",
+          "label": "15′ · Ready to explore",
+          "description": "A first-job character, a crafted knife, an active Want. This entire onboarding sequence is a planned playtest sketch, not a shipped script.",
+          "x": 930,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L148\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 148</a>",
+            "<a href=\"sources.html#sandbox-L163\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 163</a>"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "minute0",
+          "to": "minute3",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute3",
+          "to": "minute5",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute5",
+          "to": "minute6",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute6",
+          "to": "minute8",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute8",
+          "to": "minute10",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute10",
+          "to": "minute12",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "minute12",
+          "to": "minute15",
+          "label": "",
+          "style": "sync"
+        }
+      ]
+    },
+    {
+      "id": "chapters",
+      "label": "05 · Five chapters",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "start",
+          "label": "Start · 0–15 minutes",
+          "description": "Fight, heal, Want, craft and borrowed power.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L51\" target=\"_blank\" rel=\"noopener\">Read source: path, line 51</a>"
+          ]
+        },
+        {
+          "id": "hook",
+          "label": "Hook · Up to two hours",
+          "description": "A second character, yellow risk, Surge, Rift, caravan and first sale.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L52\" target=\"_blank\" rel=\"noopener\">Read source: path, line 52</a>"
+          ]
+        },
+        {
+          "id": "mid",
+          "label": "Mid · Deepen your loops",
+          "description": "Crafter, guild, red zones, outposts and Mob War defence. Source discrepancy: Player Path says base 25–70; Sandbox says base 30–70. This view does not choose a disputed lower bound.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L53\" target=\"_blank\" rel=\"noopener\">Read source: path, line 53</a>",
+            "<a href=\"sources.html#sandbox-L189\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 189</a>"
+          ]
+        },
+        {
+          "id": "late",
+          "label": "Late · Base 70–99",
+          "description": "Black zones, Roads and T6–T8 crafts.",
+          "x": 930,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L54\" target=\"_blank\" rel=\"noopener\">Read source: path, line 54</a>"
+          ]
+        },
+        {
+          "id": "seasons",
+          "label": "Seasons · Ongoing",
+          "description": "Defend cities, play guild seasons and discover why invasions are growing.",
+          "x": 1240,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L55\" target=\"_blank\" rel=\"noopener\">Read source: path, line 55</a>"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "start",
+          "to": "hook",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "hook",
+          "to": "mid",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "mid",
+          "to": "late",
+          "label": "",
+          "style": "sync"
+        },
+        {
+          "from": "late",
+          "to": "seasons",
+          "label": "",
+          "style": "sync"
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "label": "06 · Who is with you?",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "account",
+          "label": "Account · Up to 12\nA roster, not an army",
+          "description": "Up to 12 characters belong to your account. Called companions are limited by risk zone; 12 does not mean all active. Your characters carry an Account tag inside the party.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L372\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 372</a>",
+            "<a href=\"sources.html#sandbox-L479\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 479</a>",
+            "<a href=\"sources.html#groups-L19\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 19</a>"
+          ]
+        },
+        {
+          "id": "party",
+          "label": "Party · Temporary\nNo size cap",
+          "description": "The people with you now. No designed size cap; EXP sharing has its own cap. Tags order account, hires, guild and others. First two slots after you are commandable; hires depend on a dial.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#groups-L124\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 124</a>",
+            "<a href=\"sources.html#groups-L69\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 69</a>"
+          ]
+        },
+        {
+          "id": "guild",
+          "label": "Guild · Permanent\nEarned promotion",
+          "description": "A party can qualify and be promoted; that party is dismantled. One guild per account. Guild membership and current party are separate relationships.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#groups-L20\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 20</a>"
+          ]
+        },
+        {
+          "id": "war",
+          "label": "War sides · Temporary\nGuild replaces party bonds",
+          "description": "WoE/GvG stamps event sides by guild for the match. The war side overrides ordinary party relationships; it is not an outer container around a party.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#groups-L109\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 109</a>",
+            "<a href=\"sources.html#groups-L29\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 29</a>"
+          ]
+        },
+        {
+          "id": "engine",
+          "label": "Factions · Under the hood",
+          "description": "One combat relationship engine decides who may hit whom. No player-facing faction banners or Faction War. Side override takes precedence during events.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#groups-L78\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 78</a>",
+            "<a href=\"sources.html#groups-L109\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 109</a>"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "account",
+          "to": "party",
+          "label": "tag",
+          "style": "sync"
+        },
+        {
+          "from": "party",
+          "to": "guild",
+          "label": "qualify / promote",
+          "style": "sync"
+        },
+        {
+          "from": "guild",
+          "to": "war",
+          "label": "event side",
+          "style": "sync"
+        },
+        {
+          "from": "war",
+          "to": "engine",
+          "label": "overrides",
+          "style": "sync"
+        },
+        {
+          "from": "party",
+          "to": "engine",
+          "label": "normal relation",
+          "style": "sync"
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "label": "07 · Pick an event",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "caravan",
+          "label": "Caravan\nEscort · Raid · Consign",
+          "description": "Guard a scheduled Kafra wagon, raid it, or ship warehouse cargo. A broken wagon spills cargo into Graves. Planned; v0 is one long map leg.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L558\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 558</a>"
+          ]
+        },
+        {
+          "id": "rift",
+          "label": "Rift\nClear · Survive invasion",
+          "description": "A solo dungeon with a possible player invader. Gear-capped; designed for 10–15 minutes. Planned.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L575\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 575</a>"
+          ]
+        },
+        {
+          "id": "surge",
+          "label": "Surge\nHarvest · Contest",
+          "description": "Harvest a temporary material vein with an interruptible channel. Richer red/black Surges invite conflict. Planned.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L596\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 596</a>"
+          ]
+        },
+        {
+          "id": "roads",
+          "label": "Roads\nExplore changing portals",
+          "description": "Travel a rotating portal network. Black by default; T6–T8 resources. Planned.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L604\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 604</a>"
+          ]
+        },
+        {
+          "id": "outpost",
+          "label": "Outposts / WoE\nCapture with your guild",
+          "description": "Guilds capture outposts; war modes override ordinary parties. Guild core exists; persistence, scheduling and these new surfaces need work.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L583\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 583</a>"
+          ]
+        },
+        {
+          "id": "defence",
+          "label": "City defence\nHold the city",
+          "description": "Mob War is the defence loop. Caravans supply Readiness; crafters supply defenders. Existing battles are partial foundations, not proof the whole sandbox is live.",
+          "x": 620,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "external",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L610\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 610</a>",
+            "<a href=\"sources.html#path-L93\" target=\"_blank\" rel=\"noopener\">Read source: path, line 93</a>"
+          ]
+        },
+        {
+          "id": "killboard",
+          "label": "Killboard\nRead fights and builds",
+          "description": "Read Graves, Rift results, outpost captures and winning builds. The planned public record connects makers, guilds and outcomes.",
+          "x": 0,
+          "y": 380,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L616\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 616</a>"
+          ]
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "kafra",
+      "label": "08 · Kafra and the world",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "services",
+          "label": "Kafra Corp\nThe world’s infrastructure",
+          "description": "Warps, healing/safety, account storage, city warehouses, market board and character hire belong to the same service identity.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L74\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 74</a>"
+          ]
+        },
+        {
+          "id": "link",
+          "label": "Kafra Link\nA quiet guide",
+          "description": "A companion voice through a communicator: short prompts, useful deep links, focus mode and history. It can be muted forever. Planned tray and interface.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L91\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 91</a>"
+          ]
+        },
+        {
+          "id": "warehouse",
+          "label": "Bulk stays local\nHauling has a purpose",
+          "description": "Vanilla Kafra storage stays account-wide and city-agnostic. Crafted goods and sandbox materials use per-city warehouses; board orders settle locally.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L632\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 632</a>"
+          ]
+        },
+        {
+          "id": "lore",
+          "label": "Invasions are growing\nFind out why",
+          "description": "Kafra keeps the digital world running. Defend cities and investigate the growing invasions through events and short messages, season by season.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L79\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 79</a>"
+          ]
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "classic",
+      "label": "09 · Classic and new",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "classic",
+          "label": "Classic stays\nJobs · Monsters · Cards",
+          "description": "Classic jobs and pinned pre-Renewal combat formulas remain the foundation. Vanilla items remain. Cards stay central, with a planned overhaul to fit ORO.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L67\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 67</a>",
+            "<a href=\"sources.html#sandbox-L313\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 313</a>",
+            "<a href=\"sources.html#sandbox-L337\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 337</a>"
+          ]
+        },
+        {
+          "id": "new",
+          "label": "New sandbox layers\nRisk · Craft · Trade",
+          "description": "Crafted losable gear, Want/Atlas/Ledger, local markets, caravans, risk colours, Graves and an account roster extend the world.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L16\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 16</a>"
+          ]
+        },
+        {
+          "id": "craftjobs",
+          "label": "Crafting jobs change",
+          "description": "Blacksmith and Alchemist crafting becomes ORO’s system. This does not mean globally rewriting pinned combat formulas.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L519\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 519</a>"
+          ]
+        },
+        {
+          "id": "honesty",
+          "label": "Read status, not hype",
+          "description": "Accepted design is not shipped implementation. Onboarding and most sandbox loops are planned; existing combat and partial systems provide foundations.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#path-L81\" target=\"_blank\" rel=\"noopener\">Read source: path, line 81</a>"
+          ]
+        }
+      ],
+      "edges": []
+    },
+    {
+      "id": "summary",
+      "label": "10 · Five ideas",
+      "type": "system",
+      "containers": [],
+      "blocks": [
+        {
+          "id": "idea1",
+          "label": "1 · Choose your goal",
+          "description": "Want any recipe. The Ledger shows how to reach it.",
+          "x": 0,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "client",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L244\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 244</a>"
+          ]
+        },
+        {
+          "id": "idea2",
+          "label": "2 · Risk is a place",
+          "description": "Know what drops before crossing a coloured border.",
+          "x": 310,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "http",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L472\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 472</a>"
+          ]
+        },
+        {
+          "id": "idea3",
+          "label": "3 · Players create demand",
+          "description": "Hunt, craft, trade, lose and replace. Selling is a valid non-death branch.",
+          "x": 620,
+          "y": 0,
+          "w": 240,
+          "h": 100,
+          "type": "worker",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L502\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 502</a>",
+            "<a href=\"sources.html#sandbox-L625\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 625</a>"
+          ]
+        },
+        {
+          "id": "idea4",
+          "label": "4 · Bring your people",
+          "description": "Account tags, temporary parties and permanent guilds; event sides override during wars.",
+          "x": 0,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "infra",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#groups-L16\" target=\"_blank\" rel=\"noopener\">Read source: groups, line 16</a>"
+          ]
+        },
+        {
+          "id": "idea5",
+          "label": "5 · Learn by doing",
+          "description": "A fast planned start shows the future. Classic combat remains the foundation.",
+          "x": 310,
+          "y": 190,
+          "w": 240,
+          "h": 100,
+          "type": "queue",
+          "badgeLabel": "Planned",
+          "tech": [
+            "Planned"
+          ],
+          "responsibilities": [
+            "<a href=\"sources.html#sandbox-L139\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 139</a>",
+            "<a href=\"sources.html#sandbox-L67\" target=\"_blank\" rel=\"noopener\">Read source: sandbox, line 67</a>"
+          ]
+        }
+      ],
+      "edges": []
+    }
+  ],
+  "typeLabels": {
+    "client": "Player choices",
+    "http": "Guidance",
+    "worker": "Gameplay",
+    "infra": "World rules",
+    "queue": "Progression",
+    "external": "Consequences"
+  }
+}

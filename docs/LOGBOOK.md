@@ -41,3 +41,20 @@
 **Blockers:** None for research. Browser/runtime availability and reference execution limits will be recorded as evidence, not assumed successful.
 
 **Next steps:** Finish reference trials/synthesis, record P0 decisions, then produce the first plane-sync scene before P2-P4.
+
+## 2026-10-21 — ROMPE reference-tool trials
+
+**Accomplishments:**
+- Completed six-repo source study; added Eraser Diagrams as the seventh clone for hands-on document visualization.
+- Read the two ROMPE prompts and their design sources independently; recorded six source hashes and fifteen factual invariants in `experiments/rompe/source-manifest.json`.
+- Ran interactive-diagram's real templates (ten views, 56 source-linked cards and a poster), Eraser's local CLI (three diagrams and a poster), and a built-in image-generation poster plus correction pass.
+- Headless Chromium validated ten tabs, source navigation, zoom/fit and SVG exports: 14 passing checks; all tab/poster overlap audits clear; no page errors or external requests. Inspected desktop/mobile screenshots and rendered images.
+
+**Decisions:**
+- Follow the operator's latest request: game-design trials before scanner implementation; preserve the original first plane-sync scene checkpoint for later.
+- Use a shared audited fact model with different views. Interactive inspector best for exploration; deterministic diagrams for controlled detail; illustrated poster for orientation.
+- Keep exact source qualifications and unresolved contradictions. Red loss is conditional; roster capacity differs from active companions; onboarding remains a sketch.
+
+**Blockers:** No blocker for delivered trials. Mobile fit-view text is too small; Eraser labels can exceed the requested visible line/word limits. These are experiment findings, not hidden passes. Full-app execution of the other five reference projects is not claimed.
+
+**Next steps:** Review the trials, settle remaining product/parser choices, then implement the first headless scan; do not promote P0-P4 from these experiments.

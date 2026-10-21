@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bump this on every feature ship (see SKILL.md "Maintaining the shipped examples"). -->
+    <meta name="generator" content="interactive-diagram v1.26.0" />
+    <title>ROMPE — Albion inside Ragnarok</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family:
+          "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "PingFang TC",
+          "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+        background: #eef2f7;
+        color: #16233f;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 16px 40px;
+      }
+      #bar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 16px;
+        background: #fff;
+        border: 1px solid #dbe2ec;
+        border-radius: 11px;
+        padding: 7px 11px;
+        box-shadow: 0 5px 16px rgba(15, 39, 64, 0.12);
+      }
+      .btn {
+        border: 1px solid #dbe2ec;
+        background: #fff;
+        color: #16233f;
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 12.5px;
+        cursor: pointer;
+        transition: 0.15s;
+      }
+      .btn:hover {
+        background: #eef2f7;
+        transform: translateY(-1px);
+      }
+      .btn.primary {
+        background: linear-gradient(135deg, #5b8def, #3b6fe0);
+        color: #fff;
+        border: none;
+        font-weight: 700;
+      }
+      .hint {
+        font-size: 11.5px;
+        color: #5b6b80;
+      }
+      #stage {
+        width: 100%;
+        max-width: 1080px;
+      }
+      #stage svg {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 16px;
+        box-shadow: 0 18px 50px rgba(15, 39, 64, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bar">
+      <button class="btn primary" id="png">↓ PNG（貼到 PPT）</button>
+      <button class="btn" id="svg">↓ SVG</button>
+      <button class="btn" id="audit">⚑ 檢查溢出／重疊</button>
+      <span class="hint" id="hint"></span>
+    </div>
+    <div id="stage"></div>
+
+    <script>
+      // ====================================================================
+      // PLATFORM ARCHITECTURE POSTER — tier-and-block model, dual theme.
+      //
+      // This is a STATIC infographic generator (no pan/zoom/dark mode). It
+      // renders one horizontal "platform architecture" poster on a white
+      // background and exports it as PNG (for pasting into slides) or SVG.
+      //
+      // You edit ONLY the `config` object below. Everything stacks top-down:
+      // each entry in `config.bands` is a titled ZONE — a horizontal tier —
+      // rendered in order and joined to the next by a connector. Each band
+      // holds `blocks[]` placed on a 12-column grid via `{col, span}`.
+      // `config.spans[]` are cross-cutting regions drawn across a RANGE of
+      // bands (e.g. security/observability that runs beside every tier).
+      // `config.legend[]` is an optional numbered caption list.
+      //
+      // To add a NEW block type: add a renderer to BLOCKS keyed by its type
+      // name; it receives (block, ctx) and returns an SVG string.
+      // ctx = { x, y, w, h, band, idx, accent, zone, T, audit }.
+      // To add a NEW connector: add a function to CONNECTORS keyed by name;
+      // it receives (fromPorts, toPort, cctx) and returns an SVG string.
+      // ====================================================================
+
+      // ============================ CONFIG ============================
+      // This is the SKELETON / template. The data below is intentionally
+      // generic placeholder content so you can see every capability render:
+      // a numbered flow, an emphasis band, a plain band, a strip band, chips,
+      // a cross-cutting span and a legend. Copy this file, then replace the
+      // strings with your own platform.
+      const config = {
+  "meta": {
+    "title": "ROMPE — Albion inside Ragnarok",
+    "sub": "Planned sandbox · Classic foundation",
+    "theme": "editorial",
+    "width": 1000,
+    "pad": 24,
+    "margin": 30,
+    "cols": 12,
+    "gutter": 14,
+    "bandGap": 16,
+    "zonePad": 16,
+    "capStrip": 34,
+    "fileName": "rompe-poster"
+  },
+  "bands": [
+    {
+      "id": "want",
+      "label": "01 · The loop",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Want any recipe",
+          "lines": [
+            "Ledger shows where"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Hunt · Gather · Buy",
+          "lines": [
+            "Craft · Socket cards"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riskloop",
+      "label": "02 · Risk and return",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Into risk zones",
+          "lines": [
+            "Die? Loss follows zone"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Grave → Demand → Want",
+          "lines": [
+            "Survive? Sell or ship"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zones",
+      "label": "03 · Four colours",
+      "zone": "blue",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 3,
+          "ic": "flow",
+          "title": "BLUE",
+          "lines": [
+            "Safe · No drops"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 4,
+          "span": 3,
+          "ic": "flow",
+          "title": "YELLOW",
+          "lines": [
+            "Flag · No drops"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 3,
+          "ic": "flow",
+          "title": "RED",
+          "lines": [
+            "Bag + flagged crafted"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 10,
+          "span": 3,
+          "ic": "flow",
+          "title": "BLACK",
+          "lines": [
+            "Crafted only · Full loot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exception",
+      "label": "Read the exception",
+      "zone": "amber",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 12,
+          "ic": "flow",
+          "title": "Named abyss maps",
+          "lines": [
+            "Vanilla allowed and lootable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first",
+      "label": "04 · Planned first minutes",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "0′ · Knife slime",
+          "lines": [
+            "3′ · Starter field triple healing"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "5′ · First Want",
+          "lines": [
+            "6–8′ · Caravan passes"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "8′ · Borrowed hero",
+          "lines": [
+            "Two-minute rental sketch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first2",
+      "label": "Then",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "10′ · First craft",
+          "lines": [
+            "12′ · Job change"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Scripted companion first",
+          "lines": [
+            "Until real Hire is built"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "label": "05 · Who’s with you",
+      "zone": "violet",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Account · 12 roster",
+          "lines": [
+            "Not twelve active"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Party · Temporary",
+          "lines": [
+            "Guild · Permanent"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "War sides override",
+          "lines": [
+            "Relationships, not nested rings"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events1",
+      "label": "06 · Events",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Caravan",
+          "lines": [
+            "Escort · Raid · Consign"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Rift",
+          "lines": [
+            "Survive an invader"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "Surge",
+          "lines": [
+            "Harvest · Contest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events2",
+      "label": "More ways to play",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Roads",
+          "lines": [
+            "Explore portals"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Outposts / WoE",
+          "lines": [
+            "Capture for guild"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "City defence",
+          "lines": [
+            "Hold the city"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "label": "Classic foundation",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Killboard",
+          "lines": [
+            "Read fights and builds"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Classic jobs · Pinned formulas",
+          "lines": [
+            "Show, don’t tell"
+          ]
+        }
+      ]
+    }
+  ],
+  "spans": [],
+  "legend": []
+};
+
+      // ============================ THEMES ============================
+      // engineering: resolved @carbon/themes 11.79.0 White tokens — the same
+      // set already reviewed in examples/er-diagram.html:104-126. Categorical
+      // hues are Carbon's 14-colour data-vis palette, verbatim and in its
+      // documented order (verified against carbon-charts/packages/core/scss/
+      // _color-palette.scss, hexes cross-checked against carbon/packages/
+      // colors/src/colors.ts — do NOT hand-copy from a prototype).
+      const MONO = "ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace";
+      const SANS = "'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif";
+
+      // Zone palette — the --z-* light tokens already shipped in the interactive
+      // skeleton, so a poster zone and a flowchart zone are the same colour.
+      // Theme-independent (A3): the theme switch changes cards/type/accent only.
+      const ZONES = {
+        blue: "#3b82f6", cyan: "#0e7490", green: "#15803d",
+        amber: "#b45309", red: "#dc2626", violet: "#7c3aed", slate: "#64748b",
+      };
+      const ZONE_ORDER = ["blue", "cyan", "green", "amber", "red", "violet", "slate"];
+
+      const THEMES = {
+        engineering: {
+          r: 2, page: "#ffffff", layer: "#f4f4f4", card: "#ffffff",
+          border: "#e0e0e0", borderStrong: "#8d8d8d",
+          fg: "#161616", fgMuted: "#525252", fgFaint: "#8d8d8d",
+          bar: "#161616", barFg: "#ffffff",
+          accents: [
+            "#6929c4", "#1192e8", "#005d5d", "#9f1853", "#fa4d56", "#520408",
+            "#198038", "#002d9c", "#ee5396", "#b28600", "#009d9a", "#012749",
+            "#8a3800", "#a56eff",
+          ],
+          stripe: 3, rule: true, chipRadius: 2,
+          titleSize: 15, titleWeight: 600, bodySize: 12.5,
+          kicker: { size: 10, ls: 1.3, mono: true, weight: 600 },
+          railLabel: { size: 12, mono: true, upper: true, ls: 0.8 },
+          mast: { size: 27, weight: 700, ls: 0 },
+        },
+        // measured from stripe.com, 2026-08-21 (A1): body #000, muted
+        // rgb(100,116,141), primary surface rgb(83,58,253), card radius 6px,
+        // h1 weight 300 at -0.02em. Kicker/rail-label sizing carried from the
+        // reviewed prototype (not restated in tech-spec.md §6, not contradicted
+        // by it either).
+        editorial: {
+          r: 6, page: "#ffffff", layer: "#f8fafd", card: "#ffffff",
+          border: "#e5edf5", borderStrong: "#64748d",
+          fg: "#000000", fgMuted: "#64748d", fgFaint: "#9aa7b8",
+          bar: "#533afd", barFg: "#ffffff",
+          accents: ["#533afd"], // single accent by design
+          stripe: 0, rule: false, chipRadius: 6,
+          titleSize: 18, titleWeight: 400, bodySize: 13.5,
+          kicker: { size: 10.5, ls: 1.4, mono: false, weight: 600 },
+          railLabel: { size: 13.5, mono: false, upper: false, ls: 0 },
+          mast: { size: 38, weight: 300, ls: -0.76 },
+        },
+      };
+
+      // ============================ HELPERS ============================
+      // Lucide icons (MIT) — clean, consistent 24×24 stroke set.
+      const LUCIDE = {
+        upload: `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/>`,
+        scan: `<path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 8h10"/><path d="M7 12h10"/><path d="M7 16h6"/>`,
+        edit: `<path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/>`,
+        check: `<path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/>`,
+        report: `<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M8 18v-2"/><path d="M12 18v-5"/><path d="M16 18v-3"/>`,
+        plug: `<path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/>`,
+        flow: `<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.7 10.7 6.6-3.4"/><path d="m8.7 13.3 6.6 3.4"/>`,
+        agent: `<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>`,
+        db: `<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/>`,
+        shield: `<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>`,
+        sparkles: `<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>`,
+      };
+      const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+      function icon(name, cx, cy, r, color, sw) {
+        const body = LUCIDE[name] || "";
+        if (!LUCIDE[name]) console.warn(`[platform] unknown icon: ${name}`);
+        const f = (r * 2) / 24;
+        return `<g transform="translate(${(cx - r).toFixed(2)} ${(cy - r).toFixed(2)}) scale(${f.toFixed(4)})" fill="none" stroke="${color}" stroke-width="${((sw || 1.9) / f).toFixed(2)}" stroke-linecap="round" stroke-linejoin="round">${body}</g>`;
+      }
+      // Global text-scale lever. 1 = author's sizes. autoFix() lowers it to
+      // shrink every glyph uniformly when text overflows a fixed-size owner.
+      // tx() (drawing) and mw() (measuring) both multiply font-size by it, so
+      // the audit always reflects what is actually drawn. Letter-spacing is
+      // drawn UNSCALED (see tx()), so measurement must not scale `ls` either.
+      let SCALE = 1;
+      function tx(x, y, s, o = {}) {
+        const ls = o.ls ? `letter-spacing="${o.ls}"` : "";
+        const ff = o.mono ? `font-family="${MONO}"` : "";
+        const fs = (o.size * SCALE).toFixed(2);
+        return `<text x="${x.toFixed(2)}" y="${y.toFixed(2)}" font-size="${fs}" font-weight="${o.weight || 400}" fill="${o.fill}" text-anchor="${o.anchor || "start"}" ${ls} ${ff}>${esc(s)}</text>`;
+      }
+      const _measureCtx = document.createElement("canvas").getContext("2d");
+      function mw(s, size, weight, mono) {
+        _measureCtx.font = `${weight || 400} ${size * SCALE}px ${mono ? MONO : SANS}`;
+        return _measureCtx.measureText(String(s)).width;
+      }
+      // Canvas measureText knows nothing about SVG letter-spacing, so any
+      // tracked string measures narrower than it draws (D10). Browsers apply
+      // the spacing after EVERY glyph, the trailing one included, so the
+      // correction is `ls * length`, not `ls * (length - 1)`. `ls` is drawn
+      // UNSCALED by tx() (see above), so it is added after SCALE is already
+      // baked into mw()'s font-size — never multiply ls by SCALE here.
+      function mwls(s, size, weight, mono, ls) {
+        return mw(s, size, weight, mono) + (ls || 0) * String(s).length;
+      }
+
+      // ============================ LAYOUT AUDIT ============================
+      // Overflow + overlap detection — the poster's quality gate. The layout is
+      // deterministic (bands stack top-down, blocks sit on a fixed grid), so the
+      // failure modes are (1) text wider than the box it sits in and (2) sibling
+      // boxes packed so tight they overlap. Every renderer records what it draws
+      // via `ctx.audit`: `audit.box(id, group, x,y,w,h)` registers a rectangle
+      // for sibling-overlap checks; `fitText(...)` records that a string must
+      // stay inside an owner box (horizontal containment, tracking-aware via
+      // mwls). `evalAudit()` walks the records and returns { ok, count,
+      // conflicts[] }.
+      function overlaps(a, b, gap = 0) {
+        // gap < 0 requires a real (non-touching) overlap of at least |gap|px
+        return (
+          a.x < b.x + b.w + gap && b.x < a.x + a.w + gap &&
+          a.y < b.y + b.h + gap && b.y < a.y + a.h + gap
+        );
+      }
+      function newAudit() {
+        const A = { groups: {}, fits: [] };
+        A.box = (id, group, x, y, w, h) =>
+          (A.groups[group] || (A.groups[group] = [])).push({ id, x, y, w, h });
+        A.fit = (owner, box) => A.fits.push({ owner, box });
+        return A;
+      }
+      // Record that `label`, drawn at (drawX, drawY baseline) with the given
+      // anchor/size/weight/mono/ls, must fit horizontally within
+      // [ownerX, ownerX+ownerW] (named ownerName). Tracking-aware (D10): `ls`
+      // must be the SAME value passed to the matching tx() call, or this
+      // under/over-measures relative to what is actually drawn.
+      function fitText(A, label, drawX, drawY, anchor, size, weight, mono, ls, ownerX, ownerW, ownerName) {
+        if (!A || label == null || label === "") return;
+        const w = mwls(label, size, weight, mono, ls);
+        const bx = anchor === "start" ? drawX : anchor === "end" ? drawX - w : drawX - w / 2;
+        A.fit({ x: ownerX, w: ownerW, name: ownerName }, { x: bx, y: drawY - size, w, h: size * 1.2, label });
+      }
+      function evalAudit(A) {
+        const C = [];
+        const tol = 1.5;
+        A.fits.forEach((f) => {
+          const o = f.owner, b = f.box;
+          if (b.x < o.x - tol || b.x + b.w > o.x + o.w + tol) {
+            const over = Math.round(Math.max(o.x - b.x, b.x + b.w - (o.x + o.w)));
+            C.push({ kind: "overflow", msg: `「${b.label}」超出${o.name} ${over}px`, rect: { x: b.x, y: b.y, w: b.w, h: b.h } });
+          }
+        });
+        Object.entries(A.groups).forEach(([g, arr]) => {
+          for (let i = 0; i < arr.length; i++)
+            for (let j = i + 1; j < arr.length; j++) {
+              if (overlaps(arr[i], arr[j], -0.5)) {
+                const ix = Math.max(arr[i].x, arr[j].x), iy = Math.max(arr[i].y, arr[j].y),
+                  ax = Math.min(arr[i].x + arr[i].w, arr[j].x + arr[j].w), ay = Math.min(arr[i].y + arr[i].h, arr[j].y + arr[j].h);
+                C.push({ kind: "overlap", msg: `${g}：「${arr[i].id}」與「${arr[j].id}」重疊`, rect: { x: ix, y: iy, w: ax - ix, h: ay - iy } });
+              }
+            }
+        });
+        return { ok: C.length === 0, count: C.length, conflicts: C };
+      }
+
+      // ============================ BLOCKS ============================
+      // (block, ctx) => svgString. ctx = { x, y, w, h, band, idx, accent, zone, T, audit }.
+      // x/y/w/h are resolved from {col, span} before the call — a block never
+      // computes its own column maths.
+      function blockH(bl, T) {
+        if (bl.type === "chip") return 52;
+        if (bl.type === "node") return 84;
+        let h = 18; // top pad
+        if (bl.en) h += 18;
+        h += 24; // title row
+        h += (bl.lines ? bl.lines.length : 0) * 20;
+        if (bl.paren) h += 20;
+        if (bl.tags) h += 32;
+        return h + 16; // bottom pad
+      }
+
+      const BLOCKS = {
+        card(bl, ctx) {
+          const { x, y, w, h, band, idx, accent, T, audit: A } = ctx;
+          const id = `${band.id}.${idx}`;
+          let o = `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${T.r}" fill="${T.card}" stroke="${T.border}"/>`;
+          if (T.stripe) o += `<rect x="${x}" y="${y}" width="${T.stripe}" height="${h}" fill="${accent}"/>`;
+          if (A) A.box(id, "block 容器", x, y, w, h);
+          const px = x + 16 + T.stripe;
+          const rightEdge = x + w - 12;
+          let ty = y + 18;
+
+          if (band.flow === "numbered") {
+            o += `<rect x="${px}" y="${ty - 2}" width="20" height="20" rx="${T.r}" fill="none" stroke="${T.borderStrong}"/>`;
+            o += tx(px + 10, ty + 12.5, String(idx + 1), { size: 11.5, weight: 600, fill: T.fgMuted, anchor: "middle", mono: true });
+          }
+          if (bl.en) {
+            // The inline EN kicker tag is intentionally not audited — same
+            // convention as the pre-rewrite renderer (its x is a rough
+            // heuristic offset from the title, so bounding it is noisy).
+            o += tx(px, ty + 10, bl.en, { size: T.kicker.size, weight: T.kicker.weight, fill: accent, mono: T.kicker.mono, ls: T.kicker.ls });
+            ty += 18;
+          }
+
+          const tOff = band.flow === "numbered" ? 28 : 0;
+          const hasIcon = bl.ic && band.flow !== "numbered";
+          const titleX = px + tOff + (hasIcon ? 26 : 0);
+          if (hasIcon) o += icon(bl.ic, px + tOff + 9, ty + 10, 9.5, accent);
+          o += tx(titleX, ty + 15, bl.title, { size: T.titleSize, weight: T.titleWeight, fill: T.fg });
+          if (A) fitText(A, bl.title, titleX, ty + 15, "start", T.titleSize, T.titleWeight, false, 0, titleX, rightEdge - titleX, id);
+          ty += 24;
+
+          for (const ln of bl.lines || []) {
+            ty += 20;
+            o += tx(px, ty, ln, { size: T.bodySize, fill: T.fgMuted });
+            if (A) fitText(A, ln, px, ty, "start", T.bodySize, 400, false, 0, px, rightEdge - px, id);
+          }
+          if (bl.paren) {
+            ty += 20;
+            o += tx(px, ty, bl.paren, { size: 11.5, fill: T.fgFaint, mono: true });
+            if (A) fitText(A, bl.paren, px, ty, "start", 11.5, 400, true, 0, px, rightEdge - px, id);
+          }
+          if (bl.tags) {
+            ty += 30;
+            let tagX = px;
+            bl.tags.forEach((t, ti) => {
+              const tw = mwls(t, 11.5, 500, T.railLabel.mono, 0) + 20;
+              o += `<rect x="${tagX}" y="${ty - 14}" width="${tw}" height="22" rx="${T.chipRadius}" fill="${T.layer}" stroke="${T.border}"/>`;
+              o += tx(tagX + tw / 2, ty + 1, t, { size: 11.5, weight: 500, fill: T.fgMuted, anchor: "middle", mono: T.railLabel.mono });
+              if (A) A.box(`${id}.tag${ti}`, "block 標籤", tagX, ty - 14, tw, 22);
+              tagX += tw + 8;
+            });
+          }
+          return o;
+        },
+
+        chip(bl, ctx) {
+          const { x, y, w, band, idx, T, audit: A } = ctx;
+          const h = 52;
+          const id = `${band.id}.${idx}`;
+          let o = "";
+          if (bl.more) {
+            o += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${T.chipRadius}" fill="${T.card}" stroke="${T.borderStrong}" stroke-dasharray="4 3"/>`;
+            const label = "＋ " + bl.name;
+            o += tx(x + w / 2, y + 32, label, { size: 13, fill: T.fgMuted, anchor: "middle", mono: T.railLabel.mono });
+            if (A) { A.box(id, "chip 容器", x, y, w, h); fitText(A, label, x + w / 2, y + 32, "middle", 13, 400, T.railLabel.mono, 0, x + 8, w - 16, id); }
+            return o;
+          }
+          o += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${T.chipRadius}" fill="${T.card}" stroke="${T.border}"/>`;
+          o += `<rect x="${x + 14}" y="${y + 14}" width="24" height="24" rx="${Math.min(T.chipRadius, 6)}" fill="${bl.g}"/>`;
+          o += tx(x + 26, y + 31, bl.logo, { size: 13, weight: 700, fill: "#fff", anchor: "middle" });
+          o += tx(x + 48, y + 31, bl.name, { size: 13.5, weight: 600, fill: T.fg });
+          if (A) { A.box(id, "chip 容器", x, y, w, h); fitText(A, bl.name, x + 48, y + 31, "start", 13.5, 600, false, 0, x + 48, x + w - 12 - (x + 48), id); }
+          return o;
+        },
+
+        node(bl, ctx) {
+          const { x, y, w, h, band, idx, accent, T, audit: A } = ctx;
+          const id = `${band.id}.${idx}`;
+          const cx = x + w / 2, cy = y + h / 2;
+          const r = Math.min(w, h) / 2 - 2;
+          let o = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${T.card}" stroke="${accent}" stroke-width="2"/>`;
+          const labels = Array.isArray(bl.label) ? bl.label : [bl.label];
+          if (A) A.box(id, "block 容器", x, y, w, h);
+          labels.forEach((lab, k) => {
+            const ly = labels.length > 1 ? cy + (k ? 16 : -3) : cy + 5;
+            o += tx(cx, ly, lab, { size: 13.5, weight: k ? 400 : 700, fill: T.fg, anchor: "middle" });
+            if (A) fitText(A, lab, cx, ly, "middle", 13.5, k ? 400 : 700, false, 0, x + 6, w - 12, id);
+          });
+          return o;
+        },
+      };
+
+      // ============================ ZONE CONTAINER (band = zone) ============
+      // Rendered exactly as the interactive skeleton's renderContainer()
+      // (assets/skeleton.html:2649), copied BY VALUE — the poster and the
+      // skeleton share no runtime. rx 16, zone colour at 10% area fill, 1.5px
+      // dashed "9 5" border, title pill rx 6 in a reserved caption strip. Per
+      // the source note there: an outline-only rectangle reads as absent next
+      // to filled cards — the zone has to be an area (D3).
+      function zoneChrome(zc, ax, ay, aw, ah, kicker, label, capStrip, T, A, ownerId) {
+        let o = `<rect x="${ax}" y="${ay}" width="${aw}" height="${ah}" rx="16" fill="${zc}" fill-opacity="0.10" stroke="${zc}" stroke-width="1.5" stroke-dasharray="9 5"/>`;
+        if (A) A.box(ownerId, "zone 容器", ax, ay, aw, ah);
+        const kw = mwls(kicker, 11, 600, true, T.kicker.ls);
+        const lw = mwls(label, 11, 600, T.railLabel.mono, T.railLabel.ls);
+        const pw = kw + lw + 34; // 12 left pad + 10 gap + 12 right pad
+        const pillX = ax + 18, pillY = ay + 9, pillH = Math.min(22, capStrip - 12);
+        o += `<rect x="${pillX}" y="${pillY}" width="${pw}" height="${pillH}" rx="6" fill="${T.card}" stroke="${zc}" stroke-width="1.5" opacity="0.97"/>`;
+        if (A) A.box(`${ownerId}.pill`, "zone 標題", pillX, pillY, pw, pillH);
+        // The pill is auto-sized around its own label (kicker + label), so
+        // it can never overflow ITSELF — but nothing else stops an
+        // over-long label from growing the pill past its own container's
+        // right edge (D10's original motivating bug: a tracked label that
+        // "fits" under naive measurement can still overflow visibly).
+        // Reuse the containment (fit) channel, same as the D6 block check.
+        if (A) A.fit({ x: ax, w: aw, name: `${ownerId} 容器` }, { x: pillX, y: pillY, w: pw, h: pillH, label: `${ownerId}.pill` });
+        const textY = pillY + pillH / 2 + 4;
+        o += tx(pillX + 12, textY, kicker, { size: 11, weight: 600, fill: zc, mono: true, ls: T.kicker.ls });
+        if (A) fitText(A, kicker, pillX + 12, textY, "start", 11, 600, true, T.kicker.ls, pillX, pw, `${ownerId}.pill`);
+        o += tx(pillX + 12 + kw + 10, textY, label, { size: 11, weight: 600, fill: T.fg, mono: T.railLabel.mono, ls: T.railLabel.ls });
+        if (A) fitText(A, label, pillX + 12 + kw + 10, textY, "start", 11, 600, T.railLabel.mono, T.railLabel.ls, pillX, pw, `${ownerId}.pill`);
+        return o;
+      }
+
+      // ============================ CONNECTORS ============================
+      // Drawn in the gap BELOW a band, selected by that band's `connect`.
+      // (fromPorts, toPort, cctx) => svg string — unchanged interface from the
+      // pre-rewrite renderer. cctx = { x, w, cx, fromY, toPort }. Tokenized:
+      // every connector reads T.borderStrong, no literal colour (D4).
+      //
+      // arrowHead(tipX, tipY, dx, dy, color) draws an open chevron — same
+      // construction as caret's and arrows-down's heads (solid stroke, round
+      // caps/joins, never dashed) — with its TIP at (tipX, tipY) and its two
+      // back corners offset behind it along the direction of travel (dx, dy
+      // is the unit vector pointing FROM the shaft TOWARD the tip), so the
+      // head always lands on the real endpoint and points the way the line
+      // is actually going, not just "down".
+      function arrowHead(tipX, tipY, dx, dy, color) {
+        const len = 7, wid = 5;
+        const nx = -dy, ny = dx; // unit perpendicular to the direction of travel
+        const bx = tipX - dx * len, by = tipY - dy * len; // back-of-head center
+        const x1 = bx + nx * wid, y1 = by + ny * wid;
+        const x2 = bx - nx * wid, y2 = by - ny * wid;
+        return `<path d="M${x1.toFixed(2)} ${y1.toFixed(2)} L${tipX.toFixed(2)} ${tipY.toFixed(2)} L${x2.toFixed(2)} ${y2.toFixed(2)}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+      }
+      const CONNECTORS = {
+        caret(fromPorts, toPort, cctx, T) {
+          const mid = cctx.cx;
+          const y0 = cctx.fromY, y1 = toPort.y;
+          return (
+            `<line x1="${mid}" y1="${y0}" x2="${mid}" y2="${y1}" stroke="${T.borderStrong}" stroke-width="1"/>` +
+            `<path d="M${mid - 4} ${y1 - 5} L${mid} ${y1} L${mid + 4} ${y1 - 5}" fill="none" stroke="${T.borderStrong}" stroke-width="1.4"/>`
+          );
+        },
+        "arrows-down"(fromPorts, toPort, cctx, T) {
+          let svg = "";
+          (fromPorts || []).forEach((p) => {
+            svg += `<path d="M${p.x} ${p.y} L${p.x} ${p.y + 13} M${p.x - 5} ${p.y + 7} L${p.x} ${p.y + 14} L${p.x + 5} ${p.y + 7}" fill="none" stroke="${T.borderStrong}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`;
+          });
+          return svg;
+        },
+        // Three curves genuinely converge on ONE point: their bezier control
+        // points share toPort.x, so all three arrive moving straight down
+        // regardless of where they started — a single shared head at the
+        // convergence point is not just simpler than three, it is what the
+        // geometry actually is (three separate heads at the same point would
+        // stack on top of each other, not "read better"). Curves land 7px
+        // short of toPort — the back of the head — so the head sits ON the
+        // endpoint instead of grazing past it.
+        "dashed-converge"(fromPorts, toPort, cctx, T) {
+          const xs = [cctx.x + cctx.w * 0.28, cctx.cx, cctx.x + cctx.w * 0.72];
+          const y0 = cctx.fromY;
+          const endY = toPort.y - 7;
+          let svg = "";
+          xs.forEach((sx) => {
+            svg += `<path d="M${sx} ${y0} C ${sx} ${toPort.y - 18}, ${toPort.x} ${toPort.y - 18}, ${toPort.x} ${endY}" fill="none" stroke="${T.borderStrong}" stroke-width="2" stroke-dasharray="5 5"/>`;
+          });
+          svg += arrowHead(toPort.x, toPort.y, 0, 1, T.borderStrong);
+          return svg;
+        },
+        // Rotation-aware: the head points along the actual f -> toPort
+        // direction, not an assumed vertical, so an off-center dashed-line
+        // (a future authored band whose fromPort isn't directly above
+        // toPort) still lands a correctly-aimed head instead of one that
+        // grazes flat against the target.
+        "dashed-line"(fromPorts, toPort, cctx, T) {
+          const f = (fromPorts && fromPorts[0]) || { x: toPort.x, y: cctx.fromY };
+          const dx0 = toPort.x - f.x, dy0 = toPort.y - f.y;
+          const dist = Math.hypot(dx0, dy0) || 1;
+          const dx = dx0 / dist, dy = dy0 / dist;
+          const backX = toPort.x - dx * 7, backY = toPort.y - dy * 7;
+          return (
+            `<path d="M${f.x} ${f.y} L${backX.toFixed(2)} ${backY.toFixed(2)}" fill="none" stroke="${T.borderStrong}" stroke-width="2" stroke-dasharray="5 5"/>` +
+            arrowHead(toPort.x, toPort.y, dx, dy, T.borderStrong)
+          );
+        },
+        none() {
+          return "";
+        },
+      };
+
+      // ============================ LEGEND ============================
+      // Numbered markers keyed to a caption list (D7/GA-3). Reuses the existing
+      // numbered-card badge treatment (A5) rather than a second marker shape.
+      // Wraps left-to-right, flowing onto additional rows as width runs out —
+      // the deterministic analogue of a footnote block.
+      function renderLegend(items, x, y, w, T, A) {
+        const badgeH = 18, rowGap = 10, itemGapX = 22, rowH = 26;
+        let cx = x, cy = y + rowH / 2, started = false;
+        let svg = "";
+        items.forEach((it, i) => {
+          const label = String(it.n);
+          const badgeW = Math.max(badgeH, mwls(label, 10.5, 600, true, 0) + 10);
+          const capW = mwls(it.text, 12, 400, false, 0);
+          const itemW = badgeW + 8 + capW;
+          if (started && cx + itemW > x + w) {
+            cx = x;
+            cy += rowH + rowGap;
+          }
+          started = true;
+          const by = cy - badgeH / 2;
+          svg += `<rect x="${cx}" y="${by}" width="${badgeW}" height="${badgeH}" rx="${T.r}" fill="none" stroke="${T.borderStrong}"/>`;
+          svg += tx(cx + badgeW / 2, cy + 3.5, label, { size: 10.5, weight: 600, fill: T.fgMuted, anchor: "middle", mono: true });
+          const id = `legend.${i}`;
+          if (A) A.box(id, "legend 項目", cx, by, itemW, badgeH);
+          const capX = cx + badgeW + 8;
+          svg += tx(capX, cy + 4, it.text, { size: 12, fill: T.fgMuted });
+          if (A) fitText(A, it.text, capX, cy + 4, "start", 12, 400, false, 0, capX, x + w - capX, id);
+          cx += itemW + itemGapX;
+        });
+        return { svg, height: started ? cy + rowH / 2 - y : 0 };
+      }
+
+      // ============================ BUILD ============================
+      function build() {
+        const m = config.meta;
+        const T = THEMES[m.theme] || THEMES.engineering;
+        const W = m.width, M = m.margin;
+        const cols = m.cols || 12, gutter = m.gutter != null ? m.gutter : 16;
+        const zonePad = m.zonePad != null ? m.zonePad : 20;
+        const capStrip = m.capStrip != null ? m.capStrip : 38;
+        const audit = newAudit();
+
+        const ax = M;
+        const awFull = W - 2 * M;
+        const gx = ax + zonePad;
+        const gw = awFull - 2 * zonePad;
+        const colW = (gw - gutter * (cols - 1)) / cols;
+        const cx0 = (col) => gx + (col - 1) * (colW + gutter);
+        const cwid = (span) => span * colW + (span - 1) * gutter;
+
+        let out = "";
+        let y = M;
+
+        // ---- masthead -------------------------------------------------
+        out += tx(M, y + T.mast.size, m.title, { size: T.mast.size, weight: T.mast.weight, fill: T.fg, ls: T.mast.ls });
+        if (m.sub) out += tx(M, y + T.mast.size + 24, m.sub, { size: 13.5, fill: T.fgMuted });
+        y += T.mast.size + 42;
+        out += `<line x1="${M}" y1="${y}" x2="${W - M}" y2="${y}" stroke="${T.borderStrong}" stroke-width="1"/>`;
+        y += m.bandGap + 6;
+
+        // ---- bands (each band = a zone container, D3) ------------------
+        // A cross-cutting span owns its columns for the whole band range it
+        // covers (D2). Band containers must stop short of those columns so the
+        // span reads as a region BESIDE them, not a box drawn on top of them
+        // (D6) — the grid itself (gx/gw/cx0/cwid) stays full-width for every
+        // band; only each band's CONTAINER rectangle narrows.
+        const bands = config.bands || [];
+        const ids = bands.map((b) => b.id);
+        const spanCut = {};
+        (config.spans || []).forEach((s) => {
+          const i0 = ids.indexOf(s.from), i1 = ids.indexOf(s.to);
+          if (i0 < 0 || i1 < 0) { console.warn(`[platform] span "${s.title || ""}" references an unknown band id`); return; }
+          for (let i = i0; i <= i1; i++) spanCut[ids[i]] = Math.min(spanCut[ids[i]] ?? Infinity, s.col);
+        });
+
+        const bandY = {};
+        bands.forEach((b, bi) => {
+          const zc = ZONES[b.zone] || T.fgMuted;
+          const areaTop = y;
+          const innerTop = y + capStrip;
+          let bodyH = 0;
+          let inner = "";
+
+          const cut = spanCut[b.id];
+          const containerW = cut != null ? Math.max(60, cx0(cut) - 12 - ax) : awFull;
+
+          if (b.strip) {
+            bodyH = 52;
+            inner += `<rect x="${gx}" y="${innerTop}" width="${gw}" height="${bodyH}" rx="${T.r}" fill="${T.bar}"/>`;
+            const stripTitleX = gx + 20, stripTitleY = innerTop + 31;
+            inner += tx(stripTitleX, stripTitleY, b.strip.title, { size: 14, weight: 700, fill: T.barFg, mono: T.railLabel.mono, ls: 1.6 });
+            fitText(audit, b.strip.title, stripTitleX, stripTitleY, "start", 14, 700, T.railLabel.mono, 1.6, stripTitleX, gx + gw - 20 - stripTitleX, `${b.id}.strip`);
+            if (b.strip.sub) {
+              const subX = gx + gw - 20;
+              inner += `<text x="${subX}" y="${stripTitleY}" font-size="12" fill="${T.barFg}" fill-opacity="0.7" text-anchor="end" ${T.railLabel.mono ? `font-family="${MONO}"` : ""}>${esc(b.strip.sub)}</text>`;
+              fitText(audit, b.strip.sub, subX, stripTitleY, "end", 12, 400, T.railLabel.mono, 0, stripTitleX, subX - stripTitleX, `${b.id}.strip`);
+            }
+          } else {
+            const blocks = b.blocks || [];
+            const hs = blocks.map((bl) => blockH(bl, T));
+            bodyH = Math.max(40, ...hs);
+            blocks.forEach((bl, idx) => {
+              const fn = BLOCKS[bl.type];
+              if (!fn) { console.warn(`[platform] unknown block type: "${bl.type}"`); return; }
+              const accent = T.accents[(bl.a != null ? bl.a : idx) % T.accents.length];
+              const bx = cx0(bl.col), bw = cwid(bl.span);
+              inner += fn(bl, { x: bx, y: innerTop, w: bw, h: bodyH, band: b, idx, accent, zone: zc, T, audit });
+              // D6 defensive check: a block must not extend past its OWN
+              // band's container — which may be span-narrowed. Blocks and
+              // zone containers live in different overlap GROUPS (a block
+              // is meant to sit inside its own band's zone, not beside a
+              // sibling), so a span cutting a container short would
+              // otherwise go undetected. Reuse the containment (fit)
+              // channel rather than a new one.
+              audit.fit({ x: ax, w: containerW, name: `${b.id} 容器` }, { x: bx, y: innerTop, w: bw, h: bodyH, label: `${b.id}.${idx}` });
+            });
+          }
+
+          const ah = capStrip + bodyH + zonePad;
+          const lab = T.railLabel.upper ? String(b.label).toUpperCase() : b.label;
+          out += zoneChrome(zc, ax, areaTop, containerW, ah, b.kicker || "", lab, capStrip, T, audit, b.id);
+          out += inner;
+
+          bandY[b.id] = { top: areaTop, bottom: areaTop + ah };
+          y = areaTop + ah;
+
+          if (bi < bands.length - 1) {
+            const connFn = b.connect && b.connect !== "none" ? CONNECTORS[b.connect] : null;
+            if (connFn) {
+              const midX = gx + gw / 2;
+              const fromY = y;
+              const toY = y + m.bandGap + 8;
+              const blocks = b.blocks || [];
+              const fromPorts = blocks.length
+                ? blocks.map((bl) => ({ x: cx0(bl.col) + cwid(bl.span) / 2, y: fromY }))
+                : [{ x: midX, y: fromY }];
+              out += connFn(fromPorts, { x: midX, y: toY }, { x: gx, w: gw, cx: midX, fromY }, T);
+            } else if (b.connect && !CONNECTORS[b.connect]) {
+              console.warn(`[platform] unknown connector: "${b.connect}"`);
+            }
+            y += m.bandGap + (b.emphasis ? 18 : 12);
+          }
+        });
+
+        // ---- cross-cutting spans (D2) -----------------------------------
+        (config.spans || []).forEach((s, si) => {
+          const zc = ZONES[s.zone] || T.fgMuted;
+          const top = bandY[s.from] ? bandY[s.from].top : M;
+          const bot = bandY[s.to] ? bandY[s.to].bottom : top + 100;
+          const sx = cx0(s.col), sw = cwid(s.span);
+          const ownerId = s.id || `span${si}`;
+          out += zoneChrome(zc, sx, top, sw, bot - top, s.en || "", "", capStrip, T, audit, ownerId);
+          const contentX = sx + zonePad;
+          const rightLimit = sx + sw - 12;
+          let ty = top + capStrip + 14;
+          if (s.title) {
+            out += icon("shield", contentX + 10, ty, 10, zc);
+            out += tx(contentX + 28, ty + 5, s.title, { size: T.titleSize, weight: T.titleWeight, fill: T.fg });
+            fitText(audit, s.title, contentX + 28, ty + 5, "start", T.titleSize, T.titleWeight, false, 0, contentX + 28, rightLimit - (contentX + 28), ownerId);
+            ty += 26;
+          }
+          (s.lines || []).forEach((ln) => {
+            out += `<circle cx="${contentX + 4}" cy="${ty - 4}" r="2" fill="${zc}"/>`;
+            out += tx(contentX + 14, ty, ln, { size: T.bodySize, fill: T.fgMuted });
+            fitText(audit, ln, contentX + 14, ty, "start", T.bodySize, 400, false, 0, contentX + 14, rightLimit - (contentX + 14), ownerId);
+            ty += 21;
+          });
+        });
+
+        // ---- legend (D7/GA-3) --------------------------------------------
+        if (config.legend && config.legend.length) {
+          y += 10;
+          const res = renderLegend(config.legend, gx, y, gw, T, audit);
+          out += res.svg;
+          y += res.height;
+        }
+
+        const H = y + M;
+        const svg =
+          `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${-m.pad} ${-m.pad} ${W + m.pad * 2} ${H + m.pad * 2}" width="${W + m.pad * 2}" height="${H + m.pad * 2}" font-family="${SANS}">` +
+          `<rect x="${-m.pad}" y="${-m.pad}" width="${W + m.pad * 2}" height="${H + m.pad * 2}" fill="${T.page}"/>` +
+          out +
+          `</svg>`;
+        return { svg, W, H, PAD: m.pad, audit };
+      }
+
+      // ============================ RENDER + EXPORT ============================
+      let ART = { svg: "", W: 0, H: 0, PAD: 0, audit: null };
+      function render() {
+        document.title = config.meta.title || "Platform Architecture Poster";
+        ART = build();
+        document.getElementById("stage").innerHTML = ART.svg;
+        const T = THEMES[config.meta.theme] || THEMES.engineering;
+        document.getElementById("hint").textContent =
+          `theme: ${config.meta.theme} · ${ART.W}×${Math.round(ART.H)} (${(ART.W / ART.H).toFixed(2)}:1，16:9 = 1.78) · ${(config.bands || []).length} bands`;
+      }
+      render();
+
+      // ============================ AUDIT RUNNER ============================
+      const NS = "http://www.w3.org/2000/svg";
+      const baseHint = () =>
+        `theme: ${config.meta.theme} · ${ART.W}×${Math.round(ART.H)} (${(ART.W / ART.H).toFixed(2)}:1，16:9 = 1.78) · ${(config.bands || []).length} bands`;
+      function clearAuditHL() {
+        document.querySelectorAll("#stage .audit-hl").forEach((e) => e.remove());
+      }
+      function paintAuditHL(conflicts) {
+        clearAuditHL();
+        const svg = document.querySelector("#stage svg");
+        if (!svg) return;
+        conflicts.forEach((c) => {
+          const r = c.rect, el = document.createElementNS(NS, "rect");
+          el.setAttribute("class", "audit-hl");
+          el.setAttribute("x", r.x - 3);
+          el.setAttribute("y", r.y - 3);
+          el.setAttribute("width", Math.max(6, r.w + 6));
+          el.setAttribute("height", Math.max(6, r.h + 6));
+          el.setAttribute("rx", 4);
+          el.setAttribute("fill", "none");
+          el.setAttribute("stroke", c.kind === "overflow" ? "#e53935" : "#d81b60");
+          el.setAttribute("stroke-width", 2.5);
+          el.setAttribute("stroke-dasharray", "5 4");
+          svg.appendChild(el);
+        });
+      }
+      // Evaluate the current build's audit records. announce=true → alert + red overlays.
+      function auditLayout(opts = {}) {
+        const res = evalAudit(ART.audit || newAudit());
+        const hint = document.getElementById("hint");
+        if (res.ok) {
+          console.log("%c✓ 版面檢查：無溢出或重疊", "color:#0a8a0a;font-weight:700");
+          hint.textContent = baseHint() + " · ✓ 版面 OK";
+          if (opts.announce) { clearAuditHL(); alert("✓ 版面檢查：無溢出或重疊"); }
+        } else {
+          console.warn(`⚑ 版面檢查：${res.count} 個問題`);
+          console.table(res.conflicts.map((c) => ({ 類型: c.kind, Help: c.msg })));
+          hint.textContent = baseHint() + ` · ⚑ ${res.count} 個版面問題`;
+          if (opts.announce) {
+            paintAuditHL(res.conflicts);
+            const go = confirm(
+              `⚑ 發現 ${res.count} 個版面問題：\n\n` + res.conflicts.map((c) => "• " + c.msg).join("\n") +
+                "\n\n要自動修正嗎？（加寬版面，必要時Zoom out區塊留白／縮放文字）\n按「取消」則保留紅框標示。",
+            );
+            if (go) runAutoFix();
+          }
+        }
+        return res;
+      }
+
+      // === AUTO-FIX ========================================================
+      // Three levers, tried in order, re-running build()+evalAudit() until the
+      // audit passes (or caps are hit):
+      //   1. grow meta.width — overlaps and width-derived overflow ease as the
+      //      artwork widens, with no font-size change.
+      //   2. shrink meta.zonePad / meta.capStrip (D9) — reduces each zone
+      //      container's own padding and caption-strip height, easing vertical
+      //      squeeze (overlap) once width is capped, before touching type.
+      //   3. lower SCALE — shrinks every glyph uniformly to clear overflow on
+      //      fixed-size owners that don't grow with width.
+      // Mutates config.meta + SCALE and re-renders, so PNG/SVG exports pick up
+      // the fixed layout automatically.
+      function autoFix() {
+        const m = config.meta;
+        const baseW = m.width || 1440;
+        const capW = Math.round(baseW * 1.7);
+        const stepW = 40;
+        const zonePadFloor = 12, capStripFloor = 26, stepPad = 2;
+        const floorS = 0.58, stepS = 0.03;
+        if (m.zonePad == null) m.zonePad = 20;
+        if (m.capStrip == null) m.capStrip = 38;
+        let res = evalAudit(ART.audit);
+        let guard = 0;
+        while (!res.ok && guard++ < 300) {
+          const hasOverlap = res.conflicts.some((c) => c.kind === "overlap");
+          const hasOverflow = res.conflicts.some((c) => c.kind === "overflow");
+          if (m.width < capW && (hasOverlap || hasOverflow)) {
+            m.width += stepW;
+          } else if (hasOverlap && (m.zonePad > zonePadFloor || m.capStrip > capStripFloor)) {
+            m.zonePad = Math.max(zonePadFloor, m.zonePad - stepPad);
+            m.capStrip = Math.max(capStripFloor, m.capStrip - stepPad);
+          } else if (hasOverflow && SCALE > floorS) {
+            SCALE = Math.max(floorS, +(SCALE - stepS).toFixed(3));
+          } else {
+            break; // out of levers
+          }
+          render();
+          res = evalAudit(ART.audit);
+        }
+        return res;
+      }
+      // Persist a successful auto-fix: append a tiny override script just before
+      // the closing body tag that re-applies the resolved width/zonePad/capStrip/
+      // SCALE and re-renders on load (see platform-skeleton.html history for why
+      // the needles below are assembled at runtime, not written as literal tags).
+      const CLOSE_BODY = "</bo" + "dy>";
+      const SCRIPT_OPEN = "<scr" + "ipt>";
+      const SCRIPT_CLOSE = "</scr" + "ipt>";
+      function downloadFixedHTML() {
+        clearAuditHL();
+        const stage = document.getElementById("stage");
+        const saved = stage.innerHTML;
+        stage.innerHTML = "";
+        let src = "<!doctype html>\n" + document.documentElement.outerHTML;
+        stage.innerHTML = saved;
+        const override =
+          `\n${SCRIPT_OPEN}/* auto-fix baked in */ try { config.meta.width = ${config.meta.width}; config.meta.zonePad = ${config.meta.zonePad}; config.meta.capStrip = ${config.meta.capStrip}; SCALE = ${SCALE}; render(); auditLayout(); } catch (e) { console.warn(e); }${SCRIPT_CLOSE}\n`;
+        const at = src.lastIndexOf(CLOSE_BODY);
+        src = at >= 0 ? src.slice(0, at) + override + src.slice(at) : src + override;
+        dl(new Blob([src], { type: "text/html" }), fileName() + "-fixed.html");
+      }
+      function runAutoFix() {
+        clearAuditHL();
+        const before = evalAudit(ART.audit);
+        if (before.ok) { auditLayout({ announce: true }); return; }
+        const res = autoFix();
+        clearAuditHL();
+        const hint = document.getElementById("hint");
+        if (res.ok) {
+          const notes = [];
+          if (SCALE < 1) notes.push(`文字縮放至 ${Math.round(SCALE * 100)}%`);
+          notes.push(`版面寬度 ${config.meta.width}px`);
+          if (config.meta.zonePad < 20 || config.meta.capStrip < 38) notes.push(`區塊留白 ${config.meta.zonePad}/${config.meta.capStrip}px`);
+          console.log("%c⚒ 已自動修正：無溢出或重疊", "color:#0a8a0a;font-weight:700");
+          hint.textContent = baseHint() + " · ⚒ 已自動修正";
+          const save = confirm(`⚒ 已自動修正：版面無溢出或重疊。\n（${notes.join(" · ")}）\n\n要下載修正後的 HTML（${fileName()}-fixed.html）以保存嗎？\n重新開啟該檔即為修正後版面。`);
+          if (save) downloadFixedHTML();
+        } else {
+          paintAuditHL(res.conflicts);
+          hint.textContent = baseHint() + ` · ⚑ 仍有 ${res.count} 個問題`;
+          alert(`⚒ 已盡力修正，仍有 ${res.count} 個問題無法自動解決：\n\n` + res.conflicts.map((c) => "• " + c.msg).join("\n") + "\n\n紅框已標示；請縮短該文字或減少項目。");
+        }
+      }
+
+      // Generator stamp → console, next to the 版面檢查 line: a version older
+      // than the current template means this file predates shipped fixes —
+      // run scripts/upgrade-diagram.mjs on it before editing further.
+      {
+        const gen = document.querySelector('meta[name="generator"]');
+        if (gen) console.log(`%c◆ ${gen.content}`, "color:#64748b;font-weight:700");
+      }
+      auditLayout(); // run on load: log + hint badge, no popup
+      document.getElementById("audit").onclick = () => {
+        if (document.querySelector("#stage .audit-hl")) { clearAuditHL(); document.getElementById("hint").textContent = baseHint(); }
+        else auditLayout({ announce: true });
+      };
+
+      function svgStr() {
+        clearAuditHL(); // never bake audit overlays into an export
+        return '<?xml version="1.0" encoding="UTF-8"?>\n' + document.querySelector("#stage svg").outerHTML;
+      }
+      function dl(blob, name) {
+        const u = URL.createObjectURL(blob), a = document.createElement("a");
+        a.href = u; a.download = name; a.click();
+        setTimeout(() => URL.revokeObjectURL(u), 1000);
+      }
+      const fileName = () => config.meta.fileName || "platform-architecture";
+      document.getElementById("svg").onclick = () => dl(new Blob([svgStr()], { type: "image/svg+xml" }), fileName() + ".svg");
+      document.getElementById("png").onclick = () => {
+        const xml = svgStr(), img = new Image();
+        img.onload = () => {
+          const sc = 2, c = document.createElement("canvas");
+          c.width = (ART.W + ART.PAD * 2) * sc;
+          c.height = (ART.H + ART.PAD * 2) * sc;
+          const ctx = c.getContext("2d");
+          ctx.scale(sc, sc);
+          ctx.drawImage(img, 0, 0, ART.W + ART.PAD * 2, ART.H + ART.PAD * 2);
+          c.toBlob((b) => dl(b, fileName() + ".png"), "image/png");
+        };
+        img.src = "data:image/svg+xml;base64," + btoa(unescape(encodeURIComponent(xml)));
+      };
+    </script>
+  </body>
+</html>

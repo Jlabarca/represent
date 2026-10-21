@@ -68,7 +68,7 @@ Methrep defines the compatibility target: `schema`, `view`, `scope`, `nodes`, `e
 
 ## Current State (2026-10-21)
 
-Plan and reference study in progress. PDF copied and read; companion research drafted. No scanner, enrichment, renderer or companion shell implemented. No promoted capability claimed.
+Reference study and ROMPE trials delivered. PDF copied/read; companion research reviewed. User redirected the immediate test case to two game-design prompts before scanner work. Upstream interactive-diagram and Eraser outputs plus an image-generation baseline exist under experiments/rompe; they are experiments, not the generic Represent renderer. No scanner, enrichment or companion shell implemented. No promoted capability claimed.
 
 ## Known Bugs
 
@@ -99,16 +99,17 @@ Model columns are future execution hints; they are not claims about completed wo
 ### P0 — Research, then decisions
 
 - [x] REPRESENT-V0.0.1 Preserve/read the PDF, inspect local prior art and bootstrap P0-P4 with the research-first sequence — evidence: research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf; CONTEXT.md; this tracker.
-- [ ] REPRESENT-V0.0.2 Clone pinned reference repositories and inspect real ingestion/model/layout/theme code; record licenses and reusable paths — evidence: pending inventory and source notes.
-- [ ] REPRESENT-V0.0.3 Exercise feasible reference examples; distinguish actual observations from source-only findings; write reuse/adapt/avoid synthesis — evidence: pending trial logs and report.
+- [x] REPRESENT-V0.0.2 Clone pinned reference repositories and inspect real ingestion/model/layout/theme code; record licenses and reusable paths — evidence: research/reference-repos.json; research/research_notes/Represent reference repository study/; research/reports/Represent reference repository study.md.
+- [x] REPRESENT-V0.0.3 Exercise feasible reference examples; distinguish actual observations from source-only findings; write reuse/adapt/avoid synthesis — evidence: research/rompe-tool-trials.md; ../experiments/rompe/validation/browser-results.json; ../experiments/rompe/eraser-diagrams/README.md.
 - [ ] REPRESENT-V0.0.4 Record final v0 choices and scan limits in CONTEXT.md; define contract extensions and validation corpus — evidence: pending decision and implementation plan.
+- [x] REPRESENT-V0.0.5 Run the operator's ROMPE explainer/poster prompts through suitable reference projects, inspect actual output and preserve provenance/corrections — evidence: ../experiments/rompe/index.html; source-audit.md and source-manifest.json under that directory; research/rompe-tool-trials.md.
 
 ### P1 — First deterministic scene
 
 - [ ] REPRESENT-V0.1.1 Implement CLI/library, filtering, bounded syntax/history extraction and scene serialization as one vertical slice — evidence: pending source and fixture tests.
 - [ ] REPRESENT-V0.1.2 Generate, inspect and show the first plane-sync scene with honest completeness and source evidence — evidence: pending saved scene and inspection.
 - [ ] REPRESENT-V0.1.3 Benchmark measured small/medium/large inputs, including Ghost; prove deterministic output and bounded behavior — evidence: pending benchmark results.
-- [ ] REPRESENT-V0.1.4 Finish companion research with verified sources, compact context model, scan/diff triggers and three testable interaction modes — evidence: pending research review.
+- [x] REPRESENT-V0.1.4 Finish companion research with verified sources, compact context model, scan/diff triggers and three testable interaction modes — evidence: research/companions.md; unverified consumer-companion claims explicitly marked.
 
 ### P2 — Cheap enrichment
 
@@ -145,3 +146,5 @@ The prior Unity recommendation was motivated by shop expertise, theme assets and
 ## Owned Paths and Commit Policy
 
 This task owns this tracker, the edits to CONTEXT/TODO/README/LOGBOOK, the copied PDF, new research notes/report/inventory, and any new Represent implementation files explicitly added to this tracker. Existing dirty `.claude/skills/qa-pass/SKILL.md`, `.ghostdev/version.json`, `CLAUDE.md` and untracked `bin/` rollout scripts are outside scope. Commit exact files with workflow-git.py. The ignored kickoff remains local. P2-P4 are not promoted by this bootstrap.
+
+ROMPE trial scope additionally owns `experiments/rompe/`: source audit/manifest, derived explainer configs and HTML, renderer inputs/outputs, upstream notices, image prompts/results and browser test evidence. G:/ro/RagnarokRebuildTcp remains read-only. The research/experiment boxes form one documentation-and-fixture checkpoint; no source-changing product box has shipped. P0.0.4 remains open rather than claiming a language/parser decision without a scanner feasibility test.

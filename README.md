@@ -15,7 +15,7 @@ Multiple concrete projects will live here. They share one doctrine, one AI backe
 
 ## Status
 
-Pre-implementation. Doctrine in place, no code yet. See [docs/CONTEXT.md](docs/CONTEXT.md) for current state.
+Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html) and [trial findings](docs/research/rompe-tool-trials.md). Seven upstream checkouts inform the research-first [v0 tracker](docs/REPRESENT-V0-IMPL.md); a general scanner and renderer remain planned. See [docs/CONTEXT.md](docs/CONTEXT.md) for current state.
 
 ## Docs
 

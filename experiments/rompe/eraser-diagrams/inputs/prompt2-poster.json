@@ -1,0 +1,1006 @@
+{
+  "entities": [
+    {
+      "tag": "Shape",
+      "id": "background",
+      "x": 0,
+      "y": 0,
+      "width": 940,
+      "height": 1970,
+      "shape": "rectangle",
+      "color": "#F8F5ED",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ],
+      "borderColor": "#F8F5ED"
+    },
+    {
+      "tag": "Textbox",
+      "id": "title",
+      "x": 48,
+      "y": 36,
+      "width": 844,
+      "height": 58,
+      "text": "ROMPE · Albion inside Ragnarok",
+      "fontSize": 34,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "subtitle",
+      "x": 48,
+      "y": 92,
+      "width": 844,
+      "height": 34,
+      "text": "A planned risk-and-rebuild sandbox in classic RO",
+      "fontSize": 18,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Shape",
+      "id": "badge",
+      "x": 48,
+      "y": 135,
+      "width": 844,
+      "height": 42,
+      "shape": "rectangle",
+      "color": "#FFF0BF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "PLANNED DESIGN · not yet implemented",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "hero-head",
+      "x": 98,
+      "y": 215,
+      "width": 38,
+      "height": 38,
+      "shape": "rectangle",
+      "color": "#F2C9A5",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "hero-body",
+      "x": 92,
+      "y": 255,
+      "width": 50,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#3975B8",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "hero-sword",
+      "x": 148,
+      "y": 242,
+      "width": 12,
+      "height": 106,
+      "shape": "rectangle",
+      "color": "#8493A8",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "kafra-head",
+      "x": 757,
+      "y": 215,
+      "width": 38,
+      "height": 38,
+      "shape": "rectangle",
+      "color": "#F2C9A5",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "kafra-cap",
+      "x": 748,
+      "y": 204,
+      "width": 56,
+      "height": 16,
+      "shape": "rectangle",
+      "color": "#D55A69",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "kafra-body",
+      "x": 751,
+      "y": 255,
+      "width": 50,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#F5F0E8",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "kafra-link",
+      "x": 806,
+      "y": 285,
+      "width": 18,
+      "height": 24,
+      "shape": "rectangle",
+      "color": "#9FD8AE",
+      "styleMode": "plain",
+      "cornerRadius": "sharp",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "callout-left",
+      "x": 175,
+      "y": 232,
+      "width": 255,
+      "height": 72,
+      "text": "Classic jobs stay.\nThe economy takes risks.",
+      "fontSize": 20,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "callout-right",
+      "x": 500,
+      "y": 232,
+      "width": 245,
+      "height": 72,
+      "text": "Kafra Link guides\nwith short nudges.",
+      "fontSize": 20,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "loop-head",
+      "x": 48,
+      "y": 365,
+      "width": 844,
+      "height": 38,
+      "text": "THE CORE LOOP",
+      "fontSize": 23,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Shape",
+      "id": "p-want",
+      "x": 48,
+      "y": 420,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#DDEBFF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "WANT\nAny recipe",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-ledger",
+      "x": 347,
+      "y": 420,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#E6E1FF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "LEDGER\nFind materials",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-hunt",
+      "x": 646,
+      "y": 420,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#E1F4E8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "HUNT · GATHER · BUY",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-craft",
+      "x": 646,
+      "y": 570,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#FFF0D8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "CRAFT · SOCKET",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-risk",
+      "x": 347,
+      "y": 570,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#FBE1E5",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "ENTER RISK ZONES",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-loss",
+      "x": 48,
+      "y": 570,
+      "width": 245,
+      "height": 86,
+      "shape": "rectangle",
+      "color": "#EEE1D4",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "DIE? GRAVE + LOOT*",
+          "fontSize": 17,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-keep",
+      "x": 48,
+      "y": 700,
+      "width": 394,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#DCEFEA",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "SURVIVE → board sale / caravan haul",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-rebuild",
+      "x": 495,
+      "y": 700,
+      "width": 396,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#FFE2DC",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "DROP ZONE DEATH → demand → Want",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "zones-head",
+      "x": 48,
+      "y": 835,
+      "width": 844,
+      "height": 36,
+      "text": "RISK IS A PLACE",
+      "fontSize": 22,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Shape",
+      "id": "p-blue",
+      "x": 48,
+      "y": 885,
+      "width": 198,
+      "height": 126,
+      "shape": "rectangle",
+      "color": "#DCEBFF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "BLUE\nSafe · no item drop",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-yellow",
+      "x": 264,
+      "y": 885,
+      "width": 198,
+      "height": 126,
+      "shape": "rectangle",
+      "color": "#FFF0BF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "YELLOW · opt in\nNo item drop",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-red",
+      "x": 480,
+      "y": 885,
+      "width": 198,
+      "height": 126,
+      "shape": "rectangle",
+      "color": "#FFD9D6",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "RED\nInventory drops*",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-black",
+      "x": 696,
+      "y": 885,
+      "width": 198,
+      "height": 126,
+      "shape": "rectangle",
+      "color": "#252936",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "BLACK\nCrafted gear · full loot*",
+          "fontSize": 15,
+          "typeface": "clean",
+          "hAlign": "center",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "zone-foot",
+      "x": 48,
+      "y": 1018,
+      "width": 844,
+      "height": 62,
+      "text": "Active companions: blue ≤3 · yellow ≤2 · red/black ≤1; roster 12 is separate. Blue is normally PvP-off; event sides may still fight. Red: inventory + equipped crafted only if flagged. Named abyss black maps also allow vanilla loot.",
+      "fontSize": 13,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "timeline-head",
+      "x": 48,
+      "y": 1092,
+      "width": 844,
+      "height": 36,
+      "text": "FIRST 15 MINUTES · PLAYTEST SKETCH",
+      "fontSize": 21,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Shape",
+      "id": "time-0",
+      "x": 48,
+      "y": 1145,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "0′ · Poporing ate a knife",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "time-3",
+      "x": 340,
+      "y": 1145,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "3′ · Triple healing\nStarter field",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "time-5",
+      "x": 632,
+      "y": 1145,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "5′ · First Want",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "time-8",
+      "x": 48,
+      "y": 1250,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "8′ · Level-80 rental\n2 minutes",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "time-10",
+      "x": 340,
+      "y": 1250,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "10′ · First craft",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "time-12",
+      "x": 632,
+      "y": 1250,
+      "width": 260,
+      "height": 78,
+      "shape": "rectangle",
+      "color": "#EDF3F8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "12′ · Job change",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "group-head",
+      "x": 48,
+      "y": 1370,
+      "width": 844,
+      "height": 36,
+      "text": "WHO IS WITH YOU?",
+      "fontSize": 21,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Shape",
+      "id": "p-party",
+      "x": 48,
+      "y": 1425,
+      "width": 390,
+      "height": 112,
+      "shape": "rectangle",
+      "color": "#EAF1F7",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "PARTY · temporary · no cap\nRoster 12; tags: account / hire / guild / other",
+          "fontSize": 15,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-guild",
+      "x": 500,
+      "y": 1425,
+      "width": 390,
+      "height": 112,
+      "shape": "rectangle",
+      "color": "#FFF0BF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "GUILD · permanent\nPromotion ends the party",
+          "fontSize": 15,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "p-war",
+      "x": 48,
+      "y": 1560,
+      "width": 842,
+      "height": 80,
+      "shape": "rectangle",
+      "color": "#FBE1E5",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "WAR MODE · guild-only event side",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "war-note",
+      "x": 48,
+      "y": 1642,
+      "width": 844,
+      "height": 28,
+      "text": "Temporary Engagement overrides ordinary party relations during WoE / GvG.",
+      "fontSize": 14,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "events-head",
+      "x": 48,
+      "y": 1682,
+      "width": 844,
+      "height": 36,
+      "text": "WORLD EVENTS",
+      "fontSize": 21,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Shape",
+      "id": "event-caravan",
+      "x": 48,
+      "y": 1725,
+      "width": 190,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#E1F4E8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "CARAVAN",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-rift",
+      "x": 264,
+      "y": 1725,
+      "width": 190,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#E6E1FF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "RIFT",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-surge",
+      "x": 480,
+      "y": 1725,
+      "width": 190,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#FFF0D8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "SURGE",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-roads",
+      "x": 696,
+      "y": 1725,
+      "width": 198,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#DDEBFF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "ROADS",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-outposts",
+      "x": 48,
+      "y": 1820,
+      "width": 260,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#FFF0BF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "OUTPOSTS · WOE",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-defense",
+      "x": 340,
+      "y": 1820,
+      "width": 260,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#FFD9D6",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "CITY DEFENSE",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "event-killboard",
+      "x": 632,
+      "y": 1820,
+      "width": 260,
+      "height": 72,
+      "shape": "rectangle",
+      "color": "#EAF1F7",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "KILLBOARD",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "footer",
+      "x": 48,
+      "y": 1905,
+      "width": 844,
+      "height": 54,
+      "text": "Classic jobs · pinned formulas · new risk layers\n*Death loot follows zone rules; black abyss exception applies.",
+      "fontSize": 15,
+      "typeface": "clean",
+      "color": "#40506A"
+    }
+  ],
+  "connections": [
+    {
+      "from": "p-want",
+      "to": "p-ledger",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-ledger",
+      "to": "p-hunt",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-hunt",
+      "to": "p-craft",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-craft",
+      "to": "p-risk",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-risk",
+      "to": "p-loss",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-loss",
+      "to": "p-want",
+      "label": "rebuild",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight",
+      "fontSize": 13
+    },
+    {
+      "from": "p-risk",
+      "to": "p-keep",
+      "label": "survive",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight",
+      "fontSize": 13
+    },
+    {
+      "from": "p-loss",
+      "to": "p-rebuild",
+      "label": "rebuild",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "p-party",
+      "to": "p-guild",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight",
+      "lineStyle": "dashed"
+    },
+    {
+      "from": "p-guild",
+      "to": "p-war",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight",
+      "lineStyle": "dashed"
+    }
+  ]
+}

@@ -1,0 +1,193 @@
+{
+  "runtime": "Playwright Chromium, headless isolated profile",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "checks": [
+    {
+      "name": "tab:overview",
+      "cards": 3,
+      "passed": true
+    },
+    {
+      "name": "tab:loop",
+      "cards": 9,
+      "passed": true
+    },
+    {
+      "name": "tab:risk",
+      "cards": 6,
+      "passed": true
+    },
+    {
+      "name": "tab:onboarding",
+      "cards": 8,
+      "passed": true
+    },
+    {
+      "name": "tab:chapters",
+      "cards": 5,
+      "passed": true
+    },
+    {
+      "name": "tab:groups",
+      "cards": 5,
+      "passed": true
+    },
+    {
+      "name": "tab:events",
+      "cards": 7,
+      "passed": true
+    },
+    {
+      "name": "tab:kafra",
+      "cards": 4,
+      "passed": true
+    },
+    {
+      "name": "tab:classic",
+      "cards": 4,
+      "passed": true
+    },
+    {
+      "name": "tab:summary",
+      "cards": 5,
+      "passed": true
+    },
+    {
+      "name": "red-rule-detail-and-source-anchor",
+      "passed": true
+    },
+    {
+      "name": "zoom-and-fit",
+      "passed": true
+    },
+    {
+      "name": "svg-export",
+      "passed": true
+    },
+    {
+      "name": "poster-render-audit-and-svg-export",
+      "passed": true
+    }
+  ],
+  "console": [
+    {
+      "type": "log",
+      "text": "%c◆ interactive-diagram v1.26.0 color:#64748b;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [overview]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [overview]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [loop]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [loop]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [risk]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [risk]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [onboarding]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [onboarding]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [chapters]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [chapters]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [groups]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [groups]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [events]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [events]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [kafra]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [kafra]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [classic]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [classic]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [summary]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ Layout audit [summary]: no overlaps color:#15803d;font-weight:600"
+    },
+    {
+      "type": "log",
+      "text": "%c◆ interactive-diagram v1.26.0 color:#64748b;font-weight:700"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ 版面檢查：無溢出或重疊 color:#0a8a0a;font-weight:700"
+    },
+    {
+      "type": "log",
+      "text": "%c✓ 版面檢查：無溢出或重疊 color:#0a8a0a;font-weight:700"
+    }
+  ],
+  "errors": [],
+  "dialogs": [
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 沒有重疊。",
+    "✓ 版面檢查：無溢出或重疊"
+  ],
+  "externalRequests": [],
+  "mobile": {
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "passed": true
+}

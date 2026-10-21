@@ -1,0 +1,373 @@
+{
+  "entities": [
+    {
+      "tag": "Textbox",
+      "id": "title",
+      "x": 40,
+      "y": 24,
+      "width": 1380,
+      "height": 48,
+      "text": "ROMPE · Economy loop (planned design)",
+      "fontSize": 32,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "subtitle",
+      "x": 40,
+      "y": 70,
+      "width": 1380,
+      "height": 34,
+      "text": "Want → source materials → craft → risk → either keep value moving or rebuild after a qualifying death",
+      "fontSize": 17,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Shape",
+      "id": "want",
+      "x": 70,
+      "y": 190,
+      "width": 190,
+      "height": 98,
+      "shape": "rectangle",
+      "color": "#DDEBFF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "WANT\nChoose any recipe",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "ledger",
+      "x": 350,
+      "y": 190,
+      "width": 205,
+      "height": 98,
+      "shape": "rectangle",
+      "color": "#E6E1FF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "LEDGER\nWhere materials come from",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "gather",
+      "x": 650,
+      "y": 190,
+      "width": 230,
+      "height": 98,
+      "shape": "rectangle",
+      "color": "#E1F4E8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "HUNT · GATHER · BUY\nDrops · surges · board",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "craft",
+      "x": 980,
+      "y": 190,
+      "width": 245,
+      "height": 98,
+      "shape": "rectangle",
+      "color": "#FFF0D8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "CRAFT\nKafra · account crafter · commission",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "socket",
+      "x": 980,
+      "y": 365,
+      "width": 245,
+      "height": 90,
+      "shape": "rectangle",
+      "color": "#FFE7D6",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "SOCKET CARDS\nWear crafted gear",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "zones",
+      "x": 650,
+      "y": 365,
+      "width": 230,
+      "height": 90,
+      "shape": "rectangle",
+      "color": "#FBE1E5",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "ENTER A RISK ZONE\nRules vary by colour",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "survive",
+      "x": 340,
+      "y": 365,
+      "width": 230,
+      "height": 90,
+      "shape": "rectangle",
+      "color": "#DCEFEA",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "SURVIVE\nKeep your gear",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "sale",
+      "x": 70,
+      "y": 365,
+      "width": 190,
+      "height": 90,
+      "shape": "rectangle",
+      "color": "#E1F4E8",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "SELL OR HAUL\nCity board · caravan",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "death",
+      "x": 340,
+      "y": 555,
+      "width": 230,
+      "height": 96,
+      "shape": "rectangle",
+      "color": "#FFE2DC",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "DIE IN A DROP ZONE?\nOnly where DeathDrop applies",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "grave",
+      "x": 650,
+      "y": 555,
+      "width": 230,
+      "height": 96,
+      "shape": "rectangle",
+      "color": "#EEE1D4",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "GRAVE\nDropped value; 30% share destroyed*",
+          "fontSize": 15,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "demand",
+      "x": 980,
+      "y": 555,
+      "width": 245,
+      "height": 96,
+      "shape": "rectangle",
+      "color": "#E6E1FF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "REBUILD DEMAND\nMaterials feed the next Want",
+          "fontSize": 16,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "note",
+      "x": 70,
+      "y": 715,
+      "width": 1170,
+      "height": 70,
+      "text": "*Design starting point: a Grave lasts 2 minutes; anyone may loot by default. Red is inventory (+ equipped crafted only if flagged); black is full loot of crafted gear, with named abyss-map exception. See risk diagram.",
+      "fontSize": 15,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "status",
+      "x": 70,
+      "y": 790,
+      "width": 1200,
+      "height": 28,
+      "text": "DESIGN ONLY · qualifying death depends on map rules; no claim that these systems are implemented",
+      "fontSize": 14,
+      "typeface": "clean",
+      "color": "#8A3E36"
+    }
+  ],
+  "connections": [
+    {
+      "from": "want",
+      "to": "ledger",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "ledger",
+      "to": "gather",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "gather",
+      "to": "craft",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "craft",
+      "to": "socket",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "socket",
+      "to": "zones",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "zones",
+      "to": "survive",
+      "label": "survive",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "survive",
+      "to": "sale",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "sale",
+      "to": "want",
+      "label": "fund next Want",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "zones",
+      "to": "death",
+      "label": "death",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "death",
+      "to": "grave",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "grave",
+      "to": "demand",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    },
+    {
+      "from": "demand",
+      "to": "want",
+      "label": "rebuild",
+      "endArrowhead": "triangle",
+      "connectorStyle": "elbow",
+      "cornerStyle": "straight"
+    }
+  ]
+}

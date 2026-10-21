@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "title": "ROMPE — Albion inside Ragnarok",
+    "sub": "Planned sandbox · Classic foundation",
+    "theme": "editorial",
+    "width": 1000,
+    "pad": 24,
+    "margin": 30,
+    "cols": 12,
+    "gutter": 14,
+    "bandGap": 16,
+    "zonePad": 16,
+    "capStrip": 34,
+    "fileName": "rompe-poster"
+  },
+  "bands": [
+    {
+      "id": "want",
+      "label": "01 · The loop",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Want any recipe",
+          "lines": [
+            "Ledger shows where"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Hunt · Gather · Buy",
+          "lines": [
+            "Craft · Socket cards"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "riskloop",
+      "label": "02 · Risk and return",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Into risk zones",
+          "lines": [
+            "Die? Loss follows zone"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Grave → Demand → Want",
+          "lines": [
+            "Survive? Sell or ship"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zones",
+      "label": "03 · Four colours",
+      "zone": "blue",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 3,
+          "ic": "flow",
+          "title": "BLUE",
+          "lines": [
+            "Safe · No drops"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 4,
+          "span": 3,
+          "ic": "flow",
+          "title": "YELLOW",
+          "lines": [
+            "Flag · No drops"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 3,
+          "ic": "flow",
+          "title": "RED",
+          "lines": [
+            "Bag + flagged crafted"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 10,
+          "span": 3,
+          "ic": "flow",
+          "title": "BLACK",
+          "lines": [
+            "Crafted only · Full loot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exception",
+      "label": "Read the exception",
+      "zone": "amber",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 12,
+          "ic": "flow",
+          "title": "Named abyss maps",
+          "lines": [
+            "Vanilla allowed and lootable"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first",
+      "label": "04 · Planned first minutes",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "0′ · Knife slime",
+          "lines": [
+            "3′ · Starter field triple healing"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "5′ · First Want",
+          "lines": [
+            "6–8′ · Caravan passes"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "8′ · Borrowed hero",
+          "lines": [
+            "Two-minute rental sketch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "first2",
+      "label": "Then",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "10′ · First craft",
+          "lines": [
+            "12′ · Job change"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Scripted companion first",
+          "lines": [
+            "Until real Hire is built"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "people",
+      "label": "05 · Who’s with you",
+      "zone": "violet",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Account · 12 roster",
+          "lines": [
+            "Not twelve active"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Party · Temporary",
+          "lines": [
+            "Guild · Permanent"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "War sides override",
+          "lines": [
+            "Relationships, not nested rings"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events1",
+      "label": "06 · Events",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Caravan",
+          "lines": [
+            "Escort · Raid · Consign"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Rift",
+          "lines": [
+            "Survive an invader"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "Surge",
+          "lines": [
+            "Harvest · Contest"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events2",
+      "label": "More ways to play",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 4,
+          "ic": "flow",
+          "title": "Roads",
+          "lines": [
+            "Explore portals"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 5,
+          "span": 4,
+          "ic": "flow",
+          "title": "Outposts / WoE",
+          "lines": [
+            "Capture for guild"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 9,
+          "span": 4,
+          "ic": "flow",
+          "title": "City defence",
+          "lines": [
+            "Hold the city"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer",
+      "label": "Classic foundation",
+      "zone": "slate",
+      "blocks": [
+        {
+          "type": "card",
+          "col": 1,
+          "span": 6,
+          "ic": "flow",
+          "title": "Killboard",
+          "lines": [
+            "Read fights and builds"
+          ]
+        },
+        {
+          "type": "card",
+          "col": 7,
+          "span": 6,
+          "ic": "flow",
+          "title": "Classic jobs · Pinned formulas",
+          "lines": [
+            "Show, don’t tell"
+          ]
+        }
+      ]
+    }
+  ],
+  "spans": [],
+  "legend": []
+}

@@ -23,8 +23,9 @@
 Full scope and evidence: [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 
 - [x] Preserve and read the Interactive Atlas PDF; inspect methrep and bootstrap the tracker — evidence: research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf; REPRESENT-V0-IMPL.md.
-- [ ] Clone and inspect reference projects; record pinned versions, licenses and concrete reusable parts.
-- [ ] Exercise feasible examples and synthesize the design before implementation.
+- [x] Clone and inspect reference projects; record pinned versions, licenses and concrete reusable parts — evidence: research/reference-repos.json; research/reports/Represent reference repository study.md.
+- [x] Exercise reference tools using the two ROMPE prompts, inspect output and preserve source corrections — evidence: research/rompe-tool-trials.md; ../experiments/rompe/validation/browser-results.json.
 - [ ] Lock P0 choices, then implement the smallest deterministic CLI/library scan.
 - [ ] Show the first plane-sync scene before enrichment, renderer or shell work.
-- [ ] Measure the corpus sizes and scanner limits; finish companion research.
+- [ ] Measure the corpus sizes and scanner limits.
+- [x] Finish companion research — evidence: research/companions.md.

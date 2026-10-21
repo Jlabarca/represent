@@ -1,0 +1,162 @@
+{
+  "entities": [
+    {
+      "tag": "Textbox",
+      "id": "title",
+      "x": 40,
+      "y": 24,
+      "width": 1320,
+      "height": 48,
+      "text": "Risk is a place · planned map rules",
+      "fontSize": 32,
+      "typeface": "clean",
+      "color": "#18243A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "subtitle",
+      "x": 40,
+      "y": 72,
+      "width": 1320,
+      "height": 30,
+      "text": "Every border makes the PvP and loss rule visible before entry",
+      "fontSize": 18,
+      "typeface": "clean",
+      "color": "#40506A"
+    },
+    {
+      "tag": "Shape",
+      "id": "blue",
+      "x": 60,
+      "y": 150,
+      "width": 285,
+      "height": 135,
+      "shape": "rectangle",
+      "color": "#DCEBFF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "BLUE · SAFE\nPvP off · no drops",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "yellow",
+      "x": 380,
+      "y": 150,
+      "width": 285,
+      "height": 135,
+      "shape": "rectangle",
+      "color": "#FFF0BF",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "YELLOW · OPT IN\nFlag to fight · no drops",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "red",
+      "x": 700,
+      "y": 150,
+      "width": 285,
+      "height": 135,
+      "shape": "rectangle",
+      "color": "#FFD9D6",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "RED · PVP ON\nInventory drops*",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center"
+        }
+      ]
+    },
+    {
+      "tag": "Shape",
+      "id": "black",
+      "x": 1020,
+      "y": 150,
+      "width": 285,
+      "height": 135,
+      "shape": "rectangle",
+      "color": "#252936",
+      "styleMode": "plain",
+      "cornerRadius": "round",
+      "borderWidth": 2,
+      "texts": [
+        {
+          "text": "BLACK · FULL LOOT*\nCrafted gear only",
+          "fontSize": 18,
+          "typeface": "clean",
+          "hAlign": "center",
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "tag": "Textbox",
+      "id": "detail1",
+      "x": 60,
+      "y": 310,
+      "width": 1245,
+      "height": 44,
+      "text": "ACTIVE COMPANIONS: blue ≤3 · yellow ≤2 · red/black ≤1. Account roster (12 characters) is separate.",
+      "fontSize": 16,
+      "typeface": "clean",
+      "color": "#25364A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "detail2",
+      "x": 60,
+      "y": 365,
+      "width": 1245,
+      "height": 58,
+      "text": "Blue is normally PvP-off; event-side rules may still permit fighting. Yellow drops no items; crafted durability wears. Red drops inventory, plus equipped crafted gear only if flagged.",
+      "fontSize": 16,
+      "typeface": "clean",
+      "color": "#25364A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "detail3",
+      "x": 60,
+      "y": 435,
+      "width": 1245,
+      "height": 58,
+      "text": "Black is full loot of crafted gear. Named abyss black maps are the exception: vanilla gear is also allowed and lootable.",
+      "fontSize": 16,
+      "typeface": "clean",
+      "color": "#25364A"
+    },
+    {
+      "tag": "Textbox",
+      "id": "status",
+      "x": 60,
+      "y": 535,
+      "width": 1200,
+      "height": 38,
+      "text": "DESIGN ONLY · proposed World Dials / map tags, not current universal runtime behavior",
+      "fontSize": 15,
+      "typeface": "clean",
+      "color": "#8A3E36"
+    }
+  ],
+  "connections": []
+}

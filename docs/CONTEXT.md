@@ -14,7 +14,7 @@ The thesis: a project should have an iconic visual identity that reflects its re
 
 ## Current State
 
-Pre-implementation. Repo bootstrapped 2026-04-13. Documentation and methodology tooling exist; no Represent scanner or renderer has shipped. Reference-repository research and the v0 bootstrap are now active. See [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
+Product pre-implementation, with working reference-tool experiments. Repo bootstrapped 2026-04-13. No Represent scanner or general renderer has shipped. Seven upstream repositories are cloned locally; ROMPE's two prompts have been exercised through interactive-diagram, Eraser Diagrams and an illustrated-poster baseline. See [trial results](research/rompe-tool-trials.md) and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
 
 ## Key Architecture Decisions (Locked)
 
@@ -28,6 +28,8 @@ Pre-implementation. Repo bootstrapped 2026-04-13. Documentation and methodology 
 | Development sequence | **Clone, study and exercise references; synthesize; design; build** | Operator's 2026-10-21 direction: use the Multica/Orkest approach, learning from working projects and adapting the strongest parts before inventing another stack. | 2026-10-21 |
 | Compatibility target | **methrep's `represent.scene/v0` envelope + `events.jsonl`** | Reuse the stable boundary, not methrep's markdown parser or date-only append algorithm. Code metadata belongs in annotations; structural extensions need tests. | 2026-10-21 |
 | First delivery gate | **First real plane-sync scene before enrichment, renderer or shell implementation** | Keep the P0-P4 kickoff, with source study ahead of P1. The actual tracked plane-sync tree is small (19 files), and requires JavaScript support. | 2026-10-21 |
+| Current validation case | **ROMPE game-design prompts before scanner implementation** | Operator explicitly requested hands-on use of existing tools. These are upstream-renderer experiments, not a premature P3 product implementation. | 2026-10-21 |
+| Document visualization boundary | **Audited facts → selected view → renderer** | The trials found real prompt/source discrepancies; valid layout alone cannot establish correct rules. Share provenance and qualifications across explainer and poster outputs. | 2026-10-21 |
 
 ### V0 decisions under evaluation
 
@@ -76,14 +78,14 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-Reference study and [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md): inspect and exercise related projects, record reuse/adapt/avoid decisions, settle P0, then build the first deterministic plane-sync scan. P2-P4 remain downstream of that first-scene checkpoint.
+Hands-on ROMPE tool trials are delivered before new scanner code, following the operator's latest steering. Review [the local comparison](../experiments/rompe/index.html) and [findings](research/rompe-tool-trials.md). The original plane-sync checkpoint stays queued; choose implementation libraries only after a parser feasibility spike. P2-P4 remain downstream of the first scene.
 
 ## Active Research
 
 - [Companion interaction research](research/companions.md): ambient panel, query-first and change-digest alternatives; verified capabilities separated from inferred design rules.
-- Reference repository study: GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. Local clones live in ignored `references/`; the research records pinned commits and source paths.
+- [Reference repository study](research/reports/Represent%20reference%20repository%20study.md): GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. [Inventory](research/reference-repos.json) records pinned commits and source paths. Eraser Diagrams was added for the [ROMPE trials](research/rompe-tool-trials.md).
 - [Graphify field results](research/graphify-tested.md): ignore-awareness, cost, unlabeled clusters and indiscriminate rendering failures remain acceptance constraints.
 
 ## Completed
 
-_Nothing shipped yet._
+No general product capability promoted. Research deliverables: preserved PDF, seven reference checkouts, source-grounded comparison, companion study, and reproducible ROMPE explainer/poster trials. Product implementation remains separate from those experiments.

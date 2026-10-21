@@ -1,0 +1,427 @@
+{
+  "schema": "represent.rompe-source-audit/v1",
+  "audited_at": "2026-10-21T00:28:55.8863797-03:00",
+  "source_root": "G:/ro/RagnarokRebuildTcp",
+  "git": {
+    "head": "07eabc1aa15fe839166273a5be2d7700b48d0415",
+    "commit_date": "2026-10-21T00:19:30-03:00",
+    "selected_source_status_porcelain": "",
+    "note": "Selected files clean at capture; full repository cleanliness not asserted."
+  },
+  "verification": "Document fidelity audit only; no implementation or live-game verification.",
+  "sources": [
+    {
+      "path": "CLAUDE.md",
+      "sha256": "5288ead4db859ddc9024ab6eb3b5c20539b50ed067fa87eae7dfd8bce308d610",
+      "bytes": 20058,
+      "line_count": 227,
+      "last_write_utc": "2026-10-20T21:53:14.9989149Z",
+      "read_scope": "lines 1-140"
+    },
+    {
+      "path": "docs/research/sandbox-explainer-prompts.md",
+      "sha256": "832369e0b7655c5e4d3a1d9935bbf092a05d2fae8f0960780f9f4c74e9ec5950",
+      "bytes": 4958,
+      "line_count": 80,
+      "last_write_utc": "2026-10-21T02:58:48.3055505Z",
+      "read_scope": "complete"
+    },
+    {
+      "path": "docs/design/rompe-sandbox.md",
+      "sha256": "675b6ff082711e8f2a4d5e64f6d0c151ccd415cb39cf69efa30f9c39d1306df6",
+      "bytes": 42936,
+      "line_count": 775,
+      "last_write_utc": "2026-10-21T02:59:01.3336764Z",
+      "read_scope": "relevant explainer sections"
+    },
+    {
+      "path": "docs/design/groups.md",
+      "sha256": "fa7b66493483bc44926f80abeaea80377c05726ff9eadf0e062302e3226c90a8",
+      "bytes": 22289,
+      "line_count": 363,
+      "last_write_utc": "2026-10-21T02:57:58.7268369Z",
+      "read_scope": "relevant grouping sections"
+    },
+    {
+      "path": "docs/design/player-path-content.md",
+      "sha256": "212e7107fc508d6409f4340e2cad02107a44b24672340c0d43a437fa405bf246",
+      "bytes": 76760,
+      "line_count": 928,
+      "last_write_utc": "2026-10-21T02:56:32.7384866Z",
+      "read_scope": "sections 0-9 inclusive, lines 1-244; annex excluded"
+    },
+    {
+      "path": "docs/research/modern-mmo-lessons.md",
+      "sha256": "3dc18d8aad684a127a4010ec0a6b3d626a4166cf0f036306a318f1befce678fa",
+      "bytes": 24321,
+      "line_count": 373,
+      "last_write_utc": "2026-10-20T17:58:49.8570304Z",
+      "read_scope": "complete"
+    }
+  ],
+  "facts": [
+    {
+      "id": "status",
+      "status": "document_reported",
+      "value": {
+        "shipped": [
+          "fight"
+        ],
+        "partial": [
+          "trade",
+          "guild-war",
+          "defend",
+          "cards",
+          "minigames"
+        ],
+        "planned": [
+          "want-craft",
+          "account",
+          "risk",
+          "gather",
+          "haul",
+          "rift",
+          "explore"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "docs/design/player-path-content.md",
+          "heading": "3. Loops: the tracking unit",
+          "start_line": 81,
+          "end_line": 93
+        }
+      ]
+    },
+    {
+      "id": "crafting",
+      "status": "planned",
+      "value": {
+        "all_recipes_unlocked_from_level": 1,
+        "want_creates": "Ledger Errand",
+        "sources": [
+          "hunt",
+          "gather",
+          "buy"
+        ],
+        "doors": [
+          "Kafra workshop",
+          "account crafter",
+          "commission"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "6. Crafting for people who hate crafting",
+          "start_line": 244,
+          "end_line": 288
+        }
+      ]
+    },
+    {
+      "id": "blue",
+      "status": "planned",
+      "value": {
+        "pvp": "off",
+        "death_drop": "none",
+        "companion_cap": 3,
+        "gear": "any",
+        "caveat": "ambient rule; event sides can override soft PvP Off"
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "10.1 Four colours",
+          "start_line": 474,
+          "end_line": 485
+        }
+      ]
+    },
+    {
+      "id": "yellow",
+      "status": "planned",
+      "value": {
+        "pvp": "opt_in",
+        "death_drop": "none",
+        "crafted_durability_wears": true,
+        "companion_cap": 2,
+        "gear": "any"
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "10.1 Four colours",
+          "start_line": 474,
+          "end_line": 485
+        }
+      ]
+    },
+    {
+      "id": "red",
+      "status": "planned",
+      "value": {
+        "pvp": "on",
+        "death_drop": "inventory",
+        "equipped_crafted_drop": "if flagged",
+        "companion_cap": 1,
+        "gear": "any",
+        "flagged_definition": "unresolved"
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "10.1 Four colours",
+          "start_line": 474,
+          "end_line": 485
+        }
+      ]
+    },
+    {
+      "id": "black",
+      "status": "planned",
+      "value": {
+        "pvp": "on",
+        "death_drop": "full",
+        "companion_cap": 1,
+        "gear": "crafted_only",
+        "exception": "named abyss maps"
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "10.1 Four colours",
+          "start_line": 474,
+          "end_line": 485
+        }
+      ]
+    },
+    {
+      "id": "abyss",
+      "status": "planned_open_details",
+      "value": {
+        "risk": "black",
+        "death_drop": "full",
+        "vanilla_gear_allowed": true,
+        "vanilla_gear_lootable": true,
+        "map_names": "undecided"
+      },
+      "evidence": [
+        {
+          "path": "docs/design/player-path-content.md",
+          "heading": "6. Risk on the map",
+          "start_line": 166,
+          "end_line": 173
+        }
+      ]
+    },
+    {
+      "id": "grave",
+      "status": "planned",
+      "value": {
+        "condition": "DeathDrop != None",
+        "destroyed_share_initial": 0.3,
+        "public_loot_minutes_initial": 2,
+        "then": "decays",
+        "not_every_death": true
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "10.4 The Grave (core system)",
+          "start_line": 502,
+          "end_line": 508
+        }
+      ]
+    },
+    {
+      "id": "account",
+      "status": "planned",
+      "value": {
+        "roster_max": 12,
+        "main": 1,
+        "others": "resting or companions",
+        "roster_is_active_cap": false,
+        "companions": "real characters with own inventory, levels and death",
+        "reported_current_slots": 3
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "9.2 What it is",
+          "start_line": 372,
+          "end_line": 379
+        }
+      ]
+    },
+    {
+      "id": "groups",
+      "status": "planned",
+      "value": {
+        "party": "temporary",
+        "party_cap": null,
+        "guild": "permanent",
+        "guild_launch_cap": 100,
+        "tags": [
+          "Account",
+          "Hire",
+          "Guild"
+        ],
+        "nested_ownership": false
+      },
+      "evidence": [
+        {
+          "path": "docs/design/groups.md",
+          "heading": "1. What the player sees: two groups, three tags",
+          "start_line": 38,
+          "end_line": 56
+        }
+      ]
+    },
+    {
+      "id": "war",
+      "status": "planned",
+      "value": {
+        "normal_party_can_cross_guilds": true,
+        "war_side": "guild",
+        "war_party": "guild-only",
+        "normal_party_bonds": "resume after temporary engagement",
+        "player_facing_factions": false
+      },
+      "evidence": [
+        {
+          "path": "docs/design/groups.md",
+          "heading": "7.1 Sides on PvP maps and in war modes",
+          "start_line": 257,
+          "end_line": 275
+        }
+      ]
+    },
+    {
+      "id": "onboarding",
+      "status": "planned_sketch",
+      "value": {
+        "minutes": [
+          0,
+          3,
+          5,
+          8,
+          10,
+          12,
+          15
+        ],
+        "first_aid_multiplier": 3,
+        "first_aid_scope": "starter zone only",
+        "rental_level": 80,
+        "rental_duration_minutes": 2,
+        "scripted_placeholder_allowed": true,
+        "guaranteed_timing": false
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "4.2 The first 15 minutes (a sketch to playtest, not a script to ship)",
+          "start_line": 148,
+          "end_line": 170
+        }
+      ]
+    },
+    {
+      "id": "chapters",
+      "status": "planned",
+      "value": {
+        "order": [
+          "Start",
+          "Hook",
+          "Mid",
+          "Late",
+          "Seasons"
+        ],
+        "mid_level_range_player_path": [
+          25,
+          70
+        ],
+        "mid_level_range_sandbox": [
+          30,
+          70
+        ],
+        "range_conflict": true
+      },
+      "evidence": [
+        {
+          "path": "docs/design/player-path-content.md",
+          "heading": "2. The spine: chapters over bands",
+          "start_line": 51,
+          "end_line": 59
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "status": "planned",
+      "value": {
+        "board": "per-city orders",
+        "global_auction_house": false,
+        "bulk": "crafted items and Sandbox materials in per-city warehouses",
+        "vanilla_storage": "account-wide, city-agnostic",
+        "transport": [
+          "carry",
+          "caravan"
+        ]
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "13. Kafra Corp services: market and logistics",
+          "start_line": 623,
+          "end_line": 641
+        }
+      ]
+    },
+    {
+      "id": "classic",
+      "status": "design_commitment",
+      "value": {
+        "jobs": "Novice -> first at job level 10 -> second",
+        "pinned_pre_renewal_formulas_preserved": true,
+        "default_dials_vanilla": true,
+        "new_systems": "additive rules, items, places, services; Blacksmith/Alchemist crafting reworked",
+        "all_weapons_socket_target": 1
+      },
+      "evidence": [
+        {
+          "path": "docs/design/rompe-sandbox.md",
+          "heading": "0. Decisions / 1. Pillars",
+          "start_line": 16,
+          "end_line": 70
+        }
+      ]
+    }
+  ],
+  "supplemental_evidence": {
+    "rental_placeholder": {
+      "path": "docs/design/rompe-sandbox.md",
+      "heading": "19. Build order",
+      "start_line": 758,
+      "end_line": 759
+    },
+    "first_aid_dial": {
+      "path": "docs/design/rompe-sandbox.md",
+      "heading": "4.2 The first 15 minutes",
+      "start_line": 164,
+      "end_line": 166
+    },
+    "group_exp_cap": {
+      "path": "docs/design/groups.md",
+      "heading": "4. Party, empowered",
+      "start_line": 127,
+      "end_line": 127
+    },
+    "no_factions": {
+      "path": "docs/design/groups.md",
+      "heading": "6. Factions: internal only",
+      "start_line": 223,
+      "end_line": 227
+    }
+  }
+}

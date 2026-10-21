@@ -22,6 +22,13 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [Companions](research/companions.md) | Sourced interaction patterns and A/B approaches |
 | [Interactive Atlas source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved 18-page source conversation; proposals are not verified facts |
 | [Handoffs index](handoffs/README.md) | Local continuation prompts; kickoff remains intentionally ignored |
+| [Reference repository study](research/reports/Represent%20reference%20repository%20study.md) | Source-grounded reuse/adapt/avoid synthesis |
+| [Reference inventory](research/reference-repos.json) | Local clone origins, exact revisions, licenses and trial scope |
+| [Ingestion notes](research/research_notes/Represent%20reference%20repository%20study/ingestion.md) | GitNexus and CodeBoarding source evidence |
+| [Visualization notes](research/research_notes/Represent%20reference%20repository%20study/visualization.md) | interactive-diagram and CodeCharta source evidence |
+| [Spatial/history notes](research/research_notes/Represent%20reference%20repository%20study/spatial-history.md) | Git City and Gource source evidence |
+| [ROMPE tool trials](research/rompe-tool-trials.md) | Actual explainer/poster outputs, browser checks and limitations |
+| [ROMPE comparison gallery](../experiments/rompe/index.html) | Local interactive and image artifacts with reproduction records |
 
 ## Subfolders
 

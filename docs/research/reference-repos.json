@@ -1,0 +1,58 @@
+[
+  {
+    "name": "gitnexus",
+    "origin": "https://github.com/abhigyanpatwari/GitNexus.git",
+    "path": "D:/ware/represent/references/gitnexus",
+    "fullSHA": "04427e03c8314be4c2a2ab74a99b53b7222c0514",
+    "license": "PolyForm-Noncommercial-1.0.0",
+    "trialStatus": "Source inspection plus isolated edge-reasons helper passed; no parser or full app run; no copied code"
+  },
+  {
+    "name": "codeboarding",
+    "origin": "https://github.com/CodeBoarding/CodeBoarding.git",
+    "path": "D:/ware/represent/references/codeboarding",
+    "fullSHA": "3a5098c31c1649fc4a16257e46ce6830c2cfac8c",
+    "license": "MIT",
+    "trialStatus": "Source inspection only; no installation or full app run"
+  },
+  {
+    "name": "interactive-diagram",
+    "origin": "https://github.com/LizardLiang/interactive-diagram.git",
+    "path": "D:/ware/represent/references/interactive-diagram",
+    "fullSHA": "1e252e62fd07631e71316179bc00861f52c6292b",
+    "license": "MIT",
+    "trialStatus": "Eight-example regeneration plus ROMPE native explainer/poster generation; 14 headless browser checks passed, no overlap audit conflicts; mobile fit-view readability remains weak"
+  },
+  {
+    "name": "codecharta",
+    "origin": "https://github.com/MaibornWolff/codecharta.git",
+    "path": "D:/ware/represent/references/codecharta",
+    "fullSHA": "4e8dfb60d2aae6472a7c725bf9f044133f965d28",
+    "license": "BSD-3-Clause",
+    "trialStatus": "Source inspection only; no build, tests, or interactive render"
+  },
+  {
+    "name": "gource",
+    "origin": "https://github.com/acaudwell/Gource.git",
+    "path": "D:/ware/represent/references/gource",
+    "fullSHA": "70db547c6b8b40745fb41a8db7e8d28897be1a9e",
+    "license": "GPL-3.0 (COPYING; version applicability requires source-level review)",
+    "trialStatus": "Source inspection only; no build or app run"
+  },
+  {
+    "name": "git-city",
+    "origin": "https://github.com/maximalcode/git-city.git",
+    "path": "D:/ware/represent/references/git-city",
+    "fullSHA": "8eacc4b8b5d3abdb334882016a4673fca83d3663",
+    "license": "MIT",
+    "trialStatus": "Source inspection only; no build, tests, or app run"
+  },
+  {
+    "name": "eraser-diagrams",
+    "origin": "https://github.com/eraserlabs/eraser-diagrams.git",
+    "path": "D:/ware/represent/references/eraser-diagrams",
+    "fullSHA": "1f5eefd53fa42010dd86321e600d68fdce37b30d",
+    "license": "MIT",
+    "trialStatus": "CLI built locally; four ROMPE JSON inputs validated and four PNGs rendered; manually inspected; some text exceeds requested line/word limits"
+  }
+]
