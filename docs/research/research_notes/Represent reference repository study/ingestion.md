@@ -62,4 +62,3 @@ Next small experiment: create read-only input snapshots of a bounded plane-sync 
 
 ### Gaps
 No token-cost measurement or whole-run spending ceiling was verified. Native grammar/LSP installation, Windows resource use, large-repo limits and runtime ambiguity remain explicit experiment targets. No numerical clustering claim from upstream comments has been independently validated.
-

@@ -42,4 +42,3 @@ The five central ideas: choose risk knowingly; losses create replacement demand;
 ## Artifact acceptance checks
 
 Use manifest facts as data, not substring-only truth tests: risk rows must carry all exceptions; a death node must branch by loss rule; roster count cannot label active units; grouping diagram cannot imply nested ownership; timeline must show sketch/planned state and scripted rental caveat; all seven requested cards and nine sections must exist; status badges must follow the document table. Every diagram box should meet the prompt's two-line limit and poster labels the six-word limit. Numeric dials must not be promoted into promises.
-
