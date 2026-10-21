@@ -1,0 +1,784 @@
+{
+  "schema": "represent.visu/pilot-v1",
+  "at": "2026-10-21T06:22:54.196Z",
+  "note": "All changes were made to copies. No paid calls during update tests. Initial/refinement generation ledger is actual Ghost usage, including failures.",
+  "results": [
+    {
+      "project": "luz",
+      "style": {
+        "profile": "editorial",
+        "confidence": "high",
+        "palette": [
+          "#f7f4ef",
+          "#1c1917",
+          "#b69d72"
+        ],
+        "fonts": [
+          "Cormorant Garamond",
+          "sans-serif body"
+        ],
+        "direction": "Refined editorial illustration, warm cream paper, charcoal typography, delicate silver and muted gold, sculptural jewelry photography-inspired objects and fine line work",
+        "signals": [
+          {
+            "path": "docs/reference/catalog-layers.md",
+            "line": 1,
+            "reason": "Jewelry product context",
+            "profile": "editorial"
+          },
+          {
+            "path": "docs/reference/homepage.md",
+            "line": 16,
+            "reason": "Jewelry product context",
+            "profile": "editorial"
+          },
+          {
+            "path": "README.md",
+            "line": 3,
+            "reason": "Jewelry product context",
+            "profile": "editorial"
+          },
+          {
+            "path": "solace-store/preset/plugins/colors.js",
+            "line": 5,
+            "reason": "Observed warm cream color token",
+            "profile": "editorial"
+          },
+          {
+            "path": "solace-store/preset/theme/typography.js",
+            "line": 5,
+            "reason": "Observed editorial serif typography",
+            "profile": "editorial"
+          },
+          {
+            "path": "solace-store/src/app/layout.tsx",
+            "line": 2,
+            "reason": "Observed editorial serif typography",
+            "profile": "editorial"
+          },
+          {
+            "path": "solace-store/src/modules/home/components/material-gateway/index.tsx",
+            "line": 12,
+            "reason": "Jewelry product context",
+            "profile": "editorial"
+          },
+          {
+            "path": "solace-store/src/modules/home/components/trust-strip/index.tsx",
+            "line": 4,
+            "reason": "Jewelry product context",
+            "profile": "editorial"
+          }
+        ],
+        "note": "Derived from selected text/tokens; owned images were not analyzed."
+      },
+      "sourceFilesUnchanged": true,
+      "sourceHashes": {
+        "README.md": "b1cb062e3901185a7ad8291517ebc183e6998a8d135f2477db9afe820e666d65",
+        "docs/reference/homepage.md": "fc800e1633924c57a3e9f7595c7ec5672daad6c3d26c8f5fa6f389dca746eaac",
+        "docs/reference/catalog-layers.md": "9eea733561d5ab067674f86e84ed7097312653d2c039e8a7707b32ec3021b004",
+        "solace-store/src/app/layout.tsx": "9d3090d3ac1600da356b11e9df965d9664a9af3d513a3d5c8e8fd7472d992dc4",
+        "solace-store/preset/plugins/colors.js": "79e6fc5f533624faa604b726f0eda65dc81c12aa28272600f69c238b554e8a28",
+        "solace-store/preset/theme/typography.js": "ea7f7040bac0b2cd89b7603356c2bc24dca8e122bad64c2ed90a481ebaac9215",
+        "solace-store/src/modules/home/components/material-gateway/index.tsx": "71be5b4b7116fcbb748d850845b9b562fd1ad34ad1bac2f01d8d58290883e777",
+        "solace-store/src/modules/home/components/trust-strip/index.tsx": "0982182fde2ee22caf62561adc71b23fa15f93558927822b207e391e32bc749d",
+        "docs/CONTEXT.md": "5dd04735b7b32ba21e5a3b9a804ac49fd3336e48d94440631191f5202d84726a"
+      },
+      "observations": [
+        {
+          "case": "baseline-current-recipe",
+          "classification": "view-changed",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 109.43490000000003,
+            "bytesRead": 56479
+          },
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "viewId": "c679ebf5a0405e02dcca8c04",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "fresh"
+        },
+        {
+          "case": "unchanged",
+          "classification": "unchanged",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": true,
+            "durationMs": 82.38130000000001,
+            "bytesRead": 56479
+          },
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "viewId": "c679ebf5a0405e02dcca8c04",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "fresh"
+        },
+        {
+          "case": "outside-scope",
+          "classification": "unchanged",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": true,
+            "durationMs": 71.47489999999999,
+            "bytesRead": 56479
+          },
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "viewId": "c679ebf5a0405e02dcca8c04",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "fresh"
+        },
+        {
+          "case": "detail-only",
+          "classification": "details-only",
+          "changedFiles": [
+            "docs/CONTEXT.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 82.3503,
+            "bytesRead": 56545
+          },
+          "snapshotId": "d41f1bdfe53cbb73de7096f0",
+          "viewId": "29e67fe4f524414149c34625",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "fresh"
+        },
+        {
+          "case": "depicted-source-change",
+          "classification": "art-changed",
+          "changedFiles": [
+            "README.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 74.55970000000002,
+            "bytesRead": 56592
+          },
+          "snapshotId": "51642e48492bbcc8daed962e",
+          "viewId": "e031dd03301111b659898a4c",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "stale"
+        },
+        {
+          "case": "style-override",
+          "sourceSnapshotUnchanged": true,
+          "aiCalls": 0,
+          "imageCalls": 0,
+          "freshness": "stale"
+        },
+        {
+          "case": "source-removal",
+          "classification": "art-changed",
+          "changedFiles": [
+            "README.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 74.74279999999999,
+            "bytesRead": 49575
+          },
+          "snapshotId": "72d42af75fc2b388078a2e13",
+          "viewId": "0deba430beb50f3b5a1d0149",
+          "artHash": "d38a1b5a31d2d83704a5ac60ebcd2a7672586d71366a0820bf8818a0d1f680cb",
+          "freshness": "stale"
+        }
+      ],
+      "aiCallsDuringUpdateTests": 0,
+      "generationLedger": [
+        {
+          "id": "bfae515a-9a10-4780-92a5-e8d875a2bd92",
+          "at": "2026-10-21T06:08:08.477Z",
+          "model": "image-gen",
+          "status": "success",
+          "costUsd": 0.0724245,
+          "cacheHit": false,
+          "promptHash": "62708e17bf6a35c6b4103c1c63fc15a0fc230d380d2462e637cef52b74a85e7e",
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "fe1a8a1b-832f-46c8-b643-8e67aee08133",
+          "durationMs": 10358.9373,
+          "usage": {
+            "completion_tokens": 1120,
+            "prompt_tokens": 10449,
+            "total_tokens": 11569,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 1120
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0724245,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0724245,
+              "upstream_inference_prompt_cost": 0.0052245,
+              "upstream_inference_completions_cost": 0.0672
+            }
+          },
+          "responseModel": "image-gen"
+        },
+        {
+          "id": "e89ad32e-9be7-4935-b197-8350fa1ca4c0",
+          "at": "2026-10-21T06:13:28.464Z",
+          "model": "json",
+          "stage": "story",
+          "status": "failed",
+          "costUsd": 0.0014238,
+          "cacheHit": false,
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "ffac7703-8549-4bc7-9735-661cf4799f15",
+          "usage": {
+            "completion_tokens": 813,
+            "prompt_tokens": 10986,
+            "total_tokens": 11799,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0014238,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0014238,
+              "upstream_inference_prompt_cost": 0.0010986,
+              "upstream_inference_completions_cost": 0.0003252
+            }
+          },
+          "durationMs": 3256.3120999999996,
+          "error": "Story request or evidence validation failed"
+        },
+        {
+          "id": "7883515b-bc4b-4f78-a098-9f1777b693b7",
+          "at": "2026-10-21T06:14:35.879Z",
+          "model": "json",
+          "stage": "story",
+          "status": "success",
+          "costUsd": 0.0015511,
+          "cacheHit": false,
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "eb5319ac-ee69-476f-90b4-950e5716357b",
+          "usage": {
+            "completion_tokens": 406,
+            "prompt_tokens": 13887,
+            "total_tokens": 14293,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0015511,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0015511,
+              "upstream_inference_prompt_cost": 0.0013887,
+              "upstream_inference_completions_cost": 0.0001624
+            }
+          },
+          "durationMs": 2317.9363
+        },
+        {
+          "id": "d03071a2-f571-4000-84c8-8900da3e6ca7",
+          "at": "2026-10-21T06:14:38.223Z",
+          "model": "image-gen",
+          "stage": "image",
+          "status": "success",
+          "costUsd": 0.067661,
+          "cacheHit": false,
+          "promptHash": "bdf92646a2485cac17516fa3762899f42c58b66fb7b6f47effa4b5180c541f06",
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "1a7f6d0f-2f51-4dc9-8919-63ab327fcb29",
+          "durationMs": 10365.1703,
+          "usage": {
+            "completion_tokens": 1192,
+            "prompt_tokens": 490,
+            "total_tokens": 1682,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 1120
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.067661,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.067661,
+              "upstream_inference_prompt_cost": 0.000245,
+              "upstream_inference_completions_cost": 0.067416
+            }
+          },
+          "responseModel": "image-gen"
+        },
+        {
+          "id": "c7ed8182-df0d-4a96-ab10-13dfc3d588b4",
+          "at": "2026-10-21T06:18:26.193Z",
+          "model": "json",
+          "stage": "story",
+          "status": "success",
+          "costUsd": 0.0019469,
+          "cacheHit": false,
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "024ac572-b8d8-4685-a987-6ceaf05f127d",
+          "usage": {
+            "completion_tokens": 308,
+            "prompt_tokens": 18237,
+            "total_tokens": 18545,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 2,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0019469,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0019469,
+              "upstream_inference_prompt_cost": 0.0018237,
+              "upstream_inference_completions_cost": 0.0001232
+            }
+          },
+          "durationMs": 2311.9834
+        },
+        {
+          "id": "0cef50e8-0382-48ca-99e7-b06178b0eb10",
+          "at": "2026-10-21T06:18:28.524Z",
+          "model": "image-gen",
+          "stage": "image",
+          "status": "success",
+          "costUsd": 0.0674395,
+          "cacheHit": false,
+          "promptHash": "46a7a60d7f1e7dd1b2f48e57aba0df154cffffe317ce1f62b675350d1702114a",
+          "snapshotId": "c0eda5d2e8137e38b4d3dd65",
+          "httpStatus": 200,
+          "callId": "569b4abd-593b-4671-90e0-24e106a3402e",
+          "durationMs": 9266.8409,
+          "usage": {
+            "completion_tokens": 1120,
+            "prompt_tokens": 479,
+            "total_tokens": 1599,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 1120
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0674395,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0674395,
+              "upstream_inference_prompt_cost": 0.0002395,
+              "upstream_inference_completions_cost": 0.0672
+            }
+          },
+          "responseModel": "image-gen"
+        }
+      ],
+      "measuredGenerationCostUsd": 0.2124468,
+      "unknownCostAttempts": 0
+    },
+    {
+      "project": "rompe",
+      "style": {
+        "profile": "retro",
+        "confidence": "medium",
+        "palette": [
+          "#263d52",
+          "#e6c787",
+          "#77a180"
+        ],
+        "fonts": [
+          "pixel-inspired display",
+          "readable sans"
+        ],
+        "direction": "Handcrafted isometric pixel-art world, warm parchment labels, charming detailed game landscapes, clear visual journey",
+        "signals": [
+          {
+            "path": "CLAUDE.md",
+            "line": 13,
+            "reason": "Classic RPG context; visual inference, not an asset audit",
+            "profile": "retro"
+          },
+          {
+            "path": "docs/design/groups.md",
+            "line": 4,
+            "reason": "Explicit retro / pixel-art language",
+            "profile": "retro"
+          },
+          {
+            "path": "docs/design/groups.md",
+            "line": 274,
+            "reason": "Classic RPG context; visual inference, not an asset audit",
+            "profile": "retro"
+          },
+          {
+            "path": "docs/design/player-path-content.md",
+            "line": 42,
+            "reason": "Classic RPG context; visual inference, not an asset audit",
+            "profile": "retro"
+          },
+          {
+            "path": "docs/design/rompe-sandbox.md",
+            "line": 24,
+            "reason": "Classic RPG context; visual inference, not an asset audit",
+            "profile": "retro"
+          }
+        ],
+        "note": "Derived from selected text/tokens; owned images were not analyzed."
+      },
+      "sourceFilesUnchanged": true,
+      "sourceHashes": {
+        "CLAUDE.md": "a786627a67c8e938643758a531a156b008a65cbc02ca3f409d69bec84de498f4",
+        "docs/design/rompe-sandbox.md": "675b6ff082711e8f2a4d5e64f6d0c151ccd415cb39cf69efa30f9c39d1306df6",
+        "docs/design/groups.md": "fa7b66493483bc44926f80abeaea80377c05726ff9eadf0e062302e3226c90a8",
+        "docs/design/player-path-content.md": "212e7107fc508d6409f4340e2cad02107a44b24672340c0d43a437fa405bf246",
+        "docs/TODO.md": "b9217446eef1b1c7e566744c8d56f858dfb685370a4b5b208f7a312f54dfab98"
+      },
+      "observations": [
+        {
+          "case": "baseline-current-recipe",
+          "classification": "view-changed",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 256.9539000000001,
+            "bytesRead": 104801
+          },
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "viewId": "e147227beb4e40c8d32e601f",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "fresh"
+        },
+        {
+          "case": "unchanged",
+          "classification": "unchanged",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": true,
+            "durationMs": 69.10829999999987,
+            "bytesRead": 104801
+          },
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "viewId": "e147227beb4e40c8d32e601f",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "fresh"
+        },
+        {
+          "case": "outside-scope",
+          "classification": "unchanged",
+          "changedFiles": [],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": true,
+            "durationMs": 61.01340000000005,
+            "bytesRead": 104801
+          },
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "viewId": "e147227beb4e40c8d32e601f",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "fresh"
+        },
+        {
+          "case": "detail-only",
+          "classification": "details-only",
+          "changedFiles": [
+            "docs/TODO.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 172.63089999999988,
+            "bytesRead": 104792
+          },
+          "snapshotId": "2710bd7232f841379bb90796",
+          "viewId": "f23fbdc2eb0095e750f33701",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "fresh"
+        },
+        {
+          "case": "depicted-source-change",
+          "classification": "art-changed",
+          "changedFiles": [
+            "docs/design/rompe-sandbox.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 192.45420000000013,
+            "bytesRead": 104839
+          },
+          "snapshotId": "0285131cc7b63df107e55d4e",
+          "viewId": "30121ded162db1785e60aa41",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "stale"
+        },
+        {
+          "case": "style-override",
+          "sourceSnapshotUnchanged": true,
+          "aiCalls": 0,
+          "imageCalls": 0,
+          "freshness": "stale"
+        },
+        {
+          "case": "source-removal",
+          "classification": "art-changed",
+          "changedFiles": [
+            "docs/design/rompe-sandbox.md"
+          ],
+          "metrics": {
+            "aiCalls": 0,
+            "imageCalls": 0,
+            "cacheHit": false,
+            "durationMs": 229.24749999999972,
+            "bytesRead": 62631
+          },
+          "snapshotId": "0d0f2fee886a31daf49f34c8",
+          "viewId": "123123d3d69cf591e1accc37",
+          "artHash": "745d20bbc4c72baddb74d52c74ab9d747cd3f8dd7e5cf4ee6d000141de267b09",
+          "freshness": "stale"
+        }
+      ],
+      "aiCallsDuringUpdateTests": 0,
+      "generationLedger": [
+        {
+          "id": "34a920a0-356e-43ae-8bd5-e975f55e6f05",
+          "at": "2026-10-21T06:08:08.478Z",
+          "model": "image-gen",
+          "status": "success",
+          "costUsd": 0.0786415,
+          "cacheHit": false,
+          "promptHash": "4c7d9899d677ab32fd7e740f4b5e2aa1b52e13e2858f55614e39d075ae54b68d",
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "httpStatus": 200,
+          "callId": "80126c87-f857-4a49-875d-f7eae19f3ed5",
+          "durationMs": 12325.2924,
+          "usage": {
+            "completion_tokens": 1120,
+            "prompt_tokens": 22883,
+            "total_tokens": 24003,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 1120
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0786415,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0786415,
+              "upstream_inference_prompt_cost": 0.0114415,
+              "upstream_inference_completions_cost": 0.0672
+            }
+          },
+          "responseModel": "image-gen"
+        },
+        {
+          "id": "6674230a-52c7-4ab0-9cf5-c065aa80b9ed",
+          "at": "2026-10-21T06:13:28.468Z",
+          "model": "json",
+          "stage": "story",
+          "status": "failed",
+          "costUsd": 0.0026037,
+          "cacheHit": false,
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "httpStatus": 200,
+          "callId": "095fb6bb-ac20-45fd-af9f-2f8b8843a7c4",
+          "usage": {
+            "completion_tokens": 572,
+            "prompt_tokens": 23749,
+            "total_tokens": 24321,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0026037,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0026037,
+              "upstream_inference_prompt_cost": 0.0023749,
+              "upstream_inference_completions_cost": 0.0002288
+            }
+          },
+          "durationMs": 3174.1088,
+          "error": "Story request or evidence validation failed"
+        },
+        {
+          "id": "9dc5673d-a714-4dce-a887-dd6056e3300e",
+          "at": "2026-10-21T06:14:35.890Z",
+          "model": "json",
+          "stage": "story",
+          "status": "failed",
+          "costUsd": 0.0030585,
+          "cacheHit": false,
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "httpStatus": 200,
+          "callId": "c36396d2-ec3c-4a51-8716-649171b60cfd",
+          "usage": {
+            "completion_tokens": 453,
+            "prompt_tokens": 28773,
+            "total_tokens": 29226,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0030585,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0030585,
+              "upstream_inference_prompt_cost": 0.0028773,
+              "upstream_inference_completions_cost": 0.0001812
+            }
+          },
+          "durationMs": 2580.4507,
+          "error": "Story request or evidence validation failed"
+        },
+        {
+          "id": "734d7b12-f3c4-40e7-9b7d-13095061ae66",
+          "at": "2026-10-21T06:15:31.634Z",
+          "model": "json",
+          "stage": "story",
+          "status": "success",
+          "costUsd": 0.0040512,
+          "cacheHit": false,
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "httpStatus": 200,
+          "callId": "f085cd05-fc95-4907-ad87-e3355c4f0621",
+          "usage": {
+            "completion_tokens": 307,
+            "prompt_tokens": 39284,
+            "total_tokens": 39591,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 2,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0040512,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0040512,
+              "upstream_inference_prompt_cost": 0.0039284,
+              "upstream_inference_completions_cost": 0.0001228
+            }
+          },
+          "durationMs": 2553.7398000000003
+        },
+        {
+          "id": "3c29088d-e3b5-4c37-adbe-c1a31a374867",
+          "at": "2026-10-21T06:15:34.214Z",
+          "model": "image-gen",
+          "stage": "image",
+          "status": "success",
+          "costUsd": 0.0674705,
+          "cacheHit": false,
+          "promptHash": "fb15bf4811d909b092fe98dd1f3f0c010a2a5b8bf9868ef2d59dd4e7e7104bac",
+          "snapshotId": "cc7cdd1bb5103796f03998d0",
+          "httpStatus": 200,
+          "callId": "c770ab88-da79-4dd4-91d5-8bf054007250",
+          "durationMs": 11079.0633,
+          "usage": {
+            "completion_tokens": 1120,
+            "prompt_tokens": 541,
+            "total_tokens": 1661,
+            "completion_tokens_details": {
+              "audio_tokens": 0,
+              "reasoning_tokens": 0,
+              "image_tokens": 1120
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0,
+              "video_tokens": 0,
+              "cache_write_tokens": 0
+            },
+            "cost": 0.0674705,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0674705,
+              "upstream_inference_prompt_cost": 0.0002705,
+              "upstream_inference_completions_cost": 0.0672
+            }
+          },
+          "responseModel": "image-gen"
+        }
+      ],
+      "measuredGenerationCostUsd": 0.1558254,
+      "unknownCostAttempts": 0
+    }
+  ]
+}

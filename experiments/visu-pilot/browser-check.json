@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-21T06:29:43.406Z",
+  "viewport": [
+    1440,
+    1100
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "checks": [
+    "Six distinct image chapter controls",
+    "Complete illustration, no cover crop",
+    "Keyboard focus, evidence disclosure, Escape closure",
+    "Source snapshot with separately selectable portrait revisions",
+    "Luz source-derived editorial style",
+    "390px mobile tap details, no horizontal overflow",
+    "Readable six-chapter alternative",
+    "All browse/history/hover/outline checks issue zero POST requests",
+    "No browser exceptions or failed HTTP responses"
+  ],
+  "errors": [],
+  "posts": []
+}

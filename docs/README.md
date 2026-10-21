@@ -15,10 +15,19 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
 | [VISU-MVP-IMPL.md](VISU-MVP-IMPL.md) | Active illustrated-overview MVP, ROMPE/Luz pilot and incremental updates |
 
+## Implementation reference
+
+| Document | Purpose |
+|---|---|
+| [Visu MVP](reference/visu-mvp.md) | Local headless illustrated overview, source/style capture, Ghost generation, snapshots, API and usage |
+| [Visu pilot evidence](../experiments/visu-pilot/README.md) | ROMPE/Luz actual art, rejected attempts, costs, update benchmarks and UI captures |
+
 ## Research and source material
 
 | Document | Purpose |
 |---|---|
+| [Grafe MVP research](research/grafe-mvp-research.md) | Pinned extractor trials, real plane-sync evidence, DX opportunities and maturity gate |
+| [Alegor MVP research](research/alegor-mvp-research.md) | Re-entry companion design, session-memory references, Windows trial and maturity gate |
 | [Graphify field results](research/graphify-tested.md) | Measured failure cases and lessons |
 | [Companions](research/companions.md) | Sourced interaction patterns and A/B approaches |
 | [Interactive Atlas source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved 18-page source conversation; proposals are not verified facts |

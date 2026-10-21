@@ -56,7 +56,7 @@ flowchart LR
 
 ## Current State (2026-10-21)
 
-Plan recorded before implementation. Ghost gateway startup required replacing its stale tailnet port binding with an ephemeral loopback-only Compose override; Ghost tracked files are unchanged. Concurrent Grafe/Alegor research has separate ownership.
+Implemented local MVP with ROMPE/Luz real Ghost generation, source-backed style heuristics, cached updates, immutable source/art history, checklist overlay, progressive evidence and exports. Fourteen core regression cases and nine real-browser checks pass. Original selected source hashes are unchanged during the controlled-copy pilot. Full pilot cost including failures: $0.3682722. See experiments/visu-pilot/ and reference/visu-mvp.md. Grafe and Alegor are researched with actual trials and remain below independent-MVP readiness. Ghost startup used an ephemeral loopback-only Compose override; no Ghost tracked configuration changed.
 
 ## Implementation Status
 
@@ -64,16 +64,16 @@ Plan recorded before implementation. Ghost gateway startup required replacing it
 |---|---|---|---|
 | 1 | Verified | Codex | Capture, style, immutable history, update classification |
 | 2 | Verified | Codex | Ghost adapter, measured budget/cache, CLI and local API |
-| 3 | In progress | Codex | Browser shell, two-project pilot, UX improvements and QA |
+| 3 | Verified | Codex | Browser shell, two-project pilot, UX improvements and QA |
 
 ## Checklist
 
 - [x] VISU-MVP.1.1 — Bounded manifests, safe capture and source-backed style profiles — evidence: src/visu/core.mjs, examples/visu/, scope/style regression tests.
-- [x] VISU-MVP.1.2 — Immutable snapshots/views, no-op dedup, conservative art freshness and regression tests — evidence: 13 tests in tests/visu.test.mjs; controlled-copy pilot preserves original hashes.
+- [x] VISU-MVP.1.2 — Immutable snapshots/views, no-op dedup, conservative art freshness and regression tests — evidence: 14 tests in tests/visu.test.mjs; controlled-copy pilot preserves original hashes.
 - [x] VISU-MVP.2.1 — Ghost image adapter, attempt ledger, limits, cache and failure semantics — evidence: src/visu/ghost.mjs; real Ghost ledger records successful images, rejected story attempts and measured cost.
 - [x] VISU-MVP.2.2 — Shared CLI/library/API, source-preserving exports and local access boundary — evidence: src/visu/cli.mjs, server.mjs; authenticated API and export tests.
-- [ ] VISU-MVP.3.1 — Accessible art-first UI with history, details and explicit design/implementation UX rounds.
-- [ ] VISU-MVP.3.2 — ROMPE/Luz live trial, controlled-copy update measurements, QA, reference documentation and scoped promotion.
+- [x] VISU-MVP.3.1 — Accessible art-first UI with history, details and explicit design/implementation UX rounds — evidence: web/visu/, scripts/visu-browser-check.mjs, nine checks plus inspected desktop/mobile screenshots.
+- [x] VISU-MVP.3.2 — ROMPE/Luz live trial, controlled-copy update measurements, QA and reference documentation — evidence: experiments/visu-pilot/measurements.json, reference/visu-mvp.md, 14 regression cases; scoped promotion is the final bookkeeping step.
 
 ## What Needs Testing
 
@@ -85,11 +85,11 @@ Plan recorded before implementation. Ghost gateway startup required replacing it
 
 ## Known Bugs
 
-None yet. Runtime/generation problems must be recorded with actual evidence rather than hidden with a static image fallback.
+No known release-blocking defect within the documented bounded MVP. Rejected visual/structured-output attempts remain in the ledger and pilot report. Raster quality, curated chapter scope, interpretation accuracy, manual refresh and non-transactional derived exports are explicit limitations in the reference doc, not claims of broad product completeness.
 
 ## Key Files Reference
 
-Planned ownership: parent src/visu/, examples/visu/, tests/, scripts/, package.json and docs; isolated frontend worker web/visu/ only. Research workers own their named research notes and experiments. Source repositories are read-only; all controlled mutation tests use copies.
+Implemented ownership: parent src/visu/, examples/visu/, tests/, scripts/, package.json and docs; isolated frontend worker web/visu/ integrated then reviewed by parent. Research workers own their named research notes and experiments. Visu source repositories are read-only; all its controlled mutation tests use copies. Grafe's SCIP trial created a temporary inferred config in plane-sync; the research log discloses its removal and clean final checkout.
 
 ## Architecture Notes
 

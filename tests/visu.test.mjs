@@ -99,6 +99,12 @@ test('failure ledger preserves unknown cost and limits retries; corruption is no
   await fs.writeFile(failed.file('test'),'broken');await assert.rejects(failed.state('test'));assert.equal(await fs.readFile(failed.file('test'),'utf8'),'broken');
 });
 
+test('measured spend is rechecked between story and image stages',async t=>{
+  const f=await fixture(t);let imageCalls=0;
+  const v=f.create({maxCostUsd:0.1,ghost:{summarize:async()=>({regions:[],metrics:{costUsd:0.2}}),generate:async()=>{imageCalls++;throw new Error('Should not run');}}});
+  await v.scan('test');await assert.rejects(v.generate('test'),/after story/);assert.equal(imageCalls,0);assert.equal((await v.bundle('test')).ledger.length,1);
+});
+
 test('one concurrent operation per project; duplicate generation never bills twice',async t=>{
   const f=await fixture(t);let release;const gate=new Promise(r=>release=r);
   const v=f.create({ghost:{generate:async()=>{await gate;return {bytes:Buffer.from('fake'),mime:'image/png',width:512,height:512,metrics:{}};}}});

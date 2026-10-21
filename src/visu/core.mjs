@@ -205,6 +205,7 @@ export class Visu {
       catch(e){Object.assign(attempt,e.metrics||{},{status:'failed',error:'Story request or evidence validation failed'});await this.save(id,state);throw e;}
       await this.save(id,state);
     }
+    if(state.ledger.reduce((sum,r)=>sum+(r.costUsd||0),0)>=this.maxCostUsd) throw new Error('Measured project cost stop reached after story synthesis; image request was not sent');
     const prepared={...view,regions:view.regions.map(r=>({...r,summary:state.stories[view.dependencyHash]?.regions.find(s=>s.id===r.id)?.summary||r.summary}))};
     const prompt=buildPrompt(m,prepared,snapshot);
     const attempt={id:randomUUID(),at:now(),model:this.ghost.model||'image-gen',stage:'image',status:'pending',costUsd:null,cacheHit:false,promptHash:digest(prompt),snapshotId:snapshot.id};

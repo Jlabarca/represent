@@ -89,3 +89,21 @@ User authorized building Visu against ROMPE and a non-game project, with paralle
 ## 2026-10-21 — Visu headless core and Ghost checkpoint
 
 Implemented bounded manifests, safe source capture, heuristic style profiles, immutable content identities, view/art lineage, source-role update classification, checklist evidence and a shared CLI/library/local API. Ghost json and image-gen routes now produce validated story citations and PNGs with measured attempt ledgers, no silent retry and persistent call limits. Thirteen regression cases pass. A read-only agent audit found concrete bugs in role keys, missing evidence, PNG validation and Windows store containment; fixed them. Real ROMPE/Luz generation and controlled-copy tests produced evidence; original selected file hashes remained unchanged during those tests. Next: complete UI/pilot documentation, browser checks and promotion audit.
+
+## 2026-10-21 — Visu browser and two-project pilot
+
+### Accomplished
+
+Integrated the isolated browser shell and completed design plus implementation UX rounds. The full illustration stays visible, evidence is progressively disclosed, keyboard/tap/Escape work, history separates portrait revisions, and an optional captured-checklist layer avoids fabricated whole-project progress. Fourteen core tests and nine browser checks pass. ROMPE retro and Luz editorial art were generated through Ghost. Measured full trial cost was $0.3682722 including failures. Copy-based no-op/detail updates used zero AI calls and preserved original file hashes. Added reference/visu-mvp.md and reproducible trial scripts/results.
+
+### Decisions
+
+Keep short text and conceptual imagery in raster art; put exact facts in captured evidence. Source-reference validation does not prove semantic entailment. Treat dollar budgets as measured-spend stops; recheck between paid stages and retain hard attempt limits. Grafe and Alegor remain separate design/research tracks after actual extractor/session trials, not prematurely launched MVPs.
+
+### Blockers
+
+None for the bounded local Visu slice. Public-release naming/licensing, generalized chapter discovery, richer style detection, animated layers and standalone Grafe/Alegor remain outside this slice.
+
+### Next
+
+Run final scoped QA and promotion checks; use the two-project MVP for user review and collect corrections before widening scope.

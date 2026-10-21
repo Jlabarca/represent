@@ -1,0 +1,36 @@
+import {createRequire} from 'node:module';
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const require=createRequire(import.meta.url);
+const {chromium}=require(process.env.VISU_PLAYWRIGHT_PATH||'playwright');
+const browser=await chromium.launch({headless:true});
+const page=await browser.newPage({viewport:{width:1440,height:1100}});
+const errors=[],requests=[],checks=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`);});page.on('request',r=>{if(r.method()==='POST')requests.push(r.url());});
+await fs.mkdir('experiments/visu-pilot',{recursive:true});
+try{
+  await page.goto('http://127.0.0.1:8871');
+  await page.getByRole('button',{name:/ROMPE/}).click();
+  await page.locator('#art-image').waitFor({state:'visible'});
+  await page.waitForFunction(()=>document.querySelector('#art-image').naturalWidth>0);
+  assert.equal(await page.locator('.pin').count(),6);checks.push('Six distinct image chapter controls');
+  const positions=await page.locator('.pin').evaluateAll(nodes=>nodes.map(n=>n.style.left+':'+n.style.top));assert.equal(new Set(positions).size,6);
+  const image=await page.locator('#art-image').evaluate(n=>({natural:n.naturalWidth/n.naturalHeight,display:n.clientWidth/n.clientHeight}));assert.ok(Math.abs(image.natural-image.display)<0.02);checks.push('Complete illustration, no cover crop');
+  await page.screenshot({path:'experiments/visu-pilot/rompe-desktop.png',fullPage:true});
+  await page.locator('.pin').first().focus();assert.equal(await page.locator('#inspector-content').isVisible(),true);assert.equal(await page.locator('.pin').first().evaluate(n=>n===document.activeElement),true);
+  await page.keyboard.press('Escape');assert.equal(await page.locator('#inspector-content').isVisible(),false);checks.push('Keyboard focus, evidence disclosure, Escape closure');
+  await page.locator('.pin').nth(1).click();await page.locator('.source-card').first().locator('summary').click();await page.screenshot({path:'experiments/visu-pilot/rompe-evidence.png',fullPage:true});
+  await page.keyboard.press('Escape');await page.getByRole('button',{name:/History/}).click();await page.locator('.snapshot-card').first().click();assert.equal(await page.locator('.revision-select').count(),1);checks.push('Source snapshot with separately selectable portrait revisions');
+  await page.screenshot({path:'experiments/visu-pilot/history-desktop.png',fullPage:true});
+  await page.reload();await page.getByRole('button',{name:/Luz y Luna/}).click();await page.waitForFunction(()=>document.querySelector('#art-image').naturalWidth>0);
+  await page.screenshot({path:'experiments/visu-pilot/luz-desktop.png',fullPage:true});
+  assert.match(await page.locator('#style-title').textContent(),/Editorial/);checks.push('Luz source-derived editorial style');
+  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
+  await page.locator('.pin').first().click();assert.equal(await page.locator('#inspector-content').isVisible(),true);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks.push('390px mobile tap details, no horizontal overflow');
+  await page.screenshot({path:'experiments/visu-pilot/luz-mobile.png',fullPage:true});
+  await page.keyboard.press('Escape');await page.getByRole('button',{name:/Read as an outline/}).click();assert.equal(await page.locator('.outline-row').count(),6);checks.push('Readable six-chapter alternative');
+  assert.equal(requests.length,0);checks.push('All browse/history/hover/outline checks issue zero POST requests');
+  assert.deepEqual(errors,[]);checks.push('No browser exceptions or failed HTTP responses');
+  await fs.writeFile('experiments/visu-pilot/browser-check.json',JSON.stringify({at:new Date().toISOString(),viewport:[1440,1100],mobile:[390,844],checks,errors,posts:requests},null,2));
+  console.log(JSON.stringify({passed:checks.length,checks},null,2));
+}finally{await browser.close();}
