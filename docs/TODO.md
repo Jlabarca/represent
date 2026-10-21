@@ -20,7 +20,7 @@
 
 ## Active sprint: Grafe + Alegor follow-up validation (2026-10-21)
 
-Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](GRAFE-MVP-IMPL.md), [ALEGOR-MVP](ALEGOR-MVP-IMPL.md). The tracks progress independently; Visu stays paused. Shared identity can evolve without blocking either workflow.
+Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](impl/GRAFE-MVP-IMPL.md), [ALEGOR-MVP](impl/ALEGOR-MVP-IMPL.md). The tracks progress independently; Visu stays paused. Shared identity can evolve without blocking either workflow.
 
 ### Grafe - source navigation
 

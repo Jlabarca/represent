@@ -6,7 +6,7 @@
 
 ## Current Operating Direction (2026-10-21)
 
-**Grafe and Alegor local MVPs are implemented. Visu remains paused.** The two tracks progressed in parallel with separate headless cores, CLIs, web apps, real-project trials, UI/UX rounds and detailed research records. Final scoped promotion is being recorded in [GRAFE-MVP](GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](ALEGOR-MVP-IMPL.md).
+**Grafe and Alegor local MVPs are implemented. Visu remains paused.** The two tracks progressed in parallel with separate headless cores, CLIs, web apps, real-project trials, UI/UX rounds and detailed research records. Completed promotion records are [GRAFE-MVP](impl/GRAFE-MVP-IMPL.md) and [ALEGOR-MVP](impl/ALEGOR-MVP-IMPL.md).
 
 Grafe runs at port **8873**; Alegor runs at **8874**. Both use manual snapshots outside read-only source roots and make zero AI calls. See [Grafe usage](reference/grafe-mvp.md) and [Alegor usage](reference/alegor-mvp.md). No public deployment, session connector or cross-tool snapshot interoperability is claimed. Neither track waits for Visu or the other track.
 
@@ -127,4 +127,4 @@ Continue **Grafe and Alegor independently in parallel** from the completed local
 
 ## Completed
 
-Visu's two local slices are promoted and paused. Grafe and Alegor local MVP implementations, real-project/copy trials, UI/UX rounds and detailed research records are complete; scoped promotion records final committed verification. Research includes preserved PDF/Notion analysis, pinned reference checkouts, source-grounded comparison, actual Gource execution, Skales public-material inspection and reproducible ROMPE trials. Automated checks do not establish market demand or human product acceptance.
+Visu's two local slices are promoted and paused. Grafe and Alegor local MVP implementations, real-project/copy trials, UI/UX rounds and detailed research records are complete; both are promoted with focused 10/10 and 12/12 verification at implementation commit `8a781edf`. Research includes preserved PDF/Notion analysis, pinned reference checkouts, source-grounded comparison, actual Gource execution, Skales public-material inspection and reproducible ROMPE trials. Automated checks do not establish market demand or human product acceptance.

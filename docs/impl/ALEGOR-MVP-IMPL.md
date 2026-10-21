@@ -6,7 +6,7 @@
 
 ## AI Continuation Prompt
 
-Read CONTEXT.md, DOCS-PROTOCOL.md, this tracker and research/reports/Represent parallel track restart.md. Complete this bounded MVP independently of the other track and without changing Visu. Parent owns integration, tracker and commits. Isolated build and research workers have disjoint file ownership. Preserve exact test evidence and explicit limitations. Source repositories remain read-only; mutations for verification use copies. All future AI must use Ghost; this MVP requires none.
+Read CONTEXT.md, DOCS-PROTOCOL.md, this tracker and research/reports/Represent parallel track restart.md. Complete this bounded MVP independently of the other track and without changing Visu. Historical execution instructions: parent owned integration, tracker and commits. Isolated build and research workers have disjoint file ownership. Preserve exact test evidence and explicit limitations. Source repositories remain read-only; mutations for verification use copies. All future AI must use Ghost; this MVP requires none.
 
 ## System Intent
 
@@ -40,7 +40,7 @@ Use Node 22 without runtime dependencies. Capture Git identity and bounded selec
 
 ## Current State
 
-Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and scoped promotion are the remaining bookkeeping transaction; no product work remains for this slice.
+Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and promotion gates passed; this tracker is archived as the completed local MVP record.
 
 ## Implementation Status
 
@@ -89,3 +89,9 @@ Core/UI checkpoint: `1a4b2ded4379cb0b36cd5f0a49f3754d537005ed`. Twelve behavior/
 `experiments/alegor-mvp/real-pilot.json` records Represent at `34a79ca` with 22 commits/12 docs and Plane Sync at `a1a91c4` with 25 commits/two docs, source hashes and unchanged HEAD/status. `controlled-copy.json` proves no-op reuse, a docs-only update at the same HEAD in 1,534.66ms, a retained citation after deleting its source, and unchanged original project hashes. The copy task was synthetic.
 
 The design round established identity, timeline, baseline and exact evidence. Independent review and live UX fixed completed-item classification, scope widening, sensitive paths, rename/hash direction, unknown-range wording, first-layer density, table artifacts and mobile overflow. See `experiments/alegor-mvp/README.md`, browser JSON and screenshots. Detailed Notion/Skales/source genealogy: `docs/research/alegor-research-and-tests.md`; API/usage: `docs/reference/alegor-mvp.md`. No paid calls, no personal transcript scanning, no Visu edits. Rule-based selection, bounded history and unaided usability remain explicit limits.
+
+## Promotion verification - 2026-10-21
+
+Final implementation/evidence commit: `8a781edf0d929212c22364af8b3b7c1faacb8612`. The focused `alegor` suite passed **12/12**, zero skipped, at that HEAD. `ware loop-verify --suite ALEGOR-MVP` recorded the actual runner totals; `promote-check.py --suite ALEGOR-MVP` passed all machine gates. The prior integrated run passed 57/57 and the final browser evidence is committed. Reference content still awaits human review; automated success is not human product acceptance.
+
+Promotion archives this tracker, updates current state/index/capabilities and records a scoped docs commit. No push, deployment, paid AI operation or Visu implementation change occurred. Follow-up product work is tracked in `docs/TODO.md`.

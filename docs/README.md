@@ -12,14 +12,14 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 | [LOGBOOK.md](LOGBOOK.md) | Append-only session history |
 | [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) | Rules that govern this folder |
 | [CAPABILITIES.md](CAPABILITIES.md) | Promoted capabilities only |
-| [GRAFE-MVP-IMPL.md](GRAFE-MVP-IMPL.md) | Active local technical explorer build, real trials and UX pass |
-| [ALEGOR-MVP-IMPL.md](ALEGOR-MVP-IMPL.md) | Active local project re-entry build, real trials and UX pass |
 | [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
 
 ## Archived implementation trackers
 
 | Document | Purpose |
 |---|---|
+| [Grafe MVP](impl/GRAFE-MVP-IMPL.md) | Completed local JS/TS explorer, real-project proof, UX and research genealogy |
+| [Alegor MVP](impl/ALEGOR-MVP-IMPL.md) | Completed Git/docs re-entry, immutable history, real-project proof and UX |
 | [Visu automatic discovery](impl/VISU-DISCOVERY-IMPL.md) | Completed root-only scope/chapters, manual cheap refresh, themes and actual trial evidence |
 | [Visu MVP](impl/VISU-MVP-IMPL.md) | Completed local illustrated-overview slice, implementation evidence and pilot |
 

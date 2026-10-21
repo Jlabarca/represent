@@ -6,7 +6,7 @@
 
 ## AI Continuation Prompt
 
-Read CONTEXT.md, DOCS-PROTOCOL.md, this tracker and research/reports/Represent parallel track restart.md. Complete this bounded MVP independently of the other track and without changing Visu. Parent owns integration, tracker and commits. Isolated build and research workers have disjoint file ownership. Preserve exact test evidence and explicit limitations. Source repositories remain read-only; mutations for verification use copies. All future AI must use Ghost; this MVP requires none.
+Read CONTEXT.md, DOCS-PROTOCOL.md, this tracker and research/reports/Represent parallel track restart.md. Complete this bounded MVP independently of the other track and without changing Visu. Historical execution instructions: parent owned integration, tracker and commits. Isolated build and research workers have disjoint file ownership. Preserve exact test evidence and explicit limitations. Source repositories remain read-only; mutations for verification use copies. All future AI must use Ghost; this MVP requires none.
 
 ## System Intent
 
@@ -40,7 +40,7 @@ Use a pinned TypeScript compiler API adapter instead of depending on an opaque S
 
 ## Current State
 
-Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and scoped promotion are the remaining bookkeeping transaction; no product work remains for this slice.
+Local MVP implemented and integrated. Real-project and controlled-copy trials, independent correctness review, and both design/implementation UI/UX rounds passed. The detailed research genealogy and implementation reference are complete. Final committed verification and promotion gates passed; this tracker is archived as the completed local MVP record.
 
 ## Implementation Status
 
@@ -93,3 +93,9 @@ Core/UI checkpoint: `34a79ca3cba61ed9fc19972cb6ec335304e1e709`; parent integrati
 Plane Sync: six files, 75 symbols, 437 relations, 783.95ms. Integrated Represent: 51 files, 244 symbols, 2,036 relations, 952.82ms. `experiments/grafe-mvp/real-project-audit.json` preserves exact HEAD/file hashes, no-op identity, changed-copy identity and unaffected-symbol stability. Original source HEAD/status/hashes stayed unchanged. The initial 34-file trial is retained separately.
 
 The design round chose focused neighborhoods and evidence disclosure. Live review fixed class-field ownership, false same-name links, Evidence switching, outgoing navigation, candidate wording, viewport stretch, overlapping nodes and search row geometry. See `experiments/grafe-mvp/README.md`, browser JSON and screenshots. Detailed Notion/Gource/Codevis genealogy: `docs/research/grafe-research-and-tests.md`; actual API/usage: `docs/reference/grafe-mvp.md`. No paid calls, no copied upstream implementation, no Visu edits. Larger-project coverage and unaided usability remain limits, not acceptance blockers.
+
+## Promotion verification - 2026-10-21
+
+Final implementation/evidence commit: `8a781edf0d929212c22364af8b3b7c1faacb8612`. The focused `grafe` suite passed **10/10**, zero skipped, at that HEAD. `ware loop-verify --suite GRAFE-MVP` recorded the actual runner totals; `promote-check.py --suite GRAFE-MVP` passed all machine gates. The prior integrated run passed 57/57 and the final browser evidence is committed. Reference content still awaits human review; automated success is not human product acceptance.
+
+Promotion archives this tracker, updates current state/index/capabilities and records a scoped docs commit. No push, deployment, paid AI operation or Visu implementation change occurred. Follow-up product work is tracked in `docs/TODO.md`.

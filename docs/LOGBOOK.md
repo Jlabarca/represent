@@ -237,3 +237,21 @@ No known acceptance failure remains. Neither broad monorepo coverage nor unaided
 ### Next
 
 Verify focused suites at the committed implementation HEAD, promote both trackers with their references, then continue independent larger-project and re-entry validation tracks.
+
+## 2026-10-21 - Promote Grafe and Alegor local MVPs
+
+### Accomplished
+
+Final implementation/evidence commit 8a781edf0d929212c22364af8b3b7c1faacb8612 passed focused Grafe 10/10 and Alegor 12/12 suites with zero skips. Both verification events were recorded at that HEAD and both promotion checkers passed. Earlier integrated regression verification passed 57/57, Grafe browser verification 16/16, and Alegor interaction checks passed. Archived both trackers to impl/, added reference/capability/index entries and reconciled current state.
+
+### Decisions
+
+Keep Grafe and Alegor as independent active product tracks; Visu remains paused. Detailed dossiers are the research/test audit trail, distinguishing Gource execution, unavailable divan Codevis, separate KDE Codevis docs, Skales public-material inspection, and direct Notion reading. Manual local updates require zero model calls.
+
+### Blockers / limits
+
+No open machine acceptance blocker. Reference content and product usefulness still await human review. Bounded JS/TS scope, rule-based Git/docs interpretation, unknown runtime edges and history limits remain documented. Unrelated methodology and raw Notion files were preserved outside these commits.
+
+### Next
+
+Grafe: larger multi-package scope and unaided navigation, then editor-follow/minimap and incremental indexing. Alegor: unaided re-entry, then an explicitly selected session preview with measured false/missed links. No push or public deployment performed.
