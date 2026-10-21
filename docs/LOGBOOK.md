@@ -201,3 +201,21 @@ No open core/UI acceptance blocker. Full-repository semantic coverage, runtime d
 ### Next
 
 Complete integrated pilot evidence, detailed dossier reconciliation and parallel Alegor integration before final promotion.
+
+## 2026-10-21 — Alegor core and web integration
+
+### Accomplished
+
+Integrated the zero-dependency Git/docs snapshot core, CLI and protected local web app. Parent full regression run passed 57/57, including all 12 Alegor cases. Browser checks passed for citations, persistent themes, compact details, unavailable-history wording, keyboard and mobile layout.
+
+### Decisions
+
+Keep snapshots manual and immutable outside source roots. Distinguish observed Git facts, declared plans and unknown next steps. No model calls or personal transcript scanning.
+
+### Blockers / limits
+
+No open acceptance blocker. Rule-based source selection and the 40-commit history window are bounded; session connectors and autonomous actions remain future work.
+
+### Next
+
+Publish the completed real-project/copy trials and source genealogy, then verify both tracks at their committed implementation state and promote together.

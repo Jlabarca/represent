@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Alegor · return to your work</title>
+  <link rel="stylesheet" href="/style.css">
+  <script nonce="__ALEGOR_NONCE__">window.ALEGOR_TOKEN = "__ALEGOR_TOKEN__";</script>
+  <script type="module" src="/app.mjs" nonce="__ALEGOR_NONCE__"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Alegor home"><span class="brand-mark" aria-hidden="true">a</span><span>Alegor</span></a>
+    <p class="topline">A clear way back into your work</p>
+    <button id="theme-toggle" class="icon-button" type="button" aria-label="Switch color theme" title="Switch color theme"><span aria-hidden="true">◐</span></button>
+  </header>
+  <main class="shell">
+    <section class="workspace-head" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">PROJECT MEMORY · LOCAL</p>
+        <h1 id="page-title">Pick up where you left off.</h1>
+        <p class="subhead">A small, evidence-linked brief from the project’s Git history and its own planning notes.</p>
+      </div>
+      <button id="capture-button" class="primary-button" type="button"><span aria-hidden="true">＋</span> Capture snapshot</button>
+    </section>
+
+    <section class="project-band" aria-label="Choose project">
+      <div class="project-select-wrap"><label for="project-select">Project</label><select id="project-select"></select></div>
+      <div class="project-context"><span id="project-dot" class="project-dot" aria-hidden="true"></span><span id="branch-label">Select a project</span><span id="head-label" class="mono"></span></div>
+      <p id="capture-status" class="capture-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="timeline-section" aria-labelledby="timeline-title">
+      <div class="section-heading"><div><p class="eyebrow">YOUR CHECKPOINTS</p><h2 id="timeline-title">Project timeline</h2></div><div class="baseline-picker"><label for="baseline-select">Compare since</label><select id="baseline-select"><option value="">Latest available context</option></select></div></div>
+      <div id="timeline" class="timeline" role="list" aria-label="Saved snapshots"></div>
+      <p id="empty-state" class="empty-state" hidden>No snapshot yet. Capture one to start this project’s local history.</p>
+    </section>
+
+    <div id="brief" class="brief-layout" aria-live="polite"></div>
+    <details class="evidence-drawer" id="evidence-drawer">
+      <summary><span>Evidence from this snapshot</span><span id="evidence-count" class="count-pill">0 files</span></summary>
+      <div id="evidence-list" class="evidence-list"></div>
+    </details>
+    <footer><span>Snapshots stay on this machine · source projects stay read only</span><span id="revision-label" class="mono"></span></footer>
+  </main>
+</body>
+</html>

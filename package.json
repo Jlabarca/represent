@@ -6,7 +6,12 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "start": "node src/visu/cli.mjs serve",
-    "test": "node --test tests/visu*.test.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:visu": "node --test tests/visu*.test.mjs",
+    "test:grafe": "node --test tests/grafe*.test.mjs",
+    "test:alegor": "node --test tests/alegor*.test.mjs",
+    "grafe": "node src/grafe/cli.mjs",
+    "alegor": "node src/alegor/cli.mjs",
     "pilot": "node scripts/visu-pilot.mjs"
   }
 }

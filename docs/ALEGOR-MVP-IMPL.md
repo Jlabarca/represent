@@ -40,20 +40,20 @@ Use Node 22 without runtime dependencies. Capture Git identity and bounded selec
 
 ## Current State
 
-Planned, with read-only worker planning complete. Product edits start after this plan commit. Historical prototypes remain available.
+Working core, CLI and local web surface integrated from the isolated build. The parent verified 12/12 Alegor behavior/API tests within the full 57/57 regression run. Real-project and disposable-copy trials and browser UX checks passed; final documentation reconciliation and scoped promotion remain.
 
 ## Implementation Status
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| 1 | Planned | Codex | high | Headless core, CLI, local web and meaningful regression tests |
-| 2 | Planned | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
+| 1 | Complete | Codex | high | Headless core, CLI, local web and meaningful regression tests |
+| 2 | In progress | Codex | high | Real-project trials, UI/UX improvement, detailed research record and promotion |
 
 ## Checklist
 
 ### Phase 1 — Working local product (verify: integration)
-- [ ] ALEGOR-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior.
-- [ ] ALEGOR-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation.
+- [x] ALEGOR-MVP.1.1 — Implement the bounded core, snapshot/evidence lifecycle and CLI with tested safety, correctness and no-op behavior. Evidence: src/alegor/ and tests/alegor-{core,server}.test.mjs; 12/12 passed, zero skipped.
+- [x] ALEGOR-MVP.1.2 — Implement the local web surface, protected manual actions, progressive detail and accessible navigation. Evidence: web/alegor/ and experiments/alegor-mvp/browser-check.json; citations, theme persistence, keyboard/mobile, progressive detail and unavailable-range checks passed.
 
 ### Phase 2 — Real proof and research traceability (verify: e2e)
 - [ ] ALEGOR-MVP.2.1 — Run real-project task and controlled-copy update trials; preserve measurements and original-source hashes.
@@ -63,7 +63,7 @@ Planned, with read-only worker planning complete. Product edits start after this
 
 ## Known Bugs
 
-None identified before implementation. Scope limits and unverified claims must be documented as such rather than hidden.
+No open known acceptance bugs. Review fixed completed-item classification, implicit root widening, sensitive paths, rename direction/destination hashes, unavailable comparison wording, excessive first-layer detail, table artifacts and mobile overflow. Rule-based document interpretation and bounded Git history remain explicit limits.
 
 ## What Needs Testing
 
