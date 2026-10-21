@@ -273,3 +273,21 @@ The report and infographic are research artifacts, not an accepted OS/runtime de
 ### Next
 
 Review the recommendation before creating any integrated workspace or execution-runner implementation tracker. A future runtime comparison needs a named real task and bounded workload first.
+
+## 2026-10-21 — Compare Represent with the Orkest platform direction
+
+### Accomplished
+
+Read the deep-research report-writer and Represent documentation protocol, then synthesized the Orkest platform/company-stack source notes, prior Represent OS report, Orkest Multica/CloudCLI guide, unattended-work status, Ghost Orkest tracker and current adapter interfaces, Represent tool references, and the user-supplied runner/verifier comparison. Added [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and indexed it with the three source notes.
+
+### Decisions
+
+The report compares the earlier separate Represent Workspace thesis with the user's broader Maremoto AI developer-tooling product-line intent and Orkest-first platform approach. It keeps Visu as a first-class Represent tool while its implementation remains paused, and recommends a small project/task-to-Represent-artifact integration proof before adding a new shell or execution layer. The report treats the user's unmanaged-agent and Multica-parity direction as current product intent, while distinguishing it from readiness verified in the inspected source snapshot.
+
+### Blockers / limits
+
+No active Claude Code session was inspected, no Orkest or Ghost decision was changed, and no services, runners, containers, provider credentials, or infrastructure were started or inspected. Source notes record repository heads and identify stale/conflicting summaries. The report is a research recommendation, not an adopted architecture or approval for runner provisioning.
+
+### Next
+
+Reconcile the report's Orkest readiness caveat with the operator's active unmanaged-agent work before planning implementation. If the product boundary is accepted, define the smallest project/revision/artifact link and prove it in Orkest using one current Represent tool; leave unattended runner and verifier work to their existing gated tracker.
