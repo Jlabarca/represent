@@ -3,6 +3,17 @@
 > Active sprint tasks only. Completed sprints roll up into CONTEXT.md.
 > See `DOCS-PROTOCOL.md` Rule 2.
 
+## Active sprint: Represent within Orkest design (2026-10-21)
+
+The earlier exploration is closed in the [learning record](research/reports/Represent%20exploration%20learning%20record.md). Preserve [Visu's experience](guides/visu-experience.md), all three working tools, source and trial artifacts. This is a fresh design/audit/bootstrap sequence, not a request to implement the old workspace proposal or provision runners now.
+
+- [x] Close the exploration into durable learning and preserve Visu knowledge — evidence: learning record, Visu guide and historical markers; source reports, measurements, images and code retained.
+- [ ] Revalidate Orkest/Ghost readiness and draft the Represent platform design, preserving the Visu experience and separating existing capabilities from proposals.
+- [ ] Have Opus 5.5 audit the fresh design, improve it where needed, and record the resulting product, ownership and UX decisions.
+- [ ] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate.
+
+Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). No new integration IMPL has been created; do not use the old bootstrap's unchecked boxes as this cursor.
+
 ## Sprint: Bootstrap (2026-04-13 → ?)
 
 > Historical bootstrap checklist; superseded by the active sprint below. Earlier ideas are preserved.
@@ -18,9 +29,9 @@
 - [ ] Sketch the headless core → surface boundary (what the library exposes, what each surface does on top)
 - [ ] Prototype a minimal pipeline: ingest → annotate → Ghost AI prompt → render
 
-## Active sprint: Grafe + Alegor follow-up validation (2026-10-21)
+## Deferred follow-up: Grafe + Alegor validation (2026-10-21)
 
-Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](impl/GRAFE-MVP-IMPL.md), [ALEGOR-MVP](impl/ALEGOR-MVP-IMPL.md). The tracks progress independently; Visu stays paused. Shared identity can evolve without blocking either workflow.
+Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](impl/GRAFE-MVP-IMPL.md), [ALEGOR-MVP](impl/ALEGOR-MVP-IMPL.md). These earlier follow-ups are preserved and deferred behind the design checkpoint above. They are not completed by the closeout. Visu stays paused.
 
 ### Grafe - source navigation
 

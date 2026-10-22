@@ -7,6 +7,8 @@ Represent is the umbrella for tools, POCs, and products that turn source code (a
 
 Multiple concrete projects will live here. They share one doctrine, one AI backend, and one embeddability target — differ only in their visualization mode and ingestion strategy.
 
+**Learning checkpoint (2026-10-21):** The earlier exploration is closed as retained learning before the fresh Orkest-platform design. Start with the [learning record](docs/research/reports/Represent%20exploration%20learning%20record.md) and [Visu experience guide](docs/guides/visu-experience.md). Visu remains a first-class Represent tool; its source, art, history and UX knowledge are retained. The next sequence is design first, Opus 5.5 audit/improvement, then bootstrap; see [Represent within the Orkest platform](docs/research/reports/Represent%20within%20the%20Orkest%20platform.md).
+
 ## Core tenets
 
 - **Ghost AI backend.** All LLM calls go through Ghost's AI pipeline (providers, routing, caching, resilience). No per-project provider plumbing, no hardcoded API keys. See [Ghost AI system docs](../Ghost/docs/reference/ai-system.md).

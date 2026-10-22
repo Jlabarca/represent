@@ -1,5 +1,7 @@
 # Represent Workspace / “Represent OS” concept infographic
 
+> **Closed learning artifact (2026-10-21).** The owner did not adopt this separate-workspace design. Preserve the infographic, SVG/PNG, source links and checks as research; it is not the next implementation cursor or Visu's visual quality bar. See the [learning closeout](../../docs/research/reports/Represent%20exploration%20learning%20record.md), [Visu preservation guide](../../docs/guides/visu-experience.md), and [Orkest-platform design input](../../docs/research/reports/Represent%20within%20the%20Orkest%20platform.md).
+
 This folder contains a standalone research infographic about the proposed Represent project workspace. It answers what Gource contributed to Grafe’s design, how Dot and Skales informed Alegor, and whether Represent needs a local service, Linux sandbox, or full desktop.
 
 ## Files

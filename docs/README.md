@@ -2,6 +2,8 @@
 
 Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going.
 
+Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. Continue with [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md); design, Opus 5.5 audit/improvement, then bootstrap.
+
 ## Root living documents
 
 | Doc | Purpose |
@@ -43,6 +45,8 @@ Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for wh
 
 | Document | Purpose |
 |---|---|
+| [Exploration learning record](research/reports/Represent%20exploration%20learning%20record.md) | Closeout of Atlas/reference/ROMPE/Visu/Grafe/Alegor/OS work, evidence ledger, preserved lessons and fresh-design continuation contract |
+| [Keep the Visu experience at hand](guides/visu-experience.md) | Fast visual/code reference for the liked experience, manual cheap updates, history preservation, preview and known weaknesses |
 | [Grafe detailed research and tests](research/grafe-research-and-tests.md) | Repository genealogy, direct Notion traceability, Codevis identities, Gource execution and design consequences |
 | [Alegor detailed research and tests](research/alegor-research-and-tests.md) | Repository genealogy, Skales inspection, original Notion intent and re-entry evidence |
 | [Grafe MVP research](research/grafe-mvp-research.md) | Pinned extractor trials, real plane-sync evidence, DX opportunities and maturity gate |

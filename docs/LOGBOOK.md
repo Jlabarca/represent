@@ -291,3 +291,21 @@ No active Claude Code session was inspected, no Orkest or Ghost decision was cha
 ### Next
 
 Reconcile the report's Orkest readiness caveat with the operator's active unmanaged-agent work before planning implementation. If the product boundary is accepted, define the smallest project/revision/artifact link and prove it in Orkest using one current Represent tool; leave unattended runner and verifier work to their existing gated tracker.
+
+## 2026-10-21 — Close exploration learning and preserve Visu
+
+### Accomplished
+
+Closed the Atlas/reference/ROMPE/Visu/Grafe/Alegor/Represent OS sequence into [Represent exploration learning record](research/reports/Represent%20exploration%20learning%20record.md). Added [Keep the Visu experience at hand](guides/visu-experience.md) with screenshots, code seams, manual capture/explain/illustrate behavior, cache/cost evidence, limitations and local-history preservation. Verified 65 local links across the two new documents, required learning sections, existing ROMPE/Luz/ImageLab store directories and documentation whitespace. These are documentation checks, not reruns of earlier paid pilots or application suites.
+
+### Decisions
+
+The owner explicitly wants the liked Visu experience kept inside Represent. Keep every working tool and trial artifact, preserve the earlier OS proposal as historical learning, and mark the original scanner-first tracker as historical rather than falsely completing its unchecked boxes. The next cursor is the new design-first TODO section: revalidate Orkest/Ghost, draft the design, have Opus 5.5 audit/improve it, then bootstrap a bounded implementation plan. No new integration IMPL is created in this closeout. Durable reading order and audit/bootstrap requirements are in the learning record; the handoff is disposable scratch.
+
+### Blockers / limits
+
+No application code, images, source projects, provider configuration, runtime infrastructure or local history was changed. Visu history under .represent/visu remains ignored and is not included in a fresh Git clone; tracked trial evidence is retained, and the guide explains deliberate export. Earlier test counts and model charges remain historical observations. Existing unrelated methodology and Notion worktree changes are excluded. Opus 5.5 has not audited or bootstrapped the new design yet.
+
+### Next
+
+Create the ignored REPRESENT-ORKEST-DESIGN handoff from the verified checkout, then resume [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) in a fresh design-first session. Recheck current Orkest work rather than trusting old source snapshots or resuming the original bootstrap tracker. Preserve Visu's visual/interaction quality bar throughout design and audit.

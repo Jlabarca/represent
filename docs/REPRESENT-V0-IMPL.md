@@ -1,5 +1,8 @@
 # Represent v0 — Implementation Tracker
 
+> [!WARNING]
+> **Closed as historical exploration, 2026-10-21.** This scanner-first tracker is not the current execution cursor. Preserve its original ideas and unchecked boxes as historical scope; they are not completed by closure. The working Visu/Grafe/Alegor slices have separate promoted trackers. Read the [learning record](research/reports/Represent%20exploration%20learning%20record.md), [Visu preservation guide](guides/visu-experience.md), and [Orkest-platform research](research/reports/Represent%20within%20the%20Orkest%20platform.md). The next design will be audited/improved by Opus 5.5 before a new bounded tracker is bootstrapped.
+
 > Living design and status for the first directory-to-scene companion.
 > Source brief: `docs/handoffs/ASTRA-KICKOFF.md` (local, intentionally ignored).
 > Follows DOCS-PROTOCOL.md Rule 15. Updated: 2026-10-21.
