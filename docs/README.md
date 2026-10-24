@@ -2,7 +2,7 @@
 
 Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going.
 
-Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. Continue with [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md); design, Opus 5.5 audit/improvement, then bootstrap.
+Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. The design step is done: [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and its bounded plan [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) await the operator's Phase 0 review.
 
 ## Root living documents
 
@@ -15,6 +15,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 | [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) | Rules that govern this folder |
 | [CAPABILITIES.md](CAPABILITIES.md) | Promoted capabilities only |
 | [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
+| [REPRESENT-ORKEST-IMPL.md](REPRESENT-ORKEST-IMPL.md) | Bounded plan for hosting Represent's tools inside Orkest through an artifact record, a hub and one GhostShell layer; bootstrapped 2026-10-24, nothing implemented |
 
 ## Archived implementation trackers
 
@@ -61,6 +62,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 | [Reference repository study](research/reports/Represent%20reference%20repository%20study.md) | Source-grounded reuse/adapt/avoid synthesis |
 | [Living project views report](research/reports/Represent%20living%20project%20views.md) | Suite design: Visu overview, Grafe technical explorer, candidate Alegor history/assistant experience, MVP and full direction |
 | [Represent OS design and runtime](research/reports/Represent%20OS%20design%20and%20runtime.md) | Research recommendation: Gource and Grafe design, Dot/Skales and Alegor, Represent Workspace, and when execution environments are needed |
+| [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) | Audited design (2026-10-24): readiness revalidation, boundaries, artifact record and hub, stages, Visu participation, end-to-end task, UX round, open questions; awaiting operator review |
 | [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) | Compares the earlier Represent-centered workspace with the user's Orkest-first AI developer-tooling direction; recommends an integration proof and separates current source evidence from product intent |
 | [Represent Workspace infographic](../experiments/represent-os-concept/index.html) | Interactive research artifact comparing workspace and runtime choices; concept only, not a working OS or integrated shell |
 | [Orkest platform research notes](research/research_notes/Represent%20within%20the%20Orkest%20platform/) | Company stack, Orkest/Multica/CloudCLI readiness, product boundaries, local versus unattended CLI paths, runner and verifier trade-offs |

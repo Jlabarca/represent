@@ -8,11 +8,12 @@
 The earlier exploration is closed in the [learning record](research/reports/Represent%20exploration%20learning%20record.md). Preserve [Visu's experience](guides/visu-experience.md), all three working tools, source and trial artifacts. This is a fresh design/audit/bootstrap sequence, not a request to implement the old workspace proposal or provision runners now.
 
 - [x] Close the exploration into durable learning and preserve Visu knowledge — evidence: learning record, Visu guide and historical markers; source reports, measurements, images and code retained.
-- [ ] Revalidate Orkest/Ghost readiness and draft the Represent platform design, preserving the Visu experience and separating existing capabilities from proposals.
-- [ ] Have Opus 5.5 audit the fresh design, improve it where needed, and record the resulting product, ownership and UX decisions.
-- [ ] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate.
+- [x] Revalidate Orkest/Ghost readiness and draft the Represent platform design, preserving the Visu experience and separating existing capabilities from proposals — evidence: [design](research/reports/Represent%20within%20Orkest%20platform%20design.md) §1 readiness table (Orkest `8f96ded`, Ghost `cc920933`, 2026-10-24), §4.4 Visu participation.
+- [x] Have Fable 5.1 audit the fresh design, improve it where needed, and record the resulting product, ownership and UX decisions — evidence: independent audit pass recorded in LOGBOOK 2026-10-24; four decision rows added to CONTEXT.md (pending operator confirmation in REPRESENT-ORKEST.0.1).
+- [x] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate — evidence: [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md), phases 0 to 5, TEST.1 to TEST.9, nothing implemented.
+- [ ] **Operator:** Phase 0 review — confirm or override OQ-1 to OQ-3 and the boundaries (REPRESENT-ORKEST.0.1), review the design UX mockups (0.2, 0.3). Implementation waits for this.
 
-Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). No new integration IMPL has been created; do not use the old bootstrap's unchecked boxes as this cursor.
+Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). The integration tracker is [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md); do not use the old bootstrap's unchecked boxes as this cursor.
 
 ## Sprint: Bootstrap (2026-04-13 → ?)
 

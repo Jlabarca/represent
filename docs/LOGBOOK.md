@@ -309,3 +309,21 @@ No application code, images, source projects, provider configuration, runtime in
 ### Next
 
 Create the ignored REPRESENT-ORKEST-DESIGN handoff from the verified checkout, then resume [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) in a fresh design-first session. Recheck current Orkest work rather than trusting old source snapshots or resuming the original bootstrap tracker. Preserve Visu's visual/interaction quality bar throughout design and audit.
+
+## 2026-10-24 — Represent within Orkest: design, audit and bootstrap
+
+### Accomplished
+
+Revalidated Orkest and Ghost state on 2026-10-24 (Orkest `8f96ded`, Ghost `cc920933` committed files only): the cockpit fork is done and deployed on the lab1 dashboard with Orkest on, adapter Phase 3 and session readers Phase 5 are done, the unattended path is still gated in ORKEST-FORK Phase 4 (OQ-8 approved 2026-10-23, 4.2 kit offline, no daemon or agent has run). Drafted [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md): target user and five jobs, product/brand/repo boundaries, an artifact record `represent.artifact/v0` plus a small hub as the seam, three stages (record and CLI, hub, one GhostShell layer by the RIMA precedent; Alegor companion design-only), Visu hosted not rebuilt, one Plane Sync end-to-end trace with exists/stage/gated marks, a five-change UX design round, AI and auth boundary, standalone path, costs and three open questions. Ran an independent Fable 5.1 audit (fifteen findings) and folded every one in. Bootstrapped [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) with phases 0 to 5, owned files, nine tests, Plane Sync trials and two UX rounds. Updated CONTEXT (four decision rows, direction, sprint), TODO cursor, README index.
+
+### Decisions
+
+Orkest is the host; Represent contributes tools and portable artifacts and is never in the trust chain. Hub after the record and CLI attach are proven; tool pages never call the hub; the hub spawns tools with a token it generates; loopback only. Hub store outside every project root (`%LOCALAPPDATA%/Represent/hub/`), because Alegor refuses a store inside a configured root. Host project id is the methrep workspace id, case-folded. Stage B owns one layer plus the same shell-core proxy wiring RIMA needed. "Compose from this" is open-for-box plus clipboard, because Orkest's composer prefills only a box id. Product keeps "Represent"; methrep keeps its name. All four rows await the operator's confirmation in REPRESENT-ORKEST.0.1.
+
+### Blockers / limits
+
+Audit corrections worth remembering: Grafe and Alegor stores default to `%LOCALAPPDATA%/Represent/<tool>`, not `.represent/`; Grafe does not record HEAD and has no symbol URL routing (new Phase 1 work); the adapter's board writes sit behind Father's internal route and no Orkest UI write path is live; "in production" was an overstatement (Phase 6 open). Loopback view URLs only open from a lab1 browser. The Ghost working tree was dirty and was not inspected. No code, service, runner, credential or provider was changed; no paid run. The design's three `../../../../Ghost/...` links resolve from `D:/ware/represent`, not from inside a worktree. The handoff remains ignored scratch. This work landed on branch `claude/represent-orkest-design-a4fc91`, cut from `codex/represent-v0` at `0e80bcc`; it fast-forwards onto that branch.
+
+### Next
+
+Operator Phase 0: confirm or override OQ-1 to OQ-3 and the boundaries (0.1), review the design UX mockups (0.2, 0.3). Implementation of Phase 1 waits for that review. Visu stays paused; Grafe and Alegor follow-ups stay deferred.

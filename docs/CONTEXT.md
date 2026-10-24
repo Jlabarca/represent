@@ -2,7 +2,11 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-10-21
+> Updated: 2026-10-24
+
+## Current Operating Direction (2026-10-24)
+
+**Design drafted, audited and bootstrapped; implementation not started.** [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) revalidated the Orkest/Ghost state on 2026-10-24 (cockpit fork live at `/x/orkest`, adapter Phase 3 and session readers Phase 5 done, unattended path still gated in ORKEST-FORK Phase 4) and places Represent inside Orkest through a **portable artifact record** and a **small hub**, with one GhostShell layer following the RIMA precedent. Visu, Grafe and Alegor stay independent, launchable and unchanged in experience; Represent never dispatches, verifies, holds credentials or writes to Multica. The bounded plan is [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md); its Phase 0 is the operator's review of the design and the five hosting UX changes against the preserved Visu screenshots. No code, service, runner or provider was changed by this step.
 
 ## Current Operating Direction (2026-10-21)
 
@@ -63,6 +67,10 @@ Product pre-implementation, with working reference-tool experiments and a local 
 | First delivery gate | **Historical technical checkpoint: first real plane-sync scene for the Grafe ingestion track** | The original scanner-first P0-P4 kickoff preceded the tested Visu direction. The plane-sync scene remains a useful engineering checkpoint, but is no longer the global product gate. | 2026-10-21 |
 | Current validation case | **ROMPE poster establishes the visual bar; validate style transfer on another project** | The user selected “A memorable overview” as the only tested output that fits Represent. Box-based tools remain useful research instruments, not the product's main visual direction. | 2026-10-21 |
 | Document visualization boundary | **Audited facts → selected view → renderer** | The trials found real prompt/source discrepancies; valid layout alone cannot establish correct rules. Share provenance and qualifications across explainer and poster outputs. | 2026-10-21 |
+| Orkest integration seam | **Portable artifact record `represent.artifact/v0` + a small `represent hub`** | One record (tool, project, revision, scope, evidence hashes, provenance, optional task) is all Orkest needs; the hub fronts the three loopback tools and keeps their stores immutable. No shared database, second board or new shell. Design: [Represent within Orkest](research/reports/Represent%20within%20Orkest%20platform%20design.md). Pending operator review (REPRESENT-ORKEST.0.1). | 2026-10-24 |
+| Host shell | **One GhostShell layer `layers/represent` by the RIMA precedent** | Edited by absolute path from a Represent session, imports only shell APIs, proxies to the hub; survives Orkest's extraction and keeps `Ghost/apps` frozen. | 2026-10-24 |
+| Trust chain | **Represent is never in it** | Artifacts are not evidence of accepted work. The only handoff to work is text in Orkest's existing composer; runner, verifier and Multica writes stay in ORKEST-FORK. | 2026-10-24 |
+| Name collision with methrep | **Product keeps "Represent"; methrep keeps its name and code** | New ids are `represent-hub`, `/x/represent`, `/proxy/represent`; nothing new is named `Ghost.Represent`. Recording in the naming canon is a later umbrella task. | 2026-10-24 |
 
 > [!WARNING]
 > **Historical gate superseded 2026-10-21:** The initial bootstrap recorded these choices before the user clarified that the illustrated overview is the product-quality bar. Preserve them here as the original technical sequence; they are not current global gates.
@@ -120,10 +128,12 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-Close the earlier exploration as learning, retain the working tools and Visu quality bar, and resume [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) in a fresh **design-first** session. Read the [closeout and continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract) and [Visu preservation guide](guides/visu-experience.md). Recheck current Orkest/Ghost state before drafting the design; Opus 5.5 audits/improves it and bootstraps the resulting implementation plan. The current cursor is in TODO.md; no new IMPL exists yet. Previous larger-project, re-entry, minimap and session-connector tasks remain deferred, not falsely marked complete. Visu development and paid refreshes remain paused.
+The design-first sequence is complete: [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) is drafted and audited, and [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) is bootstrapped with phases, owned files, tests, real-project trials and two UX rounds. The cursor is the operator's Phase 0 review (REPRESENT-ORKEST.0.1 to 0.3). Implementation does not start before that review. Visu development and paid refreshes remain paused; Grafe and Alegor follow-ups stay deferred in TODO.md.
+
 
 ## Active Research
 
+- [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md): 2026-10-24 readiness revalidation, target user and jobs, boundaries, artifact record and hub, three stages, Visu participation, one end-to-end Plane Sync task, UX design round, AI/auth boundary, standalone path, three open questions with defaults. **Audited design awaiting operator review; nothing implemented.**
 - [Companion interaction research](research/companions.md): ambient panel, query-first and change-digest alternatives; verified capabilities separated from inferred design rules.
 - [Reference repository study](research/reports/Represent%20reference%20repository%20study.md): GitNexus, CodeBoarding, interactive-diagram, CodeCharta, Gource and Git City. [Inventory](research/reference-repos.json) records pinned commits and source paths. Eraser Diagrams was added for the [ROMPE trials](research/rompe-tool-trials.md).
 - [Graphify field results](research/graphify-tested.md): ignore-awareness, cost, unlabeled clusters and indiscriminate rendering failures remain acceptance constraints.
