@@ -327,3 +327,21 @@ Audit corrections worth remembering: Grafe and Alegor stores default to `%LOCALA
 ### Next
 
 Operator Phase 0: confirm or override OQ-1 to OQ-3 and the boundaries (0.1), review the design UX mockups (0.2, 0.3). Implementation of Phase 1 waits for that review. Visu stays paused; Grafe and Alegor follow-ups stay deferred.
+
+## 2026-10-24 — Project audit report
+
+### Accomplished
+
+Fast-forwarded `codex/represent-v0` to the design commit `d46a4cf` in the main checkout. Ran the full suite from that checkout (57 pass, 0 fail, 85 s) and measured Git, store, experiment and source state. Wrote [Represent project audit 2026-10-24](research/reports/Represent%20project%20audit%202026-10-24.md): a graded state table, nine ranked findings, six ordered next steps, twelve tool improvements and ten feature ideas with what each would prove.
+
+### Decisions
+
+None taken; the report ranks them for the operator. Housekeeping (push, real CLAUDE.md, methodology reconciliation, README) is recommended before Phase 0 of REPRESENT-ORKEST.
+
+### Blockers / limits
+
+Findings of note: 21 commits unpushed; the untracked `CLAUDE.md` is an unfilled template; the uncommitted `.ghostdev/version.json` bump drops rules, skills, hooks and the status line; no Grafe or Alegor store exists at the `%LOCALAPPDATA%` default; `.represent/alegor-restart-sessions-copy` holds 89 MB of private captured session data with no backup. Sizes were measured, contents of ignored stores and `notion/` were not read. No model call or paid run.
+
+### Next
+
+Operator reads the report; housekeeping day; then Phase 0 of the tracker.
