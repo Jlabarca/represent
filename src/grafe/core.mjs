@@ -76,7 +76,17 @@ function resolveModule(file, specifier, known) {
 }
 
 export function indexProject(root, { maxFiles, maxTotalBytes } = {}) {
-  const discovered = discoverFiles(root, { maxFiles, maxTotalBytes });
+  return analyze(root, discoverFiles(root, { maxFiles, maxTotalBytes }));
+}
+
+/** Library seam (Trazo): index an already-captured file list [{path,text,hash}] under root, with no discovery of its own. */
+export function indexFiles(root, captured) {
+  const absolute = path.resolve(root);
+  const files = captured.filter(f => EXTENSIONS.has(path.extname(f.path).toLowerCase()) && !EXCLUDED.test(f.path) && !SECRET.test(f.path)).map(f => ({ path: f.path.replaceAll('\\','/'), text: f.text, hash: f.hash ?? hash(f.text) }));
+  return analyze(root, { files, scope: { root: absolute, included: files.map(f => f.path), includedCount: files.length, includedBytes: files.reduce((n, f) => n + Buffer.byteLength(f.text), 0), candidateCount: captured.length, skipped: [] }, diagnostics: [] });
+}
+
+function analyze(root, discovered) {
   const files = discovered.files;
   const known = new Set(files.map(f => f.path));
   const byPath = new Map(files.map(f => [f.path, f]));

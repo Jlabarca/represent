@@ -28,13 +28,37 @@ export function defaultStoreDir(workspace) {
 
 function git(root, args, { maxBuffer = 8 * 1024 * 1024 } = {}) {
   return execFileSync('git', ['-C', root, ...args], {
-    encoding: 'buffer', windowsHide: true, maxBuffer, timeout: GIT_TIMEOUT_MS,
+    encoding: 'buffer', windowsHide: true, maxBuffer, timeout: GIT_TIMEOUT_MS, stdio: ['ignore', 'pipe', 'ignore'],
     env: { ...process.env, GIT_OPTIONAL_LOCKS: '0', GIT_TERMINAL_PROMPT: '0' },
   });
 }
 
 function text(buf) { return buf.toString('utf8').replace(/^\uFEFF/, ''); }
 function nulList(buf) { return text(buf).split('\0').filter(Boolean); }
+
+/** Library seam (Trazo): bounded first-parent history for a folder (repository root or subfolder), paths relative to the repository root. */
+export function readHistory(root, { limit = MAX_HISTORY_COMMITS } = {}) {
+  const folder = resolve(root);
+  const n = Math.max(1, Math.min(limit, MAX_HISTORY_COMMITS));
+  let top, head, branch, prefix;
+  try {
+    top = text(git(folder, ['rev-parse', '--show-toplevel'])).trim();
+    prefix = text(git(folder, ['rev-parse', '--show-prefix'])).trim().replace(/\/$/, '');
+    head = text(git(folder, ['rev-parse', 'HEAD'])).trim();
+    branch = text(git(folder, ['branch', '--show-current'])).trim() || 'detached';
+  } catch { return { git: false, head: null, branch: null, prefix: '', commits: [], truncated: false }; }
+  const tokens = nulList(git(folder, ['log', '-n', String(n + 1), '--first-parent', '--date=iso-strict', '--format=%H%x09%ad%x09%s%x00', '--name-only', '-z', '--', '.']));
+  const commits = []; let current = null;
+  for (const raw of tokens) {
+    const token = raw.replace(/^\r?\n/, '');
+    if (/^[\da-f]{40,64}\t/.test(token)) { if (current) commits.push(current); const [sha, date, ...subject] = token.split('\t'); current = { sha, date, subject: subject.join('\t').slice(0, 240), paths: [] }; }
+    else if (current && token && !isSensitivePath(token) && !hasHiddenSegment(token)) current.paths.push(token.replaceAll('\\', '/'));
+  }
+  if (current) commits.push(current);
+  const truncated = commits.length > n; commits.length = Math.min(commits.length, n);
+  let dirty = false; try { dirty = nulList(git(folder, ['status', '--porcelain=v1', '-z', '--', '.'])).length > 0; } catch {}
+  return { git: true, top, prefix, head, branch, dirty, commits, truncated };
+}
 
 export function loadProjects(configPath) {
   const fullPath = resolve(configPath);

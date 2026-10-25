@@ -20,7 +20,7 @@ const STATE = /(?:^|\/)(?:context|todo|tasks|status|current|active|plan|impl|fea
 const CONFIG = /(?:^|\/)(?:package\.json|pyproject\.toml|cargo\.toml|go\.mod|composer\.json|pom\.xml|build\.gradle(?:\.kts)?|vite\.config\.[^/]+|next\.config\.[^/]+|astro\.config\.[^/]+)$/i;
 const DESIGN = /(?:^|\/)(?:design|spec|architecture|overview|product|vision|ux|ui)(?:\/|[-_.]|$)/i;
 
-function safeName(name) {
+export function safeName(name) {
   const p = name.replaceAll('\\','/').replace(/^\.\//,'');
   if (!p || p.startsWith('/') || p.split('/').some(x => !x || x === '.' || x === '..')) return null;
   if (p.split('/').some(x => EXCLUDE_DIR.test(x) || x.startsWith('.')) || EXCLUDE_FILE.test(p)) return null;
@@ -90,6 +90,15 @@ function classify(p) {
   if (ENTRY.test(p)) return {...overview,kind:'code',score:72,reason:'Runtime entry point provides concrete implementation evidence.'};
   if (/\.(?:html|vue|svelte|tsx|jsx)$/i.test(p)) return {...overview,kind:'code',score:62,reason:'User-facing implementation shows the project’s actual experience.'};
   return {role:'detail',kind:'code',score:35,reason:'Source file offers supporting implementation detail.'};
+}
+
+/** Bounded text-file inventory for library callers (Trazo): same Git-aware exclusions as discovery, no selection. */
+export async function inventory(root) {
+  const abs = path.resolve(root);
+  const inv = await trackedInventory(abs);
+  const paths = [];
+  for (const raw of inv.paths) { const p = safeName(raw); if (p) paths.push(p); }
+  return { root: abs, mode: inv.mode, paths, truncated: inv.truncated, excluded: inv.paths.length - paths.length };
 }
 
 export async function discover(root) {
