@@ -2,7 +2,7 @@
 
 Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going.
 
-Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. The design step is done: [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and its bounded plan [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) await the operator's Phase 0 review.
+Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. **Plan number one (2026-10-25):** the [Trazo POC](reference/trazo-poc.md) and its tracker [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md). The [Orkest platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) wait behind it.
 
 ## Root living documents
 
@@ -15,6 +15,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 | [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) | Rules that govern this folder |
 | [CAPABILITIES.md](CAPABILITIES.md) | Promoted capabilities only |
 | [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
+| [REPRESENT-TRAZO-POC-IMPL.md](REPRESENT-TRAZO-POC-IMPL.md) | **Plan number one (2026-10-25):** four-week POC of a resident, proactive artist companion over a consented folder; zero-AI sketch first, then explanation, infographics and optional illustration |
 | [REPRESENT-ORKEST-IMPL.md](REPRESENT-ORKEST-IMPL.md) | Bounded plan for hosting Represent's tools inside Orkest through an artifact record, a hub and one GhostShell layer; bootstrapped 2026-10-24, nothing implemented |
 
 ## Archived implementation trackers
@@ -30,6 +31,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 
 | Document | Purpose |
 |---|---|
+| [Trazo POC design and plan](reference/trazo-poc.md) | Pre-implementation technical design placed in reference by the operator's request: experience script, unknowns to prove, architecture, stack decision, data model, reuse, security, four-week plan, product and service path |
 | [Grafe MVP](reference/grafe-mvp.md) | Local JS/TS explorer, source evidence, manual history, API and limitations |
 | [Grafe MVP trials](../experiments/grafe-mvp/README.md) | Two real repositories, controlled updates, measured scope and UX checks |
 | [Alegor MVP](reference/alegor-mvp.md) | Local Git/docs re-entry, timeline, captured citations, API and limitations |

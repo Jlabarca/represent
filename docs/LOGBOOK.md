@@ -345,3 +345,21 @@ Findings of note: 21 commits unpushed; the untracked `CLAUDE.md` is an unfilled 
 ### Next
 
 Operator reads the report; housekeeping day; then Phase 0 of the tracker.
+
+## 2026-10-25 — Trazo POC: design, tracker, plan number one
+
+### Accomplished
+
+Pushed `codex/represent-v0` to origin (first push of the branch; 22 commits). Wrote [reference/trazo-poc.md](reference/trazo-poc.md): answers to whether a resident proactive artist companion can be a working POC and a product, the experience script, the five unknowns with pass criteria, architecture (watcher, discovery snapshot, fact graph, deterministic SVG sketch with four levels, one cached explanation, templated infographics with citations, optional Visu illustration, loopback viewer with SSE, nudges with budget, Claude Code hook, stdio MCP), stack decision with alternatives, data model, reuse table, security, four-week plan, open-core service path, risks. Bootstrapped [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) with eleven tests and weekly phases. Made it plan number one in CONTEXT, TODO and README; REPRESENT-ORKEST deferred behind it. Built a private investor-facing artifact page summarizing the POC for technical readers.
+
+### Decisions
+
+Operator: the Trazo POC is the number-one plan now. Defaults pending operator confirmation in 0.1: codename Trazo, Apache-2.0, `fs.watch` recursive with polling fallback, Mermaid for graph views and hand-built SVG for the sketch, store under `%LOCALAPPDATA%/Represent/trazo/`. The design lives in `reference/` by the operator's request although it is pre-implementation; it is rewritten as-built on promotion.
+
+### Blockers / limits
+
+Nothing implemented; no model call or paid run. Codename, licence and trial folders are the operator's. No market validation; the public repository is the demand instrument. The artifact page is private until the operator shares it and is not a financial offering.
+
+### Next
+
+Operator Phase 0 (REPRESENT-TRAZO-POC.0.1), then week 1 sketch with a stop-or-go verdict at 1.7.

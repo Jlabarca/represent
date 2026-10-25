@@ -3,7 +3,17 @@
 > Active sprint tasks only. Completed sprints roll up into CONTEXT.md.
 > See `DOCS-PROTOCOL.md` Rule 2.
 
-## Active sprint: Represent within Orkest design (2026-10-21)
+## Active sprint: Trazo POC (2026-10-25)
+
+Plan number one by the operator's decision. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md). Zero model calls in week 1; no paid call without consent and a shown price; no Orkest or Ghost code.
+
+- [ ] **Operator:** Phase 0, confirm codename, licence and the four trial folders (REPRESENT-TRAZO-POC.0.1).
+- [ ] Week 1, sketch: CLI, consent, fact graph, SVG layouts, dial, viewer, ledger; four-folder trial; stop-or-go verdict (1.1 to 1.7).
+- [ ] Week 2, explain and compose: cached explanation through Ghost, templates with citations, artifact record; correctness ratings (2.1 to 2.5).
+- [ ] Week 3, live and proactive: watcher, nudges with budget, SSE, Claude Code hook, MCP draw (3.1 to 3.4).
+- [ ] Week 4, polish and trials: UX rounds, five-day use, ROMPE illustration pass with existing art, public repository, feasibility verdict (4.1 to 4.5).
+
+## Deferred sprint: Represent within Orkest design (2026-10-21, deferred 2026-10-25 behind the POC)
 
 The earlier exploration is closed in the [learning record](research/reports/Represent%20exploration%20learning%20record.md). Preserve [Visu's experience](guides/visu-experience.md), all three working tools, source and trial artifacts. This is a fresh design/audit/bootstrap sequence, not a request to implement the old workspace proposal or provision runners now.
 
@@ -11,7 +21,7 @@ The earlier exploration is closed in the [learning record](research/reports/Repr
 - [x] Revalidate Orkest/Ghost readiness and draft the Represent platform design, preserving the Visu experience and separating existing capabilities from proposals — evidence: [design](research/reports/Represent%20within%20Orkest%20platform%20design.md) §1 readiness table (Orkest `8f96ded`, Ghost `cc920933`, 2026-10-24), §4.4 Visu participation.
 - [x] Have Fable 5.1 audit the fresh design, improve it where needed, and record the resulting product, ownership and UX decisions — evidence: independent audit pass recorded in LOGBOOK 2026-10-24; four decision rows added to CONTEXT.md (pending operator confirmation in REPRESENT-ORKEST.0.1).
 - [x] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate — evidence: [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md), phases 0 to 5, TEST.1 to TEST.9, nothing implemented.
-- [ ] **Operator:** Phase 0 review — confirm or override OQ-1 to OQ-3 and the boundaries (REPRESENT-ORKEST.0.1), review the design UX mockups (0.2, 0.3). Implementation waits for this.
+- [ ] **Operator:** Phase 0 review — confirm or override OQ-1 to OQ-3 and the boundaries (REPRESENT-ORKEST.0.1), review the design UX mockups (0.2, 0.3). Deferred until the Trazo POC verdict; the POC writes the artifact record this tracker's Phase 1 needs.
 
 Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). The integration tracker is [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md); do not use the old bootstrap's unchecked boxes as this cursor.
 

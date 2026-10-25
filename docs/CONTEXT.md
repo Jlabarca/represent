@@ -2,7 +2,11 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-10-24
+> Updated: 2026-10-25
+
+## Current Operating Direction (2026-10-25)
+
+**Plan number one: the Trazo POC.** The operator chose to test Represent's feasibility with one resident, proactive artist companion: run it in a folder, it asks for consent, draws a zero-AI sketch in under three seconds, then explains and illustrates within a budget, with a technical-level dial. Design and four-week plan: [reference/trazo-poc.md](reference/trazo-poc.md) (placed in reference by the operator's request; rewritten as-built on promotion). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md); Phase 0 is the operator's confirmation of codename, licence and trial folders. It reuses the three tools as libraries and writes the Orkest design's artifact record, so [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) waits behind it without being discarded. The investor-facing summary is a private artifact page; see LOGBOOK 2026-10-25. Nothing is implemented yet.
 
 ## Current Operating Direction (2026-10-24)
 
@@ -71,6 +75,7 @@ Product pre-implementation, with working reference-tool experiments and a local 
 | Host shell | **One GhostShell layer `layers/represent` by the RIMA precedent** | Edited by absolute path from a Represent session, imports only shell APIs, proxies to the hub; survives Orkest's extraction and keeps `Ghost/apps` frozen. | 2026-10-24 |
 | Trust chain | **Represent is never in it** | Artifacts are not evidence of accepted work. The only handoff to work is text in Orkest's existing composer; runner, verifier and Multica writes stay in ORKEST-FORK. | 2026-10-24 |
 | Name collision with methrep | **Product keeps "Represent"; methrep keeps its name and code** | New ids are `represent-hub`, `/x/represent`, `/proxy/represent`; nothing new is named `Ghost.Represent`. Recording in the naming canon is a later umbrella task. | 2026-10-24 |
+| Feasibility proof | **Trazo POC first: zero-AI sketch, then explanation and templated infographics, then optional illustration; four weeks, four real folders** | Tests the three unknowns (a free sketch worth keeping open, cheap explanation over raster art, proactivity without noise) before any platform work. Open core (Apache-2.0 proposed) with a service path. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Codename provisional. | 2026-10-25 |
 
 > [!WARNING]
 > **Historical gate superseded 2026-10-21:** The initial bootstrap recorded these choices before the user clarified that the illustrated overview is the product-quality bar. Preserve them here as the original technical sequence; they are not current global gates.
@@ -128,7 +133,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-The design-first sequence is complete: [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) is drafted and audited, and [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) is bootstrapped with phases, owned files, tests, real-project trials and two UX rounds. The cursor is the operator's Phase 0 review (REPRESENT-ORKEST.0.1 to 0.3). Implementation does not start before that review. Visu development and paid refreshes remain paused; Grafe and Alegor follow-ups stay deferred in TODO.md.
+**Trazo POC** ([tracker](REPRESENT-TRAZO-POC-IMPL.md), [design](reference/trazo-poc.md)). Cursor: operator Phase 0 (codename, licence, four trial folders), then week 1, the zero-AI sketch, ending in a stop-or-go verdict. REPRESENT-ORKEST's Phase 0 review is deferred until the POC verdict. Visu development and paid refreshes remain paused; Trazo reuses Visu's discovery, analysis and gateway code as libraries without changing its experience.
 
 
 ## Active Research
