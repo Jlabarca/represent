@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "start": "node src/visu/cli.mjs serve",
     "test": "node --test tests/*.test.mjs",
@@ -12,6 +14,8 @@
     "test:alegor": "node --test tests/alegor*.test.mjs",
     "grafe": "node src/grafe/cli.mjs",
     "alegor": "node src/alegor/cli.mjs",
-    "pilot": "node scripts/visu-pilot.mjs"
+    "pilot": "node scripts/visu-pilot.mjs",
+    "test:trazo": "node --test tests/trazo*.test.mjs",
+    "trazo": "node src/trazo/cli.mjs"
   }
 }
