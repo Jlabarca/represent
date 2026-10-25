@@ -1,0 +1,163 @@
+{
+  "schema": "represent.artifact/v0",
+  "tool": {
+    "name": "trazo",
+    "version": "0.2.0"
+  },
+  "project": {
+    "hostId": "represent (demo)",
+    "repoRoot": "D:/ware/represent/.claude/worktrees/represent-orkest-design-a4fc91",
+    "remote": null
+  },
+  "revision": {
+    "ref": "claude/represent-orkest-design-a4fc91",
+    "sha": "3be8778aad0aea52c33d1857d3b957a27bfa441d",
+    "dirty": true,
+    "capturedAt": "2026-10-25T19:41:18.753Z"
+  },
+  "scope": {
+    "kind": "explained-snapshot",
+    "summary": "Three local tools · Trazo sketch engine · Explanation with citations · Stores outside the repo · Trial evidence · Orkest seam (waiting)"
+  },
+  "evidence": [
+    {
+      "path": "docs/CONTEXT.md",
+      "lines": [
+        1,
+        13
+      ],
+      "hash": "9cd458a103245a6eb984a6f1615db41067bc7f0cf9af9ba4ca368074efcc8d01"
+    },
+    {
+      "path": "docs/REPRESENT-ORKEST-IMPL.md",
+      "lines": [
+        1,
+        16
+      ],
+      "hash": "2497100e7153b8fb9b469cb5b4a56a1c58b04dde7c1877b25d6e67372486daae"
+    },
+    {
+      "path": "docs/REPRESENT-TRAZO-POC-IMPL.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "e670cb36a65983fc65b9e297eb9bbd66577c625c463ee8e166870ec33b0fc1a3"
+    },
+    {
+      "path": "docs/REPRESENT-V0-IMPL.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "a1cc0e3221e0f73afee356c59cc661f6d211e0f12db2dfceba6145025868fea4"
+    },
+    {
+      "path": "docs/TODO.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "09b1bd5977c21d1e26757bed036a0fc2d08078dd3ccb6fa09128f1dbdfea8f8a"
+    },
+    {
+      "path": "docs/reference/alegor-mvp.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "88bcd79c8378bf89fa2b2c3d0ec6973dd6910b25a28731eb11dad2ce70ec7e7a"
+    },
+    {
+      "path": "docs/reference/grafe-mvp.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "93f96b8af4bee891ef09a319226f8b970c9b02b872419f1324ffac1cf6b47205"
+    },
+    {
+      "path": "docs/reference/trazo-poc.md",
+      "lines": [
+        1,
+        11
+      ],
+      "hash": "15699e0c970fd959f0bf332dba14b803cf68a85b512205a4e8dc0807a7abf7e0"
+    },
+    {
+      "path": "docs/reference/visu-discovery.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "063ec59e103f1d0ce859412ffccb3a1dcd1697ed3c0417dd70bedef8a7f6978e"
+    },
+    {
+      "path": "docs/reference/visu-mvp.md",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "9bbf3f5192b925bccf7437585a3f89c3dc8d1f1332d625619bc977e28dcf6440"
+    },
+    {
+      "path": "README.md",
+      "lines": [
+        1,
+        16
+      ],
+      "hash": "491ead9612066c464add32d9a69c878e707cddbf60d26eb9dfd44f118aa10794"
+    },
+    {
+      "path": "experiments/grafe-restart/fixture/package.json",
+      "lines": [
+        1,
+        6
+      ],
+      "hash": "fe31bf03a63cb58eaa5b22544592afb306ab51fd1b5ad668e86a219d7cad3232"
+    },
+    {
+      "path": "package.json",
+      "lines": [
+        1,
+        18
+      ],
+      "hash": "c08cf07b084c6a7bdfb607b9ec1f5d060c31df519c28c3cb9d2f3d4be12dff68"
+    },
+    {
+      "path": "experiments/rompe/index.html",
+      "lines": [
+        1,
+        5
+      ],
+      "hash": "3ad5853313eaa774a560301bd840ab917fa519e53d51e9657c2740ef5bfaf690"
+    },
+    {
+      "path": "src/alegor/server.mjs",
+      "lines": [
+        1,
+        15
+      ],
+      "hash": "906414e393332f66327057b1a2b3a15370b4c24e9ba2ccb4f81731a74669dadf"
+    },
+    {
+      "path": "src/alegor/cli.mjs",
+      "lines": [
+        1,
+        16
+      ],
+      "hash": "971b5403986bd3721b07aabab13bd1aeaa197f9a26917a73312835c672b11ef8"
+    }
+  ],
+  "view": {
+    "url": null,
+    "static": "infographic.svg"
+  },
+  "provenance": {
+    "inference": "model",
+    "model": "demo-fake",
+    "cost": null,
+    "promptVersion": "visu-analysis/4+trazo/1"
+  },
+  "id": "sha256:788b954505df5e100715b8292e49b837a61af62269dd30c701e8979a83efa83c"
+}

@@ -1,0 +1,21 @@
+{
+  "schema": "trazo.ledger/v0",
+  "calls": [
+    {
+      "id": "f1ee3418-6a97-4306-9da5-54bad7ebbaf3",
+      "at": "2026-10-25T19:43:01.871Z",
+      "stage": "explain",
+      "model": "demo-fake",
+      "status": "success",
+      "cacheHit": false,
+      "costUsd": null,
+      "costReported": false,
+      "estimateUsd": 0.0662,
+      "excerptCount": 49,
+      "approxBytes": 63644,
+      "snapshotId": "34c483ffac0be12046e8d1deec5d3aacd03d802bb0fbf07fc4df44d19998f1a4",
+      "durationMs": 1010.9
+    }
+  ],
+  "costUsd": 0
+}

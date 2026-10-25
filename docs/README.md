@@ -33,6 +33,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 |---|---|
 | [Trazo POC design and plan](reference/trazo-poc.md) | Pre-implementation technical design placed in reference by the operator's request: experience script, unknowns to prove, architecture, stack decision, data model, reuse, security, four-week plan, product and service path |
 | [Trazo POC week-1 trial](../experiments/trazo-poc/week1/README.md) | Zero-AI sketch on four real folders: timings, screenshots, SVGs at four levels, known gaps, verdict options |
+| [Trazo POC week-2 trial](../experiments/trazo-poc/week2/README.md) | Priced explanation with preview and cache, chapter infographic with citations, Mermaid text, artifact record; excerpt-set previews and estimates per folder; how to run the paid calls |
 | [Grafe MVP](reference/grafe-mvp.md) | Local JS/TS explorer, source evidence, manual history, API and limitations |
 | [Grafe MVP trials](../experiments/grafe-mvp/README.md) | Two real repositories, controlled updates, measured scope and UX checks |
 | [Alegor MVP](reference/alegor-mvp.md) | Local Git/docs re-entry, timeline, captured citations, API and limitations |

@@ -381,3 +381,21 @@ Cold first capture of a large folder can take up to 13.6 s on this machine (Wind
 ### Next
 
 Operator verdict (1.7): go to week 2, go after layout fixes, or stop.
+
+## 2026-10-25 — Trazo POC week 2: explain and compose built, paid trial pending
+
+### Accomplished
+
+Verdict 1.7 recorded (go). Week 2 of [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) built: `src/trazo/explain.mjs` (excerpt set from Visu's discovery with a bounded loader, preview with estimate, explain only with a Ghost client, `confirm: true` and under a per-call cap; cache by excerpt set, prompt version and model; vocabulary for document folders), `src/trazo/compose.mjs` with `web/trazo/templates/` (six-chapter infographic: captions, module tags, confidence dots, clickable citations, import arrows, legend, freshness and STALE line; Mermaid flowchart text), `src/artifact/record.mjs` (`represent.artifact/v0` builder and validator), server endpoints (preview, explain, explanation, citations, infographic, mermaid, artifact, ledger) and the viewer flow (preview modal, priced button, views, citation popover). Visu seam: `analyzeProject` takes an optional vocabulary note. Tests: 5 new, suite 72 pass. Previews with estimates for the four folders recorded under [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md) together with a fake-analyzer demo run. Zero model calls.
+
+### Decisions
+
+Explanation reuses `analyzeProject` whole (six chapters, validated citations, withheld claims) rather than a new prompt; Trazo attaches chapters to fact-graph modules afterwards. Price estimate fitted to Visu's measured history and labelled as such; the ledger records the gateway's reported cost. Mermaid stays text in the viewer so no request leaves loopback. Artifact record written beside every explained snapshot with the quote hashes as evidence.
+
+### Blockers / limits
+
+The paid trial (2.4) needs `TRAZO_GHOST_KEY` in the shell that launches Trazo; none is set here and the key is never read from files. Three of four folders estimate at $0.066, above the design's $0.05 line; Plane Sync at $0.043. Chapter-level redraw and nudges are week 3. No model call or paid run.
+
+### Next
+
+Operator runs the four explanations with the key, rates ten statements per folder (2.5); then week 3 (watcher, nudges, SSE, hook, MCP).

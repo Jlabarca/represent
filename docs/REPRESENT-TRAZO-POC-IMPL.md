@@ -6,7 +6,7 @@
 > Updated: 2026-10-25
 > Prior-art sweep: 2026-10-25. Checked [CAPABILITIES.md](CAPABILITIES.md) (Visu discovery and overview, Grafe explorer, Alegor re-entry: all reused as libraries, none resident or proactive), `reference/` and `impl/` filenames, `experiments/represent-os-concept/` (static composition proof, not a watcher), REPRESENT-ORKEST-IMPL (waits behind this POC; its artifact record is written here), and Ghost's methrep (a methodology daemon, not a folder artist).
 
-**Plan number one as of 2026-10-25 (operator).** Phase 0 confirmed 2026-10-25 with the defaults (codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz, `D:/ware/docs`). Week 1 (1.1 to 1.6) implemented and trialled the same day with zero model calls; the operator's verdict at 1.7 decides week 2.
+**Plan number one as of 2026-10-25 (operator).** Phase 0 confirmed 2026-10-25 with the defaults (codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz, `D:/ware/docs`). Week 1 (1.1 to 1.6) implemented and trialled the same day with zero model calls; verdict 1.7: go. Week 2 (2.1 to 2.3) built the same day, still with zero model calls; the paid trial 2.4 needs the operator's gateway key.
 
 ## AI Continuation Prompt
 
@@ -46,10 +46,14 @@ Watcher → snapshot (discovery) → fact graph → sketch (SVG, four levels) �
 
 ## Current State (2026-10-25)
 
+Week 2 built: `src/trazo/explain.mjs` (preview, confirmed and capped explain through Ghost, cache by excerpt set), `src/trazo/compose.mjs` with `web/trazo/templates/` (chapter infographic with citations, Mermaid text), `src/artifact/record.mjs` (`represent.artifact/v0`), viewer explain flow (preview modal, priced button, chapters and mermaid views, citation popover). Suite 72 pass. Excerpt-set previews for the four folders recorded under [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md) with estimates of $0.043 to $0.067; no model call has been made. 2.4 (one real explanation per folder) waits for a gateway key in the operator's shell; 2.5 is the rating.
+
 Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, two test files (whole suite 67 pass). Library seams added to Visu discovery (`inventory`), Grafe (`indexFiles`) and Alegor (`readHistory`) without changing their behaviour. Trial on the four folders recorded under [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md): first sketch in 0.44 to 0.78 s warm (cold file cache up to 13.6 s on luz), dial switches under 15 ms, zero model calls. Waiting on the operator's verdict (1.7). REPRESENT-ORKEST waits behind this POC.
 
 ## Known Bugs
 
+- The design's "under $0.05 per explanation" is met only where discovery selects less than about 46 KB (Plane Sync); the other three folders fill the 64 KB excerpt cap and estimate at $0.066. Lever: a smaller cap for the explain call, to be judged against the rating.
+- Mermaid is emitted as text and shown in a `<pre>`; client-side rendering from cdnjs (OQ-3) is not wired, so the viewer still makes no request outside loopback.
 - Path aliases (`@/`, tsconfig `paths`) are not resolved, so alias-heavy TypeScript apps (luz) show no module arrows. Candidate for week 2 or the verdict's layout-fix option.
 - C# and Go namespace imports resolve to directories, often inside the same module; adds little signal.
 - Cold first capture of a large folder can take 10 s on Windows (file cache, measured; Trazo's own work is under 1 s). No progress line yet.
@@ -74,8 +78,8 @@ Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, t
 | Phase | State | Model | Description |
 |---|---|---|---|
 | 0 Confirm | Done 2026-10-25 | operator | Codename, licence, four trial folders. |
-| 1 Sketch (week 1) | 1.1 to 1.6 done 2026-10-25; 1.7 operator | Claude Fable 5.1 | CLI, consent, snapshot, fact graph, SVG sketch, dial, viewer, ledger. |
-| 2 Explain and compose (week 2) | Not started | any | Explanation through Ghost, templates, citations, cache, artifact record. |
+| 1 Sketch (week 1) | Done 2026-10-25 (go verdict) | Claude Fable 5.1 | CLI, consent, snapshot, fact graph, SVG sketch, dial, viewer, ledger. |
+| 2 Explain and compose (week 2) | 2.1 to 2.3 done 2026-10-25; 2.4 needs the operator's key; 2.5 operator | Claude Fable 5.1 | Explanation through Ghost, templates, citations, cache, artifact record. |
 | 3 Live and proactive (week 3) | Not started | any | Watcher, nudges, budget, SSE, hook, MCP. |
 | 4 Polish and trials (week 4) | Not started | operator + any | UX rounds, five-day use, ROMPE illustration pass, public repository, verdict. |
 | 5 Promotion | Not started | any | As-built reference, CAPABILITIES, archive. |
@@ -94,14 +98,14 @@ Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, t
 - [x] REPRESENT-TRAZO-POC.1.4 `src/trazo/sketch.mjs`: treemap, layered modules, history strip; SVG primitives; stable positions. TEST.5. Evidence 2026-10-25: four levels render on all four folders; order by module id is independent of weight (test); rendering deterministic (test). Partial for TEST.5: widths still follow weight, so a large file change resizes neighbours in the same row; the one-file-change measurement is week 4's.
 - [x] REPRESENT-TRAZO-POC.1.5 `src/trazo/server.mjs` and `web/trazo/`: loopback viewer with token and Origin, dial, three themes, status strip, ledger. TEST.1, TEST.2, TEST.8 (static part). Evidence 2026-10-25: `tests/trazo-server.test.mjs` (401 without token, 403 on foreign Host or Origin, level and focus validation, immutable snapshot files, CSP); viewer screenshots under `experiments/trazo-poc/week1/`.
 - [x] REPRESENT-TRAZO-POC.1.6 Week 1 trial on the four folders under `experiments/trazo-poc/week1/`: timings, screenshots, operator verdict. **Stop-or-go.** Evidence 2026-10-25: [week1/README.md](../experiments/trazo-poc/week1/README.md), `timings.json`, 16 SVGs, 7 screenshots. First sketch 0.44 to 0.78 s warm; TEST.1 passes warm on all four, cold on two (file cache).
-- [ ] REPRESENT-TRAZO-POC.1.7 **human:** operator's verdict on the zero-AI sketch.
+- [x] REPRESENT-TRAZO-POC.1.7 **human:** operator's verdict on the zero-AI sketch. Evidence: operator chat 2026-10-25, "Verdict 1.7: go. Tick it and start week 2 of REPRESENT-TRAZO-POC (explain and compose)."
 
 ### Phase 2 — Explain and compose (week 2)
 
-- [ ] REPRESENT-TRAZO-POC.2.1 `src/trazo/explain.mjs`: excerpt set from discovery, `analysis.mjs` prompt with vocabulary parameter, cache by excerpt hash, prompt version and model; "what I will send" preview. TEST.6.
-- [ ] REPRESENT-TRAZO-POC.2.2 `src/trazo/compose.mjs` and `web/trazo/templates/`: chapter infographic with captions, citations, confidence marks, freshness line; Mermaid emission for graph views. 
-- [ ] REPRESENT-TRAZO-POC.2.3 Artifact record v0 writer (shared with REPRESENT-ORKEST 1.2 when that resumes). TEST.10.
-- [ ] REPRESENT-TRAZO-POC.2.4 Week 2 trial: one explanation per folder with costs, correctness ratings (10 statements each) under `experiments/trazo-poc/week2/`.
+- [x] REPRESENT-TRAZO-POC.2.1 `src/trazo/explain.mjs`: excerpt set from discovery, `analysis.mjs` prompt with vocabulary parameter, cache by excerpt hash, prompt version and model; "what I will send" preview. TEST.6. Evidence 2026-10-25: `tests/trazo-explain.test.mjs` (409 without client, 428 without confirm, cache hit makes no call and costs $0, secrets absent from the preview); `analyzeProject` vocabulary seam; CLI `--preview`. TEST.6's "chapter redraw sends only that chapter" is week 3's nudge path.
+- [x] REPRESENT-TRAZO-POC.2.2 `src/trazo/compose.mjs` and `web/trazo/templates/`: chapter infographic with captions, citations, confidence marks, freshness line; Mermaid emission for graph views. Evidence 2026-10-25: template SVGs with slots, escaped captions and clickable citations (test), STALE mark (test), Mermaid text with dashed low-confidence chapters (test); demo screenshots under `experiments/trazo-poc/week2/`.
+- [x] REPRESENT-TRAZO-POC.2.3 Artifact record v0 writer (shared with REPRESENT-ORKEST 1.2 when that resumes). TEST.10. Evidence 2026-10-25: `src/artifact/record.mjs` (content-addressed id excluding `task` and `view.url`, validator, evidence hashes); written as `artifact.json` per explained snapshot; `GET /api/artifact`; tests.
+- [ ] REPRESENT-TRAZO-POC.2.4 Week 2 trial: one explanation per folder with costs, correctness ratings (10 statements each) under `experiments/trazo-poc/week2/`. Partial 2026-10-25: previews and estimates for the four folders recorded, zero calls; the four paid calls need `TRAZO_GHOST_KEY` in the operator's shell (command in the week-2 README).
 - [ ] REPRESENT-TRAZO-POC.2.5 **human:** operator rates the statements.
 
 ### Phase 3 — Live and proactive (week 3)
@@ -131,7 +135,7 @@ Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, t
 | `src/trazo/facts.mjs`, `tests/trazo-core.test.mjs` | Fact graph and language scanners; sketch tests share the file | 1 |
 | `src/trazo/sketch.mjs` | Deterministic SVG layouts | 1 |
 | `src/trazo/server.mjs`, `web/trazo/**`, `tests/trazo-server.test.mjs` | Viewer, dial, SSE | 1, 3 |
-| `src/trazo/explain.mjs`, `compose.mjs`, `web/trazo/templates/` | Explanation and infographic | 2 |
+| `src/trazo/explain.mjs`, `compose.mjs`, `web/trazo/templates/`, `tests/trazo-explain.test.mjs` | Explanation and infographic | 2 |
 | `src/artifact/record.mjs` | Artifact record v0 | 2 |
 | `src/trazo/watch.mjs`, `nudge.mjs`, `mcp.mjs`, `hooks/` | Live loop, nudges, agent inputs | 3 |
 | `src/grafe/core.mjs`, `src/alegor/core.mjs` | Library seams only | 1 |

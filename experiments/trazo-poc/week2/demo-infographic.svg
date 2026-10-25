@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 750" width="100%" role="img" aria-label="Trazo infographic">
+<style>
+.t-bg{fill:var(--t-paper,#ffffff)} .t-ink{fill:var(--t-ink,#1a2233)} .t-dim{fill:var(--t-ink-dim,#5b6677)} .t-faint{fill:var(--t-ink-faint,#98a2b3)}
+.t-box{fill:var(--t-box,#f4f6f9);stroke:var(--t-line,#aeb8c6);stroke-width:1.4} .t-mark{fill:var(--t-marker,#ffd23f)}
+.t-arrow{stroke:var(--t-accent,#2f6fed);fill:none;stroke-width:1.4;opacity:.75} .t-arrow-head{fill:var(--t-accent,#2f6fed)}
+.c0{fill:var(--t-c0,#4f7cff)}.c1{fill:var(--t-c1,#2fb57c)}.c2{fill:var(--t-c2,#e0862b)}.c3{fill:var(--t-c3,#b958c4)}.c4{fill:var(--t-c4,#1fa8b8)}.c5{fill:var(--t-c5,#d9534f)}.c6{fill:var(--t-c6,#8a9a2d)}.c7{fill:var(--t-c7,#6c7a90)}
+text{font-family:var(--t-mono,"IBM Plex Mono",Consolas,monospace)} .lbl{font-size:14px;font-weight:600} .sub{font-size:11px} .big{font-size:20px;font-weight:700} .tiny{font-size:10px} .cap{font-size:12px}
+a.cite text{fill:var(--t-accent,#2f6fed);text-decoration:underline} a.cite:hover text{fill:var(--t-ink,#1a2233)}
+</style>
+<defs><marker id="i-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="t-arrow-head"/></marker></defs>
+<rect class="t-bg" x="0" y="0" width="1000" height="750"/>
+<text class="t-ink big" x="16" y="34">represent (demo)</text>
+<text class="t-dim sub" x="16" y="52">6 chapters · demo-fake · cost not reported (est. $0.0662) · 49 excerpts · 1 withheld claims</text>
+
+<g class="chapter" data-chapter="three-local-tools" data-node="mod:docs">
+<rect class="t-box" x="16" y="68" width="476" height="196" rx="6"/>
+<rect class="c3" x="16" y="68" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="32" y="94">Three local tools</text>
+<text class="t-faint tiny" x="32" y="110">docs</text>
+<circle class="t-mark" cx="452" cy="88" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="462" cy="88" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="472" cy="88" r="3"><title>confidence high</title></circle>
+<text class="t-ink cap" x="32" y="134">Demo caption 1: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="32" y="150">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="32" y="166">links.</text>
+<text class="t-dim sub" x="32" y="206">current: Demo current state for Three local tools.</text>
+<a class="cite" href="#cite/three-local-tools/current/0" data-cite="three-local-tools/current/0"><text class="tiny" x="32" y="252">CONTEXT.md:1<title>docs/CONTEXT.md lines 1–13</title></text></a><a class="cite" href="#cite/three-local-tools/design/0" data-cite="three-local-tools/design/0"><text class="tiny" x="116.4" y="252">REPRESENT-ORKEST-IMPL.md:1<title>docs/REPRESENT-ORKEST-IMPL.md lines 1–16</title></text></a><a class="cite" href="#cite/three-local-tools/next/0" data-cite="three-local-tools/next/0"><text class="tiny" x="287.6" y="252">REPRESENT-TRAZO-POC-IMPL.md:1<title>docs/REPRESENT-TRAZO-POC-IMPL.md lines 1–18</title></text></a>
+</g>
+
+<g class="chapter" data-chapter="trazo-sketch-engine" data-node="mod:docs">
+<rect class="t-box" x="508" y="68" width="476" height="196" rx="6"/>
+<rect class="c3" x="508" y="68" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="524" y="94">Trazo sketch engine</text>
+<text class="t-faint tiny" x="524" y="110">docs</text>
+<circle class="t-mark" cx="944" cy="88" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="954" cy="88" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="964" cy="88" r="3"><title>confidence high</title></circle>
+<text class="t-ink cap" x="524" y="134">Demo caption 2: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="524" y="150">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="524" y="166">links.</text>
+<text class="t-dim sub" x="524" y="206">current: Demo current state for Trazo sketch engine.</text>
+<a class="cite" href="#cite/trazo-sketch-engine/current/0" data-cite="trazo-sketch-engine/current/0"><text class="tiny" x="524" y="252">REPRESENT-V0-IMPL.md:1<title>docs/REPRESENT-V0-IMPL.md lines 1–18</title></text></a><a class="cite" href="#cite/trazo-sketch-engine/design/0" data-cite="trazo-sketch-engine/design/0"><text class="tiny" x="670.4" y="252">TODO.md:1<title>docs/TODO.md lines 1–18</title></text></a><a class="cite" href="#cite/trazo-sketch-engine/next/0" data-cite="trazo-sketch-engine/next/0"><text class="tiny" x="736.2" y="252">alegor-mvp.md:1<title>docs/reference/alegor-mvp.md lines 1–18</title></text></a>
+</g>
+
+<g class="chapter" data-chapter="explanation-with-citations" data-node="mod:docs/reference">
+<rect class="t-box" x="16" y="280" width="476" height="196" rx="6"/>
+<rect class="c7" x="16" y="280" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="32" y="306">Explanation with citations</text>
+<text class="t-faint tiny" x="32" y="322">docs/reference</text>
+<circle class="t-mark" cx="452" cy="300" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="462" cy="300" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="472" cy="300" r="3"><title>confidence high</title></circle>
+<text class="t-ink cap" x="32" y="346">Demo caption 3: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="32" y="362">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="32" y="378">links.</text>
+<text class="t-dim sub" x="32" y="418">current: Demo current state for Explanation with citations.</text>
+<a class="cite" href="#cite/explanation-with-citations/current/0" data-cite="explanation-with-citations/current/0"><text class="tiny" x="32" y="464">grafe-mvp.md:1<title>docs/reference/grafe-mvp.md lines 1–18</title></text></a><a class="cite" href="#cite/explanation-with-citations/design/0" data-cite="explanation-with-citations/design/0"><text class="tiny" x="128.8" y="464">trazo-poc.md:1<title>docs/reference/trazo-poc.md lines 1–11</title></text></a><a class="cite" href="#cite/explanation-with-citations/next/0" data-cite="explanation-with-citations/next/0"><text class="tiny" x="225.60000000000002" y="464">visu-discovery.md:1<title>docs/reference/visu-discovery.md lines 1–18</title></text></a>
+</g>
+
+<g class="chapter" data-chapter="stores-outside-the-repo" data-node="mod:(root)">
+<rect class="t-box" x="508" y="280" width="476" height="196" rx="6"/>
+<rect class="c7" x="508" y="280" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="524" y="306">Stores outside the repo</text>
+<text class="t-faint tiny" x="524" y="322">(root)</text>
+<circle class="t-mark" cx="944" cy="300" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="954" cy="300" r="3"><title>confidence high</title></circle><circle class="t-mark" cx="964" cy="300" r="3"><title>confidence high</title></circle>
+<text class="t-ink cap" x="524" y="346">Demo caption 4: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="524" y="362">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="524" y="378">links.</text>
+<text class="t-dim sub" x="524" y="418">current: Demo current state for Stores outside the repo.</text>
+<a class="cite" href="#cite/stores-outside-the-repo/current/0" data-cite="stores-outside-the-repo/current/0"><text class="tiny" x="524" y="464">visu-mvp.md:1<title>docs/reference/visu-mvp.md lines 1–18</title></text></a><a class="cite" href="#cite/stores-outside-the-repo/design/0" data-cite="stores-outside-the-repo/design/0"><text class="tiny" x="614.6" y="464">README.md:1<title>README.md lines 1–16</title></text></a><a class="cite" href="#cite/stores-outside-the-repo/next/0" data-cite="stores-outside-the-repo/next/0"><text class="tiny" x="692.8000000000001" y="464">package.json:1<title>experiments/grafe-restart/fixture/package.json lines 1–6</title></text></a>
+</g>
+
+<g class="chapter" data-chapter="trial-evidence" data-node="mod:experiments">
+<rect class="t-box" x="16" y="492" width="476" height="196" rx="6"/>
+<rect class="c6" x="16" y="492" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="32" y="518">Trial evidence</text>
+<text class="t-faint tiny" x="32" y="534">experiments</text>
+<circle class="t-mark" cx="452" cy="512" r="3"><title>confidence medium</title></circle><circle class="t-mark" cx="462" cy="512" r="3"><title>confidence medium</title></circle><circle class="t-faint" cx="472" cy="512" r="3" fill-opacity=".35"><title>confidence medium</title></circle>
+<text class="t-ink cap" x="32" y="558">Demo caption 5: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="32" y="574">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="32" y="590">links.</text>
+<text class="t-dim sub" x="32" y="630">current: Demo current state for Trial evidence.</text>
+<a class="cite" href="#cite/trial-evidence/current/0" data-cite="trial-evidence/current/0"><text class="tiny" x="32" y="676">package.json:1<title>package.json lines 1–18</title></text></a><a class="cite" href="#cite/trial-evidence/design/0" data-cite="trial-evidence/design/0"><text class="tiny" x="128.8" y="676">index.html:1<title>experiments/rompe/index.html lines 1–5</title></text></a>
+</g>
+
+<g class="chapter" data-chapter="orkest-seam-waiting" data-node="mod:src/alegor">
+<rect class="t-box" x="508" y="492" width="476" height="196" rx="6"/>
+<rect class="c3" x="508" y="492" width="6" height="196" rx="3"/>
+<text class="t-ink lbl" x="524" y="518">Orkest seam (waiting)</text>
+<text class="t-faint tiny" x="524" y="534">src/alegor</text>
+<circle class="t-mark" cx="944" cy="512" r="3"><title>confidence low</title></circle><circle class="t-faint" cx="954" cy="512" r="3" fill-opacity=".35"><title>confidence low</title></circle><circle class="t-faint" cx="964" cy="512" r="3" fill-opacity=".35"><title>confidence low</title></circle>
+<text class="t-ink cap" x="524" y="558">Demo caption 6: this text comes from a fake analyzer, not a</text><text class="t-ink cap" x="524" y="574">model. It exists to check layout, escaping and citation</text><text class="t-ink cap" x="524" y="590">links.</text>
+<text class="t-dim sub" x="524" y="630">current: unknown from the captured evidence</text>
+<a class="cite" href="#cite/orkest-seam-waiting/design/0" data-cite="orkest-seam-waiting/design/0"><text class="tiny" x="524" y="676">server.mjs:1<title>src/alegor/server.mjs lines 1–15</title></text></a><a class="cite" href="#cite/orkest-seam-waiting/topic/0" data-cite="orkest-seam-waiting/topic/0"><text class="tiny" x="608.4" y="676">cli.mjs:1<title>src/alegor/cli.mjs lines 1–16</title></text></a>
+</g>
+
+<g class="legend">
+<text class="t-faint tiny" x="16" y="714">confidence</text>
+<circle class="t-mark" cx="90" cy="711" r="3"/><circle class="t-mark" cx="99" cy="711" r="3"/><circle class="t-mark" cx="108" cy="711" r="3"/><text class="t-faint tiny" x="116" y="714">three statements evidenced</text>
+<circle class="t-mark" cx="290" cy="711" r="3"/><circle class="t-mark" cx="299" cy="711" r="3"/><circle class="t-faint" cx="308" cy="711" r="3" fill-opacity=".35"/><text class="t-faint tiny" x="316" y="714">one unknown</text>
+<circle class="t-mark" cx="420" cy="711" r="3"/><circle class="t-faint" cx="429" cy="711" r="3" fill-opacity=".35"/><circle class="t-faint" cx="438" cy="711" r="3" fill-opacity=".35"/><text class="t-faint tiny" x="446" y="714">two or more unknown · arrows: the chapters' modules import each other</text>
+</g>
+<text class="t-faint tiny" x="16" y="736">snapshot 3be8778 +dirty captured 2026-10-25 19:41 · explained 2026-10-25 19:43 · prompt visu-analysis/4+trazo/1</text>
+</svg>
