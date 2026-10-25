@@ -1,0 +1,111 @@
+{
+  "schema": "trazo.trial/v0",
+  "date": "2026-10-25",
+  "note": "Warm cache, same machine (lab1), Node v22.23.1. Cold first runs were 4.0 s (Represent), 0.9 s (Plane Sync), 13.6 s (luz), 9.1 s (docs); the cold cost is Windows file cache, not Trazo.",
+  "rows": [
+    {
+      "name": "represent",
+      "snapshot": "da85de3de056",
+      "files": 202,
+      "kib": 2921,
+      "modules": 20,
+      "commits": 31,
+      "moduleImports": 10,
+      "fileImports": 49,
+      "sections": 825,
+      "symbols": 319,
+      "timings": {
+        "captureMs": 131.3,
+        "historyMs": 314.9,
+        "factsMs": 22.1,
+        "totalMs": 468.2,
+        "symbolsMs": 1890.2,
+        "render": {
+          "poster": 1.8,
+          "guide": 2.9,
+          "engineer": 1.5,
+          "deep": 0.4
+        }
+      },
+      "modelCalls": 0
+    },
+    {
+      "name": "plane-sync",
+      "snapshot": "f85a96850d28",
+      "files": 15,
+      "kib": 140,
+      "modules": 7,
+      "commits": 25,
+      "moduleImports": 2,
+      "fileImports": 3,
+      "sections": 58,
+      "symbols": 75,
+      "timings": {
+        "captureMs": 84.3,
+        "historyMs": 352.2,
+        "factsMs": 1.2,
+        "totalMs": 437.8,
+        "symbolsMs": 567.4,
+        "render": {
+          "poster": 0.4,
+          "guide": 0.3,
+          "engineer": 0.3,
+          "deep": 0.1
+        }
+      },
+      "modelCalls": 0
+    },
+    {
+      "name": "luz",
+      "snapshot": "77ebc1cf53ee",
+      "files": 1031,
+      "kib": 5656,
+      "modules": 22,
+      "commits": 40,
+      "moduleImports": 0,
+      "fileImports": 455,
+      "sections": 2374,
+      "symbols": 1078,
+      "timings": {
+        "captureMs": 341,
+        "historyMs": 386.1,
+        "factsMs": 54.2,
+        "totalMs": 781.3,
+        "symbolsMs": 1591.7,
+        "render": {
+          "poster": 0.8,
+          "guide": 0.8,
+          "engineer": 1.8,
+          "deep": 0.7
+        }
+      },
+      "modelCalls": 0
+    },
+    {
+      "name": "docs",
+      "snapshot": "52855c58a1fc",
+      "files": 697,
+      "kib": 10597,
+      "modules": 18,
+      "commits": 40,
+      "moduleImports": 0,
+      "fileImports": 156,
+      "sections": 6468,
+      "symbols": 391,
+      "timings": {
+        "captureMs": 214,
+        "historyMs": 350,
+        "factsMs": 48.5,
+        "totalMs": 612.6,
+        "symbolsMs": 922.3,
+        "render": {
+          "poster": 1,
+          "guide": 1.2,
+          "engineer": 1.9,
+          "deep": 0.9
+        }
+      },
+      "modelCalls": 0
+    }
+  ]
+}

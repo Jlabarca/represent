@@ -6,7 +6,7 @@
 > Updated: 2026-10-25
 > Prior-art sweep: 2026-10-25. Checked [CAPABILITIES.md](CAPABILITIES.md) (Visu discovery and overview, Grafe explorer, Alegor re-entry: all reused as libraries, none resident or proactive), `reference/` and `impl/` filenames, `experiments/represent-os-concept/` (static composition proof, not a watcher), REPRESENT-ORKEST-IMPL (waits behind this POC; its artifact record is written here), and Ghost's methrep (a methodology daemon, not a folder artist).
 
-**Plan number one as of 2026-10-25 (operator).** Nothing is implemented. Week 1 may start once the operator confirms 0.1.
+**Plan number one as of 2026-10-25 (operator).** Phase 0 confirmed 2026-10-25 with the defaults (codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz, `D:/ware/docs`). Week 1 (1.1 to 1.6) implemented and trialled the same day with zero model calls; the operator's verdict at 1.7 decides week 2.
 
 ## AI Continuation Prompt
 
@@ -24,7 +24,7 @@ Rules:
 
 | ID | Question | Default | Why |
 |---|---|---|---|
-| OQ-1 | Codename and licence | Trazo, Apache-2.0 | Patent grant; embedding-friendly; name provisional, operator decides in 0.1. |
+| OQ-1 | Codename and licence | Trazo, Apache-2.0 | **Confirmed 2026-10-25 (operator, 0.1).** Patent grant; embedding-friendly. |
 | OQ-2 | Watcher | `fs.watch` recursive with 5 s polling fallback | Zero dependencies; Node 22 supports recursive watch on all three platforms. |
 | OQ-3 | Graph diagrams | Mermaid text rendered client-side; sketch in hand-built SVG | Agent-readable, deterministic, no layout library. |
 
@@ -46,11 +46,14 @@ Watcher → snapshot (discovery) → fact graph → sketch (SVG, four levels) �
 
 ## Current State (2026-10-25)
 
-Design written; tracker bootstrapped; nothing implemented. The three tools are unchanged. REPRESENT-ORKEST waits behind this POC.
+Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, two test files (whole suite 67 pass). Library seams added to Visu discovery (`inventory`), Grafe (`indexFiles`) and Alegor (`readHistory`) without changing their behaviour. Trial on the four folders recorded under [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md): first sketch in 0.44 to 0.78 s warm (cold file cache up to 13.6 s on luz), dial switches under 15 ms, zero model calls. Waiting on the operator's verdict (1.7). REPRESENT-ORKEST waits behind this POC.
 
 ## Known Bugs
 
-None yet.
+- Path aliases (`@/`, tsconfig `paths`) are not resolved, so alias-heavy TypeScript apps (luz) show no module arrows. Candidate for week 2 or the verdict's layout-fix option.
+- C# and Go namespace imports resolve to directories, often inside the same module; adds little signal.
+- Cold first capture of a large folder can take 10 s on Windows (file cache, measured; Trazo's own work is under 1 s). No progress line yet.
+- The deep level lists symbols with inbound call counts; it does not draw call edges.
 
 ## What Needs Testing
 
@@ -70,8 +73,8 @@ None yet.
 
 | Phase | State | Model | Description |
 |---|---|---|---|
-| 0 Confirm | Not started | operator | Codename, licence, four trial folders. |
-| 1 Sketch (week 1) | Not started | any | CLI, consent, snapshot, fact graph, SVG sketch, dial, viewer, ledger. |
+| 0 Confirm | Done 2026-10-25 | operator | Codename, licence, four trial folders. |
+| 1 Sketch (week 1) | 1.1 to 1.6 done 2026-10-25; 1.7 operator | Claude Fable 5.1 | CLI, consent, snapshot, fact graph, SVG sketch, dial, viewer, ledger. |
 | 2 Explain and compose (week 2) | Not started | any | Explanation through Ghost, templates, citations, cache, artifact record. |
 | 3 Live and proactive (week 3) | Not started | any | Watcher, nudges, budget, SSE, hook, MCP. |
 | 4 Polish and trials (week 4) | Not started | operator + any | UX rounds, five-day use, ROMPE illustration pass, public repository, verdict. |
@@ -81,16 +84,16 @@ None yet.
 
 ### Phase 0 — Confirm
 
-- [ ] REPRESENT-TRAZO-POC.0.1 **human:** operator confirms or overrides OQ-1 to OQ-3 and names the four trial folders (default: Represent, Plane Sync, luz, `D:/ware/docs`).
+- [x] REPRESENT-TRAZO-POC.0.1 **human:** operator confirms or overrides OQ-1 to OQ-3 and names the four trial folders (default: Represent, Plane Sync, luz, `D:/ware/docs`). Evidence: operator chat 2026-10-25, "Phase 0 confirmed with the defaults: codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz and D:/ware/docs."
 
 ### Phase 1 — Sketch (week 1)
 
-- [ ] REPRESENT-TRAZO-POC.1.1 `src/trazo/cli.mjs`: `trazo [path]` with consent prompt, stored consent, `--store`, `--port`; prints what will and will not be read. TEST.3.
-- [ ] REPRESENT-TRAZO-POC.1.2 Library seams: `grafe/core.mjs` exports `symbolsFor(files)`; `alegor/core.mjs` exports `readHistory(root, limit)`; `visu/discovery.mjs` reused as is. TEST.11 stays green.
-- [ ] REPRESENT-TRAZO-POC.1.3 `src/trazo/facts.mjs`: fact graph builder with import scanners for six languages, Markdown sections, commits, stable ids and level floors. TEST.4.
-- [ ] REPRESENT-TRAZO-POC.1.4 `src/trazo/sketch.mjs`: treemap, layered modules, history strip; SVG primitives; stable positions. TEST.5.
-- [ ] REPRESENT-TRAZO-POC.1.5 `src/trazo/server.mjs` and `web/trazo/`: loopback viewer with token and Origin, dial, three themes, status strip, ledger. TEST.1, TEST.2, TEST.8 (static part).
-- [ ] REPRESENT-TRAZO-POC.1.6 Week 1 trial on the four folders under `experiments/trazo-poc/week1/`: timings, screenshots, operator verdict. **Stop-or-go.**
+- [x] REPRESENT-TRAZO-POC.1.1 `src/trazo/cli.mjs`: `trazo [path]` with consent prompt, stored consent, `--store`, `--port`; prints what will and will not be read. TEST.3. Evidence 2026-10-25: `src/trazo/cli.mjs`, `src/trazo/consent.mjs`; `tests/trazo-core.test.mjs` (consent grant/revoke/list, store-outside refusal, `.env`/`node_modules`/binary never captured); consent revocation of a watcher is week 3.
+- [x] REPRESENT-TRAZO-POC.1.2 Library seams: `grafe/core.mjs` exports `indexFiles(root, files)` (named `symbolsFor` in the plan); `alegor/core.mjs` exports `readHistory(root, { limit })`; `visu/discovery.mjs` exports `inventory(root)` and `safeName`. TEST.11 stays green. Evidence 2026-10-25: `node --test tests/*.test.mjs` 67 pass, 0 fail (57 prior + 10 new); Alegor's git helper now ignores stderr, no other behaviour change.
+- [x] REPRESENT-TRAZO-POC.1.3 `src/trazo/facts.mjs`: fact graph builder with import scanners for six languages, Markdown sections, commits, stable ids and level floors. TEST.4. Evidence 2026-10-25: scanners for JS/TS, Python, C#, Go, Rust (plus Java/Kotlin) with fixture tests; same folder twice gives the same snapshot id and node order; Grafe symbols lazily (313 symbols, 873 calls on Represent).
+- [x] REPRESENT-TRAZO-POC.1.4 `src/trazo/sketch.mjs`: treemap, layered modules, history strip; SVG primitives; stable positions. TEST.5. Evidence 2026-10-25: four levels render on all four folders; order by module id is independent of weight (test); rendering deterministic (test). Partial for TEST.5: widths still follow weight, so a large file change resizes neighbours in the same row; the one-file-change measurement is week 4's.
+- [x] REPRESENT-TRAZO-POC.1.5 `src/trazo/server.mjs` and `web/trazo/`: loopback viewer with token and Origin, dial, three themes, status strip, ledger. TEST.1, TEST.2, TEST.8 (static part). Evidence 2026-10-25: `tests/trazo-server.test.mjs` (401 without token, 403 on foreign Host or Origin, level and focus validation, immutable snapshot files, CSP); viewer screenshots under `experiments/trazo-poc/week1/`.
+- [x] REPRESENT-TRAZO-POC.1.6 Week 1 trial on the four folders under `experiments/trazo-poc/week1/`: timings, screenshots, operator verdict. **Stop-or-go.** Evidence 2026-10-25: [week1/README.md](../experiments/trazo-poc/week1/README.md), `timings.json`, 16 SVGs, 7 screenshots. First sketch 0.44 to 0.78 s warm; TEST.1 passes warm on all four, cold on two (file cache).
 - [ ] REPRESENT-TRAZO-POC.1.7 **human:** operator's verdict on the zero-AI sketch.
 
 ### Phase 2 — Explain and compose (week 2)
@@ -125,9 +128,9 @@ None yet.
 | File | Purpose | Phase |
 |---|---|---|
 | `src/trazo/cli.mjs`, `consent.mjs` | Entry, consent, store | 1 |
-| `src/trazo/facts.mjs`, `tests/trazo-facts.test.mjs` | Fact graph and language scanners | 1 |
-| `src/trazo/sketch.mjs`, `tests/trazo-sketch.test.mjs` | Deterministic SVG layouts | 1 |
-| `src/trazo/server.mjs`, `web/trazo/**` | Viewer, dial, SSE | 1, 3 |
+| `src/trazo/facts.mjs`, `tests/trazo-core.test.mjs` | Fact graph and language scanners; sketch tests share the file | 1 |
+| `src/trazo/sketch.mjs` | Deterministic SVG layouts | 1 |
+| `src/trazo/server.mjs`, `web/trazo/**`, `tests/trazo-server.test.mjs` | Viewer, dial, SSE | 1, 3 |
 | `src/trazo/explain.mjs`, `compose.mjs`, `web/trazo/templates/` | Explanation and infographic | 2 |
 | `src/artifact/record.mjs` | Artifact record v0 | 2 |
 | `src/trazo/watch.mjs`, `nudge.mjs`, `mcp.mjs`, `hooks/` | Live loop, nudges, agent inputs | 3 |

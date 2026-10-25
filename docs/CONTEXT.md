@@ -6,7 +6,7 @@
 
 ## Current Operating Direction (2026-10-25)
 
-**Plan number one: the Trazo POC.** The operator chose to test Represent's feasibility with one resident, proactive artist companion: run it in a folder, it asks for consent, draws a zero-AI sketch in under three seconds, then explains and illustrates within a budget, with a technical-level dial. Design and four-week plan: [reference/trazo-poc.md](reference/trazo-poc.md) (placed in reference by the operator's request; rewritten as-built on promotion). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md); Phase 0 is the operator's confirmation of codename, licence and trial folders. It reuses the three tools as libraries and writes the Orkest design's artifact record, so [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) waits behind it without being discarded. The investor-facing summary is a private artifact page; see LOGBOOK 2026-10-25. Nothing is implemented yet.
+**Plan number one: the Trazo POC.** The operator chose to test Represent's feasibility with one resident, proactive artist companion: run it in a folder, it asks for consent, draws a zero-AI sketch in under three seconds, then explains and illustrates within a budget, with a technical-level dial. Design and four-week plan: [reference/trazo-poc.md](reference/trazo-poc.md) (placed in reference by the operator's request; rewritten as-built on promotion). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md); Phase 0 is the operator's confirmation of codename, licence and trial folders. It reuses the three tools as libraries and writes the Orkest design's artifact record, so [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) waits behind it without being discarded. The investor-facing summary is a private artifact page; see LOGBOOK 2026-10-25. Phase 0 confirmed and week 1 (the zero-AI sketch: CLI, consent, fact graph, SVG levels, loopback viewer) built and trialled on the four folders on 2026-10-25; the operator's stop-or-go verdict (1.7) is the cursor.
 
 ## Current Operating Direction (2026-10-24)
 
@@ -75,6 +75,7 @@ Product pre-implementation, with working reference-tool experiments and a local 
 | Host shell | **One GhostShell layer `layers/represent` by the RIMA precedent** | Edited by absolute path from a Represent session, imports only shell APIs, proxies to the hub; survives Orkest's extraction and keeps `Ghost/apps` frozen. | 2026-10-24 |
 | Trust chain | **Represent is never in it** | Artifacts are not evidence of accepted work. The only handoff to work is text in Orkest's existing composer; runner, verifier and Multica writes stay in ORKEST-FORK. | 2026-10-24 |
 | Name collision with methrep | **Product keeps "Represent"; methrep keeps its name and code** | New ids are `represent-hub`, `/x/represent`, `/proxy/represent`; nothing new is named `Ghost.Represent`. Recording in the naming canon is a later umbrella task. | 2026-10-24 |
+| Trazo Phase 0 | **Codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz, `D:/ware/docs`** | Operator confirmed the defaults; week 1 ran with zero model calls. | 2026-10-25 |
 | Feasibility proof | **Trazo POC first: zero-AI sketch, then explanation and templated infographics, then optional illustration; four weeks, four real folders** | Tests the three unknowns (a free sketch worth keeping open, cheap explanation over raster art, proactivity without noise) before any platform work. Open core (Apache-2.0 proposed) with a service path. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Codename provisional. | 2026-10-25 |
 
 > [!WARNING]
@@ -133,7 +134,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-**Trazo POC** ([tracker](REPRESENT-TRAZO-POC-IMPL.md), [design](reference/trazo-poc.md)). Cursor: operator Phase 0 (codename, licence, four trial folders), then week 1, the zero-AI sketch, ending in a stop-or-go verdict. REPRESENT-ORKEST's Phase 0 review is deferred until the POC verdict. Visu development and paid refreshes remain paused; Trazo reuses Visu's discovery, analysis and gateway code as libraries without changing its experience.
+**Trazo POC** ([tracker](REPRESENT-TRAZO-POC-IMPL.md), [design](reference/trazo-poc.md)). Cursor: operator verdict on the week-1 zero-AI sketch (REPRESENT-TRAZO-POC.1.7; evidence in [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md)), then week 2 (explain and compose) if go. REPRESENT-ORKEST's Phase 0 review is deferred until the POC verdict. Visu development and paid refreshes remain paused; Trazo reuses Visu's discovery, analysis and gateway code as libraries without changing its experience.
 
 
 ## Active Research

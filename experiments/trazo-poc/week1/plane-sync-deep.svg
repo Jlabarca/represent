@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 160" width="100%" role="img" aria-label="Trazo sketch"><style>
+.t-bg{fill:var(--t-paper,#ffffff)}
+.t-ink{fill:var(--t-ink,#1a2233)} .t-dim{fill:var(--t-ink-dim,#5b6677)} .t-faint{fill:var(--t-ink-faint,#98a2b3)}
+.t-box{fill:var(--t-box,#f4f6f9);stroke:var(--t-line,#aeb8c6);stroke-width:1.4}
+.t-box.poster{stroke-width:2}
+.t-arrow{stroke:var(--t-accent,#2f6fed);fill:none;stroke-width:1.6}
+.t-arrow.candidate{stroke-dasharray:5 4;opacity:.8}
+.t-arrow-head{fill:var(--t-accent,#2f6fed)}
+.t-mark{fill:var(--t-marker,#ffd23f)}
+.c0{fill:var(--t-c0,#4f7cff)}.c1{fill:var(--t-c1,#2fb57c)}.c2{fill:var(--t-c2,#e0862b)}.c3{fill:var(--t-c3,#b958c4)}.c4{fill:var(--t-c4,#1fa8b8)}.c5{fill:var(--t-c5,#d9534f)}.c6{fill:var(--t-c6,#8a9a2d)}.c7{fill:var(--t-c7,#6c7a90)}
+text{font-family:var(--t-mono,"IBM Plex Mono",Consolas,monospace)}
+.lbl{font-size:14px;font-weight:600} .sub{font-size:11px} .big{font-size:20px;font-weight:700} .tiny{font-size:10px} .cap{font-size:12px}
+</style><defs><marker id="t-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="t-arrow-head"/></marker></defs><rect class="t-bg" x="0" y="0" width="1000" height="160"/><text class="t-ink big" x="16" y="34">plane-sync</text>
+<text class="t-dim sub" x="16" y="52">deep · 15 files · 7 modules · a1a91c4 · mod:docs</text><text class="t-dim cap" x="16" y="76">0 of 0 symbols · 0 calls in scope · exported first</text></svg>

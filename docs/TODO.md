@@ -7,8 +7,9 @@
 
 Plan number one by the operator's decision. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md). Zero model calls in week 1; no paid call without consent and a shown price; no Orkest or Ghost code.
 
-- [ ] **Operator:** Phase 0, confirm codename, licence and the four trial folders (REPRESENT-TRAZO-POC.0.1).
-- [ ] Week 1, sketch: CLI, consent, fact graph, SVG layouts, dial, viewer, ledger; four-folder trial; stop-or-go verdict (1.1 to 1.7).
+- [x] **Operator:** Phase 0, confirm codename, licence and the four trial folders (REPRESENT-TRAZO-POC.0.1). Confirmed 2026-10-25 with the defaults.
+- [x] Week 1, sketch: CLI, consent, fact graph, SVG layouts, dial, viewer, ledger; four-folder trial (1.1 to 1.6, 2026-10-25; evidence in [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md)).
+- [ ] **Operator:** stop-or-go verdict on the zero-AI sketch (1.7). Options listed at the end of the week-1 README.
 - [ ] Week 2, explain and compose: cached explanation through Ghost, templates with citations, artifact record; correctness ratings (2.1 to 2.5).
 - [ ] Week 3, live and proactive: watcher, nudges with budget, SSE, Claude Code hook, MCP draw (3.1 to 3.4).
 - [ ] Week 4, polish and trials: UX rounds, five-day use, ROMPE illustration pass with existing art, public repository, feasibility verdict (4.1 to 4.5).

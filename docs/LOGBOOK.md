@@ -363,3 +363,21 @@ Nothing implemented; no model call or paid run. Codename, licence and trial fold
 ### Next
 
 Operator Phase 0 (REPRESENT-TRAZO-POC.0.1), then week 1 sketch with a stop-or-go verdict at 1.7.
+
+## 2026-10-25 — Trazo POC week 1: zero-AI sketch built and trialled
+
+### Accomplished
+
+Phase 0 recorded (operator confirmed the defaults). Week 1 of [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) implemented: `src/trazo/cli.mjs` and `consent.mjs` (read plan printed, `[y/N]` consent per canonical path, store outside the folder, revoke and list), `facts.mjs` (bounded capture through Visu's discovery, import scanners for JS/TS, Python, C#, Go, Rust, Java/Kotlin, Markdown sections, last 40 commits through Alegor, stable ids, level floors, lazy Grafe symbols), `sketch.mjs` (deterministic SVG: id-ordered strip treemap, curved module arrows, history strip, poster/guide/engineer/deep), `server.mjs` and `web/trazo/` (loopback, per-process token in a meta tag, exact Host and Origin, CSP, dial with keys, three themes, status strip, ledger). Library seams: `discovery.inventory`, `grafe.indexFiles`, `alegor.readHistory`. Tests: 10 new, suite 67 pass. Trial on Represent, Plane Sync, luz and `D:/ware/docs` under [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md): first sketch 0.44 to 0.78 s warm, dial switches under 15 ms, zero model calls, zero network.
+
+### Decisions
+
+Token delivered through a `<meta>` tag because the viewer's CSP forbids inline scripts (found in the browser, fixed). Module widths blend an equal share with weight so small modules stay labelled; rows cap their item count. Alegor's git helper ignores stderr so non-git folders stay quiet. Attribution trailer `Claude Fable 5.1` as in the previous commits.
+
+### Blockers / limits
+
+Cold first capture of a large folder can take up to 13.6 s on this machine (Windows file cache, measured; warm 0.3 s). Path aliases unresolved, so luz shows no module arrows. Deep level lists symbols without drawing calls. TEST.5's one-file-change measurement is deferred to week 4. No model call or paid run.
+
+### Next
+
+Operator verdict (1.7): go to week 2, go after layout fixes, or stop.
