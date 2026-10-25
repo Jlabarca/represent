@@ -1,11 +1,19 @@
 #!/usr/bin/env node
-// trazo [path] [--store dir] [--port n] [--yes] [--budget usd] [--revoke] [--list] [--once]
-// Week 1: consent, snapshot, sketch, viewer. Zero model calls, zero network requests.
+// trazo [path] [--store dir] [--port n] [--yes] [--budget usd] [--revoke] [--list] [--once] [--preview]
+// Week 1: consent, snapshot, sketch, viewer: zero model calls. Week 2: explanation through Ghost only after a
+// confirmed click in the viewer; --preview prints the exact excerpt set and the estimate without sending anything.
 import path from 'node:path';
 import readline from 'node:readline/promises';
 import { stdin, stdout } from 'node:process';
 import { Consent, canonicalRoot, defaultStoreDir, readPlan, assertStoreOutside } from './consent.mjs';
 import { Project, createServer } from './server.mjs';
+import { Ghost } from '../visu/ghost.mjs';
+
+function ghostFromEnv() {
+  const key = process.env.TRAZO_GHOST_KEY || process.env.VISU_GHOST_KEY || process.env.LITELLM_KEY_OPERATOR;
+  if (!key) return null;
+  return new Ghost({ key, url: process.env.TRAZO_GHOST_URL || process.env.VISU_GHOST_URL || 'http://127.0.0.1:4000', analysisModel: process.env.TRAZO_TEXT_MODEL || process.env.VISU_TEXT_MODEL || 'gemini-flash' });
+}
 
 const args = process.argv.slice(2);
 const flag = (name, dflt = null) => { const i = args.indexOf(name); return i >= 0 ? (args[i + 1] ?? true) : dflt; };
@@ -41,7 +49,8 @@ async function main() {
     consent.grant(root, { budgetUsdPerDay: Number(flag('--budget', 0)) || 0 });
     console.log(`Consent recorded in ${consent.file}`);
   }
-  const project = new Project({ root, store: storeDir });
+  const ghost = ghostFromEnv();
+  const project = new Project({ root, store: storeDir, ghost });
   const { facts } = await project.snapshot();
   const t = facts.timings;
   console.log(`\n${facts.snapshot.name} @ ${facts.revision.sha ? facts.revision.sha.slice(0, 7) : 'no-git'}${facts.revision.dirty ? ' (dirty)' : ''}`);
@@ -49,6 +58,14 @@ async function main() {
   console.log(`  capture ${t.captureMs} ms · history ${t.historyMs} ms · facts ${t.factsMs} ms · total ${t.totalMs} ms · model calls 0`);
   const sk = await project.sketch(1, null);
   console.log(`  sketch (guide) rendered in ${sk.renderMs} ms`);
+  console.log(ghost ? `  explanation available through ${ghost.url} (${ghost.analysisModel}); it runs only after a confirmed click` : '  explanation unavailable: no TRAZO_GHOST_KEY in this shell; nothing can be sent');
+  if (has('--preview')) {
+    const p = await project.preview();
+    console.log(`
+What I would send (${p.excerptCount} excerpts from ${p.sourceCount} files, ${p.approxBytes} bytes, vocabulary ${p.vocabulary}):`);
+    for (const e of p.excerpts) console.log(`  [${e.index}] ${e.path}:${e.startLine} (${e.bytes} B, ${e.kind}/${e.role})`);
+    console.log(`Estimate: about $${p.estimateUsd}${p.cached ? ' (cached: $0)' : ''}; per-call cap $${p.maxCallUsd}. ${p.scope.note ?? ''}`.trim());
+  }
   if (has('--once')) { console.log(`Snapshot ${facts.snapshot.id.slice(0, 12)} stored under ${project.dir}`); return; }
   const port = Number(flag('--port', 8875));
   const server = createServer({ project, consent: consent.get(root), port });

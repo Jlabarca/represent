@@ -11,7 +11,7 @@ const H = 680;
 
 export function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 const clip = (s, n) => { s = String(s ?? ''); return s.length > n ? `${s.slice(0, Math.max(1, n - 1))}…` : s; };
-const colorIndex = id => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h % 8; };
+export const colorIndex = id => { let h = 0; for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0; return h % 8; };
 
 /** Strip treemap in id order: rows of modules, widths by weight. Stable because order is by id and weight is log-bucketed. */
 export function layoutModules(modules, { x = PAD, y = 64, width = W - 2 * PAD, height = MAP_H - 64, gap = 8 } = {}) {

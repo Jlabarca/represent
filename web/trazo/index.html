@@ -5,38 +5,57 @@
   <a class="brand" href="/" aria-label="trazo home"><span class="mark" aria-hidden="true">╱</span><span>trazo<small>sketches your folder</small></span></a>
   <div class="chip" id="project-chip" title="Project and revision"><span id="project-name">…</span><span class="sep">@</span><span id="project-rev" class="mono">…</span></div>
   <div class="top-actions">
-    <span class="local" title="This viewer only listens on 127.0.0.1"><i></i>LOCAL · 0 MODEL CALLS</span>
+    <span class="local" title="This viewer only listens on 127.0.0.1"><i></i>LOCAL · <span id="calls-top">0</span> MODEL CALLS</span>
     <button id="recapture" class="icon-button" type="button" aria-label="Capture the folder again" title="Capture again (free)">↻</button>
     <button id="theme" class="icon-button" type="button" aria-label="Switch color theme" title="Theme: light, dark, high contrast">◐</button>
   </div>
 </header>
 <main class="workspace">
   <section class="canvas">
-    <div class="dial" role="radiogroup" aria-label="Technical level">
-      <span class="eyebrow">LEVEL</span>
-      <button class="level" data-level="0" role="radio" aria-checked="false" type="button"><b>1</b> poster</button>
-      <button class="level" data-level="1" role="radio" aria-checked="true" type="button"><b>2</b> guide</button>
-      <button class="level" data-level="2" role="radio" aria-checked="false" type="button"><b>3</b> engineer</button>
-      <button class="level" data-level="3" role="radio" aria-checked="false" type="button"><b>4</b> deep</button>
-      <label class="focus" id="focus-wrap" hidden><span>module</span><select id="focus" aria-label="Module to inspect"></select></label>
+    <div class="dial">
+      <div class="views" role="radiogroup" aria-label="View">
+        <button class="view" data-view="sketch" role="radio" aria-checked="true" type="button">sketch</button>
+        <button class="view" data-view="chapters" role="radio" aria-checked="false" type="button" disabled>chapters</button>
+        <button class="view" data-view="mermaid" role="radio" aria-checked="false" type="button" disabled>mermaid</button>
+      </div>
+      <div class="levels" id="levels" role="radiogroup" aria-label="Technical level">
+        <span class="eyebrow">LEVEL</span>
+        <button class="level" data-level="0" role="radio" aria-checked="false" type="button"><b>1</b> poster</button>
+        <button class="level" data-level="1" role="radio" aria-checked="true" type="button"><b>2</b> guide</button>
+        <button class="level" data-level="2" role="radio" aria-checked="false" type="button"><b>3</b> engineer</button>
+        <button class="level" data-level="3" role="radio" aria-checked="false" type="button"><b>4</b> deep</button>
+        <label class="focus" id="focus-wrap" hidden><span>module</span><select id="focus" aria-label="Module to inspect"></select></label>
+      </div>
       <span id="render-ms" class="ms mono" aria-live="polite"></span>
     </div>
     <div id="sketch" class="sketch" role="img" aria-label="Sketch of the folder"><div class="empty">Drawing…</div></div>
+    <pre id="mermaid" class="mermaid" hidden></pre>
+    <div id="cite" class="cite" hidden><div class="cite-head"><span id="cite-where" class="mono"></span><button id="cite-close" class="icon-button small" type="button" aria-label="Close citation">×</button></div><pre id="cite-quote"></pre></div>
   </section>
   <aside class="status" aria-label="Status strip">
+    <h2 class="eyebrow">EXPLAIN</h2>
+    <div id="explain" class="explain"></div>
     <h2 class="eyebrow">WHAT I READ</h2>
     <dl id="read-list" class="kv"></dl>
     <h2 class="eyebrow">WHAT I NEVER READ</h2>
     <p class="small">Secrets (.env, keys, certificates), dependencies and build output, binaries and media, hidden folders, anything named sessions, private, personal or backups.</p>
     <h2 class="eyebrow">WHAT I SPENT</h2>
-    <dl class="kv"><dt>model calls</dt><dd id="calls" class="mono">0</dd><dt>cost</dt><dd id="cost" class="mono">$0.00</dd><dt>network</dt><dd>none</dd></dl>
+    <dl class="kv"><dt>model calls</dt><dd id="calls" class="mono">0</dd><dt>cost</dt><dd id="cost" class="mono">$0.00</dd><dt>today</dt><dd id="today" class="mono">$0.00</dd><dt>network</dt><dd id="network">none</dd></dl>
     <h2 class="eyebrow">TIMINGS</h2>
     <dl id="timings" class="kv mono"></dl>
     <h2 class="eyebrow">SUMMARY</h2>
     <p id="summary" class="small"></p>
-    <p class="hint small">Keys: <kbd>1</kbd>–<kbd>4</kbd> level · <kbd>t</kbd> theme · <kbd>r</kbd> recapture</p>
+    <p class="hint small">Keys: <kbd>1</kbd>–<kbd>4</kbd> level · <kbd>s</kbd> <kbd>c</kbd> <kbd>m</kbd> view · <kbd>t</kbd> theme · <kbd>r</kbd> recapture</p>
   </aside>
 </main>
+<div id="preview" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="preview-title">
+  <div class="modal-card">
+    <div class="modal-head"><h3 id="preview-title">What I will send</h3><button id="preview-close" class="icon-button small" type="button" aria-label="Close preview">×</button></div>
+    <p id="preview-meta" class="small"></p>
+    <ol id="preview-list" class="preview-list"></ol>
+    <div class="modal-foot"><button id="preview-explain" class="button primary" type="button">Explain once</button><button id="preview-cancel" class="button" type="button">Not now</button></div>
+  </div>
+</div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script type="module" src="/app.mjs"></script>
 </body></html>

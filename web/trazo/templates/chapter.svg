@@ -1,0 +1,10 @@
+<g class="chapter" data-chapter="{{id}}" data-node="{{node}}">
+<rect class="t-box" x="{{x}}" y="{{y}}" width="{{w}}" height="{{h}}" rx="6"/>
+<rect class="{{color}}" x="{{x}}" y="{{y}}" width="6" height="{{h}}" rx="3"/>
+<text class="t-ink lbl" x="{{tx}}" y="{{ty}}">{{label}}</text>
+<text class="t-faint tiny" x="{{tx}}" y="{{moduleY}}">{{module}}</text>
+{{dots}}
+{{summary}}
+{{state}}
+{{cites}}
+</g>

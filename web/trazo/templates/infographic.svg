@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 {{height}}" width="100%" role="img" aria-label="Trazo infographic">
+{{style}}
+{{defs}}
+<rect class="t-bg" x="0" y="0" width="1000" height="{{height}}"/>
+<text class="t-ink big" x="16" y="34">{{title}}</text>
+<text class="t-dim sub" x="16" y="52">{{meta}}</text>
+{{arrows}}
+{{cards}}
+<g class="legend">
+<text class="t-faint tiny" x="16" y="{{legendY}}">confidence</text>
+<circle class="t-mark" cx="90" cy="{{legendDotY}}" r="3"/><circle class="t-mark" cx="99" cy="{{legendDotY}}" r="3"/><circle class="t-mark" cx="108" cy="{{legendDotY}}" r="3"/><text class="t-faint tiny" x="116" y="{{legendY}}">three statements evidenced</text>
+<circle class="t-mark" cx="290" cy="{{legendDotY}}" r="3"/><circle class="t-mark" cx="299" cy="{{legendDotY}}" r="3"/><circle class="t-faint" cx="308" cy="{{legendDotY}}" r="3" fill-opacity=".35"/><text class="t-faint tiny" x="316" y="{{legendY}}">one unknown</text>
+<circle class="t-mark" cx="420" cy="{{legendDotY}}" r="3"/><circle class="t-faint" cx="429" cy="{{legendDotY}}" r="3" fill-opacity=".35"/><circle class="t-faint" cx="438" cy="{{legendDotY}}" r="3" fill-opacity=".35"/><text class="t-faint tiny" x="446" y="{{legendY}}">two or more unknown · arrows: the chapters' modules import each other</text>
+</g>
+<text class="t-faint tiny" x="16" y="{{freshY}}">{{freshness}}</text>
+</svg>
