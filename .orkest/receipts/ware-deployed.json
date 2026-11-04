@@ -1,0 +1,18 @@
+{
+  "cli": "D:/ware/bin/ware.py",
+  "revision": "efc38e4c18b8d70311c14bcba35a8304fb5e43ef",
+  "fixture": "docs/orkest/cli_readback.imp.md",
+  "expected_gate_exit": 2,
+  "runs": [
+    {
+      "suite": "CLI_READBACK",
+      "exit": 2,
+      "readback": "  ok    cli_readback.imp.md exists\n  BLOCK 1 unchecked box(es): CLI\n  ok    no open Known Bugs\n  BLOCK docs/reference/cli_readback.md does not exist -- draft it first; promotion moves, it does not create\n  WARN  no verify tier claimed and loop.verify is absent -- no loop.verify line on the rail -- run verify\n  ok    docs/ clean\n  promote-check CLI_READBACK: NOT promotable\n"
+    },
+    {
+      "suite": "ORK-123456",
+      "exit": 2,
+      "readback": "  ok    cli_readback.imp.md exists\n  BLOCK 1 unchecked box(es): CLI\n  ok    no open Known Bugs\n  BLOCK docs/reference/cli_readback.md does not exist -- draft it first; promotion moves, it does not create\n  WARN  no verify tier claimed and loop.verify is absent -- no loop.verify line on the rail -- run verify\n  ok    docs/ clean\n  promote-check ORK-123456: NOT promotable\n"
+    }
+  ]
+}

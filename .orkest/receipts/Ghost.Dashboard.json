@@ -1,0 +1,25 @@
+{
+  "capabilities": [
+    "ork-layout-v1",
+    "imp-layout-v1",
+    "orkest-skill-v1"
+  ],
+  "consumer": "Ghost.Dashboard",
+  "deployment": {
+    "evidence": ".orkest/receipts/Ghost.Dashboard-deployed.json",
+    "revision": "e74087aa1464502e1e862e3409e4fe4316db4045",
+    "sha256": "b738826cd9e7550156510b9ed7cf1247887b138b9dceaed9fb75ea69bf63fd5b",
+    "verified": true
+  },
+  "revision": "e74087aa1464502e1e862e3409e4fe4316db4045",
+  "schema": 1,
+  "tests": {
+    "count_kind": "test executions across recorded suites",
+    "evidence": ".orkest/receipts/Ghost.Dashboard-tests.txt",
+    "exit_code": 0,
+    "passed": 113,
+    "revision": "e74087aa1464502e1e862e3409e4fe4316db4045",
+    "sha256": "1f91b5dafba0f8f4163d85aa8daf86b3fe1994ba2bf8ed81261109ba4f3b4748",
+    "total": 113
+  }
+}

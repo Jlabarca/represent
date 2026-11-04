@@ -1,0 +1,209 @@
+{
+  "binary": {
+    "bytes": 1037824,
+    "path": "/app/ghostdev-represent.dll",
+    "sha256": "e5eb58f174632c525b78bb6d5ad24b9c0c888f46a4b825213dff0b4287c2c2e5",
+    "utf16_literals": {
+      ".imp.md": 3,
+      "docs/orkest/*.imp.md": 1
+    }
+  },
+  "command": "make -C D:/ware/Ghost dev-methrep (compose --profile methrep up -d --build ghost-methrep)",
+  "health": {
+    "activeImplCount": 251,
+    "ok": true,
+    "scannedAt": "2026-11-01T17:33:01.8582832Z",
+    "workspaceCount": 37,
+    "workspaces": [
+      {
+        "id": "ware",
+        "implCount": 18,
+        "ok": true
+      },
+      {
+        "id": "Ghost",
+        "implCount": 40,
+        "ok": true
+      },
+      {
+        "id": "rare",
+        "implCount": 14,
+        "ok": true
+      },
+      {
+        "id": "Rompe",
+        "implCount": 116,
+        "ok": true
+      },
+      {
+        "id": "cockpit-fixture",
+        "implCount": 1,
+        "ok": true
+      },
+      {
+        "id": "GhostStream",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "Luz",
+        "implCount": 5,
+        "ok": true
+      },
+      {
+        "id": "RamFarm",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "HybridFrame",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "MaqUI",
+        "implCount": 1,
+        "ok": true
+      },
+      {
+        "id": "DrWario",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "Represent",
+        "implCount": 3,
+        "ok": true
+      },
+      {
+        "id": "GhostDev",
+        "implCount": 2,
+        "ok": true
+      },
+      {
+        "id": "Ghost.Dashboard",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "GhostView",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "PixelArtEyes",
+        "implCount": 1,
+        "ok": true
+      },
+      {
+        "id": "stratum-2.0",
+        "implCount": 4,
+        "ok": true
+      },
+      {
+        "id": "AST",
+        "implCount": 8,
+        "ok": true
+      },
+      {
+        "id": "plane-sync",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "multica",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "cc-wf-studio",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "netcode-gg",
+        "implCount": 9,
+        "ok": true
+      },
+      {
+        "id": "hermes-agent",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "ghost-code",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "recilab",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "causa",
+        "implCount": 16,
+        "ok": true
+      },
+      {
+        "id": "llm-video-vision",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "toma",
+        "implCount": 4,
+        "ok": true
+      },
+      {
+        "id": "imagelab",
+        "implCount": 3,
+        "ok": true
+      },
+      {
+        "id": "botanic-freellmapi",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "botanic",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "chat",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "tenders",
+        "implCount": 2,
+        "ok": true
+      },
+      {
+        "id": "orkest",
+        "implCount": 2,
+        "ok": true
+      },
+      {
+        "id": "rima",
+        "implCount": 2,
+        "ok": true
+      },
+      {
+        "id": "rotres",
+        "implCount": 0,
+        "ok": true
+      },
+      {
+        "id": "gamedev",
+        "implCount": 0,
+        "ok": true
+      }
+    ]
+  },
+  "image": "sha256:2a8ee834f7b1be64efdacf62a24950e3fccd566a98e18afadd9de96c65b7d7fa",
+  "source": "D:/ware/Ghost/apps/Ghost.Represent @ fe943b105d67d3ef3a33fe65fb2416e4ba18853c (Ghost pointer 247934d6; tracked tree clean)",
+  "started_at": "2026-11-01T16:28:20.578706302Z",
+  "status": "running"
+}

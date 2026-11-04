@@ -1,0 +1,73 @@
+.............................................................................................................................................................  'does-not-exist-xyzzy' not found in ware.json
+...........................................................................................................................................................................................................................................................................................................................................................................................................................
+----------------------------------------------------------------------
+Ran 568 tests in 18.993s
+
+OK
+  WPM [ghost-app] -- `build` not yet implemented (lands in WPM.4)
+  WPM [ghost-app] -- `version` not yet implemented (lands in WPM.4)
+  `ghost-app` does not support `release` (supports: build, version).
+  `ghost-app` does not support `publish` (supports: build, version).
+  lib [library] -- `publish` not yet implemented (lands in WPM.5/6)
+  `library` does not support `release` (supports: build, publish, version).
+  bin is a `tool` -- git-only, no `build` lifecycle.
+  bin is a `tool` -- git-only, no `version` lifecycle.
+  bin is a `tool` -- git-only, no `release` lifecycle.
+  bin is a `tool` -- git-only, no `publish` lifecycle.
+  warning: could not read C:\Users\ADMINI~1\AppData\Local\Temp\tmp2wc78z95\.ware\ledger.json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+  arm: ESCALATE -- no green verify @HEAD (absent) -- escalate (no loop.verify line on the rail -- run verify)
+  arm: REVIEW -- high conf 1.0 but DARK (unarmed) -- hold for Review
+  arm: ACTUATE -- high conf 1.0 + armed -- actuate
+  loop.done  FOO  -- promoted
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmp4a8gz20k\.runs\7dd6b189-a6fb-4917-baa8-90c317688884.jsonl  (thread impl:FOO -> done, not awaiting-operator)
+  archived: .runs-archive/h1.jsonl  (was a halt; nothing deleted)
+  loop.done  FOO  -- promoted
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmpgh_utmeo\.runs\b8321086-7e12-4c88-bc2b-f33ee89491f8.jsonl  (thread impl:FOO -> done, not awaiting-operator)
+  no outstanding halt sidecars -- the done record stands on its own
+  loop.done  FOO  -- promoted
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmp0y2iiaw0\.runs\b48130ee-f75e-448b-8df9-ea1089dbe000.jsonl  (thread impl:FOO -> done, not awaiting-operator)
+  archived: .runs-archive/h-foo.jsonl  (was a halt; nothing deleted)
+  loop.done  FOO  -- promoted
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmpptapnwh8\.runs\87294c59-a4f1-4574-b668-63c5d790fd36.jsonl  (thread impl:FOO -> done, not awaiting-operator)
+  no outstanding halt sidecars -- the done record stands on its own
+  handoff: C:\Users\ADMINI~1\AppData\Local\Temp\tmpptapnwh8\docs\handoffs\FOO.md  (halt: block retracted)
+  loop.done  FOO  -- DRY RUN, nothing written
+    would archive: h1.jsonl
+  loop.halt  FOO  -- r
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmp9jdzu33y\.runs\952ae1a0-5c17-4aaa-b406-ae3f620c308f.jsonl  (thread impl:FOO -> awaiting-operator)
+  loop.halt  FOO  -- r
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmpcokzgmlq\.runs\482071de-2461-471a-91d9-48bef5f9b312.jsonl  (thread impl:FOO -> awaiting-operator)
+  loop.halt  FOO  FOO.3  -- deploy it  resume=s-1
+  rail: C:\Users\ADMINI~1\AppData\Local\Temp\tmpr_nj36ik\.runs\c2ed0693-6649-4350-b1e8-fa0d01a34bfc.jsonl  (thread impl:FOO -> awaiting-operator)
+  handoff: C:\Users\ADMINI~1\AppData\Local\Temp\tmpr_nj36ik\docs\handoffs\FOO.md  (halt: block upserted -> INBOX.5.2/5.3)
+  loop.verify gate WARN (absent) -- no loop.verify line on the rail -- run verify
+  loop.verify gate BLOCK -- verify RED (4/5 executed) @ ?
+  loop.verify gate PASS -- green 5/5 executed @ HEAD ?
+  warning: could not read C:\Users\ADMINI~1\AppData\Local\Temp\tmpuw1r7rbn\.ghostdev\version.json: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
+  ok    FOO-IMPL.md exists
+  ok    all checklist boxes checked
+  ok    no open Known Bugs
+  ok    reference/foo.md shape OK
+  note  reference/foo.md: content unreviewed by a person (Rule 19 residue -- not machine-checkable)
+  ok    tests-deferred: no tests yet (waiver on record)
+  ok    docs/ clean
+  promote-check FOO: promotable
+  ok    FOO-IMPL.md exists
+  BLOCK 1 unchecked box(es): FOO.1.2
+  ok    no open Known Bugs
+  ok    reference/foo.md shape OK
+  note  reference/foo.md: content unreviewed by a person (Rule 19 residue -- not machine-checkable)
+  ok    tests-deferred: no tests yet (waiver on record)
+  ok    docs/ clean
+  promote-check FOO: NOT promotable
+  release PixelArtEyes v1.0.0 -> itch, fab  [dry-run]
+  itch         auto             create_listing:human set_metadata:human upload_version:auto go_live:auto
+  fab          gated            create_listing:human set_metadata:human upload_version:human go_live:human
+  release PixelArtEyes v1.0.0 -> fake
+  fake         live             
+  ledger updated: C:\Users\ADMINI~1\AppData\Local\Temp\tmp6n54ai5s\.ware\ledger.json
+  release is unity-asset-only for now (x is `tool`)
+  release PixelArtEyes v1.0.0 -> nope  [dry-run]
+  nope         unknown store
+  warning: ghost_sdk not installed (pip install -e Ghost/sdks/python[nats]); WPM_REPORTER=nats -> noop
+  warning: run 00000000-0000-4000-8000-000000000000 completed without a `audit` rollup line; emitting with the harness payload as fallback

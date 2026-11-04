@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "required": [
+    {
+      "name": "ware",
+      "revision": "efc38e4c18b8d70311c14bcba35a8304fb5e43ef",
+      "receipt": ".orkest/receipts/ware.json",
+      "sha256": "78d91e26439870aed8956e4fd15e7b90065534a340f0dce09be1a447f024bdf6"
+    },
+    {
+      "name": "Ghost.Represent",
+      "revision": "fe943b105d67d3ef3a33fe65fb2416e4ba18853c",
+      "receipt": ".orkest/receipts/Ghost.Represent.json",
+      "sha256": "d4bf6572d123f271f7bfbaa007d9157dd56ed4b9a8f4ec084f4957cd737feff6"
+    },
+    {
+      "name": "Ghost.Dashboard",
+      "revision": "e74087aa1464502e1e862e3409e4fe4316db4045",
+      "receipt": ".orkest/receipts/Ghost.Dashboard.json",
+      "sha256": "032c0d8daf5004b655deaf80e9e074eeb3a724557339b1da5d489684c21581de"
+    }
+  ],
+  "derivation": {
+    "derived_at": "2026-11-04",
+    "tool": "tools/orkest-consumers.py",
+    "evidence": [
+      "ware: ware.json project Represent",
+      "methrep: methrep workspace Represent (ware-json)"
+    ],
+    "source_registry": "D:/ware/orkest/.orkest"
+  }
+}

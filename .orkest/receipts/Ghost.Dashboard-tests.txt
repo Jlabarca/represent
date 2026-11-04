@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 D:/ware/Ghost/apps/Ghost.Dashboard
+
+
+ Test Files  6 passed (6)
+      Tests  113 passed (113)
+   Start at  13:32:18
+   Duration  1.51s (transform 450ms, setup 0ms, import 1.31s, tests 866ms, environment 0ms)
+

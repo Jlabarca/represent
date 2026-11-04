@@ -1,0 +1,25 @@
+{
+  "capabilities": [
+    "ork-layout-v1",
+    "imp-layout-v1",
+    "orkest-skill-v1"
+  ],
+  "consumer": "ware",
+  "deployment": {
+    "evidence": ".orkest/receipts/ware-deployed.json",
+    "revision": "efc38e4c18b8d70311c14bcba35a8304fb5e43ef",
+    "sha256": "ed65965cb9b6ef55f5be0416d2edc7db32cfebe4d2523f6a17401620f939d33a",
+    "verified": true
+  },
+  "revision": "efc38e4c18b8d70311c14bcba35a8304fb5e43ef",
+  "schema": 1,
+  "tests": {
+    "count_kind": "test executions across recorded suites",
+    "evidence": ".orkest/receipts/ware-tests.txt",
+    "exit_code": 0,
+    "passed": 568,
+    "revision": "efc38e4c18b8d70311c14bcba35a8304fb5e43ef",
+    "sha256": "abab2b36214ffe5837849473319389820251c4e4e5c492891f4ca76ef6abe7ef",
+    "total": 568
+  }
+}

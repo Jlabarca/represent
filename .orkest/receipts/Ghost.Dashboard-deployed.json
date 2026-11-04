@@ -1,0 +1,35 @@
+{
+  "command": "make -C D:/ware/Ghost dev-dashboard (compose --profile father up -d --build ghost-dashboard)",
+  "http": {
+    "x_gamedev": 302,
+    "x_ghostdev": 200
+  },
+  "image": "sha256:709f8861d3207bdc8ea547be70e8cfa122f999e633dc549ab9107d41ffa2e3cd",
+  "image_created": "2026-11-01T17:31:52.558198362Z",
+  "reader_markers": {
+    "foremanTargets_imp_regex_chunks": 2,
+    "imp_md_regex_chunks": 3
+  },
+  "source_context": "apps/ working tree at Ghost.Dashboard e74087aa1464502e1e862e3409e4fe4316db4045; every uncommitted file below predates the replaced image (sha256:914e5522..., built 2026-11-01T14:54Z), so the rebuild adds only committed 61f8e10 and e74087a to what was live",
+  "started_at": "2026-11-01T17:31:54.800942234Z",
+  "uncommitted_paths": [
+    "M .gitignore",
+    " M app/components/UserMenu.vue",
+    " M layers/ghost-harness/app/components/cockpit/GlancePage.vue",
+    " M layers/ghost-harness/app/components/methodology/UpdateModal.vue",
+    " M layers/netcode-ops/app/pages/x/netcode-ops/catalogue.vue",
+    " M layers/netcode-ops/app/utils/netcodeOpsQuery.ts",
+    " M nuxt.config.ts",
+    " M server/utils/backendServiceToken.ts",
+    " M server/utils/identity/extensions.ts",
+    " M server/utils/litellmAdmin.ts",
+    " M test/netcodeOpsQuery.test.ts",
+    "?? app/plugins/color-mode-auto.client.ts",
+    "?? app/utils/autoColorMode.ts",
+    "?? layers/gamedev/",
+    "?? server/routes/proxy/gamedev/",
+    "?? server/utils/gamedevProxyAllow.ts",
+    "?? test/autoColorMode.test.ts",
+    "?? test/gamedevBoard.test.ts"
+  ]
+}
