@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "enabled": true,
+  "warn_used_percent": 80,
+  "stop_used_percent": 90,
+  "context_guidance_warn_percent": 70,
+  "context_guidance_stop_percent": 85,
+  "snapshot_ttl_seconds": 300,
+  "provider_timeout_seconds": 12
+}

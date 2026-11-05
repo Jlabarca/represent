@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+
+# One-release legacy environment fallback.
+export ORKEST_TDD_REQUIRE_RED="${ORKEST_TDD_REQUIRE_RED:-${GHOSTDEV_TDD_REQUIRE_RED:-}}"
 # bin/tdd-require-red.sh — POSIX parity port of tdd-require-red.ps1.
-# GHOSTDEV_TDD_REQUIRE_RED: run ONE test target and assert it met an expected outcome.
+# ORKEST_TDD_REQUIRE_RED: run ONE test target and assert it met an expected outcome.
 # Opt-in; invoked by /run-impl at the PHASE BOUNDARY (OQ2), never per-Edit.
 #
 # Usage: tdd-require-red.sh --target <testfile> [--expect red|green] [--print-runner] [--repo <root>]

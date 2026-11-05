@@ -2,7 +2,7 @@
 # bin/precompact-handoff.ps1
 # PreCompact hook (CC-NATIVE-WINS.1 + DISCIPLINE-HARDENING.5). Before Claude Code
 # compacts context, (a) snapshot the transcript to a stable gitignored location, and
-# (b) AUTO-AUTHOR a topic-keyed docs/handoffs/<FEATURE>.md from on-disk state so the
+# (b) AUTO-AUTHOR a topic-keyed $handoffRoot/<FEATURE>.md from on-disk state so the
 # next session resumes without the operator remembering the ~120k smart-zone limit.
 # Deterministic (a hook can't LLM-compress) — a structured snapshot, not the smart
 # /handoff artifact, but far better than a bare nudge. ALWAYS exits 0; never blocks.
@@ -15,9 +15,12 @@ try { $j = $raw | ConvertFrom-Json -ErrorAction Stop } catch { $j = $null }
 
 $tp = if ($j) { $j.transcript_path } else { $null }
 $trigger = if ($j -and $j.trigger) { $j.trigger } else { 'unknown' }
-$cwd = (Get-Location).Path
+$cwd = (Resolve-Path "$PSScriptRoot/..").Path   # repo root, not the session cwd: a session opened in docs/ must not grow docs/docs/handoffs
 
-$hd = Join-Path $cwd 'docs/handoffs'
+$recordRoot = if (Test-Path (Join-Path $cwd 'docs/orkest')) { 'docs/orkest' } else { 'docs' }
+$handoffRoot = "$recordRoot/handoffs"
+$logbookPath = "$recordRoot/LOGBOOK.md"
+$hd = Join-Path $cwd $handoffRoot
 if (-not (Test-Path $hd)) { New-Item -ItemType Directory -Force -Path $hd | Out-Null }
 $stamp = (Get-Date).ToString('yyyy-MM-dd HH:mm:ss')
 
@@ -34,23 +37,21 @@ $note = @"
 - when:       $stamp
 - trigger:    $trigger compaction
 - transcript: $tp
-- snapshot:   docs/handoffs/precompact-backstop.jsonl (copy of the pre-compaction transcript)
+- snapshot:   $handoffRoot/precompact-backstop.jsonl (copy of the pre-compaction transcript)
 "@
 Set-Content -Path (Join-Path $hd 'precompact-backstop.md') -Value $note -ErrorAction SilentlyContinue
 
-# (b) Auto-author docs/handoffs/<FEATURE>.md from on-disk state.
+# (b) Auto-author $handoffRoot/<FEATURE>.md from on-disk state.
 #     FEATURE = first *-IMPL.md (most-recently-written) with an unchecked box.
 $feature = $null; $activePhase = $null; $implPath = $null
-$implFiles = @('docs', 'Ghost/docs', 'MaqUI/docs') | ForEach-Object {
-    Get-ChildItem -Path (Join-Path $cwd $_) -Filter '*-IMPL.md' -ErrorAction SilentlyContinue
-}
+$implFiles = @(Get-ChildItem -Path (Join-Path $cwd 'docs') -Filter '*-IMPL.md' -File -ErrorAction SilentlyContinue; Get-ChildItem -Path (Join-Path $cwd 'docs/orkest') -Filter '*-ORK.md' -File -ErrorAction SilentlyContinue; Get-ChildItem -Path (Join-Path $cwd 'docs/orkest') -Filter '*.imp.md' -File -ErrorAction SilentlyContinue)
 foreach ($impl in ($implFiles | Sort-Object LastWriteTime -Descending)) {
     $content = Get-Content $impl.FullName -Raw -ErrorAction SilentlyContinue
     if (-not $content) { continue }
     if ($content -match '(?m)^- \[ \]\s+\*?\*?([A-Z][A-Z0-9-]*\.\d+(?:\.\d+)?)\*?\*?\s+[—\-]\s+(.+)$') {
-        $feature = ($impl.Name -replace '-IMPL\.md$', '')
+        $feature = ($impl.Name -replace '(-(IMPL|ORK)|\.imp)\.md$', '')
         $activePhase = "$($matches[1]) — $($matches[2].Trim())"
-        $implPath = (Resolve-Path $impl.FullName -Relative).TrimStart('.\').TrimStart('.', '/')
+        $implPath = $impl.FullName.Substring($cwd.Length + 1).Replace('\', '/')
         break
     }
 }
@@ -58,7 +59,7 @@ foreach ($impl in ($implFiles | Sort-Object LastWriteTime -Descending)) {
 if ($feature) {
     # LOGBOOK tail (last entry) + git diff stat since HEAD — the "what just happened".
     $logTail = ''
-    $logbook = Join-Path $cwd 'docs/LOGBOOK.md'
+    $logbook = Join-Path $cwd $logbookPath
     if (Test-Path $logbook) {
         $lines = Get-Content $logbook -ErrorAction SilentlyContinue
         $idx = ($lines | Select-String -Pattern '^## ' | Select-Object -First 1).LineNumber
@@ -76,7 +77,7 @@ if ($feature) {
 
 ## Read first
 1. $implPath — the active tracker
-2. docs/LOGBOOK.md — latest entry (excerpt below)
+2. $logbookPath — latest entry (excerpt below)
 3. docs/CONTEXT.md — living state
 
 ## You are here
@@ -96,10 +97,10 @@ Continue $feature from the first unchecked box ($activePhase). Read the IMPL + t
 LOGBOOK excerpt above, verify the uncommitted diff, then proceed.
 "@
     Set-Content -Path (Join-Path $hd "$feature.md") -Value $handoff -ErrorAction SilentlyContinue
-    [Console]::Error.WriteLine("[precompact] context compacting ($trigger) - auto-authored docs/handoffs/$feature.md + backstop. Next session resumes from $activePhase.")
+    [Console]::Error.WriteLine("[precompact] context compacting ($trigger) - auto-authored $handoffRoot/$feature.md + backstop. Next session resumes from $activePhase.")
 }
 else {
-    [Console]::Error.WriteLine("[precompact] context compacting ($trigger) - snapshot saved to docs/handoffs/precompact-backstop.*; run /handoff for a compressed resume.")
+    [Console]::Error.WriteLine("[precompact] context compacting ($trigger) - snapshot saved to $handoffRoot/precompact-backstop.*; run /handoff for a compressed resume.")
 }
 
 exit 0

@@ -7,6 +7,9 @@
 param(
     [string]$RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
 )
+# One-release process-local legacy environment fallback.
+if (-not $env:ORKEST_INITGUARD_CMD) { $env:ORKEST_INITGUARD_CMD = $env:GHOSTDEV_INITGUARD_CMD }
+
 $ErrorActionPreference = 'Stop'
 $logDir = Join-Path $RepoRoot 'logs/hooks'
 $logFile = Join-Path $logDir "$(Get-Date -Format 'yyyy-MM-dd').log"
@@ -17,8 +20,8 @@ function Write-HookLog {
     }
 }
 
-# Command: GHOSTDEV_INITGUARD_CMD override (testing) or stdin JSON (.tool_input.command).
-$cmd = $env:GHOSTDEV_INITGUARD_CMD
+# Command: ORKEST_INITGUARD_CMD override (testing) or stdin JSON (.tool_input.command).
+$cmd = $env:ORKEST_INITGUARD_CMD
 if (-not $cmd) {
     try {
         $raw = [Console]::In.ReadToEnd()

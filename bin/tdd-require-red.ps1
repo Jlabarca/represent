@@ -1,6 +1,6 @@
 #!/usr/bin/env pwsh
 # bin/tdd-require-red.ps1
-# GHOSTDEV_TDD_REQUIRE_RED (DISCIPLINE-HARDENING.3.1) — run ONE test target and assert
+# ORKEST_TDD_REQUIRE_RED (DISCIPLINE-HARDENING.3.1) — run ONE test target and assert
 # it met an expected outcome. Opt-in (default off); invoked by /run-impl at the PHASE
 # BOUNDARY, never in the per-Edit PreToolUse path (OQ2 — protects the hot keystroke loop).
 # Closes the empty-`it('x',()=>{})` bypass: a symbol that never runs can't be Red.
@@ -16,6 +16,9 @@ param(
     [switch]$PrintRunner,
     [string]$RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
 )
+# One-release process-local legacy environment fallback.
+if (-not $env:ORKEST_TDD_REQUIRE_RED) { $env:ORKEST_TDD_REQUIRE_RED = $env:GHOSTDEV_TDD_REQUIRE_RED }
+
 $ErrorActionPreference = 'Stop'
 
 # Detect the runner from the target's extension. Returns @(exe, args...) or $null.

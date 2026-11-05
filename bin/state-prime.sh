@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# One-release legacy environment fallback.
+export ORKEST_EXTRA_CAPABILITY_ROOTS="${ORKEST_EXTRA_CAPABILITY_ROOTS:-${GHOSTDEV_EXTRA_CAPABILITY_ROOTS:-}}"
 # bin/state-prime.sh
 # UserPromptSubmit hook.
 # Reads the user prompt from stdin; if it mentions a phase ID like AUTH.4.2,
@@ -37,9 +40,33 @@ fi
 # index (docs/CAPABILITIES.md) so the session verifies negative / sole-existence claims before
 # writing them. Runs BEFORE the phase-ID block (and does not exit). Tune the regex from logs.
 if echo "$PROMPT" | grep -qiE '\b(redesign|design doc|research doc|bootstrap-impl|architecture|prior.?art)\b'; then
+    # GDC.1.5 — existence guard: never advertise an index that isn't on disk.
     echo ""
-    echo "> Reminder: shipped-capability index at [docs/CAPABILITIES.md](docs/CAPABILITIES.md) - verify any 'X has no Y' / 'only N producers' claim against it before writing (DOCS-PROTOCOL Rule 17)."
-    log_hook inject "design-prompt -> CAPABILITIES.md pointer"
+    if [ -f "$REPO_ROOT/docs/CAPABILITIES.md" ]; then
+        echo "> Reminder: shipped-capability index at [docs/CAPABILITIES.md](docs/CAPABILITIES.md) - verify any 'X has no Y' / 'only N producers' claim against it before writing (DOCS-PROTOCOL Rule 17)."
+        log_hook inject "design-prompt -> CAPABILITIES.md pointer"
+    else
+        echo "> Reminder: shipped-capability index not seeded yet - create docs/CAPABILITIES.md via /promote-impl (create-with-header) or copy the template seed, then verify any 'X has no Y' claim against it (DOCS-PROTOCOL Rule 17)."
+        log_hook inject "design-prompt -> CAPABILITIES.md missing hint"
+    fi
+    # GDC.4.1 — fleet scope: sibling repos' capability indexes, from
+    # ORKEST_EXTRA_CAPABILITY_ROOTS (semicolon-separated roots; statusline precedent).
+    if [ -n "${ORKEST_EXTRA_CAPABILITY_ROOTS:-}" ]; then
+        found=""
+        OLD_IFS="$IFS"; IFS=';'
+        for r in $ORKEST_EXTRA_CAPABILITY_ROOTS; do
+            r=$(echo "$r" | sed 's/^[[:space:]]*//; s/[[:space:]]*$//; s|/$||')
+            [ -n "$r" ] || continue
+            if [ -f "$r/docs/CAPABILITIES.md" ]; then
+                if [ -n "$found" ]; then found="$found, $r/docs/CAPABILITIES.md"; else found="$r/docs/CAPABILITIES.md"; fi
+            fi
+        done
+        IFS="$OLD_IFS"
+        if [ -n "$found" ]; then
+            echo "> Fleet capability indexes: $found"
+            log_hook inject "design-prompt -> fleet capability roots"
+        fi
+    fi
 fi
 
 # Match phase ID pattern
@@ -59,25 +86,28 @@ if [ ! -d "$IMPL_DIR" ]; then
 fi
 
 MATCHED_IMPL=""
-for impl in "$IMPL_DIR"/*-IMPL.md; do
+for impl in "$IMPL_DIR"/*-IMPL.md "$IMPL_DIR"/orkest/*-ORK.md "$IMPL_DIR"/orkest/*.imp.md; do
     [ -f "$impl" ] || continue
     base=$(basename "$impl" .md)
-    stem="${base%-IMPL}"
-    # Match: stem == prefix, stem starts with prefix, or prefix starts with stem's first 4 chars
-    stem_prefix="${stem:0:4}"
-    if [ "$stem" = "$PREFIX" ] || [[ "$stem" == "$PREFIX"* ]] || [[ "$PREFIX" == "$stem_prefix"* ]]; then
-        MATCHED_IMPL=$(basename "$impl")
+    stem="${base%-IMPL}"; stem="${stem%-ORK}"
+    # <topic>.imp.md trackers spell the uppercase description in lowercase.
+    case "$base" in *.imp) stem=$(printf '%s' "${base%.imp}" | tr '[:lower:]' '[:upper:]') ;; esac
+    # A tracker owns the phase when it lists it, is named for it, or its name begins with the phase's
+    # word (METH -> METHODOLOGY). A shared four-character stem is NOT enough: every GHOST* phase
+    # would collide with whichever GHOST* tracker sorts first.
+    if grep -Eq "^- \[[ x]\][[:space:]]+\*{0,2}${PREFIX}\." "$impl" || [ "$stem" = "$PREFIX" ] || [[ "$stem" == "$PREFIX"* ]]; then
+        MATCHED_IMPL="${impl#"$IMPL_DIR"/}"
         break
     fi
 done
 
 if [ -z "$MATCHED_IMPL" ]; then
     # Fallback — any IMPL whose name contains the prefix as a token
-    for impl in "$IMPL_DIR"/*-IMPL.md; do
+    for impl in "$IMPL_DIR"/*-IMPL.md "$IMPL_DIR"/orkest/*-ORK.md "$IMPL_DIR"/orkest/*.imp.md; do
         [ -f "$impl" ] || continue
         name=$(basename "$impl")
         if echo "$name" | grep -qE "(^|[-_])${PREFIX}([-_]|\.|\$)"; then
-            MATCHED_IMPL="$name"
+            MATCHED_IMPL="${impl#"$IMPL_DIR"/}"
             break
         fi
     done

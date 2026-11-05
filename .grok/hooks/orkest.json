@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 120,
+            "command": "pwsh -NoProfile -File bin/orkest-startup.ps1 -Harness grok"
+          }
+        ]
+      }
+    ]
+  }
+}

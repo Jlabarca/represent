@@ -1,0 +1,30 @@
+{
+  "_comment": "One canonical orkest skill projects with byte identity to all three named harnesses. Roots are project-relative and shared roots are written once. Grok uses its native .grok projection; fallback discovery order is not asserted. Only proven owned legacy copies may be retired; local/custom skills remain conflicts. `aliases` are short names of the same suite skill, projected and installed beside it; they are not legacy stubs and are never counted as extra skills.",
+  "authoring": "skills",
+  "harnesses": [
+    {
+      "name": "claude-code",
+      "roots": [
+        ".claude/skills"
+      ]
+    },
+    {
+      "name": "codex",
+      "roots": [
+        ".agents/skills"
+      ]
+    },
+    {
+      "name": "grok",
+      "roots": [
+        ".grok/skills",
+        ".agents/skills"
+      ]
+    }
+  ],
+  "suite_skill": "orkest",
+  "aliases": [
+    "ork"
+  ],
+  "compatibility_window": 1
+}

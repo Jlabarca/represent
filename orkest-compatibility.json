@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "layouts": [
+    0,
+    1
+  ],
+  "files": {
+    "bin/statusline.ps1": "03140a126ff971c00e6ccf26c7c4ff8886b32df35fc3aea773237678b0c345c2",
+    "bin/statusline.sh": "562576409486e9c53283bea0e7b2a0f09d13476a48cafcd97dba69c537f6ea6e",
+    "bin/state-prime.ps1": "1aeba34d8e23a81391cc1e4061c801d36e9acf452b0043cb793664f5dd9ef460",
+    "bin/state-prime.sh": "b959543821975d6837047d82e97c97c200640f259ee365c379cf0a77db174ff1",
+    "bin/check-impl-phase.ps1": "1980abe7019fd5d0555b2c717cdd23257cf57ad5305547e5854df0482d9826c2",
+    "bin/check-impl-phase.sh": "3acc9a55bd292d7e52b0fbeeb5d0f722459bc2f7a8255095af215913af2f29a6",
+    "bin/tdd-test-gate.ps1": "e2e484c4a3a3a12c9728ddf56aaaa30444df338b5f12962f20d5d1a10831f9e4",
+    "bin/tdd-test-gate.sh": "50610d29976314422ce0bce6e007cfe4c7ee1f1169bb3eed8e6949aa5c1d1b95",
+    "bin/precompact-handoff.ps1": "95bf6ed17b7060a19c3d52f75f142af9e7ca0ee1d3bfabc2a099c1bb460a62b8",
+    "bin/precompact-handoff.sh": "d8015585a982ce10c1bff0d356b2dc749ad8c4605d0ce6b59cf113c216f2fb7c",
+    "bin/promote-check.py": "52a33692d9e69b4b2887fe74a39b93b0b911003345df850000816d8f0fcf7a46"
+  },
+  "evidence": "Readers accept -IMPL.md, -ORK.md and <topic>.imp.md (ORKEST-HARNESS.5.4 .imp.md write format); readers resolve KEY-N and legacy ORK-NNNNNN ids as aliases (project key in docs/orkest/.key)",
+  "capabilities": [
+    "ork-layout-v1",
+    "imp-layout-v1",
+    "keyed-id-v1"
+  ]
+}

@@ -1,15 +1,23 @@
 #!/usr/bin/env pwsh
 # bin/tdd-test-gate.ps1
-# PreToolUse hook (Edit|Write matcher) — TDD back-pressure.
+# PreToolUse hook (Edit|Write matcher) — TDD back-pressure (Pocock /tdd).
 # Warns/blocks a Write|Edit to an IMPLEMENTATION file when no new test symbol was
-# added in the session diff. Warn-mode by default; block on GHOSTDEV_HOOK_BLOCK=1
-# (or per-IMPL "block-mode: true").
+# added in the session diff. Warn-mode by default; block on ORKEST_HOOK_BLOCK=1
 # Exit: 0 allow, 1 warn (stderr, tool proceeds), 2 block (tool refused).
-# Contract: bin/fixtures/tdd-gate/README.md.
+# Contract: bin/fixtures/tdd-gate/README.md. Policy: docs/research/hooks-policy.md.
 
 param(
     [string]$RepoRoot = (Resolve-Path "$PSScriptRoot/..").Path
 )
+# One-release process-local legacy environment fallback.
+if (-not $env:ORKEST_GRADUATED) { $env:ORKEST_GRADUATED = $env:GHOSTDEV_GRADUATED }
+if (-not $env:ORKEST_HOOK_BLOCK) { $env:ORKEST_HOOK_BLOCK = $env:GHOSTDEV_HOOK_BLOCK }
+if (-not $env:ORKEST_SESSION_ID) { $env:ORKEST_SESSION_ID = $env:GHOSTDEV_SESSION_ID }
+if (-not $env:ORKEST_TDD_BASE_REF) { $env:ORKEST_TDD_BASE_REF = $env:GHOSTDEV_TDD_BASE_REF }
+if (-not $env:ORKEST_TDD_DIFF_FILE) { $env:ORKEST_TDD_DIFF_FILE = $env:GHOSTDEV_TDD_DIFF_FILE }
+if (-not $env:ORKEST_TDD_PENDING_DIFF) { $env:ORKEST_TDD_PENDING_DIFF = $env:GHOSTDEV_TDD_PENDING_DIFF }
+if (-not $env:ORKEST_TDD_TARGET) { $env:ORKEST_TDD_TARGET = $env:GHOSTDEV_TDD_TARGET }
+
 
 $ErrorActionPreference = 'Stop'
 $logDir = Join-Path $RepoRoot 'logs/hooks'
@@ -23,14 +31,21 @@ function Write-HookLog {
     }
 }
 
-# 1. Target path: stdin JSON (.tool_input.file_path) or GHOSTDEV_TDD_TARGET override.
-$target = $env:GHOSTDEV_TDD_TARGET
+# 1. Target path: stdin JSON (.tool_input.file_path) or ORKEST_TDD_TARGET override.
+#    Also capture session_id for graduated enforcement (step 6).
+$target = $env:ORKEST_TDD_TARGET
+$sessionId = $env:ORKEST_SESSION_ID
 if (-not $target) {
     try {
         $raw = [Console]::In.ReadToEnd()
-        if ($raw) { $target = ($raw | ConvertFrom-Json -ErrorAction SilentlyContinue).tool_input.file_path }
+        if ($raw) {
+            $j = $raw | ConvertFrom-Json -ErrorAction SilentlyContinue
+            $target = $j.tool_input.file_path
+            if (-not $sessionId -and $j.session_id) { $sessionId = $j.session_id }
+        }
     } catch { }
 }
+if (-not $sessionId) { $sessionId = 'nosession' }
 if (-not $target) { Write-HookLog 'noop' 'no target path'; exit 0 }
 
 # 2. Impl-path classification: code ext AND not a test path.
@@ -45,13 +60,14 @@ if (($codeExts -notcontains $ext) -or $isTestPath) {
     Write-HookLog 'noop' "non-impl: $target"; exit 0
 }
 
-# 3. Active-IMPL gate. Skipped in test mode (explicit diff file).
+# 3. Active-IMPL gate (OQ1 proxy). Skipped in test mode (explicit diff file).
 $blockModeImpl = $false
-if (-not $env:GHOSTDEV_TDD_DIFF_FILE) {
-    $implDir = Join-Path $RepoRoot 'docs'
+if (-not $env:ORKEST_TDD_DIFF_FILE) {
     $activeImpl = $null
-    if (Test-Path $implDir) {
-        foreach ($f in Get-ChildItem -Path $implDir -Filter '*-IMPL.md' -ErrorAction SilentlyContinue) {
+    foreach ($d in @('docs', 'docs/orkest')) {
+        $p = Join-Path $RepoRoot $d
+        if (-not (Test-Path $p)) { continue }
+        foreach ($f in Get-ChildItem -Path $p -File -ErrorAction SilentlyContinue | Where-Object { ($d -eq 'docs' -and $_.Name -like '*-IMPL.md') -or ($d -eq 'docs/orkest' -and ($_.Name -like '*-ORK.md' -or $_.Name -like '*.imp.md')) }) {
             $c = Get-Content $f.FullName -Raw -ErrorAction SilentlyContinue
             if ($c -match '(?m)^- \[ \]') {
                 $activeImpl = $f.Name
@@ -59,22 +75,28 @@ if (-not $env:GHOSTDEV_TDD_DIFF_FILE) {
                 break
             }
         }
+        if ($activeImpl) { break }
     }
     if (-not $activeImpl) { Write-HookLog 'noop' 'no active IMPL phase'; exit 0 }
 }
 
-# 4. Session diff: explicit file (tests) or git diff since base (HEAD, or GHOSTDEV_TDD_BASE_REF).
+# 4. Session diff: explicit file (tests) or git diff since base (HEAD, or ORKEST_TDD_BASE_REF).
 $diff = ''
-if ($env:GHOSTDEV_TDD_DIFF_FILE -and (Test-Path $env:GHOSTDEV_TDD_DIFF_FILE)) {
-    $diff = Get-Content $env:GHOSTDEV_TDD_DIFF_FILE -Raw
+if ($env:ORKEST_TDD_DIFF_FILE -and (Test-Path $env:ORKEST_TDD_DIFF_FILE)) {
+    $diff = Get-Content $env:ORKEST_TDD_DIFF_FILE -Raw
 }
 else {
-    $base = $env:GHOSTDEV_TDD_BASE_REF; if (-not $base) { $base = 'HEAD' }
+    $base = $env:ORKEST_TDD_BASE_REF; if (-not $base) { $base = 'HEAD' }
     try {
         Push-Location $RepoRoot
         $diff = ((& git diff $base 2>$null) -join "`n") + "`n" + ((& git diff --cached 2>$null) -join "`n")
     }
     catch { } finally { Pop-Location }
+}
+# A multi-file engine patch (Codex apply_patch) that adds the test alongside the code
+# satisfies test-first: bin/ghostdev-hooks.py hands its added lines over here.
+if ($env:ORKEST_TDD_PENDING_DIFF -and (Test-Path $env:ORKEST_TDD_PENDING_DIFF)) {
+    $diff = $diff + "`n" + (Get-Content $env:ORKEST_TDD_PENDING_DIFF -Raw)
 }
 
 # 5. New test symbol on an added (+) line?
@@ -88,15 +110,30 @@ foreach ($ln in ($diff -split "`n")) {
 if ($hasTest) { Write-HookLog 'allow' "$target (test symbol present)"; exit 0 }
 
 # 6. Violation — warn (1) or block (2).
-$shouldBlock = ($env:GHOSTDEV_HOOK_BLOCK -eq '1') -or $blockModeImpl
-$msg = "[tdd-gate] $target - no new test symbol in the session diff. Test-first not satisfied: add a failing test (Red), then the implementation (Green)."
+#    Explicit env / block-mode blocks immediately. Otherwise, graduated enforcement
+#    (opt-in: ORKEST_GRADUATED=1) warns the first violation this SESSION and blocks
+#    repeats — the warn-fatigue fix (§6.4) without surprising on the first hit.
+$explicitBlock = ($env:ORKEST_HOOK_BLOCK -eq '1') -or ($env:GHOST_HARNESS_HOOK_BLOCK -eq '1') -or ($env:MAREMOTO_METHOD_HOOK_BLOCK -eq '1') -or $blockModeImpl
+$repeat = $false
+if (($env:ORKEST_GRADUATED -eq '1') -and -not $explicitBlock) {
+    if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Force -Path $logDir | Out-Null }
+    $countFile = Join-Path $logDir ("tdd-violations-" + ($sessionId -replace '[^A-Za-z0-9_.-]', '_') + '.count')
+    $n = 0
+    if (Test-Path $countFile) { $n = [int]((Get-Content $countFile -Raw -ErrorAction SilentlyContinue).Trim()) }
+    $n++
+    Set-Content -Path $countFile -Value $n -ErrorAction SilentlyContinue
+    if ($n -ge 2) { $repeat = $true }
+}
+$shouldBlock = $explicitBlock -or $repeat
+$base = "[tdd-gate] $target - no new test symbol in the session diff. Test-first not satisfied: add a failing test (Red), then the implementation (Green)."
 if ($shouldBlock) {
-    [Console]::Error.WriteLine("$msg [BLOCK]")
+    $why = if ($repeat -and -not $explicitBlock) { ' [BLOCK: repeat violation this session]' } else { ' [BLOCK]' }
+    [Console]::Error.WriteLine("$base$why")
     Write-HookLog 'block' "$target"
     exit 2
 }
 else {
-    [Console]::Error.WriteLine("$msg [warn]")
+    [Console]::Error.WriteLine("$base [warn]")
     Write-HookLog 'warn' "$target"
     exit 1
 }

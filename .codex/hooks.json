@@ -1,0 +1,40 @@
+{
+  "description": "Orkest canonical Codex hooks — reconciled into .codex/hooks.json by bin/orkest-init / ghostdev-update. Every handler goes through bin/orkest-hooks (Python 3) so apply_patch is checked per file. Codex asks you to trust each new or changed hook once (/hooks).",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/bin/orkest-hooks.sh\" run --engine codex tdd-test-gate",
+            "commandWindows": "pwsh -NoProfile -Command \"& (Join-Path $(if ($r = git rev-parse --show-toplevel 2>$null) { $r } else { $PWD.Path }) 'bin/orkest-hooks.ps1') run --engine codex tdd-test-gate; exit $LASTEXITCODE\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/bin/orkest-hooks.sh\" run --engine codex session-fingerprint",
+            "commandWindows": "pwsh -NoProfile -Command \"& (Join-Path $(if ($r = git rev-parse --show-toplevel 2>$null) { $r } else { $PWD.Path }) 'bin/orkest-hooks.ps1') run --engine codex session-fingerprint; exit $LASTEXITCODE\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$(git rev-parse --show-toplevel 2>/dev/null || pwd)/bin/orkest-hooks.sh\" run --engine codex orkest-startup",
+            "commandWindows": "pwsh -NoProfile -Command \"& (Join-Path $(if ($r = git rev-parse --show-toplevel 2>$null) { $r } else { $PWD.Path }) 'bin/orkest-hooks.ps1') run --engine codex orkest-startup; exit $LASTEXITCODE\""
+          }
+        ]
+      }
+    ]
+  }
+}
