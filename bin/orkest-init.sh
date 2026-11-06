@@ -13,13 +13,16 @@ while [ $# -gt 0 ]; do
     *) echo "Unknown init option: $1" >&2; exit 2 ;;
   esac
 done
-for py in "${ORKEST_PYTHON:-${GHOSTDEV_PYTHON:-}}" python3 python; do
-  [ -n "$py" ] || continue
-  if command -v "$py" >/dev/null 2>&1 && "$py" -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)' >/dev/null 2>&1; then
-    flags=(--dry)
-    [ "$execute" -eq 0 ] || flags=(--execute)
-    exec "$py" -B "$dir/orkest-startup.py" --initialize --repo "$target" --template "$template" "${flags[@]}"
-  fi
+# Prefer Python 3.8+ (Update needs it); an older 3.x is used only when nothing newer exists.
+for minor in 8 0; do
+  for py in "${ORKEST_PYTHON:-${GHOSTDEV_PYTHON:-}}" python3 python; do
+    [ -n "$py" ] || continue
+    if command -v "$py" >/dev/null 2>&1 && "$py" -c "import sys; sys.exit(0 if sys.version_info[0] == 3 and sys.version_info[1] in range($minor, 100) else 1)" >/dev/null 2>&1; then
+      flags=(--dry)
+      [ "$execute" -eq 0 ] || flags=(--execute)
+      exec "$py" -B "$dir/orkest-startup.py" --initialize --repo "$target" --template "$template" "${flags[@]}"
+    fi
+  done
 done
 echo 'Orkest init requires Python 3; no files changed' >&2
 exit 2

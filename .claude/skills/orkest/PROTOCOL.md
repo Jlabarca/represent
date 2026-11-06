@@ -95,7 +95,9 @@ every owned step refreshes; a lock on this host idle past ORKEST_LOCK_STALE_HOUR
 (default 8) is abandoned and the next write recovers it, recording whose it was in
 .git/orkest/recovered-locks.log. A younger lock, or one from another host, is waited
 for; `orkest.py recover-lock` lists them and `--confirm-inactive` removes them once the
-operator knows the owner is gone. A tracker lock guards only its own tracker.
+operator knows the owner is gone. A tracker lock guards only its own tracker. A session
+whose own lock was cleared under it takes the lock back at its next step when nothing
+else holds the repository; if another session holds it, the step stops and names it.
 Append-only bug/history notes may coexist without rewriting structural state.
 Concurrent editing workers require isolated worktrees; the coordinator owns
 integration. Release only the caller's lock on exit.

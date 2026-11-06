@@ -7,7 +7,6 @@ The caller must establish ownership, writer locks and verification before commit
 import argparse
 import json
 import re
-import shutil
 import subprocess
 import sys
 import tempfile
@@ -57,9 +56,24 @@ def preflight(repo, branch):
     return git(repo, 'rev-parse', 'HEAD').stdout.strip()
 
 
-def index_file(repo):
-    git_dir = Path(git(repo, 'rev-parse', '--absolute-git-dir').stdout.strip())
-    return git_dir / 'index'
+def index_entries(repo, paths):
+    """The index entries (mode, object, stage, path) of exactly these paths, as `update-index --index-info` input."""
+    raw = git(repo, 'ls-files', '--stage', '-z', '--', *paths).stdout
+    lines = []
+    for entry in filter(None, raw.split('\0')):
+        meta, name = entry.split('\t', 1)
+        mode, obj, stage = meta.split()
+        lines.append('%s %s %s\t%s\n' % (mode, obj, stage, name))
+    return lines
+
+
+def restore_entries(repo, paths, entries):
+    """Put these paths' index entries back as recorded; every other entry in the index is left as it is."""
+    git(repo, 'rm', '--cached', '-r', '-q', '--ignore-unmatch', '--', *paths, check=False)
+    if entries:
+        # Bytes, not text: text mode would turn each newline into CRLF on Windows and corrupt the path.
+        subprocess.run(['git', '-C', str(repo), 'update-index', '--index-info'], input=''.join(entries).encode('utf-8'),
+                       capture_output=True, check=True)
 
 
 def run(args):
@@ -84,9 +98,7 @@ def run(args):
         # A rename's old path may already be absent from the index after git mv.
         stage = [p for p in paths if (repo / p).exists() or
                  git(repo, 'ls-files', '--error-unmatch', '--', p, check=False).returncode == 0]
-        index = index_file(repo)
-        backup = index.with_name(index.name + '.workflow-bak')
-        shutil.copy2(index, backup)
+        before_entries = index_entries(repo, paths)
         try:
             # Tracked paths go through -u: a plain add refuses a tracked file whose
             # directory matches an ignore rule, and -u never consults ignore rules.
@@ -108,11 +120,10 @@ def run(args):
             finally:
                 message_path.unlink(missing_ok=True)
         except Exception:
-            if backup.exists():
-                shutil.copy2(backup, index)
+            # Undo only what this call staged. The index is shared with every session in the checkout, so a
+            # whole-file restore would erase entries another session staged while this commit ran.
+            restore_entries(repo, paths, before_entries)
             raise
-        finally:
-            backup.unlink(missing_ok=True)
         after = git(repo, 'rev-parse', 'HEAD').stdout.strip()
         if before == after:
             raise ValueError('Commit did not advance HEAD')

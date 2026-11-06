@@ -10,10 +10,19 @@ $template = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path
 if (-not $Target) { $Target = $template }
 $Target = (Resolve-Path -LiteralPath $Target).Path
 $py = $null
-foreach ($candidate in @($env:ORKEST_PYTHON, $env:GHOSTDEV_PYTHON, 'python3', 'python')) {
-    if (-not $candidate -or -not (Get-Command $candidate -CommandType Application -ErrorAction SilentlyContinue)) { continue }
-    & $candidate -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)' 2>$null | Out-Null
-    if ($LASTEXITCODE -eq 0) { $py = $candidate; break }
+# Prefer Python 3.8+ (Update needs it); a shim that resolves to an older 3.x is used only when nothing newer exists.
+foreach ($minor in 8, 0) {
+    foreach ($candidate in @(@($env:ORKEST_PYTHON), @($env:GHOSTDEV_PYTHON), @('python3'), @('python'), @('py', '-3'))) {
+        if (-not $candidate[0] -or -not (Get-Command $candidate[0] -CommandType Application -ErrorAction SilentlyContinue)) { continue }
+        $pre = @($candidate | Select-Object -Skip 1)
+        $resolved = & $candidate[0] @pre -c "import sys; print(sys.executable); sys.exit(0 if sys.version_info[0] == 3 and sys.version_info[1] in range($minor, 100) else 1)" 2>$null
+        if ($LASTEXITCODE -eq 0 -and $resolved) {
+            $executable = [string](@($resolved)[-1])
+            $py = if ([System.IO.Path]::IsPathRooted($executable) -and (Test-Path -LiteralPath $executable -PathType Leaf)) { $executable } else { $candidate[0] }
+            break
+        }
+    }
+    if ($py) { break }
 }
 if (-not $py) { Write-Error 'Orkest init requires Python 3; no files changed'; exit 2 }
 $forward = @('--initialize', '--repo', $Target, '--template', $template)

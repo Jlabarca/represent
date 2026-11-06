@@ -250,6 +250,20 @@ def acquire(repo, tracker, options):
     return session
 
 
+def retake_lock(repo, session, target, branch):
+    """Re-create this session's own run lock after it was cleared; lose quietly to any other writer."""
+    migration.check_writer_locks(repo, session, target, recover=True)  # a legacy or foreign lock still blocks
+    parent = metadata(repo)
+    parent.mkdir(parents=True, exist_ok=True)
+    now = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    try:
+        with (parent / 'run.lock').open('x', encoding='utf-8') as handle:
+            handle.write('session: ' + session + '\ntarget: ' + target + '\nbranch: ' + branch + '\nstarted: ' + now +
+                         '\nhost: ' + platform.node().replace(' ', '_') + '\nheartbeat: ' + now + '\n')
+    except FileExistsError:
+        pass  # another session took it between the check and now; the ownership check reports it
+
+
 def touch_lock(repo, session):
     """Show the owner is still working: refresh the heartbeat of this session's own run lock."""
     path = metadata(repo) / 'run.lock'
@@ -604,9 +618,16 @@ def run_step(repo, options):
     if lane(options) != saved['lane']:
         raise ValueError('Execution lane changed; restart through preflight')
     preflight(repo, tracker, saved)
+    if state['session'] == session_id(options) and not options.get('dry') and not lock_fields(repo):
+        # The lock was cleared under this live session (recover-lock, an Update). Nothing else holds the
+        # repository, so take it back and carry on instead of failing the run.
+        retake_lock(repo, session_id(options), tracker['path'], state['branch'])
     if (lock_fields(repo).get('session') != session_id(options) or
             lock_fields(repo).get('target') != tracker['path'] or state['session'] != session_id(options)):
-        raise ValueError('The current session does not own this target')
+        held = lock_fields(repo).get('session')
+        raise ValueError('The current session does not own this target' +
+                         ('; the run lock is held by session ' + held + '. Wait for it, or ask the operator to run '
+                          'recover-lock --confirm-inactive' if held and held != session_id(options) else ''))
     if git(repo, 'symbolic-ref', '--short', 'HEAD') != state['branch']:
         raise ValueError('Run branch changed')
     if options.get('dry'):

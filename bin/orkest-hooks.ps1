@@ -10,18 +10,22 @@ if (-not $env:ORKEST_PYTHON) { $env:ORKEST_PYTHON = $env:GHOSTDEV_PYTHON }
 if ($env:ORKEST_PYTHON) { $candidates += , @($env:ORKEST_PYTHON) }
 $candidates += , @('python3'); $candidates += , @('python'); $candidates += , @('py', '-3')
 $py = $null
-foreach ($c in $candidates) {
-    if (-not (Get-Command $c[0] -CommandType Application -ErrorAction SilentlyContinue)) { continue }
-    $pre = @($c | Select-Object -Skip 1)
-    $resolvedPython = & $c[0] @pre -c 'import sys; print(sys.executable); sys.exit(0 if sys.version_info[0] == 3 else 1)' 2>$null
-    if ($LASTEXITCODE -eq 0 -and $resolvedPython) {
-        $executable = [string](@($resolvedPython)[-1])
-        if ([System.IO.Path]::IsPathRooted($executable) -and (Test-Path -LiteralPath $executable -PathType Leaf)) {
-            # ProcessStartInfo does not use PowerShell's .cmd/.bat command resolution.
-            $py = @($executable)
-            break
+# Prefer Python 3.8+ (an old pyenv shim first on PATH must not win); any 3.x remains the fallback.
+foreach ($minor in 8, 0) {
+    foreach ($c in $candidates) {
+        if (-not (Get-Command $c[0] -CommandType Application -ErrorAction SilentlyContinue)) { continue }
+        $pre = @($c | Select-Object -Skip 1)
+        $resolvedPython = & $c[0] @pre -c "import sys; print(sys.executable); sys.exit(0 if sys.version_info[0] == 3 and sys.version_info[1] in range($minor, 100) else 1)" 2>$null
+        if ($LASTEXITCODE -eq 0 -and $resolvedPython) {
+            $executable = [string](@($resolvedPython)[-1])
+            if ([System.IO.Path]::IsPathRooted($executable) -and (Test-Path -LiteralPath $executable -PathType Leaf)) {
+                # ProcessStartInfo does not use PowerShell's .cmd/.bat command resolution.
+                $py = @($executable)
+                break
+            }
         }
     }
+    if ($py) { break }
 }
 if (-not $py) {
     [Console]::Error.WriteLine('[orkest] orkest-hooks: Python 3 not found (set ORKEST_PYTHON); hook skipped')
