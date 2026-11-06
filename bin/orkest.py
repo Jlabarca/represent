@@ -34,6 +34,13 @@ def git(repo, *args, optional=False):
     return result.stdout.strip() if result.returncode == 0 else ''
 
 
+def status_raw(repo):
+    """`git status --porcelain` exactly as printed: git() strips, which would eat the first line's leading space."""
+    result = subprocess.run(['git', '-C', str(repo), 'status', '--porcelain', '--untracked-files=all'], capture_output=True,
+                            text=True, encoding='utf-8', errors='replace')
+    return result.stdout if result.returncode == 0 else ''
+
+
 def metadata(repo):
     git_dir = Path(git(repo, 'rev-parse', '--absolute-git-dir')).resolve()
     result = git_dir / 'orkest'
@@ -443,7 +450,7 @@ def start(repo, query='', options=None):
     state = dict(schema=1, session=session, target=target['path'] if target else None,
                  query=query, branch=result['branch'], base=git(repo, 'rev-parse', 'HEAD'),
                  options=saved_options, facts={'compatibility_verified': result['compatibility_verified']},
-                 migration_pending=pending, baseline_status=git(repo, 'status', '--porcelain', '--untracked-files=all'),
+                 migration_pending=pending, baseline_status=status_raw(repo),
                  staged_diff_hash=hashlib.sha256(git(repo, 'diff', '--cached').encode('utf-8')).hexdigest(),
                  unstaged_diff_hash=hashlib.sha256(git(repo, 'diff').encode('utf-8')).hexdigest())
     if budget.get('snapshot'):
@@ -767,7 +774,12 @@ def run_step(repo, options):
         if gate_id:
             verdict, output = orkest_gate.ingest(repo, gate_id, sys.modules[__name__])
             command, code = verdict['argv'], verdict['exit_code']
-            if verdict['head_at_start'] != git(repo, 'rev-parse', 'HEAD'):
+            if str(verdict.get('project')) != str(project) or str(verdict.get('phase')) != str(phase):
+                gate_note = 'gate was run for project %s / phase %s, not %s / %s' % (
+                    verdict.get('project'), verdict.get('phase'), project, phase)
+            elif options['expect'] == 'red' and verdict['outcome'] != 'fail':
+                gate_note = 'a red needs a gate that failed on its own (outcome fail), not %s' % verdict['outcome']
+            elif verdict['head_at_start'] != git(repo, 'rev-parse', 'HEAD'):
                 gate_note = 'gate ran on different source (HEAD moved since it started); rerun it'
             elif not verdict.get('phase_fingerprint'):
                 gate_note = 'gate was not started with --phase, so its source cannot be matched; rerun it with --phase'
@@ -794,8 +806,10 @@ def run_step(repo, options):
         why = []
         if red:
             if not (code != 0 and counts['failed'] > 0 and counts['errors'] == 0 and
-                    ('AssertionError' in output or 'FAIL:' in output or 'assert ' in output)):
+                    any(marker in output for marker in ('AssertionError', 'FAIL:', 'assert ', 'Assert.', 'expect('))):
                 why.append('red needs a failing assertion, not an error or a crash')
+            elif options.get('reason_pattern') and not re.search(options['reason_pattern'], output):
+                why.append('red failed, but not for the declared reason (pattern %s did not match)' % options['reason_pattern'])
         else:
             if code != 0:
                 why.append('exit code %s' % code)
@@ -803,9 +817,10 @@ def run_step(repo, options):
                 why.append('no passing tests')
             if counts['failed'] or counts['errors']:
                 why.append('%d failed, %d errors' % (counts['failed'], counts['errors']))
-            if counts['skipped'] > skip_budget:
+            skipped = counts.get('native_skipped', counts['skipped'])
+            if skipped > skip_budget:
                 why.append('%d skipped exceeds the skip budget %d; name allowed skips with `skip_budget` in the phase '
-                           'requires block or pass --skip-budget' % (counts['skipped'], skip_budget))
+                           'requires block or pass --skip-budget' % (skipped, skip_budget))
         if gate_note:
             why.append(gate_note)
         if source_fingerprint(repo, record['paths']) != current:
@@ -1250,8 +1265,7 @@ def final_step(repo, options, state, state_file, tracker):
     save_json(state_file, state)
     release(repo, options)
     import orkest_prep
-    dirty = orkest_prep.dirty_report(git(repo, 'status', '--porcelain', '--untracked-files=all'),
-                                     state.get('baseline_status', ''), owned_paths(state, tracker['path']))
+    dirty = orkest_prep.dirty_report(status_raw(repo), state.get('baseline_status', ''), owned_paths(state, tracker['path']))
     return dict(action='done', committed=True, commit=commit, complete=True, dirty_files=dirty['counts'],
                 dirty_note=dirty['note'] if dirty['total'] else None)
 
@@ -1308,6 +1322,24 @@ def guide(repo, command, result):
     return dict(result, next_command=call, note=note)
 
 
+def record_metric(args, started, code, result):
+    """Best-effort NDJSON line for this helper call; never raises and never writes the working tree."""
+    if args.command == 'metrics' or args.dry:
+        return
+    try:
+        import orkest_prep
+        repo = migration.repository(args.repo)
+        if not metadata(repo).is_dir():
+            return  # a refused or read-only call on a repo with no run state writes nothing at all
+        orkest_prep.append_metric(metadata(repo), dict(
+            ts=datetime.datetime.now(datetime.timezone.utc).isoformat(), command=args.command,
+            duration_s=round(time.time() - started, 2), exit=code, phase=args.phase, box=args.box,
+            session=session_id(vars(args)), harness=args.harness,
+            accepted=result.get('accepted') if isinstance(result, dict) else None))
+    except Exception:
+        pass
+
+
 def owned_paths(state, tracker_path):
     owned = {tracker_path, 'docs/orkest/LOGBOOK.md', 'docs/CONTEXT.md', 'docs/TODO.md'} if tracker_path else set()
     for record in (state.get('phases') or {}).values():
@@ -1324,8 +1356,7 @@ def dirty_command(repo):
     import orkest_prep
     repo = migration.repository(repo)
     state = active_state(repo)
-    report = orkest_prep.dirty_report(git(repo, 'status', '--porcelain', '--untracked-files=all'),
-                                      state.get('baseline_status', ''), owned_paths(state, state.get('target')))
+    report = orkest_prep.dirty_report(status_raw(repo), state.get('baseline_status', ''), owned_paths(state, state.get('target')))
     return dict(action='dirty-report', run_recorded=bool(state), **report)
 
 
@@ -1405,7 +1436,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['inspect', 'start', 'release', 'bootstrap', 'plan', 'verify', 'checkpoint', 'next',
                                           'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple', 'recover-lock',
-                                          'gate', 'preflight', 'dirty-report', 'report'])
+                                          'gate', 'preflight', 'dirty-report', 'report', 'tiers', 'pinscan', 'metrics'])
     parser.add_argument('query', nargs='*')
     parser.add_argument('--repo', default='.')
     parser.add_argument('--summary', action='store_true', help='short inspect/start output (default is the full document)')
@@ -1429,6 +1460,15 @@ def main(argv=None):
     parser.add_argument('--expect', choices=['red', 'green'], default='green')
     parser.add_argument('--command-json')
     parser.add_argument('--timeout', type=int, default=600)
+    parser.add_argument('--reason-pattern', help='verify --expect red: the failure output must match this regex')
+    parser.add_argument('--gate-json', help='tiers: the ordered tiers and projects file')
+    parser.add_argument('--jobs', type=int, default=1, help='tiers: projects run in parallel inside a tier')
+    parser.add_argument('--only-failed', action='store_true', help='tiers: rerun only what failed last time')
+    parser.add_argument('--reuse', action='store_true', help='tiers: carry forward projects whose watched paths are unchanged')
+    parser.add_argument('--change-kind', choices=['route', 'file', 'tool', 'migration', 'enum', 'dependency',
+                                                  'response-shape', 'rename'], help='pinscan: what the box changes')
+    parser.add_argument('--symbols', help='pinscan: comma-separated identifiers the box adds or removes')
+    parser.add_argument('--list-guards', action='store_true', help='pinscan: enumerate guard-class tests')
     parser.add_argument('--gate', help='verify: ingest this finished gate verdict instead of running a command')
     parser.add_argument('--skip-budget', type=int, default=None,
                         help='verify/gate: skipped tests allowed (default 0, or the phase requires block)')
@@ -1442,6 +1482,7 @@ def main(argv=None):
     parser.add_argument('--title')
     parser.add_argument('--type', choices=['feat', 'polish', 'fix', 'refactor', 'docs', 'test'])
     parser.add_argument('--tier', choices=['docs', 'build', 'unit', 'integration', 'e2e'])
+    parser.add_argument('--tier-name', help='tiers: run up to and including this tier (default: all tiers without "when")')
     parser.add_argument('--fix', action='store_true')
     parser.add_argument('--confirm-inactive', action='store_true')
     parser.add_argument('--template')
@@ -1450,11 +1491,12 @@ def main(argv=None):
     parser.add_argument('--native-doctor-report')
     argv = list(sys.argv[1:] if argv is None else argv)
     gate_command = []
-    if 'gate' in argv and '--' in argv:  # everything after -- is the gated command, never an option of ours
+    if 'gate' in argv and '--' in argv and argv.index('gate') < argv.index('--'):  # after -- is the gated command
         split = argv.index('--')
         argv, gate_command = argv[:split], argv[split + 1:]
     args = parser.parse_args(argv)
     args.gate_command = gate_command
+    started_clock = time.time()
     if (args.fix or args.template or args.session_report or args.native_doctor_report) and args.command != 'doctor':
         parser.error('--fix, --template and diagnostic report options are doctor options')
     if args.command == 'doctor' and args.query:
@@ -1479,6 +1521,36 @@ def main(argv=None):
             result = orkest_gate.command(migration.repository(args.repo), vars(args), sys.modules[__name__])
         elif args.command == 'preflight':
             result = prerequisites(args.repo, vars(args))
+        elif args.command == 'tiers':
+            import orkest_tiers
+            sub = args.query[0] if args.query else 'run'
+            if not args.gate_json:
+                raise ValueError('tiers needs --gate-json <file>')
+            repo = migration.repository(args.repo)
+            plan = orkest_tiers.load_plan(migration.checked_path(repo, args.gate_json))
+            if sub == 'plan':
+                result = dict(action='tiers-plan', tiers=[dict(name=t['name'], projects=t['projects'], budget_s=t.get('budget_s'),
+                                                                 when=t.get('when')) for t in plan['tiers']],
+                              selected=[t['name'] for t in orkest_tiers.select_tiers(plan, args.tier_name)])
+            elif sub == 'run':
+                return orkest_tiers.run(repo, plan, dict(tier=args.tier_name, jobs=args.jobs, only_failed=args.only_failed,
+                                                        reuse=args.reuse), sys.modules[__name__])
+            else:
+                raise ValueError('tiers subcommands: plan, run')
+        elif args.command == 'pinscan':
+            import orkest_pinscan
+            repo = migration.repository(args.repo)
+            if args.list_guards:
+                result = dict(action='pinscan-guards', **orkest_pinscan.list_guards(repo))
+            else:
+                if not args.change_kind:
+                    raise ValueError('pinscan needs --change-kind')
+                result = dict(action='pinscan', **orkest_pinscan.scan(
+                    repo, args.change_kind, paths=args.paths, symbols=[s for s in (args.symbols or '').split(',') if s],
+                    summary=args.summary))
+        elif args.command == 'metrics':
+            import orkest_prep
+            result = dict(action='metrics', **orkest_prep.summarize_metrics(metadata(migration.repository(args.repo)), args.harness))
         elif args.command == 'dirty-report':
             result = dirty_command(args.repo)
         elif args.command == 'report':
@@ -1496,15 +1568,20 @@ def main(argv=None):
         result = attach_gates(args.repo, args.command, result)
         if args.summary and args.command in ('inspect', 'start'):
             result = summary(result)
+        record_metric(args, started_clock, 0, result)
         print(json.dumps(result, ensure_ascii=False))
+        if args.command == 'pinscan' and result.get('stale'):
+            return 2
         return 2 if args.command == 'preflight' and not result.get('ok') else 0
     except (ValueError, OSError) as error:
         if args.command not in ('inspect', 'release', 'doctor', 'budget', 'recover-lock', 'gate', 'preflight',
-                                'dirty-report', 'report') and not args.dry:
+                                'dirty-report', 'report', 'tiers', 'pinscan', 'metrics') and not args.dry \
+                and not (args.command == 'verify' and args.gate):
             try:
                 release(args.repo, vars(args))
             except (ValueError, OSError):
                 pass  # A failed preflight never releases somebody else's writer lock.
+        record_metric(args, started_clock, 2, None)
         print(json.dumps(dict(action='blocked', reason=str(error))))
         return 2
 

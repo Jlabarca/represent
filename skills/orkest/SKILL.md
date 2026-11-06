@@ -130,8 +130,8 @@ large shell heredoc.
    compaction. Never start it as a raw background job and never judge progress by
    reading a log tail. A foreground verification call over 10 minutes is a defect.
 2. No end of turn without a verdict or a pending record. Report each gate as
-   `VERDICT: pass|fail|not-qualifying|timeout|killed|supervisor-lost` with the
-   verdict path, or `PENDING` only when the harness cannot block longer, with the gate id,
+   `VERDICT: pass|fail|not-qualifying|timeout|idle-timeout|killed|supervisor-lost|spawn-error`
+   with the verdict path, or `PENDING` only when the harness cannot block longer, with the gate id,
    the exact `gate wait` command, the log path and the deadline. Ending with "still
    running" and no record is a protocol violation.
 3. Do not poll. One blocking `gate wait <id> --max-s 240`, repeated as the deadline
@@ -149,7 +149,33 @@ large shell heredoc.
 7. An aborted, cancelled or budget-stopped gate gets a Blockers logbook entry naming
    the last accepted tier, the unfinished work and the exact next command.
 8. Ingest a finished gate as evidence with `verify --gate <id> --phase P --box B`;
-   it is accepted only when qualifying and when the gate ran on the current phase source.
+   it is accepted only when qualifying, when it was run for the same `--phase` and `--project`,
+   and when it ran on the current phase source. A red must come from a gate whose outcome is `fail`.
+   A tiers run that reused or subset-reran results is marked partial and never qualifies.
+
+## Tiers and avoiding test errors
+
+- Order checks cheapest first. A gate file (`orkest.py tiers run --gate-json <file>`,
+  best started inside `gate run`) lists ordered tiers (for example guards, fast, full) and
+  per-project commands. A failing tier stops the later ones, but every project of the
+  failing tier runs, so one pass collects all of its failures. `--jobs K` runs a tier's
+  projects in parallel; give each project `env` with `{port:N}` and `{run}` placeholders
+  and an `exclusive` tag for anything sharing Docker, a database or a build cache.
+  Run guards after every box and the full tier once per phase boundary.
+- `--only-failed` (with each project's `rerun_args`) and `--reuse` (projects whose
+  `watch` globs did not change keep their last green) save time but can hide a
+  regression; promotion always runs the full tier without them.
+- Before the first source edit of a box that adds, removes or renames a route, file, tool,
+  migration, enum value or response shape, run `orkest.py pinscan --change-kind <kind>
+  --paths ... --symbols ...`. List the pins it finds under "Pins" in the Plan, each as
+  "update in this box" or "unaffected, because ..."; fix stale test paths in the same box.
+  `pinscan --list-guards` enumerates guard-class tests.
+- A red is only useful for the right reason: pass `--reason-pattern <regex>` to `verify
+  --expect red`. Parsers and format readers get a realistic sample first (namespaces, BOM,
+  CRLF, empty cells). A change to a persisted or shared format starts with a contract
+  test that the old stored payload still parses.
+- `orkest.py metrics` summarizes helper calls (count, time, rejected verifications, longest
+  gap) from `.git/orkest/metrics.ndjson`; it is derived from the helper only.
 
 ## Final report
 

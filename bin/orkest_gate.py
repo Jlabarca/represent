@@ -50,9 +50,35 @@ def gates_root(repo, runtime):
     return runtime.metadata(repo) / 'gates'
 
 
-def pid_alive(pid):
+def proc_start(pid):
+    """An opaque creation stamp of a process, or None when unknown: the same pid with another stamp is another process."""
+    if not isinstance(pid, int) or pid <= 0:
+        return None
+    if os.name == 'nt':
+        try:
+            import ctypes
+            from ctypes import wintypes
+            handle = ctypes.windll.kernel32.OpenProcess(0x1000, False, pid)
+            if not handle:
+                return None
+            created, exited, kernel, user = (wintypes.FILETIME() for _ in range(4))
+            ok = ctypes.windll.kernel32.GetProcessTimes(handle, ctypes.byref(created), ctypes.byref(exited),
+                                                        ctypes.byref(kernel), ctypes.byref(user))
+            ctypes.windll.kernel32.CloseHandle(handle)
+            return (created.dwHighDateTime << 32) | created.dwLowDateTime if ok else None
+        except (OSError, AttributeError):
+            return None
+    try:
+        return int(Path('/proc/%d/stat' % pid).read_text().rsplit(')', 1)[1].split()[19])
+    except (OSError, ValueError, IndexError):
+        return None
+
+
+def pid_alive(pid, start=None):
     if not isinstance(pid, int) or pid <= 0:
         return False
+    if start is not None and proc_start(pid) not in (None, start):
+        return False  # the pid now belongs to a different process
     if os.name == 'nt':
         # os.kill(pid, 0) would terminate the process on Windows; ask the OS instead.
         import ctypes
@@ -72,9 +98,11 @@ def pid_alive(pid):
     return True
 
 
-def kill_tree(pid):
+def kill_tree(pid, start=None):
     if not isinstance(pid, int) or pid <= 0:
         return
+    if start is not None and proc_start(pid) not in (None, start):
+        return  # never signal a recycled pid
     if os.name == 'nt':
         subprocess.run(['taskkill', '/T', '/F', '/PID', str(pid)], capture_output=True)
         return
@@ -98,8 +126,13 @@ def head_of(repo):
     return result.stdout.strip() if result.returncode == 0 else ''
 
 
+def skips_of(counts):
+    """Skips charged to the budget: native skips, not expected failures (an xfail is a known state)."""
+    return counts.get('native_skipped', counts.get('skipped', 0))
+
+
 def classify(code, counts, strict, skip_budget, deadline_hit=False, idle_hit=False, killed=False,
-             head_moved=False, tree_moved=False):
+             head_moved=False, tree_moved=False, partial=False):
     """(outcome, qualifying, reasons). Only `pass` qualifies; a skip beyond the budget never does."""
     if killed:
         return 'killed', False, ['cancelled']
@@ -116,8 +149,10 @@ def classify(code, counts, strict, skip_budget, deadline_hit=False, idle_hit=Fal
     if strict:
         if counts.get('passed', 0) <= 0:
             reasons.append('no-passing-tests')
-        if counts.get('skipped', 0) > skip_budget:
-            reasons.append('skipped-%d-over-budget-%d' % (counts.get('skipped', 0), skip_budget))
+        if skips_of(counts) > skip_budget:
+            reasons.append('skipped-%d-over-budget-%d' % (skips_of(counts), skip_budget))
+        if partial:
+            reasons.append('partial-run-reused-or-subset-results')
     if head_moved:
         reasons.append('head-moved')
     if tree_moved:
@@ -162,6 +197,7 @@ def write_verdict(rundir, verdict):
         try:
             if time.time() - lock.stat().st_mtime > 10 and not target.exists():
                 lock.unlink()  # a writer died between taking the lock and writing
+                return write_verdict(rundir, verdict)
         except OSError:
             pass
         return False
@@ -196,7 +232,7 @@ def build_verdict(repo, rundir, meta, runtime, code, outcome_hint=None, started_
     outcome, qualifying, reasons = classify(
         code, counts, meta['strict'], meta['skip_budget'], deadline_hit=flags.get('deadline', False),
         idle_hit=flags.get('idle', False), killed=flags.get('killed', False),
-        head_moved=bool(meta['head_at_start']) and head_end != meta['head_at_start'],
+        partial='TIERS PARTIAL' in text, head_moved=bool(meta['head_at_start']) and head_end != meta['head_at_start'],
         tree_moved=(phase_fingerprint(repo, meta.get('phase'), runtime) != meta['phase_fingerprint']
                     if meta.get('phase_fingerprint') else
                     bool(meta.get('source_fingerprint')) and diff_hash(repo) != meta['source_fingerprint']))
@@ -232,9 +268,9 @@ def reconcile(repo, rundir, runtime):
         age = time.time() - (rundir / 'heartbeat').stat().st_mtime
     except OSError:
         age = time.time() - datetime.datetime.fromisoformat(meta['started']).timestamp()
-    alive = pid_alive(meta.get('supervisor_pid'))
+    alive = pid_alive(meta.get('supervisor_pid'), meta.get('supervisor_start'))
     if (not alive and age > LOST_AFTER_S) or age > meta.get('deadline_s', DEFAULT_DEADLINE_S) + 300:
-        kill_tree(meta.get('child_pid'))
+        kill_tree(meta.get('child_pid'), meta.get('child_start'))
         write_verdict(rundir, build_verdict(repo, rundir, meta, runtime, -1, dict(lost=True)))
         release_active(rundir.parent, meta)
         return load(rundir / 'verdict.json')
@@ -261,12 +297,12 @@ def supervise(rundir, runtime):
         write_verdict(rundir, build_verdict(repo, rundir, meta, runtime, 127, dict(spawn_error=str(error)[:200])))
         release_active(rundir.parent, meta)
         return 127
-    meta = dict(meta, child_pid=child.pid)
-    write_json(rundir / 'run.json', meta)
     started = time.time()
     last_beat = 0
     last_size, last_change = -1, time.time()
     try:
+        meta = dict(meta, child_pid=child.pid, child_start=proc_start(child.pid))
+        write_json(rundir / 'run.json', meta)
         while True:
             code = child.poll()
             if code is not None:
@@ -294,8 +330,21 @@ def supervise(rundir, runtime):
                 break
             time.sleep(0.2)
     finally:
+        if child.poll() is None:  # an error in the loop must not leave the check running behind a verdict
+            kill_tree(child.pid, meta.get('child_start'))
+            try:
+                code = child.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                code = -1
         log.close()
-        verdict = build_verdict(repo, rundir, meta, runtime, code if code is not None else -1, flags)
+        try:
+            verdict = build_verdict(repo, rundir, meta, runtime, code if code is not None else -1, flags)
+        except Exception as error:  # a verdict is always written, even if building the full one fails
+            verdict = dict(schema=1, id=meta['id'], name=meta['name'], state='final', outcome='fail', qualifying=False,
+                           exit_code=code if code is not None else -1, counts={}, reasons=['verdict-build-failed: %s' % error],
+                           started=meta['started'], finished=now(), argv=meta['argv'], log='output.log',
+                           head_at_start=meta.get('head_at_start'), head_at_end='', phase=meta.get('phase'),
+                           project=meta.get('project'), strict=meta.get('strict'), skip_budget=meta.get('skip_budget'))
         write_verdict(rundir, verdict)
         release_active(rundir.parent, meta)
     return 0
@@ -372,11 +421,22 @@ def run(repo, options, runtime):
     name = options.get('name') or re.sub(r'[^a-z0-9-]+', '-', Path(argv[0]).stem.lower()).strip('-')[:40] or 'gate'
     if not NAME.fullmatch(name):
         raise ValueError('Gate name must be lowercase letters, digits and dashes')
+    if options.get('phase') and not options.get('dry'):
+        requires = phase_requires(repo, options['phase'], runtime)
+        if requires:
+            import orkest_prep
+            orkest_prep.refuse_unless_ready(repo, requires)
     root = gates_root(repo, runtime)
     root.mkdir(parents=True, exist_ok=True)
     active = root / (name + '.active')
     supersedes = None
     held = load(active)
+    if not held and active.exists():
+        try:
+            if time.time() - active.stat().st_mtime > 10:
+                active.unlink()  # unreadable and old: a starter died before recording its id
+        except OSError:
+            pass
     if held:
         prior = root / held.get('id', '')
         if prior.is_dir() and not reconcile(repo, prior, runtime):
@@ -396,12 +456,12 @@ def run(repo, options, runtime):
     gate_id = '%s-%s-%s' % (stamp, name, uuid.uuid4().hex[:8])
     try:
         handle = os.open(str(active), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.write(handle, json.dumps(dict(id=gate_id)).encode('utf-8'))
         os.close(handle)
     except FileExistsError:
         raise ValueError('Another gate run for ' + name + ' started at the same moment; use `gate list --live`.')
     rundir = root / gate_id
     rundir.mkdir(parents=True)
-    write_json(active, dict(id=gate_id))
     meta = dict(
         schema=1, id=gate_id, name=name, argv=argv, cwd=str(repo), head_at_start=head_of(repo),
         source_fingerprint=diff_hash(repo), phase_fingerprint=phase_fingerprint(repo, options.get('phase'), runtime), session=options.get('session'), phase=options.get('phase'),
@@ -417,9 +477,23 @@ def run(repo, options, runtime):
     write_json(rundir / 'run.json', meta)
     (rundir / 'heartbeat').write_bytes(str(int(time.time())).encode('ascii'))
     process, detached = start_supervisor(rundir, repo, meta)
-    meta = dict(meta, supervisor_pid=process.pid, detached=detached)
+    meta = dict(meta, supervisor_pid=process.pid, supervisor_start=proc_start(process.pid), detached=detached)
     write_json(rundir / 'run.json', meta)
     return wait(repo, gate_id, options.get('max_wait', DEFAULT_WAIT_S), runtime)
+
+
+def phase_requires(repo, phase, runtime):
+    """The phase's `> requires:` block from the active tracker, or {} when there is none."""
+    try:
+        import orkest_prep
+        state = runtime.active_state(repo)
+        path = state.get('target')
+        if not path:
+            return {}
+        text = (Path(repo) / path).read_text(encoding='utf-8')
+        return orkest_prep.parse_requires(runtime.phase_section(text, str(phase)) or '')
+    except (OSError, ValueError):
+        return {}
 
 
 def phase_fingerprint(repo, phase, runtime):
@@ -474,11 +548,18 @@ def cancel(repo, ident, runtime, wait_s=10):
             return dict(action='gate-verdict', **gate_view(rundir, verdict))
         time.sleep(0.25)
     meta = load(rundir / 'run.json') or {}
-    kill_tree(meta.get('child_pid'))
-    kill_tree(meta.get('supervisor_pid'))
+    kill_tree(meta.get('child_pid'), meta.get('child_start'))
+    kill_tree(meta.get('supervisor_pid'), meta.get('supervisor_start'))
     write_verdict(rundir, build_verdict(repo, rundir, meta, runtime, -1, dict(killed=True)))
     release_active(root, meta)
-    verdict = load(rundir / 'verdict.json')
+    verdict = None
+    for _ in range(40):  # a slower writer may still be finishing its own verdict
+        verdict = load(rundir / 'verdict.json')
+        if verdict:
+            break
+        time.sleep(0.25)
+    if not verdict:
+        raise ValueError('Gate %s was cancelled but no verdict could be written; check %s' % (rundir.name, rundir))
     return dict(action='gate-verdict', **gate_view(rundir, verdict))
 
 

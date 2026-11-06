@@ -93,6 +93,52 @@ def refuse_unless_ready(repo, requires):
     return result
 
 
+def append_metric(meta_dir, record):
+    """One NDJSON line per helper call under the Git metadata directory; a failure never fails the step."""
+    import json
+    try:
+        meta_dir = Path(meta_dir)
+        meta_dir.mkdir(parents=True, exist_ok=True)
+        with (meta_dir / 'metrics.ndjson').open('ab') as handle:
+            handle.write((json.dumps(record, sort_keys=True) + '\n').encode('utf-8'))
+    except OSError:
+        pass
+
+
+def summarize_metrics(meta_dir, harness=None):
+    """Per-command call counts, wall time, rejected verifications and the longest silent gap."""
+    import datetime
+    import json
+    rows = []
+    try:
+        for line in (Path(meta_dir) / 'metrics.ndjson').read_bytes().decode('utf-8', errors='replace').splitlines():
+            try:
+                rows.append(json.loads(line))
+            except ValueError:
+                continue
+    except OSError:
+        pass
+    if harness:
+        rows = [r for r in rows if r.get('harness') == harness]
+    by_command = {}
+    for r in rows:
+        entry = by_command.setdefault(r.get('command'), dict(calls=0, seconds=0.0, failures=0))
+        entry['calls'] += 1
+        entry['seconds'] = round(entry['seconds'] + float(r.get('duration_s') or 0), 2)
+        entry['failures'] += 1 if r.get('exit') else 0
+    stamps = []
+    for r in rows:
+        try:
+            stamps.append(datetime.datetime.fromisoformat(r['ts']))
+        except (KeyError, ValueError):
+            continue
+    gaps = [(b - a).total_seconds() for a, b in zip(stamps, stamps[1:])]
+    verifies = [r for r in rows if r.get('command') == 'verify']
+    return dict(calls=len(rows), by_command=by_command, longest_gap_s=round(max(gaps), 1) if gaps else 0,
+                verify_calls=len(verifies), verify_rejected=sum(1 for r in verifies if r.get('accepted') is False),
+                note='Derived from helper calls only; transcript-based numbers would be estimates.')
+
+
 def porcelain(text):
     """{path: status} from `git status --porcelain` text (rename targets only)."""
     entries = {}
