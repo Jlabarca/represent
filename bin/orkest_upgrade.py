@@ -353,6 +353,9 @@ def reconcile(repo, template, options=None, runtime=None):
     if (not options.get('execute') or options.get('dry') or options.get('no_commit') or
             options.get('doctor') or runtime.lane(options) == 'unattended'):
         return report('preview', roots=facts['roots'], reason='This invocation does not authorize upgrade writes')
+    if sys.version_info < (3, 8):
+        raise ValueError('Python 3.8 or newer is required for Update (this is %d.%d); set ORKEST_PYTHON to a newer '
+                         'interpreter. Nothing was written.' % sys.version_info[:2])
     runtime.preflight(repo, None, options)
     session = runtime.session_id(options)
     if not session:
@@ -378,6 +381,15 @@ def reconcile(repo, template, options=None, runtime=None):
         runtime.release(repo, dict(options, session=session))
 
 
+def settled(repo, journal, runtime):
+    """True when a journal's install is verified, its commits are in HEAD, and nothing awaits a decision."""
+    if ('install-verified' not in journal.get('completed', []) or not journal.get('commits') or
+            journal.get('conflicts') or journal.get('migration')):
+        return False
+    return all(subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', commit, 'HEAD'],
+                              capture_output=True).returncode == 0 for commit in journal['commits'])
+
+
 def apply_stages(repo, template, options, runtime, facts, session):
     journal_path = metadata_path(repo, 'upgrade/journal.json', runtime)
     journal = runtime.read_json(journal_path)
@@ -395,6 +407,14 @@ def apply_stages(repo, template, options, runtime, facts, session):
             archived = metadata_path(repo, 'upgrade/history/' + digest(journal_path.read_bytes()) + '.json', runtime)
         runtime.save_json(archived, journal)
         journal = None
+    elif journal and journal.get('identity') != facts['identity'] and settled(repo, journal, runtime):
+        # Install verified and committed; only the layout step was deferred. The next release does not
+        # inherit it: file the old transaction in history and begin a new one.
+        archived = metadata_path(repo, 'upgrade/history/' + journal['identity'] + '.json', runtime)
+        if archived.exists() and runtime.read_json(archived) != journal:
+            archived = metadata_path(repo, 'upgrade/history/' + digest(journal_path.read_bytes()) + '.json', runtime)
+        runtime.save_json(archived, journal)
+        journal = None
     elif journal and journal.get('identity') != facts['identity']:
         raise ValueError('Pending upgrade belongs to different release bytes; recover that transaction first')
     if not journal:
@@ -405,6 +425,7 @@ def apply_stages(repo, template, options, runtime, facts, session):
     owned_path = metadata_path(repo, 'upgrade/owned.json', runtime)
     owned = runtime.read_json(owned_path, {})
     count = 0
+    retired_custom = []
 
     def save():
         runtime.save_json(journal_path, journal)
@@ -427,7 +448,7 @@ def apply_stages(repo, template, options, runtime, facts, session):
             raise ValueError('Upgrade backup/image is corrupt')
         return sha
 
-    def mutate(stage, name, desired, accepted):
+    def mutate(stage, name, desired, accepted, keep_dirty=False):
         path = runtime.migration.checked_path(repo, name)
         actual = path.read_bytes() if path.is_file() else None
         before, after = digest(actual), digest(desired)
@@ -438,7 +459,7 @@ def apply_stages(repo, template, options, runtime, facts, session):
             if before not in (op['before'], op['after']):
                 raise ValueError('Local edit after interrupted upgrade: ' + name)
         else:
-            if name in dirty or (actual is not None and before not in accepted):
+            if (name in dirty and not keep_dirty) or (actual is not None and before not in accepted):
                 journal['conflicts'].append(dict(path=name, reason='Local/custom bytes or existing staged edits preserved'))
                 return
             op = dict(stage=stage, path=name, before=image(actual), after=image(desired))
@@ -493,10 +514,11 @@ def apply_stages(repo, template, options, runtime, facts, session):
             unknown = [path for path, data in existing.items() if digest(data) not in approved.get(path[len(prefix) + 1:], [])
                        or path in dirty or (path not in tracked and owned.get(path) != digest(data))]
             if unknown:
-                journal['conflicts'].append(dict(path=prefix, reason='Customized legacy skill preserved', files=unknown))
-                continue
+                # The superseded skill is replaced by /orkest. Its bytes go to the transaction's image store
+                # (recoverable by hash), and committed ones also stay in Git history; the Update does not stop.
+                retired_custom.append(dict(path=prefix, files=unknown))
             for path in sorted(existing):
-                mutate('retire', path, None, [digest(existing[path])])
+                mutate('retire', path, None, [digest(existing[path])], keep_dirty=path in unknown)
             for op in journal['operations']:
                 if op['stage'] == 'retire' and op['path'].startswith(prefix + '/'):
                     parent = (repo / op['path']).parent
@@ -547,7 +569,8 @@ def apply_stages(repo, template, options, runtime, facts, session):
     if journal.get('migration') or runtime.layout(repo)['needs_migration']:
         if runtime.git(repo, 'status', '--porcelain', '--untracked-files=all'):
             save()
-            return report('layout-deferred', roots=facts['roots'], commits=journal['commits'], reason='Working tree has local changes')
+            return report('layout-deferred', roots=facts['roots'], commits=journal['commits'], reason='Working tree has local changes',
+                          **(dict(retired_customized=retired_custom) if retired_custom else {}))
         if not runtime.compatibility_verified(repo):
             return report('layout-deferred', roots=facts['roots'], commits=journal['commits'], reason='Dual-read release bytes are not verified')
         if not journal.get('migration'):
@@ -571,5 +594,8 @@ def apply_stages(repo, template, options, runtime, facts, session):
     if 'complete' not in journal['completed']:
         journal['completed'].append('complete')
         checkpoint('complete')
-    return dict(action='upgrade', status='complete', changed=bool(changed or new), roots=facts['roots'],
-                commits=journal['commits'], preserved=facts['preserved'], backups=str(journal_path.parent / 'images'))
+    result = dict(action='upgrade', status='complete', changed=bool(changed or new), roots=facts['roots'],
+                  commits=journal['commits'], preserved=facts['preserved'], backups=str(journal_path.parent / 'images'))
+    if retired_custom:
+        result['retired_customized'] = retired_custom
+    return result

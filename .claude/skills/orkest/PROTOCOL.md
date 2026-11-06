@@ -151,6 +151,10 @@ discovery gates precede layout migration/live retirement. Migration is a dry-run
 plan, git moves/link rewrites, marker last, one separate refactor commit,
 idempotent. Keep verified dual-read while deferred. Never stamp a marker to hide
 unfinished work or remove the old startup bridge before its replacement works.
+A customized superseded skill does not stop Update: it is retired, its bytes kept in the transaction's
+image store (and in Git history when committed). When the tree has local changes, `start` migrates the
+layout in a clean temporary worktree and fast-forwards this checkout, so local edits stay put; if Git
+refuses because an edit overlaps a migrated file, nothing changes and migration stays deferred.
 
 ## Rule 10 — Unattended execution cannot grant itself authority
 

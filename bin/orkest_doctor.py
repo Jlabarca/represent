@@ -328,6 +328,21 @@ def policy_facts(repo, runtime, findings):
         # Without a declared layout, an unknown inferred default is not a policy problem.
 
 
+def lock_facts(repo, runtime, findings):
+    """Report writer locks held by other sessions: live ones to wait for, stale ones the next write recovers."""
+    try:
+        held = runtime.migration.writer_locks(repo, os.environ.get('CODEX_SESSION_ID') or os.environ.get('CLAUDE_CODE_SESSION_ID'))
+    except (ValueError, OSError):
+        return
+    for lock, info in held:
+        fields = info['fields']
+        title = runtime.migration.session_title(fields.get('session', ''))
+        text = ('session ' + fields.get('session', '?') + (' "' + title + '"' if title else '') + ', idle ' +
+                str(int(info['idle'] / 60)) + ' min' + ('; abandoned, the next write recovers it' if info['stale']
+                                                       else '; wait for it, or recover-lock --confirm-inactive once it is gone'))
+        findings.append(finding('writer-lock-stale' if info['stale'] else 'writer-lock-held', lock.name, text))
+
+
 def branch_facts(repo, template, runtime, findings):
     names = git_read(repo, 'for-each-ref', '--format=%(refname:short)', 'refs/heads').splitlines()
     configured = os.environ.get('ORKEST_AGENT_BRANCH_PREFIX') or os.environ.get('GHOSTDEV_AGENT_BRANCH_PREFIX')
@@ -637,6 +652,7 @@ def run(repo, options, runtime):
     promotions = collect('promotion-check-unavailable', lambda: promotion_facts(repo, template, trackers, runtime, findings), [])
     branches = collect('branch-check-unavailable', lambda: branch_facts(repo, template, runtime, findings), [])
     policy_facts(repo, runtime, findings)
+    lock_facts(repo, runtime, findings)
     consumers = collect('consumer-registration-invalid', lambda: runtime.consumer_readiness(repo),
                         dict(ready=False, reason='Consumer registration cannot be read'))
     sessions = session_facts(repo, options, runtime, findings)

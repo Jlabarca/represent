@@ -260,11 +260,43 @@ def touch_lock(repo, session):
     migration.atomic_write(path, ''.join(key + ': ' + value + '\n' for key, value in fields.items()).encode('utf-8'))
 
 
+def migrate_aside(repo, session):
+    """Migrate the layout in a clean temporary worktree and fast-forward this checkout to it.
+
+    Local edits stay exactly where they are: Git refuses the fast-forward if one overlaps a file the
+    migration touches, and then nothing changes. Returns the migration plan."""
+    repo = migration.repository(repo)
+    git(repo, 'symbolic-ref', '--short', 'HEAD')  # a detached HEAD cannot be fast-forwarded safely
+    token = uuid.uuid4().hex[:8]
+    root = metadata(repo) / ('aside-' + token)
+    temp_branch = 'orkest-aside-' + token
+    root.parent.mkdir(parents=True, exist_ok=True)
+    git(repo, 'worktree', 'add', '-b', temp_branch, str(root), 'HEAD')
+    try:
+        plan = migration.build_plan(root, session=session)
+        outcome = migration.apply_plan(root, plan, session=session)
+        if not outcome.get('committed'):
+            raise ValueError('Nothing to migrate aside')
+        head = git(root, 'rev-parse', 'HEAD')
+        merged = subprocess.run(['git', '-C', str(repo), 'merge', '--ff-only', head], capture_output=True, text=True,
+                                encoding='utf-8', errors='replace')
+        if merged.returncode:
+            raise ValueError('Cannot fast-forward over local changes: ' + (merged.stderr or merged.stdout).strip()[:300])
+        import orkest_upgrade
+        orkest_upgrade.migration_handover(repo, plan['moves'], sys.modules[__name__])
+        return plan
+    finally:
+        subprocess.run(['git', '-C', str(repo), 'worktree', 'remove', '--force', str(root)], capture_output=True)
+        subprocess.run(['git', '-C', str(repo), 'worktree', 'prune'], capture_output=True)
+        subprocess.run(['git', '-C', str(repo), 'branch', '-D', temp_branch], capture_output=True)
+
+
 def recover_locks(repo, options):
     """List the foreign writer locks; with --confirm-inactive remove them, recording each."""
     repo = migration.repository(repo)
     found = migration.writer_locks(repo, session_id(options))
-    rows = [dict(info['fields'], lock=str(lock), stale=info['stale'], idle_minutes=int(info['idle'] / 60))
+    rows = [dict(info['fields'], lock=str(lock), stale=info['stale'], idle_minutes=int(info['idle'] / 60),
+                 title=migration.session_title(info['fields'].get('session', '')))
             for lock, info in found]
     if not options.get('confirm_inactive'):
         return dict(action='locks', locks=rows, note='Nothing removed. Re-run with --confirm-inactive once you know '
@@ -352,7 +384,18 @@ def start(repo, query='', options=None):
     if result['layout']['needs_migration']:
         if lane(options) == 'unattended' or not result['compatibility_verified']:
             return dict(result, action='migration-required', reason='Install verified compatibility before migration')
-        if result['dirty'] or options.get('no_commit') or not result['consumer_readiness']['ready']:
+        if result['dirty'] and not options.get('no_commit') and result['consumer_readiness']['ready']:
+            # Dirty tree: migrate in a clean temporary worktree instead of refusing new work.
+            try:
+                migration.check_writer_locks(repo, session_id(options), recover=True)
+                migrate_aside(repo, session_id(options) or str(uuid.uuid4()))
+                result = inspect(repo, query, options)
+                target = result['resolution']['target']
+                pending = False
+            except (ValueError, OSError, RuntimeError):
+                pass  # Fall through to the original deferral; nothing was changed.
+        if result['layout']['needs_migration'] and (result['dirty'] or options.get('no_commit') or
+                                                    not result['consumer_readiness']['ready']):
             if not target or target['id'] is not None:
                 return dict(result, action='migration-required',
                             reason='Pending migration only permits existing legacy work. The migration needs a clean '

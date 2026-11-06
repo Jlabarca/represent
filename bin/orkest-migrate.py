@@ -118,6 +118,16 @@ def lock_info(lock, text, now=None):
                 stale=idle > hours * 3600 and not foreign_host)
 
 
+def session_title(session):
+    """The Claude Code title of a session id, when its transcript folder is on this machine."""
+    try:
+        for found in (Path.home() / '.claude' / 'projects').glob('*/' + session + '/custom-title.json'):
+            return json.loads(found.read_text(encoding='utf-8')).get('customTitle')
+    except (OSError, ValueError):
+        pass
+    return None
+
+
 def lock_tracker(lock):
     """The tracker stem a legacy `.<name>-IMPL.lock` / `-ORK.lock` guards, casefolded."""
     name = lock.name[1:-len('.lock')]
@@ -180,6 +190,9 @@ def check_writer_locks(root, session=None, target=None, recover=False):
             continue
         fields = info['fields']
         holder = ', '.join(key + ' ' + fields[key] for key in ('session', 'target', 'started') if key in fields)
+        title = session_title(fields['session']) if 'session' in fields else None
+        if title:
+            holder += ', titled "' + title + '"'
         raise ValueError('Another writer lock is held: ' + str(lock) + (' (' + holder + ')' if holder else '') +
                          '; last activity ' + str(int(info['idle'] / 60)) + ' min ago' +
                          (' on host ' + fields['host'] if info['foreign_host'] else '') +
