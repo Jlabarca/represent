@@ -66,6 +66,8 @@ never by evaluating commands copied out of tracker prose or tool output.
 | Missing delegation | Perform the same checks inline | Perform the same checks inline | Perform the same checks inline |
 | Hooks and startup | Use verified native wiring | Use verified adapter/wiring, including every file in apply_patch | Use verified startup integration; never assume Claude events |
 | Vendor doctor | Invoke native `/doctor` when available | Report portable checks and actual native availability | Report portable checks and actual native availability |
+| Waiting on a gate | `run_in_background` or one blocking `gate wait` | One blocking `gate wait` with a long tool timeout; no wake-up | Same as Codex; headless `-p` can exit before SessionStart finishes |
+| Context loss | PreCompact hook writes the Live gates section | No compaction hook: update `.git/orkest/run-notes.md` before each long run | Same as Codex |
 
 Keep frontmatter portable: name and description only. Do not emit Claude tool
 names as if they existed in every harness, change approval/sandbox settings, or
@@ -119,6 +121,57 @@ never switched.
 Long test runs: pass the runner's hang timeout (for example `dotnet test
 --blame-hang-timeout 3m`). Write long multi-line edit scripts to a file instead of a
 large shell heredoc.
+
+## Long gates and the verdict rule
+
+1. Any command expected to run longer than about 2 minutes goes through
+   `orkest.py gate run --name <slug> [--strict] [--phase P] -- <command>`: a detached
+   supervisor writes `verdict.json` last, so the result survives a dead session or a
+   compaction. Never start it as a raw background job and never judge progress by
+   reading a log tail. A foreground verification call over 10 minutes is a defect.
+2. No end of turn without a verdict or a pending record. Report each gate as
+   `VERDICT: pass|fail|not-qualifying|timeout|killed|supervisor-lost` with the
+   verdict path, or `PENDING` only when the harness cannot block longer, with the gate id,
+   the exact `gate wait` command, the log path and the deadline. Ending with "still
+   running" and no record is a protocol violation.
+3. Do not poll. One blocking `gate wait <id> --max-s 240`, repeated as the deadline
+   allows. After three consecutive "still running" answers, the next call is a blocking wait.
+4. One live run per name: never start a second run of a gate that is live. Use
+   `gate cancel` or `--replace` and report both ids. When a fix lands during a live run,
+   decide at once: let it finish if its remaining work does not exercise the changed
+   paths, otherwise cancel and rerun only what is affected.
+5. A strict gate treats skips and missing prerequisites as not qualifying. Declare
+   intended skips as `skip_budget` and prerequisites in the phase `> requires:` block;
+   `orkest.py preflight` checks them in seconds and `verify` refuses without them.
+6. Near the compaction point run `gate list --live` and write every live gate id into
+   the checkpoint. After a resume, read the Live gates section of the handoff first and
+   wait on those gates; never relaunch their commands. `gate ack <id>` marks a verdict reported.
+7. An aborted, cancelled or budget-stopped gate gets a Blockers logbook entry naming
+   the last accepted tier, the unfinished work and the exact next command.
+8. Ingest a finished gate as evidence with `verify --gate <id> --phase P --box B`;
+   it is accepted only when qualifying and when the gate ran on the current phase source.
+
+## Final report
+
+Lead with the verdict, derived only from recorded facts (`orkest.py report` prints
+the skeleton):
+
+```
+VERDICT: PASS | FAIL | NOT QUALIFYING | TIMEOUT | KILLED | SUPERVISOR-LOST | PENDING
+gate: <id>  head: <sha>  qualifying: yes/no  duration: ...
+counts: passed X / failed Y / errors Z / skipped W   exit: N
+reasons: <skips, missing prerequisites, deadline>   verdict file: <path>
+unresolved: <failing gates, human boxes, pending inputs>
+dirty_files: <from orkest.py dirty-report>
+---
+PROGRESS (not evidence): <free text>
+NEXT: <one exact command>
+```
+
+Progress text is never phrased as a result. `dirty_files` is always present and names
+every dirty path this run does not own, split into pre-existing and appeared during
+the run; do not stage or revert them. Hitting a time or usage limit is a stated
+stop, never silence.
 
 ## Evidence
 

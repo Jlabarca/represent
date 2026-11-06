@@ -35,6 +35,17 @@ cat > "$hd/precompact-backstop.md" 2>/dev/null <<EOF
 - snapshot:   $handoff_root/precompact-backstop.jsonl (copy of the pre-compaction transcript)
 EOF
 
+# Live gates and the run lock: recorded facts only, best effort (a missing Python never blocks compaction).
+live_md=""
+for py in "${ORKEST_PYTHON:-${GHOSTDEV_PYTHON:-}}" python3 python; do
+  [ -n "$py" ] || continue
+  if command -v "$py" >/dev/null 2>&1 && "$py" -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)' >/dev/null 2>&1; then
+    live_md=$(LANG=C.UTF-8 "$py" -X utf8 "$cwd/bin/orkest_gate.py" handoff "$cwd" 2>/dev/null)
+    break
+  fi
+done
+[ -n "$live_md" ] && printf '\n%s\n' "$live_md" >> "$hd/precompact-backstop.md" 2>/dev/null
+
 # (b) Auto-author $handoff_root/<FEATURE>.md from on-disk state.
 feature=""; active_phase=""; impl_path=""
 while IFS= read -r f; do
@@ -82,9 +93,12 @@ $log_tail
 $git_stat
 \`\`\`
 
+$live_md
+
 ## Resume prompt
 Continue $feature from the first unchecked box ($active_phase). Read the IMPL + the
-LOGBOOK excerpt above, verify the uncommitted diff, then proceed.
+LOGBOOK excerpt above, verify the uncommitted diff, then proceed. If gates are listed
+above, wait for them instead of relaunching their commands.
 EOF
   echo "[precompact] context compacting ($trigger) - auto-authored $handoff_root/$feature.md + backstop. Next session resumes from $active_phase." >&2
 else

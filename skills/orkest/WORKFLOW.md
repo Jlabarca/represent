@@ -98,6 +98,11 @@ earns a behavioral pass. Pytest xpasses retain their native category and count
 as passes only with the runner's successful exit. Unittest unexpected successes
 remain failures. An all-excluded run never supplies green verification.
 
+A skip is not a pass: a green receipt requires `skipped` within the skip budget,
+which is 0 unless the phase's `> requires:` block declares `skip_budget: N` or the
+call passes `--skip-budget N`. Name the allowed skips and why in the plan. A rejected
+receipt carries `reject_reason`. Receipts also record `started_at` and `duration_s`.
+
 1. Establish the runnable phase from its dependencies, not checklist order alone.
    Capture the phase-base SHA before its first plan/source checkpoint. Read its
    Model/Effort and verify tier. Preserve unknown/human dependencies unchanged.
@@ -106,7 +111,13 @@ remain failures. An all-excluded run never supplies green verification.
    source edits. Pure documentation/single-source work records a waiver. Include
    touched project/test roots and exact verification commands. Update the plan
    explicitly if the owned file inventory changes.
-3. TDD for behavior: one meaningful failing assertion, run it, minimal code to
+3. Sibling guard before adding a route, tool or adapter, handler, migration or enum
+   value: find its nearest sibling and `git grep` every place the sibling appears
+   (registries, indexes, catalogs, architecture tests); list those surfaces in the Plan
+   and update them in the same box or justify them. Do not assert exact counts of
+   growable collections; assert membership or derive the expectation from the source of
+   truth. An intentional pin states its reason in the assertion message.
+   TDD for behavior: one meaningful failing assertion, run it, minimal code to
    green, then refactor with green tests. A typo/import error is not the required
    red. Do not batch speculative tests or claim a never-run test. Nonbehavioral
    documentation/rename work records its justified verify tier; test-writing
@@ -134,7 +145,8 @@ lists named `accomplished`, `decisions`, `blockers`, and `next`. `commit-phase
 report in one scoped documentation commit. Then use `next` and continue.
 
 Execute the declared verification of every touched project, tests included.
-Require actual behavioral execution where declared; all-skipped is not green.
+Require actual behavioral execution where declared; all-skipped is not green, and a
+partly skipped run is green only inside its declared skip budget.
 Verify receipts against committed source fingerprints and their phase source
 head. A plan, assertion string, clean status or compile-only check cannot prove
 test execution. Preserve skipped counts and all command results.
@@ -206,6 +218,13 @@ phase/next action, owned edits, test receipts, pending inputs and unresolved gat
 Reuse it instead of re-reading large unchanged histories. Default routine tool
 output to about 1,500 tokens, save long logs and report totals/failures/paths. Run
 required verification once; repeat after relevant changes/failures/new concerns.
+
+Message budget: emit progress only at a box checkpoint, a phase boundary, a first
+failure, a needed decision, or after at least 20 minutes. "Still waiting" and "no new
+failure" are not events. Collapse identical status lines and never repeat an unchanged
+log tail. Do not re-read a log whose command already ended with an exit code and counts;
+open it only on failure and read the failing section. Between launching a blocking wait
+and its return, send no messages and make no other tool calls.
 
 When native context stats are available, prepare handoff/compaction near 70% used
 and finish the safe checkpoint before another large slice near 85%. The account

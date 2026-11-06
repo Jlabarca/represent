@@ -13,8 +13,8 @@
     "bin/check-impl-phase.sh": "3acc9a55bd292d7e52b0fbeeb5d0f722459bc2f7a8255095af215913af2f29a6",
     "bin/tdd-test-gate.ps1": "e2e484c4a3a3a12c9728ddf56aaaa30444df338b5f12962f20d5d1a10831f9e4",
     "bin/tdd-test-gate.sh": "50610d29976314422ce0bce6e007cfe4c7ee1f1169bb3eed8e6949aa5c1d1b95",
-    "bin/precompact-handoff.ps1": "95bf6ed17b7060a19c3d52f75f142af9e7ca0ee1d3bfabc2a099c1bb460a62b8",
-    "bin/precompact-handoff.sh": "d8015585a982ce10c1bff0d356b2dc749ad8c4605d0ce6b59cf113c216f2fb7c",
+    "bin/precompact-handoff.ps1": "e011d08d44a82a4376679376a3dc49fb035fc2b9b8c95d86c8669111930f5c5d",
+    "bin/precompact-handoff.sh": "43d39992beab5ff93c03d81de4351eada5bec4b4eec01925742107fc1415685e",
     "bin/promote-check.py": "52a33692d9e69b4b2887fe74a39b93b0b911003345df850000816d8f0fcf7a46"
   },
   "evidence": "Readers accept -IMPL.md, -ORK.md and <topic>.imp.md (ORKEST-HARNESS.5.4 .imp.md write format); readers resolve KEY-N and legacy ORK-NNNNNN ids as aliases (project key in docs/orkest/.key)",

@@ -41,6 +41,18 @@ $note = @"
 "@
 Set-Content -Path (Join-Path $hd 'precompact-backstop.md') -Value $note -ErrorAction SilentlyContinue
 
+# Live gates and the run lock: recorded facts only, best effort (a missing Python never blocks compaction).
+$liveMd = ''
+foreach ($candidate in @($env:ORKEST_PYTHON, $env:GHOSTDEV_PYTHON, 'python3', 'python')) {
+    if (-not $candidate -or -not (Get-Command $candidate -CommandType Application -ErrorAction SilentlyContinue)) { continue }
+    & $candidate -c 'import sys; sys.exit(0 if sys.version_info[0] == 3 else 1)' 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0) {
+        try { $liveMd = ((& $candidate -X utf8 (Join-Path $cwd 'bin/orkest_gate.py') handoff $cwd 2>$null) -join "`n") } catch { }
+        break
+    }
+}
+if ($liveMd) { Add-Content -Path (Join-Path $hd 'precompact-backstop.md') -Value "`n$liveMd" -ErrorAction SilentlyContinue }
+
 # (b) Auto-author $handoffRoot/<FEATURE>.md from on-disk state.
 #     FEATURE = first *-IMPL.md (most-recently-written) with an unchecked box.
 $feature = $null; $activePhase = $null; $implPath = $null
@@ -92,9 +104,12 @@ $logTail
 $gitStat
 ``````
 
+$liveMd
+
 ## Resume prompt
 Continue $feature from the first unchecked box ($activePhase). Read the IMPL + the
-LOGBOOK excerpt above, verify the uncommitted diff, then proceed.
+LOGBOOK excerpt above, verify the uncommitted diff, then proceed. If gates are listed
+above, wait for them instead of relaunching their commands.
 "@
     Set-Content -Path (Join-Path $hd "$feature.md") -Value $handoff -ErrorAction SilentlyContinue
     [Console]::Error.WriteLine("[precompact] context compacting ($trigger) - auto-authored $handoffRoot/$feature.md + backstop. Next session resumes from $activePhase.")

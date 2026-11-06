@@ -10,6 +10,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import time
 import uuid
 
 sys.dont_write_bytecode = True
@@ -754,27 +755,70 @@ def run_step(repo, options):
         project = options['project']
         if project not in record['projects']:
             raise ValueError('Verification project is outside the declared inventory')
-        command = json.loads(options.get('command_json') or 'null')
-        if not isinstance(command, list) or not command or any(not isinstance(a, str) or not a for a in command):
-            raise ValueError('Verification requires a nonempty JSON argument vector')
-        if options['timeout'] < 1 or options['timeout'] > 3600:
-            raise ValueError('Verification timeout must be 1..3600 seconds')
-        try:
-            result = subprocess.run(command, cwd=str(repo), capture_output=True, text=True,
-                encoding='utf-8', errors='replace', timeout=options['timeout'], shell=False)
-            output, code = result.stdout + result.stderr, result.returncode
-        except subprocess.TimeoutExpired as error:
-            output, code = str(error), 124
+        import orkest_gate
+        import orkest_prep
+        requires = orkest_prep.parse_requires(phase_section((repo / tracker['path']).read_text(encoding='utf-8'), phase) or '')
+        skip_budget = options.get('skip_budget')
+        if skip_budget is None:
+            skip_budget = orkest_prep.declared_skip_budget(requires)
+        started_at = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        began = time.time()
+        gate_id, gate_note = options.get('gate'), None
+        if gate_id:
+            verdict, output = orkest_gate.ingest(repo, gate_id, sys.modules[__name__])
+            command, code = verdict['argv'], verdict['exit_code']
+            if verdict['head_at_start'] != git(repo, 'rev-parse', 'HEAD'):
+                gate_note = 'gate ran on different source (HEAD moved since it started); rerun it'
+            elif not verdict.get('phase_fingerprint'):
+                gate_note = 'gate was not started with --phase, so its source cannot be matched; rerun it with --phase'
+            elif verdict['phase_fingerprint'] != current:
+                gate_note = 'gate ran on different source than the current tree; rerun it'
+            elif options['expect'] != 'red' and not verdict['qualifying']:
+                gate_note = 'gate verdict is not qualifying: ' + ', '.join(verdict['reasons'] or [verdict['outcome']])
+        else:
+            orkest_prep.refuse_unless_ready(repo, requires)
+            command = json.loads(options.get('command_json') or 'null')
+            if not isinstance(command, list) or not command or any(not isinstance(a, str) or not a for a in command):
+                raise ValueError('Verification requires a nonempty JSON argument vector')
+            if options['timeout'] < 1 or options['timeout'] > 3600:
+                raise ValueError('Verification timeout must be 1..3600 seconds')
+            try:
+                result = subprocess.run(command, cwd=str(repo), capture_output=True, text=True,
+                    encoding='utf-8', errors='replace', timeout=options['timeout'], shell=False)
+                output, code = result.stdout + result.stderr, result.returncode
+            except subprocess.TimeoutExpired as error:
+                output, code = str(error), 124
         counts = test_counts(output)
         red = options['expect'] == 'red'
         behavioral = record['tier'] in ('unit', 'integration', 'e2e') or any('test' in p.lower() for p in record['paths'])
-        accepted = ((code != 0 and counts['failed'] > 0 and counts['errors'] == 0 and
-                     ('AssertionError' in output or 'FAIL:' in output or 'assert ' in output)) if red else
-                    (code == 0 and (not behavioral or counts['passed'] > 0) and counts['failed'] == 0 and counts['errors'] == 0))
-        accepted = accepted and source_fingerprint(repo, record['paths']) == current
+        why = []
+        if red:
+            if not (code != 0 and counts['failed'] > 0 and counts['errors'] == 0 and
+                    ('AssertionError' in output or 'FAIL:' in output or 'assert ' in output)):
+                why.append('red needs a failing assertion, not an error or a crash')
+        else:
+            if code != 0:
+                why.append('exit code %s' % code)
+            if behavioral and counts['passed'] <= 0:
+                why.append('no passing tests')
+            if counts['failed'] or counts['errors']:
+                why.append('%d failed, %d errors' % (counts['failed'], counts['errors']))
+            if counts['skipped'] > skip_budget:
+                why.append('%d skipped exceeds the skip budget %d; name allowed skips with `skip_budget` in the phase '
+                           'requires block or pass --skip-budget' % (counts['skipped'], skip_budget))
+        if gate_note:
+            why.append(gate_note)
+        if source_fingerprint(repo, record['paths']) != current:
+            why.append('phase source changed during verification')
+        accepted = not why
         receipt = dict(id=str(uuid.uuid4()), phase=phase, box=options.get('box'), project=project,
             command=command, expected=options['expect'], exit_code=code, accepted=accepted,
-            fingerprint=current, commit=git(repo, 'rev-parse', 'HEAD'), **counts)
+            fingerprint=current, commit=git(repo, 'rev-parse', 'HEAD'), skip_budget=skip_budget,
+            started_at=started_at, duration_s=round(time.time() - began, 1), **counts)
+        if gate_id:
+            receipt['gate_id'] = verdict['id']
+        if why:
+            receipt['reject_reason'] = '; '.join(why)
         receipt['output_sha256'] = hashlib.sha256(output.encode('utf-8')).hexdigest()
         save_json(metadata(repo) / 'receipts' / (receipt['id'] + '.json'), dict(receipt, output=output))
         record['tests'].append(receipt)
@@ -1205,7 +1249,11 @@ def final_step(repo, options, state, state_file, tracker):
     state['promotion_commit'] = commit
     save_json(state_file, state)
     release(repo, options)
-    return dict(action='done', committed=True, commit=commit, complete=True)
+    import orkest_prep
+    dirty = orkest_prep.dirty_report(git(repo, 'status', '--porcelain', '--untracked-files=all'),
+                                     state.get('baseline_status', ''), owned_paths(state, tracker['path']))
+    return dict(action='done', committed=True, commit=commit, complete=True, dirty_files=dirty['counts'],
+                dirty_note=dirty['note'] if dirty['total'] else None)
 
 
 def test_counts(output):
@@ -1260,6 +1308,86 @@ def guide(repo, command, result):
     return dict(result, next_command=call, note=note)
 
 
+def owned_paths(state, tracker_path):
+    owned = {tracker_path, 'docs/orkest/LOGBOOK.md', 'docs/CONTEXT.md', 'docs/TODO.md'} if tracker_path else set()
+    for record in (state.get('phases') or {}).values():
+        owned.update(record.get('paths', []))
+    return owned
+
+
+def active_state(repo):
+    active = read_json(metadata(repo) / 'active.json', {})
+    return read_json(state_path(repo, active['key']), {}) if active.get('key') else {}
+
+
+def dirty_command(repo):
+    import orkest_prep
+    repo = migration.repository(repo)
+    state = active_state(repo)
+    report = orkest_prep.dirty_report(git(repo, 'status', '--porcelain', '--untracked-files=all'),
+                                      state.get('baseline_status', ''), owned_paths(state, state.get('target')))
+    return dict(action='dirty-report', run_recorded=bool(state), **report)
+
+
+def prerequisites(repo, options):
+    import orkest_prep
+    repo = migration.repository(repo)
+    state = active_state(repo)
+    path = options.get('input_file') or state.get('target')
+    if not path:
+        raise ValueError('Name the tracker with --input-file or start a run first')
+    text = migration.checked_path(repo, path).read_text(encoding='utf-8')
+    section = phase_section(text, options['phase']) if options.get('phase') else text
+    requires = orkest_prep.parse_requires(section or text)
+    if not requires:
+        return dict(action='preflight', ok=True, missing=[], checked=0, note='No requires block declared')
+    return dict(orkest_prep.check(repo, requires), action='preflight')
+
+
+def report_command(repo):
+    """The verdict-first skeleton for the final report; every line derives from a recorded fact."""
+    import orkest_gate
+    repo = migration.repository(repo)
+    runtime = sys.modules[__name__]
+    gates = orkest_gate.listing(repo, runtime)
+    last = gates[-1] if gates else None
+    if last is None:
+        head = 'VERDICT: NONE (no gate recorded; say which commands were executed and their counts)'
+    elif last['state'] == 'running':
+        head = 'VERDICT: PENDING gate %s; run: %s' % (last['id'], last['next_command'])
+    else:
+        counts = last.get('counts') or {}
+        head = 'VERDICT: %s gate %s qualifying=%s passed %s / failed %s / errors %s / skipped %s reasons: %s' % (
+            last['outcome'].upper(), last['id'], 'yes' if last['qualifying'] else 'no', counts.get('passed'),
+            counts.get('failed'), counts.get('errors'), counts.get('skipped'), ', '.join(last.get('reasons') or []) or 'none')
+    dirty = dirty_command(repo)
+    lines = [head, 'dirty_files: %d owned-uncommitted, %d pre-existing, %d appeared during the run' % (
+        dirty['counts']['owned_uncommitted'], dirty['counts']['preexisting'], dirty['counts']['foreign_new']),
+        'unresolved: <failing gates, human boxes, pending inputs>', '---', 'PROGRESS (not evidence): <free text>',
+        'NEXT: <one exact command>']
+    return dict(action='report', skeleton='\n'.join(lines), gates=gates, dirty=dirty['counts'])
+
+
+def attach_gates(repo, command, result):
+    """Live gates and unacknowledged verdicts ride along on startup and `next`, so a resumed session sees them."""
+    if command not in ('inspect', 'start', 'next') or not isinstance(result, dict):
+        return result
+    try:
+        import orkest_gate
+        live = orkest_gate.live_summary(migration.repository(repo), sys.modules[__name__])
+    except (ValueError, OSError):
+        return result
+    if not live:
+        return result
+    result = dict(result, gates=live)
+    if command == 'next' and result.get('action') in ('verify', 'tdd', 'commit-box', 'qa-pass'):
+        for gate in live:
+            if gate.get('state') == 'running' and gate.get('phase') == result.get('phase'):
+                return dict(result, action='wait-gate', gate=gate['id'], next_command=gate['next_command'],
+                            reason='A gate for this phase is running; wait for its verdict instead of starting another run')
+    return result
+
+
 def summary(result):
     """Short view of an inspect/start result; the full document stays the default."""
     target = (result.get('resolution') or {}).get('target') or {}
@@ -1276,7 +1404,8 @@ def summary(result):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['inspect', 'start', 'release', 'bootstrap', 'plan', 'verify', 'checkpoint', 'next',
-                                          'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple', 'recover-lock'])
+                                          'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple', 'recover-lock',
+                                          'gate', 'preflight', 'dirty-report', 'report'])
     parser.add_argument('query', nargs='*')
     parser.add_argument('--repo', default='.')
     parser.add_argument('--summary', action='store_true', help='short inspect/start output (default is the full document)')
@@ -1300,6 +1429,16 @@ def main(argv=None):
     parser.add_argument('--expect', choices=['red', 'green'], default='green')
     parser.add_argument('--command-json')
     parser.add_argument('--timeout', type=int, default=600)
+    parser.add_argument('--gate', help='verify: ingest this finished gate verdict instead of running a command')
+    parser.add_argument('--skip-budget', type=int, default=None,
+                        help='verify/gate: skipped tests allowed (default 0, or the phase requires block)')
+    parser.add_argument('--strict', action='store_true', help='gate: passed>0 and skips within budget')
+    parser.add_argument('--live', action='store_true', help='gate list: only running or unacknowledged')
+    parser.add_argument('--replace', action='store_true', help='gate run: cancel a live run of the same name')
+    parser.add_argument('--deadline-s', type=int, default=None)
+    parser.add_argument('--idle-s', type=int, default=None)
+    parser.add_argument('--max-s', type=float, default=None, help='gate wait: longest block in seconds (default 240)')
+    parser.add_argument('--max-wait', type=float, default=240, help='gate run: foreground wait before returning running')
     parser.add_argument('--title')
     parser.add_argument('--type', choices=['feat', 'polish', 'fix', 'refactor', 'docs', 'test'])
     parser.add_argument('--tier', choices=['docs', 'build', 'unit', 'integration', 'e2e'])
@@ -1309,7 +1448,13 @@ def main(argv=None):
     parser.add_argument('--harness', choices=['claude-code', 'codex', 'grok'])
     parser.add_argument('--session-report')
     parser.add_argument('--native-doctor-report')
+    argv = list(sys.argv[1:] if argv is None else argv)
+    gate_command = []
+    if 'gate' in argv and '--' in argv:  # everything after -- is the gated command, never an option of ours
+        split = argv.index('--')
+        argv, gate_command = argv[:split], argv[split + 1:]
     args = parser.parse_args(argv)
+    args.gate_command = gate_command
     if (args.fix or args.template or args.session_report or args.native_doctor_report) and args.command != 'doctor':
         parser.error('--fix, --template and diagnostic report options are doctor options')
     if args.command == 'doctor' and args.query:
@@ -1329,6 +1474,15 @@ def main(argv=None):
             result = release(args.repo, vars(args))
         elif args.command == 'recover-lock':
             result = recover_locks(args.repo, vars(args))
+        elif args.command == 'gate':
+            import orkest_gate
+            result = orkest_gate.command(migration.repository(args.repo), vars(args), sys.modules[__name__])
+        elif args.command == 'preflight':
+            result = prerequisites(args.repo, vars(args))
+        elif args.command == 'dirty-report':
+            result = dirty_command(args.repo)
+        elif args.command == 'report':
+            result = report_command(args.repo)
         elif args.command == 'bootstrap':
             result = bootstrap(args.repo, vars(args))
         elif args.command == 'simple':
@@ -1339,12 +1493,14 @@ def main(argv=None):
             operation = start if args.command == 'start' else inspect
             result = operation(args.repo, ' '.join(args.query), vars(args))
         result = guide(args.repo, args.command, result)
+        result = attach_gates(args.repo, args.command, result)
         if args.summary and args.command in ('inspect', 'start'):
             result = summary(result)
         print(json.dumps(result, ensure_ascii=False))
-        return 0
+        return 2 if args.command == 'preflight' and not result.get('ok') else 0
     except (ValueError, OSError) as error:
-        if args.command not in ('inspect', 'release', 'doctor', 'budget', 'recover-lock') and not args.dry:
+        if args.command not in ('inspect', 'release', 'doctor', 'budget', 'recover-lock', 'gate', 'preflight',
+                                'dirty-report', 'report') and not args.dry:
             try:
                 release(args.repo, vars(args))
             except (ValueError, OSError):

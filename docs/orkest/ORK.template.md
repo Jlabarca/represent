@@ -48,6 +48,8 @@ Replace with named observable behaviors and actual verification commands.
 ### Phase 1 — First slice
 
 > verify: unit
+> requires:
+>   skip_budget: 0
 
 - [ ] ORK-PENDING.1.1 — Replace with grounded acceptance criteria and source/test paths.
 
