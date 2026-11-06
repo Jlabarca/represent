@@ -1485,15 +1485,15 @@
     "bin/orkest-hooks.sh": "fdf2cfe2dd8b636527f145492f2f3732ec1d0ba7d66fbd69d4a9afb1b4713e28",
     "bin/orkest-init.ps1": "d386a7f61cdf5d0934e99c69dcd22cd4445bb6cbd1ebac892ef68be458b65e46",
     "bin/orkest-init.sh": "cdfff4e6f8123e33e43bc50dc1b0231d022c3e75d0aae5388b524958b0cb65ab",
-    "bin/orkest-migrate.py": "6a8b203b39cbacb40f1dc7c15d13e94b282f43588233eebfa08c3550108a2dc4",
+    "bin/orkest-migrate.py": "e1f2575da91966f45117ed0886418696701bc2d08cad59a2947754d2fe2dc57e",
     "bin/orkest-startup.ps1": "5a22b3c6311903924eac09dad487fb3d40833aaa258e4fa7b46aecf3696a8355",
     "bin/orkest-startup.py": "b05f247c5d12f2bd531ab9db4c1c6bb3324461dbb3b4305f673e48db93d17be1",
     "bin/orkest-startup.sh": "520d0832f272693cde54ca8305e523e17424c1dade69db2edc742c993a38f57d",
-    "bin/orkest.py": "2cac66e0b96a50a74625f874d6d310eda1a632d91bb95c6d14f544a60003e99b",
+    "bin/orkest.py": "79808fe7fd36be2529cc3d7c6aa36809af53ada05260836166e570b721b178f2",
     "bin/orkest_budget.py": "ee5cd7402eff9154d796f31304a17515d6f37c7e3272e67d53cc2b1a226249d3",
     "bin/orkest_core.py": "a87a0bc51fab649383f565e3b5258393ca0417ede157b98112bb6180e08f9f0b",
     "bin/orkest_doctor.py": "824657f12b1b131d280d35a9d8ab526de809fb9e5b91622ba9fffa642c94a121",
-    "bin/orkest_upgrade.py": "ff710b421400ea082f9bad1ebff6cde6433dbb72d26cd08adc1ea0015d9d25a0",
+    "bin/orkest_upgrade.py": "17048cbd77d6793a64a26fb1e7992267ecfeaa836d98be0fbc99361e1887bdb1",
     "bin/precompact-handoff.ps1": "95bf6ed17b7060a19c3d52f75f142af9e7ca0ee1d3bfabc2a099c1bb460a62b8",
     "bin/precompact-handoff.sh": "d8015585a982ce10c1bff0d356b2dc749ad8c4605d0ce6b59cf113c216f2fb7c",
     "bin/promote-check.py": "52a33692d9e69b4b2887fe74a39b93b0b911003345df850000816d8f0fcf7a46",
@@ -1512,31 +1512,31 @@
     "bin/workflow-git.py": "ae1ef4afbf887904c7848f04a9fde7bb50ef1ac15a66dcf3d965d35325c31d4f",
     "orkest-budget.json": "58d046f6f59c102fd7deacad2a8ca7318ca9699177ff29db0abf5c285f0d2284",
     "orkest-compatibility.json": "dcec43630ab5aa50574580fef305b6f67820685c4ba9e788938effa38ad43a52",
-    "orkest-native-acceptance.json": "14a8cabfbc9692d7c4fc0c617f20b33707a1847a995e3558fbab762365372013"
+    "orkest-native-acceptance.json": "a38efad87f4b2a5e23f5b9fd249bc363e1d0b54c65c47afd3f5ee965f23a4e8f"
   },
-  "minimum": "v0.1-441",
+  "minimum": "v0.1-442",
   "native_acceptance": {
     "claude-code": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "803eefb539edb8a59da571d3a6becfcfcfacf74899ec1424073205770eeb47d4",
-      "sha256": "14a8cabfbc9692d7c4fc0c617f20b33707a1847a995e3558fbab762365372013",
-      "source_commit": "48702477dce27e667947e6e36f32ff27db0ed489"
+      "receipt_sha256": "46017dfa9f9cfd95853c22f984a2719755dbd3cb3cd2a1b98473c7b47ec5c0be",
+      "sha256": "a38efad87f4b2a5e23f5b9fd249bc363e1d0b54c65c47afd3f5ee965f23a4e8f",
+      "source_commit": "3a27cb5735be02f95e99666379df373dd82df086"
     },
     "codex": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "1dac0a131cef45d1e0f2859d1cbc711913d1575476ee58c28c47c3cdd70c7f21",
-      "sha256": "14a8cabfbc9692d7c4fc0c617f20b33707a1847a995e3558fbab762365372013",
-      "source_commit": "48702477dce27e667947e6e36f32ff27db0ed489"
+      "receipt_sha256": "ff321fbd56441d0d177bd91f9d528594f0c2caed71131443b0c78b34f7a63ce0",
+      "sha256": "a38efad87f4b2a5e23f5b9fd249bc363e1d0b54c65c47afd3f5ee965f23a4e8f",
+      "source_commit": "3a27cb5735be02f95e99666379df373dd82df086"
     },
     "grok": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "ca9db9e312848ddbfcccd2e1c8e746d2a47b2103e4d2f87778b76aa31d543c2d",
-      "sha256": "14a8cabfbc9692d7c4fc0c617f20b33707a1847a995e3558fbab762365372013",
-      "source_commit": "48702477dce27e667947e6e36f32ff27db0ed489"
+      "receipt_sha256": "fe73f7fc3faff0475e723a89a02d854653966525577484737210c23587903855",
+      "sha256": "a38efad87f4b2a5e23f5b9fd249bc363e1d0b54c65c47afd3f5ee965f23a4e8f",
+      "source_commit": "3a27cb5735be02f95e99666379df373dd82df086"
     }
   },
   "ready": true,
-  "release": "v0.1-441",
+  "release": "v0.1-442",
   "schema": 1,
   "seeds": {
     "AGENTS.md": "aeee663d151d468620ecdca0b7187b1d246a08b9a6725a1708c4a1afeea83fc1",

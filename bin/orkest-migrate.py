@@ -1,8 +1,10 @@
 """Plan and apply a single-repository tracker layout migration; dry-run by default."""
 import argparse
+import datetime
 import hashlib
 import json
 import os
+import platform
 from pathlib import Path, PurePosixPath
 import posixpath
 import re
@@ -86,8 +88,49 @@ def tracker_content(text, tracker_id, name):
     return text
 
 
-def check_writer_locks(root, session=None):
+LOCK_STALE_HOURS = 8.0
+
+
+def lock_info(lock, text, now=None):
+    """Who holds a lock, how long it has shown no activity, and whether it may be recovered.
+
+    Activity is the lock's heartbeat field, else its file time. A lock idle past the window
+    (ORKEST_LOCK_STALE_HOURS, default 8) on this host is stale: its owner stopped working.
+    A lock stamped by another host is never judged stale from here."""
+    fields = dict(re.findall(r'(?m)^([a-z_]+):\s*(\S+)', text))
+    now = now or datetime.datetime.now(datetime.timezone.utc)
+    stamp = None
+    try:
+        stamp = datetime.datetime.fromisoformat(fields['heartbeat'])
+    except (KeyError, ValueError):
+        pass
+    if stamp is None:
+        stamp = datetime.datetime.fromtimestamp(lock.stat().st_mtime, datetime.timezone.utc)
+    if stamp.tzinfo is None:
+        stamp = stamp.replace(tzinfo=datetime.timezone.utc)
+    try:
+        hours = float(os.environ.get('ORKEST_LOCK_STALE_HOURS') or LOCK_STALE_HOURS)
+    except ValueError:
+        hours = LOCK_STALE_HOURS
+    idle = max(0.0, (now - stamp).total_seconds())
+    foreign_host = bool(fields.get('host')) and fields['host'] != platform.node().replace(' ', '_')
+    return dict(fields=fields, idle=idle, hours=hours, foreign_host=foreign_host,
+                stale=idle > hours * 3600 and not foreign_host)
+
+
+def lock_tracker(lock):
+    """The tracker stem a legacy `.<name>-IMPL.lock` / `-ORK.lock` guards, casefolded."""
+    name = lock.name[1:-len('.lock')]
+    return re.sub(r'(?i)-(impl|ork)$', '', name).casefold()
+
+
+def writer_locks(root, session=None, target=None):
+    """Foreign writer locks that apply to `target` (None: every lock), as (path, info) pairs.
+
+    The repository run lock always applies. A tracker lock applies to its own tracker, to
+    structural work with no tracker, and to repository-wide work (target None)."""
     session = session or os.environ.get('CODEX_SESSION_ID') or os.environ.get('CLAUDE_CODE_SESSION_ID')
+    stem = tracker_stem(target) if target else None
     locks = []
     for pattern in ('.*-IMPL.lock', '.*-ORK.lock'):
         locks.extend(root.glob(pattern))
@@ -101,18 +144,48 @@ def check_writer_locks(root, session=None):
         except ValueError:
             raise ValueError('Run lock escapes worktree metadata')
         locks.append(run_lock)
+    found = []
     for lock in locks:
         if lock != run_lock:
             lock = checked_path(root, lock.relative_to(root).as_posix())
+            if stem and lock_tracker(lock) != stem.casefold():
+                continue
         text = lock.read_text(encoding='utf-8')
         owner = re.search(r'(?m)^session:\s*(\S+)', text)
-        if not session or not owner or owner.group(1) != session:
-            # Name the holder: a live run's lock must be waited for, never cleared.
-            fields = dict(re.findall(r'(?m)^(session|target|started):\s*(\S+)', text))
-            holder = ', '.join(key + ' ' + fields[key] for key in ('session', 'target', 'started') if key in fields)
-            raise ValueError('Another writer lock requires deliberate recovery: ' + str(lock) +
-                             (' (' + holder + ')' if holder else '') +
-                             '; if that session is still running, wait for it; recover only an abandoned lock')
+        if session and owner and owner.group(1) == session:
+            continue
+        found.append((lock, lock_info(lock, text)))
+    return found
+
+
+def recover_lock(root, lock, info, reason):
+    """Remove an abandoned lock and leave a record of whose it was and why it went."""
+    git_dir = Path(git(root, 'rev-parse', '--absolute-git-dir')).resolve()
+    log = git_dir / 'orkest/recovered-locks.log'
+    log.parent.mkdir(parents=True, exist_ok=True)
+    holder = ' '.join(key + '=' + info['fields'][key] for key in ('session', 'target', 'started', 'heartbeat')
+                      if key in info['fields'])
+    with log.open('a', encoding='utf-8') as handle:
+        handle.write(datetime.datetime.now(datetime.timezone.utc).isoformat() + ' recovered ' + lock.name +
+                     ' idle=' + str(int(info['idle'] / 60)) + 'm ' + reason + ' ' + holder + '\n')
+    lock.unlink()
+
+
+def check_writer_locks(root, session=None, target=None, recover=False):
+    """Refuse while another live writer holds a lock; a stale one is recovered (writes) or ignored (reads)."""
+    for lock, info in writer_locks(root, session, target):
+        if info['stale']:
+            if recover:
+                recover_lock(root, lock, info, 'stale')
+            continue
+        fields = info['fields']
+        holder = ', '.join(key + ' ' + fields[key] for key in ('session', 'target', 'started') if key in fields)
+        raise ValueError('Another writer lock is held: ' + str(lock) + (' (' + holder + ')' if holder else '') +
+                         '; last activity ' + str(int(info['idle'] / 60)) + ' min ago' +
+                         (' on host ' + fields['host'] if info['foreign_host'] else '') +
+                         '. If that session is still running, wait for it. A lock idle over ' + format(info['hours'], 'g') +
+                         ' h is recovered automatically; if you know the owner is gone, run: python bin/orkest.py '
+                         '--repo . recover-lock --confirm-inactive')
 
 
 def rewrite_links(text, old_file, new_file, mapping, tracked=None):
@@ -382,7 +455,7 @@ def apply_plan(repo, plan=None, lane='interactive', fail_after=None, session=Non
     if lane != 'interactive':
         raise ValueError('Rule 24: unattended migration is read-only')
     root = repository(repo)
-    check_writer_locks(root, session)
+    check_writer_locks(root, session, recover=True)
     journal = journal_path(root)
     resuming = journal.is_file()
     if resuming:

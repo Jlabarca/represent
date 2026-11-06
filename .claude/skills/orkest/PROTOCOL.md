@@ -89,8 +89,13 @@ build exists. External status, vendor doctor and clean Git are not test evidence
 
 One session owns the worktree index and structural tracker sections. Acquire
 the shared lock with actual session/target/branch; check cross-tracker exclusions
-and scheduler arming before edits. Another writer, age or advanced HEAD never
-authorizes lock theft. Recover only an explicitly established inactive owner.
+and scheduler arming before edits. Another writer or an advanced HEAD never
+authorizes lock theft. The run lock carries the owner's host and a heartbeat that
+every owned step refreshes; a lock on this host idle past ORKEST_LOCK_STALE_HOURS
+(default 8) is abandoned and the next write recovers it, recording whose it was in
+.git/orkest/recovered-locks.log. A younger lock, or one from another host, is waited
+for; `orkest.py recover-lock` lists them and `--confirm-inactive` removes them once the
+operator knows the owner is gone. A tracker lock guards only its own tracker.
 Append-only bug/history notes may coexist without rewriting structural state.
 Concurrent editing workers require isolated worktrees; the coordinator owns
 integration. Release only the caller's lock on exit.

@@ -237,8 +237,8 @@ Never repair a drifted skill by overwriting a possible local customization.
 On a large repository the report can exceed the tool output limit: write it to a
 file outside the project and summarize from that file; never judge a truncated
 report. A proposed link fix is a basename match, so name what each destination
-is before applying `--fix`. A foreign writer lock names its session; a lock held
-by a running session is waited for, never cleared.
+is before applying `--fix`. A foreign writer lock names its session and its idle time; a lock
+held by a running session is waited for, never cleared, and one idle past the stale window is recovered by the next write.
 
 The current session service GET and digest generator both write state; do not
 invoke them during read-only doctor. An existing project-local JSON export may

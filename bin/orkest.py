@@ -5,6 +5,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import platform
 from pathlib import Path
 import re
 import subprocess
@@ -231,20 +232,46 @@ def acquire(repo, tracker, options):
     session = session_id(options) or str(uuid.uuid4())
     if not re.fullmatch(r'[A-Za-z0-9_.:-]{1,128}', session):
         raise ValueError('Session identity must be a single safe token')
-    migration.check_writer_locks(repo, session)
-    existing = lock_fields(repo)
     target = tracker['path'] if tracker else '<bootstrap>'
+    migration.check_writer_locks(repo, session, target, recover=True)
+    existing = lock_fields(repo)
     if existing:
         if existing.get('session') != session or existing.get('target') != target:
             raise ValueError('Another writer owns the run lock: ' + existing.get('session', 'unknown'))
+        touch_lock(repo, session)
         return session
     parent = metadata(repo)
     parent.mkdir(parents=True, exist_ok=True)
     with (parent / 'run.lock').open('x', encoding='utf-8') as handle:
+        now = datetime.datetime.now(datetime.timezone.utc).isoformat()
         handle.write('session: ' + session + '\ntarget: ' + target + '\nbranch: ' +
-                     git(repo, 'symbolic-ref', '--short', 'HEAD') + '\nstarted: ' +
-                     datetime.datetime.now(datetime.timezone.utc).isoformat() + '\n')
+                     git(repo, 'symbolic-ref', '--short', 'HEAD') + '\nstarted: ' + now +
+                     '\nhost: ' + platform.node().replace(' ', '_') + '\nheartbeat: ' + now + '\n')
     return session
+
+
+def touch_lock(repo, session):
+    """Show the owner is still working: refresh the heartbeat of this session's own run lock."""
+    path = metadata(repo) / 'run.lock'
+    fields = lock_fields(repo)
+    if fields.get('session') != session:
+        return
+    fields['heartbeat'] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+    migration.atomic_write(path, ''.join(key + ': ' + value + '\n' for key, value in fields.items()).encode('utf-8'))
+
+
+def recover_locks(repo, options):
+    """List the foreign writer locks; with --confirm-inactive remove them, recording each."""
+    repo = migration.repository(repo)
+    found = migration.writer_locks(repo, session_id(options))
+    rows = [dict(info['fields'], lock=str(lock), stale=info['stale'], idle_minutes=int(info['idle'] / 60))
+            for lock, info in found]
+    if not options.get('confirm_inactive'):
+        return dict(action='locks', locks=rows, note='Nothing removed. Re-run with --confirm-inactive once you know '
+                    'every listed owner is gone; a running session must be waited for.')
+    for lock, info in found:
+        migration.recover_lock(repo, lock, info, 'confirmed-inactive')
+    return dict(action='recovered', locks=rows)
 
 
 def release(repo, options=None):
@@ -327,7 +354,11 @@ def start(repo, query='', options=None):
             return dict(result, action='migration-required', reason='Install verified compatibility before migration')
         if result['dirty'] or options.get('no_commit') or not result['consumer_readiness']['ready']:
             if not target or target['id'] is not None:
-                return dict(result, action='migration-required', reason='Pending migration only permits existing legacy work')
+                return dict(result, action='migration-required',
+                            reason='Pending migration only permits existing legacy work. The migration needs a clean '
+                                   'tree: commit or move aside local changes, or run `python bin/orkest-migrate.py '
+                                   '--repo <root> --apply` in a clean checkout or worktree of this branch as its own '
+                                   'commit, then start the new work')
             pending = True
     session = acquire(repo, target, options)
     options['session'] = session
@@ -537,6 +568,7 @@ def run_step(repo, options):
         raise ValueError('Run branch changed')
     if options.get('dry'):
         return dict(action='stopped', reason='Dry step preview; no writes')
+    touch_lock(repo, session_id(options))
     def with_budget(value):
         if state.get('budget_decision'):
             value['budget'] = state['budget_decision']
@@ -1180,7 +1212,7 @@ def summary(result):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['inspect', 'start', 'release', 'bootstrap', 'plan', 'verify', 'checkpoint', 'next',
-                                          'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple'])
+                                          'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple', 'recover-lock'])
     parser.add_argument('query', nargs='*')
     parser.add_argument('--repo', default='.')
     parser.add_argument('--summary', action='store_true', help='short inspect/start output (default is the full document)')
@@ -1208,6 +1240,7 @@ def main(argv=None):
     parser.add_argument('--type', choices=['feat', 'polish', 'fix', 'refactor', 'docs', 'test'])
     parser.add_argument('--tier', choices=['docs', 'build', 'unit', 'integration', 'e2e'])
     parser.add_argument('--fix', action='store_true')
+    parser.add_argument('--confirm-inactive', action='store_true')
     parser.add_argument('--template')
     parser.add_argument('--harness', choices=['claude-code', 'codex', 'grok'])
     parser.add_argument('--session-report')
@@ -1230,6 +1263,8 @@ def main(argv=None):
             result = orkest_budget.check(migration.repository(args.repo), vars(args), sys.modules[__name__])
         elif args.command == 'release':
             result = release(args.repo, vars(args))
+        elif args.command == 'recover-lock':
+            result = recover_locks(args.repo, vars(args))
         elif args.command == 'bootstrap':
             result = bootstrap(args.repo, vars(args))
         elif args.command == 'simple':
@@ -1245,7 +1280,7 @@ def main(argv=None):
         print(json.dumps(result, ensure_ascii=False))
         return 0
     except (ValueError, OSError) as error:
-        if args.command not in ('inspect', 'release', 'doctor', 'budget') and not args.dry:
+        if args.command not in ('inspect', 'release', 'doctor', 'budget', 'recover-lock') and not args.dry:
             try:
                 release(args.repo, vars(args))
             except (ValueError, OSError):

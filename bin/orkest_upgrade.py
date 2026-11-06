@@ -357,7 +357,7 @@ def reconcile(repo, template, options=None, runtime=None):
     session = runtime.session_id(options)
     if not session:
         return report('session-required', reason='Startup needs the actual native session identity')
-    runtime.migration.check_writer_locks(repo, session)
+    runtime.migration.check_writer_locks(repo, session, recover=True)
     if runtime.lock_fields(repo):
         return report('writer-active', reason='Finish the active target before startup upgrade')
     for name in ('scheduler.json', '.orkest/scheduler.json'):
