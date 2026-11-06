@@ -962,7 +962,13 @@ def logbook_draft(repo, name):
 def logbook_path(repo):
     """Legacy logbook stays in use until the layout move commits (Rule 1)."""
     facts = layout(repo)
+    if facts['layout'] == 'mixed' and tracked_logbook(repo):
+        return 'docs/orkest/LOGBOOK.md'  # the real history is already there; a stray legacy file must not grow
     return 'docs/LOGBOOK.md' if facts['layout'] in ('old', 'mixed') else 'docs/orkest/LOGBOOK.md'
+
+
+def tracked_logbook(repo):
+    return bool(git(repo, 'ls-files', '--', 'docs/orkest/LOGBOOK.md').strip())
 
 
 def simple(repo, options):
@@ -1113,7 +1119,7 @@ def boundary_step(repo, options, state, state_file, tracker, record):
     text = re.sub(r'(?m)^> Updated:.*$', '> Updated: ' + date, text)
     writes[target] = text.rstrip() + '\n\n### Phase ' + phase + ' QA — ' + date + '\n\n' + (
         'Advisory findings: ' + '; '.join(report['findings']) if report['findings'] else 'No mechanical QA findings.') + '\n'
-    log = 'docs/LOGBOOK.md' if state.get('migration_pending') else 'docs/orkest/LOGBOOK.md'
+    log = 'docs/LOGBOOK.md' if state.get('migration_pending') and not tracked_logbook(repo) else 'docs/orkest/LOGBOOK.md'
     path = migration.checked_path(repo, log)
     prefix = path.read_text(encoding='utf-8') if path.exists() else '# Logbook\n'
     writes[log] = prefix.rstrip() + '\n\n## ' + date + ' — ' + title + '\n'

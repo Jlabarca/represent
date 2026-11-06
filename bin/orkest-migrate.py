@@ -319,6 +319,17 @@ def build_plan(repo, session=None):
         if name == 'docs/LOGBOOK.md' or name.startswith('docs/handoffs/'):
             destination = name.replace('docs/', 'docs/orkest/', 1)
             checked_path(root, destination)
+            if name == 'docs/LOGBOOK.md' and destination in tracked and destination in documents \
+                    and destination not in mapping.values():
+                # A session on an older layout appended to the legacy logbook after the layout moved:
+                # fold its entries into the real one instead of refusing, and keep every byte.
+                stray = documents[name]
+                body = re.sub(r'\A#[^\n]*\n+', '', stray, count=1).strip('\n')
+                kept = documents[destination].rstrip('\n')
+                writes[destination] = kept + ('\n\n' + body if body else '') + '\n'
+                mapping[name] = destination
+                deletions.append(name)
+                continue
             if destination in tracked or destination in mapping.values() or (root / destination).exists():
                 raise ValueError('Migration destination collision: ' + destination)
             mapping[name] = destination

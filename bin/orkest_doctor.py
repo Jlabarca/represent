@@ -157,6 +157,10 @@ def layout_facts(repo, docs, claims, runtime, findings):
         findings.append(finding('layout-version-unsupported', 'docs/orkest/.layout', 'A newer layout requires a compatible release', 'error'))
     if layout['layout'] == 'mixed':
         findings.append(finding('layout-mixed', 'docs', 'Legacy harness documents remain alongside the new layout', 'error'))
+        if 'docs/LOGBOOK.md' in docs and 'docs/orkest/LOGBOOK.md' in docs:
+            findings.append(finding('logbook-split', 'docs/LOGBOOK.md',
+                'Two logbooks: entries in docs/LOGBOOK.md belong in docs/orkest/LOGBOOK.md; the next migration folds them in '
+                'without losing a byte (or append them by hand and git rm the legacy file)', 'warn'))
     elif layout['needs_migration']:
         findings.append(finding('layout-migration-pending', 'docs', 'Validated migration is required before layout completion'))
     key = None
