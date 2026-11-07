@@ -228,7 +228,8 @@ def parse_tracker(text, path):
             errors.append('Duplicate box: ' + box_id)
         seen_boxes.add(box_id)
         human = bool(re.search(r'\bhuman:', body, re.I))
-        evidence_match = re.search(r'\bevidence:\s*(.*)', body, re.I)
+        # `evidence: …` and the qualified `evidence (live, Editor, 2026-10-05): …` sessions also write.
+        evidence_match = re.search(r'\bevidence\s*(?:\([^)\n]{0,120}\))?\s*:\s*(.*)', body, re.I)
         evidence = evidence_match.group(1).strip() if evidence_match else ''
         if evidence.lower().strip('`<>. ') in ('', 'none', 'tbd', 'pending'):
             evidence = ''

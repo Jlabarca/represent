@@ -253,10 +253,19 @@ exact box reference in a local Git subject; this diagnostic is not a substitute
 for the run engine's verified receipts. Fenced identity examples are document
 content, not real identity claims. Missing components are reported explicitly.
 Never repair a drifted skill by overwriting a possible local customization.
-On a large repository the report can exceed the tool output limit: write it to a
-file outside the project and summarize from that file; never judge a truncated
-report. A proposed link fix is a basename match, so name what each destination
-is before applying `--fix`. `inspect` also lists `writer_locks` (the run lock under the Git dir and
+On a large repository the report can exceed the tool output limit: add `--summary`
+(counts by code and severity, top files per code, every other section) or write
+the full report to a file outside the project; never judge a truncated report.
+A link `fix` has `path` confidence: its one committed candidate keeps more than
+the file name (two or more trailing segments, a move into legacy/done/archive/
+parked/planned, or an ancestor/descendant folder under the same top-level
+directory). A name-only match is a `proposal` (`basename`, or `ambiguous` with
+its candidates) and is never applied unless the person accepts it with
+`--accept-link FILE=DESTINATION`; `--skip-link FILE` vetoes a file's link fixes.
+Harness metadata roots (`.orkest`, `.claude`, `.codex`, `.agents`, `.grok`,
+`.ghostdev`, `.runs`) are never candidates. Checked-without-evidence and an
+invalid tracker are errors only in live trackers; finished ones report info.
+Evidence may carry a short qualifier: `evidence (scope): ...`. `inspect` also lists `writer_locks` (the run lock under the Git dir and
 legacy tracker locks, the caller's own included) for tools that preview an update without taking a
 lock. A foreign writer lock names its session and its idle time; a lock
 held by a running session is waited for, never cleared, and one idle past the stale window is recovered by the next write.
@@ -280,7 +289,11 @@ observation. Codex/Grok finish the portable report with native doctor unavailabl
 Do not create diagnostic input files merely to run a read-only check.
 
 `doctor --fix` first collects the complete read-only report. Dry, no-commit and
-unattended invocations remain read-only previews. Interactive repair requires the
+unattended invocations remain read-only previews; their `repair_preview` lists
+the exact files and each change (link old/new with confidence, heading, hooks,
+branch delete) a real `--fix` would commit now, plus the bookkeeping files, the
+skipped files and how many proposals stay unapplied. Show that preview to the
+person before an interactive `--fix`. Interactive repair requires the
 live integration branch, the actual session identity, no foreign/active writer
 and no armed scheduler targets. A required migration runs first with verified
 readers and registered consumer readiness, as its own refactor commit; otherwise

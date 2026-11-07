@@ -100,7 +100,9 @@ def tracker_facts(repo, docs, runtime, findings):
         tracker = runtime.parse_tracker(text, name)
         trackers.append(tracker)
         if tracker['errors']:
-            findings.append(finding('tracker-invalid', name, '; '.join(tracker['errors']), 'error'))
+            # Finished history (done/planned/parked) drifts in format; only live trackers block work.
+            findings.append(finding('tracker-invalid', name, '; '.join(tracker['errors']),
+                                    'error' if tracker['lifecycle'] == 'live' else 'info'))
         identities = set()
         try:
             front = runtime.migration.identity(text.lstrip('\ufeff'))
@@ -222,13 +224,55 @@ def link_facts(repo, docs, runtime, findings):
                     continue
                 candidates = []
                 for candidate in known.get(posixpath.basename(target), ()):
+                    if candidate.split('/', 1)[0] in METADATA_ROOTS:
+                        continue  # harness metadata and skill projections are never what a document meant
                     try:
                         if runtime.migration.checked_path(repo, candidate).is_file():
                             candidates.append(candidate)
                     except ValueError:
                         continue
-                fix = dict(kind='link', source=target, destination=candidates[0]) if len(candidates) == 1 else None
-                findings.append(finding('broken-link', name, 'Missing local target: ' + target, fix=fix))
+                item = finding('broken-link', name, 'Missing local target: ' + target)
+                if len(candidates) == 1:
+                    proposal = link_proposal(target, candidates[0])
+                    if proposal['confidence'] == 'path':
+                        item['fix'] = dict(kind='link', source=target, destination=candidates[0], confidence='path')
+                    else:
+                        item['proposal'] = proposal  # reported for a person; applied only with --accept-link
+                elif len(candidates) > 1:
+                    item['proposal'] = dict(kind='link', source=target, destination=None, confidence='ambiguous',
+                                            candidates=sorted(candidates)[:10],
+                                            reason='%d files share this name' % len(candidates))
+                findings.append(item)
+
+
+METADATA_ROOTS = ('.orkest', '.git', '.ghostdev', '.claude', '.codex', '.agents', '.grok', '.runs')
+
+
+def link_proposal(target, candidate):
+    """How much more than the file name a broken link and its single candidate share.
+
+    `path`: the candidate keeps the link's last two or more path segments (a doubled or re-rooted prefix, the same
+    subtree under another parent, a move into legacy/ or done/), or sits in an ancestor or descendant folder of the
+    link's folder inside the same top-level directory. `basename`:
+    only the file name matches, so it may be an unrelated file; a person decides."""
+    left, right = target.split('/'), candidate.split('/')
+    shared = 0
+    while shared < min(len(left), len(right)) and left[-1 - shared] == right[-1 - shared]:
+        shared += 1
+    same_root = len(left) > 1 and len(right) > 1 and left[0] == right[0]
+    folders = ('legacy', 'done', 'archive', 'parked', 'planned')
+    t_dir, c_dir = posixpath.dirname(target), posixpath.dirname(candidate)
+    moved = ((posixpath.dirname(c_dir) == t_dir and posixpath.basename(c_dir) in folders) or
+             (posixpath.dirname(t_dir) == c_dir and posixpath.basename(t_dir) in folders))
+    # A link written as if from a subfolder (docs/impl/X.md for docs/X.md): the real file sits in an ancestor folder.
+    ancestor = same_root and (t_dir + '/').startswith(c_dir + '/') and t_dir != c_dir
+    # The reverse: a file moved deeper into a subfolder of the folder the link expected (docs/X.md -> docs/reference/X.md).
+    descendant = same_root and (c_dir + '/').startswith(t_dir + '/') and t_dir != c_dir
+    if shared >= 2 or moved or ancestor or descendant:
+        return dict(kind='link', source=target, destination=candidate, confidence='path')
+    reason =('only the file name matches, across top-level directories (%s vs %s)' % (left[0], right[0])
+              if not same_root else 'only the file name matches')
+    return dict(kind='link', source=target, destination=candidate, confidence='basename', reason=reason)
 
 
 def registry_facts(repo, template, runtime, findings):
@@ -454,8 +498,17 @@ def native_facts(repo, options, runtime, findings):
         return unavailable
 
 
-def repair_plan(repo, template, docs, claims, report, runtime):
-    writes, skipped = {}, []
+def repair_plan(repo, template, docs, claims, report, runtime, options=None):
+    """(writes, branches, skipped, details). `details` itemizes every change for the preview and the record."""
+    options = options or {}
+    writes, skipped, details = {}, [], []
+    vetoed = set(options.get('skip_link') or [])
+    accepted = {}
+    for spec in options.get('accept_link') or []:
+        name, _, destination = spec.partition('=')
+        if not name or not destination:
+            raise ValueError('--accept-link takes FILE=DESTINATION (the proposal shown for that file)')
+        accepted.setdefault(name, set()).add(destination)
     dirty = set(git_read(repo, 'diff', '--name-only', 'HEAD', '-z').split('\0'))
     tracked = set(git_read(repo, 'ls-files', '-z').split('\0'))
 
@@ -469,8 +522,17 @@ def repair_plan(repo, template, docs, claims, report, runtime):
     mappings = {}
     for item in report['findings']:
         fix = item.get('fix')
-        if fix and fix['kind'] == 'link':
-            mappings.setdefault(item['path'], {})[fix['source']] = fix['destination']
+        proposal = item.get('proposal')
+        if not (fix and fix['kind'] == 'link'):
+            if not (proposal and proposal.get('destination') and proposal['destination'] in accepted.get(item['path'], ())):
+                continue
+            fix = proposal  # a person accepted this one by name
+        if item['path'] in vetoed:
+            skipped.append(dict(path=item['path'], reason='Vetoed with --skip-link', link=fix['source']))
+            continue
+        mappings.setdefault(item['path'], {})[fix['source']] = fix['destination']
+        details.append(dict(kind='link', file=item['path'], old=fix['source'], new=fix['destination'],
+                            confidence=fix.get('confidence', 'path')))
     for name, mapping in mappings.items():
         # Only visible Markdown outside inline code. Never alter fenced examples.
         original = docs[name]
@@ -509,6 +571,8 @@ def repair_plan(repo, template, docs, claims, report, runtime):
         replacement = text.replace('# ' + stem + '\n', '# ' + identity + ': ' + stem + '\n', 1)
         if not runtime.parse_tracker(replacement, name)['errors']:
             offer(name, replacement)
+            if name in writes:
+                details.append(dict(kind='heading', file=name, old='# ' + stem, new='# ' + identity + ': ' + stem))
     # Reuse the adapter's pure planner; do not call its write/backup lifecycle.
     if any(item.get('fix', {}).get('kind') == 'hooks' for item in report['findings'] if item.get('fix')):
         adapter_path = runtime.migration.checked_path(template, 'bin/ghostdev-hooks.py')
@@ -529,14 +593,33 @@ def repair_plan(repo, template, docs, claims, report, runtime):
             result, new = adapter.plan_engine(str(repo), str(template), engine, disables)
             if new is not None:
                 offer(info['live'], json.dumps(new, indent=2, ensure_ascii=False) + '\n')
+                if info['live'] in writes:
+                    details.append(dict(kind='hooks', file=info['live'], engine=engine))
+    # A link in a file that was skipped (dirty, untracked) or did not change is not part of the write set.
+    details = [item for item in details if item['kind'] != 'link' or item['file'] in writes]
     branches = [row for row in report['branches'] if row['class'] == 'A' and row['ahead'] == 0 and row['age_days'] >= 7]
-    return writes, branches, skipped
+    for row in branches:
+        details.append(dict(kind='branch-delete', branch=row['branch'], ahead=row['ahead'], age_days=row['age_days']))
+    return writes, branches, skipped, details
 
 
 def apply_repairs(repo, template, options, report, runtime):
     # No writeful preflight, migration, lock or cache in these preview lanes.
     if options.get('dry') or options.get('no_commit') or runtime.lane(options) == 'unattended':
-        report.update(committed=False, repair_status='preview', reason='Dry/no-commit/unattended doctor never mutates')
+        # The exact write set a real --fix would apply now (read-only planning, same rules and vetoes).
+        try:
+            docs = documents(repo, runtime, [])
+            _, claims = tracker_facts(repo, docs, runtime, [])
+            writes, branches, skipped, details = repair_plan(repo, template, docs, claims, report, runtime, options)
+            preview = dict(files=sorted(writes), changes=details, skipped=skipped,
+                           bookkeeping=(['docs/CONTEXT.md', 'docs/orkest/LOGBOOK.md', 'docs/orkest/reports/doctor-<id>.json']
+                                        if writes or branches else []),
+                           migration_first=bool(report['layout'].get('needs_migration')),
+                           not_applied=sum(1 for item in report['findings'] if item.get('proposal')))
+        except (ValueError, OSError, UnicodeError) as error:
+            preview = dict(error=str(error))
+        report.update(committed=False, repair_status='preview', reason='Dry/no-commit/unattended doctor never mutates',
+                      repair_preview=preview)
         return report
     if not report['layout']['supported']:
         report.update(committed=False, repair_status='deferred', reason='Unsupported layout; use a compatible release')
@@ -571,7 +654,7 @@ def apply_repairs(repo, template, options, report, runtime):
             report = run(repo, refreshed, runtime)
         docs = documents(repo, runtime, [])
         _, claims = tracker_facts(repo, docs, runtime, [])
-        writes, branches, skipped = repair_plan(repo, template, docs, claims, report, runtime)
+        writes, branches, skipped, details = repair_plan(repo, template, docs, claims, report, runtime, options)
         report.update(repair_status='no-safe-changes', committed=False, skipped_repairs=skipped, migrations=migrations)
         if not writes and not branches:
             return report
@@ -596,7 +679,7 @@ def apply_repairs(repo, template, options, report, runtime):
             diagnostic = persisted.pop(key, {})
             persisted[key] = dict(status=diagnostic.get('status'), diagnostic_only=True,
                 provenance_verified=False, content_omitted=True)
-        writes[report_name] = (json.dumps(dict(schema=1, repairs=repairs, branches=branches,
+        writes[report_name] = (json.dumps(dict(schema=1, repairs=repairs, branches=branches, changes=details,
             skipped=skipped, before=persisted), indent=2, ensure_ascii=False) + '\n').encode('utf-8')
         before = {name: (runtime.migration.checked_path(repo, name).read_bytes() if (repo / name).is_file() else None)
                   for name in writes}
@@ -641,11 +724,41 @@ def apply_repairs(repo, template, options, report, runtime):
                     path.rmdir()
             raise
         after = run(repo, dict(options, fix=False), runtime)
-        after.update(read_only=False, committed=True, commit=commit, repaired=repairs,
+        after.update(read_only=False, committed=True, commit=commit, repaired=repairs, changes=details,
                      deleted_branches=sorted(deleted), repair_status='committed', skipped_repairs=skipped, migrations=migrations)
         return after
     finally:
         runtime.release(repo, options)
+
+
+def summarize(report, top=5):
+    """A compact view of a doctor report: counts by code and severity, the top files per code, every
+    non-finding section, and the repair preview counted by kind. The full report stays available without it."""
+    codes = {}
+    for item in report.get('findings', []):
+        entry = codes.setdefault(item['code'], dict(total=0, severity={}, files={}, fixable=0, proposals=0))
+        count = item.get('count', 1)
+        entry['total'] += count
+        entry['severity'][item['severity']] = entry['severity'].get(item['severity'], 0) + count
+        for path in (item.get('paths') or [item.get('path')]):
+            if path:
+                entry['files'][path] = entry['files'].get(path, 0) + 1
+        entry['fixable'] += bool(item.get('fix'))
+        entry['proposals'] += bool(item.get('proposal'))
+    for entry in codes.values():
+        entry['top_files'] = sorted(entry.pop('files').items(), key=lambda pair: (-pair[1], pair[0]))[:top]
+    keep = {key: value for key, value in report.items() if key not in ('findings', 'repair_preview')}
+    keep['codes'] = dict(sorted(codes.items(), key=lambda pair: (-pair[1]['total'], pair[0])))
+    preview = report.get('repair_preview')
+    if preview is not None:
+        kinds = {}
+        for change in preview.get('changes', []):
+            kinds[change['kind']] = kinds.get(change['kind'], 0) + 1
+        keep['repair_preview'] = dict(files=len(preview.get('files', [])), changes_by_kind=kinds,
+                                      skipped=len(preview.get('skipped', [])), not_applied=preview.get('not_applied', 0),
+                                      migration_first=preview.get('migration_first'), error=preview.get('error'))
+    keep['summarized'] = True
+    return keep
 
 
 def run(repo, options, runtime):

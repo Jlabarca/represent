@@ -540,7 +540,8 @@ def bootstrap(repo, options):
         body = migration.checked_path(repo, relative).read_text(encoding='utf-8')
         # Lifecycle directories do not change the identity contract.
         parsed = parse_tracker(body, 'docs/orkest/' + path.name)
-        if parsed['errors']:
+        # Allocation needs only a valid identity; box/phase shape drift in older trackers is doctor's finding.
+        if parsed['id'] is None:
             raise ValueError('Invalid existing tracker: ' + relative)
         identities.append(parsed['id'])
         if tracker_key(path.name) == name.casefold():
@@ -1519,6 +1520,10 @@ def main(argv=None):
     parser.add_argument('--native-doctor-report')
     parser.add_argument('--grace-hours', type=float, help='doctor git: how long a finished lane is left alone (default 24)')
     parser.add_argument('--sibling', action='append', help='doctor git: another repository to include')
+    parser.add_argument('--skip-link', action='append', metavar='FILE',
+                        help='doctor --fix: leave every link proposal in FILE alone (repeatable)')
+    parser.add_argument('--accept-link', action='append', metavar='FILE=DESTINATION',
+                        help='doctor --fix: also apply the reported (not automatic) proposal for FILE (repeatable)')
     parser.add_argument('--trunk', help='doctor git: the integration branch lanes are measured against')
     parser.add_argument('--verify', action='store_true', help='doctor git: also prove each worktree clean (slow on large trees)')
     argv = list(sys.argv[1:] if argv is None else argv)
@@ -1538,8 +1543,10 @@ def main(argv=None):
         parser.error('--grace-hours, --sibling, --trunk and --verify are doctor git options')
     if git_scope and args.fix:
         parser.error('doctor git is report-only in this release; --fix does not apply to it')
-    if args.summary and args.command not in ('inspect', 'start'):
-        parser.error('--summary applies to inspect and start')
+    if args.summary and args.command not in ('inspect', 'start', 'doctor'):
+        parser.error('--summary applies to inspect, start and doctor')
+    if (args.skip_link or args.accept_link) and (args.command != 'doctor' or git_scope):
+        parser.error('--skip-link and --accept-link are doctor options')
     if (args.title or args.type or args.tier) and args.command != 'simple':
         parser.error('--title, --type and --tier are simple-route options')
     try:
@@ -1609,6 +1616,9 @@ def main(argv=None):
         result = attach_gates(args.repo, args.command, result)
         if args.summary and args.command in ('inspect', 'start'):
             result = summary(result)
+        elif args.summary and args.command == 'doctor' and not git_scope:
+            import orkest_doctor
+            result = orkest_doctor.summarize(result)
         record_metric(args, started_clock, 0, result)
         print(json.dumps(result, ensure_ascii=False))
         if args.command == 'pinscan' and result.get('stale'):
