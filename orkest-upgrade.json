@@ -1,5 +1,5 @@
 {
-  "capture_head": "624d2c53fbaae5ced437aeb44346a2d593ddacfc",
+  "capture_head": "142cf838a0327250930b3e6c28d32044998d3222",
   "configuration": {
     ".grok/hooks.example.json": "82c18698549ae3e7880377488b9978b06837ecd59c50a0e5893c0f93c7d3e0c4"
   },
@@ -1033,6 +1033,7 @@
       "3143b989f015f24aeb6fe8468266b7bb83d729240628d0ff60cfe84ad9d452b9",
       "37a3458411bbd7e319745c67bb28ef9fcd01c17d0a5428de2b3e3d48d6b289a6",
       "41c8b7e5c89023d828799ea17bcc740161e65885cd3a2258e073b9dce53b4cc0",
+      "5403c4ba933d310eae7bfea1acb937463951481e9d8c9e19e15a071a680fb515",
       "5501ce9a9327b72b7c23ef726fdad19ccffd99e11a3d14c33cf9a742450a883e",
       "557c54f943fb86bc3149928e0ab1f7d8bdba104db7cf0d0143284f62c6a8a8ec",
       "56b27c01ed44ffb12f48870a4f8bad410b4258d548b085bf8a8ed9e7af2ec9d4",
@@ -1044,6 +1045,7 @@
       "a44d7501d38e007b35e4da3d468cb7897385e83b7a41acdf529ddc531bb5a278",
       "aa2dd0779649a90430efbc0100d5d37f65118506a747eb09dad7aad9fd8fd86a",
       "afb37d8183e2b6ce4ae01489bb5b1a550fcd350cfc1b0b44ac62e4ceac6274ea",
+      "b8117e2264d0e07c45cec9fa77ebf20aeaccc640183244ef9bd4ad09b88a3b48",
       "b9168ddb16ae9f8c19c898448df8ea432bdd2a551720a1b7bc336d53de5b07d9",
       "bdd69459bcb544804dc9993f8acf0d68b7719a27ca4068444b7ffe7d0e90b7b9",
       "d251798d1b3090ae8e9f8fa895c797f5ec049aeb693c18921a303b6943ecb26a",
@@ -1439,6 +1441,8 @@
       "a38efad87f4b2a5e23f5b9fd249bc363e1d0b54c65c47afd3f5ee965f23a4e8f",
       "c8bc90cb4d40e02a6aef43d9c14a8580906ce694ceeb419da0c6712f83da8dee",
       "d1b858dfc67802e4023dd5feca8740659e5ca1ddea49753faf1c1cf4f7be21bb",
+      "d543ce496d3e0f9d2d180606697705818b387e1ced1bcb4dafe458cbdac759e2",
+      "e3c302a39833c220e8448a1bfd6ad9aa637cf650f0a67f14e3cba7b47464ce51",
       "e7943c7b020667eeb90f36f989666e7440547d54e8c3346c1deca448e7f839ee",
       "e9e2fa584209a7344e7e15d4989975b03a98ea9c3e656a36642ff890594d1bd1",
       "ef0b14e9f09ffc84e8b26d5e4b3bb31d7b02c7d44988021f93ec141ca9f81a65",
@@ -1456,6 +1460,7 @@
       "13693a1fd52a6848eeb93d6c07452efe51b71af485d05939b59a01ba7dcd6854",
       "1d0df27b1b6fb919a862d185a4dab31466809e909c3e1b8b387e220d38050703",
       "1e3cd8c87663f13af2e4dd592f7d964f35887d872c1e60b451bee926b44522a3",
+      "2153483220f856beb463ecaf1d2360fa46c8ada8572ae49eaeba404083cd8e5b",
       "26f06b61f11515068693d44685322db4966060b15a4a5330ae8d295bf723fde7",
       "291f84fa0fe4735f01124679316b5c31f2535b864920d23380154b841182c991",
       "2a6ffbbaac6460a418b1d847976eddf9c9dcd21a8b0cacdb80b21fdd4ea33fae",
@@ -1463,6 +1468,7 @@
       "2f0fc6afaadc1ac70d1079b848da7e79d90c2d226147b12ebd82364a6d09e279",
       "399491b790a95db8d07b2751329a8b3c25e7a7470dc2f7b01c8507d8a6a4c99e",
       "3a4dc4307fda21648ca9bbda66b5b9bef3b8140d063820f084035eb30176c2c0",
+      "3f91c009bec38d3083e47a3137bb3c4caa1c95e3a56e369f4694230d9fa22f5b",
       "4ca9d0c201d81543bcf9e152c74430939376e102c11feb25f6ddc6681b487d83",
       "522d09e78f61c2c42bb9d1821c9a2ef5a07e375eff83feb86df8211edd6b85ac",
       "5c00f80a63f60a06f06638724a2f43447f5cde97a0d69aa53b8198240a46d6ea",
@@ -1483,6 +1489,7 @@
       "8addad3ef0345cf9714427c8a143a575db473ae63937dea3a7d55338daeac85c",
       "9074dc559623a590daed781808a38ae453cf05f00432b13be1898a9d28c6fcf3",
       "98443b41afd42abe32b29cbb84d374a3a08709de7bb4804de357e89314615d43",
+      "9de225e63fea819ccc2209b708e875233eab6fdb710026be7a25eaa59e52a817",
       "9f0a7f6dcd7f869bc176cae4c29655a9629e4b892d2cf910d91a5148a42169fc",
       "9faf53e3341a1674fb3f1e0fb892d0d0602946ceb42c6f70498a64088a36b83d",
       "a5ecc02ed2c837d0c78119b46eb9c569207b881d9f1198b03cae304e70e8afe8",
@@ -1497,6 +1504,7 @@
       "c4c8051e8f6dcbacab29f8edb4094f5b5eb2fa33b8f76b00bf890ec1a5ef44eb",
       "c541a386e443cd436473bd351e0f6b94af74b8829ec9f396b6476dff04fc3d79",
       "c9042faf7b3015ef7ff5c7d21854fd1c867725ef89e064d33aff1478c040c50b",
+      "c93eacebcb42b3794b50f0e10bd2aacfc07c689f8065e9d8810093269d245506",
       "cb192772cc9f1a2aec2decabb163c01e31a14bf4da7195ce2b1663c4a6062a1c",
       "cc1b4f6b911146543b99a8f001ad1da281efef4be5b0c0d3c31668d49992b843",
       "ccca02e51e549b2b20d0ce6a08afcd8f49d16a4b9296c617f4dac2a9a00064c8",
@@ -2209,7 +2217,7 @@
     "bin/orkest_pinscan.py": "06ae3c705547db5e02316444d0efddaf3ade8fe19ba7f58ca9c5219684b85b5d",
     "bin/orkest_prep.py": "a5826c6a1399a7b1faa225cfaabf9157dbb7b80498c748aae629ac94dcd0b2b6",
     "bin/orkest_tiers.py": "132b6e194565451917012d527a44afb34b3165e377c2a628c8338263e9bbe2aa",
-    "bin/orkest_upgrade.py": "f30233d8d20328bffdac5e76f4b4012ac8e9140c8766ae94e6e2ca43eebd248d",
+    "bin/orkest_upgrade.py": "b8117e2264d0e07c45cec9fa77ebf20aeaccc640183244ef9bd4ad09b88a3b48",
     "bin/precompact-handoff.ps1": "e011d08d44a82a4376679376a3dc49fb035fc2b9b8c95d86c8669111930f5c5d",
     "bin/precompact-handoff.sh": "43d39992beab5ff93c03d81de4351eada5bec4b4eec01925742107fc1415685e",
     "bin/promote-check.py": "52a33692d9e69b4b2887fe74a39b93b0b911003345df850000816d8f0fcf7a46",
@@ -2228,31 +2236,31 @@
     "bin/workflow-git.py": "1e7b7ae4a5dd2fa570513a31654fb447f6675b2ae618260b1e74aea251ede990",
     "orkest-budget.json": "58d046f6f59c102fd7deacad2a8ca7318ca9699177ff29db0abf5c285f0d2284",
     "orkest-compatibility.json": "6f610c95d0a893c708c1dd87ec2347f7aa88a50377fed4e4f989e89a367c99d0",
-    "orkest-native-acceptance.json": "d543ce496d3e0f9d2d180606697705818b387e1ced1bcb4dafe458cbdac759e2"
+    "orkest-native-acceptance.json": "d63adc370d4a4c94d27517fef2b2418adfa9bd4d7c5de96106f494acc2c7779b"
   },
-  "minimum": "v0.1-447",
+  "minimum": "v0.1-448",
   "native_acceptance": {
     "claude-code": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "7cc8116fb0b23a91101da1564b9e4d875d81b5ca5fd3d5331caf1dd295ad6212",
-      "sha256": "d543ce496d3e0f9d2d180606697705818b387e1ced1bcb4dafe458cbdac759e2",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d"
+      "receipt_sha256": "55c83728bf2dc58dab2457a5ae2630cfb8f415f24e419399b8bc6a00c4ff43bc",
+      "sha256": "d63adc370d4a4c94d27517fef2b2418adfa9bd4d7c5de96106f494acc2c7779b",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd"
     },
     "codex": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "6e9377e079ff5e7208ab9d5d766fcc3f52caf4b2d07aa363ac21b39e5d903539",
-      "sha256": "d543ce496d3e0f9d2d180606697705818b387e1ced1bcb4dafe458cbdac759e2",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d"
+      "receipt_sha256": "fd4780f492137ce179582c041afd664eb97727de82daf48481e25052aa91128d",
+      "sha256": "d63adc370d4a4c94d27517fef2b2418adfa9bd4d7c5de96106f494acc2c7779b",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd"
     },
     "grok": {
       "bundle": "orkest-native-acceptance.json",
-      "receipt_sha256": "3516f43fb733c4fc5eb999beb6de28363fa621dd4fce63d17c3d630c3fac21c6",
-      "sha256": "d543ce496d3e0f9d2d180606697705818b387e1ced1bcb4dafe458cbdac759e2",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d"
+      "receipt_sha256": "7a8f3107c462288cb8bbf24c8ce0d489f04290b05e4ca599b2901980a67982ba",
+      "sha256": "d63adc370d4a4c94d27517fef2b2418adfa9bd4d7c5de96106f494acc2c7779b",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd"
     }
   },
   "ready": true,
-  "release": "v0.1-447",
+  "release": "v0.1-448",
   "schema": 1,
   "seeds": {
     "AGENTS.md": "aeee663d151d468620ecdca0b7187b1d246a08b9a6725a1708c4a1afeea83fc1",

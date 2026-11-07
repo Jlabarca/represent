@@ -4,13 +4,13 @@
       "cli_version": "2.1.278",
       "command": "claude --debug-file <private-log> -p <minimal-request>",
       "discovery": true,
-      "evidence_sha256": "81bf013fa8c0ee19cf5da5aa56e0d2a3d194e1520938655d7997bb28da8a67ee",
+      "evidence_sha256": "c52e64d4293a8972513f6808faa82423b33e3e807c7a6ba25b46ac65526c5e22",
       "evidence_summary": "Native SessionStart success with exact shipped wiring; project skills orkest and ork loaded; model request then failed on the isolated home's missing login, after the hook.",
       "exact_wiring": true,
       "harness": "claude-code",
       "kind": "native-hook-dispatch",
       "observed_date": "2026-11-06",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd",
       "source_sha256": {
         ".claude/settings.example.json": "d89800d67c60a1d09c8dd3db540bf3338c690d179282e7e498a50e34f9054fd4",
         ".codex/hooks.example.json": "6a2312dd32a340594cfa6559884f52ecf0714be97c945e6bc9967a8fce694ed5",
@@ -24,7 +24,7 @@
         "bin/orkest-startup.sh": "e9277bdd8e8f4a7a7ae8d8b412fff30704851baa1fbb53a0818385adfc2cf60d",
         "bin/orkest.py": "6b0b879d224836bea3e39c1d9a42e313528a18ff1b6eda383511c212c129e50d",
         "bin/orkest_core.py": "a87a0bc51fab649383f565e3b5258393ca0417ede157b98112bb6180e08f9f0b",
-        "bin/orkest_upgrade.py": "f30233d8d20328bffdac5e76f4b4012ac8e9140c8766ae94e6e2ca43eebd248d",
+        "bin/orkest_upgrade.py": "b8117e2264d0e07c45cec9fa77ebf20aeaccc640183244ef9bd4ad09b88a3b48",
         "harness-registry.json": "c3630a1fdc4b24aba6023373ba8fa8709856c0d864d6b41e2c98edd2b91f2fe7",
         "skills/orkest/SKILL.md": "d4c20fd298f60f4d5bdd5bd02b8f0ad8836dd3fb65941373753658f118a55205"
       },
@@ -35,13 +35,13 @@
       "cli_version": "0.166.0-alpha.6",
       "command": "codex exec --json -C <fixture> <minimal-request>",
       "discovery": true,
-      "evidence_sha256": "e0db0693a484bb872a710d7c97fcf7b24db6f0315286ace22705ced632977266",
+      "evidence_sha256": "20ecb2666217ef8113c3ca6da1ecdcde40e44d8beef638433d8b168ea07224cf",
       "evidence_summary": "Headless exec with the persisted project and per-handler hook trust (no trust bypass flag); hooks.additional_context saved; project orkest and ork discovered; model turn then failed on the isolated home token refresh, after the hook.",
       "exact_wiring": true,
       "harness": "codex",
       "kind": "native-hook-dispatch",
       "observed_date": "2026-11-06",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd",
       "source_sha256": {
         ".claude/settings.example.json": "d89800d67c60a1d09c8dd3db540bf3338c690d179282e7e498a50e34f9054fd4",
         ".codex/hooks.example.json": "6a2312dd32a340594cfa6559884f52ecf0714be97c945e6bc9967a8fce694ed5",
@@ -55,7 +55,7 @@
         "bin/orkest-startup.sh": "e9277bdd8e8f4a7a7ae8d8b412fff30704851baa1fbb53a0818385adfc2cf60d",
         "bin/orkest.py": "6b0b879d224836bea3e39c1d9a42e313528a18ff1b6eda383511c212c129e50d",
         "bin/orkest_core.py": "a87a0bc51fab649383f565e3b5258393ca0417ede157b98112bb6180e08f9f0b",
-        "bin/orkest_upgrade.py": "f30233d8d20328bffdac5e76f4b4012ac8e9140c8766ae94e6e2ca43eebd248d",
+        "bin/orkest_upgrade.py": "b8117e2264d0e07c45cec9fa77ebf20aeaccc640183244ef9bd4ad09b88a3b48",
         "harness-registry.json": "c3630a1fdc4b24aba6023373ba8fa8709856c0d864d6b41e2c98edd2b91f2fe7",
         "skills/orkest/SKILL.md": "d4c20fd298f60f4d5bdd5bd02b8f0ad8836dd3fb65941373753658f118a55205"
       },
@@ -66,13 +66,13 @@
       "cli_version": "1.0.67",
       "command": "grok -p <minimal-request> --debug-file <private-log>",
       "discovery": true,
-      "evidence_sha256": "fb2a59da5b4b2d96a8959fb628906d82ff3c458670c2384a5a8149e009463041",
+      "evidence_sha256": "23f39b2d2a77c05bdcaba1e4f482b6b3f72a8efd7ab94686a3c814badea6ce46",
       "evidence_summary": "Headless single turn with Claude hook compatibility disabled for this process; exactly the project/orkest session_start hook dispatched and completed; .grok orkest and ork discovered (grok inspect); response OK.",
       "exact_wiring": true,
       "harness": "grok",
       "kind": "native-hook-dispatch",
       "observed_date": "2026-11-06",
-      "source_commit": "958bebb4b868e06ae8307d08c3350696fedae29d",
+      "source_commit": "2ce7742337fa19236ba1a58d2dabee58e6e3e8bd",
       "source_sha256": {
         ".claude/settings.example.json": "d89800d67c60a1d09c8dd3db540bf3338c690d179282e7e498a50e34f9054fd4",
         ".codex/hooks.example.json": "6a2312dd32a340594cfa6559884f52ecf0714be97c945e6bc9967a8fce694ed5",
@@ -86,7 +86,7 @@
         "bin/orkest-startup.sh": "e9277bdd8e8f4a7a7ae8d8b412fff30704851baa1fbb53a0818385adfc2cf60d",
         "bin/orkest.py": "6b0b879d224836bea3e39c1d9a42e313528a18ff1b6eda383511c212c129e50d",
         "bin/orkest_core.py": "a87a0bc51fab649383f565e3b5258393ca0417ede157b98112bb6180e08f9f0b",
-        "bin/orkest_upgrade.py": "f30233d8d20328bffdac5e76f4b4012ac8e9140c8766ae94e6e2ca43eebd248d",
+        "bin/orkest_upgrade.py": "b8117e2264d0e07c45cec9fa77ebf20aeaccc640183244ef9bd4ad09b88a3b48",
         "harness-registry.json": "c3630a1fdc4b24aba6023373ba8fa8709856c0d864d6b41e2c98edd2b91f2fe7",
         "skills/orkest/SKILL.md": "d4c20fd298f60f4d5bdd5bd02b8f0ad8836dd3fb65941373753658f118a55205"
       },
@@ -94,6 +94,6 @@
       "startup_status": "development"
     }
   },
-  "release": "v0.1-447",
+  "release": "v0.1-448",
   "schema": 1
 }

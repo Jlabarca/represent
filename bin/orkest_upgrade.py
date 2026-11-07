@@ -383,7 +383,9 @@ def reconcile(repo, template, options=None, runtime=None):
 
 def settled(repo, journal, runtime):
     """True when a journal's install is verified, its commits are in HEAD, and nothing awaits a decision."""
-    if ('install-verified' not in journal.get('completed', []) or not journal.get('commits') or
+    # A no-op rerun (nothing installed, nothing committed, no commit pending) leaves no commits by design.
+    nothing_changed = not journal.get('operations') and not journal.get('commit_base')
+    if ('install-verified' not in journal.get('completed', []) or not (journal.get('commits') or nothing_changed) or
             journal.get('conflicts') or journal.get('migration')):
         return False
     return all(subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', commit, 'HEAD'],
