@@ -303,3 +303,53 @@ claims from heuristics. Record procedures only from verified work, preserving
 preconditions, exact scoped commands, expected results and permissions. Execute
 a recorded procedure only after its run gate; delegation cannot grant broader
 permissions. Keep procedure storage portable and preserve local custom content.
+
+## Lanes, worktrees and `doctor git`
+
+Policy: one lane is one branch in one worktree. Lanes merge only into the
+integration branch, never into each other. Merged means removed: the lane's own
+worktree (`git worktree remove`, never `--force`) and its branch (`git branch -d`,
+never `-D`). A submodule pin comes only from the submodule's trunk, and the
+shared main checkout stays on the integration branch. Remote branches are only
+reported; deleting one on the remote needs an explicit yes from the person.
+
+A session that creates a worktree by hand records its owner so a later check can
+tell finished from abandoned:
+`python bin/orkest_forks.py stamp <worktree> --session <session-id> --harness <harness> [--branch <name>] [--tracker <id>]`.
+The stamp lives in git's own admin directory for that worktree, so removing the
+worktree removes it.
+
+`/orkest doctor git` (`bin/orkest.py doctor git --repo <root>`) is the git-only
+scope: no docs scan, read-only, one batched pass per repository (the repo, every
+submodule's real repository and `.orkest/forks.json` `siblings`, or `--sibling`).
+It measures lanes against the trunk (`--trunk`, `.orkest/forks.json` `trunk`,
+`.orkest/branches.json` integration, then origin's default). Classes:
+
+| Class | Meaning | Action |
+|---|---|---|
+| REAP | merged into trunk, owner gone or no worktree, past the grace period (default 24 h, `--grace-hours`) | propose removal; one batched confirm |
+| PARK | unmerged and the owner is gone or idle over 7 days | suggest tag `parked/<branch>`, then delete; per-branch confirm |
+| ASK | unmerged, owner idle 1-7 days | ask the person |
+| KEEP | owner live, worktree dirty or locked, inside the grace period, or checked out in the main checkout | none |
+
+A zero-ahead branch is not dead: a lane created a minute ago from the trunk is
+zero-ahead, so liveness plus the grace period are always required. Liveness
+comes from, in trust order: the agent's `list_sessions` export (below), owner
+stamps, session scratchpad paths (a missing scratchpad folder means the session
+is gone; its transcript time is the last activity), the worktree's own index
+time (any harness or tool working there refreshes it; a merged lane used within
+7 days is kept), then reflog and tip times. A session row counts for a branch
+only when its cwd is inside this repository.
+The report also lists stale worktree records, submodule pins that are not on the
+submodule's trunk, lane-into-lane merges and lanes whose upstream is the trunk.
+
+The scan skips `git status` on worktrees because it costs about 0.6 s each on a
+large tree; REAP/PARK rows then say "not yet checked clean". Add `--verify` to
+prove each worktree clean (parallel; slow on large trees). A later fix must
+re-prove every claim right before acting; this release never deletes anything.
+
+Inside Claude Code, the agent calls the app's `list_sessions` tool with archived
+sessions included and writes `{schema: 1, source: "ccd-list-sessions", scannedAt,
+sessions: [{sessionId, cwd, branch, isArchived, isRunning, lastActivityAt}]}` to a
+JSON file, then passes it with `--session-report <file>`. That is the strongest
+liveness source: a running session keeps its lane; an archived one releases it.

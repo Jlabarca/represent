@@ -393,6 +393,18 @@ def session_facts(repo, options, runtime, findings):
         if path.stat().st_size > 2 * 1024 * 1024:
             raise ValueError('Report is too large')
         data = json.loads(path.read_text(encoding='utf-8'))
+        if data.get('source') == 'ccd-list-sessions':
+            # The agent's own list_sessions export: cross-repo by nature, so no repo-scope check.
+            if (data.get('schema') != 1 or not isinstance(data.get('scannedAt'), str) or not data['scannedAt']
+                    or not isinstance(data.get('sessions'), list)):
+                raise ValueError('Invalid report scope/schema')
+            validate_timestamp(data['scannedAt'])
+            rows = [dict(id=row['sessionId'], cwd=row.get('cwd', ''), branch=row.get('branch', ''),
+                         isArchived=bool(row.get('isArchived')), isRunning=bool(row.get('isRunning')),
+                         lastActivityAt=row.get('lastActivityAt'))
+                    for row in data['sessions'] if isinstance(row, dict) and isinstance(row.get('sessionId'), str)]
+            return dict(status='supplied-snapshot', diagnostic_only=True, claimed_source=data['source'],
+                        scannedAt=data['scannedAt'], rows=rows, historical=True, provenance_verified=False)
         if (type(data.get('schema')) is not int or data['schema'] != 1 or
                 data.get('source') not in ('methrep-cache', 'digest-cache') or
                 Path(data.get('repo', '')).resolve() != repo or

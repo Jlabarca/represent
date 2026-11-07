@@ -20,6 +20,8 @@ Parse the actual invocation: a description, exact ORK id, `doctor`, `--dry`,
 `--no-commit`, `--no-promote`, or `--stop-at <step>`. Reject unknown flags before
 writes. Doctor routes directly to its internal procedure; it never bootstraps a
 feature named doctor and never runs a write-on-start upgrade as part of its check.
+`doctor git` is its git-only scope (finished and abandoned lanes, worktrees; see
+WORKFLOW.md, "Lanes, worktrees and `doctor git`"); it is report-only.
 
 An ordinary person-invoked `/orkest` means **bootstrap if needed, then run through
 all phases, verification, QA, logbook, final audit and committed promotion**.

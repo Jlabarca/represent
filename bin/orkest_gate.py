@@ -121,9 +121,18 @@ def diff_hash(repo):
     return hashlib.sha256(result.stdout).hexdigest() if result.returncode == 0 else ''
 
 
-def head_of(repo):
-    result = subprocess.run(['git', '-C', str(repo), 'rev-parse', 'HEAD'], capture_output=True, text=True)
-    return result.stdout.strip() if result.returncode == 0 else ''
+def head_of(repo, attempts=5):
+    """HEAD, or '' when Git cannot answer. A loaded machine can fail one spawn; never read that as a move."""
+    for attempt in range(attempts):
+        try:
+            result = subprocess.run(['git', '-C', str(repo), 'rev-parse', 'HEAD'], capture_output=True, text=True,
+                                    timeout=60)
+            if result.returncode == 0 and result.stdout.strip():
+                return result.stdout.strip()
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+        time.sleep(0.2 * (attempt + 1))
+    return ''
 
 
 def skips_of(counts):
@@ -132,7 +141,7 @@ def skips_of(counts):
 
 
 def classify(code, counts, strict, skip_budget, deadline_hit=False, idle_hit=False, killed=False,
-             head_moved=False, tree_moved=False, partial=False):
+             head_moved=False, tree_moved=False, partial=False, head_unknown=False):
     """(outcome, qualifying, reasons). Only `pass` qualifies; a skip beyond the budget never does."""
     if killed:
         return 'killed', False, ['cancelled']
@@ -153,7 +162,9 @@ def classify(code, counts, strict, skip_budget, deadline_hit=False, idle_hit=Fal
             reasons.append('skipped-%d-over-budget-%d' % (skips_of(counts), skip_budget))
         if partial:
             reasons.append('partial-run-reused-or-subset-results')
-    if head_moved:
+    if head_unknown:
+        reasons.append('head-unreadable-at-end')  # unproven, not moved: rerun the gate
+    elif head_moved:
         reasons.append('head-moved')
     if tree_moved:
         reasons.append('source-changed-during-run')
@@ -233,6 +244,7 @@ def build_verdict(repo, rundir, meta, runtime, code, outcome_hint=None, started_
         code, counts, meta['strict'], meta['skip_budget'], deadline_hit=flags.get('deadline', False),
         idle_hit=flags.get('idle', False), killed=flags.get('killed', False),
         partial='TIERS PARTIAL' in text, head_moved=bool(meta['head_at_start']) and head_end != meta['head_at_start'],
+        head_unknown=bool(meta['head_at_start']) and not head_end,
         tree_moved=(phase_fingerprint(repo, meta.get('phase'), runtime) != meta['phase_fingerprint']
                     if meta.get('phase_fingerprint') else
                     bool(meta.get('source_fingerprint')) and diff_hash(repo) != meta['source_fingerprint']))

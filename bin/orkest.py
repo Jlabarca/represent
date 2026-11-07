@@ -1495,6 +1495,10 @@ def main(argv=None):
     parser.add_argument('--harness', choices=['claude-code', 'codex', 'grok'])
     parser.add_argument('--session-report')
     parser.add_argument('--native-doctor-report')
+    parser.add_argument('--grace-hours', type=float, help='doctor git: how long a finished lane is left alone (default 24)')
+    parser.add_argument('--sibling', action='append', help='doctor git: another repository to include')
+    parser.add_argument('--trunk', help='doctor git: the integration branch lanes are measured against')
+    parser.add_argument('--verify', action='store_true', help='doctor git: also prove each worktree clean (slow on large trees)')
     argv = list(sys.argv[1:] if argv is None else argv)
     gate_command = []
     if 'gate' in argv and '--' in argv and argv.index('gate') < argv.index('--'):  # after -- is the gated command
@@ -1505,14 +1509,23 @@ def main(argv=None):
     started_clock = time.time()
     if (args.fix or args.template or args.session_report or args.native_doctor_report) and args.command != 'doctor':
         parser.error('--fix, --template and diagnostic report options are doctor options')
-    if args.command == 'doctor' and args.query:
-        parser.error('doctor does not accept a feature description')
+    git_scope = args.command == 'doctor' and args.query == ['git']
+    if args.command == 'doctor' and args.query and not git_scope:
+        parser.error('doctor does not accept a feature description (only the scope: doctor git)')
+    if (args.grace_hours is not None or args.sibling or args.trunk or args.verify) and not git_scope:
+        parser.error('--grace-hours, --sibling, --trunk and --verify are doctor git options')
+    if git_scope and args.fix:
+        parser.error('doctor git is report-only in this release; --fix does not apply to it')
     if args.summary and args.command not in ('inspect', 'start'):
         parser.error('--summary applies to inspect and start')
     if (args.title or args.type or args.tier) and args.command != 'simple':
         parser.error('--title, --type and --tier are simple-route options')
     try:
-        if args.command == 'doctor':
+        if git_scope:
+            import orkest_forks
+            result = orkest_forks.run(migration.repository(args.repo), vars(args))
+            result['table'] = orkest_forks.table(result)
+        elif args.command == 'doctor':
             import orkest_doctor
             result = orkest_doctor.run(args.repo, vars(args), sys.modules[__name__])
         elif args.command == 'budget':

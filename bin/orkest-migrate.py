@@ -269,7 +269,7 @@ def build_plan(repo, session=None):
             name.startswith('docs/impl/'))]
     existing = [name for name in documents if name.startswith('docs/orkest/') and
                 tracker_suffix(name) in ('-ORK.md', '.imp.md')]
-    mapping, moves, deletions, writes, assigned = {}, [], [], {}, {}
+    mapping, moves, deletions, writes, assigned, folds = {}, [], [], {}, {}, {}
     used = set()
     stubs = {}
     for name in old[:]:
@@ -323,10 +323,8 @@ def build_plan(repo, session=None):
                     and destination not in mapping.values():
                 # A session on an older layout appended to the legacy logbook after the layout moved:
                 # fold its entries into the real one instead of refusing, and keep every byte.
-                stray = documents[name]
-                body = re.sub(r'\A#[^\n]*\n+', '', stray, count=1).strip('\n')
-                kept = documents[destination].rstrip('\n')
-                writes[destination] = kept + ('\n\n' + body if body else '') + '\n'
+                # Its links are rebased from docs/ once the full link map exists (below).
+                folds[destination] = re.sub(r'\A#[^\n]*\n+', '', documents[name], count=1).strip('\n')
                 mapping[name] = destination
                 deletions.append(name)
                 continue
@@ -362,6 +360,9 @@ def build_plan(repo, session=None):
                      any(name.startswith('docs/impl/' + state + '/') for state in ('planned', 'parked'))
                      else name)
         content = rewrite_links(writes.get(destination, text), link_base, destination, link_mapping, tracked_set)
+        if name in folds and folds[name]:
+            body = rewrite_links(folds[name], 'docs/LOGBOOK.md', destination, link_mapping, tracked_set)
+            content = content.rstrip('\n') + '\n\n' + body + '\n'
         if destination != name or content != text:
             writes[destination] = content
     local_moves = []
