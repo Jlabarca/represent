@@ -345,6 +345,27 @@ def project_key(repo):
     return read_key(path.read_text(encoding='utf-8')) if path.exists() else None
 
 
+def writer_lock_report(repo):
+    """Every writer lock (the run lock under the Git dir and legacy tracker locks), for tools that preview
+    an update or a run without taking a lock themselves. A lock that cannot be read is listed as such."""
+    try:
+        found = migration.writer_locks(repo, include_own=True)
+    except (ValueError, OSError, UnicodeError) as error:
+        return [dict(path=None, unreadable=str(error))]
+    report = []
+    for lock, info in found:
+        try:
+            shown = lock.relative_to(repo).as_posix()
+        except ValueError:
+            shown = 'git-dir:orkest/' + lock.name  # a linked worktree's run lock lives outside the tree
+        fields = info['fields']
+        report.append(dict(path=shown, session=fields.get('session'), target=fields.get('target'),
+                           branch=fields.get('branch'), started=fields.get('started'), host=fields.get('host'),
+                           idle_min=int(info['idle'] / 60), stale=bool(info['stale']),
+                           foreign_host=bool(info['foreign_host'])))
+    return report
+
+
 def inspect(repo, query='', options=None):
     options = options or {}
     repo = migration.repository(repo)
@@ -360,7 +381,8 @@ def inspect(repo, query='', options=None):
                   compatibility_verified=compatibility_verified(repo),
                   consumer_readiness=consumer_readiness(repo),
                   branch=git(repo, 'symbolic-ref', '--short', 'HEAD'),
-                  dirty=bool(git(repo, 'status', '--porcelain', '--untracked-files=all')))
+                  dirty=bool(git(repo, 'status', '--porcelain', '--untracked-files=all')),
+                  writer_locks=writer_lock_report(repo))
     if resolution['action'] == 'run':
         preflight(repo, resolution['target'], options)
     return result

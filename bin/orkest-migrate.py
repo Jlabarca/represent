@@ -134,12 +134,14 @@ def lock_tracker(lock):
     return re.sub(r'(?i)-(impl|ork)$', '', name).casefold()
 
 
-def writer_locks(root, session=None, target=None):
+def writer_locks(root, session=None, target=None, include_own=False):
     """Foreign writer locks that apply to `target` (None: every lock), as (path, info) pairs.
 
     The repository run lock always applies. A tracker lock applies to its own tracker, to
-    structural work with no tracker, and to repository-wide work (target None)."""
-    session = session or os.environ.get('CODEX_SESSION_ID') or os.environ.get('CLAUDE_CODE_SESSION_ID')
+    structural work with no tracker, and to repository-wide work (target None). With
+    `include_own`, the caller's own locks are listed too (a read-only report)."""
+    session = None if include_own else (session or os.environ.get('CODEX_SESSION_ID') or
+                                        os.environ.get('CLAUDE_CODE_SESSION_ID'))
     stem = tracker_stem(target) if target else None
     locks = []
     for pattern in ('.*-IMPL.lock', '.*-ORK.lock'):

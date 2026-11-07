@@ -256,7 +256,9 @@ Never repair a drifted skill by overwriting a possible local customization.
 On a large repository the report can exceed the tool output limit: write it to a
 file outside the project and summarize from that file; never judge a truncated
 report. A proposed link fix is a basename match, so name what each destination
-is before applying `--fix`. A foreign writer lock names its session and its idle time; a lock
+is before applying `--fix`. `inspect` also lists `writer_locks` (the run lock under the Git dir and
+legacy tracker locks, the caller's own included) for tools that preview an update without taking a
+lock. A foreign writer lock names its session and its idle time; a lock
 held by a running session is waited for, never cleared, and one idle past the stale window is recovered by the next write.
 
 The current session service GET and digest generator both write state; do not
