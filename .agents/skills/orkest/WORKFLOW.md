@@ -45,6 +45,25 @@ as are more than two source files or test edits without behavioral
 verification. Never split one real feature into several simple commits to
 avoid a tracker; when in doubt, bootstrap.
 
+## Adopting work that shipped before the helper
+
+A ticked box with no helper-written `evidence:` suffix cannot be promoted, and
+work already live cannot be re-earned red then green. For that work only, a
+person runs `adopt <tracker> --box ID|--phase N|--all --evidence <ancestor sha
+or tracked receipt/audit path> --accepted-by <handle> [--reason ...]`. It
+appends `— adopted DATE by HANDLE: shipped before the helper; evidence REF` to
+each ticked, unevidenced box, adds one logbook entry listing them and commits
+the tracker and logbook. A box that shipped but was never ticked needs a fresh
+green first: `verify --phase N --box ID --expect green` inside the run, then
+`adopt ... --green <receipt id>`; adopt ticks it only when that receipt is an
+accepted green for that exact box on the current source (no red is demanded,
+because the code already landed). It refuses the unattended lane, an unticked
+box without such a receipt, a human box, a box that already carries evidence and an evidence sha that is not an ancestor of
+HEAD; `--dry` writes nothing. `promote` counts an adopted box as evidenced and
+records earned versus adopted boxes; a phase made only of adopted boxes needs
+no phase record. Adopt is the person's explicit acceptance, never for new work
+and never a way to skip verification.
+
 ## Bootstrap and clarification
 
 When resolution says bootstrap, ground the design in real code and docs. Use

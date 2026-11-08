@@ -308,20 +308,29 @@ def submodule_paths(repo):
     return [dict(path=paths[name], branch=branches.get(name)) for name in paths]
 
 
+PIN_PROBLEMS = {
+    'PIN_OFF_TRUNK': 'the pinned commit is not on %(trunk)s',
+    'PIN_UNREACHABLE': 'the pinned commit is missing from the submodule',
+    'CHECKOUT_DRIFT': 'the checkout is not the pinned commit (%(ahead)s ahead, %(behind)s behind)',
+}
+
+
 def pin_check(repo, module):
+    """One `doctor git` pin row from the cross-repo edge state, or None when the pin needs nothing."""
+    import orkest_links
     sub = Path(repo) / module['path']
     if not (sub / '.git').exists():
         return None
-    code, out = run_git(repo, 'ls-tree', 'HEAD', module['path'])
-    match = re.match(r'160000 commit ([0-9a-f]+)\t', out)
-    if not match:
+    trunk = module.get('branch') or trunk_of(sub)[0]
+    edge = dict(path=module['path'], kind='submodule', trunk=trunk)
+    facts = orkest_links.state(repo, edge)
+    problems = [name for name in facts['states'] if name in PIN_PROBLEMS]
+    if not facts['pin'] or not problems:
         return None
-    pin, branch = match.group(1), module['branch'] or trunk_of(sub)[0]
-    if not branch:
-        return None
-    ok = run_git(sub, 'merge-base', '--is-ancestor', pin, 'origin/' + branch)[0]
-    return None if ok == 0 else dict(path=module['path'], pin=pin[:12], trunk='origin/' + branch,
-                                     detail='the pinned commit is not on origin/' + branch)
+    drift = facts['drift'] or {}
+    values = dict(trunk=facts['trunk_ref'] or 'the trunk', ahead=drift.get('ahead', '?'), behind=drift.get('behind', '?'))
+    return dict(path=module['path'], pin=facts['pin'][:12], pin_full=facts['pin'], trunk=facts['trunk_ref'],
+                states=facts['states'], detail='; '.join(PIN_PROBLEMS[name] % values for name in problems))
 
 
 def lane_merges(repo, trunk, count=200):

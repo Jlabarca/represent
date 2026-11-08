@@ -686,6 +686,8 @@ def run_step(repo, options):
                      commits={}, verification={}, phase_heads={}, verify_tiers={}, test_changes={})
         for number in tracker['phases']:
             record = state.get('phases', {}).get(number)
+            if adopted_phase(tracker, number):
+                continue
             if not record:
                 return dict(action='plan', phase=number, reason='Establish exact phase scope and existing commit evidence', budget=budget)
             facts['source_counts'][number] = len([p for p in record['paths'] if not p.startswith('docs/') and not p.endswith(('.md', '.txt'))])
@@ -709,7 +711,7 @@ def run_step(repo, options):
             for key in ('qa', 'logbook', 'bookkeeping'):
                 if valid_commit(repo, record.get(key)):
                     facts.setdefault(key, {})[number] = record[key]
-        if (all(state.get('phases', {}).get(n, {}).get('bookkeeping') for n in tracker['phases']) and
+        if (all(state.get('phases', {}).get(n, {}).get('bookkeeping') for n in tracker['phases'] if not adopted_phase(tracker, n)) and
                 saved.get('lane') == 'interactive' and not any(saved.get(k) for k in ('no_commit', 'no_promote', 'stop_at'))):
             try:
                 gates = final_gates(repo, state, tracker)
@@ -1083,13 +1085,172 @@ def simple(repo, options):
     return dict(action='done', committed=True, commit=commit, receipt=receipt, logbook=log, budget=budget)
 
 
+def adopted_phase(tracker, phase):
+    boxes = [b for b in tracker['boxes'] if b['phase'] == phase]
+    return bool(boxes) and all(b['adopted'] for b in boxes)
+
+
+def adopt_evidence(repo, ref):
+    """One evidence reference: a commit that is an ancestor of HEAD, or a tracked file (optionally #anchor)."""
+    ref = ref.strip()
+    if not ref or ';' in ref or '\n' in ref:
+        raise ValueError('Evidence must be a git sha or a repository path, one per --evidence')
+    if re.fullmatch(r'[0-9a-fA-F]{7,40}', ref):
+        full = git(repo, 'rev-parse', '--verify', '--quiet', ref + '^{commit}', optional=True)
+        if full:
+            if subprocess.run(['git', '-C', str(repo), 'merge-base', '--is-ancestor', full, 'HEAD'],
+                              capture_output=True).returncode:
+                raise ValueError('Evidence commit is not an ancestor of HEAD: ' + ref)
+            return full
+    name = ref.split('#', 1)[0]
+    path = migration.checked_path(repo, name)
+    if not path.is_file() or not git(repo, 'ls-files', '--', name):
+        raise ValueError('Evidence is neither an ancestor commit nor a tracked file: ' + ref)
+    return ref
+
+
+def adopt_green(repo, receipt_id):
+    """A saved verify receipt that is an accepted green on the current source of the files it fingerprinted."""
+    if not re.fullmatch(r'[0-9a-f-]{8,36}', receipt_id or ''):
+        raise ValueError('--green needs a verify receipt id')
+    folder = metadata(repo) / 'receipts'
+    found = sorted(folder.glob(receipt_id + '*.json')) if folder.is_dir() else []
+    if len(found) != 1:
+        raise ValueError('No single verify receipt matches --green ' + receipt_id)
+    receipt = json.loads(found[0].read_text(encoding='utf-8'))
+    if not receipt.get('accepted') or receipt.get('expected') != 'green' or not receipt.get('box'):
+        raise ValueError('--green ' + receipt_id + ' is not an accepted per-box green verification')
+    fingerprint = receipt.get('fingerprint') or {}
+    if not fingerprint or source_fingerprint(repo, list(fingerprint)) != fingerprint:
+        raise ValueError('--green ' + receipt_id + ' ran on different source than the current tree; rerun verify')
+    return receipt
+
+
+def adopt(repo, options):
+    """Accept boxes that shipped before the helper existed: a person's act, never new work. A ticked box needs
+    evidence; an unticked one also needs a fresh accepted green verify receipt for that exact box (--green)."""
+    if lane(options) == 'unattended':
+        raise ValueError('Rule 24: adopt is a person-invoked interactive action; the unattended lane never adopts')
+    repo = migration.repository(repo)
+    query = ' '.join(options.get('query') or []).strip()
+    who = (options.get('accepted_by') or '').strip()
+    if not query:
+        raise ValueError('adopt needs the tracker path or id')
+    if not re.fullmatch(r'[A-Za-z0-9_.-]{1,64}', who):
+        raise ValueError('adopt needs --accepted-by <operator handle>: the person who accepts this work')
+    refs = options.get('evidence') or []
+    if not refs:
+        raise ValueError('adopt needs --evidence <git sha | tracked receipt/audit path> (repeatable)')
+    if sum([bool(options.get('box')), bool(options.get('phase')), bool(options.get('all'))]) != 1:
+        raise ValueError('adopt needs exactly one of --box <ID>, --phase <N>, --all')
+    reason = (options.get('reason') or '').strip()
+    if ';' in reason or '\n' in reason:
+        raise ValueError('--reason must be one line without semicolons')
+    evidence = ', '.join(dict.fromkeys(adopt_evidence(repo, r) for r in refs))
+    query = query.replace('\\', '/')
+    tracker = next((t for t in discover(repo) if query in (t['path'], t['id']) or Path(t['path']).name == query
+                    or t['path'].endswith('/' + query)), None)
+    if not tracker or tracker['lifecycle'] != 'live':
+        raise ValueError('adopt target is not a live tracker: ' + query)
+    if tracker['errors']:
+        raise ValueError('Invalid tracker: ' + '; '.join(tracker['errors']))
+    greens = {}
+    for receipt_id in options.get('green') or []:
+        receipt = adopt_green(repo, receipt_id)
+        if receipt['box'] in greens:
+            raise ValueError('Two --green receipts for one box: ' + receipt['box'])
+        greens[receipt['box']] = receipt
+    by_id = {b['id']: b for b in tracker['boxes']}
+    for box_id in greens:
+        if box_id not in by_id:
+            raise ValueError('--green receipt is for a box this tracker does not have: ' + box_id)
+        if by_id[box_id]['checked'] or by_id[box_id]['human']:
+            raise ValueError('--green is only for an unticked non-human box: ' + box_id)
+    if options.get('box'):
+        box = by_id.get(options['box'])
+        if not box:
+            raise ValueError('No such box: ' + options['box'])
+        if not box['checked'] and box['id'] not in greens:
+            raise ValueError('Refusing to adopt an unticked box without a fresh green: ' + box['id'] +
+                             ' (run `verify --box ' + box['id'] + ' --expect green`, then pass --green <receipt id>)')
+        if box['done']:
+            raise ValueError('Box already carries ' + ('adoption' if box['adopted'] else 'helper evidence') + ': ' + box['id'])
+        chosen = [box]
+    else:
+        scope = [b for b in tracker['boxes'] if options.get('all') or b['phase'] == options['phase']]
+        if not scope:
+            raise ValueError('No boxes in the selected phase')
+        chosen = [b for b in scope if (b['checked'] or b['id'] in greens) and not b['done']]
+        if not chosen:
+            raise ValueError('No ticked box without evidence in the selection')
+    if set(greens) - set(b['id'] for b in chosen):
+        raise ValueError('--green receipt outside the selection: ' + ', '.join(sorted(set(greens) - set(b['id'] for b in chosen))))
+    preflight(repo, tracker, options)
+    date = datetime.date.today().isoformat()
+    def suffix_for(box_id):
+        green = greens.get(box_id)
+        extra = (', green receipt %s (%s/%s passed)' % (green['id'][:8], green.get('passed'), green.get('total'))
+                 if green else '')
+        return (' — adopted ' + date + ' by ' + who + ': shipped before the helper; evidence ' + evidence + extra +
+                ('; reason: ' + reason if reason else ''))
+    suffix = suffix_for(None)
+    ids = [b['id'] for b in chosen]
+    if options.get('dry'):
+        return dict(action='stopped', reason='Dry run; adopt writes nothing', would_adopt=ids, suffix=suffix,
+                    would_tick=sorted(greens))
+    log = logbook_path(repo)
+    dirty = git(repo, 'status', '--porcelain', '--untracked-files=all', '--', tracker['path'], log)
+    if dirty:
+        raise ValueError('Adopt would mix existing edits: ' + dirty)
+    path = migration.checked_path(repo, tracker['path'])
+    old = path.read_text(encoding='utf-8')
+    text = old
+    for box_id in ids:
+        mark = r'[ ]' if box_id in greens else r'[xX]'
+        text, count = re.subn(r'(?m)^- \[' + mark + r'\] (' + re.escape(box_id) + r'\b[^\n]*?)[ \t]*$',
+                              lambda m: '- [x] ' + m.group(1) + suffix_for(box_id), text)
+        if count != 1:
+            raise ValueError('Box identity is not an unambiguous ' + ('unticked' if box_id in greens else 'ticked') +
+                             ' line: ' + box_id)
+    text = re.sub(r'(?m)^> Updated:.*$', '> Updated: ' + date, text)
+    reparsed = parse_tracker(text, tracker['path'])
+    if reparsed['errors'] or any(not b['adopted'] for b in reparsed['boxes'] if b['id'] in ids):
+        raise ValueError('Adopted suffix did not round-trip through the tracker parser')
+    logpath = migration.checked_path(repo, log)
+    before = logpath.read_bytes() if logpath.is_file() else None
+    entry = ('\n\n## ' + date + ' — Adopt ' + (tracker['id'] or tracker['title']) + ' (' + str(len(ids)) + ' boxes)\n\n'
+             '### Accomplished\n\n- Adopted ' + str(len(ids)) + ' boxes that shipped before the helper: ' +
+             ', '.join(ids) + ('; ticked on a fresh green: ' + ', '.join(sorted(greens)) if greens else '') + '.\n\n'
+             '### Decisions\n\n- ' + who + ' accepted them; evidence ' + evidence + ('; reason: ' + reason if reason else '') +
+             '. Adopt never applies to new work.\n\n'
+             '### Blockers\n\n- None.\n\n### Next\n\n- Promote only after the remaining boxes are earned and audited.\n')
+    session = acquire(repo, tracker, options)
+    options['session'] = session
+    try:
+        migration.atomic_write(path, text.encode('utf-8'))
+        migration.atomic_write(logpath, ((before.decode('utf-8') if before is not None else '# Logbook\n').rstrip() + entry).encode('utf-8'))
+        commit = scoped_commit(repo, options, 'docs(orkest): adopt ' + str(len(ids)) + ' boxes in ' +
+                               (tracker['id'] or tracker['title']) + '\n\nAccepted by ' + who + '; evidence ' + evidence +
+                               '\nBoxes: ' + ', '.join(ids), [tracker['path'], log], session)
+    except (ValueError, OSError):
+        migration.atomic_write(path, old.encode('utf-8'))
+        if before is None:
+            logpath.unlink(missing_ok=True)
+        else:
+            migration.atomic_write(logpath, before)
+        release(repo, options)
+        raise
+    release(repo, options)
+    return dict(action='done', committed=True, commit=commit, adopted=ids, evidence=evidence, logbook=log)
+
+
 def boundary_step(repo, options, state, state_file, tracker, record):
     command, phase = options['command'], options['phase']
     saved, session = state['options'], state['session']
     if command in ('audit', 'promote'):
         return final_step(repo, options, state, state_file, tracker)
     boxes = [b for b in tracker['boxes'] if b['phase'] == phase]
-    if any(not b['done'] or not valid_commit(repo, record['commits'].get(b['id'])) for b in boxes):
+    if any(not b['done'] or not (b['adopted'] or valid_commit(repo, record['commits'].get(b['id']))) for b in boxes):
         raise ValueError('Phase boundary requires evidenced boxes and actual source commits')
     proof = phase_proof(repo, record)
     if command == 'qa-pass':
@@ -1180,12 +1341,15 @@ def final_gates(repo, state, tracker):
     if any(not box['done'] for box in tracker['boxes']):
         raise ValueError('Promotion requires every box evidenced and complete')
     head = git(repo, 'rev-parse', 'HEAD')
-    proofs, owned = [], {tracker['path']}
+    proofs, owned, earned_phases = [], {tracker['path']}, []
     for phase in tracker['phases']:
+        if adopted_phase(tracker, phase):
+            continue  # every box accepted by a person; no phase record exists to demand
+        earned_phases.append(phase)
         record = state.get('phases', {}).get(phase, {})
         if not record or any(not valid_commit(repo, record.get(key)) for key in ('qa', 'logbook', 'bookkeeping')):
             raise ValueError('Every phase needs committed QA/logbook/bookkeeping')
-        for box in (b for b in tracker['boxes'] if b['phase'] == phase):
+        for box in (b for b in tracker['boxes'] if b['phase'] == phase and not b['adopted']):
             commit = record['commits'].get(box['id'])
             if not valid_commit(repo, commit) or box['id'] not in git(repo, 'show', '-s', '--format=%s', commit):
                 raise ValueError('Missing actual checkpoint commit for ' + box['id'])
@@ -1194,7 +1358,8 @@ def final_gates(repo, state, tracker):
     spec = importlib.util.spec_from_file_location('orkest_promotion_runtime', BIN / 'promote-check.py')
     checker = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(checker)
-    payload = dict(commit=head, **{key: sum(r[key] for r in proofs) for key in ('passed', 'total', 'skipped')})
+    payload = (dict(commit=head, **{key: sum(r[key] for r in proofs) for key in ('passed', 'total', 'skipped')})
+               if proofs else None)  # an all-adopted tracker has no fresh run; use the rail, never fake counts
     feature = tracker_stem(tracker['path'])
     rows = checker.promote_check(repo, tracker['id'] or feature, verify_payload=payload)
     blocks = [text for level, text in rows if level == 'block']
@@ -1204,11 +1369,13 @@ def final_gates(repo, state, tracker):
     owned.update(['docs/CONTEXT.md', 'docs/TODO.md', 'docs/README.md', 'docs/CAPABILITIES.md',
                   'docs/orkest/LOGBOOK.md', reference])
     owned.update(state['phases'][phase].get('report_path') or 'docs/orkest/qa/' + (tracker['id'] or Path(tracker['path']).stem) + '-' + phase + '.json'
-                 for phase in tracker['phases'])
+                 for phase in earned_phases)
     dirty = git(repo, 'status', '--porcelain', '--untracked-files=all', '--', *sorted(owned))
     if dirty:
         raise ValueError('Commit feature-owned implementation/reference/bookkeeping before final audit: ' + dirty)
-    return dict(head=head, owned=sorted(owned), reference=reference, rows=rows, proofs=proofs)
+    adopted = sum(1 for b in tracker['boxes'] if b['adopted'])
+    return dict(head=head, owned=sorted(owned), reference=reference, rows=rows, proofs=proofs,
+                adopted=adopted, earned=len(tracker['boxes']) - adopted)
 
 
 def final_step(repo, options, state, state_file, tracker):
@@ -1225,7 +1392,7 @@ def final_step(repo, options, state, state_file, tracker):
         state['final_audit'] = dict(head=gates['head'], report=draft,
             fingerprint=source_fingerprint(repo, gates['owned']))
         save_json(state_file, state)
-        return dict(action='promote', committed=False, gates=gates['rows'])
+        return dict(action='promote', committed=False, gates=gates['rows'], adopted=gates['adopted'], earned=gates['earned'])
     audit = state.get('final_audit', {})
     if audit.get('head') != gates['head'] or audit.get('fingerprint') != source_fingerprint(repo, gates['owned']):
         raise ValueError('Final audit is missing or stale; audit the final committed state')
@@ -1252,7 +1419,9 @@ def final_step(repo, options, state, state_file, tracker):
     log = 'docs/orkest/LOGBOOK.md'
     old = writes.get(log, (repo / log).read_text(encoding='utf-8'))
     writes[log] = old.rstrip() + '\n\n## ' + datetime.date.today().isoformat() + ' — Promote ' + name + '\n\n' + (
-        '### Accomplished\n\n- Archived the evidenced tracker after fresh tests and final audit.\n\n'
+        '### Accomplished\n\n- Archived the evidenced tracker after fresh tests and final audit.\n'
+        '- Boxes: ' + str(gates['earned']) + ' earned by the helper, ' + str(gates['adopted']) +
+        ' adopted (shipped before the helper, accepted by a person).\n\n'
         '### Decisions\n\n- The person-invoked default run authorized this promotion.\n\n'
         '### Blockers\n\n- No remaining promotion gate.\n\n'
         '### Next\n\n- Review the promotion commit and reference when needed.\n')
@@ -1269,7 +1438,8 @@ def final_step(repo, options, state, state_file, tracker):
     try:
         for path, text in writes.items():
             migration.atomic_write(migration.checked_path(repo, path), text.encode('utf-8'))
-        commit = scoped_commit(repo, saved, 'docs(orkest): promote ' + (tracker['id'] or name) + ': ' + name,
+        commit = scoped_commit(repo, saved, 'docs(orkest): promote ' + (tracker['id'] or name) + ': ' + name +
+                               '\n\nBoxes: ' + str(gates['earned']) + ' earned, ' + str(gates['adopted']) + ' adopted',
                                sorted(set(writes) | {source, destination}), state['session'])
     except (ValueError, OSError):
         # workflow-git restores the incoming index; undo only our own move/writes.
@@ -1295,7 +1465,8 @@ def final_step(repo, options, state, state_file, tracker):
     release(repo, options)
     import orkest_prep
     dirty = orkest_prep.dirty_report(status_raw(repo), state.get('baseline_status', ''), owned_paths(state, tracker['path']))
-    return dict(action='done', committed=True, commit=commit, complete=True, dirty_files=dirty['counts'],
+    return dict(action='done', committed=True, commit=commit, complete=True, earned=gates['earned'],
+                adopted=gates['adopted'], dirty_files=dirty['counts'],
                 dirty_note=dirty['note'] if dirty['total'] else None)
 
 
@@ -1314,6 +1485,17 @@ def test_counts(output):
         # Verification exclusions include expected failures; retain native categories too.
         result['skipped'] = result['native_skipped'] + result['expected_failed']
         result['passed'] = max(0, result['total'] - sum(result[k] for k in ('failed', 'errors', 'skipped')))
+        # Python 3.12.1+ leaves skipped tests out of "Ran N", so the subtraction above undercounts passes.
+        # Per-test marks mean the same on every version: the progress line (. s F E x u) or verbose "... ok".
+        head = output[:unit.start()]
+        marks = ''.join(re.findall(r'(?m)^([.sFExu]+)\s*$', head))
+        verbose_ok = len(re.findall(r'(?m) \.\.\. ok\s*$', head))
+        if marks and marks.count('s') == result['native_skipped']:
+            result['passed'] = marks.count('.')
+            result['total'] = max(result['total'], len(marks))
+        elif verbose_ok:
+            result['passed'] = verbose_ok
+            result['total'] = max(result['total'], sum(result[k] for k in ('passed', 'failed', 'errors', 'skipped')))
     else:
         for source, target in [('passed', 'passed'), ('failed', 'failed'), ('skipped', 'skipped'), ('errors?', 'errors')]:
             match = re.search(r'(\d+) ' + source + r'\b', output)
@@ -1465,7 +1647,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['inspect', 'start', 'release', 'bootstrap', 'plan', 'verify', 'checkpoint', 'next',
                                           'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote', 'doctor', 'budget', 'simple', 'recover-lock',
-                                          'gate', 'preflight', 'dirty-report', 'report', 'tiers', 'pinscan', 'metrics'])
+                                          'gate', 'preflight', 'dirty-report', 'report', 'tiers', 'pinscan', 'metrics', 'adopt'])
     parser.add_argument('query', nargs='*')
     parser.add_argument('--repo', default='.')
     parser.add_argument('--summary', action='store_true', help='short inspect/start output (default is the full document)')
@@ -1480,6 +1662,12 @@ def main(argv=None):
     parser.add_argument('--name')
     parser.add_argument('--input-file')
     parser.add_argument('--phase')
+    parser.add_argument('--all', action='store_true', help='adopt: every ticked box without evidence')
+    parser.add_argument('--evidence', action='append', help='adopt: ancestor git sha or tracked receipt/audit path (repeatable)')
+    parser.add_argument('--accepted-by', help='adopt: the operator handle accepting this work')
+    parser.add_argument('--reason', help='adopt: one-line reason recorded with the adoption')
+    parser.add_argument('--green', action='append', help='adopt: accepted fresh green verify receipt id for an unticked box '
+                        '(repeatable; from `verify --box ID --expect green`)')
     parser.add_argument('--box')
     parser.add_argument('--existing-commit')
     parser.add_argument('--paths', nargs='+')
@@ -1607,6 +1795,8 @@ def main(argv=None):
             result = bootstrap(args.repo, vars(args))
         elif args.command == 'simple':
             result = simple(args.repo, vars(args))
+        elif args.command == 'adopt':
+            result = adopt(args.repo, vars(args))
         elif args.command in ('plan', 'verify', 'checkpoint', 'next', 'qa-pass', 'logbook', 'commit-phase', 'audit', 'promote'):
             result = run_step(args.repo, vars(args))
         else:
@@ -1626,7 +1816,7 @@ def main(argv=None):
         return 2 if args.command == 'preflight' and not result.get('ok') else 0
     except (ValueError, OSError) as error:
         if args.command not in ('inspect', 'release', 'doctor', 'budget', 'recover-lock', 'gate', 'preflight',
-                                'dirty-report', 'report', 'tiers', 'pinscan', 'metrics') and not args.dry \
+                                'dirty-report', 'report', 'tiers', 'pinscan', 'metrics', 'adopt') and not args.dry \
                 and not (args.command == 'verify' and args.gate):
             try:
                 release(args.repo, vars(args))

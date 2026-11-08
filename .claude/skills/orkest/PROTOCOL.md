@@ -85,6 +85,12 @@ green declared verification/build and evidenced boxes; otherwise Executed,
 unverified. Documentation-only evidence is its diff; explicitly say when no
 build exists. External status, vendor doctor and clean Git are not test evidence.
 
+Work that shipped and went live before the helper existed may be adopted instead of earned:
+the person runs `adopt` (interactive lane only) with a git sha or tracked receipt as evidence;
+a box that was never ticked also needs a fresh green verify receipt for that box (`--green`).
+The box then carries a distinct `adopted DATE by HANDLE` suffix, promotion reports adopted
+versus earned boxes, and adopt never applies to new work.
+
 ## Rule 6 — One writer and the live integration branch
 
 One session owns the worktree index and structural tracker sections. Acquire

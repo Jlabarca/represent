@@ -138,6 +138,10 @@ def _content_lines(text):
 PHASE_LABEL = r'[A-Z]{0,2}-?\d+[a-z]?'
 PHASE_HEADING = re.compile(r'^### (?:Phase (?:' + NAME + r'\.)?(' + PHASE_LABEL + r')(?=\s|$|[:—–])|(?:' +
                            NAME + r'\.)?(' + PHASE_LABEL + r')(?=\s*$|\s*:|\s+[—–-]\s|\s+\())')
+# `orkest.py adopt` appends this to a ticked box that shipped before the helper existed. It is
+# deliberately not the `evidence:` form: an adopted box is accepted by a person, never earned.
+ADOPTED = re.compile(r' — adopted (\d{4}-\d{2}-\d{2}) by (\S+): shipped before the helper; evidence '
+                     r'([^;]+?)(?:; reason: (.+?))?\s*$')
 BOX_ID = re.compile(r'^(?:\*\*)?([A-Z0-9][A-Za-z0-9_-]*(?:\.[A-Za-z0-9_-]+)+)')
 
 
@@ -227,6 +231,12 @@ def parse_tracker(text, path):
         if box_id in seen_boxes:
             errors.append('Duplicate box: ' + box_id)
         seen_boxes.add(box_id)
+        adopted_match = ADOPTED.search(body)
+        adopted = None
+        if adopted_match and checked.lower() == 'x':
+            adopted = dict(date=adopted_match.group(1), by=adopted_match.group(2),
+                           evidence=adopted_match.group(3), reason=adopted_match.group(4))
+            body = body[:adopted_match.start()]
         human = bool(re.search(r'\bhuman:', body, re.I))
         # `evidence: …` and the qualified `evidence (live, Editor, 2026-10-05): …` sessions also write.
         evidence_match = re.search(r'\bevidence\s*(?:\([^)\n]{0,120}\))?\s*:\s*(.*)', body, re.I)
@@ -237,8 +247,8 @@ def parse_tracker(text, path):
             receipt = re.search(r'\bdone \d{4}-\d{2}-\d{2} by the operator\b', body)
             evidence = receipt.group(0) if receipt else ''
         boxes.append(dict(id=box_id, phase=phase, checked=checked.lower() == 'x',
-                          human=human, evidence=evidence,
-                          done=checked.lower() == 'x' and bool(evidence)))
+                          human=human, evidence=evidence, adopted=adopted,
+                          done=checked.lower() == 'x' and bool(evidence or adopted)))
     if not phases or not boxes:
         errors.append('Expected phases and checklist boxes')
     for number in phases:
@@ -386,11 +396,13 @@ def next_action(tracker=None, facts=None, options=None):
         return answer('blocked', 'One-phase invocation requires its selected target_phase')
     for phase in tracker['phases']:
         boxes = [b for b in tracker['boxes'] if b['phase'] == phase]
+        if boxes and all(b.get('adopted') for b in boxes):
+            continue  # Adopted before the helper: accepted by a person, nothing left to earn here
         count = facts.get('source_counts', {}).get(phase)
         if type(count) is not int or count < 0:
             return answer('blocked', 'Source-file scope must be established', phase)
         commits = facts.get('commits', {})
-        pending = [b for b in boxes if not b['done'] or not receipt(commits.get(b['id']))]
+        pending = [b for b in boxes if not b['done'] or not (b.get('adopted') or receipt(commits.get(b['id'])))]
         if pending:
             if count >= 2 and not receipt(facts.get('plans', {}).get(phase)):
                 return answer('plan', 'Rule 14: commit plan before source edits', phase)
