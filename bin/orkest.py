@@ -1335,6 +1335,46 @@ def boundary_step(repo, options, state, state_file, tracker, record):
     return dict(action='continue' if commit else 'stopped', committed=bool(commit), commit=commit)
 
 
+def docs_only_since(repo, commit, head):
+    """True when `commit` is an ancestor of `head` and every file changed since is documentation."""
+    if commit == head:
+        return True
+    if not valid_commit(repo, commit):
+        return False
+    changed = [p for p in git(repo, 'diff', '--name-only', commit, head).splitlines() if p]
+    return all(p.startswith('docs/') or p.lower().endswith('.md') for p in changed)
+
+
+def tier_gate_payload(repo, tracker, head):
+    """Verify payload for a tracker with no earned proofs (every box adopted): the latest qualifying
+    `gate run --tier T` verdict for a tier the tracker claims, on HEAD or on a commit that only docs
+    commits followed. None when there is none; the counts are the gate's own, never invented."""
+    text = (repo / tracker['path']).read_text(encoding='utf-8')
+    tiers = set(re.findall(r'verify:\s*(unit|integration|e2e)\b', text))
+    folder = metadata(repo) / 'gates'
+    if not tiers or not folder.is_dir():
+        return None
+    best = None
+    for path in folder.glob('*/verdict.json'):
+        try:
+            verdict = json.loads(path.read_text(encoding='utf-8'))
+        except (OSError, ValueError):
+            continue
+        counts = verdict.get('counts') or {}
+        if (verdict.get('outcome') != 'pass' or not verdict.get('qualifying') or verdict.get('tier') not in tiers
+                or verdict.get('head_at_start') != verdict.get('head_at_end') or not counts.get('passed')):
+            continue
+        if not docs_only_since(repo, verdict['head_at_end'], head):
+            continue
+        if best is None or (verdict.get('finished') or '') > (best.get('finished') or ''):
+            best = verdict
+    if not best:
+        return None
+    counts = best['counts']
+    return dict(commit=head, passed=counts['passed'], total=counts['total'], skipped=counts.get('skipped', 0),
+                gate=best['id'], tier=best['tier'], gate_head=best['head_at_end'])
+
+
 def final_gates(repo, state, tracker):
     if state.get('migration_pending') or layout(repo)['needs_migration']:
         raise ValueError('Complete the pending layout migration before promotion')
@@ -1359,11 +1399,18 @@ def final_gates(repo, state, tracker):
     checker = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(checker)
     payload = (dict(commit=head, **{key: sum(r[key] for r in proofs) for key in ('passed', 'total', 'skipped')})
-               if proofs else None)  # an all-adopted tracker has no fresh run; use the rail, never fake counts
+               if proofs else tier_gate_payload(repo, tracker, head))
+    # With no earned proofs and no qualifying tier gate, promote-check falls back to the project's rail.
     feature = tracker_stem(tracker['path'])
     rows = checker.promote_check(repo, tracker['id'] or feature, verify_payload=payload)
+    if payload and payload.get('gate'):
+        rows.append(('note', 'verify from %s gate %s @ %s%s' % (payload['tier'], payload['gate'], payload['gate_head'][:8],
+                     '' if payload['gate_head'] == head else ' (only docs commits since)')))
     blocks = [text for level, text in rows if level == 'block']
     if blocks:
+        if not proofs and not payload:
+            blocks.append('an all-adopted tracker proves its tier with `orkest.py gate run --tier <unit|integration|e2e> '
+                          '--name <name> -- <full tier command>` on this HEAD')
         raise ValueError('; '.join(blocks))
     reference = 'docs/reference/' + feature.lower() + '.md'
     owned.update(['docs/CONTEXT.md', 'docs/TODO.md', 'docs/README.md', 'docs/CAPABILITIES.md',

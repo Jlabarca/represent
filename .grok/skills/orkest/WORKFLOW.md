@@ -61,8 +61,12 @@ because the code already landed). It refuses the unattended lane, an unticked
 box without such a receipt, a human box, a box that already carries evidence and an evidence sha that is not an ancestor of
 HEAD; `--dry` writes nothing. `promote` counts an adopted box as evidenced and
 records earned versus adopted boxes; a phase made only of adopted boxes needs
-no phase record. Adopt is the person's explicit acceptance, never for new work
-and never a way to skip verification.
+no phase record. A tracker with no earned box proves its claimed tier with a
+qualifying `gate run --tier <unit|integration|e2e>` verdict on HEAD (only docs
+commits may follow it); without one, promotion falls back to the project's run rail.
+A ticked box that is neither evidenced nor adopted still blocks promotion: adopt it,
+earn it, or move the unfinished part to another tracker. Adopt is the person's
+explicit acceptance, never for new work and never a way to skip verification.
 
 ## Bootstrap and clarification
 
@@ -288,6 +292,8 @@ Evidence may carry a short qualifier: `evidence (scope): ...`. `inspect` also li
 legacy tracker locks, the caller's own included) for tools that preview an update without taking a
 lock. A foreign writer lock names its session and its idle time; a lock
 held by a running session is waited for, never cleared, and one idle past the stale window is recovered by the next write.
+Update also writes nothing while a merge, rebase, cherry-pick, revert or bisect is
+unfinished in the checkout (status `git-operation`); finish or abort it, then rerun.
 
 The current session service GET and digest generator both write state; do not
 invoke them during read-only doctor. An existing project-local JSON export may

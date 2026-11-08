@@ -342,6 +342,16 @@ def migration_handover(repo, moves, runtime, after_each=None):
         # The retired key remains as recoverable historical metadata, never preferred.
 
 
+GIT_OPERATIONS = (('MERGE_HEAD', 'merge'), ('rebase-merge', 'rebase'), ('rebase-apply', 'rebase or am'),
+                  ('CHERRY_PICK_HEAD', 'cherry-pick'), ('REVERT_HEAD', 'revert'), ('BISECT_LOG', 'bisect'))
+
+
+def git_operation(repo, runtime):
+    """The name of an unfinished merge/rebase/cherry-pick/revert/bisect in this worktree, else None."""
+    git_dir = Path(runtime.git(repo, 'rev-parse', '--absolute-git-dir'))
+    return next((name for marker, name in GIT_OPERATIONS if (git_dir / marker).exists()), None)
+
+
 def reconcile(repo, template, options=None, runtime=None):
     options = options or {}
     if runtime is None:
@@ -357,6 +367,10 @@ def reconcile(repo, template, options=None, runtime=None):
         raise ValueError('Python 3.8 or newer is required for Update (this is %d.%d); set ORKEST_PYTHON to a newer '
                          'interpreter. Nothing was written.' % sys.version_info[:2])
     runtime.preflight(repo, None, options)
+    operation = git_operation(repo, runtime)
+    if operation:
+        return report('git-operation', reason='A %s is in progress in this checkout; Update writes nothing until it '
+                      'is committed or aborted' % operation)
     session = runtime.session_id(options)
     if not session:
         return report('session-required', reason='Startup needs the actual native session identity')
