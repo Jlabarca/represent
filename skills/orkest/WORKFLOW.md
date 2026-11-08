@@ -63,7 +63,9 @@ HEAD; `--dry` writes nothing. `promote` counts an adopted box as evidenced and
 records earned versus adopted boxes; a phase made only of adopted boxes needs
 no phase record. A tracker with no earned box proves its claimed tier with a
 qualifying `gate run --tier <unit|integration|e2e>` verdict on HEAD (only docs
-commits may follow it); without one, promotion falls back to the project's run rail.
+commits may follow it; `--tier-name` selects a tiers plan and proves nothing); without
+one, promotion falls back to the project's run rail. `audit`/`promote --phase N` name
+any adopted phase there.
 A ticked box that is neither evidenced nor adopted still blocks promotion: adopt it,
 earn it, or move the unfinished part to another tracker. Adopt is the person's
 explicit acceptance, never for new work and never a way to skip verification.

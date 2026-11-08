@@ -778,6 +778,9 @@ def run_step(repo, options):
         save_json(state_file, state)
         return with_budget(dict(action='tdd', committed=bool(commit), commit=commit, preview=bool(saved.get('no_commit'))))
     record = phases.get(phase)
+    if not record and options['command'] in ('audit', 'promote') and adopted_phase(tracker, phase):
+        # Tracker-level steps: an adopted phase has no plan record by design; final_gates still decides.
+        return with_budget(final_step(repo, options, state, state_file, tracker))
     if not record or (not record.get('plan_commit') and not saved.get('no_commit')):
         raise ValueError('Establish and commit the phase plan/source inventory first')
     current = source_fingerprint(repo, record['paths'])
@@ -1782,8 +1785,10 @@ def main(argv=None):
         parser.error('--summary applies to inspect, start and doctor')
     if (args.skip_link or args.accept_link) and (args.command != 'doctor' or git_scope):
         parser.error('--skip-link and --accept-link are doctor options')
-    if (args.title or args.type or args.tier) and args.command != 'simple':
-        parser.error('--title, --type and --tier are simple-route options')
+    if (args.title or args.type) and args.command != 'simple':
+        parser.error('--title and --type are simple-route options')
+    if args.tier and args.command not in ('simple', 'gate'):
+        parser.error('--tier applies to simple and gate run (the tier a gate verdict proves)')
     try:
         if git_scope:
             import orkest_forks
