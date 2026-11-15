@@ -36,7 +36,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
 | REP-9.1 | Shipped | current | current | Gateway request and release decisions |
-| REP-9.2 | [ ] not started | current | current | Ten-language site and Chrome copy |
+| REP-9.2 | Shipped | current | current | Ten-language site and Chrome copy |
 | REP-9.3 | [ ] not started | current | current | Packaging, video access trials and release guide |
 
 ## Checklist
@@ -106,3 +106,7 @@ Chrome native i18n uses _locales/default_locale and localized manifest/action/op
 Pins: server static allow-list must serve i18n.mjs, manifest references locale name/description/action keys, tests VM chrome stub must provide i18n.getMessage; package glob already finds i18n test. Update only listed surfaces. TDD locale negotiation with pt-BR/es-CL regional matching first, then Spanish visible controls and RTL/escaped interpolation/fallback. Run focused Node suite; review desktop Spanish, Arabic and mobile. Catalog completeness guards missing user-visible translations, not exact growable locale counts. No paid/network LLM call.
 
 Exact owned files: `extensions/clay-notes/_locales/ar/messages.json`, `extensions/clay-notes/_locales/de/messages.json`, `extensions/clay-notes/_locales/en/messages.json`, `extensions/clay-notes/_locales/es/messages.json`, `extensions/clay-notes/_locales/fr/messages.json`, `extensions/clay-notes/_locales/hi/messages.json`, `extensions/clay-notes/_locales/it/messages.json`, `extensions/clay-notes/_locales/ja/messages.json`, `extensions/clay-notes/_locales/pt/messages.json`, `extensions/clay-notes/_locales/zh_CN/messages.json`, `extensions/clay-notes/background.js`, `extensions/clay-notes/content.js`, `extensions/clay-notes/manifest.json`, `extensions/clay-notes/options.css`, `extensions/clay-notes/options.html`, `extensions/clay-notes/options.js`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `tests/clay-notes-extension.test.mjs`, `tests/clay-notes-i18n.test.mjs`.
+
+### Phase 2 QA — 2026-11-15
+
+No mechanical QA findings.

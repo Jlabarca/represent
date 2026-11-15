@@ -526,3 +526,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Implement independent localization and package/source-only testing while gateway flow waits at operator review.
+
+## 2026-11-15 — REP-9.2
+
+### Accomplished
+
+- Implemented ten-language authored web copy, native Chrome locale metadata/options/actions, persistent language selection, locale dates and Arabic RTL. Focused suite29/29 passed. Browser Spanish library/save dialog, Arabic layout/reload persistence and390px mobile RTL fit passed; screenshots captured in temporary QA files for phase3 evidence.
+
+### Decisions
+
+- User titles/transcripts/personal notes/model output retain their original text. Language changes affect authored UI; generation-language wiring waits for gateway Apply. Non-Latin glyphs use system fallback when Satoshi lacks them.
+
+### Blockers
+
+- Gateway request remains pending operator Apply and live paid approval. No inference made. Existing service fixture polling and15s worker timeout were intermittent; bounded repeat passed, and phase3 will strengthen harness diagnostics rather than hide failed runs.
+
+### Next
+
+- Build reproducible extension ZIP and export adapter, ingest real transcripts into isolated trial notes with no summary calls, record evidence and verify all tools.
