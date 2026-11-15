@@ -508,3 +508,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Execute the first runnable phase under the Orkest workflow.
+
+## 2026-11-15 — REP-9.1
+
+### Accomplished
+
+- Prepared own-key summary/deep gateway request at the exact requested handoff path and committed durable copy. Created full extension release/deployment/rollback plan and three-video trial matrix; validated required fields offline.
+
+### Decisions
+
+- Operator confirmed: Yes, summary is default (recommended). Request new clay-notes key LITELLM_KEY_CLAY_NOTES with proposed $1/30d backstop; never reuse Represent/Operator keys. Ten interface languages including Arabic RTL are the default scope.
+
+### Blockers
+
+- Gateway Apply SHA, own-key lane tests and separate paid-call approval remain pending. No gateway mutation or inference was performed.
+
+### Next
+
+- Implement independent localization and package/source-only testing while gateway flow waits at operator review.

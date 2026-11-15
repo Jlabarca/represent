@@ -137,3 +137,5 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Implementation queue
 
 - [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — plan-only.
+
+- REP-9.1 — Shipped; continue the next runnable phase.

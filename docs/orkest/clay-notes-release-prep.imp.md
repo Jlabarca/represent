@@ -35,7 +35,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-9.1 | [ ] not started | current | current | Gateway request and release decisions |
+| REP-9.1 | Shipped | current | current | Gateway request and release decisions |
 | REP-9.2 | [ ] not started | current | current | Ten-language site and Chrome copy |
 | REP-9.3 | [ ] not started | current | current | Packaging, video access trials and release guide |
 
@@ -90,3 +90,7 @@ Write the exact requested ephemeral handoff at docs/handoffs/GATEWAY-REQUEST-202
 Pins: supersede the old reference's tentative Represent consumer reuse; preserve historical evidence, link current own-key decision. Index new docs and active tracker, preserve REP-8 and unrelated local changes. Verify documentary required fields/operator quote/URLs through a small offline check plus diff review; no behavior or live inference in this phase.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/design/clay-notes-gateway-request.md`, `docs/guides/clay-notes-release.md`, `docs/reference/clay-notes.md`.
+
+### Phase 1 QA — 2026-11-15
+
+No mechanical QA findings.

@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "phase": "1",
+  "base": "09b8f757272553b35ecb84451d458868004b345f",
+  "source_head": "e90b284ee65e6e29c7d2a97b6dd33a5dc1a8ebec",
+  "audited_head": "e90b284ee65e6e29c7d2a97b6dd33a5dc1a8ebec",
+  "source_fingerprint": {
+    "docs/CONTEXT.md": "6aa1469f512ec64fcc60659f90e1f2c2ef2d5e3631a757dd90d0e7c9e276db7f",
+    "docs/README.md": "43183171b8583e00255a12ea4732b6bdef01dcad5f8dc6f48f5becd397aedb7d",
+    "docs/TODO.md": "5c019541f0a8f84080aa023ebc594921d1854146af03d0c0e463aec2b29404a7",
+    "docs/design/clay-notes-gateway-request.md": "db051690c170322993e1484e30f47a9d7fa3b2c0eeb0a02178ecc98b0fae98ef",
+    "docs/guides/clay-notes-release.md": "c68505aa1c4426e40d79fd0fecae98c34f9a7285a2ef38a02f9a7c13481c49b0",
+    "docs/reference/clay-notes.md": "f648c164ffcebde2436f048e821b174f49b1ebf6552d7edbf63afc71216c7e68"
+  },
+  "diff_sha256": "ac646d5249b8a2631beae06b1a5134c5fb10f125826265c3de9530144c43f4ab",
+  "owned_paths": [
+    "docs/CONTEXT.md",
+    "docs/README.md",
+    "docs/TODO.md",
+    "docs/design/clay-notes-gateway-request.md",
+    "docs/guides/clay-notes-release.md",
+    "docs/reference/clay-notes.md"
+  ],
+  "tests": [
+    {
+      "id": "173c84b6-7c68-44d9-8393-8e974c0fff77",
+      "phase": "1",
+      "box": null,
+      "project": ".",
+      "command": [
+        "C:/Python312/python.exe",
+        "-B",
+        "tmp/clay-release-doc-check.py"
+      ],
+      "expected": "green",
+      "exit_code": 0,
+      "accepted": true,
+      "fingerprint": {
+        "docs/CONTEXT.md": "6aa1469f512ec64fcc60659f90e1f2c2ef2d5e3631a757dd90d0e7c9e276db7f",
+        "docs/README.md": "43183171b8583e00255a12ea4732b6bdef01dcad5f8dc6f48f5becd397aedb7d",
+        "docs/TODO.md": "5c019541f0a8f84080aa023ebc594921d1854146af03d0c0e463aec2b29404a7",
+        "docs/design/clay-notes-gateway-request.md": "db051690c170322993e1484e30f47a9d7fa3b2c0eeb0a02178ecc98b0fae98ef",
+        "docs/guides/clay-notes-release.md": "c68505aa1c4426e40d79fd0fecae98c34f9a7285a2ef38a02f9a7c13481c49b0",
+        "docs/reference/clay-notes.md": "f648c164ffcebde2436f048e821b174f49b1ebf6552d7edbf63afc71216c7e68"
+      },
+      "commit": "e90b284ee65e6e29c7d2a97b6dd33a5dc1a8ebec",
+      "skip_budget": 0,
+      "started_at": "2026-11-15T21:12:53.814419+00:00",
+      "duration_s": 0.1,
+      "total": 0,
+      "passed": 0,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "native_skipped": 0,
+      "expected_failed": 0,
+      "unexpected_passed": 0,
+      "output_sha256": "1648e2cda1171d55d02cd44ff1b15bdad16eb9c1e69d3cb89a2217f8e887ddc7"
+    }
+  ],
+  "findings": [],
+  "working_diff_present": false,
+  "untracked": []
+}
