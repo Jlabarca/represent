@@ -134,4 +134,8 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Implementation trackers
 
-- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — verified local localization/cards/cache/covers and documented hosted-service preparation; live external gates remain.
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — verified local localization/cards/cache/covers and documented hosted-service preparation; live external gates remain.
+
+## Completed trackers
+
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.

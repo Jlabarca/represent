@@ -11,7 +11,7 @@ Current: REP-9.3 verified113/113; next cache-first full-art TCG collection with 
 
 Release-prep source evidence: all three transcripts captured/imported without AI; ten-language UI and native Chrome messages implemented. Version0.2.0 ZIP and original icons prepared; see [release evidence](../experiments/clay-notes/release-prep/README.md). Next external action remains operator console Apply and own-key lane tests; then token-free lane/header/spend-fence wiring, then a separately approved bounded live summary trial. Store/developer installation and publication are not yet accepted.
 
-Follow-up [REP-9](orkest/clay-notes-release-prep.imp.md): ten-language UI, own-key/lane request, reproducible extension packaging, complete release plan and source-only checks for three supplied videos. Operator confirmed default `clay-notes-summary`. Wait for Apply SHA/lane-test before app gateway wiring and separate paid-call approval before live summaries. The old tentative shared-key path below is superseded by [the own-key request](design/clay-notes-gateway-request.md).
+Follow-up [REP-9](orkest/done/clay-notes-release-prep.imp.md): ten-language UI, own-key/lane request, reproducible extension packaging, complete release plan and source-only checks for three supplied videos. Operator confirmed default `clay-notes-summary`. Wait for Apply SHA/lane-test before app gateway wiring and separate paid-call approval before live summaries. The old tentative shared-key path below is superseded by [the own-key request](design/clay-notes-gateway-request.md).
 
 User priority: YouTube → automatic Ghost TLDR → a simple clay/Satoshi notebook library. [REP-8](orkest/done/clay-notes.imp.md), [operating reference](reference/clay-notes.md), [browser evidence](../experiments/clay-notes/browser-check.json). Local implementation passed 24 focused checks, 96/96 full regressions and twelve browser checks. The next external trial is an installed Chrome capture and an authorized consumer-key response; no fixture result completes those trials. Existing Represent consumer models are json/gemini-flash only; do not assume cheap/smart access or borrow operator credentials.
 
@@ -142,7 +142,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 
 ## Implementation queue
 
-- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — plan-only.
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — plan-only.
 
 - REP-9.1 — Shipped; continue the next runnable phase.
 
@@ -153,3 +153,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 - REP-9.4 — Shipped; continue the next runnable phase.
 
 - REP-9.5 — Shipped; continue the next runnable phase.
+
+## Completed
+
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.

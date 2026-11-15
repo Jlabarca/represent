@@ -625,3 +625,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Finish final committed-head regressions/audit and promote this preparation tracker. Next hosted implementation earns the documented account/isolation/job/extension slices; operator reviews the revised request, applies it and returns SHA/lane-tests before gateway wiring.
+
+## 2026-11-15 — Promote CLAY-NOTES-RELEASE-PREP
+
+### Accomplished
+
+- Archived the evidenced tracker after fresh tests and final audit.
+- Boxes: 5 earned by the helper, 0 adopted (shipped before the helper, accepted by a person).
+
+### Decisions
+
+- The person-invoked default run authorized this promotion.
+
+### Blockers
+
+- No remaining promotion gate.
+
+### Next
+
+- Review the promotion commit and reference when needed.

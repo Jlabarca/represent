@@ -20,7 +20,7 @@
 
 **Release preparation checkpoint:** Ten-language web/Chrome authored copy is implemented at `070d2af` (29 focused checks); Spanish and Arabic RTL/mobile browser checks passed. All three user video transcripts exported through the native browser without inference. Source-only trial records and reproducible extension ZIP are being prepared under REP-9. No gateway Apply SHA, lane-test result or paid-call approval has arrived; those remain explicit external gates.
 
-**Follow-up decision — own gateway consumer and release preparation.** User: “this app goes through the GhostWare AI gateway ... with its OWN key and its OWN lane. Never borrow LITELLM_KEY_OPERATOR or another app's key” and “No live paid call until the operator says so.” This supersedes the tentative REP-8 suggestion to reuse Represent's Trazo/Visu consumer. Clay Notes requests new key `clay-notes`, envVar `LITELLM_KEY_CLAY_NOTES`, and app-specific summary/deep lanes. The operator answered “Yes, summary is default (recommended)”; request `clay-notes-summary` as default. Budget$1/30d is proposed, not applied. [Gateway request](design/clay-notes-gateway-request.md) follows the agent-to-agent workflow; Apply SHA/lane-test and paid-call permission are pending. [REP-9](orkest/clay-notes-release-prep.imp.md) owns localization, packaging, the [release plan](guides/clay-notes-release.md) and source-only trials of the three provided videos. Gateway wiring waits for Apply evidence; independent source/localization work may proceed without inference.
+**Follow-up decision — own gateway consumer and release preparation.** User: “this app goes through the GhostWare AI gateway ... with its OWN key and its OWN lane. Never borrow LITELLM_KEY_OPERATOR or another app's key” and “No live paid call until the operator says so.” This supersedes the tentative REP-8 suggestion to reuse Represent's Trazo/Visu consumer. Clay Notes requests new key `clay-notes`, envVar `LITELLM_KEY_CLAY_NOTES`, and app-specific summary/deep lanes. The operator answered “Yes, summary is default (recommended)”; request `clay-notes-summary` as default. Budget$1/30d is proposed, not applied. [Gateway request](design/clay-notes-gateway-request.md) follows the agent-to-agent workflow; Apply SHA/lane-test and paid-call permission are pending. [REP-9](orkest/done/clay-notes-release-prep.imp.md) owns localization, packaging, the [release plan](guides/clay-notes-release.md) and source-only trials of the three provided videos. Gateway wiring waits for Apply evidence; independent source/localization work may proceed without inference.
 
 **Clay Notes is the active user-requested tool.** Represent remains a suite: Visu (paused), Grafe, Alegor and the deferred Trazo POC remain intact. Clay Notes adds one-click YouTube capture, automatic transcript statements/conclusions through Ghost, a clay/Satoshi card collection and a full notebook with cited revisions, personal notes and questions. Local implementation and offline/browser validation are in [the operating reference](reference/clay-notes.md) and [evidence](../experiments/clay-notes/README.md). The implementation tracker is [REP-8](orkest/done/clay-notes.imp.md). Live Chrome installation/capture and real gateway success remain unverified; no paid calls or credential/allow-list changes were made. The older operating-direction entries below are preserved history, not the active cursor.
 
@@ -190,7 +190,7 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 
 ## Active implementation
 
-- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — plan-only.
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — plan-only.
 
 - Shipped REP-9.1; source e90b284ee65e6e29c7d2a97b6dd33a5dc1a8ebec, executed tests and QA recorded.
 
@@ -201,3 +201,7 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 - Shipped REP-9.4; source d177508840c4ba3566afb294ff2d4400d2837b34, executed tests and QA recorded.
 
 - Shipped REP-9.5; source b1d08b9fcc7d28cbfc458892937c9903ea1dfef9, executed tests and QA recorded.
+
+## Completed implementation
+
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.
