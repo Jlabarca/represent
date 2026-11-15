@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "我的笔记库"
+  },
+  "saveVideo": {
+    "message": "保存视频"
+  },
+  "mainStatements": {
+    "message": "主要观点"
+  },
+  "conclusions": {
+    "message": "结论"
+  },
+  "saving": {
+    "message": "处理中…"
+  },
+  "saved": {
+    "message": "已保存"
+  },
+  "needsTranscript": {
+    "message": "需要字幕文本"
+  },
+  "retry": {
+    "message": "重试摘要"
+  },
+  "captureFailed": {
+    "message": "需要处理"
+  },
+  "heading": {
+    "message": "从播放到要点。"
+  },
+  "help": {
+    "message": "启动本地服务，在笔记库中打开“连接 Chrome”并复制配对码。"
+  },
+  "address": {
+    "message": "本地服务地址"
+  },
+  "pairingCode": {
+    "message": "本地配对码"
+  },
+  "connect": {
+    "message": "连接 Chrome"
+  },
+  "connected": {
+    "message": "已连接。打开 YouTube 视频并点击 Clay Notes。"
+  },
+  "addressError": {
+    "message": "请输入服务显示的本地地址。"
+  },
+  "codeError": {
+    "message": "请粘贴完整配对码。"
+  },
+  "pairingFailed": {
+    "message": "配对失败。请检查配对码并确认服务正在运行。"
+  },
+  "privacy": {
+    "message": "配对码用于连接本地笔记库，网关密钥保留在服务端。"
+  },
+  "pairFirst": {
+    "message": "请先将扩展程序与 Clay Notes 配对。"
+  },
+  "noCaptions": {
+    "message": "没有可用字幕。请打开字幕记录，或粘贴到已保存的笔记本。"
+  },
+  "extName": {
+    "message": "Clay Notes — 摘要"
+  },
+  "extDescription": {
+    "message": "Clay Notes: 保存视频. 主要观点. 结论."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

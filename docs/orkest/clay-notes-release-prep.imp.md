@@ -53,7 +53,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-9.2.1 — Implement ten-language web UI and Chrome metadata/options/action copy; test locale negotiation, catalogs, fallback and existing capture flow; inspect Spanish/Arabic/mobile with no paid calls.
+- [x] REP-9.2.1 — Implement ten-language web UI and Chrome metadata/options/action copy; test locale negotiation, catalogs, fallback and existing capture flow; inspect Spanish/Arabic/mobile with no paid calls. — evidence: node scripts/clay-notes-test.mjs: 29/29 passed, skipped=0, output sha256=632a5155331e40e4c8396f6fe242e5d06881f2941f90778a61635667e1828eb2
 
 ### Phase 3 — Release preparation and video trials
 

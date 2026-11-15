@@ -1,4 +1,5 @@
 const DEFAULT_BASE='http://127.0.0.1:8876';
+const msg=(name,fallback)=>chrome.i18n?.getMessage(name) || fallback;
 const validBase=value=>{const url=new URL(value || DEFAULT_BASE);if(url.protocol!=='http:'||url.hostname!=='127.0.0.1'||url.pathname!=='/'||url.search||url.hash||url.username||url.password)throw new Error('Service must be a 127.0.0.1 HTTP address');return url.origin;};
 async function settings(){const value=await chrome.storage.local.get(['base','token']);return {base:validBase(value.base),token:value.token || ''};}
 async function api(config,path,input){
@@ -58,13 +59,13 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
     captures.add(id);let saved=false;
     try{
       const config=await settings();
-      if(!config.token){await chrome.runtime.openOptionsPage();throw new Error('Pair the extension with Clay Notes first');}
+      if(!config.token){await chrome.runtime.openOptionsPage();throw new Error(msg('pairFirst','Pair the extension with Clay Notes first'));}
       const [{result:metadata}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[false,id]});
       if(metadata?.videoId!==id)throw new Error('Video changed before capture. Try again.');
       const note=await api(config,'/notes',{url:`https://www.youtube.com/watch?v=${id}`,title:String(metadata?.title || '').slice(0,500),channel:String(metadata?.channel || '').slice(0,160)});
       if(!/^[A-Za-z0-9_-]{11}$/.test(note.id))throw new Error('Invalid notebook response');
       saved=true;await chrome.tabs.create({url:`${config.base}/#note=${note.id}`});
-      if(note.revisions?.length || ['queued','summarizing'].includes(note.state))return {ok:true,message:'Opened your saved notebook'};
+      if(note.revisions?.length || ['queued','summarizing'].includes(note.state))return {ok:true,message:msg('saved','Saved')};
       const [{result:captured}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[true,id]});
       // Recheck the page identity after asynchronous extraction to avoid mixing SPA videos.
       const current=await chrome.tabs.get(sender.tab.id);
@@ -73,7 +74,7 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
       if(currentId!==id)throw new Error('Video changed during capture. Your notebook was saved; capture the intended video again.');
       if(!captured?.transcript)throw new Error(captured?.error || 'No captions available; paste a transcript in your saved notebook');
       await api(config,`/notes/${id}/transcript`,{transcript:captured.transcript,source:captured.source});
-      return {ok:true,message:'Saved · summary is on its way'};
+      return {ok:true,message:msg('saved','Saved')};
     }catch(error){if(saved)return {ok:true,needsTranscript:true,message:`Your notebook was saved. ${error.message}`};throw error;}
     finally{captures.delete(id);}
   })().then(sendResponse,error=>sendResponse({ok:false,error:error.message || 'Start the Clay Notes service and try again'}));

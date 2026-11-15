@@ -1,4 +1,5 @@
 (()=>{
+  const msg=(name,fallback)=>chrome.i18n?.getMessage(name) || fallback;
   let previous=location.href;
   function mount(){
     const url=new URL(location.href);
@@ -8,11 +9,11 @@
     const target=document.querySelector('#top-level-buttons-computed') || document.querySelector('#actions ytd-menu-renderer');
     if(!target || existing)return;
     const button=document.createElement('button');button.id='represent-clay-notes';button.type='button';button.className='represent-clay-button';
-    button.textContent='✦ Clay Notes';button.title='Save this video and automatically summarize its transcript';
+    button.textContent=msg('captureLabel','✦ Clay Notes');button.title=msg('saveVideo','Save a video');
     button.addEventListener('click',async()=>{
-      button.disabled=true;button.textContent='Saving…';
-      try{const result=await chrome.runtime.sendMessage({type:'clay.capture'});if(!result?.ok)throw new Error(result?.error || 'Capture failed');button.textContent=result.needsTranscript?'✓ Saved · add transcript':'✓ Saved';button.title=result.message;if(result.needsTranscript)showMessage(result.message);}
-      catch(error){button.textContent='↻ Try Clay Notes';button.title=error.message;showMessage(error.message);}
+      button.disabled=true;button.textContent=msg('saving','Working…');
+      try{const result=await chrome.runtime.sendMessage({type:'clay.capture'});if(!result?.ok)throw new Error(result?.error || msg('captureFailed','Needs attention'));button.textContent=`✓ ${msg('saved','Saved')}${result.needsTranscript?' · '+msg('needsTranscript','Needs transcript'):''}`;button.title=result.message;if(result.needsTranscript)showMessage(msg('noCaptions',result.message));}
+      catch(error){button.textContent=`↻ ${msg('captureLabel','Clay Notes')}`;button.title=error.message;showMessage(error.message);}
       finally{button.disabled=false;}
     });
     target.append(button);

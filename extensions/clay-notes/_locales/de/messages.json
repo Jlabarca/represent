@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "Meine Bibliothek"
+  },
+  "saveVideo": {
+    "message": "Video speichern"
+  },
+  "mainStatements": {
+    "message": "Kernaussagen"
+  },
+  "conclusions": {
+    "message": "Die Schlussfolgerungen"
+  },
+  "saving": {
+    "message": "Wird erstellt…"
+  },
+  "saved": {
+    "message": "Gespeichert"
+  },
+  "needsTranscript": {
+    "message": "Transkript fehlt"
+  },
+  "retry": {
+    "message": "Zusammenfassung erneut versuchen"
+  },
+  "captureFailed": {
+    "message": "Bitte prüfen"
+  },
+  "heading": {
+    "message": "Vom Video zum Wesentlichen."
+  },
+  "help": {
+    "message": "Starte den lokalen Dienst, öffne Chrome verbinden in der Bibliothek und kopiere den Code."
+  },
+  "address": {
+    "message": "Adresse des lokalen Dienstes"
+  },
+  "pairingCode": {
+    "message": "Lokaler Verbindungscode"
+  },
+  "connect": {
+    "message": "Chrome verbinden"
+  },
+  "connected": {
+    "message": "Verbunden. Öffne ein YouTube-Video und klicke auf Clay Notes."
+  },
+  "addressError": {
+    "message": "Nutze die lokale Adresse, die der Dienst anzeigt."
+  },
+  "codeError": {
+    "message": "Füge den vollständigen Verbindungscode ein."
+  },
+  "pairingFailed": {
+    "message": "Verbindung fehlgeschlagen. Prüfe den Code und ob der Dienst läuft."
+  },
+  "privacy": {
+    "message": "Der Code verbindet deine lokale Bibliothek. Der Gateway-Schlüssel bleibt im Dienst."
+  },
+  "pairFirst": {
+    "message": "Verbinde zuerst die Erweiterung mit Clay Notes."
+  },
+  "noCaptions": {
+    "message": "Keine Untertitel verfügbar. Öffne das Transkript oder füge es im Notizbuch ein."
+  },
+  "extName": {
+    "message": "Clay Notes — Das Wichtigste"
+  },
+  "extDescription": {
+    "message": "Clay Notes: Video speichern. Kernaussagen. Die Schlussfolgerungen."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

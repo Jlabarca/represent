@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "مكتبتي"
+  },
+  "saveVideo": {
+    "message": "حفظ فيديو"
+  },
+  "mainStatements": {
+    "message": "الأفكار الرئيسية"
+  },
+  "conclusions": {
+    "message": "الاستنتاجات"
+  },
+  "saving": {
+    "message": "جارٍ العمل…"
+  },
+  "saved": {
+    "message": "محفوظ"
+  },
+  "needsTranscript": {
+    "message": "بحاجة إلى نص"
+  },
+  "retry": {
+    "message": "إعادة محاولة التلخيص"
+  },
+  "captureFailed": {
+    "message": "بحاجة إلى مراجعة"
+  },
+  "heading": {
+    "message": "من المشاهدة إلى الخلاصة."
+  },
+  "help": {
+    "message": "شغّل الخدمة المحلية وافتح ربط Chrome في مكتبتك ثم انسخ الرمز."
+  },
+  "address": {
+    "message": "عنوان الخدمة المحلية"
+  },
+  "pairingCode": {
+    "message": "رمز الاقتران المحلي"
+  },
+  "connect": {
+    "message": "ربط Chrome"
+  },
+  "connected": {
+    "message": "تم الاتصال. افتح فيديو YouTube واضغط Clay Notes."
+  },
+  "addressError": {
+    "message": "استخدم العنوان المحلي الذي تعرضه الخدمة."
+  },
+  "codeError": {
+    "message": "الصق رمز الاقتران كاملًا."
+  },
+  "pairingFailed": {
+    "message": "فشل الاقتران. تحقق من الرمز ومن تشغيل الخدمة."
+  },
+  "privacy": {
+    "message": "يربط الرمز مكتبتك المحلية. يبقى مفتاح البوابة في الخدمة."
+  },
+  "pairFirst": {
+    "message": "اربط الإضافة بـ Clay Notes أولًا."
+  },
+  "noCaptions": {
+    "message": "النص غير متاح. افتح النص أو الصقه في دفترك المحفوظ."
+  },
+  "extName": {
+    "message": "Clay Notes — الخلاصة"
+  },
+  "extDescription": {
+    "message": "Clay Notes: حفظ فيديو. الأفكار الرئيسية. الاستنتاجات."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

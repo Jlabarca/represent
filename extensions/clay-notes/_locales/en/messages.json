@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "My library"
+  },
+  "saveVideo": {
+    "message": "Save a video"
+  },
+  "mainStatements": {
+    "message": "Main statements"
+  },
+  "conclusions": {
+    "message": "What it comes down to"
+  },
+  "saving": {
+    "message": "Working…"
+  },
+  "saved": {
+    "message": "Saved"
+  },
+  "needsTranscript": {
+    "message": "Needs transcript"
+  },
+  "retry": {
+    "message": "Try summary again"
+  },
+  "captureFailed": {
+    "message": "Needs attention"
+  },
+  "heading": {
+    "message": "From play to takeaway."
+  },
+  "help": {
+    "message": "Start the local service, open Connect Chrome in your library, and copy the pairing code."
+  },
+  "address": {
+    "message": "Local service address"
+  },
+  "pairingCode": {
+    "message": "Local pairing code"
+  },
+  "connect": {
+    "message": "Connect Chrome"
+  },
+  "connected": {
+    "message": "Connected. Open a YouTube video and click Clay Notes."
+  },
+  "addressError": {
+    "message": "Use the local address shown by your service."
+  },
+  "codeError": {
+    "message": "Paste the full pairing code."
+  },
+  "pairingFailed": {
+    "message": "Pairing failed. Check the code and make sure the service is running."
+  },
+  "privacy": {
+    "message": "The pairing code connects your local library. The gateway key stays on the service."
+  },
+  "pairFirst": {
+    "message": "Pair the extension with Clay Notes first."
+  },
+  "noCaptions": {
+    "message": "No captions available. Open the transcript or paste it in your saved notebook."
+  },
+  "extName": {
+    "message": "Clay Notes — The takeaway"
+  },
+  "extDescription": {
+    "message": "Clay Notes: Save a video. Main statements. What it comes down to."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "Ma bibliothèque"
+  },
+  "saveVideo": {
+    "message": "Enregistrer une vidéo"
+  },
+  "mainStatements": {
+    "message": "Affirmations principales"
+  },
+  "conclusions": {
+    "message": "Les conclusions"
+  },
+  "saving": {
+    "message": "En cours…"
+  },
+  "saved": {
+    "message": "Enregistré"
+  },
+  "needsTranscript": {
+    "message": "Transcription requise"
+  },
+  "retry": {
+    "message": "Réessayer le résumé"
+  },
+  "captureFailed": {
+    "message": "À vérifier"
+  },
+  "heading": {
+    "message": "De la vidéo à l’essentiel."
+  },
+  "help": {
+    "message": "Démarrez le service local, ouvrez Connecter Chrome dans votre bibliothèque et copiez le code."
+  },
+  "address": {
+    "message": "Adresse du service local"
+  },
+  "pairingCode": {
+    "message": "Code de connexion local"
+  },
+  "connect": {
+    "message": "Connecter Chrome"
+  },
+  "connected": {
+    "message": "Connecté. Ouvrez une vidéo YouTube et cliquez sur Clay Notes."
+  },
+  "addressError": {
+    "message": "Utilisez l’adresse locale indiquée par le service."
+  },
+  "codeError": {
+    "message": "Collez le code de connexion complet."
+  },
+  "pairingFailed": {
+    "message": "Échec de connexion. Vérifiez le code et le fonctionnement du service."
+  },
+  "privacy": {
+    "message": "Le code connecte la bibliothèque locale. La clé reste dans le service."
+  },
+  "pairFirst": {
+    "message": "Connectez d’abord l’extension à Clay Notes."
+  },
+  "noCaptions": {
+    "message": "Sous-titres indisponibles. Ouvrez la transcription ou collez-la dans votre carnet."
+  },
+  "extName": {
+    "message": "Clay Notes — L’essentiel"
+  },
+  "extDescription": {
+    "message": "Clay Notes: Enregistrer une vidéo. Affirmations principales. Les conclusions."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

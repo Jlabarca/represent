@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "ライブラリ"
+  },
+  "saveVideo": {
+    "message": "動画を保存"
+  },
+  "mainStatements": {
+    "message": "主な主張"
+  },
+  "conclusions": {
+    "message": "結論"
+  },
+  "saving": {
+    "message": "処理中…"
+  },
+  "saved": {
+    "message": "保存済み"
+  },
+  "needsTranscript": {
+    "message": "文字起こしが必要"
+  },
+  "retry": {
+    "message": "要約を再試行"
+  },
+  "captureFailed": {
+    "message": "確認が必要"
+  },
+  "heading": {
+    "message": "動画から、要点へ。"
+  },
+  "help": {
+    "message": "ローカルサービスを起動し、ライブラリの「Chrome に接続」でコードをコピーしてください。"
+  },
+  "address": {
+    "message": "ローカルサービスのアドレス"
+  },
+  "pairingCode": {
+    "message": "ローカル接続コード"
+  },
+  "connect": {
+    "message": "Chrome に接続"
+  },
+  "connected": {
+    "message": "接続しました。YouTube 動画で Clay Notes をクリックしてください。"
+  },
+  "addressError": {
+    "message": "サービスに表示されるローカルアドレスを使ってください。"
+  },
+  "codeError": {
+    "message": "接続コードをすべて貼り付けてください。"
+  },
+  "pairingFailed": {
+    "message": "接続できません。コードとサービスの起動状態を確認してください。"
+  },
+  "privacy": {
+    "message": "接続コードはローカルライブラリ用です。ゲートウェイのキーはサービス内に保持されます。"
+  },
+  "pairFirst": {
+    "message": "先に拡張機能を Clay Notes に接続してください。"
+  },
+  "noCaptions": {
+    "message": "字幕を取得できません。文字起こしを開くか、保存したノートに貼り付けてください。"
+  },
+  "extName": {
+    "message": "Clay Notes — 要点"
+  },
+  "extDescription": {
+    "message": "Clay Notes: 動画を保存. 主な主張. 結論."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

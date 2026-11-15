@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "मेरी लाइब्रेरी"
+  },
+  "saveVideo": {
+    "message": "वीडियो सहेजें"
+  },
+  "mainStatements": {
+    "message": "मुख्य कथन"
+  },
+  "conclusions": {
+    "message": "निष्कर्ष"
+  },
+  "saving": {
+    "message": "काम जारी है…"
+  },
+  "saved": {
+    "message": "सहेजा गया"
+  },
+  "needsTranscript": {
+    "message": "ट्रांसक्रिप्ट चाहिए"
+  },
+  "retry": {
+    "message": "सारांश फिर बनाएँ"
+  },
+  "captureFailed": {
+    "message": "ध्यान दें"
+  },
+  "heading": {
+    "message": "वीडियो से मुख्य बातों तक।"
+  },
+  "help": {
+    "message": "स्थानीय सेवा चालू करें, लाइब्रेरी में Chrome जोड़ें खोलें और कोड कॉपी करें।"
+  },
+  "address": {
+    "message": "स्थानीय सेवा का पता"
+  },
+  "pairingCode": {
+    "message": "स्थानीय पेयरिंग कोड"
+  },
+  "connect": {
+    "message": "Chrome जोड़ें"
+  },
+  "connected": {
+    "message": "कनेक्ट हो गया। YouTube वीडियो खोलें और Clay Notes क्लिक करें।"
+  },
+  "addressError": {
+    "message": "सेवा में दिखाया गया स्थानीय पता इस्तेमाल करें।"
+  },
+  "codeError": {
+    "message": "पूरा पेयरिंग कोड चिपकाएँ।"
+  },
+  "pairingFailed": {
+    "message": "पेयरिंग विफल। कोड जाँचें और सेवा चालू होना सुनिश्चित करें।"
+  },
+  "privacy": {
+    "message": "पेयरिंग कोड स्थानीय लाइब्रेरी जोड़ता है। गेटवे की कुंजी सेवा पर रहती है।"
+  },
+  "pairFirst": {
+    "message": "पहले एक्सटेंशन को Clay Notes से जोड़ें।"
+  },
+  "noCaptions": {
+    "message": "कैप्शन उपलब्ध नहीं। ट्रांसक्रिप्ट खोलें या सहेजी नोटबुक में चिपकाएँ।"
+  },
+  "extName": {
+    "message": "Clay Notes — मुख्य बातें"
+  },
+  "extDescription": {
+    "message": "Clay Notes: वीडियो सहेजें. मुख्य कथन. निष्कर्ष."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "library": {
+    "message": "La mia raccolta"
+  },
+  "saveVideo": {
+    "message": "Salva un video"
+  },
+  "mainStatements": {
+    "message": "Affermazioni principali"
+  },
+  "conclusions": {
+    "message": "Le conclusioni"
+  },
+  "saving": {
+    "message": "Elaborazione…"
+  },
+  "saved": {
+    "message": "Salvato"
+  },
+  "needsTranscript": {
+    "message": "Serve la trascrizione"
+  },
+  "retry": {
+    "message": "Riprova il riassunto"
+  },
+  "captureFailed": {
+    "message": "Da controllare"
+  },
+  "heading": {
+    "message": "Dal video al riassunto."
+  },
+  "help": {
+    "message": "Avvia il servizio locale, apri Collega Chrome nella raccolta e copia il codice."
+  },
+  "address": {
+    "message": "Indirizzo del servizio locale"
+  },
+  "pairingCode": {
+    "message": "Codice di collegamento locale"
+  },
+  "connect": {
+    "message": "Collega Chrome"
+  },
+  "connected": {
+    "message": "Collegato. Apri un video YouTube e fai clic su Clay Notes."
+  },
+  "addressError": {
+    "message": "Usa l’indirizzo locale mostrato dal servizio."
+  },
+  "codeError": {
+    "message": "Incolla il codice di collegamento completo."
+  },
+  "pairingFailed": {
+    "message": "Collegamento non riuscito. Verifica il codice e che il servizio sia attivo."
+  },
+  "privacy": {
+    "message": "Il codice collega la raccolta locale. La chiave del gateway rimane nel servizio."
+  },
+  "pairFirst": {
+    "message": "Collega prima l’estensione a Clay Notes."
+  },
+  "noCaptions": {
+    "message": "Sottotitoli non disponibili. Apri la trascrizione o incollala nel taccuino."
+  },
+  "extName": {
+    "message": "Clay Notes — Il riassunto"
+  },
+  "extDescription": {
+    "message": "Clay Notes: Salva un video. Affermazioni principali. Le conclusioni."
+  },
+  "captureLabel": {
+    "message": "✦ Clay Notes"
+  }
+}
