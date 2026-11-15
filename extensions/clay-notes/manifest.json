@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Clay Notes — YouTube, distilled",
+  "version": "0.1.0",
+  "description": "Save a YouTube video to Represent and automatically summarize its transcript through your Ghost gateway.",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["https://www.youtube.com/*", "http://127.0.0.1/*"],
+  "background": {"service_worker": "background.js"},
+  "action": {"default_title": "Open Clay Notes"},
+  "options_page": "options.html",
+  "content_scripts": [{"matches": ["https://www.youtube.com/*"], "js": ["content.js"], "css": ["content.css"], "run_at": "document_idle"}]
+}

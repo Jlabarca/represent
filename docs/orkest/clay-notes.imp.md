@@ -90,7 +90,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-8.2.1 — Add the authenticated loopback service/CLI, responsive Satoshi/clay library and notebook, and unpacked MV3 YouTube extension. Test service auth/jobs/recovery and extension contracts; package a local installable directory.
+- [x] REP-8.2.1 — Add the authenticated loopback service/CLI, responsive Satoshi/clay library and notebook, and unpacked MV3 YouTube extension. Test service auth/jobs/recovery and extension contracts; package a local installable directory. — evidence: C:/Python312/python.exe D:/ware/represent/tmp/run-clay-tests.py tests/clay-notes*.test.mjs: 15/15 passed, skipped=0, output sha256=0539400760850b5a76446ba024847a12eb8789c7b62ddfa793609712e92def27
 
 ### Phase 3 — QA and operating guide
 

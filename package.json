@@ -16,6 +16,7 @@
     "alegor": "node src/alegor/cli.mjs",
     "pilot": "node scripts/visu-pilot.mjs",
     "test:trazo": "node --test tests/trazo*.test.mjs",
-    "trazo": "node src/trazo/cli.mjs"
+    "trazo": "node src/trazo/cli.mjs",
+    "clay-notes": "node src/clay-notes/cli.mjs serve"
   }
 }
