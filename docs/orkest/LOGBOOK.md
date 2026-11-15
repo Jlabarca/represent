@@ -583,3 +583,24 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Commit grounded phase4 for cache-first full-art TCG cards, persisted reorder/filter/sort and validated image attachments; phase5 revises public gateway request and writes hosted Google/extension deployment plus general NotebookLM roadmap.
+
+## 2026-11-15 — REP-9.4
+
+### Accomplished
+
+- REP-9.4 source checkpointd177508 implements cache-first full-art TCG collection, default YouTube art, validated image attachments/covers, saved filtered reorder, sorting/search/filtering and reduced-motion-aware native effects.
+- Focused46/46; strict full gate20261115T223610Z-clay-tcg-phase4-69a57571 passed118/118 atd177508, zero failures/errors/skips. Browser desktop light/dark,390px Arabic RTL, settings, saved keyboard order, sort/search/filter, image upload/cover/reload/default restore verified; screenshots committed.
+
+### Decisions
+
+- Native CSS3D/Pointer Events/Web Animations retain buildless stack. Image bytes are authenticated files with8-per-notebook/2MiB limits; existing thumbnail is default. Images are not yet OCR/vision sources.
+- Cache holds minimal local card metadata for seven days before independent notes/config refresh; hosted release must scope it per account and purge at signout. Read-only implementation review found no concrete blockers.
+
+### Blockers
+
+- Physical pointer dragging was source reviewed but not directly automated by available browser APIs; keyboard movement and persistence were exercised.
+- Hosted Google auth, own-key Apply/lane tests, live paid allowance and Web Store publication remain unperformed; no model summaries fabricated.
+
+### Next
+
+- Commit phase5 hosted Google/no-Access/no-pairing deployment and future general-notebook roadmap; revise the unapplied gateway request for customer audience before operator Review.

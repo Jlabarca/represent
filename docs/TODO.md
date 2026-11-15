@@ -147,3 +147,5 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 - REP-9.2 — Shipped; continue the next runnable phase.
 
 - REP-9.3 — Shipped; continue the next runnable phase.
+
+- REP-9.4 — Shipped; continue the next runnable phase.

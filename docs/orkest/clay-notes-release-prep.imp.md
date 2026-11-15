@@ -38,7 +38,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 | REP-9.1 | Shipped | current | current | Gateway request and release decisions |
 | REP-9.2 | Shipped | current | current | Ten-language site and Chrome copy |
 | REP-9.3 | Shipped | current | current | Packaging, video access trials and release guide |
-| REP-9.4 | [ ] not started | current | current | Cache-first full-art TCG collection, reorder and image covers |
+| REP-9.4 | Shipped | current | current | Cache-first full-art TCG collection, reorder and image covers |
 | REP-9.5 | [ ] not started | current | current | Hosted Google/extension deployment and general NotebookLM roadmap |
 
 ## Checklist
@@ -194,3 +194,7 @@ Cache-first startup reads a bounded versioned minimal library cache before any a
 Pins: /api/notes list gains cover/order metadata (update app and tests in this box); static allowlist adds collection.mjs; core old 11-char IDs remain readable. Existing source exporter/parser and Chrome local capture unchanged; SaaS extension auth is later plan and not claimed complete. Test meaningful red for old notebook contract, filtered reorder durability, media validation/read auth and cache first paint independent of delayed config. Run focused tests after implementation then full strict phase gate and browser evidence on isolated three-source store; no provider calls.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/TODO.md`, `docs/reference/clay-notes-release-prep.md`, `experiments/clay-notes/release-prep/browser-check.json`, `experiments/clay-notes/release-prep/settings-dark.jpg`, `experiments/clay-notes/release-prep/tcg-dark.jpg`, `experiments/clay-notes/release-prep/tcg-light.jpg`, `experiments/clay-notes/release-prep/tcg-mobile.jpg`, `src/clay-notes/core.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/collection.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `tests/clay-notes-collection.test.mjs`.
+
+### Phase 4 QA — 2026-11-15
+
+No mechanical QA findings.
