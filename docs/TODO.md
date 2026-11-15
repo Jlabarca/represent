@@ -5,7 +5,7 @@
 
 ## Active sprint: Clay Notes (2026-11-15)
 
-User priority: YouTube → automatic Ghost TLDR → a simple clay/Satoshi notebook library. [REP-8](orkest/clay-notes.imp.md), [operating reference](reference/clay-notes.md), [browser evidence](../experiments/clay-notes/browser-check.json). Local implementation is undergoing final verification. The next external trial is an installed Chrome capture and an authorized consumer-key response; no fixture result completes those trials. Existing Represent consumer models are json/gemini-flash only; do not assume cheap/smart access or borrow operator credentials.
+User priority: YouTube → automatic Ghost TLDR → a simple clay/Satoshi notebook library. [REP-8](orkest/clay-notes.imp.md), [operating reference](reference/clay-notes.md), [browser evidence](../experiments/clay-notes/browser-check.json). Local implementation passed 24 focused checks, 96/96 full regressions and twelve browser checks. The next external trial is an installed Chrome capture and an authorized consumer-key response; no fixture result completes those trials. Existing Represent consumer models are json/gemini-flash only; do not assume cheap/smart access or borrow operator credentials.
 
 ## Deferred sprint: Trazo POC (2026-10-25; superseded in priority 2026-11-15)
 
@@ -120,7 +120,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 
 ## Implementation queue
 
-- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — local implementation under final verification; external live trials remain unverified.
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — verified local MVP; external live trials remain unverified.
 
 - REP-8.1 — Shipped; continue the next runnable phase.
 

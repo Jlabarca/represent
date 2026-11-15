@@ -56,11 +56,11 @@ flowchart LR
 
 ## Current State
 
-Grounded plan only. Implementation, live YouTube compatibility and paid gateway success are not yet claimed.
+Local MVP implemented at source checkpoint caaf831, with phase QA/bookkeeping complete. Twenty-four domain/API/extension-worker tests passed. Full strict regression gate 20261115T202648Z-clay-notes-full-14470a96 passed 96/96 with no skips/errors, and twelve browser observations are recorded in [the evidence](../../experiments/clay-notes/README.md). [Operating reference](../reference/clay-notes.md) describes the as-built setup and limits. Installed-Chrome caption capture and a real Ghost response remain unverified; no paid call or gateway consumer change was made. This tracker closes the verified local implementation only; first-use external trials remain in TODO.
 
 ## Known Bugs
 
-None in new code yet. YouTube caption extraction is a volatile integration and must have a clear missing-caption recovery state.
+No open reproducible local defect after review and regression checks. YouTube caption extraction is a volatile integration with an explicit saved-but-needs-transcript recovery state; actual installed-Chrome compatibility is still unverified.
 
 ## What Needs Testing
 
