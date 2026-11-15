@@ -37,7 +37,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 |---|---|---|---|---|
 | REP-9.1 | Shipped | current | current | Gateway request and release decisions |
 | REP-9.2 | Shipped | current | current | Ten-language site and Chrome copy |
-| REP-9.3 | [ ] not started | current | current | Packaging, video access trials and release guide |
+| REP-9.3 | Shipped | current | current | Packaging, video access trials and release guide |
 
 ## Checklist
 
@@ -142,3 +142,7 @@ Latest scope queue after this phase: tactile TCG collection with durable reorder
 Verification: focused Node tests with actual TAP counts; deterministic lock and session regressions precede implementation. Run full suite through a strict gate once final source/settings/card changes are complete, plus required committed-head receipts. Retain failed attempts. No plain success claim before all required proof and browser checks. Exact ownership remains the helper's committed path inventory.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/guides/clay-notes-release.md`, `docs/reference/clay-notes-release-prep.md`, `docs/reference/clay-notes.md`, `experiments/clay-notes/release-prep/README.md`, `experiments/clay-notes/release-prep/arabic-mobile.jpg`, `experiments/clay-notes/release-prep/arabic.jpg`, `experiments/clay-notes/release-prep/browser-check.json`, `experiments/clay-notes/release-prep/package.json`, `experiments/clay-notes/release-prep/source-notebook.jpg`, `experiments/clay-notes/release-prep/spanish.jpg`, `experiments/clay-notes/release-prep/video-trials.json`, `extensions/clay-notes/icons/128.png`, `extensions/clay-notes/icons/16.png`, `extensions/clay-notes/icons/32.png`, `extensions/clay-notes/icons/48.png`, `extensions/clay-notes/icons/icon.svg`, `extensions/clay-notes/manifest.json`, `scripts/clay-notes-icons.mjs`, `scripts/clay-notes-package.mjs`, `scripts/clay-notes-test.mjs`, `scripts/clay-notes-video-trial.mjs`, `src/clay-notes/core.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/session.mjs`, `src/clay-notes/web/style.css`, `tests/clay-notes-preferences.test.mjs`, `tests/clay-notes-release.test.mjs`, `tests/clay-notes-server.test.mjs`.
+
+### Phase 3 QA — 2026-11-15
+
+No mechanical QA findings.

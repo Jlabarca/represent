@@ -563,3 +563,23 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Re-plan the bounded phase with explicit core/server/UI/test paths, repair atomic replacement and web authentication, then implement requested settings. Earn fresh test evidence before checking any box; TCG library and general-notebook roadmap follow.
+
+## 2026-11-15 — REP-9.3
+
+### Accomplished
+
+- REP-9.3 source checkpoint51c5825: deterministic extension ZIP0.2.0, three source-only transcript trials (1481 segments/58387chars), Windows atomic-replace and web-session regression fixes, persistent language/appearance settings.
+- Strict phase gate20261115T221428Z-clay-release-phase3-b85385ae passed113/113 with0failures/errors/skips at51c5825; focused41/41 and browser saved English/dark reload verified.
+
+### Decisions
+
+- Website cookie namespace follows loopback port; one bounded auth bootstrap replaces the misleading extension-pairing web error. No customer auth claim follows from local session repair.
+- User expands delivery to Google-auth SaaS atclay.maremoto.dev, no Cloudflare Access/local setup, full-art TCG cards, image covers, immediate cached collection; next committed phases own this work.
+
+### Blockers
+
+- Own-key gateway Apply SHA/lane-test and separate live paid-call allowance remain absent. No real summaries, extension install/store publication or hosted auth/deploy claimed.
+
+### Next
+
+- Commit grounded phase4 for cache-first full-art TCG cards, persisted reorder/filter/sort and validated image attachments; phase5 revises public gateway request and writes hosted Google/extension deployment plus general NotebookLM roadmap.
