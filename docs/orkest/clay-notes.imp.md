@@ -82,7 +82,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-8.1.1 — Implement and behavior-test the durable video notebook store, transcript parser and Ghost summary/chat adapter in src/clay-notes/core.mjs and tests/clay-notes.test.mjs; preserve prior revisions on failure and deduplicate video IDs.
+- [x] REP-8.1.1 — Implement and behavior-test the durable video notebook store, transcript parser and Ghost summary/chat adapter in src/clay-notes/core.mjs and tests/clay-notes.test.mjs; preserve prior revisions on failure and deduplicate video IDs. — evidence: C:/Python312/python.exe D:/ware/represent/tmp/run-clay-tests.py: 9/9 passed, skipped=0, output sha256=dcab67dc18df0bcb6a971f068daa48efd84ec5eeadfa151c279b69278096604a
 
 ### Phase 2 — Capture and surfaces
 
