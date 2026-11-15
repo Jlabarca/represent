@@ -604,3 +604,24 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Commit phase5 hosted Google/no-Access/no-pairing deployment and future general-notebook roadmap; revise the unapplied gateway request for customer audience before operator Review.
+
+## 2026-11-15 — REP-9.5
+
+### Accomplished
+
+- REP-9.5 documentation checkpointb1d08b9 records a concrete Google-auth SaaS/extension deployment plan forclay.maremoto.dev and a sequenced general NotebookLM-style roadmap after current TCG work.
+- Revised durable and ephemeral own-key request for public audience, cheap summary/default, optional client-anthropic deep, proposed Max forbid and test-only$1/30d backstop. Offline contract/link check verified4docs/29local links; independent read-only review found no blockers.
+
+### Decisions
+
+- Customers use Google accounts with existing-session extension handoff or one normal initial sign-in; no Cloudflare Access, pairing code or local service. Current local shared-session server must never be simply exposed publicly.
+- Proposed Node/lab1 app-only HTTPS edge retains private gateway; account ownership, PostgreSQL jobs/spend reservations, per-account cache purge and stable-ID PKCE extension flow are implementation slices, not deployed claims.
+- Broad notebooks roadmap separates multiple source types/versions/citations from current YouTube captions and image attachments; OCR/vision, rich studio and sharing remain future capabilities.
+
+### Blockers
+
+- Operator Google client/callback/stable extension-ID configuration, hosted code/deployment, gateway Apply SHA/lane-test and separate paid allowance are not yet supplied/executed. No credentials read or shared, no registry/queue/runner mutation, no live inference/store publication.
+
+### Next
+
+- Finish final committed-head regressions/audit and promote this preparation tracker. Next hosted implementation earns the documented account/isolation/job/extension slices; operator reviews the revised request, applies it and returns SHA/lane-tests before gateway wiring.

@@ -39,7 +39,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 | REP-9.2 | Shipped | current | current | Ten-language site and Chrome copy |
 | REP-9.3 | Shipped | current | current | Packaging, video access trials and release guide |
 | REP-9.4 | Shipped | current | current | Cache-first full-art TCG collection, reorder and image covers |
-| REP-9.5 | [ ] not started | current | current | Hosted Google/extension deployment and general NotebookLM roadmap |
+| REP-9.5 | Shipped | current | current | Hosted Google/extension deployment and general NotebookLM roadmap |
 
 ## Checklist
 
@@ -210,3 +210,7 @@ Revise still-unapplied gateway request from operator to public audience, propose
 After current cards complete, sequence future NotebookLM-style capabilities: generic source/notebook model and text/web/PDF first, then office/Drive with explicit scopes, OCR/images/audio/video ingestion, multi-source cited Q&A/search/source selection/revisions, editable reports/mind maps/study artifacts, audio/video overviews/slides/infographics, collaboration/sharing/mobile. Prioritize grounded evidence and cost/quality acceptance over unchecked feature-parity claims. Supported-format matrix explicitly separates current thumbnail/image attachment from OCR/vision. Use official Notebook help sources as comparison, not instructions; no borrowed exact proprietary UI or artwork. Verification: exact documentation diff, offline link/contract checks with zero inference; full final code regression remains required on committed source, no public deployment or live auth asserted.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/design/clay-notes-gateway-request.md`, `docs/design/clay-notes-service-roadmap.md`, `docs/guides/clay-notes-release.md`, `docs/reference/clay-notes-release-prep.md`.
+
+### Phase 5 QA — 2026-11-15
+
+No mechanical QA findings.

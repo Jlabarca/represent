@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "phase": "5",
+  "base": "9f9610168382ddddb9b1f70a72eef23b0ebcd692",
+  "source_head": "b1d08b9fcc7d28cbfc458892937c9903ea1dfef9",
+  "audited_head": "b1d08b9fcc7d28cbfc458892937c9903ea1dfef9",
+  "source_fingerprint": {
+    "docs/CONTEXT.md": "c66238f18ae0a6558b8723b62dbf2618d61689e83f270bddfbf1b33add5509b7",
+    "docs/README.md": "dac969aabfa456d39d810993721ec095f19c4355252d1d32b472147325398a74",
+    "docs/TODO.md": "0b450624a3b37dcbcd8c9a9770b605c15012ef595823d6c838b96b28c9227113",
+    "docs/design/clay-notes-gateway-request.md": "cca7e4e5992ba8be59cca5253759739bd4a9c1170428d4e91641ea5e2387fcdc",
+    "docs/design/clay-notes-service-roadmap.md": "2c995e87c59c6ff7d0d80e1369d5e6238777bc414bd204186188a5ba33e0a082",
+    "docs/guides/clay-notes-release.md": "1ec4c4fae73e6afe77f40b6cf599ff57b298d49e836fc20d3b178c0dc3ce1aa5",
+    "docs/reference/clay-notes-release-prep.md": "2e4ad5dc4bff8ef96380c65788a242f0c1587913db69ca3326df4e764223ca72"
+  },
+  "diff_sha256": "8a9828d35044fa8cb36ed82707cac0f1715cc0d8d0fa51fb664f4a602fd5d9d2",
+  "owned_paths": [
+    "docs/CONTEXT.md",
+    "docs/README.md",
+    "docs/TODO.md",
+    "docs/design/clay-notes-gateway-request.md",
+    "docs/design/clay-notes-service-roadmap.md",
+    "docs/guides/clay-notes-release.md",
+    "docs/reference/clay-notes-release-prep.md"
+  ],
+  "tests": [
+    {
+      "id": "f69df11c-e13b-4419-9d0f-61743419615d",
+      "phase": "5",
+      "box": null,
+      "project": ".",
+      "command": [
+        "C:/Python312/python.exe",
+        "-B",
+        "tmp/clay-service-doccheck.py"
+      ],
+      "expected": "green",
+      "exit_code": 0,
+      "accepted": true,
+      "fingerprint": {
+        "docs/CONTEXT.md": "c66238f18ae0a6558b8723b62dbf2618d61689e83f270bddfbf1b33add5509b7",
+        "docs/README.md": "dac969aabfa456d39d810993721ec095f19c4355252d1d32b472147325398a74",
+        "docs/TODO.md": "0b450624a3b37dcbcd8c9a9770b605c15012ef595823d6c838b96b28c9227113",
+        "docs/design/clay-notes-gateway-request.md": "cca7e4e5992ba8be59cca5253759739bd4a9c1170428d4e91641ea5e2387fcdc",
+        "docs/design/clay-notes-service-roadmap.md": "2c995e87c59c6ff7d0d80e1369d5e6238777bc414bd204186188a5ba33e0a082",
+        "docs/guides/clay-notes-release.md": "1ec4c4fae73e6afe77f40b6cf599ff57b298d49e836fc20d3b178c0dc3ce1aa5",
+        "docs/reference/clay-notes-release-prep.md": "2e4ad5dc4bff8ef96380c65788a242f0c1587913db69ca3326df4e764223ca72"
+      },
+      "commit": "b1d08b9fcc7d28cbfc458892937c9903ea1dfef9",
+      "skip_budget": 0,
+      "started_at": "2026-11-15T22:45:39.157739+00:00",
+      "duration_s": 0.1,
+      "total": 0,
+      "passed": 0,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "native_skipped": 0,
+      "expected_failed": 0,
+      "unexpected_passed": 0,
+      "output_sha256": "88befcd6426aab8e67ba34369e1c5cbc1354e041b58a5191b1b68bbaeba78ebb"
+    }
+  ],
+  "findings": [],
+  "working_diff_present": false,
+  "untracked": []
+}
