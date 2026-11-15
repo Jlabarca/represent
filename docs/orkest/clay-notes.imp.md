@@ -71,7 +71,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
 | REP-8.1 | Shipped | current session | current | Notebook core and gateway contract |
-| REP-8.2 | [ ] not started | current session | current | Service, library, notebook and Chrome capture |
+| REP-8.2 | Shipped | current session | current | Service, library, notebook and Chrome capture |
 | REP-8.3 | [ ] not started | current session | current | Integration QA and truthful operating reference |
 
 ## Checklist
@@ -147,3 +147,7 @@ Pins: package.json gets clay-notes launch script; existing test glob discovers s
 TDD: first expose a minimal server rejecting nothing and assert an unpaired API request receives 401; execute the meaningful red, then implement. Verify all clay-notes*.test.mjs via TAP-summary adapter. Tests exercise persistence/async summaries, origin/auth, malformed/oversize input, static assets, host validation and extension permissions/message wiring. Browser inspection and full regression in phase 3.
 
 Exact owned files: `extensions/clay-notes/background.js`, `extensions/clay-notes/content.css`, `extensions/clay-notes/content.js`, `extensions/clay-notes/manifest.json`, `extensions/clay-notes/options.css`, `extensions/clay-notes/options.html`, `extensions/clay-notes/options.js`, `package.json`, `src/clay-notes/cli.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/assets/Satoshi-LICENSE.txt`, `src/clay-notes/web/assets/satoshi-400.woff2`, `src/clay-notes/web/assets/satoshi-500.woff2`, `src/clay-notes/web/assets/satoshi-700.woff2`, `src/clay-notes/web/assets/satoshi-900.woff2`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `tests/clay-notes-server.test.mjs`.
+
+### Phase 2 QA — 2026-11-15
+
+No mechanical QA findings.

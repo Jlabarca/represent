@@ -435,3 +435,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Implement authenticated loopback API, Satoshi/clay web surfaces and unpacked Chrome extension.
+
+## 2026-11-15 — REP-8.2
+
+### Accomplished
+
+- Implemented the authenticated local service, durable asynchronous summary queue, Satoshi/clay library and notebook, and unpacked Manifest V3 YouTube capture extension. Fifteen offline domain/API/extension-contract checks pass with no skips.
+
+### Decisions
+
+- Pair Chrome with a local random token; keep the Ghost virtual key exclusively in service memory. Use a buildless ESM web shell with bundled Satoshi fonts and licence. Save/open a notebook before caption extraction; offer transcript paste if YouTube does not expose captions.
+
+### Blockers
+
+- Browser interaction QA, actual installed-extension capture and paid gateway trial remain distinct from fixture tests. The latter needs a dedicated consumer key.
+
+### Next
+
+- Inspect the library/notebook in a browser, exercise extension worker behavior, run existing tool regressions and document verified limits.

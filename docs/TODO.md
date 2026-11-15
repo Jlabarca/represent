@@ -119,3 +119,5 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 - [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.
 
 - REP-8.1 — Shipped; continue the next runnable phase.
+
+- REP-8.2 — Shipped; continue the next runnable phase.
