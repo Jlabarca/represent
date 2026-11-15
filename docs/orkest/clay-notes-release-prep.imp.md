@@ -65,8 +65,6 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 
 - [x] REP-9.3.1 — Create an explicit allow-listed ZIP builder and tests, record real access/transcript results for the three user URLs, update release guide with reproducible install/distribution/rollback steps and verify the whole suite. Keep gateway Apply/wiring and full live summaries explicitly pending. — evidence: node scripts/clay-notes-test.mjs: 41/41 passed, skipped=0, output sha256=5b078bf7b4550311f6acb50849028bd386ebab513020d520cb1f01a3797a610b
 
-## Key Files Reference
-
 ### Phase 4 — Full-art collection
 
 > verify: integration
@@ -80,6 +78,8 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 > verify: docs
 
 - [ ] REP-9.5.1 — Revise unapplied gateway request for customer-facing service; produce concrete Google-auth SaaS/extension deployment plan atclay.maremoto.dev without Cloudflare Access or customer pairing, identify exact OAuth/domain/Apply gates, and sequence future multi-source NotebookLM capabilities after current cards. Do not claim planned auth/deployment as built.
+
+## Key Files Reference
 
 | File | Role |
 |---|---|
