@@ -48,6 +48,13 @@ test('enforces host, origin, auth and same-origin pairing disclosure',async t=>{
   const page=await fetch(app.url);assert.equal(page.status,200);const cookie=page.headers.get('set-cookie').split(';')[0];assert.match(page.headers.get('content-security-policy'),/frame-ancestors 'none'/);
   const own=await fetch(`${app.url}/api/config`,{headers:{cookie}});assert.equal((await own.json()).pairingToken,app.token);
 });
+test('website cookies are isolated by port and web errors never ask for extension pairing',async t=>{
+  const first=await fixture(t),second=await fixture(t);
+  const a=(await fetch(first.url)).headers.get('set-cookie').split(';')[0];const b=(await fetch(second.url)).headers.get('set-cookie').split(';')[0];assert.notEqual(a.split('=')[0],b.split('=')[0]);
+  const cookie=a+'; '+b;for(const app of [first,second])assert.equal((await fetch(app.url+'/api/config',{headers:{cookie}})).status,200);
+  const error=await (await fetch(first.url+'/api/notes')).json();assert.equal(error.code,'web_session_expired');assert.doesNotMatch(error.error,/Pair Clay Notes/);
+  const extensionError=await (await fetch(first.url+'/api/notes',{headers:{Authorization:'Bearer wrong'}})).json();assert.equal(extensionError.code,'extension_not_paired');
+});
 test('bounds and validates inputs while retaining notes on missing AI configuration',async t=>{
   const app=await fixture(t,{models:['cheap'],availableModels:async()=>[],complete:async()=>{throw new Error('No dedicated key configured');}});
   assert.equal((await request(app,'/notes',{method:'POST',data:{url:'https://evil.example'}})).status,400);

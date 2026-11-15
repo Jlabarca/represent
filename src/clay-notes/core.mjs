@@ -1,10 +1,17 @@
-import {mkdir, readFile, writeFile, rename, readdir} from 'node:fs/promises';
+import {mkdir, readFile, writeFile, rename, readdir, unlink} from 'node:fs/promises';
 import {join} from 'node:path';
 import {createHash, randomUUID} from 'node:crypto';
 
 export const TRANSCRIPT_LIMIT = 160_000;
 const ID = /^[A-Za-z0-9_-]{11}$/;
 export const DEFAULT_PROMPT = 'Give me a TLDR list of the main statements and conclusions.';
+export async function replaceFile(source,target,{renameFile=rename,wait=ms=>new Promise(resolve=>setTimeout(resolve,ms)),attempts=7}={}){
+  if(!Number.isInteger(attempts)||attempts<1||attempts>10)throw new Error('Invalid replacement attempt limit');
+  for(let attempt=0;attempt<attempts;attempt++){
+    try{await renameFile(source,target);return true;}
+    catch(error){if(!['EPERM','EACCES','EBUSY'].includes(error.code)||attempt===attempts-1)throw error;await wait(Math.min(10*2**attempt,160));}
+  }
+}
 const clean = (value, max = 500) => String(value ?? '').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g, '').trim().slice(0, max);
 const hash = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 
@@ -126,7 +133,7 @@ export class NotebookStore {
     try { return await next; } finally { if (this.locks.get(id) === next) this.locks.delete(id); }
   }
   async get(id) { try { return JSON.parse(await readFile(this.path(id), 'utf8')); } catch (error) { if (error.code === 'ENOENT') return null; throw error; } }
-  async put(note) { const path = this.path(note.id); const temp = `${path}.${randomUUID()}.tmp`; await writeFile(temp, JSON.stringify(note), {mode:0o600}); await rename(temp, path); return note; }
+  async put(note) { const path = this.path(note.id); const temp = `${path}.${randomUUID()}.tmp`;try{await writeFile(temp, JSON.stringify(note), {mode:0o600});await replaceFile(temp,path);return note;}finally{await unlink(temp).catch(()=>{});} }
   async mutate(id, change) { return this.exclusive(id, async () => { const note = await this.get(id); if (!note) throw new Error('Notebook not found'); await change(note); note.updatedAt = new Date().toISOString(); return this.put(note); }); }
   async create(input) {
     const identity = videoIdentity(input.url);
@@ -160,8 +167,8 @@ export class NotebookStore {
     if (this.jobs.has(id)) return this.jobs.get(id);
     const task = (async () => {
       const note = await this.get(id); if (!note?.segments.length) throw new Error('A transcript is needed before summarizing');
-      await this.mutate(id, n => { n.state = 'summarizing'; n.error = null; });
       try {
+        await this.mutate(id, n => { n.state = 'summarizing'; n.error = null; });
         const {result, metrics} = await this.gateway.complete({model, segments:note.segments});
         return await this.mutate(id, n => {
           if (n.transcriptHash !== note.transcriptHash) throw new Error('Transcript changed during generation. Retry with the current transcript.');

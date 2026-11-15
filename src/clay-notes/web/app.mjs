@@ -1,20 +1,26 @@
-import {locales,resolveLocale,translate,direction,localizeStatic} from './i18n.mjs';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs';
+import {requestJSON} from './session.mjs';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-let locale;
-try{locale=resolveLocale([localStorage.getItem('clay-notes-language') || '',...(navigator.languages || [navigator.language])]);}catch{locale=resolveLocale(navigator.languages || [navigator.language]);}
+let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
+const browserLanguages=()=>navigator.languages?.length?navigator.languages:[navigator.language || 'en'];
+const systemTheme=window.matchMedia('(prefers-color-scheme: dark)');
+const preferences=readPreferences(localStorage,browserLanguages(),systemTheme.matches);
+let locale=preferences.locale,languagePreference=preferences.language,themePreference=preferences.theme;
 const t=(key,values)=>translate(locale,key,values);
 const h=(key,values)=>escape(t(key,values));
 function applyLanguage(){
   document.documentElement.lang=locale;document.documentElement.dir=direction(locale);localizeStatic(document,locale);
-  const select=$('#language');select.innerHTML=locales.map(item=>`<option value="${item.id}" ${locale===item.id?'selected':''}>${item.name}</option>`).join('');
+  const select=$('#language');select.innerHTML=`<option value="auto">${h('Automatic')}</option>`+locales.map(item=>`<option value="${item.id}">${item.name}</option>`).join('');select.value=languagePreference;
+  $('#theme').innerHTML=['auto','light','dark'].map(value=>`<option value="${value}">${h({auto:'Automatic',light:'Light',dark:'Dark'}[value])}</option>`).join('');$('#theme').value=themePreference;
 }
+function applyTheme(){document.documentElement.dataset.theme=resolveTheme(themePreference,systemTheme.matches);if($('#theme'))$('#theme').value=themePreference;}
 const state={notes:[],note:null,config:{models:[]},pinned:false,query:'',tab:'summary',revision:null,model:'cheap',evidence:null,drafts:new Map(),busy:false};
 let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#toast').hidden=true;},5500);}
 async function api(path,{method='GET',data}={}){
-  const response=await fetch(`/api${path}`,{method,headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{})});
-  const body=await response.json();if(!response.ok)throw new Error(body.error || `Request failed (${response.status})`);return body;
+  try{return await requestJSON(fetch,`/api${path}`,{method,headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{})});}
+  catch(error){if(error.code==='web_session_expired')error.message=t('Your local session expired. Reload Clay Notes.');throw error;}
 }
 const time=value=>{const n=Math.floor(Number(value)||0);return n>=3600?`${Math.floor(n/3600)}:${String(Math.floor(n/60)%60).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`:`${Math.floor(n/60)}:${String(n%60).padStart(2,'0')}`;};
 const date=value=>new Date(value).toLocaleDateString(locale,{month:'short',day:'numeric'});
@@ -42,7 +48,7 @@ function renderCards(){
     $('#cards').innerHTML=state.notes.length?`<div class="empty"><div><h3>${state.pinned?t("A place for your favorites."):t("No notes found.")}</h3><p>${state.pinned?t("Pin any video to keep it close."):t("Try another title, channel, or idea.")}</p></div></div>`:`<div class="empty"><div><h3>${h("Your next good idea")}<br>${h("is already playing.")}</h3><p>${h("Bring a video here and leave with its main statements and conclusions. No prompt to type. No notebook to set up.")}</p><button class="dark-button" data-action="add">${h("Save your first video")} ↗</button></div><div class="empty-flow"><div class="flow-step"><span class="step-number">1</span><span>${h("Find something interesting on YouTube.")}</span></div><div class="flow-step"><span class="step-number">2</span><span>${h("Click")} <strong>✦ Clay Notes</strong> ${h("below the video.")}</span></div><div class="flow-step"><span class="step-number">3</span><span>${h("Your notebook opens. The takeaway follows.")}</span></div><button class="quiet-button" data-action="connect">${h("Connect the Chrome extension")} →</button></div></div>`;
     return;
   }
-  $('#cards').innerHTML=`<div class="grid">${notes.map((note,i)=>`<article class="note-card ${['cream','mint','peach','lilac'].includes(note.color)?note.color:['cream','mint','peach','lilac'][i%4]}"><div class="card-top"><span class="video-tag"><span class="play-icon" aria-hidden="true">▶</span>${escape(note.channel || t("YouTube video"))}</span><button class="pin" aria-label="${note.pinned?t("Unpin"):t("Pin")} ${escape(note.title)}" aria-pressed="${note.pinned}" data-action="pin" data-id="${note.id}">${note.pinned?'◆':'◇'}</button></div><button class="card-title" data-action="open" data-id="${note.id}">${escape(note.title)}</button><p class="card-summary">${escape(note.overview || (note.state==='awaiting_transcript'?t("Your video is safe here. Add its transcript to find the main statements and conclusions."):note.error || t("Finding the main statements and conclusions. You can open the notebook while it works.")))}</p>${status(note)}<div class="card-footer"><span>${note.statementCount?`${note.statementCount} ${h("main statements")}`:t("A little clarity, on its way")}</span><span>${escape(date(note.createdAt))} <span aria-hidden="true">↗</span></span></div></article>`).join('')}</div>`;
+  $('#cards').innerHTML=`<div class="grid">${notes.map((note,i)=>`<article class="note-card ${['cream','mint','peach','lilac'].includes(note.color)?note.color:['cream','mint','peach','lilac'][i%4]}"><div class="card-top"><span class="video-tag"><span class="play-icon" aria-hidden="true">▶</span>${escape(note.channel || t("YouTube video"))}</span><button class="pin" aria-label="${note.pinned?t("Unpin"):t("Pin")} ${escape(note.title)}" aria-pressed="${note.pinned}" data-action="pin" data-id="${note.id}">${note.pinned?'◆':'◇'}</button></div><button class="card-title" data-action="open" data-id="${note.id}">${escape(note.title)}</button><p class="card-summary">${escape(note.overview || note.error || t(pendingNoteMessage(note.state)))}</p>${status(note)}<div class="card-footer"><span>${note.statementCount?`${note.statementCount} ${h("main statements")}`:t("A little clarity, on its way")}</span><span>${escape(date(note.createdAt))} <span aria-hidden="true">↗</span></span></div></article>`).join('')}</div>`;
 }
 
 function citations(sources,kind='summary',item='') {return (sources || []).map(index=>`<button class="citation" title="${h("Read supporting transcript")}" aria-label="${h("Read supporting segment")} ${index+1}" data-action="cite" data-source="${index}" data-kind="${kind}" data-item="${item}">[${index+1}]</button>`).join('');}
@@ -129,13 +135,20 @@ document.addEventListener('keydown',event=>{
   const index=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
   state.tab=tabs[index].dataset.tab;renderNotebook();document.querySelector(`.tab[data-tab="${state.tab}"]`)?.focus();
 });
-applyLanguage();
-$('#language').addEventListener('change',event=>{
+applyTheme();applyLanguage();
+$('#settings').addEventListener('click',()=>$('#settings-dialog').showModal());
+function changeLanguage(preference){
   const ids=['question','transcript-input'];const drafts=new Map(ids.map(id=>[id,$(`#${id}`)?.value]));
-  locale=resolveLocale(event.target.value);try{localStorage.setItem('clay-notes-language',locale);}catch{/* Browser storage may be disabled. */}
+  languagePreference=preference==='auto'?'auto':resolveLocale(preference);locale=resolveLocale(languagePreference==='auto'?browserLanguages():[languagePreference]);try{if(localStorage)localStorage.setItem('clay-notes-language',languagePreference);}catch{/* Browser storage may be disabled. */}
   applyLanguage();if(state.note)renderNotebook();else renderLibrary();
   for(const [id,value] of drafts)if(value!==undefined && $(`#${id}`))$(`#${id}`).value=value;
+}
+$('#language').addEventListener('change',event=>changeLanguage(event.target.value));
+$('#theme').addEventListener('change',event=>{
+  themePreference=['light','dark'].includes(event.target.value)?event.target.value:'auto';try{localStorage?.setItem('clay-notes-theme',themePreference);}catch{}applyTheme();
 });
+systemTheme.addEventListener?.('change',()=>{if(themePreference==='auto')applyTheme();});
+window.addEventListener('languagechange',()=>{if(languagePreference==='auto')changeLanguage('auto');});
 try{state.config=await api('/config');state.model=state.config.models.includes(state.config.defaultModel)?state.config.defaultModel:state.config.models[0] || state.config.defaultModel || 'cheap';await refresh();}
 catch(error){$('#main').innerHTML=`<div class="empty"><div><h1>${h("A little pause.")}</h1><p>${escape(error.message)}</p><button class="dark-button" data-action="library">${h("Return to library")}</button></div></div>`;}
 setInterval(async()=>{

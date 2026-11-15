@@ -116,6 +116,14 @@ const rows = [
 ['AI summary of the speaker’s claims. Check the source before relying on it.','Resumen con IA de las afirmaciones del autor. Verifica la fuente antes de confiar en él.','Resumo por IA das afirmações do autor. Confira a fonte antes de confiar nele.','Résumé IA des affirmations de l’auteur. Vérifiez la source avant de vous y fier.','KI-Zusammenfassung der Aussagen. Prüfe die Quelle, bevor du dich darauf verlässt.','Riassunto IA delle affermazioni dell’autore. Verifica la fonte prima di farvi affidamento.','話者の主張を AI が要約したものです。利用する前に原文を確認してください。','这是 AI 对讲者观点的摘要，请先核对来源。','ملخص آلي لادعاءات المتحدث. تحقق من المصدر قبل الاعتماد عليه.','वक्ता के कथनों का AI सारांश। भरोसा करने से पहले स्रोत जाँचें।']
 ];
 const extraRows=[
+['Settings','Configuración','Configurações','Paramètres','Einstellungen','Impostazioni','設定','设置','الإعدادات','सेटिंग्स'],
+['Automatic','Automático','Automático','Automatique','Automatisch','Automatico','自動','自动','تلقائي','अपने आप'],
+['Appearance','Apariencia','Aparência','Apparence','Darstellung','Aspetto','表示','外观','المظهر','रूप'],
+['Light','Claro','Claro','Clair','Hell','Chiaro','ライト','浅色','فاتح','हल्का'],
+['Dark','Oscuro','Escuro','Sombre','Dunkel','Scuro','ダーク','深色','داكن','गहरा'],
+['Automatic language follows your browser preference.','El idioma automático sigue la preferencia de tu navegador.','O idioma automático segue a preferência do navegador.','La langue automatique suit la préférence de votre navigateur.','Die automatische Sprache folgt deiner Browsereinstellung.','La lingua automatica segue la preferenza del browser.','自動設定ではブラウザの言語に合わせます。','自动语言跟随浏览器偏好。','تتبع اللغة التلقائية تفضيل متصفحك.','अपने आप चुनी भाषा ब्राउज़र की पसंद के अनुसार होगी।'],
+['Automatic appearance follows your device.','La apariencia automática sigue la configuración de tu dispositivo.','A aparência automática segue a configuração do dispositivo.','L’apparence automatique suit celle de votre appareil.','Die automatische Darstellung folgt deinem Gerät.','L’aspetto automatico segue il dispositivo.','自動設定では端末の外観に合わせます。','自动外观跟随设备设置。','يتبع المظهر التلقائي إعداد جهازك.','अपने आप चुना रूप डिवाइस की सेटिंग के अनुसार होगा।'],
+['Your local session expired. Reload Clay Notes.','Tu sesión local venció. Vuelve a cargar Clay Notes.','Sua sessão local expirou. Recarregue Clay Notes.','Votre session locale a expiré. Rechargez Clay Notes.','Deine lokale Sitzung ist abgelaufen. Lade Clay Notes neu.','La sessione locale è scaduta. Ricarica Clay Notes.','ローカルセッションの有効期限が切れました。Clay Notes を再読み込みしてください。','本地会话已过期，请重新加载 Clay Notes。','انتهت جلستك المحلية. أعد تحميل Clay Notes.','स्थानीय सत्र समाप्त हो गया। Clay Notes फिर लोड करें।'],
 ['Notebook content','Contenido del cuaderno','Conteúdo do caderno','Contenu du carnet','Notizbuchinhalt','Contenuto del taccuino','ノートの内容','笔记本内容','محتوى الدفتر','नोटबुक सामग्री'],
 ['Notebook sections','Secciones del cuaderno','Seções do caderno','Sections du carnet','Notizbuchbereiche','Sezioni del taccuino','ノートのセクション','笔记本分区','أقسام الدفتر','नोटबुक के भाग'],
 ['Notebook','Cuaderno','Caderno','Carnet','Notizbuch','Taccuino','ノート','笔记本','دفتر','नोटबुक'],
@@ -165,6 +173,13 @@ export function resolveLocale(preferences=[]){
 }
 export function translate(locale,key,values={}){return (catalogs[resolveLocale(locale)]?.[key] || catalogs.en[key] || key).replace(/\{(\w+)\}/g,(all,name)=>Object.hasOwn(values,name)?String(values[name]):all);}
 export function direction(locale){return locales.find(item=>item.id===resolveLocale(locale))?.dir || 'ltr';}
+export function resolveTheme(preference,systemDark=false){return ['light','dark'].includes(preference)?preference:systemDark?'dark':'light';}
+export function readPreferences(storage,browserLanguages=['en'],systemDark=false){
+  let language='auto',theme='auto';try{language=storage?.getItem('clay-notes-language')||'auto';theme=storage?.getItem('clay-notes-theme')||'auto';}catch{/* Private/blocked storage retains automatic defaults. */}
+  if(language!=='auto'&&!locales.some(item=>item.id===language))language='auto';if(!['light','dark','auto'].includes(theme))theme='auto';
+  return {language,theme,locale:resolveLocale(language==='auto'?browserLanguages:[language]),appearance:resolveTheme(theme,systemDark)};
+}
+export function pendingNoteMessage(state){return state==='awaiting_summary'?'Ready to summarize':state==='awaiting_transcript'?'Your video is safe here. Add its transcript to find the main statements and conclusions.':state==='error'?'Needs attention':'Finding the main statements and conclusions. You can open the notebook while it works.';}
 export function localizeStatic(root,locale){
   for(const element of root.querySelectorAll('[data-i18n]'))element.textContent=translate(locale,element.dataset.i18n);
   for(const attribute of ['placeholder','aria-label','title'])for(const element of root.querySelectorAll(`[data-i18n-${attribute}]`))element.setAttribute(attribute,translate(locale,element.getAttribute(`data-i18n-${attribute}`)));

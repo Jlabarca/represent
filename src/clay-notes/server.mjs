@@ -59,9 +59,13 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
         const origin=req.headers.origin;
         if(origin && origin!==base && !/^chrome-extension:\/\/[a-p]{32}$/.test(origin)) throw problem(403,'Origin is not allowed');
         const bearer=req.headers.authorization?.replace(/^Bearer /,'');
-        const cookie=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith('clay_session='))?.slice(13);
+        const cookieName=`clay_session_${server.address().port}`;
+        const cookie=req.headers.cookie?.split(';').map(s=>s.trim()).find(s=>s.startsWith(cookieName+'='))?.slice(cookieName.length+1);
         const webAuth=same(cookie,session);
-        if(!same(bearer,token) && !webAuth) throw problem(401,'Pair Clay Notes in extension settings first');
+        if(!same(bearer,token) && !webAuth){
+          const extension=Boolean(req.headers.authorization || origin?.startsWith('chrome-extension://'));
+          return json(401,{code:extension?'extension_not_paired':'web_session_expired',error:extension?'Pair Clay Notes in extension settings first':'Your local session expired. Reload Clay Notes.'});
+        }
         if(url.pathname==='/api/config' && req.method==='GET') {
           let models=[],modelError=null;
           try{models=await gateway.availableModels();}catch(error){modelError=error.message;}
@@ -94,9 +98,9 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
       }
       if(req.method!=='GET') throw problem(405,'Method not allowed');
       let path=url.pathname==='/'?'index.html':url.pathname.slice(1);
-      if(!['index.html','app.mjs','i18n.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
+      if(!['index.html','app.mjs','i18n.mjs','session.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
       const bytes=await readFile(join(web,path));
-      if(path==='index.html') res.setHeader('Set-Cookie',`clay_session=${session}; HttpOnly; SameSite=Strict; Path=/`);
+      if(path==='index.html') res.setHeader('Set-Cookie',`clay_session_${server.address().port}=${session}; HttpOnly; SameSite=Strict; Path=/`);
       const extension=path.slice(path.lastIndexOf('.')); res.writeHead(200,{'Content-Type':mime[extension] || 'application/octet-stream'});res.end(bytes);
     } catch(error) {if(!res.headersSent) json(error.status || (error.code==='ENOENT'?404:400),{error:error.message});else res.end();}
   });

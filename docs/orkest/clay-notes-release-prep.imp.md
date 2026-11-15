@@ -61,7 +61,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-9.3.1 — Create an explicit allow-listed ZIP builder and tests, record real access/transcript results for the three user URLs, update release guide with reproducible install/distribution/rollback steps and verify the whole suite. Keep gateway Apply/wiring and full live summaries explicitly pending.
+- [x] REP-9.3.1 — Create an explicit allow-listed ZIP builder and tests, record real access/transcript results for the three user URLs, update release guide with reproducible install/distribution/rollback steps and verify the whole suite. Keep gateway Apply/wiring and full live summaries explicitly pending. — evidence: node scripts/clay-notes-test.mjs: 41/41 passed, skipped=0, output sha256=5b078bf7b4550311f6acb50849028bd386ebab513020d520cb1f01a3797a610b
 
 ## Key Files Reference
 
