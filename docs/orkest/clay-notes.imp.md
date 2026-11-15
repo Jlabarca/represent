@@ -117,3 +117,13 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 ## Architecture Notes
 
 The existing package is buildless ESM on Node >=22, so keep that runtime and avoid a new framework or hosted service. Storage defaults to LOCALAPPDATA/Represent/clay-notes, not source folders. Web and Chrome are thin shells over a headless core; CLI/library reuse is immediate, IDE/desktop/mobile-specific shells remain deferred. Ghost's documented cheap alias is the initial default, with server-side allow-list and real response model/cost metadata when provided. Never promise a fixed latency or zero cost from an alias. Each user save authorizes automatic initial summarization; redo/chat are explicit actions.
+
+## Plan — 1
+
+Implement the notebook domain independently of browser/server shells. Exact scope: src/clay-notes/core.mjs and tests/clay-notes.test.mjs. Node built-in test runner, no dependencies. TDD: a failing deduplication assertion against an initially minimal Store, then implement URL validation, bounded timestamped transcript normalization, atomic JSON storage and an injected fetch-based Ghost adapter. Reject invalid source references and truncated/invalid AI output. Persist the notebook before requesting AI; serialize same-note mutations, retain immutable summary revisions and personal notes. Store gateway key only in server memory. Prompt sources are JSON data under an explicit system boundary.
+
+Pins: package.json tests already includes tests/*.test.mjs, so new tests are discovered without a package edit. Existing Visu/Grafe/Alegor/Trazo exports remain unaffected because the new domain imports only Node built-ins. No existing route or tool registry to change in this box. Package CLI entry is phase 2.
+
+Verification: node --test tests/clay-notes.test.mjs from D:/ware/represent; all tests offline with injected fake gateway. Cover duplicate URLs, malicious URL/path, transcript bounds, summary evidence indices, revision failure preservation, unknown models, concurrent mutations and fresh-process persistence. Record red and green using Orkest verify. Run source syntax check as part of test import. No paid model call required for these contracts.
+
+Exact owned files: `src/clay-notes/core.mjs`, `tests/clay-notes.test.mjs`.
