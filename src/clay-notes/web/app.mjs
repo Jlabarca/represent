@@ -9,10 +9,10 @@ async function api(path,{method='GET',data}={}){
 }
 const time=value=>{const n=Math.floor(Number(value)||0);return n>=3600?`${Math.floor(n/3600)}:${String(Math.floor(n/60)%60).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`:`${Math.floor(n/60)}:${String(n%60).padStart(2,'0')}`;};
 const date=value=>new Date(value).toLocaleDateString(undefined,{month:'short',day:'numeric'});
-const labels={awaiting_transcript:'Needs transcript',queued:'In the queue',summarizing:'Finding the good parts…',ready:'Ready to read',error:'Needs attention'};
+const labels={awaiting_transcript:'Needs transcript',awaiting_summary:'Ready to summarize',queued:'In the queue',summarizing:'Finding the good parts…',ready:'Ready to read',error:'Needs attention'};
 const status=note=>`<span class="status ${escape(note.state)}">${note.state==='ready'?'✦ ':''}${escape(labels[note.state] || note.state)}</span>`;
 const isGenerating=note=>['queued','summarizing'].includes(note.state);
-function modelOptions(){const models=state.config.models.length?state.config.models:['cheap'];return models.map(model=>`<option value="${escape(model)}" ${state.model===model?'selected':''}>${escape(model)}${!state.config.gatewayConfigured?' · setup needed':''}</option>`).join('');}
+function modelOptions(){const models=state.config.models.length?state.config.models:[state.config.defaultModel || 'cheap'];return models.map(model=>`<option value="${escape(model)}" ${state.model===model?'selected':''}>${escape(model)}${!state.config.gatewayConfigured?' · setup needed':''}</option>`).join('');}
 function setupBanner(){
   if(state.config.gatewayConfigured && !state.config.modelError)return '';
   return `<div class="setup-banner"><details><summary>${state.config.gatewayConfigured?'Gateway connection needs attention':'Your library is ready. Connect Ghost to turn on AI.'}</summary><p class="small">${escape(state.config.modelError || 'Set CLAY_NOTES_GHOST_KEY in the service’s launching shell to Clay Notes’ dedicated virtual key, then restart. The initial summary uses cheap; every redo or question is a new request. Gateway aliases may fall back to another model. Actual cost appears when the gateway reports it.')}</p><p class="small">Optional: CLAY_NOTES_GHOST_URL (default http://127.0.0.1:4000/v1), CLAY_NOTES_MODELS (default cheap,smart,local). Your key’s allow-list also applies.</p></details></div>`;
@@ -107,17 +107,25 @@ $('#add-form').addEventListener('submit',async event=>{
   try{
     const note=await api('/notes',{method:'POST',data:{url:$('#video-url').value,title:$('#video-title').value}});
     const transcript=$('#video-transcript').value.trim();
-    if(transcript)await api(`/notes/${note.id}/transcript`,{method:'POST',data:{transcript,source:'paste',model:'cheap'}});
+    if(transcript)await api(`/notes/${note.id}/transcript`,{method:'POST',data:{transcript,source:'paste',model:state.config.defaultModel || 'cheap'}});
     $('#add-dialog').close();$('#add-form').reset();state.tab='summary';state.revision=null;location.hash=`note=${note.id}`;await refresh();
   }catch(error){$('#add-error').textContent=error.message;}finally{$('#save-video').disabled=false;}
 });
 window.addEventListener('hashchange',()=>{state.tab='summary';state.revision=null;state.evidence=null;refresh().catch(error=>{toast(error.message);location.hash='';});});
-try{state.config=await api('/config');state.model=state.config.models.includes('cheap')?'cheap':state.config.models[0] || 'cheap';await refresh();}
+document.addEventListener('keydown',event=>{
+  const tab=event.target.closest('.tab');
+  if(!tab || !['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;
+  event.preventDefault();
+  const tabs=[...document.querySelectorAll('.tab')];const current=tabs.indexOf(tab);
+  const index=event.key==='Home'?0:event.key==='End'?tabs.length-1:(current+(event.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;
+  state.tab=tabs[index].dataset.tab;renderNotebook();document.querySelector(`.tab[data-tab="${state.tab}"]`)?.focus();
+});
+try{state.config=await api('/config');state.model=state.config.models.includes(state.config.defaultModel)?state.config.defaultModel:state.config.models[0] || state.config.defaultModel || 'cheap';await refresh();}
 catch(error){$('#main').innerHTML=`<div class="empty"><div><h1>A little pause.</h1><p>${escape(error.message)}</p><button class="dark-button" data-action="library">Return to library</button></div></div>`;}
 setInterval(async()=>{
   if(document.hidden||state.busy)return;
   try{
     if(state.note){const updated=await api(`/notes/${state.note.id}`);if(updated.updatedAt!==state.note.updatedAt){state.note=updated;renderNotebook();}}
-    else{state.notes=await api('/notes');if($('#cards'))renderCards();}
+    else{const updated=await api('/notes');if(JSON.stringify(updated)!==JSON.stringify(state.notes)){state.notes=updated;if($('#cards'))renderCards();}}
   }catch{/* Preserve visible content through temporary disconnects. */}
 },2500);

@@ -7,12 +7,15 @@ async function api(config,path,input){
 }
 
 // This executes in the YouTube page. The returned values are untrusted and validated again below.
-async function capturePage(wantTranscript=false){
+async function capturePage(wantTranscript=false,expectedId){
   const player=document.querySelector('#movie_player');
   const data=player?.getPlayerResponse?.() || {};
+  const pageUrl=new URL(location.href);
+  const currentId=pageUrl.pathname==='/watch'?pageUrl.searchParams.get('v'):pageUrl.pathname.split('/')[2];
+  if(currentId!==expectedId || (data.videoDetails?.videoId && data.videoDetails.videoId!==expectedId))throw new Error('Video is still changing. Try Clay Notes again when it finishes loading.');
   const title=data.videoDetails?.title || document.querySelector('meta[property="og:title"]')?.content || document.title.replace(/ - YouTube$/,'');
   const channel=data.videoDetails?.author || document.querySelector('#owner #channel-name a')?.textContent?.trim() || '';
-  if(!wantTranscript)return {title,channel};
+  if(!wantTranscript)return {title,channel,videoId:currentId};
   const tracks=data.captions?.playerCaptionsTracklistRenderer?.captionTracks || [];
   const sorted=[...tracks].sort((a,b)=>Number(b.languageCode?.startsWith('en'))-Number(a.languageCode?.startsWith('en')) || Number(a.kind==='asr')-Number(b.kind==='asr'));
   for(const track of sorted.slice(0,2)){
@@ -52,25 +55,27 @@ chrome.runtime.onMessage.addListener((message,sender,sendResponse)=>{
     const id=url.pathname==='/watch'?url.searchParams.get('v'):url.pathname.split('/')[2];
     if(url.origin!=='https://www.youtube.com'||!['/watch','/shorts/'+id,'/live/'+id].includes(url.pathname)||!/^[A-Za-z0-9_-]{11}$/.test(id || ''))throw new Error('Open a YouTube video first');
     if(captures.has(id))throw new Error('This video is already being captured');
-    captures.add(id);
+    captures.add(id);let saved=false;
     try{
       const config=await settings();
       if(!config.token){await chrome.runtime.openOptionsPage();throw new Error('Pair the extension with Clay Notes first');}
-      const [{result:metadata}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[false]});
+      const [{result:metadata}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[false,id]});
+      if(metadata?.videoId!==id)throw new Error('Video changed before capture. Try again.');
       const note=await api(config,'/notes',{url:`https://www.youtube.com/watch?v=${id}`,title:String(metadata?.title || '').slice(0,500),channel:String(metadata?.channel || '').slice(0,160)});
       if(!/^[A-Za-z0-9_-]{11}$/.test(note.id))throw new Error('Invalid notebook response');
-      await chrome.tabs.create({url:`${config.base}/#note=${note.id}`});
+      saved=true;await chrome.tabs.create({url:`${config.base}/#note=${note.id}`});
       if(note.revisions?.length || ['queued','summarizing'].includes(note.state))return {ok:true,message:'Opened your saved notebook'};
-      const [{result:captured}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[true]});
+      const [{result:captured}]=await chrome.scripting.executeScript({target:{tabId:sender.tab.id},world:'MAIN',func:capturePage,args:[true,id]});
       // Recheck the page identity after asynchronous extraction to avoid mixing SPA videos.
       const current=await chrome.tabs.get(sender.tab.id);
       const currentUrl=new URL(current.url);
       const currentId=currentUrl.pathname==='/watch'?currentUrl.searchParams.get('v'):currentUrl.pathname.split('/')[2];
       if(currentId!==id)throw new Error('Video changed during capture. Your notebook was saved; capture the intended video again.');
       if(!captured?.transcript)throw new Error(captured?.error || 'No captions available; paste a transcript in your saved notebook');
-      await api(config,`/notes/${id}/transcript`,{transcript:captured.transcript,source:captured.source,model:'cheap'});
+      await api(config,`/notes/${id}/transcript`,{transcript:captured.transcript,source:captured.source});
       return {ok:true,message:'Saved · summary is on its way'};
-    }finally{captures.delete(id);}
+    }catch(error){if(saved)return {ok:true,needsTranscript:true,message:`Your notebook was saved. ${error.message}`};throw error;}
+    finally{captures.delete(id);}
   })().then(sendResponse,error=>sendResponse({ok:false,error:error.message || 'Start the Clay Notes service and try again'}));
   return true;
 });

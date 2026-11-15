@@ -147,7 +147,7 @@ export class NotebookStore {
   }
   async transcript(id, input, source = 'paste') {
     const segments = parseTranscript(input);
-    return this.mutate(id, n => { n.segments = segments; n.transcriptHash = hash(segments); n.transcriptSource = clean(source, 80); n.state = 'queued'; n.error = null; });
+    return this.mutate(id, n => { n.segments = segments; n.transcriptHash = hash(segments); n.transcriptSource = clean(source, 80); n.state = 'awaiting_summary'; n.error = null; });
   }
   async edit(id, input) {
     return this.mutate(id, n => {

@@ -2,7 +2,11 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-10-25
+> Updated: 2026-11-15
+
+## Current Operating Direction (2026-11-15)
+
+**Clay Notes is the active user-requested tool.** Represent remains a suite: Visu (paused), Grafe, Alegor and the deferred Trazo POC remain intact. Clay Notes adds one-click YouTube capture, automatic transcript statements/conclusions through Ghost, a clay/Satoshi card collection and a full notebook with cited revisions, personal notes and questions. Local implementation and offline/browser validation are in [the operating reference](reference/clay-notes.md) and [evidence](../experiments/clay-notes/README.md). The implementation tracker is [REP-8](orkest/clay-notes.imp.md). Live Chrome installation/capture and real gateway success remain unverified; no paid calls or credential/allow-list changes were made. The older operating-direction entries below are preserved history, not the active cursor.
 
 ## Current Operating Direction (2026-10-25)
 
@@ -134,6 +138,8 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 | Real-project and UX validation | Automated local trials complete | Two repositories, controlled copies and screenshots; unaided human validation remains open. |
 
 ## Current Sprint
+
+**Clay Notes (2026-11-15 user priority)** — a new Represent tool for YouTube → automatically summarized video notebooks. Local core, loopback service, Chrome extension directory and clay/Satoshi web surfaces are implemented under [REP-8](orkest/clay-notes.imp.md); final integration/browser QA is active. The default summary is “give me a TLDR list of the main statements and conclusions”, sent through Ghost's gateway `cheap` alias. Explicit model-selected regeneration preserves revisions. Dedicated Clay Notes consumer credentials and installed-Chrome live capture are still unverified; fixture tests do not establish either. Prior Trazo trial and platform integration work remain deferred, with their human gates unchanged. This supersedes the sprint priority in the preserved paragraph below.
 
 **Trazo POC** ([tracker](orkest/represent-trazo-poc.imp.md), [design](reference/trazo-poc.md)). Cursor: week-2 paid trial (REPRESENT-TRAZO-POC.2.4: one explanation per folder with the operator's key; previews and estimates in [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md)), then the operator's rating (2.5), then week 3 (live and proactive). REPRESENT-ORKEST's Phase 0 review is deferred until the POC verdict. Visu development and paid refreshes remain paused; Trazo reuses Visu's discovery, analysis and gateway code as libraries without changing its experience.
 

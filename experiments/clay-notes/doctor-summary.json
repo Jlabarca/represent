@@ -1,0 +1,39 @@
+{
+  "summary": {
+    "error": 9,
+    "warn": 18,
+    "info": 9
+  },
+  "layout": {
+    "layout": "new",
+    "version": 1,
+    "supported": true,
+    "needs_migration": false
+  },
+  "hooks": {
+    "claude": {
+      "status": "ok",
+      "disabled": 0
+    },
+    "codex": {
+      "status": "ok",
+      "disabled": 0
+    }
+  },
+  "consumer_readiness": {
+    "ready": true,
+    "reason": "All registered consumers have matching test and deployment receipts"
+  },
+  "native_doctor": {
+    "status": "unavailable",
+    "diagnostic_only": true,
+    "reason": "Native /doctor must be invoked by the active Claude harness when that capability exists"
+  },
+  "date": "2026-11-15",
+  "initial_summary": {
+    "error": 9,
+    "warn": 19,
+    "info": 9
+  },
+  "limitations": "Legacy evidence annotations were not adopted or fabricated; native vendor doctor unavailable."
+}

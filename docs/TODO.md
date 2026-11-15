@@ -3,7 +3,11 @@
 > Active sprint tasks only. Completed sprints roll up into CONTEXT.md.
 > See `DOCS-PROTOCOL.md` Rule 2.
 
-## Active sprint: Trazo POC (2026-10-25)
+## Active sprint: Clay Notes (2026-11-15)
+
+User priority: YouTube → automatic Ghost TLDR → a simple clay/Satoshi notebook library. [REP-8](orkest/clay-notes.imp.md), [operating reference](reference/clay-notes.md), [browser evidence](../experiments/clay-notes/browser-check.json). Local implementation is undergoing final verification. The next external trial is an installed Chrome capture and an authorized consumer-key response; no fixture result completes those trials. Existing Represent consumer models are json/gemini-flash only; do not assume cheap/smart access or borrow operator credentials.
+
+## Deferred sprint: Trazo POC (2026-10-25; superseded in priority 2026-11-15)
 
 Plan number one by the operator's decision. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Tracker: [REPRESENT-TRAZO-POC-IMPL](orkest/represent-trazo-poc.imp.md). Zero model calls in week 1; no paid call without consent and a shown price; no Orkest or Ghost code.
 
@@ -116,7 +120,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 
 ## Implementation queue
 
-- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — local implementation under final verification; external live trials remain unverified.
 
 - REP-8.1 — Shipped; continue the next runnable phase.
 

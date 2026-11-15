@@ -11,7 +11,7 @@
     button.textContent='✦ Clay Notes';button.title='Save this video and automatically summarize its transcript';
     button.addEventListener('click',async()=>{
       button.disabled=true;button.textContent='Saving…';
-      try{const result=await chrome.runtime.sendMessage({type:'clay.capture'});if(!result?.ok)throw new Error(result?.error || 'Capture failed');button.textContent='✓ Saved';button.title=result.message;}
+      try{const result=await chrome.runtime.sendMessage({type:'clay.capture'});if(!result?.ok)throw new Error(result?.error || 'Capture failed');button.textContent=result.needsTranscript?'✓ Saved · add transcript':'✓ Saved';button.title=result.message;if(result.needsTranscript)showMessage(result.message);}
       catch(error){button.textContent='↻ Try Clay Notes';button.title=error.message;showMessage(error.message);}
       finally{button.disabled=false;}
     });

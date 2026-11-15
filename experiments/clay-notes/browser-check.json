@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-15",
+  "tool": "CUA in-app browser",
+  "fixtureOrigin": "http://127.0.0.1:8877",
+  "realEmptyLibraryOrigin": "http://127.0.0.1:8876",
+  "checks": [
+    {"name":"empty library and save dialog","result":"pass"},
+    {"name":"three saved fixture cards","result":"pass"},
+    {"name":"search filters collection to matching title","result":"pass","observed":"intention -> one note"},
+    {"name":"full notebook statements and conclusions","result":"pass"},
+    {"name":"citation opens captured quote and timestamp","result":"pass","observed":"supporting segment 1 -> original quote, 0:12 link"},
+    {"name":"personal notes persist after save and reload","result":"pass"},
+    {"name":"question returns cited fixture answer","result":"pass"},
+    {"name":"model-selected redo preserves previous revision","result":"pass","observed":"Version 1 cheap retained, Version 2 smart selected"},
+    {"name":"keyboard arrow moves notebook tab and focus","result":"pass"},
+    {"name":"mobile notebook fits viewport","result":"pass","requestedViewport":{"width":390,"height":844},"observedClientWidth":375,"observedScrollWidth":375},
+    {"name":"Satoshi applied","result":"pass","observedFontFamily":"Satoshi, system-ui, sans-serif"},
+    {"name":"browser console errors","result":"pass","observed":[]}
+  ],
+  "limitations": ["Populated screenshots and questions/regeneration use an isolated offline fixture gateway, not a paid AI response.","No extension was installed into the user's Chrome; worker tests do not establish actual YouTube caption compatibility.","No gateway credential was available in the launching environment; no paid request was made."]
+}

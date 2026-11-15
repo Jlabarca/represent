@@ -98,7 +98,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-8.3.1 — Run the existing tool regression suite plus Clay Notes integration checks, inspect browser UI when available, repair observed defects and publish an as-built reference with install, pairing, gateway setup, transcript limitations and exact evidence. Distinguish fixtures from real YouTube/paid trials.
+- [x] REP-8.3.1 — Run the existing tool regression suite plus Clay Notes integration checks, inspect browser UI when available, repair observed defects and publish an as-built reference with install, pairing, gateway setup, transcript limitations and exact evidence. Distinguish fixtures from real YouTube/paid trials. — evidence: node scripts/clay-notes-test.mjs: 24/24 passed, skipped=0, output sha256=2fd5dbadcf37b4072c98ff8b20d4fcfe46019bccd0c7ad4fac6a4a85e620f85e
 
 ## Key Files Reference
 

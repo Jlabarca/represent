@@ -60,6 +60,36 @@ test('serves bundled Satoshi and refuses filesystem traversal',async t=>{
   const font=await fetch(`${app.url}/assets/satoshi-700.woff2`);assert.equal(font.status,200);assert.equal(font.headers.get('content-type'),'font/woff2');assert.ok((await font.arrayBuffer()).byteLength>10000);
   assert.equal((await fetch(`${app.url}/%2e%2e/package.json`)).status,404);
 });
+test('transcript writes reserve queue capacity before any asynchronous mutation',async t=>{
+  const app=await fixture(t);
+  const note=await app.store.create(input);
+  const original=app.store.transcript.bind(app.store);let release;const wait=new Promise(resolve=>{release=resolve;});
+  app.store.transcript=async(...args)=>{await wait;return original(...args);};
+  const first=request(app,`/notes/${note.id}/transcript`,{method:'POST',data:{transcript:'0:00 First source'}});
+  try{
+    for(let i=0;i<100&&!app.pending.has(note.id);i++)await new Promise(resolve=>setTimeout(resolve,5));
+    assert.equal(app.pending.has(note.id),true);
+    const second=await request(app,`/notes/${note.id}/transcript`,{method:'POST',data:{transcript:'0:00 Second source'}});assert.equal(second.status,409);
+  }finally{release();}
+  assert.equal((await first).status,202);const saved=await settled(app,note.id);assert.equal(saved.segments[0].text,'First source');
+});
+test('rejected model or full queue never leaves a falsely queued transcript',async t=>{
+  const app=await fixture(t);const note=await app.store.create(input);
+  const path=`/notes/${note.id}/transcript`;
+  assert.equal((await request(app,path,{method:'POST',data:{transcript:'Claim',model:'unknown'}})).status,400);
+  assert.equal((await app.store.get(note.id)).segments.length,0);
+  for(let i=0;i<8;i++)app.pending.add(`fixture${i}`);
+  assert.equal((await request(app,path,{method:'POST',data:{transcript:'Claim'}})).status,429);
+  assert.equal((await app.store.get(note.id)).state,'awaiting_transcript');app.pending.clear();
+});
+test('initial capture honors configured consumer models instead of hardcoding cheap',async t=>{
+  let requested;
+  const app=await fixture(t,{...fakeGateway,models:['json','gemini-flash'],availableModels:async()=>['json','gemini-flash'],complete:async({model})=>{requested=model;return {result,metrics:{requestedModel:model}};}});
+  const note=await app.store.create(input);
+  assert.equal((await request(app,`/notes/${note.id}/transcript`,{method:'POST',data:{transcript:'0:00 A source claim'}})).status,202);
+  await settled(app,note.id);assert.equal(requested,'json');
+  assert.equal((await (await request(app,'/config')).json()).defaultModel,'json');
+});
 test('extension limits its host permissions and contains no gateway credential plumbing',async()=>{
   const root=new URL('../extensions/clay-notes/',import.meta.url);
   const manifest=JSON.parse(await readFile(new URL('manifest.json',root),'utf8'));

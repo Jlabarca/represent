@@ -28,17 +28,23 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
   if(!/^[a-f0-9]{64}$/.test(token || '')) throw new Error('Invalid local pairing file');
   const session=randomBytes(32).toString('hex');
   const store=await new NotebookStore(directory,gateway).init(); await store.recover();
+  const defaultModel=gateway.models.includes('cheap')?'cheap':gateway.models[0];
+  if(!defaultModel)throw new Error('Enable at least one Clay Notes model');
   const queue=[]; const pending=new Set(); let draining=false, closing=false;
   async function drain() { if(draining) return; draining=true; try {while(queue.length){const job=queue.shift(); try{await store.summarize(job.id,job.model);}catch{/* Persisted error is shown in notebook. */}finally{pending.delete(job.id);}}}finally{draining=false;} }
-  async function enqueue(id,model='cheap') {
+  async function enqueue(id,model=defaultModel,capture) {
     if(closing) throw problem(503,'Service is closing');
     if(!gateway.models.includes(model)) throw problem(400,'This model is not enabled for Clay Notes');
     if(pending.has(id)) throw problem(409,'This notebook is already generating');
     if(pending.size>=8) throw problem(429,'Eight notebooks are already queued; try again shortly');
-    const note=await store.get(id); if(!note?.segments.length) throw problem(400,'Add a transcript first');
-    pending.add(id); queue.push({id,model});
-    await store.mutate(id,n=>{n.state='queued';n.error=null;});
-    void drain();
+    // Reserve synchronously before any store await; competing captures cannot replace source data.
+    pending.add(id);
+    try {
+      if(capture) await store.transcript(id,capture.transcript,capture.source);
+      const note=await store.get(id); if(!note?.segments.length) throw problem(400,'Add a transcript first');
+      await store.mutate(id,n=>{n.state='queued';n.error=null;});
+      queue.push({id,model}); void drain();
+    } catch(error) {pending.delete(id);throw error;}
   }
   let base;
   const server=http.createServer(async(req,res)=>{
@@ -59,7 +65,7 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
         if(url.pathname==='/api/config' && req.method==='GET') {
           let models=[],modelError=null;
           try{models=await gateway.availableModels();}catch(error){modelError=error.message;}
-          return json(200,{gatewayConfigured:Boolean(gateway.key),models,modelError,defaultModel:'cheap',...(webAuth?{pairingToken:token}:{}),queueSize:pending.size});
+          return json(200,{gatewayConfigured:Boolean(gateway.key),models,modelError,defaultModel,...(webAuth?{pairingToken:token}:{}),queueSize:pending.size});
         }
         if(url.pathname==='/api/notes') {
           if(req.method==='GET') {const notes=await store.list(); return json(200,notes.map(n=>({id:n.id,url:n.url,title:n.title,channel:n.channel,thumbnail:n.thumbnail,state:n.state,error:n.error,pinned:n.pinned,color:n.color,createdAt:n.createdAt,updatedAt:n.updatedAt,overview:n.revisions.at(-1)?.overview || '',statementCount:n.revisions.at(-1)?.statements.length || 0,revisionCount:n.revisions.length})));}
@@ -73,16 +79,14 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
           if(req.method==='POST') {
             const input=await body(req);
             if(action==='transcript') {
-              if(pending.has(id)) throw problem(409,'Wait for current generation before changing the transcript');
-              await store.transcript(id,input.transcript,input.source);
-              await enqueue(id,input.model); return json(202,{id,state:'queued'});
+              await enqueue(id,input.model,input); return json(202,{id,state:'queued'});
             }
             if(action==='summarize') {await enqueue(id,input.model);return json(202,{id,state:'queued'});}
             if(action==='ask') {
               if(pending.has(id)) throw problem(409,'Wait for the summary to finish first');
               // Share the same bounded queue accounting so concurrent chat cannot fan out unchecked.
               if(pending.size>=8) throw problem(429,'Queue is full');
-              pending.add(id); try{return json(200,await store.ask(id,input.question,input.model));}finally{pending.delete(id);}
+              pending.add(id); try{return json(200,await store.ask(id,input.question,input.model || defaultModel));}finally{pending.delete(id);}
             }
           }
         }

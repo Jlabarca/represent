@@ -114,4 +114,9 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Implementation trackers
 
-- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — local video-notebook implementation and verification tracker.
+
+## Clay Notes
+
+- [Operating reference](reference/clay-notes.md) — local service, Chrome pairing, gateway configuration, data limits and reusable core.
+- [Implementation evidence](../experiments/clay-notes/README.md) — isolated fixture screenshots, browser observations and doctor summary; live trial limits explicit.
