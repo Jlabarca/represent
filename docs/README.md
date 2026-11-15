@@ -122,7 +122,8 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 - [Three real-video source trials and package evidence](../experiments/clay-notes/release-prep/README.md) — metadata/hashes/counts, localized screenshots and ZIP integrity report; zero inference.
 
 - [Own-key gateway request](design/clay-notes-gateway-request.md) — operator-reviewed default summary lane, proposed budget, explicit Apply/evidence boundary.
-- [Complete extension release plan](guides/clay-notes-release.md) — localization, the three-video trial, package/install/store distribution, public-backend gap and rollback.
+- [Complete extension and service release plan](guides/clay-notes-release.md) — Google-auth hosted rollout atclay.maremoto.dev, exact configuration/gates, three-video trials, packaging/store and rollback.
+- [Hosted service and future notebook roadmap](design/clay-notes-service-roadmap.md) — no-pairing Google/extension account flow, ownership/cache/spend architecture and sequenced general NotebookLM-style capabilities; intended, not deployed.
 
 - [Operating reference](reference/clay-notes.md) — local service, Chrome pairing, gateway configuration, data limits and reusable core.
 - [Implementation evidence](../experiments/clay-notes/README.md) — isolated fixture screenshots, browser observations and doctor summary; live trial limits explicit.
@@ -133,4 +134,4 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Implementation trackers
 
-- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — plan-only.
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — verified local localization/cards/cache/covers and documented hosted-service preparation; live external gates remain.

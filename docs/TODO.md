@@ -5,6 +5,8 @@
 
 ## Active sprint: Clay Notes (2026-11-15)
 
+REP-9.4 card/cache/image implementation is verified atd177508 (118/118 full;46/46 focused). [Hosted service and notebook roadmap](design/clay-notes-service-roadmap.md) and [release guide](guides/clay-notes-release.md) now define the next delivery. Implement hosted Google/account/job/extension slices before public routing; obtain Google client/callback/stable extension ID and operator own-key Apply evidence without exposing credentials. The revised request proposes public audience/cheap summary/client-anthropic deep with Max forbidden; summary default alone is confirmed. No hosted/live-model/store completion is claimed.
+
 Current: REP-9.3 verified113/113; next cache-first full-art TCG collection with image attachments/covers, saved reorder/filter/sort and accessible motion. Then hosted `clay.maremoto.dev` Google-auth/extension deployment and future multi-source NotebookLM roadmap. No Cloudflare Access or customer local pairing. Real gateway Apply/paid trials remain gated separately.
 
 Release-prep source evidence: all three transcripts captured/imported without AI; ten-language UI and native Chrome messages implemented. Version0.2.0 ZIP and original icons prepared; see [release evidence](../experiments/clay-notes/release-prep/README.md). Next external action remains operator console Apply and own-key lane tests; then token-free lane/header/spend-fence wiring, then a separately approved bounded live summary trial. Store/developer installation and publication are not yet accepted.

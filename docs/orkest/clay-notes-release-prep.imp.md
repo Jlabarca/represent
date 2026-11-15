@@ -77,7 +77,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 
 > verify: docs
 
-- [ ] REP-9.5.1 — Revise unapplied gateway request for customer-facing service; produce concrete Google-auth SaaS/extension deployment plan atclay.maremoto.dev without Cloudflare Access or customer pairing, identify exact OAuth/domain/Apply gates, and sequence future multi-source NotebookLM capabilities after current cards. Do not claim planned auth/deployment as built.
+- [x] REP-9.5.1 — Revise unapplied gateway request for customer-facing service; produce concrete Google-auth SaaS/extension deployment plan atclay.maremoto.dev without Cloudflare Access or customer pairing, identify exact OAuth/domain/Apply gates, and sequence future multi-source NotebookLM capabilities after current cards. Do not claim planned auth/deployment as built. — evidence: C:/Python312/python.exe -B tmp/clay-service-doccheck.py: 0/0 passed, skipped=0, output sha256=88befcd6426aab8e67ba34369e1c5cbc1354e041b58a5191b1b68bbaeba78ebb
 
 ## Key Files Reference
 

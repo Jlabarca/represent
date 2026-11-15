@@ -52,7 +52,7 @@ flowchart LR
 
 ## API Surface
 
-`resolveLocale(preferences)`, `translate(locale,key,values)`, `direction(locale)` and `localizeStatic(root,locale)` implement authored presentation. Interpolation is literal; HTML-producing callers escape the result. `buildPackage({source,output})` returns archive version/hash/member metadata. `parseBrowserExport(text)` returns validated caption segments with language/ID metadata. `importVideoTrial({url,title,channel,exportPath,store|directory})` returns source counts/hashes/status with zero summary calls. The server change only adds `i18n.mjs` to its static allow-list; no new gateway/key/lane wiring was performed.
+`resolveLocale(preferences)`, `translate(locale,key,values)`, `direction(locale)` and `localizeStatic(root,locale)` implement authored presentation. Interpolation is literal; HTML-producing callers escape the result. `buildPackage({source,output})` returns archive version/hash/member metadata. `parseBrowserExport(text)` returns validated caption segments with language/ID metadata. `importVideoTrial({url,title,channel,exportPath,store|directory})` returns source counts/hashes/status with zero summary calls. The server serves the localization/session/collection modules and authenticated order/image APIs; no new gateway/key/lane wiring was performed.
 
 ## Usage Guide
 
@@ -68,11 +68,13 @@ Output: `D:/ware/represent/dist/clay-notes/clay-notes-0.2.0.zip`, with a sibling
 
 ## Caveats
 
+The production direction is the user's Google-auth service at `clay.maremoto.dev`, with no Cloudflare Access or customer pairing. [The service roadmap](../design/clay-notes-service-roadmap.md) separates the intended account/extension/job architecture and future source adapters from this verified local implementation. The current0.2.0ZIP remains developer tooling; it has not acquired hosted auth merely because a domain was selected. The amended public-audience gateway request is prepared and unapplied.
+
 Translations are authored, not independently native-reviewed. Existing raw service diagnostics and source/model data retain their original language. Generated summaries are not automatically translated by a presentation change; post-Apply output-language preferences require their own tested request contract. The ten offered UI locales do not imply ten tested provider-output languages.
 
 Source-only success through the native browser exporter does not prove installed-extension capture. Last-caption time is not asserted as complete duration. Both Spanish transcripts are automatic and may contain errors; conclusions must eventually be checked against the real source, not inferred from titles. No model summary/quality or actual-hop/cost result exists for these videos yet.
 
-The user now requires an own key and lanes: `LITELLM_KEY_CLAY_NOTES`, `clay-notes-summary` (default confirmed) and optional `clay-notes-deep`. The existing generic-alias configuration is historical local-MVP behavior and has not been represented as compliant new onboarding. No other key is borrowed. No Apply SHA or lane-test is fabricated, and no live paid call is made without separate operator approval. Public Web Store availability also requires privacy/support/listing review and a viable local-companion or authenticated backend distribution decision.
+The user now requires an own key and lanes: `LITELLM_KEY_CLAY_NOTES`, `clay-notes-summary` (default confirmed) and optional `clay-notes-deep`. The existing generic-alias configuration is historical local-MVP behavior and has not been represented as compliant new onboarding. No other key is borrowed. No Apply SHA or lane-test is fabricated, and no live paid call is made without separate operator approval. Public Web Store availability requires the selected hosted Google-auth account service, its isolation/privacy/support/listing acceptance and a production extension candidate.
 
 ## Related Docs
 

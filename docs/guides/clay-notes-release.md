@@ -1,68 +1,77 @@
-# Clay Notes — creation, testing and deployment plan
+# Clay Notes — extension and hosted service release plan
 
-> Updated2026-11-15. Owner: Represent app agent for app source/tests; operator for gateway Apply, live paid approval, Chrome installation and store publication. [Existing local MVP](../reference/clay-notes.md), [gateway request](../design/clay-notes-gateway-request.md), [preparation tracker](../orkest/clay-notes-release-prep.imp.md).
+> Revised2026-11-15. Target: **https://clay.maremoto.dev**, Google app authentication, no Cloudflare Access, no customer pairing/local service. [Intended architecture and future notebook roadmap](../design/clay-notes-service-roadmap.md), [current implementation](../reference/clay-notes-release-prep.md), [own-key gateway request](../design/clay-notes-gateway-request.md).
 
-## Product and deployment boundary
+## Delivery boundary
 
-The first release is an internal lab1 tool: a Node22+ service on `127.0.0.1:8876`, Chrome MV3 capture, local notebook storage, Ghost routing and no cloud accounts. The extension needs its local service. A Chrome Web Store listing does not host the Node service or grant other users access to lab1. Broader public release requires an explicit authenticated hosted-backend or distributable local-companion decision. Do not expose the lab1 gateway/key to Chrome or the internet to make a demo work.
+The local Node/Chrome MVP and its TCG/cache/settings/image improvements are implemented and tested. They are development tooling, not the public account service. Its local shared-session bootstrap must never be exposed as production auth. The production extension uses a fixed hosted origin and a scoped account grant; existing website sessions are reused quietly, otherwise one normal Google sign-in resumes the pending capture. Installing an extension alone does not identify a new Google user.
 
-## Phases and acceptance gates
+The customer flow is install → click Clay Notes on YouTube → sign in once if needed → notebook opens immediately → default statements/conclusions arrive automatically. The website also accepts sources through its growing adapter set. No Ghost key/model setup, lab1 connection or pairing code appears in that flow. General notebooks are the product; YouTube is the current adapter, while additional formats are sequenced in the roadmap.
 
-| Stage | Deliverable | Acceptance and owner |
+## Ordered build and deployment gates
+
+| Stage | Concrete work | Acceptance |
 |---|---|---|
-| 1 · existing MVP | Save/open before caption extraction, cited statements/conclusions, Keep-like collection, notes/questions, revision history | REP-8 implemented;96 historical tests and12 fixture-browser checks; real Chrome/gateway flow not yet accepted |
-| 2 · gateway request | Own `clay-notes` key, summary/deep lanes, proposed$1/30d cap | Request prepared from registry; operator confirmed default summary; **Apply SHA and own-key lane-test pending** |
-| 3 · localization | en/es/pt/fr/de/it/ja/zh-CN/ar/hi authored interface copy; Arabic RTL; persisted language; native Chrome messages | Offline locale/capture regressions, desktop Spanish/Arabic and mobile rendering; user/model source content remains original language |
-| 4 · gateway wiring after Apply | Named environment key, `clay-notes-summary`/`clay-notes-deep`, actual-hop metadata and spend fence | Token-free loopback tests; known Apply SHA linked; unknown attribution fails conservatively; operator live-call cap still required |
-| 5 · source-only video trial | Metadata, transcript availability/language/count/hash and caption limitations for all three URLs below | No inference; record denied/blocked/absent source honestly; captured text never creates a fake summary |
-| 6 · bounded live trial | One automatic summary per video, then one explicitly chosen deeper redo if separately approved | Operator-specified call/dollar cap; real model/hop/cost/time, timestamp spot-checks, duplicate saves avoid a second automatic call |
-| 7 · release candidate | Versioned ZIP, manifest/resources/locale checks, integrity hash, install and rollback guide | Reproducible allow-list package, no tokens/store data/dev fixtures; all app regressions pass |
-| 8 · developer install | Chrome Developer mode → Load unpacked → local pairing; enable only YouTube and loopback | Operator installs; refresh YouTube after extension reload; verify one button across SPA changes, service restart and missing captions |
-| 9 · controlled distribution | Store-ready ZIP, listing, screenshots/icons, privacy/support pages, permission explanation, tester list | Operator developer account/admin2FA and dashboard review; internal trusted-testers/unlisted choice; no publication by this app agent |
-| 10 · broader release | Deliberate companion installer or authenticated hosted product; monitoring, ownership and incident process | Separate scope/approval; gateway credentials stay server-side; public data/hosting policy and budget validated first |
+| 0 · completed local foundation | Ten UI/Chrome locales, automatic language/theme gear, full-art TCG/default thumbnails/image covers, saved reorder/filter/sort, cache before model discovery, reproducible ZIP0.2.0 | Current source d177508:46/46 focused,118/118 full; desktop light/dark and390px Arabic source-only browser evidence. Physical pointer drag remains a direct manual trial |
+| 1 · hosted app | New Google-auth production entry, account ownership schema, private media, account cache/purge, export/deletion, durable jobs and quotas | Stubbed auth/nonce/CSRF/replay, two-account isolation, logout/revocation, failed/missing OAuth config cannot enable local auth; no public route yet |
+| 2 · operator configuration | Dedicated Web Google client, callback/origin, stable extension ID, app service/database/volume, secret references, reviewed gateway request | Actual client and domain/config evidence by name; no values in chat, source or package; own-key Apply SHA/lane-tests returned by operator |
+| 3 · gateway adapter | Server reads only LITELLM_KEY_CLAY_NOTES; app-specific lanes; actual-hop/cost classification and transactional spend reservation | After Apply only: token-free tests for free/paid/unknown serving, budgets, truncation, duplicate/restarted jobs, parallel user requests; no live paid call |
+| 4 · hosted extension candidate | Fixed origin, chrome.identity/PKCE handoff, no local setup, resumable capture, idempotency and truthful source/error states | Developer-profile and fresh-profile trials, website-session reuse, first Google login, expired/revoked grant, duplicate clicks, SPA navigation, no captions/offline/quota cases |
+| 5 · private URL trial | Serve app through HTTPS tunnel/reverse proxy at selected hostname, no Access; gateway/database/admin stay private | Real Google callback and two users on URL; ownership/media checks, restart/recovery, backup/restore, private source deletion/export, cache purge and no credential leaks |
+| 6 · capped live video trial | Three default summaries and only separately approved deep redo | Separate operator spend cap; actual model/hop/cost/latency and source-citation checks; no fixture result counts as live success |
+| 7 · store release | Versioned production ZIP, listing/screenshots/icons, privacy/support/deletion pages, narrow permissions, reviewed translations | Stable item ID matches callback allow-list; package has no keys/dev loopback requirements; operator dashboard review/submission and actual installation acceptance |
+| 8 · monitored launch | Configured service/per-user quotas and selected capacity; normal public Google enrollment | Measured cold/warm latency, errors/queue/spend/backups; rollback rehearsal and owner. Existing$1/30d test proposal is not a public service budget |
 
-Stage3 and source-only stage5 can proceed while the gateway request waits. Steps4/6 cannot be marked complete from fixture tests. New locale labels do not by themselves prove human translation review or generated-output language support.
+Stages1/4 can use stubs while gateway Apply waits. No inference begins without the operator's separate live allowance. The card/source-only tests do not qualify hosted authentication, installed extension capture or service deployment.
 
-## Three-video trial matrix
+## Exact external configuration
 
-| Video | Source-only capture now | After operator approval |
+| Input | Proposed production value or required evidence |
+|---|---|
+| Public app origin | `https://clay.maremoto.dev` |
+| Web Google OAuth callback | `https://clay.maremoto.dev/auth/google/callback` |
+| Sign-in scopes | `openid email profile`; no Drive scope for basic login |
+| App environment names | `CLAY_NOTES_GOOGLE_CLIENT_ID`, `CLAY_NOTES_GOOGLE_CLIENT_SECRET`, `CLAY_NOTES_PUBLIC_ORIGIN`, `CLAY_NOTES_DATABASE_URL`; operator configures values in the service secret store, never chat |
+| Extension callback | Exact `chrome.identity.getRedirectURL('auth')` from the stable published extension ID; register/allow-list development IDs separately |
+| Gateway environment | `LITELLM_KEY_CLAY_NOTES` server-side only; real Apply SHA plus both own-key lane-test results |
+| Hostname routing | Dedicated app-only HTTPS tunnel/proxy target; no Cloudflare Access policy; no route to Ghost4000, database or developer pairing endpoints |
+| Storage and operations | Dedicated database/private volume, service identity, backup location/restore proof, health/metrics and restart policy; choose real resource names during implementation |
+| Live spend and capacity | Explicit trial dollar/call cap, service backstop and per-account quota configuration before public enrollment |
+
+Google client registration and secret entry belong in Google Cloud/service configuration, without pasting values into this chat. [Google OIDC setup](https://developers.google.com/identity/openid-connect/openid-connect) describes credentials/redirects. [Chrome identity](https://developer.chrome.com/docs/extensions/reference/api/identity) describes the redirect and interactive behavior. The hosted auth implementation must use tested state/nonce/PKCE and account/session validation, not unverified email or Chrome profile text.
+
+## Three real-video acceptance trials
+
+| Video | Source-only proof already captured | Live acceptance after approval |
 |---|---|---|
-| [X6J3ByTqhLY](https://www.youtube.com/watch?v=X6J3ByTqhLY) | Actual title/channel, availability, transcript language/segments/characters/hash or exact blocker | Default summary, citation spot-check, cold latency/cost |
-| [t2_F7Fn8vYA](https://www.youtube.com/watch?v=t2_F7Fn8vYA) | Same, preserving original text and timestamps | Default summary, duplicate save/no extra inference |
-| [Ecuit73WzV0](https://www.youtube.com/watch?v=Ecuit73WzV0) | Same; report missing captions/region/age/sign-in failures | Default summary; optional approved deep redo and revision/source preservation |
+| [X6J3ByTqhLY](https://www.youtube.com/watch?v=X6J3ByTqhLY) | KManuS88, Spanish automatic captions,582segments/20,745characters | Automatic default summary; timestamp/citation spot checks; cold latency/cost |
+| [t2_F7Fn8vYA](https://www.youtube.com/watch?v=t2_F7Fn8vYA) | Un Podcast Sobre Bitcoin, Spanish automatic captions,724segments/26,282characters | Default summary; duplicate capture produces no second automatic billable job |
+| [Ecuit73WzV0](https://www.youtube.com/watch?v=Ecuit73WzV0) | Bitcoin Strategy, English manual captions,175segments/11,360characters | Default summary; optional explicitly approved deep redo preserves prior revision/source |
 
-For each video, record what happened rather than assuming titles or access from an ID. Test empty/long/malformed captions with fixtures separately. Compare at least three statement citations to the actual transcript and check conclusions are attributed to the speaker. A valid reference index is not a factual-accuracy verdict. Capture on the current video must survive SPA navigation, duplicate clicks and service disconnection. Summary language follows a separately tested post-Apply preference; interface language switching does not silently translate stored evidence.
+See [trial hashes and limits](../../experiments/clay-notes/release-prep/video-trials.json). Native transcript export is not installed-extension evidence. Last-caption timestamps are not guaranteed video duration. Compare at least three claims per summary against actual segments; conclusions must reflect the source's uncertainty and be attributed appropriately. Keep source text immutable per revision. Record cold/warm total time and actual serving headers/cost; missing attribution remains unknown. Failures preserve captured sources and previous revisions.
 
-## Local setup and operator install
+## Chrome packaging, install and publication
 
-Node22+ is required. Serve from any PowerShell5.1 shell:
+The existing allow-list builder creates a deterministic developer ZIP with icons and ten native locales:
 
 ```powershell
-node D:/ware/represent/src/clay-notes/cli.mjs serve #
+node D:/ware/represent/scripts/clay-notes-package.mjs #
 ```
 
-Open the library, choose the desired language, and select Connect Chrome. The operator loads `D:/ware/represent/extensions/clay-notes`, opens its options and enters the **local pairing code**. This is separate from the gateway key; key values never go in chat, docs, extension storage or a ZIP. In Chrome, reload the unpacked extension after code changes and refresh the YouTube page to reinject content scripts. Test service-off, no-key and missing-caption messages before real inference.
+Current output is `D:/ware/represent/dist/clay-notes/clay-notes-0.2.0.zip`; [integrity report](../../experiments/clay-notes/release-prep/package.json) records its hash/members. **This is the local development extension**, with loopback/pairing behavior. It must not be sold or submitted as the hosted candidate. The production slice changes manifest/origin/auth/permissions and version, rebuilds the ZIP and publishes a new integrity report. Never package the repo root, .env, notebook store, fixtures or provider credentials.
 
-## Chrome Web Store preparation and distribution
+Developer-only local testing still uses the loopback service and current options; it is retained for offline regressions. Chrome Developer mode/Load unpacked/reload and YouTube refresh are a developer procedure, not customer onboarding. Test actual Chrome installation/version, SPA behavior and permissions separately from this in-app-browser evidence.
 
-Use [Chrome's i18n API](https://developer.chrome.com/docs/extensions/reference/api/i18n) for `_locales/<locale>/messages.json` with `default_locale`, including name/description/action/options. Before submitting, complete the current [distribution setup](https://developer.chrome.com/docs/webstore/cws-dashboard-distribution/) and [privacy disclosures](https://developer.chrome.com/docs/webstore/program-policies/disclosure-requirements/). These official pages were checked2026-11-15; review them again at submission.
+The hosted manifest will request the narrow YouTube capture and Clay Notes API access it needs, `storage`, the actual scripting/active-tab capabilities used, and `identity` for login. Review optional current-page capture permissions when adding general web sources; avoid `<all_urls>`, browsing history or cookie permission by default. The service's full text/image data flow and account grant storage must match the privacy disclosure.
 
-Prepare a single-purpose listing: save the current YouTube video's transcript into the user's local Clay Notes library and summarize via their authorized server. Explain `storage` for local pairing/preferences, `scripting` for current-video caption metadata and the YouTube/loopback host permissions. Do not request `<all_urls>`, browsing history or provider credentials. Review local-network permission behavior in the target Chrome versions; report actual prompts rather than assuming permissions transfer from the in-app browser.
+Prepare a focused listing, real screenshots including TCG/settings, original icons, reviewed localized descriptions, support contact, release notes, privacy and deletion/export URLs. Describe selected source content sent to the hosted service and configured AI providers, retention, user ownership and account authentication. Do not claim on-device-only processing or zero data collection. Provider processing, private storage and diagnostic retention are separate. Review [Chrome i18n](https://developer.chrome.com/docs/extensions/reference/api/i18n), [distribution setup](https://developer.chrome.com/docs/webstore/cws-dashboard-distribution/) and [privacy disclosures](https://developer.chrome.com/docs/webstore/program-policies/disclosure-requirements/) again before submission.
 
-Release assets: extension icons at current required sizes, screenshots of the real released UI, concise English listing plus the ten localized listings as reviewed, support contact/URL, release notes, a public privacy-policy URL, retention/deletion instructions and the developer dashboard's matching data-use declarations. Disclose that a user-selected video's title, URL and transcript travel to their local service and then the configured Ghost/provider chain after authorized generation. Local storage, extension pairing, gateway spend logs and provider processing are distinct. No claim of zero collection or on-device-only inference is accurate for paid/provider hops. No copied Clay artwork or fabricated AI-results screenshots.
+Obtain the store item ID early, configure its exact auth callback, then run a trusted-tester candidate through the same origin/auth flow intended for launch. The operator owns developer-account agreements and final submission/publication. No store upload or agreement acceptance occurred during preparation.
 
-Upload the ZIP and verify manifest/locale/resource warnings. Start with operator-controlled tester distribution, then unlisted/internal use if suitable. The operator reviews and submits/publishes; this plan does not perform the submission or accept agreements. Keep extension version and service compatibility version paired. Do not sell a local-lab1 dependency as a functioning public service.
+## Release rollback and operational proof
 
-## Release verification and integrity
+Pin compatible app/extension versions and record source commit, package hash, auth-client/callback configuration names and gateway Apply SHA. Use backwards-compatible API changes across extension rollout. Back up database and private assets before migrations and rehearse restore into an isolated service. Never overwrite the user's local library during migration; explicit import copies sources into the authenticated account with ownership and source-version checks.
 
-The package builder is now implemented. `node D:/ware/represent/scripts/clay-notes-package.mjs` produces version0.2.0 under `dist/clay-notes/`, with original icons and all ten locales. [The package report](../../experiments/clay-notes/release-prep/package.json) records the exact SHA256 and members. [Source-trial results](../../experiments/clay-notes/release-prep/video-trials.json) establish transcript availability/import for all three videos with zero summary calls. Neither artifact establishes installed-extension/live-gateway acceptance.
+Rollback the app to its last verified image/revision while preserving data; stop new automatic jobs on spend/attribution/isolation failures. Keep sources and previous revisions readable. Store rollback generally requires a new reviewed extension version; retain idempotency and compatibility with the already installed candidate. Revocation/logout must invalidate account/extension grants and clear account caches. Tunnel rollback removes only this app's public route, leaving sibling apps/gateway unchanged. Gateway rollback stays operator-owned in its console/journal; this app session never edits registry, consumers, runner or queue files.
 
-Run the focused test launcher and full suite before packaging. The planned package script must accept an explicit source directory/output path, enumerate only declared extension files/locales/icons, reject symlinks/secrets/runtime stores, validate referenced assets and emit a versioned ZIP plus SHA256. Package bytes should be deterministic for unchanged source. Tests inspect ZIP members rather than merely asserting that a file exists. Only approved release files go to the Web Store; never package a repository root, `.env`, fixtures or notebook JSON.
-
-The trial report records supported Chrome/OS versions, actual extension install method, service HEAD, manifest version, locale, video IDs and whether inference was stubbed or live. Stop on failed spend classification, wrong video/citations, duplicate billable calls or data loss. Pending operator evidence is not a green gate.
-
-## Rollback and support
-
-Keep the last verified versioned ZIP/hash and source commit. For developer installs, reload the previous verified extension folder and refresh YouTube; restore the compatible service revision without rewriting stored notebooks. Back up the local store before any future schema migration. Store rollback requires a new reviewed version containing the fix/reversion; do not assume the Web Store can downgrade every installed client. Preserve notebook revisions and error records.
-
-Gateway rollback belongs to the operator/console transaction and its journal. The app agent never deletes lane/model rows, edits registry data or clears a failed transaction. Report the request/Apply SHA and failure by name, disable further automatic generation through the app's future spend fence, and retain saved notebooks. Support diagnostics include non-secret version/status/error/call IDs and known/unknown cost; no pairing or gateway key values.
+Support records contain nonsecret versions, job/call IDs, source adapter status and known/unknown cost. They exclude source content by default and never contain session, pairing, Google or gateway tokens. Public acceptance requires real results for authentication, isolation, capture, budget, backup and publication; a prepared plan is not evidence they occurred.

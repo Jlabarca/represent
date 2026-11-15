@@ -1,61 +1,61 @@
-# Gateway request — Clay Notes, lab1
+# Gateway request — Clay Notes hosted service, lab1
 
-> Prepared2026-11-15. Status: **pending operator Apply**. No secrets or live inference. [Onboarding workflow](../../../Ghost/docs/guides/ai-gateway-app-onboarding.md), [console reference](../../../Ghost/docs/reference/ai-gateway-console.md).
+> Revised2026-11-15 after the user selected SaaS at `clay.maremoto.dev`. **Pending operator Review/Apply.** Supersedes the unapplied internal/operator smart/Max proposal. [Onboarding workflow](../../../Ghost/docs/guides/ai-gateway-app-onboarding.md), [console reference](../../../Ghost/docs/reference/ai-gateway-console.md), [service design](clay-notes-service-roadmap.md).
 
-Registry inspected read-only: `D:/ware/Ghost/infrastructure/docker/litellm/routes.json`, SHA256 `3ab596405829fe9de5c03e62e543144d92de701cec84a3c09fcd4e5cb9ca5c24`. `keys.clay-notes` does not exist; `represent` exists for Trazo/Visu and is not reused. Refresh registry revision in the console before Review; this snapshot is not a promise it stays current.
+Registry rechecked read-only2026-11-15: `D:/ware/Ghost/infrastructure/docker/litellm/routes.json`, SHA256 `3ab596405829fe9de5c03e62e543144d92de701cec84a3c09fcd4e5cb9ca5c24`. No `keys.clay-notes`. Existing `represent` belongs to Trazo/Visu and is not reused. Refresh the registry revision before console Review.
 
 ```text
 Gateway request — lab1
-key: clay-notes (new)  group clay-notes  audience operator
+key: clay-notes (new)  group clay-notes  audience public
 envVar: LITELLM_KEY_CLAY_NOTES
-budget: $1 / 30d (proposed backstop, operator reviews)  forbid: []
+budget: $1 / 30d (initial test backstop proposed; not service launch capacity)
+forbid: [max-broker] (app proposal for customer traffic; operator reviews)
 
-lane: clay-notes-summary (new; copy the current cheap preset)
-  1 openrouter-lab1 google/gemini-2.5-flash-lite  enabled  paid
-  2 anthropic-lab1  claude-haiku-5-5             enabled  paid
-  3 ollama          qwen3:8b                    enabled  $0
+lane: clay-notes-summary (new; current cheap preset)
+  1 openrouter-lab1 google/gemini-2.5-flash-lite enabled paid
+  2 anthropic-lab1  claude-haiku-5-5            enabled paid
+  3 ollama          qwen3:8b                   enabled $0
 
-lane: clay-notes-deep (new; copy the current smart preset)
-  1 max-broker      claude-max-sonnet           enabled  $0, rate-limited
-  2 anthropic-lab1  claude-sonnet-5-5            enabled  paid
-  3 openrouter-lab1 google/gemini-2.5-flash       enabled  paid
-  4 ollama          qwen3:8b                    enabled  $0
+lane: clay-notes-deep (new; current client-anthropic preset)
+  1 anthropic-lab1  claude-sonnet-5-5           enabled paid
+  2 anthropic-lab1  claude-haiku-5-5            enabled paid
 
 key lanes after: [clay-notes-summary, clay-notes-deep]
 defaultLane: clay-notes-summary (operator confirmed)
-why: fast automatic transcript TLDR, with explicit deeper regeneration, attribution
-     and isolated budget for this internal app.
-app-side decision: docs/CONTEXT.md, 2026-11-15 follow-up decision
+why: hosted source-grounded notebooks with fast automatic summaries and optional
+     deeper regeneration, isolated key/spend and explicit account quotas.
+app-side decision: docs/CONTEXT.md, 2026-11-15 Gateway request amendment
 ```
 
-The numbered chains use the current registry's named presets/catalog; copy their prices and parameters in the console, not an invented upstream. Policy closure for both lanes combined is `openrouter-lab1`, `anthropic-lab1`, `ollama`, `max-broker`. All lanes remain lab1-only. Max is a subscription/rate-limited hop with reported$0, not a paid-fallback exemption. Exhausted key budget is a failure; do not promise that local fallback will still be reached.
+Hops come from the actual catalog/presets; copy current prices and parameters in the console. Combined upstream closure is `openrouter-lab1`, `anthropic-lab1`, `ollama`. All lanes remain lab1-only and server-to-server; browsers never receive a key or access the private gateway. The optional deep lane has no free fallback. Exhausted key budget is a failure; do not assume a local hop will still be reached.
 
-## Operator decision and app-side conflict
+## Actual decisions and supersession
 
-User approval quoted verbatim: **“Yes, summary is default (recommended)”** in response to the proposed own key/$1 backstop/two-lane request. This settles the requested default, not actual creation, Apply or a paid-call allowance. User hard boundary: **“No live paid call until the operator says so.”**
+The user's actual answer was **“Yes, summary is default (recommended)”**. It settles defaultLane only, not Apply, a new public chain, budget approval or permission for a paid call. The user explicitly says **“No live paid call until the operator says so.”** None has occurred.
 
-REP-8's reusable generic aliases and tentative `represent`-consumer suggestion conflict with the new own-key/own-lane rule. Amended decision: Clay Notes will read only `LITELLM_KEY_CLAY_NOTES` from its process environment, send app-specific lane names as `model`, and never fall back to another application's key or infer free service from a lane name. The new implementation step is gated on operator Apply SHA and lane-test evidence; current legacy gateway wiring is not represented as compliant completion. No old evidence is erased.
+The user subsequently chose Google-auth SaaS at `clay.maremoto.dev`, no Cloudflare Access and no customer pairing/local server. Therefore the prior audience `operator` and smart/Max deep chain were revised before any Apply. The onboarding guide warns on Max with public/client audience; it does not prohibit it. Proposed `forbid: [max-broker]` is this app's deliberate customer-service policy, subject to operator review. The new public audience, optional deep chain and launch quotas remain proposals; no approval quote is invented.
 
-## Operator action, then return evidence
+REP-8's generic aliases/old environment setting and tentative shared `represent` consumer are historical local behavior. New compliant wiring reads only `LITELLM_KEY_CLAY_NOTES` from the server environment, uses the app lane names as `model`, classifies actual serving hop from response headers/model/cost, and fences potentially paid calls before execution. This implementation still waits for real Apply SHA and lane-test evidence. The proposed$1/30d cap is a small initial testing backstop; public enrollment also needs deliberately configured per-account quotas and a service capacity budget.
 
-1. Create the new named value in Ghost's gitignored `.env` without printing it. Do not run the broad provisioner. The app agent never reads, requests or pastes its value.
-2. In the [admin console](http://localhost:3002/x/ai-gateway/console), draft the new key and both lanes from the presets above; review the budget, closure, prices, default and current registry revision. Starting the host runner is separately operator-controlled.
-3. **Operator clicks Apply.** This app session neither applies nor writes registry, consumers, queue files or key/model APIs.
-4. Return the scoped **Apply commit SHA** and **own-key lane-test result for each lane**, using names/results only. Live inference, including a console lane-test that may bill, remains operator-controlled. Report failures without changing the scope silently.
-5. Give a separate bounded paid-call approval before the three-video summary trial, for example a maximum dollar allowance and whether both default/deep lanes may be used. No such approval exists yet.
+## Operator action and return evidence
 
-Evidence to fill after the operator acts:
+1. Create the named key value in Ghost's gitignored `.env` without printing it. The app agent never reads, asks for or pastes its value; never use the broad key provisioner.
+2. In the [operator console](http://localhost:3002/x/ai-gateway/console), draft the key and lanes from these presets. Review audience, forbids, budget, closure, prices and default. Start the route-runner only under the operator's separate control.
+3. **Operator clicks Apply.** This app session never applies, writes route-queue files/registry/consumers, starts a runner or calls LiteLLM `/key/*` or `/model/*`.
+4. Return the scoped **Apply commit SHA** and **own-key lane-test result for each lane**, by name/result only. Console lane tests that may bill remain operator controlled.
+5. Separately approve a bounded live summary allowance, stating the total cap and whether deep redo is permitted. Only then run the three-video quality/latency trial.
 
-| Evidence | Current state |
+| Evidence | State |
 |---|---|
-| Apply commit SHA | pending — not invented |
+| Apply commit SHA | pending |
 | clay-notes-summary own-key lane-test | pending |
 | clay-notes-deep own-key lane-test | pending |
-| Paid-call approval and cap | pending |
-| Post-Apply app lane/header/spend-fence tests | pending |
+| Separate paid-call allowance/cap | pending |
+| Post-Apply app wiring and token-free tests | pending |
+| Public service capacity/per-account quotas | proposed, not configured |
 
 ## Post-Apply application work
 
-Read the key by environment name only; use `/v1/chat/completions` at `http://localhost:4000`. Classify the actual serving hop using `x-litellm-model-api-base`, response model and reported response cost. Keep missing/contradictory attribution unknown; never treat lane/default labels as proof of a free hop. Check/route potentially paid chains through a bounded app spend fence before inference, reserve conservatively for uncertain usage and record actual or unknown cost afterward. Budget refusals preserve notebooks; no automatic billable retry. Add loopback-stub tests for free Max/local, paid fallback, missing headers/cost, exhausted cap, truncation and lane selection. Do not test paid inference in this preparation phase. Link the real Apply SHA in the implementation/reference once received.
+POST to `http://localhost:4000/v1/chat/completions` from the app server using `model: "clay-notes-summary"` or the explicitly selected deep lane. Classify `x-litellm-model-api-base`, response model and reported cost. Missing or contradictory attribution stays unknown, with conservative spend reservation; never infer free service from an alias. Reconcile actual/unknown charges, reject exhausted caps before inference, retain notebooks on failure and require an explicit retry rather than an automatic billable loop. Add loopback-stub tests for paid/local serving, missing headers/cost, exhausted cap, truncation, lane selection, duplicate jobs and concurrent account reservations. Record the actual Apply SHA in the implementation reference. No new-lane live call is part of preparation.
 
-The exact user-requested ephemeral handoff is also written at `docs/handoffs/GATEWAY-REQUEST-2026-11-15.md`. That path is locally excluded and unstaged to preserve the project's ephemeral-handoff rule; this document is the committed durable request.
+The exact requested ephemeral copy is `docs/handoffs/GATEWAY-REQUEST-2026-11-15.md`, locally excluded and unstaged. This document is the durable committed request shown to the operator. Current work stops at this request boundary for gateway changes; independent UI/design preparation does not imply Apply.
