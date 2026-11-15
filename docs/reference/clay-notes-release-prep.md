@@ -10,6 +10,14 @@ Clay Notes0.2.0 adds ten-language interface copy and a versioned local Chrome pa
 
 ## Architecture
 
+The collection now renders a bounded, seven-day, versioned local cache before any network await. Notes and config discovery run independently; a slow model list cannot hold the collection behind “Opening your library”. The real empty response replaces stale cards. Cache/storage failures do not block the UI. Only card metadata and the saved overview are cached, up to500cards/2million characters; transcript and personal drafts are excluded. This local-development cache is origin scoped. The hosted implementation must scope it by authenticated account and purge it at signout before public use.
+
+Cards use the YouTube thumbnail as full-art by default, framed in clay colors with Satoshi, dark text panels, restrained CSS3D tilt/foil and Web Animations layout movement. A separate handle supports pointer dragging and keyboard arrows/Home/End in My order; automatic sort disables manual handles. Search, status and pin filters preserve hidden cards' manual slots. `library-order.json` atomically stores the manual order; old notebooks work without migrations. Reduced-motion disables tilt and layout animation. Pointer mechanics are source reviewed; browser automation exercised keyboard reorder, not a physical pointer drag.
+
+Each notebook accepts up to8PNG/JPEG/WebP attachments,2MiB decoded each. The server validates encoding/signature/size, generates image IDs, enforces notebook ownership/path checks and authenticates binary reads and uploads. Bytes live in an owned images directory; notebook JSON stores metadata and a selected cover reference. No SVG or arbitrary remote-cover URL is accepted. Choose Use as cover or restore Use video thumbnail. Attachment capture does not claim OCR, vision analysis or AI citations. Text panels remain shaded regardless of art brightness.
+
+The settings gear contains language Automatic/manual and appearance Light/Dark/Automatic. Automatic follows browser language and device color scheme, including live preference changes. Manual choices persist. The website uses its own per-port development session cookie and one bounded refresh after an auth rejection; extension-pairing instructions no longer serve as website auth errors. These loopback sessions do not implement the planned Google accounts.
+
 The web interface imports a static catalog/runtime from [i18n.mjs](../../src/clay-notes/web/i18n.mjs). English, Spanish, Portuguese, French, German, Italian, Japanese, Simplified Chinese, Arabic and Hindi are selectable with native language labels. Browser regional preferences select a supported language; explicit choice persists locally. `lang`, `dir`, dates, translated labels/placeholders and Arabic logical layout follow the selection. System fonts supply glyphs outside Satoshi's coverage. Captured titles, caption text, personal notes and AI responses never enter the translation lookup. Source text uses appropriate direction handling. Chrome `_locales` follows browser language separately through native `chrome.i18n`; changing the web UI does not change the browser's locale.
 
 The package builder reads an explicit resource allow-list, validates MV3/version/locales/manifest resources and PNGs, rejects symlinks/traversal and excludes unrelated files. Fixed ZIP ordering/timestamps and CRCs make unchanged source reproducible. The source-only importer validates native export ID/language headers, converts bracketed timestamps, strips exporter metadata and persists captions without using a gateway. Existing notebook sources/revisions are preserved on repeated imports.
@@ -48,7 +56,7 @@ flowchart LR
 
 ## Usage Guide
 
-Start the existing local service, choose a language from the navigation bar, and use the notebook as before. The source-only trial notes used an isolated store at `D:/ware/represent/tmp/clay-localization-store`; default user storage was not overwritten. An existing service at8876 was left untouched; the owned QA service used8880.
+Start the existing local service, choose language/appearance from the settings gear, and use the notebook as before. The source-only trial notes used an isolated store at `D:/ware/represent/tmp/clay-localization-store`; default user storage was not overwritten. An existing service at8876 was left untouched; the owned QA service used8880. Custom cover testing attached this project's generated128px icon to a trial notebook, verified it after reload and restored the video thumbnail. No user library was replaced.
 
 Build the release ZIP and integrity report:
 

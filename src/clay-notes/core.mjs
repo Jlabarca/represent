@@ -1,4 +1,4 @@
-import {mkdir, readFile, writeFile, rename, readdir, unlink} from 'node:fs/promises';
+import {mkdir, readFile, writeFile, rename, readdir, unlink, lstat} from 'node:fs/promises';
 import {join} from 'node:path';
 import {createHash, randomUUID} from 'node:crypto';
 
@@ -147,7 +147,39 @@ export class NotebookStore {
   async list() {
     const files = await readdir(this.directory);
     const notes = await Promise.all(files.filter(file => /^[A-Za-z0-9_-]{11}\.json$/.test(file)).map(file => this.get(file.slice(0,-5))));
-    return notes.sort((a,b) => Number(b.pinned) - Number(a.pinned) || b.updatedAt.localeCompare(a.updatedAt));
+    notes.sort((a,b) => Number(b.pinned) - Number(a.pinned) || b.updatedAt.localeCompare(a.updatedAt));
+    let order=[];try{order=JSON.parse(await readFile(join(this.directory,'library-order.json'),'utf8'));if(!Array.isArray(order)||order.some(id=>!ID.test(id))||new Set(order).size!==order.length)throw new Error('Saved library order is invalid');}catch(error){if(error.code!=='ENOENT')throw error;}
+    const ranks=new Map(order.map((id,index)=>[id,index]));return notes.sort((a,b)=>(ranks.get(a.id)??Infinity)-(ranks.get(b.id)??Infinity));
+  }
+  async reorder(ids){
+    return this.exclusive('$library',async()=>{
+      const all=(await this.list()).map(note=>note.id);
+      if(!Array.isArray(ids)||!ids.length||ids.length>10000||new Set(ids).size!==ids.length||ids.some(id=>!all.includes(id)))throw new Error('Order must contain unique known notebook ids');
+      const selected=new Set(ids);let next=0;const order=all.map(id=>selected.has(id)?ids[next++]:id);
+      const target=join(this.directory,'library-order.json'),temp=`${target}.${randomUUID()}.tmp`;
+      try{await writeFile(temp,JSON.stringify(order),{mode:0o600});await replaceFile(temp,target);}finally{await unlink(temp).catch(()=>{});}return order;
+    });
+  }
+  async mediaDirectory(id){
+    this.path(id);const root=join(this.directory,'images'),folder=join(root,id);
+    for(const path of [this.directory,root,folder]){await mkdir(path,{recursive:true});const info=await lstat(path);if(info.isSymbolicLink()||!info.isDirectory())throw new Error('Image directory must be an owned directory');}return folder;
+  }
+  async addImage(id,{dataUrl,name='Image'}={}){
+    const match=typeof dataUrl==='string'&&/^data:(image\/(?:png|jpeg|webp));base64,([A-Za-z0-9+/]+={0,2})$/.exec(dataUrl);
+    if(!match||match[2].length>2796204)throw new Error('Choose a PNG, JPEG or WebP image up to 2 MiB');
+    const bytes=Buffer.from(match[2],'base64');if(!bytes.length||bytes.length>2*1024*1024||bytes.toString('base64')!==match[2])throw new Error('Image exceeds size limit or has invalid encoding');
+    const signature=match[1]==='image/png'?bytes.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10])):match[1]==='image/jpeg'?bytes[0]===255&&bytes[1]===216&&bytes[2]===255:bytes.toString('ascii',0,4)==='RIFF'&&bytes.toString('ascii',8,12)==='WEBP';
+    if(!signature)throw new Error('Image contents do not match the selected format');
+    return this.exclusive(id,async()=>{
+      const note=await this.get(id);if(!note)throw new Error('Notebook not found');note.images??=[];if(note.images.length>=8)throw new Error('A notebook supports up to 8 images');
+      const folder=await this.mediaDirectory(id),imageId=randomUUID(),extension={'image/png':'png','image/jpeg':'jpg','image/webp':'webp'}[match[1]],file=join(folder,`${imageId}.${extension}`);
+      const image={id:imageId,name:clean(name,160)||'Image',mime:match[1],bytes:bytes.length,extension,url:`/api/notes/${id}/images/${imageId}`};
+      await writeFile(file,bytes,{flag:'wx',mode:0o600});try{note.images.push(image);note.updatedAt=new Date().toISOString();await this.put(note);}catch(error){await unlink(file).catch(()=>{});throw error;}return image;
+    });
+  }
+  async image(id,imageId){
+    if(!/^[a-f0-9-]{36}$/.test(imageId))return null;const note=await this.get(id),image=note?.images?.find(item=>item.id===imageId);if(!image)return null;
+    if(!['png','jpg','webp'].includes(image.extension))throw new Error('Image format is invalid');const folder=await this.mediaDirectory(id),file=join(folder,`${imageId}.${image.extension}`);const info=await lstat(file);if(info.isSymbolicLink()||!info.isFile()||info.size>2*1024*1024)throw new Error('Image file is invalid');return {...image,data:await readFile(file)};
   }
   async recover() {
     for (const note of await this.list()) if (['queued','summarizing'].includes(note.state)) await this.mutate(note.id, n => { n.state = 'error'; n.error = 'Service restarted during generation. Retry when ready.'; });
@@ -161,6 +193,7 @@ export class NotebookStore {
       if ('personalNotes' in input) { if (typeof input.personalNotes !== 'string' || input.personalNotes.length > 50000) throw new Error('Personal notes exceed size limit'); n.personalNotes = input.personalNotes; }
       if ('pinned' in input) n.pinned = Boolean(input.pinned);
       if (['cream','mint','peach','lilac'].includes(input.color)) n.color = input.color;
+      if ('coverImage' in input) {if(input.coverImage!==null&&!n.images?.some(image=>image.id===input.coverImage))throw new Error('Choose an image attached to this notebook');n.coverImage=input.coverImage;}
     });
   }
   async summarize(id, model = 'cheap') {

@@ -71,7 +71,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-9.4.1 — Show cached cards before network/model discovery; implement readable full-art TCG thumbnails/image covers, validated authenticated image attachments, persisted filtered reorder with pointer/keyboard motion and sort/filter/search; verify old notebook compatibility, browser desktop/mobile/dark/RTL and regressions without inference.
+- [x] REP-9.4.1 — Show cached cards before network/model discovery; implement readable full-art TCG thumbnails/image covers, validated authenticated image attachments, persisted filtered reorder with pointer/keyboard motion and sort/filter/search; verify old notebook compatibility, browser desktop/mobile/dark/RTL and regressions without inference. — evidence: node scripts/clay-notes-test.mjs: 46/46 passed, skipped=0, output sha256=d57f8b52d71762719b433fea6225a5dca548195cf4d3488460245fc5c1ca0b4c
 
 ### Phase 5 — Hosted service and future notebooks
 

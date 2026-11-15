@@ -12,10 +12,11 @@ const same = (a,b) => typeof a === 'string' && a.length === b.length && timingSa
 const problem = (status,message) => Object.assign(new Error(message),{status});
 export const defaultDirectory = () => join(process.env.LOCALAPPDATA || join(homedir(),'.local','share'),'Represent','clay-notes');
 
-async function body(req) {
+async function body(req,limit=1_000_000) {
   if (!req.headers['content-type']?.startsWith('application/json')) throw problem(415,'Expected JSON');
+  if(Number(req.headers['content-length'])>limit)throw problem(413,'Request exceeds size limit');
   let size=0; const chunks=[];
-  for await (const chunk of req) { size+=chunk.length; if(size>1_000_000) throw problem(413,'Request exceeds size limit'); chunks.push(chunk); }
+  for await (const chunk of req) { size+=chunk.length; if(size>limit) throw problem(413,'Request exceeds size limit'); chunks.push(chunk); }
   try { const value=JSON.parse(Buffer.concat(chunks).toString('utf8')); if(!value || Array.isArray(value) || typeof value!=='object') throw new Error(); return value; }
   catch { throw problem(400,'Invalid JSON object'); }
 }
@@ -71,8 +72,11 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
           try{models=await gateway.availableModels();}catch(error){modelError=error.message;}
           return json(200,{gatewayConfigured:Boolean(gateway.key),models,modelError,defaultModel,...(webAuth?{pairingToken:token}:{}),queueSize:pending.size});
         }
+        if(url.pathname==='/api/order'&&req.method==='PATCH')return json(200,{ids:await store.reorder((await body(req)).ids)});
+        const media=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/images(?:\/([a-f0-9-]{36}))?$/.exec(url.pathname);
+        if(media){const [,noteId,imageId]=media;if(!imageId&&req.method==='POST')return json(201,await store.addImage(noteId,await body(req,2_850_000)));if(imageId&&req.method==='GET'){const image=await store.image(noteId,imageId);if(!image)throw problem(404,'Image not found');res.writeHead(200,{'Content-Type':image.mime,'Content-Length':image.data.length,'Cache-Control':'private, no-store'});return res.end(image.data);}throw problem(405,'Method not allowed');}
         if(url.pathname==='/api/notes') {
-          if(req.method==='GET') {const notes=await store.list(); return json(200,notes.map(n=>({id:n.id,url:n.url,title:n.title,channel:n.channel,thumbnail:n.thumbnail,state:n.state,error:n.error,pinned:n.pinned,color:n.color,createdAt:n.createdAt,updatedAt:n.updatedAt,overview:n.revisions.at(-1)?.overview || '',statementCount:n.revisions.at(-1)?.statements.length || 0,revisionCount:n.revisions.length})));}
+          if(req.method==='GET') {const notes=await store.list(); return json(200,notes.map(n=>({id:n.id,url:n.url,title:n.title,channel:n.channel,thumbnail:n.thumbnail,cover:n.images?.find(image=>image.id===n.coverImage)?.url||n.thumbnail,imageCount:n.images?.length||0,state:n.state,error:n.error,pinned:n.pinned,color:n.color,createdAt:n.createdAt,updatedAt:n.updatedAt,overview:n.revisions.at(-1)?.overview || '',statementCount:n.revisions.at(-1)?.statements.length || 0,revisionCount:n.revisions.length})));}
           if(req.method==='POST') return json(201,await store.create(await body(req)));
         }
         const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(?:\/(transcript|summarize|ask))?$/.exec(url.pathname);
@@ -98,7 +102,7 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
       }
       if(req.method!=='GET') throw problem(405,'Method not allowed');
       let path=url.pathname==='/'?'index.html':url.pathname.slice(1);
-      if(!['index.html','app.mjs','i18n.mjs','session.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
+      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
       const bytes=await readFile(join(web,path));
       if(path==='index.html') res.setHeader('Set-Cookie',`clay_session_${server.address().port}=${session}; HttpOnly; SameSite=Strict; Path=/`);
       const extension=path.slice(path.lastIndexOf('.')); res.writeHead(200,{'Content-Type':mime[extension] || 'application/octet-stream'});res.end(bytes);

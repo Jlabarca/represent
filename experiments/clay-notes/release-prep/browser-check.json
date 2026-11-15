@@ -1,21 +1,110 @@
 {
-  "date":"2026-11-15",
-  "tool":"native in-app browser CUA",
-  "origin":"http://127.0.0.1:8880",
-  "scope":"localized UI and real transcript display; no inference or installed-extension claim",
-  "checks":[
-    {"name":"Spanish library/hero/search/footer labels","result":"pass"},
-    {"name":"Spanish save dialog and input labels","result":"pass"},
-    {"name":"Arabic library uses lang ar and dir rtl","result":"pass"},
-    {"name":"Arabic selection survives reload","result":"pass"},
-    {"name":"Arabic mobile layout has no horizontal overflow","result":"pass","requestedWidth":390,"clientWidth":375,"scrollWidth":375},
-    {"name":"Spanish original title stays unchanged in Arabic/Spanish UI","result":"pass","videoId":"X6J3ByTqhLY"},
-    {"name":"three actual source-only notebooks appear","result":"pass"},
-    {"name":"captured Spanish transcript and original timestamp links display","result":"pass","segments":582},
-    {"name":"mobile Connect Chrome button retains translated accessible label after repair","result":"pass","observed":"ربط Chrome"}
+  "date": "2026-11-15",
+  "tool": "native in-app browser CUA",
+  "origin": "http://127.0.0.1:8880",
+  "scope": "localized source-only UI plus settings, cache-first TCG collection and image covers; no inference or installed-extension claim",
+  "checks": [
+    {
+      "name": "Spanish library/hero/search/footer labels",
+      "result": "pass"
+    },
+    {
+      "name": "Spanish save dialog and input labels",
+      "result": "pass"
+    },
+    {
+      "name": "Arabic library uses lang ar and dir rtl",
+      "result": "pass"
+    },
+    {
+      "name": "Arabic selection survives reload",
+      "result": "pass"
+    },
+    {
+      "name": "Arabic mobile layout has no horizontal overflow",
+      "result": "pass",
+      "requestedWidth": 390,
+      "clientWidth": 375,
+      "scrollWidth": 375
+    },
+    {
+      "name": "Spanish original title stays unchanged in Arabic/Spanish UI",
+      "result": "pass",
+      "videoId": "X6J3ByTqhLY"
+    },
+    {
+      "name": "three actual source-only notebooks appear",
+      "result": "pass"
+    },
+    {
+      "name": "captured Spanish transcript and original timestamp links display",
+      "result": "pass",
+      "segments": 582
+    },
+    {
+      "name": "mobile Connect Chrome button retains translated accessible label after repair",
+      "result": "pass",
+      "observed": "ربط Chrome"
+    }
   ],
-  "translationReview":"authored translations; not independently reviewed by native speakers",
-  "knownObservation":"awaiting_summary gallery copy initially implied processing; a bounded follow-up phase repairs this before preparation closeout",
-  "summaryCalls":0,
-  "paidCalls":0
+  "translationReview": "authored translations; not independently reviewed by native speakers",
+  "knownObservation": "awaiting_summary now says Ready to summarize; no active job or AI result is claimed",
+  "summaryCalls": 0,
+  "paidCalls": 0,
+  "tcg": {
+    "checks": [
+      {
+        "name": "English and dark settings survive reload",
+        "result": "pass"
+      },
+      {
+        "name": "Keyboard card reorder persists after reload",
+        "result": "pass"
+      },
+      {
+        "name": "Title sort disables manual handles",
+        "result": "pass"
+      },
+      {
+        "name": "PNG attachment uploaded through file chooser",
+        "result": "pass"
+      },
+      {
+        "name": "Custom cover persists after reload and binary loads",
+        "result": "pass"
+      },
+      {
+        "name": "Video thumbnail restored as default full-art",
+        "result": "pass"
+      },
+      {
+        "name": "NEAR search returns one card",
+        "result": "pass"
+      },
+      {
+        "name": "Ready filter returns zero for three pending sources",
+        "result": "pass"
+      },
+      {
+        "name": "1280px desktop light/dark no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "name": "390px Arabic RTL no horizontal overflow",
+        "result": "pass"
+      },
+      {
+        "name": "Automatic preferences resolve en/dark in this browser",
+        "result": "pass"
+      }
+    ],
+    "screenshots": [
+      "tcg-light.jpg",
+      "tcg-dark.jpg",
+      "tcg-mobile.jpg",
+      "settings-dark.jpg"
+    ],
+    "pointerDrag": "source reviewed; physical pointer drag not automated",
+    "cache": "behavioral test proves synchronous cached render and fresh notes independent of a deliberately unresolved config promise"
+  }
 }
