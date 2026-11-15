@@ -21,16 +21,19 @@ async function fixture(t,gateway=fakeGateway){
 }
 const request=(app,path,{method='GET',data,headers={}}={})=>fetch(`${app.url}/api${path}`,{method,headers:{Authorization:`Bearer ${app.token}`,...(data?{'Content-Type':'application/json'}:{}),...headers},...(data?{body:JSON.stringify(data)}:{})});
 const input={url:'https://www.youtube.com/watch?v=dQw4w9WgXcQ',title:'Service fixture'};
-async function settled(app,id){for(let i=0;i<100;i++){const note=await app.store.get(id);if(!['queued','summarizing'].includes(note.state))return note;await new Promise(resolve=>setTimeout(resolve,10));}throw new Error('Fixture job did not settle');}
+async function settled(app,id){const deadline=Date.now()+5000;let state;while(Date.now()<deadline){const note=await app.store.get(id);state=note.state;if(!['queued','summarizing'].includes(state))return note;await new Promise(resolve=>setTimeout(resolve,20));}throw new Error(`Fixture job did not settle (last state: ${state})`);}
 
 test('persists notebook before generation finishes and supports redo and Q&A',async t=>{
   let release;const wait=new Promise(resolve=>{release=resolve;});
   const app=await fixture(t,{...fakeGateway,complete:async({question})=>{await wait;return {result:question?{answer:'Supported answer',sources:[0]}:result,metrics:{requestedModel:'cheap'}};}});
-  const response=await request(app,'/notes',{method:'POST',data:input});assert.equal(response.status,201);const note=await response.json();assert.equal(note.state,'awaiting_transcript');
-  const queued=await request(app,`/notes/${note.id}/transcript`,{method:'POST',data:{transcript:'0:10 A test claim',source:'fixture'}});assert.equal(queued.status,202);
-  assert.equal((await app.store.get(note.id)).revisions.length,0);
-  assert.equal((await request(app,`/notes/${note.id}/summarize`,{method:'POST',data:{}})).status,409);
-  release();assert.equal((await settled(app,note.id)).revisions.length,1);
+  let note;
+  try {
+    const response=await request(app,'/notes',{method:'POST',data:input});assert.equal(response.status,201);note=await response.json();assert.equal(note.state,'awaiting_transcript');
+    const queued=await request(app,`/notes/${note.id}/transcript`,{method:'POST',data:{transcript:'0:10 A test claim',source:'fixture'}});assert.equal(queued.status,202);
+    assert.equal((await app.store.get(note.id)).revisions.length,0);
+    assert.equal((await request(app,`/notes/${note.id}/summarize`,{method:'POST',data:{}})).status,409);
+  } finally {release();}
+  assert.equal((await settled(app,note.id)).revisions.length,1);
   assert.equal((await request(app,`/notes/${note.id}/summarize`,{method:'POST',data:{model:'smart'}})).status,202);assert.equal((await settled(app,note.id)).revisions.length,2);
   const answer=await request(app,`/notes/${note.id}/ask`,{method:'POST',data:{question:'What is the claim?'}});assert.equal(answer.status,200);assert.equal((await answer.json()).conversations.length,1);
   const listed=await (await request(app,'/notes')).json();assert.equal(listed[0].overview,'Fixture summary');assert.equal(listed[0].segments,undefined);

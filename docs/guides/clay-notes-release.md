@@ -55,6 +55,8 @@ Upload the ZIP and verify manifest/locale/resource warnings. Start with operator
 
 ## Release verification and integrity
 
+The package builder is now implemented. `node D:/ware/represent/scripts/clay-notes-package.mjs` produces version0.2.0 under `dist/clay-notes/`, with original icons and all ten locales. [The package report](../../experiments/clay-notes/release-prep/package.json) records the exact SHA256 and members. [Source-trial results](../../experiments/clay-notes/release-prep/video-trials.json) establish transcript availability/import for all three videos with zero summary calls. Neither artifact establishes installed-extension/live-gateway acceptance.
+
 Run the focused test launcher and full suite before packaging. The planned package script must accept an explicit source directory/output path, enumerate only declared extension files/locales/icons, reject symlinks/secrets/runtime stores, validate referenced assets and emit a versioned ZIP plus SHA256. Package bytes should be deterministic for unchanged source. Tests inspect ZIP members rather than merely asserting that a file exists. Only approved release files go to the Web Store; never package a repository root, `.env`, fixtures or notebook JSON.
 
 The trial report records supported Chrome/OS versions, actual extension install method, service HEAD, manifest version, locale, video IDs and whether inference was stubbed or live. Stop on failed spend classification, wrong video/citations, duplicate billable calls or data loss. Pending operator evidence is not a green gate.

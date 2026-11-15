@@ -544,3 +544,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Build reproducible extension ZIP and export adapter, ingest real transcripts into isolated trial notes with no summary calls, record evidence and verify all tools.
+
+## 2026-11-15 — REP-9.3 partial source checkpoint, not verified
+
+### Accomplished
+
+- Prepared0.2.0 allow-listed ZIP and source-only trial records for three real transcripts, with1481 segments/58387 characters and zero inference. Preliminary34/34 runs passed, but later integration receipts failed; this checkpoint does not earn the phase box.
+
+### Decisions
+
+- Preserve prepared source in an exact-path intermediate commit, then commit an amended phase plan before the needed repairs and new settings scope. Actual diagnostic captured Windows EPERM on rename; queued-job failures are not dismissed as scheduling noise.
+- User broadened product to multi-source notebooks, requested gear-menu language/theme Automatic controls and tactile TCG cards. Future NotebookLM feature planning follows current implementation, not immediate unbounded format implementation.
+
+### Blockers
+
+- Website authentication message is wrong for the web UI; shared host cookies across QA8880 and main8876 can collide. Add port-specific cookies, auto web-session recovery and localized feedback. Gateway Apply/paid permission still pending.
+
+### Next
+
+- Re-plan the bounded phase with explicit core/server/UI/test paths, repair atomic replacement and web authentication, then implement requested settings. Earn fresh test evidence before checking any box; TCG library and general-notebook roadmap follow.

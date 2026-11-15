@@ -1,0 +1,21 @@
+{
+  "date":"2026-11-15",
+  "tool":"native in-app browser CUA",
+  "origin":"http://127.0.0.1:8880",
+  "scope":"localized UI and real transcript display; no inference or installed-extension claim",
+  "checks":[
+    {"name":"Spanish library/hero/search/footer labels","result":"pass"},
+    {"name":"Spanish save dialog and input labels","result":"pass"},
+    {"name":"Arabic library uses lang ar and dir rtl","result":"pass"},
+    {"name":"Arabic selection survives reload","result":"pass"},
+    {"name":"Arabic mobile layout has no horizontal overflow","result":"pass","requestedWidth":390,"clientWidth":375,"scrollWidth":375},
+    {"name":"Spanish original title stays unchanged in Arabic/Spanish UI","result":"pass","videoId":"X6J3ByTqhLY"},
+    {"name":"three actual source-only notebooks appear","result":"pass"},
+    {"name":"captured Spanish transcript and original timestamp links display","result":"pass","segments":582},
+    {"name":"mobile Connect Chrome button retains translated accessible label after repair","result":"pass","observed":"ربط Chrome"}
+  ],
+  "translationReview":"authored translations; not independently reviewed by native speakers",
+  "knownObservation":"awaiting_summary gallery copy initially implied processing; a bounded follow-up phase repairs this before preparation closeout",
+  "summaryCalls":0,
+  "paidCalls":0
+}

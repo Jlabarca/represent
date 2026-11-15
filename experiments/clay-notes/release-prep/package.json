@@ -1,0 +1,43 @@
+{
+  "version": "0.2.0",
+  "filename": "clay-notes-0.2.0.zip",
+  "sha256": "b87891eb5f8a84203e700782c8c152c35fbc9e0bfff3fa04e8f50b59f1eec9bd",
+  "bytes": 37304,
+  "members": [
+    "_locales/ar/messages.json",
+    "_locales/de/messages.json",
+    "_locales/en/messages.json",
+    "_locales/es/messages.json",
+    "_locales/fr/messages.json",
+    "_locales/hi/messages.json",
+    "_locales/it/messages.json",
+    "_locales/ja/messages.json",
+    "_locales/pt/messages.json",
+    "_locales/zh_CN/messages.json",
+    "background.js",
+    "content.css",
+    "content.js",
+    "icons/128.png",
+    "icons/16.png",
+    "icons/32.png",
+    "icons/48.png",
+    "manifest.json",
+    "options.css",
+    "options.html",
+    "options.js"
+  ],
+  "locales": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "hi",
+    "it",
+    "ja",
+    "pt",
+    "zh_CN"
+  ],
+  "credentialValuesIncluded": false,
+  "publicationStatus": "not submitted; operator installation/store review pending"
+}

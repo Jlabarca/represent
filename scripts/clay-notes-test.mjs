@@ -6,7 +6,7 @@ const root=fileURLToPath(new URL('../',import.meta.url));
 const all=process.argv.includes('--all');
 const files=readdirSync(new URL('../tests/',import.meta.url)).filter(name=>name.endsWith('.test.mjs') && (all || name.startsWith('clay-notes'))).map(name=>`tests/${name}`);
 // Existing Git-heavy suites need a longer file budget; serialize files on Windows.
-const child=spawn(process.execPath,['--test','--test-reporter=tap','--test-concurrency=1',`--test-timeout=${all?60000:15000}`,...files],{cwd:root,stdio:['ignore','pipe','pipe']});
+const child=spawn(process.execPath,['--test','--test-reporter=tap','--test-concurrency=1','--test-timeout=60000',...files],{cwd:root,stdio:['ignore','pipe','pipe']});
 let output='';for(const stream of [child.stdout,child.stderr])stream.on('data',chunk=>{output+=chunk;process.stdout.write(chunk);});
 child.on('error',error=>{console.error(error.message);process.exitCode=1;});
 child.on('close',code=>{

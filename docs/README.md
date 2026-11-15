@@ -118,6 +118,9 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Clay Notes
 
+- [Localization and release preparation reference](reference/clay-notes-release-prep.md) — ten-language UI, versioned package, source-only imports and explicit live-gateway limits.
+- [Three real-video source trials and package evidence](../experiments/clay-notes/release-prep/README.md) — metadata/hashes/counts, localized screenshots and ZIP integrity report; zero inference.
+
 - [Own-key gateway request](design/clay-notes-gateway-request.md) — operator-reviewed default summary lane, proposed budget, explicit Apply/evidence boundary.
 - [Complete extension release plan](guides/clay-notes-release.md) — localization, the three-video trial, package/install/store distribution, public-backend gap and rollback.
 
