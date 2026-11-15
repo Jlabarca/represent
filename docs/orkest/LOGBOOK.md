@@ -471,3 +471,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Finish final documentation reconciliation, committed-head verification, audit and local-MVP promotion. Then perform the external video/gateway trial when credentials and Chrome pairing are configured.
+
+## 2026-11-15 — Promote CLAY-NOTES
+
+### Accomplished
+
+- Archived the evidenced tracker after fresh tests and final audit.
+- Boxes: 3 earned by the helper, 0 adopted (shipped before the helper, accepted by a person).
+
+### Decisions
+
+- The person-invoked default run authorized this promotion.
+
+### Blockers
+
+- No remaining promotion gate.
+
+### Next
+
+- Review the promotion commit and reference when needed.

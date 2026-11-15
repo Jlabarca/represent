@@ -6,7 +6,7 @@
 
 ## Current Operating Direction (2026-11-15)
 
-**Clay Notes is the active user-requested tool.** Represent remains a suite: Visu (paused), Grafe, Alegor and the deferred Trazo POC remain intact. Clay Notes adds one-click YouTube capture, automatic transcript statements/conclusions through Ghost, a clay/Satoshi card collection and a full notebook with cited revisions, personal notes and questions. Local implementation and offline/browser validation are in [the operating reference](reference/clay-notes.md) and [evidence](../experiments/clay-notes/README.md). The implementation tracker is [REP-8](orkest/clay-notes.imp.md). Live Chrome installation/capture and real gateway success remain unverified; no paid calls or credential/allow-list changes were made. The older operating-direction entries below are preserved history, not the active cursor.
+**Clay Notes is the active user-requested tool.** Represent remains a suite: Visu (paused), Grafe, Alegor and the deferred Trazo POC remain intact. Clay Notes adds one-click YouTube capture, automatic transcript statements/conclusions through Ghost, a clay/Satoshi card collection and a full notebook with cited revisions, personal notes and questions. Local implementation and offline/browser validation are in [the operating reference](reference/clay-notes.md) and [evidence](../experiments/clay-notes/README.md). The implementation tracker is [REP-8](orkest/done/clay-notes.imp.md). Live Chrome installation/capture and real gateway success remain unverified; no paid calls or credential/allow-list changes were made. The older operating-direction entries below are preserved history, not the active cursor.
 
 ## Current Operating Direction (2026-10-25)
 
@@ -139,7 +139,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 
 ## Current Sprint
 
-**Clay Notes (2026-11-15 user priority)** — local MVP implemented and validated under [REP-8](orkest/clay-notes.imp.md): 24 focused tests, 96/96 full regressions, twelve browser checks. Core, loopback service, unpacked Chrome extension and clay/Satoshi web surfaces are present. The default request is “give me a TLDR list of the main statements and conclusions”; the configured initial gateway model is cheap when enabled, otherwise the first configured alias. Explicit regeneration preserves revisions. **Next focus: installed-Chrome and real gateway trial.** Credentials, consumer scope and live caption compatibility remain unverified; fixture tests do not establish them. Trazo and platform integration stay deferred, with human gates unchanged. This supersedes the sprint priority in the preserved paragraph below.
+**Clay Notes (2026-11-15 user priority)** — local MVP implemented and validated under [REP-8](orkest/done/clay-notes.imp.md): 24 focused tests, 96/96 full regressions, twelve browser checks. Core, loopback service, unpacked Chrome extension and clay/Satoshi web surfaces are present. The default request is “give me a TLDR list of the main statements and conclusions”; the configured initial gateway model is cheap when enabled, otherwise the first configured alias. Explicit regeneration preserves revisions. **Next focus: installed-Chrome and real gateway trial.** Credentials, consumer scope and live caption compatibility remain unverified; fixture tests do not establish them. Trazo and platform integration stay deferred, with human gates unchanged. This supersedes the sprint priority in the preserved paragraph below.
 
 **Trazo POC** ([tracker](orkest/represent-trazo-poc.imp.md), [design](reference/trazo-poc.md)). Cursor: week-2 paid trial (REPRESENT-TRAZO-POC.2.4: one explanation per folder with the operator's key; previews and estimates in [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md)), then the operator's rating (2.5), then week 3 (live and proactive). REPRESENT-ORKEST's Phase 0 review is deferred until the POC verdict. Visu development and paid refreshes remain paused; Trazo reuses Visu's discovery, analysis and gateway code as libraries without changing its experience.
 
@@ -160,10 +160,14 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 
 ## Active implementation
 
-- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — verified local MVP; external Chrome/gateway trial remains open.
+- [REP-8: CLAY-NOTES](orkest/done/clay-notes.imp.md) — verified local MVP; external Chrome/gateway trial remains open.
 
 - Shipped REP-8.1; source 0c299bd76e96d3067dd88346ffbb3396a4b69967, executed tests and QA recorded.
 
 - Shipped REP-8.2; source be35fd49215afad13ecdd81390658550d8b41dfd, executed tests and QA recorded.
 
 - Shipped REP-8.3; source caaf831b06fe7c465e709f2dcbcc62d37b8d8700, executed tests and QA recorded.
+
+## Completed implementation
+
+- [REP-8: CLAY-NOTES](orkest/done/clay-notes.imp.md) — implemented, tested and promoted.

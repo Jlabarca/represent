@@ -11,3 +11,7 @@
 | Visu local illustrated overview | Capture selected project evidence, detect style, generate through Ghost, compare snapshots and export history | [reference/visu-mvp.md](reference/visu-mvp.md) | 2026-10-21 |
 | Grafe local source explorer | Manually index bounded JS/TS scope; follow typed relationships, candidate tests and captured excerpts in focused graph/evidence views | [reference/grafe-mvp.md](reference/grafe-mvp.md) | 2026-10-21 |
 | Alegor local project re-entry | Capture immutable Git/docs snapshots, compare history, inspect declared next work and retained citations with explicit unknowns | [reference/alegor-mvp.md](reference/alegor-mvp.md) | 2026-10-21 |
+
+## Verified capability
+
+- [REP-8: CLAY-NOTES](orkest/done/clay-notes.imp.md) — implemented, tested and promoted.
