@@ -131,3 +131,19 @@ Exact owned files: `src/clay-notes/core.mjs`, `tests/clay-notes.test.mjs`.
 ### Phase 1 QA — 2026-11-15
 
 No mechanical QA findings.
+
+## Plan — 2
+
+Build local surfaces over the tested headless core. Exact files: package.json; src/clay-notes/server.mjs, cli.mjs, web/index.html, web/app.mjs, web/style.css, web/assets/satoshi-{400,500,700,900}.woff2, web/assets/Satoshi-LICENSE.txt; extensions/clay-notes/manifest.json, background.js, content.js, content.css, options.html, options.js, options.css; tests/clay-notes-server.test.mjs. Group as one atomic box because extension payload, service API and UI must agree.
+
+Service: 127.0.0.1:8876, exact Host/Origin checks, paired extension allowed by a random local token saved outside source, same-origin HttpOnly web cookie, bounded JSON request bodies, no CORS wildcard. Notebook create returns before caption summary; one bounded sequential queue prevents unbounded paid fanout. Gateway URL/key/models from CLAY_NOTES_* environment. POST /api/notes, /:id/transcript, /:id/summarize, /:id/ask and PATCH /:id. GET /api/notes and /api/config. Gateway setup/errors preserve saved content. Config exposes pairing token only to same-origin web cookie; never gateway key.
+
+UI: Satoshi locally hosted with original font licence. Clay language from user's reference (warm background, deep green, large rounded tinted cards, soft original SVG/shape motif), not a landing-page template. Library search/pins/add; notebook summary + conclusions + transcript citations, persisted personal notes, Q&A, transcript fallback and revision/model selector. Explicit save/redo/chat actions. Keyboard and reduced-motion support.
+
+Extension: MV3 action/options, YouTube-only content injection, idempotent SPA action. Worker validates sender/current video, obtains metadata/captions via scripting.executeScript MAIN, restricts captions to www.youtube.com/api/timedtext. Save notebook/open tab before extraction. Caption failure leaves paste fallback. Local pairing token only in extension storage.local, separate from gateway key. User can open the library from action/options.
+
+Pins: package.json gets clay-notes launch script; existing test glob discovers server tests. CONTEXT/TODO/index plan-only entries updated in phase 3. Existing four tools untouched. No global tool registry beyond package scripts. Imported font is source artwork data, not executable code.
+
+TDD: first expose a minimal server rejecting nothing and assert an unpaired API request receives 401; execute the meaningful red, then implement. Verify all clay-notes*.test.mjs via TAP-summary adapter. Tests exercise persistence/async summaries, origin/auth, malformed/oversize input, static assets, host validation and extension permissions/message wiring. Browser inspection and full regression in phase 3.
+
+Exact owned files: `extensions/clay-notes/background.js`, `extensions/clay-notes/content.css`, `extensions/clay-notes/content.js`, `extensions/clay-notes/manifest.json`, `extensions/clay-notes/options.css`, `extensions/clay-notes/options.html`, `extensions/clay-notes/options.js`, `package.json`, `src/clay-notes/cli.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/assets/Satoshi-LICENSE.txt`, `src/clay-notes/web/assets/satoshi-400.woff2`, `src/clay-notes/web/assets/satoshi-500.woff2`, `src/clay-notes/web/assets/satoshi-700.woff2`, `src/clay-notes/web/assets/satoshi-900.woff2`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `tests/clay-notes-server.test.mjs`.
