@@ -113,3 +113,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 - [ ] Show the first plane-sync scene before enrichment, renderer or shell work.
 - [ ] Measure the corpus sizes and scanner limits.
 - [x] Finish companion research — evidence: research/companions.md.
+
+## Implementation queue
+
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.

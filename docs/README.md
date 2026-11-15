@@ -111,3 +111,7 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 - System that now exists in code → `reference/`
 - Art direction → `visual-spec/`
 - Deferred idea → BACKLOG.md
+
+## Implementation trackers
+
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.

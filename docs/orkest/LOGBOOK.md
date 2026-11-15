@@ -399,3 +399,21 @@ The paid trial (2.4) needs `TRAZO_GHOST_KEY` in the shell that launches Trazo; n
 ### Next
 
 Operator runs the four explanations with the key, rates ten statements per folder (2.5); then week 3 (watcher, nudges, SSE, hook, MCP).
+
+## 2026-11-15 — REP-8: CLAY-NOTES
+
+### Accomplished
+
+- Created a grounded plan-only tracker.
+
+### Decisions
+
+- Allocate identity locally; implementation evidence remains unclaimed.
+
+### Blockers
+
+- See tracker questions and dependencies; implementation is still unverified.
+
+### Next
+
+- Execute the first runnable phase under the Orkest workflow.

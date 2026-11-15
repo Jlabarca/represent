@@ -151,3 +151,7 @@ See [Ghost AI system docs](../../Ghost/docs/reference/ai-system.md) and [Ghost p
 ## Completed
 
 Visu's two local slices are promoted and paused. Grafe and Alegor local MVP implementations, real-project/copy trials, UI/UX rounds and detailed research records are complete; both are promoted with focused 10/10 and 12/12 verification at implementation commit `8a781edf`. Research includes preserved PDF/Notion analysis, pinned reference checkouts, source-grounded comparison, actual Gource execution, Skales public-material inspection and reproducible ROMPE trials. Automated checks do not establish market demand or human product acceptance.
+
+## Active implementation
+
+- [REP-8: CLAY-NOTES](orkest/clay-notes.imp.md) — plan-only.
