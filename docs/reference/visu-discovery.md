@@ -70,4 +70,4 @@ Use **Capture snapshot**, inspect **Generation records & source scope**, then **
 
 ## Related Docs
 
-[Initial MVP and compatibility path](visu-mvp.md), [actual trial and costs](../../experiments/visu-discovery/README.md), [implementation tracker](../impl/VISU-DISCOVERY-IMPL.md), [suite direction](../research/reports/Represent%20living%20project%20views.md).
+[Initial MVP and compatibility path](visu-mvp.md), [actual trial and costs](../../experiments/visu-discovery/README.md), [implementation tracker](../orkest/done/visu-discovery.imp.md), [suite direction](../research/reports/Represent%20living%20project%20views.md).

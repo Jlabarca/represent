@@ -1,4 +1,7 @@
-# Visu discovery — Implementation Tracker
+---
+id: REP-6
+---
+# REP-6: VISU-DISCOVERY
 
 > Promoted: 2026-10-21. User-authorized implementation on codex/represent-v0. Implementation commit 3023fd26; 44/44 checks recorded at that HEAD; promotion checker passed every machine gate.
 > Prior-art sweep: existing Visu core/reference/archived MVP checked; curated source/chapter mapping already works.

@@ -76,4 +76,4 @@ Open `http://127.0.0.1:8873/`. Choose a configured project, use the search field
 
 - [Grafe pilot and UI/UX evidence](../../experiments/grafe-mvp/README.md)
 - [Research on Grafe approaches and test projects](../research/grafe-research-and-tests.md)
-- [Grafe MVP implementation tracker](../impl/GRAFE-MVP-IMPL.md)
+- [Grafe MVP implementation tracker](../orkest/done/grafe-mvp.imp.md)

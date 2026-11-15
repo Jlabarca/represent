@@ -1,6 +1,6 @@
 # Represent project audit, next steps and ideas (2026-10-24)
 
-> Operator-requested report, written the same day the [Orkest platform design](Represent%20within%20Orkest%20platform%20design.md) was audited and [REPRESENT-ORKEST-IMPL](../../REPRESENT-ORKEST-IMPL.md) bootstrapped. Evidence was gathered on 2026-10-24 from the `codex/represent-v0` checkout at `d46a4cf`: the full test suite was run, Git state inspected, stores and experiments measured, and source sampled. No model call, paid run or service start was involved. Where a claim is an opinion rather than a measurement, it says so.
+> Operator-requested report, written the same day the [Orkest platform design](Represent%20within%20Orkest%20platform%20design.md) was audited and [REPRESENT-ORKEST-IMPL](../../orkest/represent-orkest.imp.md) bootstrapped. Evidence was gathered on 2026-10-24 from the `codex/represent-v0` checkout at `d46a4cf`: the full test suite was run, Git state inspected, stores and experiments measured, and source sampled. No model call, paid run or service start was involved. Where a claim is an opinion rather than a measurement, it says so.
 
 ## Verdict
 

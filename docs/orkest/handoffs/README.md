@@ -1,6 +1,6 @@
 # docs/handoffs/ — ephemeral session resumes
 
-Written by the [`/handoff`](../../.claude/skills/handoff/SKILL.md) skill. **Not durable state.**
+Written by the [`/handoff`](../../../.claude/skills/orkest/SKILL.md) skill. **Not durable state.**
 
 - **Ephemeral.** Everything here except this README and `.gitkeep` is gitignored. Handoffs are scratch, not artifacts.
 - **Topic-keyed.** One file per IMPL slug — `docs/handoffs/<FEATURE>.md`. Re-running `/handoff` on the same feature **overwrites** it. No timestamps in the name, no history.

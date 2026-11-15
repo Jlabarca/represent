@@ -1,16 +1,19 @@
-# REPRESENT-TRAZO-POC — Implementation Tracker
+---
+id: REP-2
+---
+# REP-2: REPRESENT-TRAZO-POC
 
 > Living design+status doc for the Trazo POC: a resident, proactive artist companion over a consented path.
-> Design: [reference/trazo-poc.md](reference/trazo-poc.md) (placed in reference by the operator's request; rewritten as-built on promotion). Quality bar: [Visu guide](guides/visu-experience.md). Seam honoured: the artifact record in [Represent within Orkest](research/reports/Represent%20within%20Orkest%20platform%20design.md).
+> Design: [reference/trazo-poc.md](../reference/trazo-poc.md) (placed in reference by the operator's request; rewritten as-built on promotion). Quality bar: [Visu guide](../guides/visu-experience.md). Seam honoured: the artifact record in [Represent within Orkest](../research/reports/Represent%20within%20Orkest%20platform%20design.md).
 > Follows DOCS-PROTOCOL.md Rule 15.
 > Updated: 2026-10-25
-> Prior-art sweep: 2026-10-25. Checked [CAPABILITIES.md](CAPABILITIES.md) (Visu discovery and overview, Grafe explorer, Alegor re-entry: all reused as libraries, none resident or proactive), `reference/` and `impl/` filenames, `experiments/represent-os-concept/` (static composition proof, not a watcher), REPRESENT-ORKEST-IMPL (waits behind this POC; its artifact record is written here), and Ghost's methrep (a methodology daemon, not a folder artist).
+> Prior-art sweep: 2026-10-25. Checked [CAPABILITIES.md](../CAPABILITIES.md) (Visu discovery and overview, Grafe explorer, Alegor re-entry: all reused as libraries, none resident or proactive), `reference/` and `impl/` filenames, `experiments/represent-os-concept/` (static composition proof, not a watcher), REPRESENT-ORKEST-IMPL (waits behind this POC; its artifact record is written here), and Ghost's methrep (a methodology daemon, not a folder artist).
 
 **Plan number one as of 2026-10-25 (operator).** Phase 0 confirmed 2026-10-25 with the defaults (codename Trazo, Apache-2.0, trial folders Represent, Plane Sync, luz, `D:/ware/docs`). Week 1 (1.1 to 1.6) implemented and trialled the same day with zero model calls; verdict 1.7: go. Week 2 (2.1 to 2.3) built the same day, still with zero model calls; the paid trial 2.4 needs the operator's gateway key.
 
 ## AI Continuation Prompt
 
-Read `CLAUDE.md`, `docs/CONTEXT.md`, this tracker, the [design](reference/trazo-poc.md) and the [Visu guide](guides/visu-experience.md). Reuse `src/visu/discovery.mjs`, `src/visu/analysis.mjs`, `src/visu/ghost.mjs`, `src/grafe/core.mjs` and `src/alegor/core.mjs` as libraries; do not copy them.
+Read `CLAUDE.md`, `docs/CONTEXT.md`, this tracker, the [design](../reference/trazo-poc.md) and the [Visu guide](../guides/visu-experience.md). Reuse `src/visu/discovery.mjs`, `src/visu/analysis.mjs`, `src/visu/ghost.mjs`, `src/grafe/core.mjs` and `src/alegor/core.mjs` as libraries; do not copy them.
 
 Rules:
 - **Zero AI first.** Week 1 ships with no model call anywhere in the new code. No model call ever runs without consent and a shown price; tests and CI run with no key.
@@ -46,9 +49,9 @@ Watcher → snapshot (discovery) → fact graph → sketch (SVG, four levels) �
 
 ## Current State (2026-10-25)
 
-Week 2 built: `src/trazo/explain.mjs` (preview, confirmed and capped explain through Ghost, cache by excerpt set), `src/trazo/compose.mjs` with `web/trazo/templates/` (chapter infographic with citations, Mermaid text), `src/artifact/record.mjs` (`represent.artifact/v0`), viewer explain flow (preview modal, priced button, chapters and mermaid views, citation popover). Suite 72 pass. Excerpt-set previews for the four folders recorded under [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md) with estimates of $0.043 to $0.067; no model call has been made. 2.4 (one real explanation per folder) waits for a gateway key in the operator's shell; 2.5 is the rating.
+Week 2 built: `src/trazo/explain.mjs` (preview, confirmed and capped explain through Ghost, cache by excerpt set), `src/trazo/compose.mjs` with `web/trazo/templates/` (chapter infographic with citations, Mermaid text), `src/artifact/record.mjs` (`represent.artifact/v0`), viewer explain flow (preview modal, priced button, chapters and mermaid views, citation popover). Suite 72 pass. Excerpt-set previews for the four folders recorded under [experiments/trazo-poc/week2](../../experiments/trazo-poc/week2/README.md) with estimates of $0.043 to $0.067; no model call has been made. 2.4 (one real explanation per folder) waits for a gateway key in the operator's shell; 2.5 is the rating.
 
-Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, two test files (whole suite 67 pass). Library seams added to Visu discovery (`inventory`), Grafe (`indexFiles`) and Alegor (`readHistory`) without changing their behaviour. Trial on the four folders recorded under [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md): first sketch in 0.44 to 0.78 s warm (cold file cache up to 13.6 s on luz), dial switches under 15 ms, zero model calls. Waiting on the operator's verdict (1.7). REPRESENT-ORKEST waits behind this POC.
+Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, two test files (whole suite 67 pass). Library seams added to Visu discovery (`inventory`), Grafe (`indexFiles`) and Alegor (`readHistory`) without changing their behaviour. Trial on the four folders recorded under [experiments/trazo-poc/week1](../../experiments/trazo-poc/week1/README.md): first sketch in 0.44 to 0.78 s warm (cold file cache up to 13.6 s on luz), dial switches under 15 ms, zero model calls. Waiting on the operator's verdict (1.7). REPRESENT-ORKEST waits behind this POC.
 
 ## Known Bugs
 
@@ -97,7 +100,7 @@ Week 1 built: `src/trazo/{cli,consent,facts,sketch,server}.mjs`, `web/trazo/`, t
 - [x] REPRESENT-TRAZO-POC.1.3 `src/trazo/facts.mjs`: fact graph builder with import scanners for six languages, Markdown sections, commits, stable ids and level floors. TEST.4. Evidence 2026-10-25: scanners for JS/TS, Python, C#, Go, Rust (plus Java/Kotlin) with fixture tests; same folder twice gives the same snapshot id and node order; Grafe symbols lazily (313 symbols, 873 calls on Represent).
 - [x] REPRESENT-TRAZO-POC.1.4 `src/trazo/sketch.mjs`: treemap, layered modules, history strip; SVG primitives; stable positions. TEST.5. Evidence 2026-10-25: four levels render on all four folders; order by module id is independent of weight (test); rendering deterministic (test). Partial for TEST.5: widths still follow weight, so a large file change resizes neighbours in the same row; the one-file-change measurement is week 4's.
 - [x] REPRESENT-TRAZO-POC.1.5 `src/trazo/server.mjs` and `web/trazo/`: loopback viewer with token and Origin, dial, three themes, status strip, ledger. TEST.1, TEST.2, TEST.8 (static part). Evidence 2026-10-25: `tests/trazo-server.test.mjs` (401 without token, 403 on foreign Host or Origin, level and focus validation, immutable snapshot files, CSP); viewer screenshots under `experiments/trazo-poc/week1/`.
-- [x] REPRESENT-TRAZO-POC.1.6 Week 1 trial on the four folders under `experiments/trazo-poc/week1/`: timings, screenshots, operator verdict. **Stop-or-go.** Evidence 2026-10-25: [week1/README.md](../experiments/trazo-poc/week1/README.md), `timings.json`, 16 SVGs, 7 screenshots. First sketch 0.44 to 0.78 s warm; TEST.1 passes warm on all four, cold on two (file cache).
+- [x] REPRESENT-TRAZO-POC.1.6 Week 1 trial on the four folders under `experiments/trazo-poc/week1/`: timings, screenshots, operator verdict. **Stop-or-go.** Evidence 2026-10-25: [week1/README.md](../../experiments/trazo-poc/week1/README.md), `timings.json`, 16 SVGs, 7 screenshots. First sketch 0.44 to 0.78 s warm; TEST.1 passes warm on all four, cold on two (file cache).
 - [x] REPRESENT-TRAZO-POC.1.7 **human:** operator's verdict on the zero-AI sketch. Evidence: operator chat 2026-10-25, "Verdict 1.7: go. Tick it and start week 2 of REPRESENT-TRAZO-POC (explain and compose)."
 
 ### Phase 2 — Explain and compose (week 2)

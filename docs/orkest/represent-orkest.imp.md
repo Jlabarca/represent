@@ -1,16 +1,19 @@
-# REPRESENT-ORKEST — Implementation Tracker
+---
+id: REP-1
+---
+# REP-1: REPRESENT-ORKEST
 
 > Living design+status doc for hosting Represent's tools inside Orkest through a portable artifact record and a small hub.
-> Design: [Represent within Orkest platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md). Research it continues: [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md). Experience to preserve: [Visu guide](guides/visu-experience.md).
+> Design: [Represent within Orkest platform design](../research/reports/Represent%20within%20Orkest%20platform%20design.md). Research it continues: [Represent within the Orkest platform](../research/reports/Represent%20within%20the%20Orkest%20platform.md). Experience to preserve: [Visu guide](../guides/visu-experience.md).
 > Follows DOCS-PROTOCOL.md Rule 15.
 > Updated: 2026-10-24
-> Prior-art sweep: 2026-10-24. Checked [CAPABILITIES.md](CAPABILITIES.md) (four promoted capabilities: Visu discovery, Visu overview, Grafe explorer, Alegor re-entry; none covers an artifact record, a hub or an Orkest host), `reference/` and `impl/` filenames, the Ghost ORKEST-FORK tracker (no Represent surface planned there), `layers/orkest` plugins (extension and right-surface APIs exist and are reused, not rebuilt), `layers/rima` (the layer-owned-by-a-sibling-repo precedent this tracker follows), and Ghost's `Ghost.Represent.Host` (methrep; a name collision, not a prior implementation of this feature).
+> Prior-art sweep: 2026-10-24. Checked [CAPABILITIES.md](../CAPABILITIES.md) (four promoted capabilities: Visu discovery, Visu overview, Grafe explorer, Alegor re-entry; none covers an artifact record, a hub or an Orkest host), `reference/` and `impl/` filenames, the Ghost ORKEST-FORK tracker (no Represent surface planned there), `layers/orkest` plugins (extension and right-surface APIs exist and are reused, not rebuilt), `layers/rima` (the layer-owned-by-a-sibling-repo precedent this tracker follows), and Ghost's `Ghost.Represent.Host` (methrep; a name collision, not a prior implementation of this feature).
 
 **Bootstrapped 2026-10-24 by the design session. Nothing is implemented.** This tracker exists so that implementation, when authorized, is bounded. Opening it is not authorization to start Phase 1; the operator's Phase 0 review is.
 
 ## AI Continuation Prompt
 
-Read `CLAUDE.md`, `docs/CONTEXT.md`, this tracker, the [design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and the [Visu guide](guides/visu-experience.md). Then the reference for whichever tool the phase touches: [visu-discovery](reference/visu-discovery.md), [grafe-mvp](reference/grafe-mvp.md), [alegor-mvp](reference/alegor-mvp.md).
+Read `CLAUDE.md`, `docs/CONTEXT.md`, this tracker, the [design](../research/reports/Represent%20within%20Orkest%20platform%20design.md) and the [Visu guide](../guides/visu-experience.md). Then the reference for whichever tool the phase touches: [visu-discovery](../reference/visu-discovery.md), [grafe-mvp](../reference/grafe-mvp.md), [alegor-mvp](../reference/alegor-mvp.md).
 
 Rules for every phase:
 - **Preserve Visu.** No change to the illustration, chapters, pins, outline, disclosures, history or themes. Hosting adds a header line, a freshness badge and an attach action; nothing else. Judge every Visu change against the ImageLab, Luz and ROMPE screenshots in the guide.

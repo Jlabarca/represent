@@ -2,7 +2,7 @@
 
 Start at **[CONTEXT.md](CONTEXT.md)** — it's the living source of truth for where the project is and where it's going.
 
-Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. **Plan number one (2026-10-25):** the [Trazo POC](reference/trazo-poc.md) and its tracker [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md). The [Orkest platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) wait behind it.
+Before the fresh Orkest-platform design, read the **[exploration learning record](research/reports/Represent%20exploration%20learning%20record.md)** and **[Visu experience preservation guide](guides/visu-experience.md)**. They close the earlier work and keep the owner's preferred experience, reusable code, evidence, costs and limitations easy to find. **Plan number one (2026-10-25):** the [Trazo POC](reference/trazo-poc.md) and its tracker [REPRESENT-TRAZO-POC-IMPL](orkest/represent-trazo-poc.imp.md). The [Orkest platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md) and [REPRESENT-ORKEST-IMPL](orkest/represent-orkest.imp.md) wait behind it.
 
 ## Root living documents
 
@@ -11,21 +11,21 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 | [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |
 | [TODO.md](TODO.md) | Active sprint tasks |
 | [BACKLOG.md](BACKLOG.md) | Deferred ideas, parking lot |
-| [LOGBOOK.md](LOGBOOK.md) | Append-only session history |
+| [LOGBOOK.md](orkest/LOGBOOK.md) | Append-only session history |
 | [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) | Rules that govern this folder |
 | [CAPABILITIES.md](CAPABILITIES.md) | Promoted capabilities only |
-| [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md) | Research-first bootstrap and P0-P4 delivery tracker |
-| [REPRESENT-TRAZO-POC-IMPL.md](REPRESENT-TRAZO-POC-IMPL.md) | **Plan number one (2026-10-25):** four-week POC of a resident, proactive artist companion over a consented folder; zero-AI sketch first, then explanation, infographics and optional illustration |
-| [REPRESENT-ORKEST-IMPL.md](REPRESENT-ORKEST-IMPL.md) | Bounded plan for hosting Represent's tools inside Orkest through an artifact record, a hub and one GhostShell layer; bootstrapped 2026-10-24, nothing implemented |
+| [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md) | Research-first bootstrap and P0-P4 delivery tracker |
+| [REPRESENT-TRAZO-POC-IMPL.md](orkest/represent-trazo-poc.imp.md) | **Plan number one (2026-10-25):** four-week POC of a resident, proactive artist companion over a consented folder; zero-AI sketch first, then explanation, infographics and optional illustration |
+| [REPRESENT-ORKEST-IMPL.md](orkest/represent-orkest.imp.md) | Bounded plan for hosting Represent's tools inside Orkest through an artifact record, a hub and one GhostShell layer; bootstrapped 2026-10-24, nothing implemented |
 
 ## Archived implementation trackers
 
 | Document | Purpose |
 |---|---|
-| [Grafe MVP](impl/GRAFE-MVP-IMPL.md) | Completed local JS/TS explorer, real-project proof, UX and research genealogy |
-| [Alegor MVP](impl/ALEGOR-MVP-IMPL.md) | Completed Git/docs re-entry, immutable history, real-project proof and UX |
-| [Visu automatic discovery](impl/VISU-DISCOVERY-IMPL.md) | Completed root-only scope/chapters, manual cheap refresh, themes and actual trial evidence |
-| [Visu MVP](impl/VISU-MVP-IMPL.md) | Completed local illustrated-overview slice, implementation evidence and pilot |
+| [Grafe MVP](orkest/done/grafe-mvp.imp.md) | Completed local JS/TS explorer, real-project proof, UX and research genealogy |
+| [Alegor MVP](orkest/done/alegor-mvp.imp.md) | Completed Git/docs re-entry, immutable history, real-project proof and UX |
+| [Visu automatic discovery](orkest/done/visu-discovery.imp.md) | Completed root-only scope/chapters, manual cheap refresh, themes and actual trial evidence |
+| [Visu MVP](orkest/done/visu-mvp.imp.md) | Completed local illustrated-overview slice, implementation evidence and pilot |
 
 ## Implementation reference
 
@@ -62,7 +62,7 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 | [Graphify field results](research/graphify-tested.md) | Measured failure cases and lessons |
 | [Companions](research/companions.md) | Sourced interaction patterns and A/B approaches |
 | [Interactive Atlas source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved 18-page source conversation; proposals are not verified facts |
-| [Handoffs index](handoffs/README.md) | Local continuation prompts; kickoff remains intentionally ignored |
+| [Handoffs index](orkest/handoffs/README.md) | Local continuation prompts; kickoff remains intentionally ignored |
 | [Reference repository study](research/reports/Represent%20reference%20repository%20study.md) | Source-grounded reuse/adapt/avoid synthesis |
 | [Living project views report](research/reports/Represent%20living%20project%20views.md) | Suite design: Visu overview, Grafe technical explorer, candidate Alegor history/assistant experience, MVP and full direction |
 | [Represent OS design and runtime](research/reports/Represent%20OS%20design%20and%20runtime.md) | Research recommendation: Gource and Grafe design, Dot/Skales and Alegor, Represent Workspace, and when execution environments are needed |

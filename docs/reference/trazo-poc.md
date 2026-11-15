@@ -1,6 +1,6 @@
 # Trazo: the proactive artist companion, POC design and plan
 
-> Technical design and plan, 2026-10-25, placed in `reference/` at the operator's request as the number-one plan. It describes a system that does not exist yet; when the POC ships, this file is rewritten as-built (DOCS-PROTOCOL Rule 3) and the tracker is [REPRESENT-TRAZO-POC-IMPL](../REPRESENT-TRAZO-POC-IMPL.md). "Trazo" (a pen stroke) is a provisional codename; the operator owns naming. "Dot" below refers to the product whose screenshot was studied in [the OS research](../research/reports/Represent%20OS%20design%20and%20runtime.md); nothing here uses its code or private design.
+> Technical design and plan, 2026-10-25, placed in `reference/` at the operator's request as the number-one plan. It describes a system that does not exist yet; when the POC ships, this file is rewritten as-built (DOCS-PROTOCOL Rule 3) and the tracker is [REPRESENT-TRAZO-POC-IMPL](../orkest/represent-trazo-poc.imp.md). "Trazo" (a pen stroke) is a provisional codename; the operator owns naming. "Dot" below refers to the product whose screenshot was studied in [the OS research](../research/reports/Represent%20OS%20design%20and%20runtime.md); nothing here uses its code or private design.
 
 ## The three questions, answered
 

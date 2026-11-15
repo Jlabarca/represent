@@ -1,4 +1,7 @@
-# Alegor MVP — Implementation Tracker
+---
+id: REP-4
+---
+# REP-4: ALEGOR-MVP
 
 > Updated: 2026-10-21. Explicit user authorization: build both MVPs in parallel, real-project tests, individual UI/UX improvement rounds, detailed research/test documents. Visu remains paused.
 > Prior-art sweep: existing alegor research, restart experiments, capabilities and Visu reference checked. Existing experiments are not the product MVP.

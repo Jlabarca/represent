@@ -64,10 +64,10 @@
 
 **Accomplishments:**
 - Read the local Notion-era Represent notes and synthesized them with the ROMPE tool verdict and new GoCity, Algorithm Visualizer, and creative-coding research.
-- Wrote the four-section [living project views report](research/reports/Represent%20living%20project%20views.md), including annotated ingestion scope, Visu MVP, full animated Visu, parallel Grafe design, candidate Alegor role, local-first snapshots, future service options, and UX gates.
+- Wrote the four-section [living project views report](../research/reports/Represent%20living%20project%20views.md), including annotated ingestion scope, Visu MVP, full animated Visu, parallel Grafe design, candidate Alegor role, local-first snapshots, future service options, and UX gates.
 - Updated the reference inventory with three new studies and indexed their notes. Left the Notion export and prior research source notes unchanged.
 - Reconciled CONTEXT, TODO, tracker, README, and this logbook: Visu's style-aware memorable overview is now the first product proof; plane-sync remains a Grafe engineering checkpoint, not the global gate.
-- Added the local [living-overview concept](../experiments/rompe/living-overview-concept/index.html): parent visually inspected the desktop and its saved validation records 20 passing checks across desktop/mobile, zero external requests, keyboard marker behavior, source-linked detail, focus restoration, planned-status toggling, and mobile detail scrolling. Its timeline switches between two poster revisions of the **same** audited ROMPE source snapshot; it does not demonstrate two project snapshots or project evolution.
+- Added the local [living-overview concept](../../experiments/rompe/living-overview-concept/index.html): parent visually inspected the desktop and its saved validation records 20 passing checks across desktop/mobile, zero external requests, keyboard marker behavior, source-linked detail, focus restoration, planned-status toggling, and mobile detail scrolling. Its timeline switches between two poster revisions of the **same** audited ROMPE source snapshot; it does not demonstrate two project snapshots or project evolution.
 
 **Decisions / recommendations:**
 - The operator accepted “A memorable overview” as the only tested output that fits Represent. Box-based tools remain useful research instruments.
@@ -152,7 +152,7 @@ Promoted VISU-DISCOVERY-IMPL to impl/ with reference/visu-discovery.md. Implemen
 
 ### Accomplished
 
-While Visu is paused, completed parallel feasibility work for Grafe and Alegor. Grafe decoded a four-file TypeScript fixture (39 occurrences, zero checked source-span mismatches) and a saved six-document plane-sync index (1,075 symbols, 6,485 occurrences, zero span mismatches), and produced a focused-symbol browser prototype. Alegor produced a cited Git/docs re-entry brief over seven commits and 78 paths, surfaced conflicting sprint state, and produced a static timeline/evidence prototype. Its browser prototype passed 12 checks. The pinned `sessions` Windows context suite passed 25/25 after an isolated two-line experimental scanner/fixture path normalization; actual Claude session-folder compatibility remains unverified. No paid AI calls were made. See [parallel restart report](research/reports/Represent%20parallel%20track%20restart.md) and the [Grafe](../experiments/grafe-restart/README.md) and [Alegor](../experiments/alegor-restart/README.md) records.
+While Visu is paused, completed parallel feasibility work for Grafe and Alegor. Grafe decoded a four-file TypeScript fixture (39 occurrences, zero checked source-span mismatches) and a saved six-document plane-sync index (1,075 symbols, 6,485 occurrences, zero span mismatches), and produced a focused-symbol browser prototype. Alegor produced a cited Git/docs re-entry brief over seven commits and 78 paths, surfaced conflicting sprint state, and produced a static timeline/evidence prototype. Its browser prototype passed 12 checks. The pinned `sessions` Windows context suite passed 25/25 after an isolated two-line experimental scanner/fixture path normalization; actual Claude session-folder compatibility remains unverified. No paid AI calls were made. See [parallel restart report](../research/reports/Represent%20parallel%20track%20restart.md) and the [Grafe](../../experiments/grafe-restart/README.md) and [Alegor](../../experiments/alegor-restart/README.md) records.
 
 ### Decisions
 
@@ -260,7 +260,7 @@ Grafe: larger multi-package scope and unaided navigation, then editor-follow/min
 
 ### Accomplished
 
-Synthesized the detailed Gource/Grafe, Dot/Skales/Alegor and execution-runtime research notes into the standalone [Represent OS design and runtime report](research/reports/Represent%20OS%20design%20and%20runtime.md). Added a protocol-compliant annotated ingestion vector, Ghost and embeddability plans, citation distinctions, and bootstrapping steps. Indexed the report and the accompanying [interactive concept infographic](../experiments/represent-os-concept/index.html), and linked its source-note cluster.
+Synthesized the detailed Gource/Grafe, Dot/Skales/Alegor and execution-runtime research notes into the standalone [Represent OS design and runtime report](../research/reports/Represent%20OS%20design%20and%20runtime.md). Added a protocol-compliant annotated ingestion vector, Ghost and embeddability plans, citation distinctions, and bootstrapping steps. Indexed the report and the accompanying [interactive concept infographic](../../experiments/represent-os-concept/index.html), and linked its source-note cluster.
 
 ### Findings and recommendations
 
@@ -278,7 +278,7 @@ Review the recommendation before creating any integrated workspace or execution-
 
 ### Accomplished
 
-Read the deep-research report-writer and Represent documentation protocol, then synthesized the Orkest platform/company-stack source notes, prior Represent OS report, Orkest Multica/CloudCLI guide, unattended-work status, Ghost Orkest tracker and current adapter interfaces, Represent tool references, and the user-supplied runner/verifier comparison. Added [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and indexed it with the three source notes.
+Read the deep-research report-writer and Represent documentation protocol, then synthesized the Orkest platform/company-stack source notes, prior Represent OS report, Orkest Multica/CloudCLI guide, unattended-work status, Ghost Orkest tracker and current adapter interfaces, Represent tool references, and the user-supplied runner/verifier comparison. Added [Represent within the Orkest platform](../research/reports/Represent%20within%20the%20Orkest%20platform.md) and indexed it with the three source notes.
 
 ### Decisions
 
@@ -296,7 +296,7 @@ Reconcile the report's Orkest readiness caveat with the operator's active unmana
 
 ### Accomplished
 
-Closed the Atlas/reference/ROMPE/Visu/Grafe/Alegor/Represent OS sequence into [Represent exploration learning record](research/reports/Represent%20exploration%20learning%20record.md). Added [Keep the Visu experience at hand](guides/visu-experience.md) with screenshots, code seams, manual capture/explain/illustrate behavior, cache/cost evidence, limitations and local-history preservation. Verified 65 local links across the two new documents, required learning sections, existing ROMPE/Luz/ImageLab store directories and documentation whitespace. These are documentation checks, not reruns of earlier paid pilots or application suites.
+Closed the Atlas/reference/ROMPE/Visu/Grafe/Alegor/Represent OS sequence into [Represent exploration learning record](../research/reports/Represent%20exploration%20learning%20record.md). Added [Keep the Visu experience at hand](../guides/visu-experience.md) with screenshots, code seams, manual capture/explain/illustrate behavior, cache/cost evidence, limitations and local-history preservation. Verified 65 local links across the two new documents, required learning sections, existing ROMPE/Luz/ImageLab store directories and documentation whitespace. These are documentation checks, not reruns of earlier paid pilots or application suites.
 
 ### Decisions
 
@@ -308,13 +308,13 @@ No application code, images, source projects, provider configuration, runtime in
 
 ### Next
 
-Create the ignored REPRESENT-ORKEST-DESIGN handoff from the verified checkout, then resume [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) in a fresh design-first session. Recheck current Orkest work rather than trusting old source snapshots or resuming the original bootstrap tracker. Preserve Visu's visual/interaction quality bar throughout design and audit.
+Create the ignored REPRESENT-ORKEST-DESIGN handoff from the verified checkout, then resume [Represent within the Orkest platform](../research/reports/Represent%20within%20the%20Orkest%20platform.md) in a fresh design-first session. Recheck current Orkest work rather than trusting old source snapshots or resuming the original bootstrap tracker. Preserve Visu's visual/interaction quality bar throughout design and audit.
 
 ## 2026-10-24 — Represent within Orkest: design, audit and bootstrap
 
 ### Accomplished
 
-Revalidated Orkest and Ghost state on 2026-10-24 (Orkest `8f96ded`, Ghost `cc920933` committed files only): the cockpit fork is done and deployed on the lab1 dashboard with Orkest on, adapter Phase 3 and session readers Phase 5 are done, the unattended path is still gated in ORKEST-FORK Phase 4 (OQ-8 approved 2026-10-23, 4.2 kit offline, no daemon or agent has run). Drafted [Represent within Orkest: platform design](research/reports/Represent%20within%20Orkest%20platform%20design.md): target user and five jobs, product/brand/repo boundaries, an artifact record `represent.artifact/v0` plus a small hub as the seam, three stages (record and CLI, hub, one GhostShell layer by the RIMA precedent; Alegor companion design-only), Visu hosted not rebuilt, one Plane Sync end-to-end trace with exists/stage/gated marks, a five-change UX design round, AI and auth boundary, standalone path, costs and three open questions. Ran an independent Fable 5.1 audit (fifteen findings) and folded every one in. Bootstrapped [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md) with phases 0 to 5, owned files, nine tests, Plane Sync trials and two UX rounds. Updated CONTEXT (four decision rows, direction, sprint), TODO cursor, README index.
+Revalidated Orkest and Ghost state on 2026-10-24 (Orkest `8f96ded`, Ghost `cc920933` committed files only): the cockpit fork is done and deployed on the lab1 dashboard with Orkest on, adapter Phase 3 and session readers Phase 5 are done, the unattended path is still gated in ORKEST-FORK Phase 4 (OQ-8 approved 2026-10-23, 4.2 kit offline, no daemon or agent has run). Drafted [Represent within Orkest: platform design](../research/reports/Represent%20within%20Orkest%20platform%20design.md): target user and five jobs, product/brand/repo boundaries, an artifact record `represent.artifact/v0` plus a small hub as the seam, three stages (record and CLI, hub, one GhostShell layer by the RIMA precedent; Alegor companion design-only), Visu hosted not rebuilt, one Plane Sync end-to-end trace with exists/stage/gated marks, a five-change UX design round, AI and auth boundary, standalone path, costs and three open questions. Ran an independent Fable 5.1 audit (fifteen findings) and folded every one in. Bootstrapped [REPRESENT-ORKEST-IMPL](represent-orkest.imp.md) with phases 0 to 5, owned files, nine tests, Plane Sync trials and two UX rounds. Updated CONTEXT (four decision rows, direction, sprint), TODO cursor, README index.
 
 ### Decisions
 
@@ -332,7 +332,7 @@ Operator Phase 0: confirm or override OQ-1 to OQ-3 and the boundaries (0.1), rev
 
 ### Accomplished
 
-Fast-forwarded `codex/represent-v0` to the design commit `d46a4cf` in the main checkout. Ran the full suite from that checkout (57 pass, 0 fail, 85 s) and measured Git, store, experiment and source state. Wrote [Represent project audit 2026-10-24](research/reports/Represent%20project%20audit%202026-10-24.md): a graded state table, nine ranked findings, six ordered next steps, twelve tool improvements and ten feature ideas with what each would prove.
+Fast-forwarded `codex/represent-v0` to the design commit `d46a4cf` in the main checkout. Ran the full suite from that checkout (57 pass, 0 fail, 85 s) and measured Git, store, experiment and source state. Wrote [Represent project audit 2026-10-24](../research/reports/Represent%20project%20audit%202026-10-24.md): a graded state table, nine ranked findings, six ordered next steps, twelve tool improvements and ten feature ideas with what each would prove.
 
 ### Decisions
 
@@ -350,7 +350,7 @@ Operator reads the report; housekeeping day; then Phase 0 of the tracker.
 
 ### Accomplished
 
-Pushed `codex/represent-v0` to origin (first push of the branch; 22 commits). Wrote [reference/trazo-poc.md](reference/trazo-poc.md): answers to whether a resident proactive artist companion can be a working POC and a product, the experience script, the five unknowns with pass criteria, architecture (watcher, discovery snapshot, fact graph, deterministic SVG sketch with four levels, one cached explanation, templated infographics with citations, optional Visu illustration, loopback viewer with SSE, nudges with budget, Claude Code hook, stdio MCP), stack decision with alternatives, data model, reuse table, security, four-week plan, open-core service path, risks. Bootstrapped [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) with eleven tests and weekly phases. Made it plan number one in CONTEXT, TODO and README; REPRESENT-ORKEST deferred behind it. Built a private investor-facing artifact page summarizing the POC for technical readers.
+Pushed `codex/represent-v0` to origin (first push of the branch; 22 commits). Wrote [reference/trazo-poc.md](../reference/trazo-poc.md): answers to whether a resident proactive artist companion can be a working POC and a product, the experience script, the five unknowns with pass criteria, architecture (watcher, discovery snapshot, fact graph, deterministic SVG sketch with four levels, one cached explanation, templated infographics with citations, optional Visu illustration, loopback viewer with SSE, nudges with budget, Claude Code hook, stdio MCP), stack decision with alternatives, data model, reuse table, security, four-week plan, open-core service path, risks. Bootstrapped [REPRESENT-TRAZO-POC-IMPL](represent-trazo-poc.imp.md) with eleven tests and weekly phases. Made it plan number one in CONTEXT, TODO and README; REPRESENT-ORKEST deferred behind it. Built a private investor-facing artifact page summarizing the POC for technical readers.
 
 ### Decisions
 
@@ -368,7 +368,7 @@ Operator Phase 0 (REPRESENT-TRAZO-POC.0.1), then week 1 sketch with a stop-or-go
 
 ### Accomplished
 
-Phase 0 recorded (operator confirmed the defaults). Week 1 of [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) implemented: `src/trazo/cli.mjs` and `consent.mjs` (read plan printed, `[y/N]` consent per canonical path, store outside the folder, revoke and list), `facts.mjs` (bounded capture through Visu's discovery, import scanners for JS/TS, Python, C#, Go, Rust, Java/Kotlin, Markdown sections, last 40 commits through Alegor, stable ids, level floors, lazy Grafe symbols), `sketch.mjs` (deterministic SVG: id-ordered strip treemap, curved module arrows, history strip, poster/guide/engineer/deep), `server.mjs` and `web/trazo/` (loopback, per-process token in a meta tag, exact Host and Origin, CSP, dial with keys, three themes, status strip, ledger). Library seams: `discovery.inventory`, `grafe.indexFiles`, `alegor.readHistory`. Tests: 10 new, suite 67 pass. Trial on Represent, Plane Sync, luz and `D:/ware/docs` under [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md): first sketch 0.44 to 0.78 s warm, dial switches under 15 ms, zero model calls, zero network.
+Phase 0 recorded (operator confirmed the defaults). Week 1 of [REPRESENT-TRAZO-POC-IMPL](represent-trazo-poc.imp.md) implemented: `src/trazo/cli.mjs` and `consent.mjs` (read plan printed, `[y/N]` consent per canonical path, store outside the folder, revoke and list), `facts.mjs` (bounded capture through Visu's discovery, import scanners for JS/TS, Python, C#, Go, Rust, Java/Kotlin, Markdown sections, last 40 commits through Alegor, stable ids, level floors, lazy Grafe symbols), `sketch.mjs` (deterministic SVG: id-ordered strip treemap, curved module arrows, history strip, poster/guide/engineer/deep), `server.mjs` and `web/trazo/` (loopback, per-process token in a meta tag, exact Host and Origin, CSP, dial with keys, three themes, status strip, ledger). Library seams: `discovery.inventory`, `grafe.indexFiles`, `alegor.readHistory`. Tests: 10 new, suite 67 pass. Trial on Represent, Plane Sync, luz and `D:/ware/docs` under [experiments/trazo-poc/week1](../../experiments/trazo-poc/week1/README.md): first sketch 0.44 to 0.78 s warm, dial switches under 15 ms, zero model calls, zero network.
 
 ### Decisions
 
@@ -386,7 +386,7 @@ Operator verdict (1.7): go to week 2, go after layout fixes, or stop.
 
 ### Accomplished
 
-Verdict 1.7 recorded (go). Week 2 of [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md) built: `src/trazo/explain.mjs` (excerpt set from Visu's discovery with a bounded loader, preview with estimate, explain only with a Ghost client, `confirm: true` and under a per-call cap; cache by excerpt set, prompt version and model; vocabulary for document folders), `src/trazo/compose.mjs` with `web/trazo/templates/` (six-chapter infographic: captions, module tags, confidence dots, clickable citations, import arrows, legend, freshness and STALE line; Mermaid flowchart text), `src/artifact/record.mjs` (`represent.artifact/v0` builder and validator), server endpoints (preview, explain, explanation, citations, infographic, mermaid, artifact, ledger) and the viewer flow (preview modal, priced button, views, citation popover). Visu seam: `analyzeProject` takes an optional vocabulary note. Tests: 5 new, suite 72 pass. Previews with estimates for the four folders recorded under [experiments/trazo-poc/week2](../experiments/trazo-poc/week2/README.md) together with a fake-analyzer demo run. Zero model calls.
+Verdict 1.7 recorded (go). Week 2 of [REPRESENT-TRAZO-POC-IMPL](represent-trazo-poc.imp.md) built: `src/trazo/explain.mjs` (excerpt set from Visu's discovery with a bounded loader, preview with estimate, explain only with a Ghost client, `confirm: true` and under a per-call cap; cache by excerpt set, prompt version and model; vocabulary for document folders), `src/trazo/compose.mjs` with `web/trazo/templates/` (six-chapter infographic: captions, module tags, confidence dots, clickable citations, import arrows, legend, freshness and STALE line; Mermaid flowchart text), `src/artifact/record.mjs` (`represent.artifact/v0` builder and validator), server endpoints (preview, explain, explanation, citations, infographic, mermaid, artifact, ledger) and the viewer flow (preview modal, priced button, views, citation popover). Visu seam: `analyzeProject` takes an optional vocabulary note. Tests: 5 new, suite 72 pass. Previews with estimates for the four folders recorded under [experiments/trazo-poc/week2](../../experiments/trazo-poc/week2/README.md) together with a fake-analyzer demo run. Zero model calls.
 
 ### Decisions
 

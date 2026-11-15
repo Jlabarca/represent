@@ -5,7 +5,7 @@
 
 ## Active sprint: Trazo POC (2026-10-25)
 
-Plan number one by the operator's decision. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Tracker: [REPRESENT-TRAZO-POC-IMPL](REPRESENT-TRAZO-POC-IMPL.md). Zero model calls in week 1; no paid call without consent and a shown price; no Orkest or Ghost code.
+Plan number one by the operator's decision. Design: [reference/trazo-poc.md](reference/trazo-poc.md). Tracker: [REPRESENT-TRAZO-POC-IMPL](orkest/represent-trazo-poc.imp.md). Zero model calls in week 1; no paid call without consent and a shown price; no Orkest or Ghost code.
 
 - [x] **Operator:** Phase 0, confirm codename, licence and the four trial folders (REPRESENT-TRAZO-POC.0.1). Confirmed 2026-10-25 with the defaults.
 - [x] Week 1, sketch: CLI, consent, fact graph, SVG layouts, dial, viewer, ledger; four-folder trial (1.1 to 1.6, 2026-10-25; evidence in [experiments/trazo-poc/week1](../experiments/trazo-poc/week1/README.md)).
@@ -22,10 +22,10 @@ The earlier exploration is closed in the [learning record](research/reports/Repr
 - [x] Close the exploration into durable learning and preserve Visu knowledge — evidence: learning record, Visu guide and historical markers; source reports, measurements, images and code retained.
 - [x] Revalidate Orkest/Ghost readiness and draft the Represent platform design, preserving the Visu experience and separating existing capabilities from proposals — evidence: [design](research/reports/Represent%20within%20Orkest%20platform%20design.md) §1 readiness table (Orkest `8f96ded`, Ghost `cc920933`, 2026-10-24), §4.4 Visu participation.
 - [x] Have Fable 5.1 audit the fresh design, improve it where needed, and record the resulting product, ownership and UX decisions — evidence: independent audit pass recorded in LOGBOOK 2026-10-24; four decision rows added to CONTEXT.md (pending operator confirmation in REPRESENT-ORKEST.0.1).
-- [x] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate — evidence: [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md), phases 0 to 5, TEST.1 to TEST.9, nothing implemented.
+- [x] Bootstrap the audited design into a bounded implementation tracker with owned files, acceptance evidence, real-project trials and UI/UX improvement rounds; keep actual implementation separate — evidence: [REPRESENT-ORKEST-IMPL](orkest/represent-orkest.imp.md), phases 0 to 5, TEST.1 to TEST.9, nothing implemented.
 - [ ] **Operator:** Phase 0 review — confirm or override OQ-1 to OQ-3 and the boundaries (REPRESENT-ORKEST.0.1), review the design UX mockups (0.2, 0.3). Deferred until the Trazo POC verdict; the POC writes the artifact record this tracker's Phase 1 needs.
 
-Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). The integration tracker is [REPRESENT-ORKEST-IMPL](REPRESENT-ORKEST-IMPL.md); do not use the old bootstrap's unchecked boxes as this cursor.
+Read [Represent within the Orkest platform](research/reports/Represent%20within%20the%20Orkest%20platform.md) and the [durable continuation contract](research/reports/Represent%20exploration%20learning%20record.md#fresh-design-continuation-contract). The integration tracker is [REPRESENT-ORKEST-IMPL](orkest/represent-orkest.imp.md); do not use the old bootstrap's unchecked boxes as this cursor.
 
 ## Sprint: Bootstrap (2026-04-13 → ?)
 
@@ -44,7 +44,7 @@ Read [Represent within the Orkest platform](research/reports/Represent%20within%
 
 ## Deferred follow-up: Grafe + Alegor validation (2026-10-21)
 
-Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](impl/GRAFE-MVP-IMPL.md), [ALEGOR-MVP](impl/ALEGOR-MVP-IMPL.md). These earlier follow-ups are preserved and deferred behind the design checkpoint above. They are not completed by the closeout. Visu stays paused.
+Both local MVPs are implemented. Evidence and promotion records: [GRAFE-MVP](orkest/done/grafe-mvp.imp.md), [ALEGOR-MVP](orkest/done/alegor-mvp.imp.md). These earlier follow-ups are preserved and deferred behind the design checkpoint above. They are not completed by the closeout. Visu stays paused.
 
 ### Grafe - source navigation
 
@@ -82,12 +82,12 @@ Visu implementation and paid refresh work are paused at the completed automatic-
 
 ### Completed build: Visu MVP
 
-- [x] Build and test the headless snapshot/style/update core — evidence: [archived tracker](impl/VISU-MVP-IMPL.md), 14 regression cases.
+- [x] Build and test the headless snapshot/style/update core — evidence: [archived tracker](orkest/done/visu-mvp.imp.md), 14 regression cases.
 - [x] Integrate Ghost generation and a minimal accessible web shell — evidence: [reference](reference/visu-mvp.md), actual Ghost ledger and nine browser checks.
 - [x] Exercise ROMPE and Luz with measured cold/warm/overlay/art-change cases; complete implementation UX review — evidence: [pilot](../experiments/visu-pilot/README.md).
 - [x] Restart Grafe and Alegor with independent executable trials and runnable local prototypes — evidence: [parallel restart report](research/reports/Represent%20parallel%20track%20restart.md), [Grafe experiment](../experiments/grafe-restart/README.md), [Alegor experiment](../experiments/alegor-restart/README.md). This historical checkpoint justified local MVP implementation; the completed builds are recorded above. Market demand remains unvalidated.
 
-Paused Visu design context: after the ROMPE trial, **“A memorable overview” is the sole tested output accepted as the Represent visual direction.** The remaining Visu feedback tasks below are deferred while this MVP is paused. The poster/box-diagram verdict is superseded as a product recommendation, while experiments remain evidence. Full design and state: [living views report](research/reports/Represent%20living%20project%20views.md), [ROMPE trial verdict](research/rompe-tool-trials.md), and [tracker](REPRESENT-V0-IMPL.md).
+Paused Visu design context: after the ROMPE trial, **“A memorable overview” is the sole tested output accepted as the Represent visual direction.** The remaining Visu feedback tasks below are deferred while this MVP is paused. The poster/box-diagram verdict is superseded as a product recommendation, while experiments remain evidence. Full design and state: [living views report](research/reports/Represent%20living%20project%20views.md), [ROMPE trial verdict](research/rompe-tool-trials.md), and [tracker](orkest/represent-v0.imp.md).
 
 - [x] Preserve the earlier PDF, clone/source study, and ROMPE tests as research evidence — evidence: `research/sources/`, `research/reference-repos.json`, `research/rompe-tool-trials.md`.
 - [x] Review Notion-era technical/visual ideas and new GoCity, creative-coding, and Algorithm Visualizer references — evidence: `research/research_notes/Represent living project views/` and `Represent living project views.md`.
@@ -104,7 +104,7 @@ Paused Visu design context: after the ROMPE trial, **“A memorable overview” 
 > [!WARNING]
 > **SUPERSEDED —** This original scanner-first bootstrap is historical. Its completed research remains useful; the current independent Grafe and Alegor MVP tasks are listed above. The old plane-sync scene remains a technical checkpoint, not a global product gate. Preserved per DOCS-PROTOCOL.md Rule 5.
 
-Full scope and evidence: [REPRESENT-V0-IMPL.md](REPRESENT-V0-IMPL.md).
+Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 
 - [x] Preserve and read the Interactive Atlas PDF; inspect methrep and bootstrap the tracker — evidence: research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf; REPRESENT-V0-IMPL.md.
 - [x] Clone and inspect reference projects; record pinned versions, licenses and concrete reusable parts — evidence: research/reference-repos.json; research/reports/Represent reference repository study.md.

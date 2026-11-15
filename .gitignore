@@ -9,9 +9,9 @@
 .*-IMPL.lock
 
 # /handoff ephemeral session resumes — keep the dir + README, ignore the rest
-docs/handoffs/*
-!docs/handoffs/.gitkeep
-!docs/handoffs/README.md
+docs/orkest/handoffs/*
+!docs/orkest/handoffs/.gitkeep
+!docs/orkest/handoffs/README.md
 
 # Local upstream study checkouts; tracked research records origins and pinned revisions.
 /references/

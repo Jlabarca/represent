@@ -36,7 +36,7 @@ Then open `http://127.0.0.1:8871`. Saved history and scans work without a key; g
 
 > Historical status before the Visu build follows; preserved as the design record.
 
-Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html), the [living-overview interaction concept](experiments/rompe/living-overview-concept/index.html), and [trial findings](docs/research/rompe-tool-trials.md). Ten upstream checkouts inform the [v0 tracker](docs/REPRESENT-V0-IMPL.md); a general scanner and renderer remain planned.
+Product pre-implementation, with runnable reference-tool experiments. Start with the [ROMPE explainer/poster comparison](experiments/rompe/index.html), the [living-overview interaction concept](experiments/rompe/living-overview-concept/index.html), and [trial findings](docs/research/rompe-tool-trials.md). Ten upstream checkouts inform the [v0 tracker](docs/orkest/represent-v0.imp.md); a general scanner and renderer remain planned.
 
 **Historical product direction (superseded by the parallel build above):** build toward one Represent suite with Visu's project-styled memorable overview first, while designing Grafe's technical explorer in parallel. The plane-sync scan is a Grafe engineering checkpoint, not a global product gate. See [docs/CONTEXT.md](docs/CONTEXT.md) and the [living project views design](docs/research/reports/Represent%20living%20project%20views.md).
 

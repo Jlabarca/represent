@@ -1,7 +1,10 @@
-# Represent v0 — Implementation Tracker
+---
+id: REP-3
+---
+# REP-3: REPRESENT-V0
 
 > [!WARNING]
-> **Closed as historical exploration, 2026-10-21.** This scanner-first tracker is not the current execution cursor. Preserve its original ideas and unchecked boxes as historical scope; they are not completed by closure. The working Visu/Grafe/Alegor slices have separate promoted trackers. Read the [learning record](research/reports/Represent%20exploration%20learning%20record.md), [Visu preservation guide](guides/visu-experience.md), and [Orkest-platform research](research/reports/Represent%20within%20the%20Orkest%20platform.md). The next design will be audited/improved by Opus 5.5 before a new bounded tracker is bootstrapped.
+> **Closed as historical exploration, 2026-10-21.** This scanner-first tracker is not the current execution cursor. Preserve its original ideas and unchecked boxes as historical scope; they are not completed by closure. The working Visu/Grafe/Alegor slices have separate promoted trackers. Read the [learning record](../research/reports/Represent%20exploration%20learning%20record.md), [Visu preservation guide](../guides/visu-experience.md), and [Orkest-platform research](../research/reports/Represent%20within%20the%20Orkest%20platform.md). The next design will be audited/improved by Opus 5.5 before a new bounded tracker is bootstrapped.
 
 > Living design and status for the first directory-to-scene companion.
 > Source brief: `docs/handoffs/ASTRA-KICKOFF.md` (local, intentionally ignored).
@@ -25,7 +28,7 @@ The user judged **“A memorable overview”** the only tested ROMPE output that
 
 Design **Visu** and **Grafe** as parallel product tracks, not one poster with a hidden graph mode. Visu's full direction is an animated and interactive illustrated scene, where motion communicates evidence-backed flow or change; label explanatory models as conceptual unless runtime traces support them. Grafe should improve on the historical Codevis idea with source/code inside focused nodes, source navigation, filtering, and progressive detail. Both share project identity, evidence, and immutable snapshots. The first Visu proof can precede implementation of both full products.
 
-Recommended names for evaluation are Represent (suite), Visu (overview), Grafe (technical view), and Alegor (candidate companion). The user asked for branding advice and fixed only that Alegor is not a mascot; its product/service role is still a proposal. Local snapshot history is a reasonable MVP. Hosted sync, embedding, export services, sharing, or subscription budgets are future service options, with no price/domain availability asserted. Full rationale and journeys are in [the living views report](research/reports/Represent%20living%20project%20views.md).
+Recommended names for evaluation are Represent (suite), Visu (overview), Grafe (technical view), and Alegor (candidate companion). The user asked for branding advice and fixed only that Alegor is not a mascot; its product/service role is still a proposal. Local snapshot history is a reasonable MVP. Hosted sync, embedding, export services, sharing, or subscription budgets are future service options, with no price/domain availability asserted. Full rationale and journeys are in [the living views report](../research/reports/Represent%20living%20project%20views.md).
 
 ## System Intent
 
@@ -155,10 +158,10 @@ Model columns are future execution hints; they are not claims about completed wo
 
 | File | Purpose |
 |---|---|
-| [CONTEXT.md](CONTEXT.md) | Decisions and current state |
-| [companions.md](research/companions.md) | Companion design research |
-| [graphify-tested.md](research/graphify-tested.md) | Measured failure cases to avoid |
-| [Source PDF](research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved Interactive Atlas conversation |
+| [CONTEXT.md](../CONTEXT.md) | Decisions and current state |
+| [companions.md](../research/companions.md) | Companion design research |
+| [graphify-tested.md](../research/graphify-tested.md) | Measured failure cases to avoid |
+| [Source PDF](../research/sources/ChatGPT_Prompt-Codex-Interactive-Atlas_20261020-1748.pdf) | Preserved Interactive Atlas conversation |
 | `references/` (ignored) | Local upstream study clones; never stage embedded repositories |
 
 ## Architecture Notes

@@ -1,4 +1,7 @@
-# Grafe MVP — Implementation Tracker
+---
+id: REP-5
+---
+# REP-5: GRAFE-MVP
 
 > Updated: 2026-10-21. Explicit user authorization: build both MVPs in parallel, real-project tests, individual UI/UX improvement rounds, detailed research/test documents. Visu remains paused.
 > Prior-art sweep: existing grafe research, restart experiments, capabilities and Visu reference checked. Existing experiments are not the product MVP.

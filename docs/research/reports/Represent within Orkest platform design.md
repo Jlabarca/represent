@@ -1,6 +1,6 @@
 # Represent within Orkest: platform design
 
-> Design, 2026-10-24. Drafted, then audited by an independent Fable 5.1 pass (fifteen findings, all folded in; the audit record is in LOGBOOK 2026-10-24), then bootstrapped. It continues [Represent within the Orkest platform](Represent%20within%20the%20Orkest%20platform.md) and honours the [exploration learning record](Represent%20exploration%20learning%20record.md) continuation contract and the [Visu preservation guide](../../guides/visu-experience.md). Heads revalidated: Represent `0e80bcc` (`codex/represent-v0`), Orkest `8f96ded`, Ghost `cc920933` (dirty working tree, not inspected). No service, runner, credential or provider was started or changed. Nothing here is implemented; the bounded plan is [REPRESENT-ORKEST-IMPL](../../REPRESENT-ORKEST-IMPL.md).
+> Design, 2026-10-24. Drafted, then audited by an independent Fable 5.1 pass (fifteen findings, all folded in; the audit record is in LOGBOOK 2026-10-24), then bootstrapped. It continues [Represent within the Orkest platform](Represent%20within%20the%20Orkest%20platform.md) and honours the [exploration learning record](Represent%20exploration%20learning%20record.md) continuation contract and the [Visu preservation guide](../../guides/visu-experience.md). Heads revalidated: Represent `0e80bcc` (`codex/represent-v0`), Orkest `8f96ded`, Ghost `cc920933` (dirty working tree, not inspected). No service, runner, credential or provider was started or changed. Nothing here is implemented; the bounded plan is [REPRESENT-ORKEST-IMPL](../../orkest/represent-orkest.imp.md).
 
 ## What this design decides
 
@@ -265,7 +265,7 @@ flowchart TB
 5. Live UX round; Visu round-trip with a free capture and reused art; Alegor host-source design note for Stage C.
 6. Promotion to `reference/` with the artifact schema as a reference doc.
 
-These steps are the phases of [REPRESENT-ORKEST-IMPL](../../REPRESENT-ORKEST-IMPL.md). None of them provisions infrastructure, runs an agent, writes to Multica, or edits an ORKEST-FORK box.
+These steps are the phases of [REPRESENT-ORKEST-IMPL](../../orkest/represent-orkest.imp.md). None of them provisions infrastructure, runs an agent, writes to Multica, or edits an ORKEST-FORK box.
 
 ## Ghost AI Plan
 
