@@ -131,3 +131,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Completed
 
 - [REP-8: CLAY-NOTES](orkest/done/clay-notes.imp.md) — implemented, tested and promoted.
+
+## Implementation queue
+
+- [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/clay-notes-release-prep.imp.md) — plan-only.
