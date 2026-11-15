@@ -21,11 +21,11 @@ Preserve Node22 buildless core/service/web/Chrome. New local web i18n catalog ma
 
 ## Current State
 
-Grounded preparation only. No localization, packaging, real-video access result or gateway Apply claimed yet.
+Phases1–3 verified: own-key request prepared, ten-language UI/Chrome copy, reproducible ZIP0.2.0, three source-only transcript trials, local session/atomic-write repairs and language/theme settings. Full113/113 at51c5825. Gateway Apply, live summaries and hosted Google auth remain external/unimplemented. Latest user expands current scope to cache-first full-art TCG cards with image covers, then a hosted SaaS/NotebookLM roadmap.
 
 ## Known Bugs
 
-No new reproducible defect established. Existing live Chrome/gateway compatibility remains unverified.
+Slow config discovery blocks initial notes; remove that dependency and cache the collection in phase4. Old card/caption-empty copy and sticky-note presentation are superseded there. Existing installed-Chrome/gateway compatibility remains unverified. Windows transient rename and cross-port cookie collision regressions repaired in phase3.
 
 ## What Needs Testing
 
@@ -38,6 +38,8 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 | REP-9.1 | Shipped | current | current | Gateway request and release decisions |
 | REP-9.2 | Shipped | current | current | Ten-language site and Chrome copy |
 | REP-9.3 | Shipped | current | current | Packaging, video access trials and release guide |
+| REP-9.4 | [ ] not started | current | current | Cache-first full-art TCG collection, reorder and image covers |
+| REP-9.5 | [ ] not started | current | current | Hosted Google/extension deployment and general NotebookLM roadmap |
 
 ## Checklist
 
@@ -64,6 +66,20 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 - [x] REP-9.3.1 — Create an explicit allow-listed ZIP builder and tests, record real access/transcript results for the three user URLs, update release guide with reproducible install/distribution/rollback steps and verify the whole suite. Keep gateway Apply/wiring and full live summaries explicitly pending. — evidence: node scripts/clay-notes-test.mjs: 41/41 passed, skipped=0, output sha256=5b078bf7b4550311f6acb50849028bd386ebab513020d520cb1f01a3797a610b
 
 ## Key Files Reference
+
+### Phase 4 — Full-art collection
+
+> verify: integration
+> requires:
+>   skip_budget: 0
+
+- [ ] REP-9.4.1 — Show cached cards before network/model discovery; implement readable full-art TCG thumbnails/image covers, validated authenticated image attachments, persisted filtered reorder with pointer/keyboard motion and sort/filter/search; verify old notebook compatibility, browser desktop/mobile/dark/RTL and regressions without inference.
+
+### Phase 5 — Hosted service and future notebooks
+
+> verify: docs
+
+- [ ] REP-9.5.1 — Revise unapplied gateway request for customer-facing service; produce concrete Google-auth SaaS/extension deployment plan atclay.maremoto.dev without Cloudflare Access or customer pairing, identify exact OAuth/domain/Apply gates, and sequence future multi-source NotebookLM capabilities after current cards. Do not claim planned auth/deployment as built.
 
 | File | Role |
 |---|---|

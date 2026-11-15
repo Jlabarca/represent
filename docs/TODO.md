@@ -5,6 +5,8 @@
 
 ## Active sprint: Clay Notes (2026-11-15)
 
+Current: REP-9.3 verified113/113; next cache-first full-art TCG collection with image attachments/covers, saved reorder/filter/sort and accessible motion. Then hosted `clay.maremoto.dev` Google-auth/extension deployment and future multi-source NotebookLM roadmap. No Cloudflare Access or customer local pairing. Real gateway Apply/paid trials remain gated separately.
+
 Release-prep source evidence: all three transcripts captured/imported without AI; ten-language UI and native Chrome messages implemented. Version0.2.0 ZIP and original icons prepared; see [release evidence](../experiments/clay-notes/release-prep/README.md). Next external action remains operator console Apply and own-key lane tests; then token-free lane/header/spend-fence wiring, then a separately approved bounded live summary trial. Store/developer installation and publication are not yet accepted.
 
 Follow-up [REP-9](orkest/clay-notes-release-prep.imp.md): ten-language UI, own-key/lane request, reproducible extension packaging, complete release plan and source-only checks for three supplied videos. Operator confirmed default `clay-notes-summary`. Wait for Apply SHA/lane-test before app gateway wiring and separate paid-call approval before live summaries. The old tentative shared-key path below is superseded by [the own-key request](design/clay-notes-gateway-request.md).
