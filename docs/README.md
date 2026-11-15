@@ -118,6 +118,9 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Clay Notes
 
+- [Own-key gateway request](design/clay-notes-gateway-request.md) — operator-reviewed default summary lane, proposed budget, explicit Apply/evidence boundary.
+- [Complete extension release plan](guides/clay-notes-release.md) — localization, the three-video trial, package/install/store distribution, public-backend gap and rollback.
+
 - [Operating reference](reference/clay-notes.md) — local service, Chrome pairing, gateway configuration, data limits and reusable core.
 - [Implementation evidence](../experiments/clay-notes/README.md) — isolated fixture screenshots, browser observations and doctor summary; live trial limits explicit.
 

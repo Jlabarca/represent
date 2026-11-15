@@ -45,7 +45,7 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 
 > verify: docs
 
-- [ ] REP-9.1.1 — Write the own-key/two-lane request from live registry presets, record operator default-lane decision and supersede shared-key suggestions; create full release plan with explicit Apply/live-call boundaries.
+- [x] REP-9.1.1 — Write the own-key/two-lane request from live registry presets, record operator default-lane decision and supersede shared-key suggestions; create full release plan with explicit Apply/live-call boundaries. — evidence: C:/Python312/python.exe -B tmp/clay-release-doc-check.py: 0/0 passed, skipped=0, output sha256=1648e2cda1171d55d02cd44ff1b15bdad16eb9c1e69d3cb89a2217f8e887ddc7
 
 ### Phase 2 — Localization
 

@@ -20,6 +20,8 @@ Click **✦ Clay Notes** while viewing a video. The notebook is persisted and op
 
 ## Gateway configuration
 
+> **Superseded setup decision2026-11-15:** The user now requires Clay Notes' **own** `LITELLM_KEY_CLAY_NOTES` and app-specific lanes. The earlier generic-alias/shared-Represent suggestion below is preserved as REP-8 history, not current authorization. Follow the [new request](../design/clay-notes-gateway-request.md). Operator Apply SHA/lane-test must arrive before new gateway wiring; no live paid call before separate operator approval. Current code has not yet completed this new onboarding contract.
+
 Set `CLAY_NOTES_GHOST_KEY` in the launching shell using a consumer key authorized for this tool. Do not paste it into Chrome or source control. This implementation does not read Ghost's `.env`, borrow the operator key, mint keys or broaden allow-lists. Model defaults are `cheap,smart,local`; the initial model is `cheap` when enabled, otherwise the first configured model. Set configuration before starting the same command above.
 
 | Variable | Default | Meaning |
