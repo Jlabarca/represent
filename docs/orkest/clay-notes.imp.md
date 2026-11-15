@@ -72,7 +72,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 |---|---|---|---|---|
 | REP-8.1 | Shipped | current session | current | Notebook core and gateway contract |
 | REP-8.2 | Shipped | current session | current | Service, library, notebook and Chrome capture |
-| REP-8.3 | [ ] not started | current session | current | Integration QA and truthful operating reference |
+| REP-8.3 | Shipped | current session | current | Integration QA and truthful operating reference |
 
 ## Checklist
 
@@ -161,3 +161,7 @@ Pins: existing package test glob already discovers new extension tests; existing
 Verification: implement a tracked Node test launcher which derives counts from real TAP, imposes a 15-second per-test timeout, preserves exit status and errors. Installed Orkest lacks Node TAP parsing, so the launcher emits the actual derived totals in its supported syntax. Phase 2 repeat was manually canceled after 154s due a test worker hang; direct focused diagnostic and bounded repeat passed all 15 tests. Add extension-worker VM behavior tests (save before extraction, duplicates, page-change safety, missing captions) and any regression for review findings. Perform desktop/mobile browser checks using CUA, fixture store separated from real default storage. No browser installation/paid calls. Full existing tests/*.test.mjs suite once through a strict persistent gate; targeted reruns only after relevant fixes. Review all phase diffs and document inability to establish actual YouTube extension capture or live Ghost success without installation/key. A local verified MVP may be documented independently of these external trial limits; do not claim full end-to-end live success.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/reference/clay-notes.md`, `experiments/clay-notes/README.md`, `experiments/clay-notes/browser-check.json`, `experiments/clay-notes/doctor-summary.json`, `experiments/clay-notes/library.jpg`, `experiments/clay-notes/mobile.jpg`, `experiments/clay-notes/notebook.jpg`, `extensions/clay-notes/background.js`, `extensions/clay-notes/content.css`, `extensions/clay-notes/content.js`, `extensions/clay-notes/options.css`, `scripts/clay-notes-test.mjs`, `src/clay-notes/core.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/style.css`, `tests/clay-notes-extension.test.mjs`, `tests/clay-notes-server.test.mjs`, `tests/clay-notes.test.mjs`.
+
+### Phase 3 QA — 2026-11-15
+
+No mechanical QA findings.

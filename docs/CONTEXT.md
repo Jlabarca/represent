@@ -165,3 +165,5 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 - Shipped REP-8.1; source 0c299bd76e96d3067dd88346ffbb3396a4b69967, executed tests and QA recorded.
 
 - Shipped REP-8.2; source be35fd49215afad13ecdd81390658550d8b41dfd, executed tests and QA recorded.
+
+- Shipped REP-8.3; source caaf831b06fe7c465e709f2dcbcc62d37b8d8700, executed tests and QA recorded.

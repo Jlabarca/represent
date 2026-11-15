@@ -453,3 +453,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Inspect the library/notebook in a browser, exercise extension worker behavior, run existing tool regressions and document verified limits.
+
+## 2026-11-15 — REP-8.3
+
+### Accomplished
+
+- Completed the local Clay Notes implementation, read-only source review, 24 focused behavior checks and twelve browser checks. Full strict gate 20261115T202648Z-clay-notes-full-14470a96 passed 96/96, zero failures/errors/skips in 40.2s. Source checkpoint caaf831. Added operating guide, local font licence, fixture screenshots and doctor summary.
+
+### Decisions
+
+- Reserve transcript queue slots before asynchronous mutation; preserve clear saved-but-needs-transcript feedback. Support first-configured model when cheap is not enabled. Existing Represent consumer permits json/gemini-flash only; no key scope or allow-list changes were made. Full Git-heavy test files run serially with a 60-second file timeout; targeted files retain 15 seconds.
+
+### Blockers
+
+- No installed-Chrome capture or real gateway response was verified. A live trial requires loading the unpacked extension and an authorized consumer key; fixture results do not complete it. Initial full run with a 15-second file timeout canceled two files; the corrected serial full gate passed all 96. Repository doctor still reports nine legacy evidence errors, eighteen warnings and nine informational findings.
+
+### Next
+
+- Finish final documentation reconciliation, committed-head verification, audit and local-MVP promotion. Then perform the external video/gateway trial when credentials and Chrome pairing are configured.
