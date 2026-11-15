@@ -417,3 +417,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Execute the first runnable phase under the Orkest workflow.
+
+## 2026-11-15 — REP-8.1
+
+### Accomplished
+
+- Implemented durable video notebooks, bounded caption parsing and the Ghost summary/question contract. Nine offline behavior tests passed; meaningful video-deduplication red preceded implementation. Source checkpoint 0c299bd.
+
+### Decisions
+
+- Keep gateway credentials server-side and preserve source segments with every revision. Use a tiny TAP-summary adapter because this installed Orkest release does not parse Node TAP counts; counts derive from the real runner.
+
+### Blockers
+
+- Live gateway calls require a dedicated Clay Notes consumer key. Chrome capture and UI remain phase 2.
+
+### Next
+
+- Implement authenticated loopback API, Satoshi/clay web surfaces and unpacked Chrome extension.

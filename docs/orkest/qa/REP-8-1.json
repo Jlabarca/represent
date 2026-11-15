@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "phase": "1",
+  "base": "d314e2108c9e6fa09058e67a30eedb8e1034c320",
+  "source_head": "0c299bd76e96d3067dd88346ffbb3396a4b69967",
+  "audited_head": "0c299bd76e96d3067dd88346ffbb3396a4b69967",
+  "source_fingerprint": {
+    "src/clay-notes/core.mjs": "17659e228741ed05567df5f05fe1f3d0a8cf10ee3ef368e3954ad2444514169b",
+    "tests/clay-notes.test.mjs": "7a2de0f5a47a05ed9ba726bd76d861fdd70abe249753ce33426f86e8b2153408"
+  },
+  "diff_sha256": "7f88f7b45b0c31d788bf2e7937f871dbbb5195cda3e91cbbcd8ba08238952f99",
+  "owned_paths": [
+    "src/clay-notes/core.mjs",
+    "tests/clay-notes.test.mjs"
+  ],
+  "tests": [
+    {
+      "id": "79ba4ad7-b88e-45ff-861b-52dbd92e727e",
+      "phase": "1",
+      "box": null,
+      "project": ".",
+      "command": [
+        "C:/Python312/python.exe",
+        "D:/ware/represent/tmp/run-clay-tests.py"
+      ],
+      "expected": "green",
+      "exit_code": 0,
+      "accepted": true,
+      "fingerprint": {
+        "src/clay-notes/core.mjs": "17659e228741ed05567df5f05fe1f3d0a8cf10ee3ef368e3954ad2444514169b",
+        "tests/clay-notes.test.mjs": "7a2de0f5a47a05ed9ba726bd76d861fdd70abe249753ce33426f86e8b2153408"
+      },
+      "commit": "0c299bd76e96d3067dd88346ffbb3396a4b69967",
+      "skip_budget": 0,
+      "started_at": "2026-11-15T20:03:22.701347+00:00",
+      "duration_s": 0.4,
+      "total": 9,
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0,
+      "errors": 0,
+      "native_skipped": 0,
+      "expected_failed": 0,
+      "unexpected_passed": 0,
+      "output_sha256": "72e6fa8a924bcb50451104d1cc73fd3d369d9af7d4d52bb1986ca0ef22650b49"
+    }
+  ],
+  "findings": [],
+  "working_diff_present": false,
+  "untracked": []
+}

@@ -70,7 +70,7 @@ Canonical video deduplication, atomic persistence, restart recovery, timestamp p
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-8.1 | [ ] not started | current session | current | Notebook core and gateway contract |
+| REP-8.1 | Shipped | current session | current | Notebook core and gateway contract |
 | REP-8.2 | [ ] not started | current session | current | Service, library, notebook and Chrome capture |
 | REP-8.3 | [ ] not started | current session | current | Integration QA and truthful operating reference |
 
@@ -127,3 +127,7 @@ Pins: package.json tests already includes tests/*.test.mjs, so new tests are dis
 Verification: node --test tests/clay-notes.test.mjs from D:/ware/represent; all tests offline with injected fake gateway. Cover duplicate URLs, malicious URL/path, transcript bounds, summary evidence indices, revision failure preservation, unknown models, concurrent mutations and fresh-process persistence. Record red and green using Orkest verify. Run source syntax check as part of test import. No paid model call required for these contracts.
 
 Exact owned files: `src/clay-notes/core.mjs`, `tests/clay-notes.test.mjs`.
+
+### Phase 1 QA — 2026-11-15
+
+No mechanical QA findings.
