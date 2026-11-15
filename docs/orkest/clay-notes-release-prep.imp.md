@@ -80,3 +80,13 @@ Locale negotiation including regional fallbacks, interpolation and locale-switch
 ## Architecture Notes
 
 User's explicit own-key/own-lane rule supersedes REP-8's tentative represent-key reuse. No application of gateway configuration is authorized; record the conflict and quote the actual decision. Default-lane approval is not a paid-call approval. Read-only YouTube access can proceed independently. Public extension distribution requires a reachable authenticated backend for users; the current loopback lab1 product is an internal developer/unlisted-testing candidate, not automatically a public SaaS. The release plan must keep that product boundary concrete.
+
+## Plan — 1
+
+Documentation-only phase. Exact paths: docs/CONTEXT.md, docs/TODO.md, docs/README.md, docs/reference/clay-notes.md, docs/design/clay-notes-gateway-request.md, docs/guides/clay-notes-release.md. Update CONTEXT first. Record actual user quotes for own key/lane, default-lane choice and no paid calls before approval. Request new clay-notes key because registry keys.clay-notes does not exist; propose $1/30d, operator audience, summary cheap preset, deep smart preset and default summary. No registry, consumers, .env, route queue, runner, /key or /model writes/calls.
+
+Write the exact requested ephemeral handoff at docs/handoffs/GATEWAY-REQUEST-2026-11-15.md and add only that path to this checkout's .git/info/exclude. Preserve the durable request in docs/design and commit it; never stage ephemeral handoffs. Explain this user-directed path exception. The full release guide covers local service, language matrix, gateway approval/evidence, token-free tests, three real-video trials, ZIP package, developer install, permissions/privacy/store materials, tester distribution, public-backend gap, roll-forward/rollback and measurable gates.
+
+Pins: supersede the old reference's tentative Represent consumer reuse; preserve historical evidence, link current own-key decision. Index new docs and active tracker, preserve REP-8 and unrelated local changes. Verify documentary required fields/operator quote/URLs through a small offline check plus diff review; no behavior or live inference in this phase.
+
+Exact owned files: `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/design/clay-notes-gateway-request.md`, `docs/guides/clay-notes-release.md`, `docs/reference/clay-notes.md`.
