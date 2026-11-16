@@ -148,3 +148,14 @@ test('a title renamed while hydration is pending is marked manual and never repl
   assert.equal(saved.title,'User chosen title');assert.equal(saved.videoImport.status,'ready');assert.equal(saved.segments[0].text,'Caption');
 });
 
+
+test('a web composer paste with an empty title adopts the video title even without captions',async t=>{
+  const directory=await mkdtemp(join(tmpdir(),'web-video-title-'));
+  const store=await new NotcardsStore({directory,videoImporter:{enabled:true,enqueue:async()=>({status:'unavailable',title:'Source title',reason:'captions_unavailable'})}}).init();
+  t.after(async()=>{await store.close();await rm(directory,{recursive:true,force:true});});
+  const user=store.user({issuer:'https://fixture.invalid',subject:'title',email:'fixture@example.invalid',displayName:'Test'});
+  const result=await store.compose(user.id,{draftId:crypto.randomUUID(),body:'https://youtu.be/abcdefghijk',title:'',split:false,folderId:null});
+  await Promise.all(store.videoImportJobs.values());
+  const note=await (await store.account(user.id)).notebook.get(result.ids[0]);
+  assert.equal(note.title,'Source title');assert.equal(note.videoImport.status,'unavailable');
+});

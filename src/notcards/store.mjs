@@ -275,7 +275,8 @@ export class NotcardsStore {
       const now=new Date(this.clock()).toISOString();
       return account.notebook.mutate(noteId,note=>{
         const imported={status:result.status,completedAt:now,attemptCount:note.videoImport?.attemptCount||1,...(['unavailable','failed'].includes(result.status)?{retryAllowedAt:new Date(this.clock()+30_000).toISOString()}:{}),...(result.reason?{reason:result.reason}:{})};
-        if(result.title&&!note.titleManuallySet&&(!note.title||['Untitled video','Untitled research'].includes(note.title)))note.title=result.title;
+        const legacyUrlTitle = note.title && youtubeVideo(note.title)?.id === videoIdentity(note.url).id;
+        if(result.title && !note.titleManuallySet && (!note.title || legacyUrlTitle || ['Untitled video','Untitled research'].includes(note.title)))note.title=result.title;
         if(result.channel&&!note.channel)note.channel=result.channel;
         if(result.thumbnail&&(!note.thumbnail||note.thumbnail===videoIdentity(note.url).thumbnail)&&!note.coverImage)note.thumbnail=result.thumbnail;
         const importedSegments=result.segments?.length?result.segments:savedTranscript?.segments;
@@ -330,8 +331,8 @@ export class NotcardsStore {
         const id=item.id;
         if(await account.notebook.get(id))throw problem(409,'A composer notebook ID is already occupied. Retry with a new draft.');
         const personalNotes=payload.split?(i===0?payload.body:''):payload.body;
-        const title = payload.title || (payload.split && item.link ? item.link : clean(payload.body.split(/\r?\n/).find(line => line.trim()), 100));
-        const note={...(video||{}),id,url:video?.url||item.link||null,title,channel:'',thumbnail:video?.thumbnail||null,createdAt:new Date(this.clock()).toISOString(),updatedAt:new Date(this.clock()).toISOString(),state:'awaiting_summary',error:null,segments:[],revisions:[],conversations:[],personalNotes,pinned:false,color:'cream',finish:null,transcriptSource:null,sourceType:item.sourceType,folderId:payload.folderId,sourceLinks:payload.split?(item.link?[item.link]:[]):links,composerDraftId:input.draftId,composerItemIndex:i,composerRequestHash:payloadHash,autoSummaryEligible:item.autoSummaryEligible};
+        const title = payload.title || (video ? 'Untitled video' : payload.split && item.link ? item.link : clean(payload.body.split(/\r?\n/).find(line => line.trim()), 100));
+        const note={...(video||{}),id,url:video?.url||item.link||null,title,...(video?{titleManuallySet:Boolean(payload.title)}:{}),channel:'',thumbnail:video?.thumbnail||null,createdAt:new Date(this.clock()).toISOString(),updatedAt:new Date(this.clock()).toISOString(),state:'awaiting_summary',error:null,segments:[],revisions:[],conversations:[],personalNotes,pinned:false,color:'cream',finish:null,transcriptSource:null,sourceType:item.sourceType,folderId:payload.folderId,sourceLinks:payload.split?(item.link?[item.link]:[]):links,composerDraftId:input.draftId,composerItemIndex:i,composerRequestHash:payloadHash,autoSummaryEligible:item.autoSummaryEligible};
         await this.assertCapacity(account,{newNote:true,additionalBytes:Buffer.byteLength(JSON.stringify(note))+2048});
         await account.notebook.put(note);
         ids[i]=id;
