@@ -157,3 +157,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Completed
 
 - [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.
+
+## Implementation queue
+
+- [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.

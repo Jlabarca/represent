@@ -644,3 +644,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Review the promotion commit and reference when needed.
+
+## 2026-11-16 — REP-10: NOTCARDS-DEV
+
+### Accomplished
+
+- Created a grounded plan-only tracker.
+
+### Decisions
+
+- Allocate identity locally; implementation evidence remains unclaimed.
+
+### Blockers
+
+- See tracker questions and dependencies; implementation is still unverified.
+
+### Next
+
+- Execute the first runnable phase under the Orkest workflow.

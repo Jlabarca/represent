@@ -205,3 +205,7 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 ## Completed implementation
 
 - [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.
+
+## Active implementation
+
+- [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.

@@ -139,3 +139,7 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 ## Completed trackers
 
 - [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.
+
+## Implementation trackers
+
+- [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.
