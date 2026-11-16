@@ -165,3 +165,5 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Implementation queue
 
 - [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.
+
+- REP-10.1 — Shipped; continue the next runnable phase.

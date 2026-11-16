@@ -662,3 +662,23 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Execute the first runnable phase under the Orkest workflow.
+
+## 2026-11-16 — REP-10.1
+
+### Accomplished
+
+- Built Notcards' account-scoped development service, Google web sign-in, hosted Chrome capture package and isolated Docker deployment. Signed-in fixture coverage verifies session isolation and grant scope.
+- Matched the light pocket and dark album layouts with actual video full-art covers. Chromium showed the capture button on all three supplied videos and rendered both desktop themes and the 390-pixel mobile collection.
+
+### Decisions
+
+- Use not.maremoto.dev for development, reserve not.cards for production, and use Google identity directly. The unpacked development extension ID is aimdojafaddgpjhiejbfihfljeacolmk.
+- The existing Ghost request retains its technical key and lane names. Hosted capture saves source material while inference awaits operator onboarding.
+
+### Blockers
+
+- Published the proxied development DNS record and configured the dedicated Google web client. The public sign-in reached Google’s account chooser. Real account consent and capture remain acceptance steps. No Ghost Apply SHA, lane-test result or paid-call approval was supplied.
+
+### Next
+
+- Verify the public dev origin, real Google login, and first and repeat captures in Chrome after DNS and the web client are available. Follow the service roadmap for source-grounded research tools and production distribution.

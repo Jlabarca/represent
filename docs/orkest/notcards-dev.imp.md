@@ -35,7 +35,7 @@ Account isolation, real cookie boundaries, extension grant/retry, album controls
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-10.1 | planned | current | current | Hosted app, album, browser extension and dev deployment |
+| REP-10.1 | Shipped | current | current | Hosted app, album, browser extension and dev deployment |
 
 ## Checklist
 
@@ -78,3 +78,7 @@ Implement the hosted development app in src/notcards, sharing the existing noteb
 Pins: historical loopback APIs, tests and extension stay compatible. Keep old note IDs and cover attachment data readable. The new origin and extension build are isolated from the previous developer artifact. Use node scripts/clay-notes-test.mjs --all for regression coverage and run targeted hosted and extension tests plus the browser comparison.
 
 Exact owned files: `deploy/notcards/Dockerfile`, `deploy/notcards/Dockerfile.dockerignore`, `deploy/notcards/cloudflared.yml`, `deploy/notcards/compose.yml`, `deploy/notcards/dev.ps1`, `docs/CONTEXT.md`, `docs/README.md`, `docs/TODO.md`, `docs/design/clay-notes-gateway-request.md`, `docs/design/clay-notes-service-roadmap.md`, `docs/guides/clay-notes-release.md`, `docs/guides/notcards-dev.md`, `experiments/notcards/dev/album-dark.jpg`, `experiments/notcards/dev/album-light.jpg`, `experiments/notcards/dev/album-mobile.jpg`, `experiments/notcards/dev/browser.json`, `extensions/notcards/_locales/ar/messages.json`, `extensions/notcards/_locales/de/messages.json`, `extensions/notcards/_locales/en/messages.json`, `extensions/notcards/_locales/es/messages.json`, `extensions/notcards/_locales/fr/messages.json`, `extensions/notcards/_locales/hi/messages.json`, `extensions/notcards/_locales/it/messages.json`, `extensions/notcards/_locales/ja/messages.json`, `extensions/notcards/_locales/pt/messages.json`, `extensions/notcards/_locales/zh_CN/messages.json`, `extensions/notcards/auth.mjs`, `extensions/notcards/background.js`, `extensions/notcards/content.css`, `extensions/notcards/content.js`, `extensions/notcards/icons/128.png`, `extensions/notcards/icons/16.png`, `extensions/notcards/icons/32.png`, `extensions/notcards/icons/48.png`, `extensions/notcards/icons/icon.svg`, `extensions/notcards/manifest.json`, `extensions/notcards/options.css`, `extensions/notcards/options.html`, `extensions/notcards/options.js`, `scripts/notcards-extension.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/album.css`, `src/clay-notes/web/album.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/collection.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/session.mjs`, `src/clay-notes/web/style.css`, `src/notcards/.gitignore`, `src/notcards/cli.mjs`, `src/notcards/identity.mjs`, `src/notcards/package-lock.json`, `src/notcards/package.json`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `tests/clay-notes-album.test.mjs`, `tests/clay-notes-collection.test.mjs`, `tests/clay-notes-hosted.test.mjs`, `tests/clay-notes-i18n.test.mjs`, `tests/clay-notes-preferences.test.mjs`, `tests/clay-notes-release.test.mjs`, `tests/notcards-extension.test.mjs`.
+
+### Phase 1 QA — 2026-11-16
+
+No mechanical QA findings.
