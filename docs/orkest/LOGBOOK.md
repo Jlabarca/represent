@@ -719,3 +719,23 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Execute the first runnable phase under the Orkest workflow.
+
+## 2026-11-16 — REP-11.1
+
+### Accomplished
+
+- Shipped a retry-safe inline collection composer with first-link source detection, opt-in splitting, a saved desktop card size and a centered mobile feed.
+- Corrected grant expiry and structured-caption compatibility for the released Chrome worker. Built a separate Web Store package and documented how the publisher registers its assigned ID.
+
+### Decisions
+
+- Only the first original link can qualify for a YouTube summary. The first split card keeps the entire original draft.
+- Retain the unpacked extension identity alongside the optional exact Store item ID.
+
+### Blockers
+
+- The dashboard must assign the Store item ID before its real sign-in can be tested. The publisher supplies the privacy policy and reviewer access. AI generation awaits the dedicated Ghost gateway approval.
+
+### Next
+
+- Register the assigned Chrome Web Store item ID on the development service and verify capture under that identity before submitting the listing for review.

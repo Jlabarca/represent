@@ -35,7 +35,7 @@ Mixed link ordering, retry/split saves, text persistence, settings storage, phon
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-11.1 | planned | current | current | Responsive collection and inline composer |
+| REP-11.1 | Shipped | current | current | Responsive collection and inline composer |
 
 ## Checklist
 
@@ -67,3 +67,7 @@ Use an inline Keep-style note field and optional title above the board. Parse un
 User-reported release fix: the extension calls Date.parse on the numeric grant expiry and sends structured captions to a string-only capture endpoint. Bridge both in the hosted API so installed clients recover, update future builds, exercise the active capture contract and provide a Chrome Web Store draft-upload and publication guide. Verify the packaged extension ID against the item ID assigned by the Store before rollout. Production publication remains publisher-operated.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/guides/notcards-chrome-store.md`, `docs/guides/notcards-dev.md`, `docs/reference/notcards-composer.md`, `extensions/notcards/auth.mjs`, `extensions/notcards/background.js`, `extensions/notcards/manifest.json`, `scripts/notcards-extension.mjs`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/composer-links.mjs`, `src/clay-notes/web/composer.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `tests/clay-notes-hosted.test.mjs`, `tests/notcards-composer.test.mjs`, `tests/notcards-extension.test.mjs`.
+
+### Phase 1 QA — 2026-11-16
+
+No mechanical QA findings.
