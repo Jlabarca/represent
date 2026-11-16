@@ -19,3 +19,7 @@
 ## Verified capability
 
 - [REP-9: CLAY-NOTES-RELEASE-PREP](orkest/done/clay-notes-release-prep.imp.md) — implemented, tested and promoted.
+
+## Verified capability
+
+- [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — implemented, tested and promoted.

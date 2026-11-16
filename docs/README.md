@@ -144,4 +144,8 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 
 ## Implementation trackers
 
-- [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.
+- [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — plan-only.
+
+## Completed trackers
+
+- [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — implemented, tested and promoted.

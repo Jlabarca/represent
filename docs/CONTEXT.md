@@ -6,7 +6,7 @@
 
 ## Notcards development (2026-11-16)
 
-The user renamed Clay Notes **Notcards** and selected `not.maremoto.dev` for development, with `not.cards` intended for production. The light reference uses clear binder pockets and the dark reference uses a black album. Both use Satoshi, large italic titles and actual full-art video or attached covers. [Development deployment](guides/notcards-dev.md). [Implementation](orkest/notcards-dev.imp.md).
+The user renamed Clay Notes **Notcards** and selected `not.maremoto.dev` for development, with `not.cards` intended for production. The light reference uses clear binder pockets and the dark reference uses a black album. Both use Satoshi, large italic titles and actual full-art video or attached covers. [Development deployment](guides/notcards-dev.md). [Implementation](orkest/done/notcards-dev.imp.md).
 
 Google app authentication and account-scoped notes replace pairing for hosted users. The older local Clay Notes tool retains its developer flow. The existing Ghost request keeps its technical key and lane names across the brand change. Live generation awaits operator Apply evidence and paid-call authorization.
 
@@ -214,6 +214,10 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 
 ## Active implementation
 
-- [REP-10: NOTCARDS-DEV](orkest/notcards-dev.imp.md) — plan-only.
+- [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — plan-only.
 
 - Shipped REP-10.1; source ca3cf9f1dc2444f3b7ffe89e55140f9fb736c4a9, executed tests and QA recorded.
+
+## Completed implementation
+
+- [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — implemented, tested and promoted.
