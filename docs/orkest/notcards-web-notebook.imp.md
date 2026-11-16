@@ -65,3 +65,9 @@ Shared web UI under src/clay-notes/web and hosted creation in src/notcards. Exer
 ## Architecture Notes
 
 Preserve attachment covers, manual reordering, account isolation and the gateway spend boundary.
+
+## Plan — 1
+
+Use the existing board and private notebook route. Make the full artwork open its notebook with keyboard and pointer, preserve pin and drag, show a responsive embedded video built from canonical source identity, editable personal notes and working source links. Reflect hosted AI availability honestly. Fix the real unpacked Chrome origin failure narrowly without opening cookie writes or arbitrary origins. Verify Google discovery, actual Chrome transfer, owner isolation and web-only workflow, then deploy to the dev service. Track the Botanic bridge and gateway activation separately.
+
+Exact owned files: `docs/CONTEXT.md`, `docs/reference/notcards-web-notebook.md`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/style.css`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `tests/clay-notes-hosted.test.mjs`.
