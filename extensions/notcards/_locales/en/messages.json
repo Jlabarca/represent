@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "Save YouTube videos and keep their ideas in Notcards."
+  },
+  "library": {
+    "message": "My library"
+  },
+  "saveVideo": {
+    "message": "Save a video"
+  },
+  "saving": {
+    "message": "Working…"
+  },
+  "saved": {
+    "message": "Saved"
+  },
+  "needsTranscript": {
+    "message": "Needs transcript"
+  },
+  "captureFailed": {
+    "message": "Needs attention"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "Open a YouTube video first."
+  },
+  "alreadySaving": {
+    "message": "This video is already being saved."
+  },
+  "videoChanged": {
+    "message": "Needs attention"
+  },
+  "signInFailed": {
+    "message": "Sign-in failed. Try again."
+  },
+  "otherAccount": {
+    "message": "This capture belongs to another account. Sign in to the original account to retry."
+  },
+  "optionsHeading": {
+    "message": "Save a video. Keep the ideas."
+  },
+  "optionsHelp": {
+    "message": "Sign in to save videos to your Notcards collection."
+  },
+  "signIn": {
+    "message": "Continue with Google"
+  },
+  "signedIn": {
+    "message": "Sign in as"
+  },
+  "forgetBrowser": {
+    "message": "Forget this browser"
+  },
+  "libraryLink": {
+    "message": "My library"
+  },
+  "privacy": {
+    "message": "Notcards only reads the video you choose to save."
+  },
+  "noTranscript": {
+    "message": "No captions available. Open the transcript or paste it in your saved notebook."
+  },
+  "notSignedIn": {
+    "message": "Sign in to save videos to your Notcards collection."
+  },
+  "signingIn": {
+    "message": "Working…"
+  },
+  "pendingCaptures": {
+    "message": "saved capture(s) waiting to sync"
+  }
+}

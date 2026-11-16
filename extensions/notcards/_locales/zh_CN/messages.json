@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "将 YouTube 视频及其灵感保存到 Notcards。"
+  },
+  "library": {
+    "message": "我的笔记库"
+  },
+  "saveVideo": {
+    "message": "保存视频"
+  },
+  "saving": {
+    "message": "处理中…"
+  },
+  "saved": {
+    "message": "已保存"
+  },
+  "needsTranscript": {
+    "message": "需要字幕文本"
+  },
+  "captureFailed": {
+    "message": "需要处理"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "请先打开 YouTube 视频。"
+  },
+  "alreadySaving": {
+    "message": "此视频正在保存。"
+  },
+  "videoChanged": {
+    "message": "需要处理"
+  },
+  "signInFailed": {
+    "message": "登录失败，请重试。"
+  },
+  "otherAccount": {
+    "message": "此视频属于另一个账号。请登录原账号后重试。"
+  },
+  "optionsHeading": {
+    "message": "保存视频，留住灵感。"
+  },
+  "optionsHelp": {
+    "message": "登录后将视频保存到 Notcards 收藏。"
+  },
+  "signIn": {
+    "message": "使用 Google 继续"
+  },
+  "signedIn": {
+    "message": "已登录账号"
+  },
+  "forgetBrowser": {
+    "message": "清除此浏览器登录"
+  },
+  "libraryLink": {
+    "message": "我的笔记库"
+  },
+  "privacy": {
+    "message": "Notcards 仅读取你选择保存的视频。"
+  },
+  "noTranscript": {
+    "message": "没有可用字幕。请打开字幕记录，或粘贴到已保存的笔记本。"
+  },
+  "notSignedIn": {
+    "message": "登录后将视频保存到 Notcards 收藏。"
+  },
+  "signingIn": {
+    "message": "处理中…"
+  },
+  "pendingCaptures": {
+    "message": "个已保存项目等待同步"
+  }
+}

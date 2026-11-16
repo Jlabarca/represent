@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "Speichere YouTube-Videos und behalte die Ideen in Notcards."
+  },
+  "library": {
+    "message": "Meine Bibliothek"
+  },
+  "saveVideo": {
+    "message": "Video speichern"
+  },
+  "saving": {
+    "message": "Wird erstellt…"
+  },
+  "saved": {
+    "message": "Gespeichert"
+  },
+  "needsTranscript": {
+    "message": "Transkript fehlt"
+  },
+  "captureFailed": {
+    "message": "Bitte prüfen"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "Öffne zuerst ein YouTube-Video."
+  },
+  "alreadySaving": {
+    "message": "Dieses Video wird bereits gespeichert."
+  },
+  "videoChanged": {
+    "message": "Bitte prüfen"
+  },
+  "signInFailed": {
+    "message": "Anmeldung fehlgeschlagen. Bitte erneut versuchen."
+  },
+  "otherAccount": {
+    "message": "Dieser Clip gehört zu einem anderen Konto. Melde dich beim ursprünglichen Konto an, um es erneut zu versuchen."
+  },
+  "optionsHeading": {
+    "message": "Videos speichern. Ideen behalten."
+  },
+  "optionsHelp": {
+    "message": "Melde dich an, um Videos in deiner Notcards-Sammlung zu speichern."
+  },
+  "signIn": {
+    "message": "Mit Google fortfahren"
+  },
+  "signedIn": {
+    "message": "Angemeldet als"
+  },
+  "forgetBrowser": {
+    "message": "Dieses Gerät vergessen"
+  },
+  "libraryLink": {
+    "message": "Meine Bibliothek"
+  },
+  "privacy": {
+    "message": "Notcards liest nur das Video, das du speicherst."
+  },
+  "noTranscript": {
+    "message": "Keine Untertitel verfügbar. Öffne das Transkript oder füge es im Notizbuch ein."
+  },
+  "notSignedIn": {
+    "message": "Melde dich an, um Videos in deiner Notcards-Sammlung zu speichern."
+  },
+  "signingIn": {
+    "message": "Wird erstellt…"
+  },
+  "pendingCaptures": {
+    "message": "Aufnahmen warten auf Synchronisierung"
+  }
+}

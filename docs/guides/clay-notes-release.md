@@ -1,5 +1,7 @@
 # Clay Notes — extension and hosted service release plan
 
+> 2026-11-16: **Notcards** is the current brand. For the development package targeting `not.maremoto.dev`, use the [Notcards development guide](notcards-dev.md). The older Clay Notes ZIP and localhost workflow below refer to the earlier developer package.
+
 > Revised2026-11-15. Target: **https://clay.maremoto.dev**, Google app authentication, no Cloudflare Access, no customer pairing/local service. [Intended architecture and future notebook roadmap](../design/clay-notes-service-roadmap.md), [current implementation](../reference/clay-notes-release-prep.md), [own-key gateway request](../design/clay-notes-gateway-request.md).
 
 ## Delivery boundary

@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "احفظ فيديوهات YouTube وأفكارها في Notcards."
+  },
+  "library": {
+    "message": "مكتبتي"
+  },
+  "saveVideo": {
+    "message": "حفظ فيديو"
+  },
+  "saving": {
+    "message": "جارٍ العمل…"
+  },
+  "saved": {
+    "message": "محفوظ"
+  },
+  "needsTranscript": {
+    "message": "بحاجة إلى نص"
+  },
+  "captureFailed": {
+    "message": "بحاجة إلى مراجعة"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "افتح فيديو YouTube أولاً."
+  },
+  "alreadySaving": {
+    "message": "يجري حفظ هذا الفيديو بالفعل."
+  },
+  "videoChanged": {
+    "message": "بحاجة إلى مراجعة"
+  },
+  "signInFailed": {
+    "message": "تعذر تسجيل الدخول. حاول مرة أخرى."
+  },
+  "otherAccount": {
+    "message": "هذا الالتقاط مرتبط بحساب آخر. سجّل الدخول إلى الحساب الأصلي لإعادة المحاولة."
+  },
+  "optionsHeading": {
+    "message": "احفظ الفيديوهات واحتفظ بالأفكار."
+  },
+  "optionsHelp": {
+    "message": "سجّل الدخول لحفظ الفيديوهات في مجموعة Notcards."
+  },
+  "signIn": {
+    "message": "المتابعة باستخدام Google"
+  },
+  "signedIn": {
+    "message": "تم تسجيل الدخول باسم"
+  },
+  "forgetBrowser": {
+    "message": "امسح هذا المتصفح"
+  },
+  "libraryLink": {
+    "message": "مكتبتي"
+  },
+  "privacy": {
+    "message": "يقرأ Notcards الفيديو الذي تختار حفظه فقط."
+  },
+  "noTranscript": {
+    "message": "النص غير متاح. افتح النص أو الصقه في دفترك المحفوظ."
+  },
+  "notSignedIn": {
+    "message": "سجّل الدخول لحفظ الفيديوهات في مجموعة Notcards."
+  },
+  "signingIn": {
+    "message": "جارٍ العمل…"
+  },
+  "pendingCaptures": {
+    "message": "لقطات محفوظة بانتظار المزامنة"
+  }
+}

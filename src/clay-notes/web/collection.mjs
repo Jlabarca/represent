@@ -1,10 +1,16 @@
 const KEY='clay-notes-library-v1',LIMIT=2_000_000,MAX_AGE=7*86400000;
-const FIELDS=['id','url','title','channel','thumbnail','cover','imageCount','state','error','pinned','color','createdAt','updatedAt','overview','statementCount','revisionCount'];
-export function readLibraryCache(storage,now=Date.now()){
-  try{const raw=storage?.getItem(KEY);if(!raw||raw.length>LIMIT)return null;const value=JSON.parse(raw);if(value.version!==1||!Number.isFinite(value.savedAt)||value.savedAt>now+60000||now-value.savedAt>MAX_AGE||!Array.isArray(value.notes)||value.notes.length>500||value.notes.some(note=>!note||typeof note.id!=='string'||!/^[A-Za-z0-9_-]{11}$/.test(note.id)))return null;return value.notes.map(note=>({...note,pinned:note.pinned===true}));}catch{return null;}
+const FIELDS=['id','url','title','channel','sourceType','transcriptAvailable','transcriptSource','thumbnail','cover','imageCount','state','error','pinned','color','finish','folderId','createdAt','updatedAt','overview','statementCount','revisionCount'];
+const cacheKey=scope=>scope==='local'?KEY:`${KEY}:${String(scope).replace(/[^A-Za-z0-9_-]/g,'')}`;
+export function cardFinish(note){
+  if(['prism','classic','spectrum'].includes(note?.finish))return note.finish;
+  const score=[...String(note?.id||'')].reduce((sum,char)=>sum+char.charCodeAt(0),0);
+  return ['prism','classic','spectrum'][score%3];
 }
-export function writeLibraryCache(storage,notes,now=Date.now()){
-  try{if(!Array.isArray(notes)||notes.length>500)return;const minimal=notes.map(note=>Object.fromEntries(FIELDS.filter(key=>Object.hasOwn(note,key)).map(key=>[key,note[key]])));const value=JSON.stringify({version:1,savedAt:now,notes:minimal});if(value.length<=LIMIT)storage?.setItem(KEY,value);}catch{/* Private mode and quota must not block the collection. */}
+export function readLibraryCache(storage,now=Date.now(),scope='local'){
+  try{const raw=storage?.getItem(cacheKey(scope));if(!raw||raw.length>LIMIT)return null;const value=JSON.parse(raw);if(value.version!==1||!Number.isFinite(value.savedAt)||value.savedAt>now+60000||now-value.savedAt>MAX_AGE||!Array.isArray(value.notes)||value.notes.length>500||value.notes.some(note=>!note||typeof note.id!=='string'||!/^[A-Za-z0-9_-]{11}$/.test(note.id)))return null;return value.notes.map(note=>({...note,pinned:note.pinned===true}));}catch{return null;}
+}
+export function writeLibraryCache(storage,notes,now=Date.now(),scope='local'){
+  try{if(!Array.isArray(notes)||notes.length>500)return;const minimal=notes.map(note=>Object.fromEntries(FIELDS.filter(key=>Object.hasOwn(note,key)).map(key=>[key,note[key]])));const value=JSON.stringify({version:1,savedAt:now,notes:minimal});if(value.length<=LIMIT)storage?.setItem(cacheKey(scope),value);}catch{/* Private mode and quota must not block the collection. */}
 }
 export function sortCollection(notes,sort='manual',locale='en'){
   const copy=[...notes];if(sort==='title')copy.sort((a,b)=>String(a.title).localeCompare(String(b.title),locale));if(['newest','oldest'].includes(sort))copy.sort((a,b)=>String(sort==='newest'?b.createdAt:a.createdAt).localeCompare(String(sort==='newest'?a.createdAt:b.createdAt)));return copy;
@@ -12,15 +18,21 @@ export function sortCollection(notes,sort='manual',locale='en'){
 export function mergeVisibleOrder(all,visible){
   if(new Set(visible).size!==visible.length||visible.some(id=>!all.includes(id)))throw new Error('Order must contain unique known notebook ids');const selected=new Set(visible);let index=0;return all.map(id=>selected.has(id)?visible[index++]:id);
 }
-export function bootCollection({storage,loadNotes,loadConfig,onNotes,onConfig,onError}){
-  const cached=readLibraryCache(storage);if(cached)onNotes(cached,'cache');
-  const notes=Promise.resolve().then(loadNotes).then(value=>{writeLibraryCache(storage,value);onNotes(value,'network');}).catch(error=>onError(error,'notes'));
+export function bootCollection({storage,scope='local',loadNotes,loadConfig,onNotes,onConfig,onError}){
+  const cached=readLibraryCache(storage,Date.now(),scope);if(cached)onNotes(cached,'cache');
+  const notes=Promise.resolve().then(loadNotes).then(value=>{writeLibraryCache(storage,value,Date.now(),scope);onNotes(value,'network');}).catch(error=>onError(error,'notes'));
   const config=Promise.resolve().then(loadConfig).then(onConfig).catch(error=>onError(error,'config'));return {notes,config};
 }
 export function coverSource(note){
   const value=note.cover||note.thumbnail||'';
   if(/^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]{11}\/[A-Za-z0-9_-]+\.(?:jpg|webp)$/.test(value)||new RegExp(`^/api/notes/${note.id}/images/[a-f0-9-]{36}$`).test(value))return value;
   return '';
+}
+export function cardArt(note){
+  const cover=coverSource(note);
+  if(!cover)return {src:'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',fallback:''};
+  if(cover!==note?.thumbnail||!/^https:\/\/i\.ytimg\.com\/vi\/[A-Za-z0-9_-]{11}\/(?:hq|sd)default\.jpg$/.test(cover))return {src:cover,fallback:''};
+  return {src:cover.replace(/(?:hq|sd)default\.jpg$/,'maxresdefault.jpg'),fallback:cover};
 }
 export function animateCards(container,before=new Map()){
   if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;

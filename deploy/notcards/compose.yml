@@ -1,0 +1,109 @@
+name: notcards-dev
+x-ware:
+  state: active
+  note: "Notcards hosted development, owned by Represent."
+  endpoints:
+    - "https://not.maremoto.dev"
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: deploy/notcards/Dockerfile
+    init: true
+    restart: unless-stopped
+    env_file:
+      - ${NOTCARDS_RUNTIME_ENV:?Set the absolute path to the dedicated dev environment file}
+    environment:
+      NOTCARDS_HOST: 0.0.0.0
+      NOTCARDS_PORT: "8080"
+      NOTCARDS_PUBLIC_ORIGIN: https://not.maremoto.dev
+      NOTCARDS_DATA_DIR: /data
+      NOTCARDS_EXTENSION_ID: aimdojafaddgpjhiejbfihfljeacolmk
+      NOTCARDS_EXTENSION_ZIP: /app/releases/notcards-dev.zip
+    volumes:
+      - data:/data
+    read_only: true
+    tmpfs: ["/tmp"]
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    pids_limit: 128
+    mem_limit: 512m
+    ports: ["127.0.0.1:8891:8080"]
+    networks:
+      edge:
+        ipv4_address: 10.94.2.2
+      app-egress: {}
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get({host:'127.0.0.1',port:8080,path:'/api/session',headers:{Host:'not.maremoto.dev'}},r=>process.exit([200,401].includes(r.statusCode)?0:1)).on('error',()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+  tunnel-network:
+    image: alpine:3.20@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
+    restart: unless-stopped
+    cap_add: [NET_ADMIN]
+    command:
+      - sh
+      - -ec
+      - |
+        apk add --no-cache iptables ip6tables >/dev/null
+        iptables -P OUTPUT DROP
+        iptables -A OUTPUT -o lo -j ACCEPT
+        iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+        iptables -A OUTPUT -d 10.94.2.2 -p tcp --dport 8080 -j ACCEPT
+        for cidr in 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 100.64.0.0/10 169.254.0.0/16; do iptables -A OUTPUT -d "$$cidr" -j REJECT; done
+        iptables -A OUTPUT -p tcp -m multiport --dports 443,7844 -j ACCEPT
+        iptables -A OUTPUT -p udp --dport 7844 -j ACCEPT
+        ip6tables -P OUTPUT DROP
+        ip6tables -A OUTPUT -o lo -j ACCEPT
+        touch /tmp/ready
+        exec sleep infinity
+    healthcheck:
+      test: ["CMD-SHELL", "test -f /tmp/ready && iptables -C OUTPUT -d 192.168.0.0/16 -j REJECT && ip6tables -S OUTPUT | grep -q '^-P OUTPUT DROP'"]
+      interval: 5s
+      start_period: 20s
+      timeout: 2s
+      retries: 8
+    networks:
+      edge:
+        ipv4_address: 10.94.2.10
+      tunnel-egress: {}
+  tunnel:
+    image: cloudflare/cloudflared@sha256:6b599ca3e974349ead3286d178da61d291961182ec3fe9c505e1dd02c8ac31b0
+    command: ["tunnel", "--no-autoupdate", "--config", "/etc/cloudflared/config.yml", "run", "1e391707-1dee-43e8-847e-0adb76605b2e"]
+    depends_on:
+      app:
+        condition: service_healthy
+      tunnel-network:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    volumes:
+      - type: bind
+        source: ./cloudflared.yml
+        target: /etc/cloudflared/config.yml
+        read_only: true
+      - type: bind
+        source: ${NOTCARDS_TUNNEL_CREDENTIALS:?Set the path of the dedicated notcards-dev tunnel credential}
+        target: /run/secrets/tunnel.json
+        read_only: true
+    network_mode: "service:tunnel-network"
+volumes:
+  data:
+    name: notcards-dev-data
+networks:
+  edge:
+    name: notcards-dev-edge
+    internal: true
+    ipam:
+      config: [{subnet: 10.94.2.0/28}]
+  app-egress:
+    name: notcards-dev-app-egress
+    ipam:
+      config: [{subnet: 10.94.2.16/28}]
+  tunnel-egress:
+    name: notcards-dev-tunnel-egress
+    ipam:
+      config: [{subnet: 10.94.2.32/28}]

@@ -1,0 +1,105 @@
+{
+  "origin": "http://127.0.0.1:8892",
+  "unauthenticatedNotes": 401,
+  "checks": [
+    {
+      "name": "album-dark",
+      "count": 3,
+      "overflows": false,
+      "lang": "es",
+      "theme": "dark",
+      "images": [
+        1280,
+        1280,
+        1280
+      ],
+      "cards": [
+        {
+          "left": 286,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        },
+        {
+          "left": 740,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        },
+        {
+          "left": 1194,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "album-light",
+      "count": 3,
+      "overflows": false,
+      "lang": "es",
+      "theme": "light",
+      "images": [
+        1280,
+        1280,
+        1280
+      ],
+      "cards": [
+        {
+          "left": 286,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        },
+        {
+          "left": 740,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        },
+        {
+          "left": 1194,
+          "top": 304,
+          "width": 436,
+          "height": 545
+        }
+      ],
+      "errors": []
+    },
+    {
+      "name": "album-mobile",
+      "count": 3,
+      "overflows": false,
+      "lang": "es",
+      "theme": "dark",
+      "images": [
+        1280,
+        1280,
+        1280
+      ],
+      "cards": [
+        {
+          "left": 17,
+          "top": 402,
+          "width": 355,
+          "height": 455
+        },
+        {
+          "left": 17,
+          "top": 868,
+          "width": 355,
+          "height": 455
+        },
+        {
+          "left": 17,
+          "top": 1333,
+          "width": 355,
+          "height": 455
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

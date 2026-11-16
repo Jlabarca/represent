@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "Guarda videos de YouTube y conserva sus ideas en Notcards."
+  },
+  "library": {
+    "message": "Mi biblioteca"
+  },
+  "saveVideo": {
+    "message": "Guardar un video"
+  },
+  "saving": {
+    "message": "Procesando…"
+  },
+  "saved": {
+    "message": "Guardado"
+  },
+  "needsTranscript": {
+    "message": "Falta la transcripción"
+  },
+  "captureFailed": {
+    "message": "Requiere atención"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "Abre un video de YouTube primero."
+  },
+  "alreadySaving": {
+    "message": "Este video ya se está guardando."
+  },
+  "videoChanged": {
+    "message": "Requiere atención"
+  },
+  "signInFailed": {
+    "message": "No se pudo iniciar sesión. Inténtalo de nuevo."
+  },
+  "otherAccount": {
+    "message": "Esta captura pertenece a otra cuenta. Inicia sesión en la cuenta original para reintentarla."
+  },
+  "optionsHeading": {
+    "message": "Guarda videos. Conserva las ideas."
+  },
+  "optionsHelp": {
+    "message": "Inicia sesión para guardar videos en tu colección Notcards."
+  },
+  "signIn": {
+    "message": "Continuar con Google"
+  },
+  "signedIn": {
+    "message": "Sesión iniciada como"
+  },
+  "forgetBrowser": {
+    "message": "Olvidar este navegador"
+  },
+  "libraryLink": {
+    "message": "Mi biblioteca"
+  },
+  "privacy": {
+    "message": "Notcards solo lee el video que eliges guardar."
+  },
+  "noTranscript": {
+    "message": "No hay subtítulos disponibles. Abre la transcripción o pégala en el cuaderno guardado."
+  },
+  "notSignedIn": {
+    "message": "Inicia sesión para guardar videos en tu colección Notcards."
+  },
+  "signingIn": {
+    "message": "Procesando…"
+  },
+  "pendingCaptures": {
+    "message": "captura(s) esperando sincronización"
+  }
+}

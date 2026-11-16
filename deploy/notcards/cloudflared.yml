@@ -1,0 +1,7 @@
+credentials-file: /run/secrets/tunnel.json
+ingress:
+  - hostname: not.maremoto.dev
+    service: http://app:8080
+    originRequest:
+      httpHostHeader: not.maremoto.dev
+  - service: http_status:404

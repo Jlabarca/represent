@@ -6,6 +6,8 @@ Before the fresh Orkest-platform design, read the **[exploration learning record
 
 ## Root living documents
 
+**Notcards** uses a development environment at `not.maremoto.dev`. [Hosted setup, Chrome testing and rollback](guides/notcards-dev.md).
+
 | Doc | Purpose |
 |---|---|
 | [CONTEXT.md](CONTEXT.md) | State, decisions, milestones, current sprint |

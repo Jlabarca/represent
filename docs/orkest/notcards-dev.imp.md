@@ -45,7 +45,7 @@ Account isolation, real cookie boundaries, extension grant/retry, album controls
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-10.1.1 — Implement account-based Notcards with Google authentication, hosted extension capture, reference album and isolated HTTPS deployment configuration. Verify with token-free fixtures, browser checks and report actual public readiness.
+- [x] REP-10.1.1 — Implement account-based Notcards with Google authentication, hosted extension capture, reference album and isolated HTTPS deployment configuration. Verify with token-free fixtures, browser checks and report actual public readiness. — evidence: node tmp/notcards-red.mjs: 1/1 passed, skipped=0, output sha256=e905dd18212f0c5454ecb23219dfd04896eb5d3952aa6fab6b184ac7cac063d5
 
 ## Key Files Reference
 

@@ -3,7 +3,11 @@
 > Active sprint tasks only. Completed sprints roll up into CONTEXT.md.
 > See `DOCS-PROTOCOL.md` Rule 2.
 
-## Active sprint: Clay Notes (2026-11-15)
+## Active sprint: Notcards dev (2026-11-16)
+
+Deliver the development origin, account-owned collection, reference album UI and hosted Chrome package. Verify Google sign-in on the registered callback once its web client is configured. The next inference milestone depends on the previously requested Ghost Apply SHA and lane-test results. [Development guide](guides/notcards-dev.md).
+
+## Prior sprint: Clay Notes (2026-11-15)
 
 REP-9.4 card/cache/image implementation is verified atd177508 (118/118 full;46/46 focused). [Hosted service and notebook roadmap](design/clay-notes-service-roadmap.md) and [release guide](guides/clay-notes-release.md) now define the next delivery. Implement hosted Google/account/job/extension slices before public routing; obtain Google client/callback/stable extension ID and operator own-key Apply evidence without exposing credentials. The revised request proposes public audience/cheap summary/client-anthropic deep with Max forbidden; summary default alone is confirmed. No hosted/live-model/store completion is claimed.
 

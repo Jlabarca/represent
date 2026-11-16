@@ -1,0 +1,162 @@
+import http from 'node:http';
+import {readFile} from 'node:fs/promises';
+import {join,dirname,extname} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {randomBytes} from 'node:crypto';
+import {GoogleIdentity} from './identity.mjs';
+import {NotcardsStore,isAllowedExtensionRedirect} from './store.mjs';
+
+const root=dirname(fileURLToPath(import.meta.url));
+const web=join(root,'..','clay-notes','web');
+const mime={'.html':'text/html; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8','.svg':'image/svg+xml'};
+const problem=(status,message,code)=>Object.assign(new Error(message),{status,...(code?{code}:{})});
+const tokenFrom=req=>req.headers.authorization?.match(/^Bearer ([A-Za-z0-9_-]{32,256})$/)?.[1]||null;
+const random=()=>randomBytes(32).toString('base64url');
+const safeNext=value=>value==='/'||/^\/#note=[A-Za-z0-9_-]{11}$/.test(value||'')?value:'/';
+
+async function readBody(req,limit=1_000_000){
+  if(!req.headers['content-type']?.toLowerCase().startsWith('application/json'))throw problem(415,'Expected a JSON request body');
+  if(Number(req.headers['content-length'])>limit)throw problem(413,'Request is too large');
+  let size=0;const chunks=[];
+  for await(const chunk of req){size+=chunk.length;if(size>limit)throw problem(413,'Request is too large');chunks.push(chunk);}
+  try{const value=JSON.parse(Buffer.concat(chunks).toString('utf8'));if(!value||Array.isArray(value)||typeof value!=='object')throw new Error();return value;}catch{throw problem(400,'Request JSON is invalid');}
+}
+
+export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null}={}){
+  const persistence=store||await new NotcardsStore({directory,extensionId}).init();
+  if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
+  const extensionOrigin=/^[a-p]{32}$/.test(extensionId||'')?`chrome-extension://${extensionId}`:null;
+  let origin,identityService;
+  const server=http.createServer(async(req,res)=>{
+    const json=(status,value)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(value));};
+    try{
+      const requestOrigin=req.headers.origin;
+      const reqUrl=new URL(req.url,origin);
+      if(req.headers.host!==new URL(origin).host)throw problem(403,'Unknown Notcards host');
+      const extensionRequest=Boolean(extensionOrigin&&requestOrigin===extensionOrigin);
+      if(extensionRequest){res.setHeader('Access-Control-Allow-Origin',extensionOrigin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','authorization, content-type, idempotency-key');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');}
+      if(req.method==='OPTIONS'&&extensionRequest){res.writeHead(204);return res.end();}
+      res.setHeader('X-Content-Type-Options','nosniff');
+      res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
+      res.setHeader('X-Frame-Options','DENY');
+      res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+      res.setHeader('Cache-Control','no-store');
+      const cookieValue=name=>req.headers.cookie?.split(';').map(item=>item.trim()).find(item=>item.startsWith(`${name}=`))?.slice(name.length+1)||null;
+      const clearCookie=(name,path='/')=>`${name}=; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=0${new URL(origin).protocol==='https:'?'; Secure':''}`;
+      const setCookie=(name,value,path='/',age=1_209_600)=>`${name}=${value}; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=${age}${new URL(origin).protocol==='https:'?'; Secure':''}`;
+      const resolveUser=()=>{
+        const raw=cookieValue('notcards_session');
+        if(raw){const session=persistence.sessionCookie(raw);if(session)return {...session,auth:'cookie',raw};}
+        const bearer=tokenFrom(req);
+        if(bearer){const grant=persistence.grant(bearer);if(grant)return {...grant,auth:'bearer',raw:bearer};}
+        return null;
+      };
+      const requireOrigin=({allowExtension=false}={})=>{
+        if(requestOrigin===origin)return;
+        if(allowExtension&&extensionRequest)return;
+        throw problem(403,'Request origin is not allowed');
+      };
+      if(reqUrl.pathname==='/health'&&req.method==='GET')return json(200,{ok:true,tool:'notcards'});
+      if(reqUrl.pathname==='/auth/google'&&req.method==='GET'){
+        const cookieState=random(),next=safeNext(reqUrl.searchParams.get('next'));
+        const begun=await identityService.begin({cookieState,context:{type:'web',next}});
+        res.writeHead(302,{Location:begun.authorizationUrl,'Set-Cookie':[setCookie('notcards_oauth_state',cookieState,'/auth/google/callback',600)]});return res.end();
+      }
+      if(reqUrl.pathname==='/auth/google/callback'&&req.method==='GET'){
+        const state=reqUrl.searchParams.get('state'),code=reqUrl.searchParams.get('code'),cookieState=cookieValue('notcards_oauth_state');
+        const result=await identityService.complete({state,code,cookieState});
+        const user=persistence.user(result.user),session=persistence.issueSession(user.id);
+        const cookies=[setCookie('notcards_session',session.token),clearCookie('notcards_oauth_state','/auth/google/callback')];
+        if(result.context?.type==='extension'){
+          const issued=persistence.issueExtensionCode({...result.context,userId:user.id});
+          const redirect=new URL(issued.redirectUri);redirect.searchParams.set('code',issued.code);redirect.searchParams.set('state',issued.state);
+          res.writeHead(302,{Location:redirect.href,'Set-Cookie':cookies});return res.end();
+        }
+        res.writeHead(302,{Location:safeNext(result.context?.next),'Set-Cookie':cookies});return res.end();
+      }
+      if(reqUrl.pathname==='/auth/extension/authorize'&&req.method==='GET'){
+        const challenge=reqUrl.searchParams.get('challenge'),state=reqUrl.searchParams.get('state'),redirectUri=reqUrl.searchParams.get('redirectUri');
+        if(!isAllowedExtensionRedirect(redirectUri,extensionId))throw problem(400,'Extension redirect is not allowed');
+        if(!/^[A-Za-z0-9_-]{43}$/.test(challenge||'')||typeof state!=='string'||state.length<16||state.length>256)throw problem(400,'Extension authorization request is invalid');
+        const raw=cookieValue('notcards_session'),session=raw&&persistence.sessionCookie(raw);const current=session?{...session,auth:'cookie',raw}:null;
+        if(current){const issued=persistence.issueExtensionCode({userId:current.user.id,challenge,redirectUri,state});const callback=new URL(redirectUri);callback.searchParams.set('code',issued.code);callback.searchParams.set('state',state);res.writeHead(302,{Location:callback.href});return res.end();}
+        const cookieState=random(),context={type:'extension',challenge,redirectUri,state};
+        const begun=await identityService.begin({cookieState,context});
+        res.writeHead(302,{Location:begun.authorizationUrl,'Set-Cookie':setCookie('notcards_oauth_state',cookieState,'/auth/google/callback',600)});return res.end();
+      }
+      if(reqUrl.pathname==='/auth/extension/token'&&req.method==='POST'){
+        requireOrigin({allowExtension:true});
+        return json(200,persistence.exchangeExtensionCode(await readBody(req)));
+      }
+      if(reqUrl.pathname==='/auth/extension/revoke'&&req.method==='POST'){
+        requireOrigin({allowExtension:true});const grant=resolveUser();if(!grant||grant.auth!=='bearer')throw problem(401,'Extension access expired. Sign in again.','extension_authorization_expired');
+        persistence.revokeGrant?.(grant.raw);return json(200,{ok:true});
+      }
+      if(reqUrl.pathname==='/auth/logout'&&req.method==='POST'){
+        requireOrigin();const raw=cookieValue('notcards_session');if(raw)persistence.revokeSession(raw);res.setHeader('Set-Cookie',clearCookie('notcards_session'));return json(200,{ok:true});
+      }
+      if(reqUrl.pathname==='/downloads/notcards-dev.zip'&&req.method==='GET'){
+        if(!extensionZip)throw problem(404,'The Notcards development extension is not available yet');
+        let data;try{data=await readFile(extensionZip);}catch(error){if(error.code==='ENOENT')throw problem(404,'The Notcards development extension is not available yet');throw error;}
+        res.writeHead(200,{'Content-Type':'application/zip','Content-Length':data.length,'Content-Disposition':'attachment; filename="notcards-dev.zip"','Cache-Control':'no-cache, must-revalidate'});return res.end(data);
+      }
+      if(reqUrl.pathname.startsWith('/api/')){
+        if(requestOrigin&&!extensionRequest&&requestOrigin!==origin)throw problem(403,'Request origin is not allowed');
+        if(reqUrl.pathname==='/api/session'&&req.method==='GET'){
+          const current=resolveUser();return json(200,current?{authenticated:true,user:current.user,cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)}:{authenticated:false,user:null,cacheScope:null,googleConfigured:Boolean(identityService.configured)});
+        }
+        const current=resolveUser();if(!current)return json(401,{code:'sign_in_required',error:'Sign in to your Notcards account to continue.'});
+        if(current.auth==='bearer'&&!['/api/session','/api/capture'].includes(reqUrl.pathname))throw problem(403,'Extension access is limited to saving videos and checking the signed-in account.');
+        if(req.method!=='GET')requireOrigin({allowExtension:current.auth==='bearer'});
+        const account=await persistence.account(current.user.id),path=reqUrl.pathname;
+        if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:false,models:[],defaultModel:null,generationAvailable:false,queueSize:0});
+        if(path==='/api/folders'&&req.method==='GET')return json(200,await persistence.folders(current.user.id));
+        if(path==='/api/folders'&&req.method==='POST'){const folder=await persistence.createFolder(current.user.id,(await readBody(req)).name);return json(201,folder);}
+        const folderMatch=/^\/api\/folders\/([a-f0-9-]{36})$/i.exec(path);
+        if(folderMatch&&req.method==='PATCH')return json(200,await persistence.renameFolder(current.user.id,folderMatch[1],(await readBody(req)).name));
+        if(path==='/api/order'&&req.method==='PATCH')return json(200,{ids:await persistence.reorder(current.user.id,(await readBody(req)).ids)});
+        const media=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/images(?:\/([a-f0-9-]{36}))?$/i.exec(path);
+        if(media){const [,id,imageId]=media;const note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');if(!imageId&&req.method==='POST')return json(201,await persistence.addImage(current.user.id,id,await readBody(req,2_850_000)));if(imageId&&req.method==='GET'){const image=await account.notebook.image(id,imageId);if(!image)throw problem(404,'Image not found');res.writeHead(200,{'Content-Type':image.mime,'Content-Length':image.data.length,'Cache-Control':'private, no-store'});return res.end(image.data);}throw problem(405,'Method not allowed');}
+        if(path==='/api/notes'&&req.method==='GET')return json(200,await persistence.listNotes(current.user.id));
+        if(path==='/api/notes'&&req.method==='POST')return json(201,await persistence.createNote(current.user.id,await readBody(req)));
+        if(path==='/api/capture'&&req.method==='POST'){
+          if(current.auth!=='bearer')throw problem(403,'Extension capture requires extension authorization');
+          const input=await readBody(req,1_000_000),note=await persistence.capture(current.user.id,input,req.headers['idempotency-key']);
+          return json(201,{id:note.id,url:note.url,state:note.state,openUrl:`/#note=${note.id}`});
+        }
+        const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(?:\/(transcript|summarize|ask))?$/.exec(path);
+        if(match){const [,id,action]=match,note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');
+          if(!action&&req.method==='GET')return json(200,note);
+          if(!action&&req.method==='PATCH')return json(200,await persistence.updateNote(current.user.id,id,await readBody(req)));
+          if(req.method==='POST'&&['summarize','ask'].includes(action))throw problem(503,'AI summaries are waiting for the Notcards Ghost gateway lane to be applied.','ai_setup_pending');
+          if(req.method==='POST'&&action==='transcript'){
+            const input=await readBody(req);const updated=await persistence.updateTranscript(current.user.id,id,input);return json(200,{id,state:updated.state});
+          }
+        }
+        throw problem(404,'Notcards API route not found');
+      }
+      if(req.method!=='GET')throw problem(405,'Method not allowed');
+      const path=reqUrl.pathname==='/'?'index.html':reqUrl.pathname.slice(1);
+      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path)&&!/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path))throw problem(404,'Page not found');
+      let data=await readFile(join(web,path));const extension=extname(path);
+      if(path==='index.html')data=Buffer.from(data.toString('utf8').replace(/<dialog id="connect-dialog">[\s\S]*?<\/dialog>/,'') );
+      res.setHeader('Content-Type',mime[extension]||'application/octet-stream');
+      if(path==='index.html')res.setHeader('Cache-Control','no-store');else res.setHeader('Cache-Control',extension==='.woff2'?'public, max-age=31536000, immutable':extension==='.mjs'||extension==='.css'?'no-cache, must-revalidate':'public, max-age=3600');
+      return res.end(data);
+    }catch(error){
+      if(res.headersSent)return res.end();
+      const status=error.status|| (error.code==='ENOENT'?404:500);
+      if(req.url?.startsWith('/api/')||req.url?.startsWith('/auth/'))return json(status,{code:error.code||'notcards_error',error:status===500?'Notcards could not complete that request.':error.message});
+      const message=String(error.message||'Sign-in unavailable').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+      res.writeHead(status,{'Content-Type':'text/html; charset=utf-8'});return res.end(`<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Notcards sign in</title><body><main><h1>Notcards</h1><p>${message}</p><p><a href="/">Back to your collection</a></p></main></body></html>`);
+    }
+  });
+  server.requestTimeout=30_000;server.headersTimeout=10_000;server.keepAliveTimeout=5_000;
+  await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,host,resolve);});
+  const address=server.address();
+  origin=publicOrigin?new URL(publicOrigin).origin:`http://127.0.0.1:${address.port}`;
+  const url=new URL(origin);
+  if(url.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(url.hostname))throw new Error('NOTCARDS_PUBLIC_ORIGIN must use HTTPS outside loopback development');
+  identityService=identity||new GoogleIdentity({publicOrigin:origin});
+  return {server,url:origin,identity:identityService,store:persistence,async close(){const closed=new Promise(resolve=>server.close(resolve));server.closeAllConnections();await closed;await persistence.close?.();}};
+}

@@ -1,5 +1,7 @@
 # Gateway request — Clay Notes hosted service, lab1
 
+> 2026-11-16: The public product is **Notcards**, initially at `not.maremoto.dev`. The existing request below still identifies its dedicated internal key and two lanes. The brand change does not grant permission to Apply or make paid calls.
+
 > Revised2026-11-15 after the user selected SaaS at `clay.maremoto.dev`. **Pending operator Review/Apply.** Supersedes the unapplied internal/operator smart/Max proposal. [Onboarding workflow](../../../Ghost/docs/guides/ai-gateway-app-onboarding.md), [console reference](../../../Ghost/docs/reference/ai-gateway-console.md), [service design](clay-notes-service-roadmap.md).
 
 Registry rechecked read-only2026-11-15: `D:/ware/Ghost/infrastructure/docker/litellm/routes.json`, SHA256 `3ab596405829fe9de5c03e62e543144d92de701cec84a3c09fcd4e5cb9ca5c24`. No `keys.clay-notes`. Existing `represent` belongs to Trazo/Visu and is not reused. Refresh the registry revision before console Review.

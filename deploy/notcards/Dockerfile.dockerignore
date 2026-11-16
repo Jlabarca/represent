@@ -1,0 +1,12 @@
+**
+!src/
+!src/notcards/
+!src/notcards/*.mjs
+!src/notcards/package*.json
+!src/clay-notes/
+!src/clay-notes/core.mjs
+!src/clay-notes/web/
+!src/clay-notes/web/**
+!dist/
+!dist/notcards-extension/
+!dist/notcards-extension/notcards-dev.zip

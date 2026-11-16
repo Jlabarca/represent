@@ -2,7 +2,13 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-11-15
+> Updated: 2026-11-16
+
+## Notcards development (2026-11-16)
+
+The user renamed Clay Notes **Notcards** and selected `not.maremoto.dev` for development, with `not.cards` intended for production. The light reference uses clear binder pockets and the dark reference uses a black album. Both use Satoshi, large italic titles and actual full-art video or attached covers. [Development deployment](guides/notcards-dev.md). [Implementation](orkest/notcards-dev.imp.md).
+
+Google app authentication and account-scoped notes replace pairing for hosted users. The older local Clay Notes tool retains its developer flow. The existing Ghost request keeps its technical key and lane names across the brand change. Live generation awaits operator Apply evidence and paid-call authorization.
 
 ## Current Operating Direction (2026-11-15)
 

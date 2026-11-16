@@ -1,5 +1,7 @@
 # Clay Notes — hosted service and notebook roadmap
 
+> 2026-11-16: The product is now **Notcards**. Development uses `not.maremoto.dev` and production targets `not.cards`. The previous hostname and proposed PostgreSQL design below record the earlier plan. The first single-instance dev service uses SQLite for identity and private account directories for sources. See the [development guide](../guides/notcards-dev.md).
+
 > Design approved in direction by the user's2026-11-15 requests. **Implementation plan, not a deployed service.** Current local implementation: [release-prep reference](../reference/clay-notes-release-prep.md). Operational sequence: [release guide](../guides/clay-notes-release.md). Canonical decisions: [CONTEXT](../CONTEXT.md).
 
 ## Product contract

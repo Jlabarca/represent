@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "Salve vídeos do YouTube e guarde suas ideias no Notcards."
+  },
+  "library": {
+    "message": "Minha biblioteca"
+  },
+  "saveVideo": {
+    "message": "Salvar um vídeo"
+  },
+  "saving": {
+    "message": "Processando…"
+  },
+  "saved": {
+    "message": "Salvo"
+  },
+  "needsTranscript": {
+    "message": "Falta transcrição"
+  },
+  "captureFailed": {
+    "message": "Precisa de atenção"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "Abra um vídeo do YouTube primeiro."
+  },
+  "alreadySaving": {
+    "message": "Este vídeo já está sendo salvo."
+  },
+  "videoChanged": {
+    "message": "Precisa de atenção"
+  },
+  "signInFailed": {
+    "message": "Não foi possível entrar. Tente novamente."
+  },
+  "otherAccount": {
+    "message": "Esta captura pertence a outra conta. Entre na conta original para tentar novamente."
+  },
+  "optionsHeading": {
+    "message": "Salve vídeos. Guarde as ideias."
+  },
+  "optionsHelp": {
+    "message": "Entre para salvar vídeos na sua coleção Notcards."
+  },
+  "signIn": {
+    "message": "Continuar com Google"
+  },
+  "signedIn": {
+    "message": "Conectado como"
+  },
+  "forgetBrowser": {
+    "message": "Esquecer este navegador"
+  },
+  "libraryLink": {
+    "message": "Minha biblioteca"
+  },
+  "privacy": {
+    "message": "O Notcards só lê o vídeo que você escolhe salvar."
+  },
+  "noTranscript": {
+    "message": "Sem legendas disponíveis. Abra a transcrição ou cole no caderno salvo."
+  },
+  "notSignedIn": {
+    "message": "Entre para salvar vídeos na sua coleção Notcards."
+  },
+  "signingIn": {
+    "message": "Processando…"
+  },
+  "pendingCaptures": {
+    "message": "captura(s) salvas aguardando sincronização"
+  }
+}

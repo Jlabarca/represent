@@ -1,0 +1,77 @@
+{
+  "extName": {
+    "message": "Notcards"
+  },
+  "extDescription": {
+    "message": "YouTube動画とそのアイデアをNotcardsに保存します。"
+  },
+  "library": {
+    "message": "ライブラリ"
+  },
+  "saveVideo": {
+    "message": "動画を保存"
+  },
+  "saving": {
+    "message": "処理中…"
+  },
+  "saved": {
+    "message": "保存済み"
+  },
+  "needsTranscript": {
+    "message": "文字起こしが必要"
+  },
+  "captureFailed": {
+    "message": "確認が必要"
+  },
+  "captureLabel": {
+    "message": "✦ Notcards"
+  },
+  "openVideo": {
+    "message": "先にYouTube動画を開いてください。"
+  },
+  "alreadySaving": {
+    "message": "この動画はすでに保存中です。"
+  },
+  "videoChanged": {
+    "message": "確認が必要"
+  },
+  "signInFailed": {
+    "message": "ログインできませんでした。もう一度お試しください。"
+  },
+  "otherAccount": {
+    "message": "この保存データは別のアカウントに紐付いています。元のアカウントで再試行してください。"
+  },
+  "optionsHeading": {
+    "message": "動画を保存して、アイデアを残す。"
+  },
+  "optionsHelp": {
+    "message": "ログインしてNotcardsコレクションに動画を保存します。"
+  },
+  "signIn": {
+    "message": "Googleで続行"
+  },
+  "signedIn": {
+    "message": "ログイン中"
+  },
+  "forgetBrowser": {
+    "message": "このブラウザの情報を削除"
+  },
+  "libraryLink": {
+    "message": "ライブラリ"
+  },
+  "privacy": {
+    "message": "Notcardsは保存を選んだ動画のみ読み取ります。"
+  },
+  "noTranscript": {
+    "message": "字幕を取得できません。文字起こしを開くか、保存したノートに貼り付けてください。"
+  },
+  "notSignedIn": {
+    "message": "ログインしてNotcardsコレクションに動画を保存します。"
+  },
+  "signingIn": {
+    "message": "処理中…"
+  },
+  "pendingCaptures": {
+    "message": "同期を待っている保存データ"
+  }
+}
