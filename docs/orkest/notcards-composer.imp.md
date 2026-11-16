@@ -54,3 +54,9 @@ Shared web UI under src/clay-notes/web and hosted creation in src/notcards. Exer
 ## Architecture Notes
 
 Preserve attachment covers, manual reordering, account isolation and the gateway spend boundary.
+
+## Plan — 1
+
+Use an inline Keep-style note field and optional title above the board. Parse unique, ordered HTTP(S) links and identify actual YouTube video URLs using normalized hosts. Keep one note by default, opt into a card per link, persist surrounding text, retain retryable drafts, keep later URLs out of automatic generation. Use an account-scoped hosted endpoint with retry-safe writes. Register new web assets on both servers and in Docker. Add a persistent desktop range input and CSS target size. Mobile collection uses the document as a vertical snap scroller, a start snap point for the header and a centered full-height frame for each card. Preserve card art, views, local fallback and native accessibility. Run feature tests, actual desktop/mobile browser acceptance, the existing cross-platform full test inventory and dev deploy.
+
+Exact owned files: `docs/CONTEXT.md`, `docs/reference/notcards-composer.md`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/composer-links.mjs`, `src/clay-notes/web/composer.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `tests/clay-notes-hosted.test.mjs`, `tests/notcards-composer.test.mjs`.
