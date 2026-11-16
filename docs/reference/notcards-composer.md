@@ -29,4 +29,4 @@ Only a recognized YouTube video in first position qualifies for automatic summar
 
 ## Related Docs
 
-[Development service](../guides/notcards-dev.md) · [Extension publishing](../guides/notcards-chrome-store.md) · [Implementation tracker](../orkest/notcards-composer.imp.md)
+[Development service](../guides/notcards-dev.md) · [Extension publishing](../guides/notcards-chrome-store.md) · [Implementation tracker](../orkest/done/notcards-composer.imp.md)

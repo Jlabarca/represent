@@ -23,3 +23,7 @@
 ## Verified capability
 
 - [REP-10: NOTCARDS-DEV](orkest/done/notcards-dev.imp.md) — implemented, tested and promoted.
+
+## Verified capability
+
+- [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — implemented, tested and promoted.

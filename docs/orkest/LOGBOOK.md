@@ -739,3 +739,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Register the assigned Chrome Web Store item ID on the development service and verify capture under that identity before submitting the listing for review.
+
+## 2026-11-16 — Promote NOTCARDS-COMPOSER
+
+### Accomplished
+
+- Archived the evidenced tracker after fresh tests and final audit.
+- Boxes: 1 earned by the helper, 0 adopted (shipped before the helper, accepted by a person).
+
+### Decisions
+
+- The person-invoked default run authorized this promotion.
+
+### Blockers
+
+- No remaining promotion gate.
+
+### Next
+
+- Review the promotion commit and reference when needed.

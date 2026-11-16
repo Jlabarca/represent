@@ -6,7 +6,7 @@
 
 ## Notcards collection composer (2026-11-16)
 
-The hosted collection provides an inline note composer with first-link type inference and an optional split per link. Desktop users choose the card size in Settings. Phones open at the collection header and scroll vertically through centered cards. [Implementation](orkest/notcards-composer.imp.md).
+The hosted collection provides an inline note composer with first-link type inference and an optional split per link. Desktop users choose the card size in Settings. Phones open at the collection header and scroll vertically through centered cards. [Implementation](orkest/done/notcards-composer.imp.md).
 
 ## Notcards development (2026-11-16)
 
@@ -228,6 +228,10 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 
 ## Active implementation
 
-- [REP-11: NOTCARDS-COMPOSER](orkest/notcards-composer.imp.md) — plan-only.
+- [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — plan-only.
 
 - Shipped REP-11.1; source 2919b5ad69b69e2b00302476917a4346f90763bc, executed tests and QA recorded.
+
+## Completed implementation
+
+- [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — implemented, tested and promoted.
