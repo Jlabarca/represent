@@ -55,7 +55,7 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-12.2.1 — Establish verified card-owner bindings, lazy creation, explicit recovery after remote deletion and one conversation visible in Botanic.
+- [x] REP-12.2.1 — Establish verified card-owner bindings, lazy creation, explicit recovery after remote deletion and one conversation visible in Botanic. — evidence: node tmp/webbook-chat-assert.mjs: 1/1 passed, skipped=0, output sha256=fe44f48ec5de0d05943cc86bdb71cc1fc4452025d5a3f05ce93b18c219130612
 - [ ] REP-12.2.2 — After operator Apply evidence, connect and verify direct summary lanes with the approved spend fence and independently authorized live acceptance.
 
 ## Key Files Reference

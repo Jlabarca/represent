@@ -1,4 +1,4 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-2';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
@@ -144,6 +144,31 @@ function renderNotebook(){
 }
 function transcriptForm(){const video=isVideoNote(state.note);return `<form id="transcript-form" class="transcript-form"><label for="transcript-input">${h(video?"Paste the video transcript":"Paste source text")}</label><p class="small">${h(video?"Automatic caption import did not work. Paste captions here if you have them.":"Add the text you want this notebook to use as its source.")}</p><textarea id="transcript-input" required placeholder="${video?'0:00 The first idea…&#10;1:24 The next idea…':h('Paste source text here…')}" maxlength="800000"></textarea><button class="dark-button" ${state.busy?'disabled':''}>${h(video?"Save transcript":"Save source text")} →</button></form>`;}
 function bindTranscript(){ $('#transcript-form')?.addEventListener('submit',async event=>{event.preventDefault();const transcript=$('#transcript-input').value;const button=event.submitter;button.disabled=true;try{await api(`/notes/${state.note.id}/transcript`,{method:'POST',data:{transcript,source:'paste',model:state.model}});state.note=await api(`/notes/${state.note.id}`);state.tab='summary';renderNotebook();}catch(error){toast(error.message);button.disabled=false;}}); }
+const chatDrafts = new Map();
+async function renderCardChat(target, note) {
+  const draftKey = state.cacheScope + "/" + note.id;
+  const path = `/notes/${encodeURIComponent(note.id)}/chat`;
+  const isCurrent = () => state.note?.id === note.id && state.tab === 'questions' && target.isConnected;
+  target.innerHTML = `<h2 class="section-title">Botanic</h2><p role="status">${h('Opening your notebook…')}</p>`;
+  try {
+    const chat = await api(path);
+    if (!isCurrent()) return;
+    const draft = chatDrafts.get(draftKey) || {question:'', requestId:crypto.randomUUID()};
+    const link = chat.conversationUrl ? `<a class="light-button" rel="noopener noreferrer" target="_blank" href="${escape(chat.conversationUrl)}">${h('Open Botanic chat')} ↗</a>` : '';
+    target.innerHTML = `<h2 class="section-title">Botanic</h2>${link}${chat.canAsk ? `<form id="botanic-question"><label for="question">${h('Ask a question')}</label><textarea id="question" maxlength="5000" required dir="auto">${escape(draft.question)}</textarea><button class="dark-button">${h('Ask a question')}</button></form>` : ''}${chat.canReset ? `<button id="reset-card-chat" class="quiet-button">${h('Start fresh after deletion')}</button>` : ''}<p id="chat-status" role="status"></p>`;
+    target.querySelector('#reset-card-chat')?.addEventListener('click',async e=>{
+      e.currentTarget.disabled=true;
+      try{await api(path+'/reset',{method:'POST',data:{expectedConversationId:chat.conversationId}});chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;target.querySelector('#reset-card-chat').disabled=false;}}
+    });
+    target.querySelector('#botanic-question')?.addEventListener('submit',async e=>{
+      e.preventDefault();const field=target.querySelector('#question'),question=field.value.trim();if(!question)return;
+      const prior=chatDrafts.get(draftKey);const request=prior?.question===question?prior:{question,requestId:crypto.randomUUID()};chatDrafts.set(draftKey,request);
+      field.readOnly=true;e.submitter.disabled=true;
+      try{const result=await api(path,{method:'POST',data:request});if(result.state==='bound')chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}
+      catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;field.readOnly=false;target.querySelector('button[type=submit],#botanic-question button').disabled=false;}}
+    });
+  } catch(error){if(isCurrent()) target.textContent=error.message;}
+}
 function renderNotebookContent(){
   const n=state.note, target=$('#notebook-content');
   if(state.samplePreview){target.innerHTML=`<div class="sample-detail-copy"><h2>${h('Public video preview')}</h2><p>${h('Play the source above. Sign in to save it as a notebook and add your own notes.')}</p><a class="dark-button" href="#" data-action="signin">${h('Sign in with Google')} ↗</a></div>`;return;}
@@ -152,6 +177,7 @@ function renderNotebookContent(){
     target.innerHTML=`<h2 class="section-title">${h("The source, in its own words.")}</h2><p class="small">${n.segments.length?t(video?"Captured captions may contain transcription mistakes. Click a timestamp to watch the original.":"Source text captured for this notebook."):pending?t("Fetching captions from YouTube. You can keep watching while we work."):video?t("Captions could not be fetched. The video is still available above."):t("Add source text to start the summary.")}</p>${pending?`<div class="import-progress" role="status"><span class="import-spinner" aria-hidden="true"></span><div><strong>${h('Fetching captions')}</strong><p class="small">${h('You can leave this page. Captions will appear when ready.')}</p></div></div>`:''}${n.segments.length?`<details><summary class="small">${h(video?"Replace transcript":"Replace source text")}</summary>${transcriptForm()}</details><div class="transcript-list">${n.segments.map(s=>`<div class="segment">${video&&n.url?`<a href="${escape(videoSource(n)?.url||canonicalizeLink(n.url))}&t=${Math.floor(s.start)}s" target="_blank" rel="noopener noreferrer">${time(s.start)} ↗</a>`:`<span>${video?time(s.start):''}</span>`}<span dir="auto">${escape(s.text)}</span></div>`).join('')}</div>`:fallback||!video?transcriptForm():''}`;if(fallback||!video||n.segments.length)bindTranscript();return;
   }
   if(state.tab==='questions'){
+    if(!state.local&&!state.samplePreview&&state.config.chatConfigured){void renderCardChat(target,n);return;}
     const askDisabled=!n.segments.length||state.busy||isGenerating(n)||!state.config.gatewayConfigured;
     target.innerHTML=`<h2 class="section-title">${h("Pull on an interesting thread.")}</h2><p class="small">${h("Ask about the captured transcript. Each question makes a new gateway request.")}</p>${!state.config.gatewayConfigured?`<p class="ai-unavailable" role="status">${h('AI chat is not configured. Your source and personal notes remain available.')}</p>`:''}<form id="ask-form" class="ask-form"><label class="screen-reader" for="question">${h("Your question")}</label><textarea id="question" maxlength="4000" required placeholder="${h("What evidence supports the main conclusion?")}" ${askDisabled?'disabled':''}></textarea><div class="form-actions"><select class="model-select" aria-label="${h("Question model")}" id="question-model" ${!state.config.gatewayConfigured?'disabled':''}>${modelOptions()}</select><button class="dark-button" ${askDisabled?'disabled':''}>${state.busy?t("Thinking…"):t("Ask this video")} →</button></div></form>${!n.segments.length?`<p class="small">${h(videoImportStatus(n)==='pending'?'Fetching captions from YouTube. You can keep watching while we work.':"Add a transcript first.")}</p>`:''}${n.conversations.slice().reverse().map(q=>`<article class="conversation"><h3>${escape(q.question)}</h3><p>${escape(q.answer)} ${citations(q.sources,'question',q.id)}</p><span class="small">${escape(q.metrics.responseModel || q.metrics.requestedModel || 'Gateway model')}</span></article>`).join('')}`;
     $('#question-model').addEventListener('change',e=>{state.model=e.target.value;});

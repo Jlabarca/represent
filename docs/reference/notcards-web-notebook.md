@@ -19,6 +19,10 @@ The collection and detail views live in `src/clay-notes/web/app.mjs`. The hosted
 - PATCH `/api/notes/{id}` saves edited notes and notebook preferences.
 - POST `/api/capture` accepts a scoped extension grant. When Chrome also attaches an ambient site cookie, the server selects the explicit grant. A failed bearer token cannot fall back to the cookie. New extension builds omit ambient credentials on token and capture requests.
 
+### Optional Botanic chat
+
+The authenticated `/api/config` response reports chat availability independently of summary availability. An enabled trusted connector handles GET and POST on `/api/notes/{id}/chat` and POST on `/api/notes/{id}/chat/reset`. The server resolves the signed-in owner's issuer and subject, loads source context from the matching account and binds the remote conversation ID to the card on the first question. A repeated request ID can be recovered without opening another conversation. The reset checks the expected conversation and demands positive deletion confirmation from the connector. Opening a notebook, a remote timeout or a failed confirmation leaves the binding intact. The public development deployment still requires a registered Botanic site and an authenticated connector.
+
 ## Usage Guide
 
 Paste a YouTube link into the note field and leave the optional title empty to use the source title. Save the card, then click its art to open the notebook. The player and personal notes are available during import. When YouTube supplies public caption text it appears in the notebook. If the host supplies no usable transcript, retry the import later or provide one manually.
