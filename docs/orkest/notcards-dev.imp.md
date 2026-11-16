@@ -54,3 +54,11 @@ src/notcards/server.mjs hosts the account-scoped API. src/clay-notes/web holds t
 ## Architecture Notes
 
 Keep existing local trial data compatible. Disable public AI generation until operator applies the dedicated lanes. Do not expose the loopback service.
+
+## Plan — 1
+
+Implement the hosted development app in src/notcards, sharing the existing notebook core and real cover data. Validate Google identity, scope stores by account, bind short-lived extension grants to a stable Chrome ID and keep credentials server-side. Generate a distinct development extension artifact. Rebuild the album chrome, folders, high contrast full-art cards, filters and controls for the supplied light and dark references while retaining the existing notebook editor. Configure an isolated persistent app container and dedicated tunnel. Verify distinct accounts and grants with local fixtures and inspect both themes with the three captured notebooks. Public readiness requires DNS and the operator's own Google configuration. All automatic model traffic stays disabled pending gateway onboarding.
+
+Pins: historical loopback APIs, tests and extension stay compatible. Keep old note IDs and cover attachment data readable. The new origin and extension build are isolated from the previous developer artifact. Use node scripts/clay-notes-test.mjs --all for regression coverage and run targeted hosted and extension tests plus the browser comparison.
+
+Exact owned files: `deploy/notcards/Dockerfile`, `deploy/notcards/compose.yml`, `docs/CONTEXT.md`, `docs/guides/notcards-dev.md`, `scripts/notcards-extension.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/collection.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/index.html`, `src/clay-notes/web/style.css`, `src/notcards/cli.mjs`, `src/notcards/identity.mjs`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `tests/clay-notes-album.test.mjs`, `tests/clay-notes-hosted.test.mjs`, `tests/notcards-extension.test.mjs`.
