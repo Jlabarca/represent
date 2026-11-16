@@ -40,7 +40,7 @@ async function login(app,identity){
 }
 
 async function request(app,path,{method='GET',token,origin=app.url,body,idempotencyKey}={}){
-  const headers={...(origin?{Origin:origin}:{}),...(token?{Authorization:`Bearer ${token}`,Cookie:`notcards_session=${token}`} : {}),...(body?{'Content-Type':'application/json'}:{}),...(idempotencyKey?{'Idempotency-Key':idempotencyKey}:{})};
+  const headers={...(origin?{Origin:origin}:{}),...(token?{Cookie:`notcards_session=${token}`} : {}),...(body?{'Content-Type':'application/json'}:{}),...(idempotencyKey?{'Idempotency-Key':idempotencyKey}:{})};
   return fetch(`${app.url}${path}`,{method,headers,...(body?{body:JSON.stringify(body)}:{}),redirect:'manual'});
 }
 
@@ -133,8 +133,15 @@ test('extension authorization binds PKCE grants to one account and revokes them 
   assert.equal(cannotMint.status,302);
   assert.match(cannotMint.headers.get('location'),/^https:\/\/identity\.test\//);
 
+  const differentOwner=app.store.user({issuer:'https://fixture.invalid',subject:'other-cookie',email:'cookie@example.invalid',displayName:'Web account'});
+  const ambientCookie='notcards_session='+app.store.issueSession(differentOwner.id).token;
+  const mixedHeaders={Origin:extensionOrigin,Cookie:ambientCookie,Authorization:`Bearer ${grant.accessToken}`};
+  const mixed=await fetch(`${app.url}/api/session`,{headers:mixedHeaders}).then(r=>r.json());
+  assert.equal(mixed.cacheScope,grant.user.id);
+  const invalid=await fetch(`${app.url}/api/session`,{headers:{...mixedHeaders,Authorization:'Bearer expired'}}).then(r=>r.json());
+  assert.equal(invalid.authenticated,false);
   const key=randomBytes(24).toString('base64url');
-  const capture=await fetch(`${app.url}/api/capture`,{method:'POST',headers:{Origin:extensionOrigin,Authorization:`Bearer ${grant.accessToken}`,'Content-Type':'application/json','Idempotency-Key':key},body:JSON.stringify({url:'https://www.youtube.com/watch?v=X6J3ByTqhLY',title:'Video summary trial',channel:'Example',transcript:'',source:'youtube-captions'} )});
+  const capture=await fetch(`${app.url}/api/capture`,{method:'POST',headers:{...mixedHeaders,'Content-Type':'application/json','Idempotency-Key':key},body:JSON.stringify({url:'https://www.youtube.com/watch?v=X6J3ByTqhLY',title:'Video summary trial',channel:'Example',transcript:'',source:'youtube-captions'} )});
   assert.equal(capture.status,201);
   const saved=await capture.json();
   assert.equal(saved.state,'awaiting_transcript');

@@ -21,6 +21,7 @@ async function authorize(interactive) {
   const callback = await chrome.identity.launchWebAuthFlow({url: authUrl, interactive});
   const code = readCallback(callback, pkce.state, redirectUri);
   const response = await fetch(`${serviceOrigin}/auth/extension/token`, {
+    credentials: 'omit',
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({code, verifier: pkce.verifier, redirectUri}),
@@ -68,6 +69,7 @@ async function postCapture(payload, interactive = true) {
   if (typeof grant.user?.id !== 'string' || !grant.user.id) throw new Error(msg('signInFailed', 'Sign-in could not be completed. Try again.'));
   await bindOwner(payload, grant.user.id);
   let response = await fetch(`${serviceOrigin}/api/capture`, {
+    credentials: 'omit',
     method: 'POST',
     headers: {
       Authorization: `Bearer ${grant.accessToken}`,
@@ -82,6 +84,7 @@ async function postCapture(payload, interactive = true) {
     if (typeof grant.user?.id !== 'string' || !grant.user.id) throw new Error(msg('signInFailed', 'Sign-in could not be completed. Try again.'));
     await bindOwner(payload, grant.user.id);
     response = await fetch(`${serviceOrigin}/api/capture`, {
+      credentials: 'omit',
       method: 'POST',
       headers: {
         Authorization: `Bearer ${grant.accessToken}`,
@@ -151,7 +154,7 @@ async function capturePage(wantTranscript, expectedId) {
   }).filter(row => row.text);
   let transcript = readRows();
   if (!transcript.length) {
-    const button = [...document.querySelectorAll('button,ytd-button-renderer')].find(item => /^(show transcript|mostrar transcripci[oó]n)$/i.test(item.textContent?.trim() || ''));
+    const button = [...document.querySelectorAll('button,ytd-button-renderer')].find(item => /^(show transcript|mostrar transcripci[oÃ³]n)$/i.test(item.textContent?.trim() || ''));
     button?.click();
     if (button) for (let attempt = 0; attempt < 12 && !transcript.length; attempt++) {
       await new Promise(resolve => setTimeout(resolve, 250));

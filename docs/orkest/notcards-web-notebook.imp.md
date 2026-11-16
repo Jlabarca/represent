@@ -47,7 +47,7 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-12.1.1 â€” Deliver web-first detail and correct the unpacked client contract. Verify with browser, server and account fixtures.
+- [x] REP-12.1.1 â€” Deliver web-first detail and correct the unpacked client contract. Verify with browser, server and account fixtures. — evidence: node tmp/webbook-check.mjs: 1/1 passed, skipped=0, output sha256=536f5e61f7c3e43237407386819f918b157ccfce4913781d03dee63277d386cf
 
 ### Phase 2 — Optional Botanic conversations and direct summaries
 

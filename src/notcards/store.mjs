@@ -4,6 +4,7 @@ import {mkdir, chmod, readFile, writeFile, unlink, readdir, stat} from 'node:fs/
 import {join} from 'node:path';
 import {NotebookStore, videoIdentity, replaceFile, parseTranscript} from '../clay-notes/core.mjs';
 import {extractLinks, sourceTypeForLink, youtubeVideo} from '../clay-notes/web/composer-links.mjs';
+import {VideoImportService} from './video-import.mjs';
 
 const hashHex = value => createHash('sha256').update(value).digest('hex');
 const hashChallenge = value => createHash('sha256').update(value).digest('base64url');
@@ -20,7 +21,7 @@ export function isAllowedExtensionRedirect(value, extensionId = process.env.NOTC
 }
 
 export class NotcardsStore {
-  constructor({directory = process.env.NOTCARDS_DATA_DIR || './notcards-data', gateway = undefined, clock = () => Date.now(), extensionId = process.env.NOTCARDS_EXTENSION_ID, extensionIds, maxNotes = 2500, maxBytes = 512 * 1024 * 1024} = {}) {
+  constructor({directory = process.env.NOTCARDS_DATA_DIR || './notcards-data', gateway = undefined, clock = () => Date.now(), extensionId = process.env.NOTCARDS_EXTENSION_ID, extensionIds, maxNotes = 2500, maxBytes = 512 * 1024 * 1024, videoImporter = new VideoImportService(), onVideoReady = null} = {}) {
     this.directory = directory;
     this.clock = clock;
     this.accounts = new Map();
@@ -30,6 +31,9 @@ export class NotcardsStore {
     this.extensionIds=extensionIds ?? [extensionId];
     this.maxNotes=maxNotes;
     this.maxBytes=maxBytes;
+    this.videoImporter=videoImporter;
+    this.onVideoReady=onVideoReady;
+    this.videoImportJobs=new Map();
   }
 
   async init() {
@@ -199,20 +203,96 @@ export class NotcardsStore {
 
   async createNote(userId,input) {
     const account=await this.account(userId);
-    return this.withAccountWrite(account,async()=>{
+    let video=null;
+    const note=await this.withAccountWrite(account,async()=>{
       if (input.folderId != null && !account.folders.some(folder=>folder.id===input.folderId)) throw problem(400,'Choose a folder in your account');
       const content=input.content ?? input.transcript ?? input.text;
       const writeReserve=typeof content==='string'&&content.trim()?TRANSCRIPT_STORAGE_RESERVE:2048;
-      let note,video=null;
+      let note;
       if (typeof input.url==='string' && input.url.trim()) {
         try { video=videoIdentity(input.url); } catch { video=null; }
-        if(video){await this.assertCapacity(account,{newNote:!(await account.notebook.get(video.id)),additionalBytes:Buffer.byteLength(JSON.stringify(input))+writeReserve});note=await account.notebook.create({url:video.url,title:input.title,channel:input.channel});}
+        if(video){const existing=await account.notebook.get(video.id);await this.assertCapacity(account,{newNote:!existing,additionalBytes:Buffer.byteLength(JSON.stringify(input))+writeReserve});note=await account.notebook.create({url:video.url,title:input.title,channel:input.channel});if(!existing)note=await account.notebook.mutate(note.id,n=>{n.autoSummaryEligible=input.autoSummaryEligible!==false;n.titleManuallySet=Boolean(typeof input.title==='string'&&input.title.trim());});}
         else{await this.assertCapacity(account,{newNote:true,additionalBytes:Buffer.byteLength(JSON.stringify(input))+writeReserve});note=await this.createResearchNote(account,input);}
       } else{await this.assertCapacity(account,{newNote:true,additionalBytes:Buffer.byteLength(JSON.stringify(input))+writeReserve});note=await this.createResearchNote(account,input);}
       if (input.folderId != null && note.folderId!==input.folderId) note=await account.notebook.mutate(note.id,n=>{n.folderId=input.folderId;});
       if (typeof content==='string' && content.trim()) note=await account.notebook.transcript(note.id,content,input.source || 'pasted text');
       return note;
     });
+    return video?this.scheduleVideoImport(userId,note.id):note;
+  }
+
+  async ensureVideoImport(userId,noteId) {
+    const account=await this.account(userId),note=await account.notebook.get(noteId);
+    if(!note?.url)return note;
+    try{videoIdentity(note.url);}catch{return note;}
+    return this.scheduleVideoImport(userId,noteId);
+  }
+
+  async retryVideoImport(userId,noteId) {
+    const account=await this.account(userId);let note=await account.notebook.get(noteId);
+    if(!note)throw problem(404,'Notebook not found');
+    if(note.videoImport?.status==='pending')return this.scheduleVideoImport(userId,noteId);
+    if(!['failed','unavailable'].includes(note.videoImport?.status))return this.ensureVideoImport(userId,noteId);
+    const now=this.clock(),retryAt=Date.parse(note.videoImport.retryAllowedAt||'');
+    if(Number.isFinite(retryAt)&&retryAt>now)return note;
+    note=await this.withAccountWrite(account,()=>account.notebook.mutate(noteId,current=>{
+      const old=current.videoImport||{};
+      if(['failed','unavailable'].includes(old.status))current.videoImport={...old,status:'pending',startedAt:new Date(now).toISOString(),attemptCount:(old.attemptCount||1)+1,retryAllowedAt:new Date(now+30_000).toISOString()};
+    }));
+    return this.scheduleVideoImport(userId,noteId);
+  }
+
+  async scheduleVideoImport(userId,noteId) {
+    const account=await this.account(userId),key=`${userId}:${noteId}`;
+    let note=await account.notebook.get(noteId);if(!note?.url)return note;
+    try{videoIdentity(note.url);}catch{return note;}
+    if(['ready','unavailable','failed'].includes(note.videoImport?.status))return note;
+    const active=this.videoImportJobs.get(key);if(active)return note;
+    if(note.videoImport?.status!=='pending'){
+      note=await this.withAccountWrite(account,()=>account.notebook.mutate(noteId,current=>{if(!current.videoImport||current.videoImport.status!=='pending')current.videoImport={status:'pending',startedAt:new Date(this.clock()).toISOString(),attemptCount:(current.videoImport?.attemptCount||0)+1};}));
+    }
+    let queued;
+    try{queued=this.videoImporter.enqueue(note.url);}catch{return this.persistVideoImport(userId,noteId,{status:'failed',reason:'backlog_full'});}
+    const run=queued
+      .then(result=>this.persistVideoImport(userId,noteId,result))
+      .catch(error=>this.persistVideoImport(userId,noteId,{status:'failed',reason:error.code==='video_import_disabled'?'import_disabled':error.code==='video_import_backlog'?'backlog_full':'source_unavailable'}))
+      .catch(()=>null)
+      .finally(()=>{if(this.videoImportJobs.get(key)===run)this.videoImportJobs.delete(key);});
+    this.videoImportJobs.set(key,run);
+    return note;
+  }
+
+  async persistVideoImport(userId,noteId,result) {
+    const account=await this.account(userId);let notify=null;
+    const updated=await this.withAccountWrite(account,async()=>{
+      const current=await account.notebook.get(noteId);if(!current)return null;
+      let savedTranscript=null;
+      if(!result.segments?.length&&!current.segments?.length&&(result.status==='unavailable'||result.status==='failed')){
+        const identity=videoIdentity(current.url),otherNotes=await account.notebook.list();
+        const matching=otherNotes.find(other=>other.id!==noteId&&other.segments?.length&&(typeof other.transcriptSource==='string'&&(['youtube-captions','youtube-public-captions','youtube-transcript-panel'].includes(other.transcriptSource)||other.transcriptSource.startsWith('youtube-captions:')))&&(()=>{try{return videoIdentity(other.url).id===identity.id;}catch{return false;}})());
+        if(matching)savedTranscript=matching;
+      }
+      const now=new Date(this.clock()).toISOString();
+      return account.notebook.mutate(noteId,note=>{
+        const imported={status:result.status,completedAt:now,attemptCount:note.videoImport?.attemptCount||1,...(['unavailable','failed'].includes(result.status)?{retryAllowedAt:new Date(this.clock()+30_000).toISOString()}:{}),...(result.reason?{reason:result.reason}:{})};
+        if(result.title&&!note.titleManuallySet&&(!note.title||['Untitled video','Untitled research'].includes(note.title)))note.title=result.title;
+        if(result.channel&&!note.channel)note.channel=result.channel;
+        if(result.thumbnail&&(!note.thumbnail||note.thumbnail===videoIdentity(note.url).thumbnail)&&!note.coverImage)note.thumbnail=result.thumbnail;
+        const importedSegments=result.segments?.length?result.segments:savedTranscript?.segments;
+        if(importedSegments?.length&&!note.segments?.length){
+          note.segments=JSON.parse(JSON.stringify(importedSegments));note.transcriptHash=result.transcriptHash||savedTranscript?.transcriptHash||hashHex(JSON.stringify(importedSegments));note.transcriptSource=result.segments?.length?'youtube-public-captions':savedTranscript?.transcriptSource||'youtube-captions';note.state='awaiting_summary';note.error=null;
+          if(savedTranscript)imported.transcriptReusedFrom=savedTranscript.id;
+          if(note.autoSummaryEligible===true){
+            const requestId=hashHex(`${userId}:${noteId}:${note.transcriptHash}`);
+            if(note.videoImport?.generationRequestId!==requestId)notify={userId,noteId,requestId,transcriptHash:note.transcriptHash};
+            imported.generationRequestId=requestId;
+          }
+        }
+        note.videoImport=imported;
+      });
+    });
+    if(notify&&this.onVideoReady){try{await this.onVideoReady(notify);}catch{}}
+    return updated;
   }
 
   async compose(userId,input) {
@@ -224,7 +304,7 @@ export class NotcardsStore {
     if(links.length>100)throw problem(400,'A draft can contain at most 100 unique links');
     const payload={body:input.body,title:clean(input.title,500),split:input.split,folderId:input.folderId,links};
     const payloadJson=JSON.stringify(payload),payloadHash=hashHex(payloadJson),account=await this.account(userId);
-    return this.withAccountWrite(account,async()=>{
+    const result=await this.withAccountWrite(account,async()=>{
       if(payload.folderId&&!account.folders.some(folder=>folder.id===payload.folderId))throw problem(400,'Choose a folder in your account');
       let draft=this.db.prepare('SELECT * FROM composer_drafts WHERE user_id=? AND draft_id=?').get(userId,input.draftId);
       if(draft&&draft.payload_hash!==payloadHash)throw problem(409,'This draft ID was already used for different content');
@@ -259,6 +339,8 @@ export class NotcardsStore {
       }
       return {ids:ids.filter(Boolean)};
     });
+    await Promise.all(result.ids.map(async id=>{const note=await account.notebook.get(id);if(note?.url){try{videoIdentity(note.url);await this.scheduleVideoImport(userId,id);}catch{}}}));
+    return result;
   }
 
   async createResearchNote(account,input) {
@@ -308,7 +390,7 @@ export class NotcardsStore {
 
   async listNotes(userId) {
     const account=await this.account(userId),notes=await account.notebook.list();
-    return notes.map(note=>({id:note.id,url:note.url,title:note.title,channel:note.channel,sourceType:note.sourceType||'video',transcriptAvailable:Boolean(note.segments?.length),transcriptSource:note.transcriptSource||null,thumbnail:note.thumbnail,cover:note.images?.find(image=>image.id===note.coverImage)?.url||note.thumbnail||null,imageCount:note.images?.length||0,state:note.state,error:note.error,pinned:note.pinned,color:note.color,finish:note.finish??null,folderId:note.folderId??null,createdAt:note.createdAt,updatedAt:note.updatedAt,overview:note.revisions?.at(-1)?.overview||'',statementCount:note.revisions?.at(-1)?.statements?.length||0,revisionCount:note.revisions?.length||0}));
+    return notes.map(note=>({id:note.id,url:note.url,title:note.title,channel:note.channel,sourceType:note.sourceType||'video',transcriptAvailable:Boolean(note.segments?.length),transcriptSource:note.transcriptSource||null,thumbnail:note.thumbnail,cover:note.images?.find(image=>image.id===note.coverImage)?.url||note.thumbnail||null,imageCount:note.images?.length||0,state:note.state,error:note.error,videoImport:note.videoImport??null,pinned:note.pinned,color:note.color,finish:note.finish??null,folderId:note.folderId??null,createdAt:note.createdAt,updatedAt:note.updatedAt,overview:note.revisions?.at(-1)?.overview||'',statementCount:note.revisions?.at(-1)?.statements?.length||0,revisionCount:note.revisions?.length||0}));
   }
 
   async addImage(userId,id,input){const account=await this.account(userId);return this.withAccountWrite(account,async()=>{await this.assertCapacity(account,{additionalBytes:Math.ceil(String(input.dataUrl||'').length*0.75)+2048});return account.notebook.addImage(id,input);});}
@@ -317,9 +399,11 @@ export class NotcardsStore {
     const account=await this.account(userId);
     return this.withAccountWrite(account,async()=>{
       if(input.folderId!=null&&!account.folders.some(folder=>folder.id===input.folderId))throw problem(400,'Choose a folder in your account');
+      if('title'in input&&(typeof input.title!=='string'||!input.title.trim()||input.title.trim().length>500))throw problem(400,'Notebook title must be between 1 and 500 characters');
       await this.assertCapacity(account,{additionalBytes:Buffer.byteLength(JSON.stringify(input))+1024});
       const current=await account.notebook.get(id);if(!current)throw problem(404,'Notebook not found');
       return account.notebook.mutate(id,n=>{
+        if('title'in input){n.title=input.title.trim();n.titleManuallySet=true;}
         if('folderId'in input)n.folderId=input.folderId;
         if('personalNotes'in input){if(typeof input.personalNotes!=='string'||input.personalNotes.length>50000)throw problem(400,'Personal notes exceed size limit');n.personalNotes=input.personalNotes;}
         if('pinned'in input)n.pinned=Boolean(input.pinned);
@@ -334,5 +418,5 @@ export class NotcardsStore {
 
   async reorder(userId,ids){const account=await this.account(userId);return this.withAccountWrite(account,async()=>{await this.assertCapacity(account,{additionalBytes:Buffer.byteLength(JSON.stringify(ids))+512});return account.notebook.reorder(ids);});}
 
-  async close() { this.db?.close(); }
+  async close() { await this.videoImporter?.close?.();await Promise.allSettled([...this.videoImportJobs.values()]);this.db?.close(); }
 }

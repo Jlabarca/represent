@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {randomBytes} from 'node:crypto';
 import {GoogleIdentity} from './identity.mjs';
 import {NotcardsStore,isAllowedExtensionRedirect} from './store.mjs';
+import {VideoImportService} from './video-import.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const web=join(root,'..','clay-notes','web');
@@ -24,10 +25,10 @@ async function readBody(req,limit=1_000_000){
 
 const EXTENSION_ID=/^[a-p]{32}$/;
 
-export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,storeExtensionId=process.env.NOTCARDS_STORE_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null}={}){
+export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,storeExtensionId=process.env.NOTCARDS_STORE_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null,videoImporter,onVideoReady}={}){
   const extensionIds=[...new Set([extensionId,storeExtensionId].filter(Boolean))];
   if(extensionIds.some(id=>!EXTENSION_ID.test(id)))throw new Error('Configured Notcards extension IDs must be exact Chromium IDs');
-  const persistence=store||await new NotcardsStore({directory,extensionIds}).init();
+  const persistence=store||await new NotcardsStore({directory,extensionIds,videoImporter:videoImporter ?? new VideoImportService({enabled:Boolean(publicOrigin)}),onVideoReady}).init();
   if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
   const extensionOrigins=extensionIds.map(id=>`chrome-extension://${id}`);
   let origin,identityService;
@@ -43,16 +44,21 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       res.setHeader('X-Content-Type-Options','nosniff');
       res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
       res.setHeader('X-Frame-Options','DENY');
-      res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+      res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
       res.setHeader('Cache-Control','no-store');
       const cookieValue=name=>req.headers.cookie?.split(';').map(item=>item.trim()).find(item=>item.startsWith(`${name}=`))?.slice(name.length+1)||null;
       const clearCookie=(name,path='/')=>`${name}=; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=0${new URL(origin).protocol==='https:'?'; Secure':''}`;
       const setCookie=(name,value,path='/',age=1_209_600)=>`${name}=${value}; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=${age}${new URL(origin).protocol==='https:'?'; Secure':''}`;
       const resolveUser=()=>{
+        // Explicit extension credentials identify the owner of a queued capture.
+        // An ambient website cookie can belong to a different signed-in account.
+        if(req.headers.authorization){
+          const bearer=tokenFrom(req),grant=bearer&&persistence.grant(bearer);
+          return grant?{...grant,auth:'bearer',raw:bearer}:null;
+        }
+        if(extensionRequest)return null;
         const raw=cookieValue('notcards_session');
         if(raw){const session=persistence.sessionCookie(raw);if(session)return {...session,auth:'cookie',raw};}
-        const bearer=tokenFrom(req);
-        if(bearer){const grant=persistence.grant(bearer);if(grant)return {...grant,auth:'bearer',raw:bearer};}
         return null;
       };
       const requireOrigin=({allowExtension=false}={})=>{
@@ -131,9 +137,10 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
           const input=await readBody(req,1_000_000),note=await persistence.capture(current.user.id,input,req.headers['idempotency-key']);
           return json(201,{id:note.id,url:note.url,state:note.state,openUrl:`/#note=${note.id}`});
         }
-        const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(?:\/(transcript|summarize|ask))?$/.exec(path);
+        const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(?:\/(transcript|summarize|ask|video-import))?$/.exec(path);
         if(match){const [,id,action]=match,note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');
-          if(!action&&req.method==='GET')return json(200,note);
+          if(!action&&req.method==='GET')return json(200,await persistence.ensureVideoImport(current.user.id,id));
+          if(action==='video-import'&&req.method==='POST')return json(200,await persistence.retryVideoImport(current.user.id,id));
           if(!action&&req.method==='PATCH')return json(200,await persistence.updateNote(current.user.id,id,await readBody(req)));
           if(req.method==='POST'&&['summarize','ask'].includes(action))throw problem(503,'AI summaries are waiting for the Notcards Ghost gateway lane to be applied.','ai_setup_pending');
           if(req.method==='POST'&&action==='transcript'){

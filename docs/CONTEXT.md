@@ -4,6 +4,10 @@
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
 > Updated: 2026-11-16
 
+## Notcards web notebook (2026-11-16)
+
+The web app is the primary entry point. Opening a card shows its full notebook, editable notes and source material. YouTube cards include a player. The first submitted question should create one owner-bound Botanic conversation. Removing that conversation in Botanic leaves the card and all saved notes intact. Direct summaries require the dedicated gateway Apply. The unpacked extension is an optional capture shortcut.
+
 ## Notcards collection composer (2026-11-16)
 
 The hosted collection provides an inline note composer with first-link type inference and an optional split per link. Desktop users choose the card size in Settings. Phones open at the collection header and scroll vertically through centered cards. [Implementation](orkest/done/notcards-composer.imp.md).
