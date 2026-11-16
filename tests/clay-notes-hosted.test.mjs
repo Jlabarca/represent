@@ -10,6 +10,8 @@ import {TestIdentity} from '../src/notcards/identity.mjs';
 
 const extensionId='aimdojafaddgpjhiejbfihfljeacolmk';
 const extensionOrigin=`chrome-extension://${extensionId}`;
+const storeExtensionId='bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+const storeExtensionOrigin=`chrome-extension://${storeExtensionId}`;
 const sha=value=>createHash('sha256').update(value).digest('base64url');
 const cookieValue=(headers,name)=>headers.getSetCookie().map(item=>item.split(';')[0]).find(item=>item.startsWith(`${name}=`))?.slice(name.length+1);
 let sharedDirectory,sharedIdentity,sharedApp,sharedZip;
@@ -20,7 +22,7 @@ before(async()=>{
   await mkdir(join(sharedDirectory,'releases'),{recursive:true});
   await writeFile(sharedZip,Buffer.from('PK\x03\x04fixture'));
   sharedIdentity=new TestIdentity();sharedIdentity.configured=false;
-  sharedApp=await startNotcardsServer({directory:join(sharedDirectory,'store'),port:0,identity:sharedIdentity,extensionId,extensionZip:sharedZip});
+  sharedApp=await startNotcardsServer({directory:join(sharedDirectory,'store'),port:0,identity:sharedIdentity,extensionId,storeExtensionId,extensionZip:sharedZip});
 });
 after(async()=>{await sharedApp?.close();if(sharedDirectory)await rm(sharedDirectory,{recursive:true,force:true});});
 
@@ -120,7 +122,8 @@ test('extension authorization binds PKCE grants to one account and revokes them 
   const grant=await exchange.json();
   assert.equal(grant.tokenType,'Bearer');
   assert.equal(grant.user.email,'extension@example.invalid');
-  assert.ok(grant.expiresAt>Date.now());
+  assert.equal(typeof grant.expiresAt,'string');
+  assert.ok(Date.parse(grant.expiresAt)>Date.now());
   assert.equal(exchange.headers.get('access-control-allow-origin'),extensionOrigin);
   const privateRead=await fetch(`${app.url}/api/notes`,{headers:{Origin:extensionOrigin,Authorization:`Bearer ${grant.accessToken}`}});
   assert.equal(privateRead.status,403);
@@ -140,8 +143,16 @@ test('extension authorization binds PKCE grants to one account and revokes them 
   assert.equal((await replay.json()).id,saved.id);
   const changed=await fetch(`${app.url}/api/capture`,{method:'POST',headers:{Origin:extensionOrigin,Authorization:`Bearer ${grant.accessToken}`,'Content-Type':'application/json','Idempotency-Key':key},body:JSON.stringify({url:'https://www.youtube.com/watch?v=X6J3ByTqhLY',title:'Different data',channel:'Example',transcript:'',source:'youtube-captions'} )});
   assert.equal(changed.status,409);
+  const structuredKey=randomBytes(24).toString('base64url');
+  const structured=await fetch(`${app.url}/api/capture`,{method:'POST',headers:{Origin:extensionOrigin,Authorization:`Bearer ${grant.accessToken}`,'Content-Type':'application/json','Idempotency-Key':structuredKey},body:JSON.stringify({url:'https://www.youtube.com/watch?v=AbCdEfGhijk',title:'Structured captions',channel:'Example',transcript:{events:[{tStartMs:1250,segs:[{utf8:'A caption from YouTube.'}]}]},source:'youtube-captions:en'} )});
+  assert.equal(structured.status,201,await structured.clone().text());
+  const structuredNote=await structured.json();
+  assert.match(structuredNote.id,/^[A-Za-z0-9_-]{11}$/);
+  assert.equal(structuredNote.state,'awaiting_summary');
+  const stored=await fetch(`${app.url}/api/notes/${structuredNote.id}`,{headers:{Cookie:`notcards_session=${cookie}`}}).then(response=>response.json());
+  assert.deepEqual(stored.segments.map(({start,text})=>({start,text})),[{start:1.25,text:'A caption from YouTube.'}]);
   const listed=await fetch(`${app.url}/api/notes`,{headers:{Origin:app.url,Cookie:`notcards_session=${cookie}`}}).then(res=>res.json());
-  assert.equal(listed.length,1);
+  assert.equal(listed.length,2);
   const logout=await fetch(`${app.url}/auth/logout`,{method:'POST',headers:{Origin:app.url,Cookie:`notcards_session=${cookie}`}});
   assert.equal(logout.status,200);
   const revoked=await fetch(`${app.url}/api/notes`,{headers:{Origin:extensionOrigin,Authorization:`Bearer ${grant.accessToken}`}});
@@ -173,6 +184,30 @@ test('local and unconfigured-extension origins cannot read hosted account APIs',
   const address=new URL(app.url);
   const wrongHost=await new Promise((resolve,reject)=>http.get({hostname:'127.0.0.1',port:Number(address.port),headers:{Host:'attacker.invalid'}},response=>{response.resume();response.once('end',()=>resolve(response.statusCode));}).once('error',reject));
   assert.equal(wrongHost,403);
+});
+
+test('only the configured development and assigned Store extension IDs can authorize',async()=>{
+  const app=sharedApp,identity=sharedIdentity;
+  const user=await app.store.user(identity.user),session=app.store.issueSession(user.id).token;
+  const verifier=randomBytes(32).toString('base64url'),challenge=sha(verifier),state=randomBytes(24).toString('base64url');
+  const authorize=redirectUri=>fetch(`${app.url}/auth/extension/authorize?${new URLSearchParams({challenge,state,redirectUri})}`,{headers:{Cookie:`notcards_session=${session}`},redirect:'manual'});
+  const devRedirect=`https://${extensionId}.chromiumapp.org/auth`,storeRedirect=`https://${storeExtensionId}.chromiumapp.org/auth`;
+  const dev=await authorize(devRedirect);
+  const assigned=await authorize(storeRedirect);
+  assert.equal(dev.status,302);
+  assert.equal(assigned.status,302);
+  assert.equal(new URL(assigned.headers.get('location')).hostname,`${storeExtensionId}.chromiumapp.org`);
+  const callback=new URL(assigned.headers.get('location'));
+  const exchange=await request(app,'/auth/extension/token',{method:'POST',origin:storeExtensionOrigin,body:{code:callback.searchParams.get('code'),verifier,redirectUri:storeRedirect}});
+  assert.equal(exchange.status,200);
+  assert.equal(exchange.headers.get('access-control-allow-origin'),storeExtensionOrigin);
+  const offList=await authorize('https://cccccccccccccccccccccccccccccccc.chromiumapp.org/auth');
+  assert.equal(offList.status,400);
+  const storePreflight=await fetch(`${app.url}/api/capture`,{method:'OPTIONS',headers:{Origin:storeExtensionOrigin,'Access-Control-Request-Method':'POST','Access-Control-Request-Headers':'authorization,content-type,idempotency-key'}});
+  assert.equal(storePreflight.status,204);
+  assert.equal(storePreflight.headers.get('access-control-allow-origin'),storeExtensionOrigin);
+  const unknownPreflight=await fetch(`${app.url}/api/capture`,{method:'OPTIONS',headers:{Origin:'chrome-extension://cccccccccccccccccccccccccccccccc','Access-Control-Request-Method':'POST'}});
+  assert.notEqual(unknownPreflight.status,204);
 });
 
 test('download response is private to the configured fixed artifact path and revalidates',async()=>{

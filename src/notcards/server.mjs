@@ -22,10 +22,14 @@ async function readBody(req,limit=1_000_000){
   try{const value=JSON.parse(Buffer.concat(chunks).toString('utf8'));if(!value||Array.isArray(value)||typeof value!=='object')throw new Error();return value;}catch{throw problem(400,'Request JSON is invalid');}
 }
 
-export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null}={}){
-  const persistence=store||await new NotcardsStore({directory,extensionId}).init();
+const EXTENSION_ID=/^[a-p]{32}$/;
+
+export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,storeExtensionId=process.env.NOTCARDS_STORE_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null}={}){
+  const extensionIds=[...new Set([extensionId,storeExtensionId].filter(Boolean))];
+  if(extensionIds.some(id=>!EXTENSION_ID.test(id)))throw new Error('Configured Notcards extension IDs must be exact Chromium IDs');
+  const persistence=store||await new NotcardsStore({directory,extensionIds}).init();
   if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
-  const extensionOrigin=/^[a-p]{32}$/.test(extensionId||'')?`chrome-extension://${extensionId}`:null;
+  const extensionOrigins=extensionIds.map(id=>`chrome-extension://${id}`);
   let origin,identityService;
   const server=http.createServer(async(req,res)=>{
     const json=(status,value)=>{res.writeHead(status,{'Content-Type':'application/json; charset=utf-8'});res.end(JSON.stringify(value));};
@@ -33,8 +37,8 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       const requestOrigin=req.headers.origin;
       const reqUrl=new URL(req.url,origin);
       if(req.headers.host!==new URL(origin).host)throw problem(403,'Unknown Notcards host');
-      const extensionRequest=Boolean(extensionOrigin&&requestOrigin===extensionOrigin);
-      if(extensionRequest){res.setHeader('Access-Control-Allow-Origin',extensionOrigin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','authorization, content-type, idempotency-key');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');}
+      const extensionRequest=extensionOrigins.includes(requestOrigin);
+      if(extensionRequest){res.setHeader('Access-Control-Allow-Origin',requestOrigin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','authorization, content-type, idempotency-key');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');}
       if(req.method==='OPTIONS'&&extensionRequest){res.writeHead(204);return res.end();}
       res.setHeader('X-Content-Type-Options','nosniff');
       res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
@@ -76,7 +80,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       }
       if(reqUrl.pathname==='/auth/extension/authorize'&&req.method==='GET'){
         const challenge=reqUrl.searchParams.get('challenge'),state=reqUrl.searchParams.get('state'),redirectUri=reqUrl.searchParams.get('redirectUri');
-        if(!isAllowedExtensionRedirect(redirectUri,extensionId))throw problem(400,'Extension redirect is not allowed');
+        if(!isAllowedExtensionRedirect(redirectUri,extensionIds))throw problem(400,'Extension redirect is not allowed');
         if(!/^[A-Za-z0-9_-]{43}$/.test(challenge||'')||typeof state!=='string'||state.length<16||state.length>256)throw problem(400,'Extension authorization request is invalid');
         const raw=cookieValue('notcards_session'),session=raw&&persistence.sessionCookie(raw);const current=session?{...session,auth:'cookie',raw}:null;
         if(current){const issued=persistence.issueExtensionCode({userId:current.user.id,challenge,redirectUri,state});const callback=new URL(redirectUri);callback.searchParams.set('code',issued.code);callback.searchParams.set('state',state);res.writeHead(302,{Location:callback.href});return res.end();}
@@ -86,7 +90,8 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       }
       if(reqUrl.pathname==='/auth/extension/token'&&req.method==='POST'){
         requireOrigin({allowExtension:true});
-        return json(200,persistence.exchangeExtensionCode(await readBody(req)));
+        const grant=persistence.exchangeExtensionCode(await readBody(req));
+        return json(200,{...grant,expiresAt:new Date(grant.expiresAt).toISOString()});
       }
       if(reqUrl.pathname==='/auth/extension/revoke'&&req.method==='POST'){
         requireOrigin({allowExtension:true});const grant=resolveUser();if(!grant||grant.auth!=='bearer')throw problem(401,'Extension access expired. Sign in again.','extension_authorization_expired');
@@ -107,6 +112,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         }
         const current=resolveUser();if(!current)return json(401,{code:'sign_in_required',error:'Sign in to your Notcards account to continue.'});
         if(current.auth==='bearer'&&!['/api/session','/api/capture'].includes(reqUrl.pathname))throw problem(403,'Extension access is limited to saving videos and checking the signed-in account.');
+        if(reqUrl.pathname==='/api/composer'&&current.auth!=='cookie')throw problem(403,'Composer drafts require a signed-in web session.');
         if(req.method!=='GET')requireOrigin({allowExtension:current.auth==='bearer'});
         const account=await persistence.account(current.user.id),path=reqUrl.pathname;
         if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:false,models:[],defaultModel:null,generationAvailable:false,queueSize:0});
@@ -118,6 +124,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         const media=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/images(?:\/([a-f0-9-]{36}))?$/i.exec(path);
         if(media){const [,id,imageId]=media;const note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');if(!imageId&&req.method==='POST')return json(201,await persistence.addImage(current.user.id,id,await readBody(req,2_850_000)));if(imageId&&req.method==='GET'){const image=await account.notebook.image(id,imageId);if(!image)throw problem(404,'Image not found');res.writeHead(200,{'Content-Type':image.mime,'Content-Length':image.data.length,'Cache-Control':'private, no-store'});return res.end(image.data);}throw problem(405,'Method not allowed');}
         if(path==='/api/notes'&&req.method==='GET')return json(200,await persistence.listNotes(current.user.id));
+        if(path==='/api/composer'&&req.method==='POST')return json(201,await persistence.compose(current.user.id,await readBody(req,100_000)));
         if(path==='/api/notes'&&req.method==='POST')return json(201,await persistence.createNote(current.user.id,await readBody(req)));
         if(path==='/api/capture'&&req.method==='POST'){
           if(current.auth!=='bearer')throw problem(403,'Extension capture requires extension authorization');
@@ -137,7 +144,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       }
       if(req.method!=='GET')throw problem(405,'Method not allowed');
       const path=reqUrl.pathname==='/'?'index.html':reqUrl.pathname.slice(1);
-      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path)&&!/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path))throw problem(404,'Page not found');
+      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','composer.mjs','composer-links.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path)&&!/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path))throw problem(404,'Page not found');
       let data=await readFile(join(web,path));const extension=extname(path);
       if(path==='index.html')data=Buffer.from(data.toString('utf8').replace(/<dialog id="connect-dialog">[\s\S]*?<\/dialog>/,'') );
       res.setHeader('Content-Type',mime[extension]||'application/octet-stream');

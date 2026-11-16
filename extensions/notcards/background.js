@@ -1,4 +1,4 @@
-import {authorizeUrl, createCaptureQueue, createPkce, readCallback, serviceOrigin} from './auth.mjs';
+import {authorizeUrl, createCaptureQueue, createPkce, expirationMillis, readCallback, serviceOrigin} from './auth.mjs';
 
 const msg = (name, fallback) => chrome.i18n?.getMessage(name) || fallback;
 const tokenKey = 'notcardsGrant';
@@ -8,7 +8,8 @@ let grantPromise;
 
 async function readGrant() {
   const { [tokenKey]: grant } = await chrome.storage.session.get(tokenKey);
-  if (grant?.accessToken && Number(grant.expiresAt) > Date.now() + 60_000) return grant;
+  const expiresAt=expirationMillis(grant?.expiresAt);
+  if (grant?.accessToken && Number.isFinite(expiresAt) && expiresAt > Date.now() + 60_000) return {...grant,expiresAt};
   await chrome.storage.session.remove(tokenKey);
   return null;
 }
@@ -16,7 +17,7 @@ async function readGrant() {
 async function authorize(interactive) {
   const redirectUri = chrome.identity.getRedirectURL('auth');
   const pkce = await createPkce();
-  const authUrl = authorizeUrl({...pkce, redirectUri});
+  const authUrl = authorizeUrl({...pkce, redirectUri, extensionId: chrome.runtime.id});
   const callback = await chrome.identity.launchWebAuthFlow({url: authUrl, interactive});
   const code = readCallback(callback, pkce.state, redirectUri);
   const response = await fetch(`${serviceOrigin}/auth/extension/token`, {
@@ -26,10 +27,11 @@ async function authorize(interactive) {
     signal: AbortSignal.timeout(15_000)
   });
   const result = await response.json().catch(() => ({}));
-  if (!response.ok || typeof result.accessToken !== 'string' || result.tokenType !== 'Bearer' || !Number.isFinite(Date.parse(result.expiresAt))) {
+  const expiresAt=expirationMillis(result.expiresAt);
+  if (!response.ok || typeof result.accessToken !== 'string' || result.tokenType !== 'Bearer' || !Number.isFinite(expiresAt) || expiresAt <= Date.now()) {
     throw new Error(result.error || msg('signInFailed', 'Sign-in could not be completed. Try again.'));
   }
-  const grant = {accessToken: result.accessToken, expiresAt: Date.parse(result.expiresAt), user: result.user};
+  const grant = {accessToken: result.accessToken, expiresAt, user: result.user};
   await chrome.storage.session.set({[tokenKey]: grant});
   return grant;
 }

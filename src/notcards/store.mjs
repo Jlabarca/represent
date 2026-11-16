@@ -2,7 +2,8 @@ import {DatabaseSync} from 'node:sqlite';
 import {createHash, randomBytes, randomUUID} from 'node:crypto';
 import {mkdir, chmod, readFile, writeFile, unlink, readdir, stat} from 'node:fs/promises';
 import {join} from 'node:path';
-import {NotebookStore, videoIdentity, replaceFile} from '../clay-notes/core.mjs';
+import {NotebookStore, videoIdentity, replaceFile, parseTranscript} from '../clay-notes/core.mjs';
+import {extractLinks, sourceTypeForLink, youtubeVideo} from '../clay-notes/web/composer-links.mjs';
 
 const hashHex = value => createHash('sha256').update(value).digest('hex');
 const hashChallenge = value => createHash('sha256').update(value).digest('base64url');
@@ -14,19 +15,19 @@ const problem = (status, message, code) => Object.assign(new Error(message), {st
 const TRANSCRIPT_STORAGE_RESERVE = 320 * 1024;
 
 export function isAllowedExtensionRedirect(value, extensionId = process.env.NOTCARDS_EXTENSION_ID) {
-  if (!EXTENSION_ID.test(extensionId || '')) return false;
-  return value === `https://${extensionId}.chromiumapp.org/auth`;
+  const ids = Array.isArray(extensionId) ? extensionId : [extensionId];
+  return ids.some(id => EXTENSION_ID.test(id || '') && value === `https://${id}.chromiumapp.org/auth`);
 }
 
 export class NotcardsStore {
-  constructor({directory = process.env.NOTCARDS_DATA_DIR || './notcards-data', gateway = undefined, clock = () => Date.now(), extensionId = process.env.NOTCARDS_EXTENSION_ID, maxNotes = 2500, maxBytes = 512 * 1024 * 1024} = {}) {
+  constructor({directory = process.env.NOTCARDS_DATA_DIR || './notcards-data', gateway = undefined, clock = () => Date.now(), extensionId = process.env.NOTCARDS_EXTENSION_ID, extensionIds, maxNotes = 2500, maxBytes = 512 * 1024 * 1024} = {}) {
     this.directory = directory;
     this.clock = clock;
     this.accounts = new Map();
     this.idempotentLocks = new Map();
     this.db = null;
     this.gateway = gateway;
-    this.extensionId=extensionId;
+    this.extensionIds=extensionIds ?? [extensionId];
     this.maxNotes=maxNotes;
     this.maxBytes=maxBytes;
   }
@@ -43,6 +44,7 @@ export class NotcardsStore {
       CREATE TABLE IF NOT EXISTS extension_grants (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL, revoked_at INTEGER);
       CREATE INDEX IF NOT EXISTS grants_user ON extension_grants(user_id);
       CREATE TABLE IF NOT EXISTS idempotency (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, request_key TEXT NOT NULL, payload_hash TEXT NOT NULL, note_id TEXT NOT NULL, created_at INTEGER NOT NULL, PRIMARY KEY(user_id, request_key));
+      CREATE TABLE IF NOT EXISTS composer_drafts (user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, draft_id TEXT NOT NULL, payload_hash TEXT NOT NULL, payload_json TEXT NOT NULL, ids_json TEXT NOT NULL, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL, PRIMARY KEY(user_id,draft_id));
     `);
     await chmod(join(this.directory, 'notcards.sqlite'), 0o600).catch(() => {});
     return this;
@@ -94,14 +96,14 @@ export class NotcardsStore {
 
   issueExtensionCode({userId,challenge,redirectUri,state}) {
     if (!/^[A-Za-z0-9_-]{43}$/.test(challenge || '') || typeof state !== 'string' || state.length < 16 || state.length > 256) throw problem(400,'Extension authorization request is invalid');
-    if (!isAllowedExtensionRedirect(redirectUri,this.extensionId)) throw problem(400,'Extension redirect is not allowed');
+    if (!isAllowedExtensionRedirect(redirectUri,this.extensionIds)) throw problem(400,'Extension redirect is not allowed');
     const code = opaque(32), expiresAt=this.clock()+5*60_000;
     this.db.prepare('INSERT INTO extension_codes(code_hash,user_id,challenge,redirect_uri,state,expires_at) VALUES(?,?,?,?,?,?)').run(hashHex(code),userId,challenge,redirectUri,state,expiresAt);
     return {code,state,redirectUri,expiresAt};
   }
 
   exchangeExtensionCode({code,verifier,redirectUri}) {
-    if (typeof code !== 'string' || code.length > 256 || typeof verifier !== 'string' || !/^[A-Za-z0-9._~-]{43,128}$/.test(verifier) || !isAllowedExtensionRedirect(redirectUri,this.extensionId)) throw problem(400,'Extension token request is invalid');
+    if (typeof code !== 'string' || code.length > 256 || typeof verifier !== 'string' || !/^[A-Za-z0-9._~-]{43,128}$/.test(verifier) || !isAllowedExtensionRedirect(redirectUri,this.extensionIds)) throw problem(400,'Extension token request is invalid');
     this.db.exec('BEGIN IMMEDIATE');
     try {
       const row=this.db.prepare('SELECT * FROM extension_codes WHERE code_hash=?').get(hashHex(code));
@@ -184,10 +186,11 @@ export class NotcardsStore {
 
   async withAccountWrite(account,task){const previous=account.writeLock;let release;account.writeLock=new Promise(resolve=>{release=resolve;});await previous;try{return await task();}finally{release();}}
 
-  async assertCapacity(account,{newNote=false,additionalBytes=0}={}){
+  async assertCapacity(account,{newNote=false,newNotes=0,additionalBytes=0}={}){
     const entries=await readdir(account.notebook.directory,{withFileTypes:true});
     const noteFiles=entries.filter(entry=>entry.isFile()&&/^[A-Za-z0-9_-]{11}\.json$/.test(entry.name));
-    if(newNote&&noteFiles.length>=this.maxNotes)throw problem(409,`This account has reached its ${this.maxNotes.toLocaleString('en-US')} notebook limit`);
+    const growth=newNotes||Number(Boolean(newNote));
+    if(noteFiles.length+growth>this.maxNotes)throw problem(409,`This account has reached its ${this.maxNotes.toLocaleString('en-US')} notebook limit`);
     let bytes=additionalBytes;
     for(const entry of entries){const path=join(account.notebook.directory,entry.name);if(entry.isFile())bytes+=(await stat(path)).size;else if(entry.isDirectory()&&entry.name==='images')for(const notebookId of await readdir(path)){const folder=join(path,notebookId);for(const image of await readdir(folder)){const imagePath=join(folder,image);bytes+=(await stat(imagePath)).size;}}}
     try{bytes+=(await stat(join(account.directory,'folders.json'))).size;}catch(error){if(error.code!=='ENOENT')throw error;}
@@ -212,6 +215,52 @@ export class NotcardsStore {
     });
   }
 
+  async compose(userId,input) {
+    if(!input||typeof input!=='object'||!/^[0-9a-f]{8}-[0-9a-f-]{27}$/i.test(input.draftId||''))throw problem(400,'A valid draftId is required');
+    if(typeof input.body!=='string'||input.body.length>50_000)throw problem(400,'Draft text is required and must be at most 50,000 characters');
+    if(typeof input.title!=='string'||input.title.length>500||typeof input.split!=='boolean'||!(input.folderId===null||typeof input.folderId==='string'&&/^[0-9a-f-]{36}$/i.test(input.folderId)))throw problem(400,'Composer options are invalid');
+    if(!input.body.trim()&&!input.title.trim())throw problem(400,'Enter a note or a title');
+    const links=extractLinks(input.body);
+    if(links.length>100)throw problem(400,'A draft can contain at most 100 unique links');
+    const payload={body:input.body,title:clean(input.title,500),split:input.split,folderId:input.folderId,links};
+    const payloadJson=JSON.stringify(payload),payloadHash=hashHex(payloadJson),account=await this.account(userId);
+    return this.withAccountWrite(account,async()=>{
+      if(payload.folderId&&!account.folders.some(folder=>folder.id===payload.folderId))throw problem(400,'Choose a folder in your account');
+      let draft=this.db.prepare('SELECT * FROM composer_drafts WHERE user_id=? AND draft_id=?').get(userId,input.draftId);
+      if(draft&&draft.payload_hash!==payloadHash)throw problem(409,'This draft ID was already used for different content');
+      if(!draft){
+        const items=payload.split&&links.length?links:[links[0]||null];
+        const firstYoutube=links.length?Boolean(youtubeVideo(links[0])):false;
+        const plan=items.map((link,index)=>({link,index,id:randomBytes(9).toString('base64url').slice(0,11),sourceType:payload.split?(link?sourceTypeForLink(link):'text'):(links.length?sourceTypeForLink(links[0]):'text'),autoSummaryEligible:index===0&&firstYoutube}));
+        const rowPayload={...payload,plan};
+        const estimated=plan.reduce((sum,item)=>sum+Buffer.byteLength(JSON.stringify({id:item.id,url:item.link,title:payload.title,personalNotes:item.index===0?payload.body:'',composerDraftId:input.draftId}))+2048,0);
+        await this.assertCapacity(account,{newNotes:plan.length,additionalBytes:estimated});
+        this.db.prepare('DELETE FROM composer_drafts WHERE user_id=? AND updated_at<?').run(userId,this.clock()-30*24*60*60_000);
+        if(this.db.prepare('SELECT COUNT(*) AS count FROM composer_drafts WHERE user_id=?').get(userId).count>=5000)throw problem(429,'This account has reached its recent composer retry limit');
+        this.db.prepare('INSERT INTO composer_drafts(user_id,draft_id,payload_hash,payload_json,ids_json,created_at,updated_at) VALUES(?,?,?,?,?,?,?)').run(userId,input.draftId,payloadHash,JSON.stringify(rowPayload),'[]',this.clock(),this.clock());
+        draft=this.db.prepare('SELECT * FROM composer_drafts WHERE user_id=? AND draft_id=?').get(userId,input.draftId);
+      }
+      const savedPayload=JSON.parse(draft.payload_json),ids=JSON.parse(draft.ids_json);
+      // Recover a note written just before a process restart persisted its ID list.
+      for(const note of await account.notebook.list())if(note.composerDraftId===input.draftId&&note.composerRequestHash===payloadHash&&Number.isInteger(note.composerItemIndex))ids[note.composerItemIndex]=note.id;
+      const plan=savedPayload.plan;
+      for(let i=0;i<plan.length;i++){
+        if(ids[i])continue;
+        const item=plan[i],video=item.link&&youtubeVideo(item.link);
+        const id=item.id;
+        if(await account.notebook.get(id))throw problem(409,'A composer notebook ID is already occupied. Retry with a new draft.');
+        const personalNotes=payload.split?(i===0?payload.body:''):payload.body;
+        const title = payload.title || (payload.split && item.link ? item.link : clean(payload.body.split(/\r?\n/).find(line => line.trim()), 100));
+        const note={...(video||{}),id,url:video?.url||item.link||null,title,channel:'',thumbnail:video?.thumbnail||null,createdAt:new Date(this.clock()).toISOString(),updatedAt:new Date(this.clock()).toISOString(),state:'awaiting_summary',error:null,segments:[],revisions:[],conversations:[],personalNotes,pinned:false,color:'cream',finish:null,transcriptSource:null,sourceType:item.sourceType,folderId:payload.folderId,sourceLinks:payload.split?(item.link?[item.link]:[]):links,composerDraftId:input.draftId,composerItemIndex:i,composerRequestHash:payloadHash,autoSummaryEligible:item.autoSummaryEligible};
+        await this.assertCapacity(account,{newNote:true,additionalBytes:Buffer.byteLength(JSON.stringify(note))+2048});
+        await account.notebook.put(note);
+        ids[i]=id;
+        this.db.prepare('UPDATE composer_drafts SET ids_json=?,updated_at=? WHERE user_id=? AND draft_id=?').run(JSON.stringify(ids),this.clock(),userId,input.draftId);
+      }
+      return {ids:ids.filter(Boolean)};
+    });
+  }
+
   async createResearchNote(account,input) {
     const title=clean(input.title,500)||'Untitled research';
     const raw=typeof input.url==='string'&&input.url.trim()?input.url.trim():null;
@@ -231,7 +280,9 @@ export class NotcardsStore {
   async capture(userId,input,idempotencyKey) {
     if (!/^[A-Za-z0-9_-]{16,128}$/.test(idempotencyKey || '')) throw problem(400,'Capture idempotency key is required');
     let identity;try{identity=videoIdentity(input.url);}catch(error){throw problem(400,error.message);}
-    if (typeof input.transcript!=='string' || input.transcript.length>800_000) throw problem(400,'Video captions are missing or too large');
+    const rawTranscript=input.transcript;
+    if (!(typeof rawTranscript==='string' || Array.isArray(rawTranscript) || (rawTranscript&&typeof rawTranscript==='object')) || Buffer.byteLength(JSON.stringify(rawTranscript))>800_000) throw problem(400,'Video captions are missing or too large');
+    const segments=typeof rawTranscript==='string'&&!rawTranscript.trim()?[]:parseTranscript(rawTranscript);
     const normalized={...input,url:identity.url};
     const payloadHash=hashHex(JSON.stringify(normalized));
     const lockKey=`${userId}:${idempotencyKey}`;
@@ -241,12 +292,12 @@ export class NotcardsStore {
       return this.withAccountWrite(account,async()=>{
         const saved=this.db.prepare('SELECT payload_hash,note_id FROM idempotency WHERE user_id=? AND request_key=?').get(userId,idempotencyKey);
         if(saved){if(saved.payload_hash!==payloadHash)throw problem(409,'This capture key was already used for different video data');const note=await account.notebook.get(saved.note_id);if(note)return note;}
-        const writeReserve=input.transcript.trim()?TRANSCRIPT_STORAGE_RESERVE:2048;
+        const writeReserve=segments.length?TRANSCRIPT_STORAGE_RESERVE:2048;
         await this.assertCapacity(account,{newNote:!(await account.notebook.get(identity.id)),additionalBytes:Buffer.byteLength(JSON.stringify(normalized))+writeReserve});
         this.db.prepare('DELETE FROM idempotency WHERE user_id=? AND created_at<?').run(userId,this.clock()-30*24*60*60_000);
         if(this.db.prepare('SELECT COUNT(*) AS count FROM idempotency WHERE user_id=?').get(userId).count>=5000)throw problem(429,'This account has reached its recent capture retry limit');
         let note=await account.notebook.create({url:identity.url,title:input.title,channel:input.channel});
-        if(input.transcript.trim())note=await account.notebook.transcript(note.id,input.transcript,input.source||'youtube-captions');
+        if(segments.length)note=await account.notebook.transcript(note.id,segments,input.source||'youtube-captions');
         this.db.prepare('INSERT OR REPLACE INTO idempotency(user_id,request_key,payload_hash,note_id,created_at) VALUES(?,?,?,?,?)').run(userId,idempotencyKey,payloadHash,note.id,this.clock());
         return note;
       });

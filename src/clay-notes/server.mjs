@@ -102,7 +102,7 @@ export async function startServer({directory = process.env.CLAY_NOTES_STORE || d
       }
       if(req.method!=='GET') throw problem(405,'Method not allowed');
       let path=url.pathname==='/'?'index.html':url.pathname.slice(1);
-      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
+      if(!['index.html','app.mjs','i18n.mjs','session.mjs','collection.mjs','composer.mjs','composer-links.mjs','style.css','assets/Satoshi-LICENSE.txt'].includes(path) && !/^assets\/satoshi-(400|500|700|900)\.woff2$/.test(path)) throw problem(404,'Page not found');
       const bytes=await readFile(join(web,path));
       if(path==='index.html') res.setHeader('Set-Cookie',`clay_session_${server.address().port}=${session}; HttpOnly; SameSite=Strict; Path=/`);
       const extension=path.slice(path.lastIndexOf('.')); res.writeHead(200,{'Content-Type':mime[extension] || 'application/octet-stream'});res.end(bytes);

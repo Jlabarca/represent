@@ -45,7 +45,7 @@ Mixed link ordering, retry/split saves, text persistence, settings storage, phon
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-11.1.1 — Deliver inline note and link capture, desktop sizes and a one-card-per-screen vertical mobile collection. Verify content and layout in a browser.
+- [x] REP-11.1.1 — Deliver inline note and link capture, desktop sizes and a one-card-per-screen vertical mobile collection. Verify content and layout in a browser. — evidence: node tmp/composer-assert.mjs: 1/1 passed, skipped=0, output sha256=e905dd18212f0c5454ecb23219dfd04896eb5d3952aa6fab6b184ac7cac063d5
 
 ## Key Files Reference
 

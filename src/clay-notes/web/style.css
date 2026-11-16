@@ -153,3 +153,69 @@ html[data-theme=light] #cards > .grid:not(.compact-grid) > .note-card::before {
   html[data-theme=light] #cards > .grid:not(.compact-grid) > .note-card::before { inset: -6px -4px; }
 }
 .grid .card-art[src*='X6J3ByTqhLY'] { object-position: 94% center; }
+
+/* The middle setting keeps the three-pocket binder at a typical desktop width. */
+html { --card-min: 330px; --card-max: 510px; }
+html[data-card-size="1"] { --card-min: 175px; --card-max: 230px; }
+html[data-card-size="2"] { --card-min: 245px; --card-max: 320px; }
+html[data-card-size="4"] { --card-min: 440px; --card-max: 630px; }
+html[data-card-size="5"] { --card-min: 570px; --card-max: 780px; }
+@media (min-width: 721px) {
+  #cards.album-frame > .grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--card-min)), 1fr)); align-items: start; }
+  #cards.album-frame > .grid > .note-card { width: min(100%, var(--card-max)); justify-self: center; min-width: 0; }
+  #cards.album-frame > .grid .card-surface { width: 100%; height: auto !important; aspect-ratio: .8; }
+}
+.card-size-setting output { font-variant-numeric: tabular-nums; }
+.card-size-setting input { width: 100%; accent-color: var(--ink); }
+
+/* A single writable surface, with an optional title and explicit save on expansion. */
+#quick-note-slot { width: min(100%, 740px); margin: 10px auto 20px; }
+.quick-note { border: 1px solid var(--line); border-radius: 13px; background: #fff; color:var(--ink); box-shadow: 0 2px 7px #14131b19; }
+html[data-theme=dark] .quick-note { background: #202124; border-color: #53555b; box-shadow: 0 2px 7px #0006; }
+.quick-note [hidden] { display: none !important; }
+.quick-note .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
+.quick-note-toggle { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:55px; text-align:start; padding:12px 22px; border:0; border-radius:inherit; background:transparent; color:var(--muted,var(--ink)); font:inherit; font-weight:600; font-size:1.05rem; cursor:text; }
+.quick-note-toggle::after { content:'Ã¯Â¼â€¹'; font-size:1.45rem; font-weight:400; opacity:.78; }
+.quick-note-form { display:grid; gap:8px; padding:14px 19px 10px; }
+.quick-note label { display:block; margin:0; }
+.quick-note .quick-title-caption,.quick-title-label .optional { display:none; }
+.quick-note .quick-title,.quick-note .quick-body { width:100%; display:block; margin:0; padding:5px 0; color:var(--ink); background:transparent; border:0; border-radius:0; box-shadow:none; font:inherit; }
+.quick-note .quick-title { font-weight:750; font-size:1.12rem; }
+.quick-note .quick-body { min-height:72px; max-height:40dvh; resize:vertical; }
+.quick-note input:focus-visible,.quick-note textarea:focus-visible { outline-offset:3px; }
+.quick-split label { display:flex; align-items:center; gap:8px; font-size:.9rem; cursor:pointer; }
+.quick-split input[type=checkbox] { width:17px; height:17px; padding:0; margin:0; }
+.quick-actions { display:flex; justify-content:flex-end; gap:6px; }
+.quick-actions button { font:inherit; font-weight:650; padding:8px 14px; min-height:38px; border:0; border-radius:9px; }
+.quick-cancel { background:transparent;color:var(--ink); }
+.quick-save { background:var(--ink);color:var(--paper,#fff); }
+html[data-theme=dark] .quick-save { color:#161617; }
+.quick-actions button:disabled { opacity:.48; }
+.quick-error { margin:0; font-size:.9rem; color:#ae3525; }
+html[data-theme=dark] .quick-error { color:#ffafa2; }
+
+@media (max-width:720px), (pointer:coarse) and (max-height:600px) and (max-width:1050px) {
+  html[data-screen=collection] { scroll-snap-type:y mandatory; scroll-padding:0; overflow-x:hidden; overflow-y:auto; }
+  html[data-screen=collection] body { overflow-x:clip; overflow-y:visible; }
+  html[data-screen=collection] .nav { position:relative; top:auto; scroll-snap-align:start; }
+  html[data-screen=collection]:has(dialog[open], .quick-note-form:not([hidden]), .card-grab:active) { scroll-snap-type:none; }
+  #settings-dialog .card-size-setting { display:none; }
+  #quick-note-slot { margin:6px 0 12px; }
+  .quick-note-toggle { min-height:47px; padding:8px 15px; }
+  .quick-note-form { padding:10px 13px; }
+  #cards.album-frame { padding:0; overflow:visible; }
+  #cards.album-frame > .grid { display:grid; grid-template-columns:minmax(0,1fr); gap:0; padding:0; }
+  #cards.album-frame > .grid > .note-card { display:grid; place-items:center; width:100%; min-width:0; height:100vh; height:100dvh; margin:0; scroll-snap-align:center; scroll-snap-stop:always; }
+  #cards.album-frame > .grid > .note-card::before { display:none; }
+  #cards.album-frame > .grid .card-surface { width:min(100%,calc((100dvh - 20px) * .8)); height:auto !important; aspect-ratio:.8; margin:0; }
+  .album-caption { display:none; }
+  @media (max-height:520px) {
+    .collection-heading p,.sample-banner { display:none; }
+    #cards.album-frame > .grid .card-surface { padding:10px; }
+    #cards.album-frame > .grid .card-title { font-size:clamp(18px,5vh,27px)!important; }
+  }
+}
+@media (prefers-reduced-motion:reduce) {
+  html[data-screen=collection] { scroll-behavior:auto; }
+  .quick-note,.quick-note-toggle { transition:none; }
+}

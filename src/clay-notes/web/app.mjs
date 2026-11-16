@@ -1,5 +1,6 @@
 import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs';
 import {requestJSON} from './session.mjs';
+import {createComposer} from './composer.mjs';
 import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards} from './collection.mjs';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -30,7 +31,7 @@ let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#toast').hidden=true;},5500);}
 async function api(path,{method='GET',data}={}){
   try{return await requestJSON(fetch,`/api${path}`,{method,headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{})});}
-  catch(error){if(error.code==='web_session_expired')error.message=t('Your local session expired. Reload Clay Notes.');if(error.code==='sign_in_required'){state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';renderLibrary();}throw error;}
+  catch(error){if(error.code==='web_session_expired')error.message=t('Your local session expired. Reload Clay Notes.');if(error.code==='sign_in_required'){composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';renderLibrary();}throw error;}
 }
 const time=value=>{const n=Math.floor(Number(value)||0);return n>=3600?`${Math.floor(n/3600)}:${String(Math.floor(n/60)%60).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`:`${Math.floor(n/60)}:${String(n%60).padStart(2,'0')}`;};
 const date=value=>new Date(value).toLocaleDateString(locale,{month:'short',day:'numeric'});
@@ -46,10 +47,52 @@ function setupBanner(){
 }
 const garden=()=>`<div class="garden" aria-hidden="true"><svg viewBox="0 0 480 230" fill="none"><defs><linearGradient id="paper" x1="200" y1="20" x2="270" y2="170" gradientUnits="userSpaceOnUse"><stop stop-color="#fffef4"/><stop offset="1" stop-color="#e6dfc9"/></linearGradient><linearGradient id="leaf" x1="340" y1="65" x2="350" y2="165" gradientUnits="userSpaceOnUse"><stop stop-color="#99b477"/><stop offset="1" stop-color="#54734a"/></linearGradient><radialGradient id="shadow"><stop stop-color="#5f7655" stop-opacity=".23"/><stop offset="1" stop-color="#5f7655" stop-opacity="0"/></radialGradient></defs><ellipse cx="250" cy="192" rx="155" ry="24" fill="url(#shadow)"/><g transform="rotate(-12 205 120)"><rect x="107" y="53" width="138" height="143" rx="19" fill="#b1c3a1"/><rect x="111" y="48" width="138" height="143" rx="19" fill="#c5d7b1" stroke="#fff" stroke-opacity=".5"/></g><g transform="rotate(9 250 110)"><rect x="187" y="37" width="141" height="151" rx="19" fill="#d5cbb1"/><rect x="184" y="31" width="141" height="151" rx="19" fill="url(#paper)" stroke="#fffef3"/><rect x="205" y="51" width="99" height="39" rx="10" fill="#dbe5c9"/><path d="m246 62 13 8-13 8V62Z" fill="#65814e"/><path d="M206 111h79M206 124h65M206 137h83M206 150h48" stroke="#a2ac90" stroke-width="4" stroke-linecap="round"/></g><path d="M355 185v-62" stroke="#71865a" stroke-width="5" stroke-linecap="round"/><path d="M353 148c-35-1-43-26-36-43 29 0 39 21 36 43Z" fill="url(#leaf)"/><path d="M356 128c32-8 37-32 25-47-26 6-32 27-25 47Z" fill="url(#leaf)"/><path d="M336 177h38l-5 23h-29l-4-23Z" fill="#bfae8c"/><path d="M111 92 101 86M121 71l-2-12M96 115l-13 2" stroke="#93a67b" stroke-width="3" stroke-linecap="round"/><circle cx="365" cy="49" r="5" fill="#d4dca5"/><path d="m343 62 3-6 3 6 6 3-6 3-3 6-3-6-6-3 6-3Z" fill="#8ba36c"/></svg><span class="garden-caption">${h("Small notes. Room for big ideas.")}</span></div>`;
 
+function signInForNotes(){
+  if(!state.googleConfigured){toast(t('Google sign-in is being configured.'));return;}
+  location.assign('/auth/google');
+}
+
+const composer=createComposer({
+  t,
+  canSave:()=>Boolean(state.user && !state.local),
+  getOwner:()=>state.user?.id ?? null,
+  signIn:signInForNotes,
+  save:payload=>api('/composer',{method:'POST',data:{...payload,folderId:['all','saved'].includes(state.folderId)?null:state.folderId}}),
+  onSaved:async()=>{
+    state.query='';state.pinned=false;state.filter='all';state.explore=false;
+    if(state.folderId==='saved')state.folderId='all';
+    const owner=state.user?.id;
+    try{
+      const [notes,folders]=await Promise.all([api('/notes'),api('/folders')]);
+      if(!owner || owner!==state.user?.id)return;
+      state.notes=notes;state.folders=folders;state.sync='network';
+      writeLibraryCache(localStorage,notes,Date.now(),owner);
+      if(!location.hash)renderLibrary();
+    }catch(error){toast(error.message);}
+  }
+});
+
+let focusComposerAfterNavigation=false;
+function startNote(){
+  if(state.local){updateSourceFields();$('#add-dialog').showModal();return;}
+  if(location.hash){focusComposerAfterNavigation=true;location.hash='';return;}
+  composer.focus();
+}
 function renderLibrary(){
+  document.documentElement.dataset.screen='collection';
+  const editing=$('#quick-note-slot')?.contains(document.activeElement)?document.activeElement:null;
+  const selection=editing && typeof editing.selectionStart==='number'?[editing.selectionStart,editing.selectionEnd]:null;
   state.note=null;$('#all-filter').classList.toggle('active',!state.pinned&&!state.explore);$('#explore-filter').classList.toggle('active',state.explore);$('#pin-filter').classList.toggle('active',state.pinned);
   const source=state.user?state.notes:sampleNotes,folders=state.user?state.folders:[{id:'sample-markets',name:t('Mercados'),count:sampleNotes.length}];
-  $('#main').innerHTML=`<div class="library-layout"><aside class="folder-rail"><div class="rail-emblem">${stackIcon}</div><div class="folder-heading"><h2>${h('Mis carpetas')}</h2><button class="add-folder" data-action="new-folder" aria-label="${h('Nueva carpeta')}">＋</button></div><button class="folder-item ${state.folderId==='all'?'selected':''}" data-folder="all">${folderIcon}${h('Todas')}<b>${source.length}</b></button>${folders.map(folder=>`<button class="folder-item ${state.folderId===folder.id?'selected':''}" data-folder="${escape(folder.id)}">${folderIcon}${escape(folder.name)}<b>${folder.count||0}</b></button>`).join('')}<button class="folder-item ${state.folderId==='saved'?'selected':''}" data-folder="saved">${bookmarkIcon}${h('Guardadas')}<b>${source.filter(note=>note.pinned).length}</b></button></aside><section class="collection-main"><div class="collection-heading"><div><h1>${state.pinned?h('Fijadas'):state.explore?h('Explorar'):h('Tu colección')}</h1><p>${h('Cada carta guarda una investigación.')}</p></div><span class="count-pill" id="note-count"></span><label class="search-wrap">⌕ <input type="search" id="search" placeholder="${h('Buscar entre tus cartas…')}" value="${escape(state.query)}"></label></div><div class="collection-controls"><div class="filter-pills"><button class="filter-pill ${state.filter==='all'?'active':''}" data-filter="all">${h('Todas')}</button><button class="filter-pill ${state.filter==='holo'?'active':''}" data-filter="holo">${h('Holo')}</button><button class="filter-pill ${state.filter==='pinned'?'active':''}" data-filter="pinned">${h('Fijadas')}</button><button class="filter-pill ${state.filter==='ready'?'active':''}" data-filter="ready">${h('Con IA')}</button><button class="filter-pill ${state.filter==='waiting'?'active':''}" data-filter="waiting">${h('Por explorar')}</button></div><span class="control-divider"></span><label class="sort-control"><select id="card-sort" aria-label="${h('Sort')}">${[['newest','Más recientes'],['oldest','Más antiguas'],['title','Título'],['manual','Orden manual']].map(([value,label])=>`<option value="${value}" ${state.sort===value?'selected':''}>${h(label)}</option>`).join('')}</select></label><div class="view-toggle"><button data-view="grid" class="${state.view==='grid'?'active':''}">▦ ${h('Cuadrícula')}</button><button data-view="album" class="${state.view==='album'?'active':''}">▣ ${h('Álbum')}</button></div></div>${!state.user?`<div class="sample-banner"><span>${h('Colección de ejemplo')} · ${h('Inicia sesión para guardar tus propias investigaciones.')}</span><a href="#" data-action="signin">${h('Iniciar sesión con Google')} ↗</a></div>`:''}<p class="small collection-sync" id="sync-state"></p><div class="album-frame ${state.view==='grid'?'grid-view':''}" id="cards"></div><div class="album-caption"><span></span><span>▣ &nbsp;${h('Abre una carta para investigar')}</span><span></span></div></section></div>`;
+  $('#main').innerHTML=`<div class="library-layout"><aside class="folder-rail"><div class="rail-emblem">${stackIcon}</div><div class="folder-heading"><h2>${h('Mis carpetas')}</h2><button class="add-folder" data-action="new-folder" aria-label="${h('Nueva carpeta')}">＋</button></div><button class="folder-item ${state.folderId==='all'?'selected':''}" data-folder="all">${folderIcon}${h('Todas')}<b>${source.length}</b></button>${folders.map(folder=>`<button class="folder-item ${state.folderId===folder.id?'selected':''}" data-folder="${escape(folder.id)}">${folderIcon}${escape(folder.name)}<b>${folder.count||0}</b></button>`).join('')}<button class="folder-item ${state.folderId==='saved'?'selected':''}" data-folder="saved">${bookmarkIcon}${h('Guardadas')}<b>${source.filter(note=>note.pinned).length}</b></button></aside><section class="collection-main"><div class="collection-heading"><div><h1>${state.pinned?h('Fijadas'):state.explore?h('Explorar'):h('Tu colección')}</h1><p>${h('Cada carta guarda una investigación.')}</p></div><span class="count-pill" id="note-count"></span><label class="search-wrap">⌕ <input type="search" id="search" placeholder="${h('Buscar entre tus cartas…')}" value="${escape(state.query)}"></label></div>${state.local?'':'<div id="quick-note-slot"></div>'}<div class="collection-controls"><div class="filter-pills"><button class="filter-pill ${state.filter==='all'?'active':''}" data-filter="all">${h('Todas')}</button><button class="filter-pill ${state.filter==='holo'?'active':''}" data-filter="holo">${h('Holo')}</button><button class="filter-pill ${state.filter==='pinned'?'active':''}" data-filter="pinned">${h('Fijadas')}</button><button class="filter-pill ${state.filter==='ready'?'active':''}" data-filter="ready">${h('Con IA')}</button><button class="filter-pill ${state.filter==='waiting'?'active':''}" data-filter="waiting">${h('Por explorar')}</button></div><span class="control-divider"></span><label class="sort-control"><select id="card-sort" aria-label="${h('Sort')}">${[['newest','Más recientes'],['oldest','Más antiguas'],['title','Título'],['manual','Orden manual']].map(([value,label])=>`<option value="${value}" ${state.sort===value?'selected':''}>${h(label)}</option>`).join('')}</select></label><div class="view-toggle"><button data-view="grid" class="${state.view==='grid'?'active':''}">▦ ${h('Cuadrícula')}</button><button data-view="album" class="${state.view==='album'?'active':''}">▣ ${h('Álbum')}</button></div></div>${!state.user?`<div class="sample-banner"><span>${h('Colección de ejemplo')} · ${h('Inicia sesión para guardar tus propias investigaciones.')}</span><a href="#" data-action="signin">${h('Iniciar sesión con Google')} ↗</a></div>`:''}<p class="small collection-sync" id="sync-state"></p><div class="album-frame ${state.view==='grid'?'grid-view':''}" id="cards"></div><div class="album-caption"><span></span><span>▣ &nbsp;${h('Abre una carta para investigar')}</span><span></span></div></section></div>`;
+  if(!state.local){
+    composer.mount($('#quick-note-slot'));
+    if(focusComposerAfterNavigation){focusComposerAfterNavigation=false;composer.focus();}
+    else if(editing?.isConnected){
+      editing.focus({preventScroll:true});
+      if(selection)editing.setSelectionRange(...selection);
+    }
+  }
   $('#search').addEventListener('input',event=>{state.query=event.target.value;renderCards();});$('#card-sort').addEventListener('change',event=>{state.sort=event.target.value;renderCards();});
   document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{state.filter=button.dataset.filter;renderLibrary();}));
   document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{state.view=button.dataset.view;try{localStorage?.setItem('notcards-view',state.view);}catch{}renderLibrary();}));
@@ -69,6 +112,7 @@ function renderCards(){
 
 function citations(sources,kind='summary',item='') {return (sources || []).map(index=>`<button class="citation" title="${h("Read supporting transcript")}" aria-label="${h("Read supporting segment")} ${index+1}" data-action="cite" data-source="${index}" data-kind="${kind}" data-item="${item}">[${index+1}]</button>`).join('');}
 function renderNotebook(){
+  document.documentElement.dataset.screen='notebook';
   const n=state.note;if(!n)return;
   const sameNotebook=document.querySelector('[data-notebook-id]')?.dataset.notebookId===n.id;const inputDrafts=new Map(sameNotebook?['question','transcript-input'].map(id=>[id,$(`#${id}`)?.value]):[]);
   const draft=state.drafts.get(n.id) ?? n.personalNotes;
@@ -116,8 +160,8 @@ document.addEventListener('click',async event=>{
   const button=event.target.closest('[data-action]');if(!button)return;
   const action=button.dataset.action;
   try{
-    if(action==='add')$('#add-dialog').showModal();
-    if(action==='signin'){event.preventDefault();if(!state.googleConfigured){toast(t('Google sign-in is being configured.'));return;}location.href='/auth/google';}
+    if(action==='add')startNote();
+    if(action==='signin'){event.preventDefault();signInForNotes();}
     if(action==='open'){if(!state.user){const sample=sampleNotes.find(note=>note.id===button.dataset.id);if(sample)window.open(sample.url,'_blank','noopener');return;}location.hash=`note=${button.dataset.id}`;}
     if(action==='library'){location.hash='';state.evidence=null;state.revision=null;}
     if(action==='tab'){state.tab=button.dataset.tab;renderNotebook();}
@@ -140,13 +184,13 @@ function updateSourceFields(){
   text.placeholder=t(kind==='video'?'Paste text or timestamped captions…':'Paste text or notes…');
 }
 $('#source-kind').addEventListener('change',updateSourceFields);
-$('#add').addEventListener('click',()=>{updateSourceFields();$('#add-dialog').showModal();});
+$('#add').addEventListener('click',startNote);
 $('#connect').href='/downloads/notcards-dev.zip';
 $('#connect').addEventListener('click',event=>{if(state.local){event.preventDefault();if(state.config.pairingToken&&$('#connect-dialog')){$('#pairing-code').value=state.config.pairingToken;$('#connect-dialog').showModal();}}});
 document.querySelectorAll('.close-dialog').forEach(button=>button.addEventListener('click',()=>button.closest('dialog').close()));
 $('#copy-code')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#pairing-code').value);toast(t('Pairing code copied. Paste it in extension settings.'));}catch{$('#pairing-code').type='text';$('#pairing-code').select();toast(t('Select and copy the pairing code.'));}});
 $('#folder-form')?.addEventListener('submit',async event=>{event.preventDefault();if(!state.user){toast(t('Sign in to create folders.'));return;}const name=$('#folder-name').value.trim();if(!name)return;try{const folder=await api('/folders',{method:'POST',data:{name}});state.folders.push(folder);$('#folder-dialog').close();$('#folder-form').reset();renderLibrary();}catch(error){toast(error.message);}});
-$('#logout')?.addEventListener('click',async()=>{try{await fetch('/auth/logout',{method:'POST',credentials:'same-origin'});state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';$('#settings-dialog').close();renderLibrary();}catch(error){toast(error.message);}});
+$('#logout')?.addEventListener('click',async()=>{try{await fetch('/auth/logout',{method:'POST',credentials:'same-origin'});composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';$('#settings-dialog').close();renderLibrary();}catch(error){toast(error.message);}});
 $('#add-form').addEventListener('submit',async event=>{
   event.preventDefault();$('#save-video').disabled=true;$('#add-error').textContent='';
   const sourceType=$('#source-kind').value,url=$('#video-url').value.trim(),text=$('#video-transcript').value.trim(),title=$('#video-title').value.trim();
@@ -173,6 +217,21 @@ document.addEventListener('keydown',event=>{
 });
 try{state.view=localStorage?.getItem('notcards-view')==='grid'?'grid':'album';}catch{}
 applyTheme();applyLanguage();
+const cardSize=$('#card-size');
+function applyCardSize(value){
+  const size=/^[1-5]$/.test(String(value))?String(value):'3';
+  document.documentElement.dataset.cardSize=size;
+  cardSize.value=size;
+  const readout=cardSize.parentElement.querySelector('output');
+  if(readout)readout.value=size;
+}
+let savedCardSize;
+try{savedCardSize=localStorage?.getItem('notcards-card-size');}catch{}
+applyCardSize(savedCardSize);
+cardSize.addEventListener('input',()=>{
+  applyCardSize(cardSize.value);
+  try{localStorage?.setItem('notcards-card-size',cardSize.value);}catch{}
+});
 $('#settings').addEventListener('click',()=>$('#settings-dialog').showModal());
 function changeLanguage(preference){
   const ids=['question','transcript-input'];const drafts=new Map(ids.map(id=>[id,$(`#${id}`)?.value]));
@@ -211,6 +270,7 @@ async function refreshSession(){
     const session=await response.json(),nextId=session.authenticated?session.user.id:null,currentId=state.user?.id||null;
     state.googleConfigured=session.googleConfigured===true;
     if(nextId===currentId)return;
+    if(currentId)composer.clear();
     state.note=null;state.notes=[];state.folders=[];state.user=session.authenticated?session.user:null;location.hash='';
     renderLibrary();if(state.user)await bootUserLibrary();
   }catch{/* Keep the current account visible until a definite session response arrives. */}

@@ -4,6 +4,10 @@
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
 > Updated: 2026-11-16
 
+## Notcards collection composer (2026-11-16)
+
+The hosted collection provides an inline note composer with first-link type inference and an optional split per link. Desktop users choose the card size in Settings. Phones open at the collection header and scroll vertically through centered cards. [Implementation](orkest/notcards-composer.imp.md).
+
 ## Notcards development (2026-11-16)
 
 The user renamed Clay Notes **Notcards** and selected `not.maremoto.dev` for development, with `not.cards` intended for production. The light reference uses clear binder pockets and the dark reference uses a black album. Both use Satoshi, large italic titles and actual full-art video or attached covers. [Development deployment](guides/notcards-dev.md). [Implementation](orkest/done/notcards-dev.imp.md).

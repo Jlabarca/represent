@@ -18,7 +18,7 @@ export function extensionId(publicKey) {
   return [...digest.subarray(0, 16)].map(byte => String.fromCharCode(97 + (byte >> 4), 97 + (byte & 15))).join('');
 }
 
-export async function buildPackage({source = sourceDefault, output = join(root, 'dist/notcards-extension'), writeUnpacked = true} = {}) {
+export async function buildPackage({source = sourceDefault, output = join(root, 'dist/notcards-extension'), writeUnpacked = true, store = false} = {}) {
   source = resolve(typeof source === 'string' ? source : fileURLToPath(source));
   output = resolve(output);
   if ((await lstat(source)).isSymbolicLink()) throw new Error('Notcards extension source cannot be a symlink');
@@ -93,7 +93,10 @@ export async function buildPackage({source = sourceDefault, output = join(root, 
     ...(manifest.content_scripts || []).flatMap(script => [...(script.js || []), ...(script.css || [])])];
   if (referencedFiles.some(name => !sourceFiles.includes(name))) throw new Error('Manifest resource is outside the allow-list');
 
-  await addFile('manifest.json', manifestBytes);
+  const packedManifest = store ? {...manifest} : manifest;
+  if (store) delete packedManifest.key;
+  const packedManifestBytes = store ? Buffer.from(`${JSON.stringify(packedManifest, null, 2)}\n`) : manifestBytes;
+  await addFile('manifest.json', packedManifestBytes);
   for (const name of sourceFiles.slice(1)) await addFile(name, await readSource(name));
 
   const localesDirectory = join(source, '_locales');
@@ -134,20 +137,26 @@ export async function buildPackage({source = sourceDefault, output = join(root, 
   if (JSON.stringify(names) !== JSON.stringify(expectedNames)) throw new Error('Notcards package is missing a required resource');
   const archive = zipFiles(names.map(name => [name, generatedFiles.get(name)]));
   await mkdir(output, {recursive: true});
-  const path = join(output, 'notcards-dev.zip');
+  const filename = store ? 'notcards-store.zip' : 'notcards-dev.zip';
+  const path = join(output, filename);
   await writeFile(path, archive);
 
   const report = {
-    version: manifest.version, extensionId: extensionId(key), filename: 'notcards-dev.zip',
+    version: manifest.version, extensionId: store ? null : extensionId(key), filename,
     bytes: archive.length, sha256: createHash('sha256').update(archive).digest('hex'),
     members: names, locales: [...supported].sort(), credentialsIncluded: false,
-    origin: 'https://not.maremoto.dev', status: 'development build; Chrome Web Store submission pending'
+    origin: 'https://not.maremoto.dev', status: store ? 'store candidate; assigned Store ID must be configured after publication' : 'development build; Chrome Web Store submission pending'
   };
-  await writeFile(join(output, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
+  await writeFile(join(output, store ? 'notcards-store-report.json' : 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
   return {...report, path, unpacked: writeUnpacked ? unpacked : null};
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
-  try { console.log(JSON.stringify(await buildPackage(), null, 2)); }
+  try {
+    const args=process.argv.slice(2);
+    if(args.some(arg=>arg!=='--store')||args.filter(arg=>arg==='--store').length>1)throw new Error('Usage: node scripts/notcards-extension.mjs [--store]');
+    const store=args.includes('--store');
+    console.log(JSON.stringify(await buildPackage({store,writeUnpacked:!store}), null, 2));
+  }
   catch (error) { console.error(error.message); process.exitCode = 1; }
 }

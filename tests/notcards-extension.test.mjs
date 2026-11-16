@@ -3,10 +3,12 @@ import assert from 'node:assert/strict';
 import {mkdir, mkdtemp, readFile, rm, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {authorizeUrl, captureBelongsTo, createCaptureQueue, createPkce, readCallback, serviceOrigin} from '../extensions/notcards/auth.mjs';
+import {authorizeUrl, captureBelongsTo, createCaptureQueue, createPkce, expirationMillis, readCallback, serviceOrigin} from '../extensions/notcards/auth.mjs';
 import {buildPackage, extensionId} from '../scripts/notcards-extension.mjs';
 
 const redirectUri = 'https://aimdojafaddgpjhiejbfihfljeacolmk.chromiumapp.org/auth';
+const storeExtensionId = 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+const storeRedirectUri = `https://${storeExtensionId}.chromiumapp.org/auth`;
 
 async function temporary(t) {
   const directory = await mkdtemp(join(tmpdir(), 'notcards-extension-'));
@@ -43,6 +45,10 @@ test('Notcards OAuth flow uses PKCE and checks state, code, and its pinned callb
   assert.equal(auth.searchParams.get('challenge'), pkce.challenge);
   assert.equal(auth.searchParams.get('state'), pkce.state);
   assert.equal(auth.searchParams.get('redirectUri'), redirectUri);
+  const storeAuth = new URL(authorizeUrl({...pkce, redirectUri: storeRedirectUri, extensionId: storeExtensionId}));
+  assert.equal(storeAuth.searchParams.get('redirectUri'), storeRedirectUri);
+  assert.throws(() => authorizeUrl({...pkce, redirectUri: storeRedirectUri}), /Unexpected/);
+  assert.throws(() => authorizeUrl({...pkce, redirectUri: storeRedirectUri, extensionId: 'z'.repeat(32)}), /Unexpected/);
   const callback = `${redirectUri}?code=${'a'.repeat(43)}&state=${pkce.state}`;
   assert.equal(readCallback(callback, pkce.state, redirectUri), 'a'.repeat(43));
   assert.throws(() => readCallback(`${redirectUri}?code=${'a'.repeat(43)}&state=wrong`, pkce.state, redirectUri), /state/);
@@ -56,6 +62,14 @@ test('pending captures cannot be replayed through a different account grant', ()
   assert.equal(captureBelongsTo('account-a', 'account-a'), true);
   assert.equal(captureBelongsTo('account-a', 'account-b'), false);
   assert.equal(captureBelongsTo('account-a', undefined), false);
+});
+
+test('extension grant expiry accepts ISO timestamps and numeric epoch values', () => {
+  const expected=1_800_000_000_000;
+  assert.equal(expirationMillis(new Date(expected).toISOString()),expected);
+  assert.equal(expirationMillis(expected),expected);
+  assert.equal(expirationMillis(String(expected)),expected);
+  assert.ok(Number.isNaN(expirationMillis('not-an-expiry')));
 });
 
 test('serialized capture queue preserves simultaneous tabs, deduplicates sends, and retries failures', async () => {
@@ -132,6 +146,27 @@ test('hosted package is deterministic, localized, and restricted to the Notcards
   assert.doesNotMatch(JSON.stringify(messages), /Clay Notes|pairing|127\.0\.0\.1|local service/i);
   assert.deepEqual(archiveMembers(await readFile(first.path)), first.members);
   assert.equal(first.credentialsIncluded, false);
+});
+
+test('store package is deterministic, uses the pilot origin, and omits the development key', async t => {
+  const directory = await temporary(t);
+  const output = join(directory, 'build');
+  const source = new URL('../extensions/notcards/', import.meta.url);
+  const first = await buildPackage({source, output, writeUnpacked: false, store: true});
+  const second = await buildPackage({source, output, writeUnpacked: false, store: true});
+  assert.equal(first.filename, 'notcards-store.zip');
+  assert.equal(first.path, join(output, 'notcards-store.zip'));
+  assert.equal(first.sha256, second.sha256);
+  assert.equal(first.extensionId, null);
+  assert.match(first.status, /assigned Store ID must be configured/);
+  assert.equal(first.origin, 'https://not.maremoto.dev');
+  const entries = archiveEntries(await readFile(first.path));
+  const manifest = JSON.parse(entries.get('manifest.json').toString('utf8'));
+  assert.equal(Object.hasOwn(manifest, 'key'), false);
+  assert.deepEqual(manifest.host_permissions, ['https://www.youtube.com/*', 'https://not.maremoto.dev/*']);
+  assert.deepEqual(manifest.permissions, ['storage', 'scripting', 'identity']);
+  assert.equal(JSON.parse(await readFile(new URL('../extensions/notcards/manifest.json', import.meta.url), 'utf8')).key.length > 0, true);
+  assert.deepEqual(archiveMembers(await readFile(first.path)), first.members);
 });
 
 test('package builder rejects local pairing hosts and extra permissions', async t => {

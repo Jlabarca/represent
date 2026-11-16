@@ -41,3 +41,5 @@ Stop only this stack and retain the data volume:
 ```
 
 To roll back, deploy the prior verified application revision against a backup of its compatible data volume. Back up the development volume and the host-managed session configuration before a storage migration. Configure a separate domain, Google client, persistent storage and store extension for the production launch at `not.cards`.
+
+Use the [Chrome Web Store publishing guide](notcards-chrome-store.md) to upload the Store build and register its assigned ID alongside the unpacked development extension.

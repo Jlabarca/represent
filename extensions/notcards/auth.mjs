@@ -1,4 +1,6 @@
 const HOST = 'https://not.maremoto.dev';
+const DEVELOPMENT_EXTENSION_ID = 'aimdojafaddgpjhiejbfihfljeacolmk';
+const EXTENSION_ID = /^[a-p]{32}$/;
 
 const randomToken = (length = 32) => {
   const bytes = crypto.getRandomValues(new Uint8Array(length));
@@ -16,9 +18,10 @@ export async function createPkce() {
   return {verifier, challenge: base64Url(digest), state: randomToken(24)};
 }
 
-export function authorizeUrl({challenge, state, redirectUri}) {
+export function authorizeUrl({challenge, state, redirectUri, extensionId = DEVELOPMENT_EXTENSION_ID}) {
+  if (!EXTENSION_ID.test(extensionId || '')) throw new Error('Unexpected Notcards extension ID');
   const callback = new URL(redirectUri);
-  if (callback.protocol !== 'https:' || callback.hostname !== 'aimdojafaddgpjhiejbfihfljeacolmk.chromiumapp.org' || callback.pathname !== '/auth' || callback.search || callback.hash) {
+  if (callback.href !== `https://${extensionId}.chromiumapp.org/auth` || callback.protocol !== 'https:' || callback.hostname !== `${extensionId}.chromiumapp.org` || callback.pathname !== '/auth' || callback.search || callback.hash) {
     throw new Error('Unexpected Notcards sign-in redirect');
   }
   if (!/^[A-Za-z0-9_-]{43}$/.test(challenge) || !/^[a-f0-9]{48}$/.test(state)) throw new Error('Invalid sign-in request');
@@ -37,6 +40,13 @@ export function readCallback(resultUrl, expectedState, redirectUri) {
   const code = result.searchParams.get('code');
   if (result.searchParams.getAll('state').length !== 1 || result.searchParams.getAll('code').length !== 1 || !/^[A-Za-z0-9_-]{32,128}$/.test(code || '') || result.searchParams.has('error')) throw new Error(result.searchParams.get('error_description') || 'Notcards sign-in was not completed');
   return code;
+}
+
+export function expirationMillis(value) {
+  const numeric=typeof value==='number'?value:(typeof value==='string'&&/^\d{10,13}$/.test(value)?Number(value):NaN);
+  if(Number.isFinite(numeric))return numeric<1_000_000_000_000?numeric*1000:numeric;
+  const parsed=typeof value==='string'?Date.parse(value):NaN;
+  return Number.isFinite(parsed)?parsed:NaN;
 }
 
 export function captureBelongsTo(ownerId, accountId) {
