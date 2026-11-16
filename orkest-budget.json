@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "enabled": true,
+  "enabled": false,
   "warn_used_percent": 80,
   "stop_used_percent": 90,
   "context_guidance_warn_percent": 70,
