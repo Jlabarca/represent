@@ -235,3 +235,7 @@ Visu's two local slices are promoted and paused. Grafe and Alegor local MVP impl
 ## Completed implementation
 
 - [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — implemented, tested and promoted.
+
+## Active implementation
+
+- [REP-12: NOTCARDS-WEB-NOTEBOOK](orkest/notcards-web-notebook.imp.md) — plan-only.

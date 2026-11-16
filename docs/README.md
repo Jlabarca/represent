@@ -157,3 +157,7 @@ Read [DOCS-PROTOCOL.md](DOCS-PROTOCOL.md) → "When Adding a New Doc — Decisio
 ## Completed trackers
 
 - [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — implemented, tested and promoted.
+
+## Implementation trackers
+
+- [REP-12: NOTCARDS-WEB-NOTEBOOK](orkest/notcards-web-notebook.imp.md) — plan-only.

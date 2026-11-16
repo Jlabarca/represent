@@ -181,3 +181,7 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Completed
 
 - [REP-11: NOTCARDS-COMPOSER](orkest/done/notcards-composer.imp.md) — implemented, tested and promoted.
+
+## Implementation queue
+
+- [REP-12: NOTCARDS-WEB-NOTEBOOK](orkest/notcards-web-notebook.imp.md) — plan-only.
