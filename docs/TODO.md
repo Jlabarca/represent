@@ -185,3 +185,5 @@ Full scope and evidence: [REPRESENT-V0-IMPL.md](orkest/represent-v0.imp.md).
 ## Implementation queue
 
 - [REP-12: NOTCARDS-WEB-NOTEBOOK](orkest/notcards-web-notebook.imp.md) — plan-only.
+
+- REP-12.1 — Shipped; continue the next runnable phase.

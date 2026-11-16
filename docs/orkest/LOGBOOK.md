@@ -776,3 +776,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Execute the first runnable phase under the Orkest workflow.
+
+## 2026-11-16 — REP-12.1
+
+### Accomplished
+
+- Fixed the unpacked extension origin error reproduced in Chromium with an ambient website cookie alongside the scoped grant. The real YouTube button saved timestamped captions and opened a private notebook after the change.
+- Added a full notebook on card activation, a video player, editable notes and tracked background imports for public YouTube metadata and captions.
+
+### Decisions
+
+- The web app is the primary entry. Opening a card never creates a chat. Direct takeaways are gated on the dedicated gateway Apply. Card chats belong to Botanic after an owner-verified first question.
+
+### Blockers
+
+- Notcards has no dedicated gateway key or registered live Botanic integration. Public caption tracks can return empty bodies.
+
+### Next
+
+- Complete the owner-bound card conversation lifecycle and present the Botanic deployment change for review. Obtain the operator's gateway Apply SHA and lane-test results before live inference.

@@ -35,7 +35,7 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-12.1 | planned | current | current | Web notebook and unpacked capture |
+| REP-12.1 | Shipped | current | current | Web notebook and unpacked capture |
 
 | REP-12.2 | planned | current | current | Owned AI conversations and dedicated gateway |
 
@@ -83,3 +83,7 @@ Exact owned files: `docs/CONTEXT.md`, `docs/reference/notcards-web-notebook.md`,
 Use the existing board and private notebook route. Make the full artwork open its notebook with keyboard and pointer, preserve pin and drag, show a responsive embedded video built from canonical source identity, editable personal notes and working source links. Reflect hosted AI availability honestly. Fix the real unpacked Chrome origin failure narrowly without opening cookie writes or arbitrary origins. Verify Google discovery, actual Chrome transfer, owner isolation and web-only workflow, then deploy to the dev service. Track the Botanic bridge and gateway activation separately. Apply the same narrow player frame policy on the local web server. If needed update worker credentials for the ZIP and release a new build. On manual video creation hydrate the title when empty and try to import available public captions in the background. Handle old cards on open, persist precise progress, expose explicit retry and distinguish missing captions from gateway availability. Test the three supplied URLs without paid calls.
 
 Exact owned files: `docs/CONTEXT.md`, `docs/reference/notcards-web-notebook.md`, `extensions/notcards/background.js`, `extensions/notcards/manifest.json`, `src/clay-notes/server.mjs`, `src/clay-notes/web/app.mjs`, `src/clay-notes/web/i18n.mjs`, `src/clay-notes/web/style.css`, `src/notcards/server.mjs`, `src/notcards/store.mjs`, `src/notcards/video-import.mjs`, `tests/clay-notes-hosted.test.mjs`, `tests/notcards-video-import.test.mjs`.
+
+### Phase 1 QA — 2026-11-16
+
+No mechanical QA findings.
