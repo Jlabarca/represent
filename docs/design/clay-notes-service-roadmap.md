@@ -1,5 +1,20 @@
 # Clay Notes — hosted service and notebook roadmap
 
+## Notcards and Botanic card chat
+
+The development service at `not.maremoto.dev` owns the editable card, source material, image covers, summary revisions and access permissions. Use one shared Notcards assistant. Create one active Botanic conversation per card on the owner's **first submitted question**. Opening, editing, sorting, refreshing or switching a card costs zero model calls. Reopening a card resumes its thread. A collection may eventually correspond to a Botanic project.
+
+YouTube capture is the exception for background work. Once Ghost authorizes the Notcards lanes, a new transcript queues one automatic fast TL;DR, independently of chat. Record the source revision and processing state. Coalesce equivalent jobs and keep the original source on failure. For ordinary cards, the first question or an explicit summary request starts AI work. Deleting a chat preserves the note.
+
+The maintained Causa native overlay already registers exact parent and API origins, OIDC issuer, private assistant, project and model spec. Its conversation routes check ownership, and its registered Causa site has bank-reconciliation tools. Give Notcards a separate development site registration and notes-scoped assistant. Reuse the registered embedding surface and its permission checks. The initial Botanic registry has no Notcards entry. The development website is a Google relying party, while the Causa adapter expects a configured site issuer. A Google login with the same email alone cannot bind the two applications' user records. See the native overlay's `registry.json`, `server/router.cjs` and `client/Embedding.tsx` in the Causa `botanic-polish-layout` worktree.
+
+1. Establish the supported identity exchange with Botanic. Map a verified Google issuer/subject to a Botanic principal, explicitly handle existing accounts, and retain separate app sessions. Test account switching, revoked grants, signed-out iframes and top-level sign-in.
+2. Persist a unique owner/card binding server-side. On the first question reserve the binding, create or recover the Botanic conversation idempotently, then attach the result. Verify Botanic ownership on every resume. Concurrent tabs and retries must resolve to the same conversation. Keep note content, tokens and attachment URLs out of navigation parameters.
+3. Give the assistant read-only access to the current card and explicitly selected sources via short-lived, audience- and resource-bound authorization. Resolve citations to immutable note/source revisions. Test cross-account denials and rapid card switches. Enable edits through a preview and explicit apply against the expected revision.
+4. Test with two local fixture identities and a counting model stub before live registration. Then verify public development sign-in, reopening the same thread, one user-initiated tool turn and the serving hop. Notcards' gateway request covers its own inference. A shared Botanic relay needs an operator-approved per-app attribution and spending policy before it can carry Notcards turns.
+
+The first live milestone is a text card with one question, one owner-bound conversation and a reload that restores the same thread. Source extraction, optional grouping, AI editing and rich studio outputs follow that milestone.
+
 > 2026-11-16: The product is now **Notcards**. Development uses `not.maremoto.dev` and production targets `not.cards`. The previous hostname and proposed PostgreSQL design below record the earlier plan. The first single-instance dev service uses SQLite for identity and private account directories for sources. See the [development guide](../guides/notcards-dev.md).
 
 > Design approved in direction by the user's2026-11-15 requests. **Implementation plan, not a deployed service.** Current local implementation: [release-prep reference](../reference/clay-notes-release-prep.md). Operational sequence: [release guide](../guides/clay-notes-release.md). Canonical decisions: [CONTEXT](../CONTEXT.md).

@@ -30,7 +30,7 @@ The existing Clay Notes local data and the legacy loopback extension remain avai
 
 ## Verification and rollback
 
-On lab1 the development container served the collection and ZIP and returned HTTP 401 for signed-out private notes. A clean Chromium profile loaded the unpacked extension at the expected ID and showed its capture button on all three supplied videos. The hosted account checks use isolated fixture identities. Live Google acceptance requires the registered development client and working public DNS. Paid video summaries require the operator's separate Ghost onboarding and allowance.
+On lab1 the development container served the collection and ZIP and returned HTTP 401 for signed-out private notes. A clean Chromium profile loaded the unpacked extension at the expected ID and showed its capture button on all three supplied videos. The hosted account checks use isolated fixture identities. The public HTTPS origin serves the collection. The Google web client is configured, and the live sign-in reaches the Google account chooser. Completing consent and returning to a private account are separate acceptance checks. Paid video summaries require the operator's separate Ghost onboarding and allowance.
 
 Check the development HTTPS origin, download the ZIP, and confirm that a signed-out request to `/api/notes` gets 401. Once the Google client is configured, complete a real sign-in, capture one of the three videos with Chrome, reopen its notebook, switch accounts, and check that the other account opens its own library. The local regression suite exercises separate account data, auth, and capture using fixtures.
 
