@@ -22,6 +22,15 @@ async function main(){
   const bridge=appRequire('./server/notcards/native.cjs');
   const agent={id:process.env.BOTANIC_NOTCARDS_AGENT_ID,instructions:'Fixture assistant'};
   const connection=mongoose.connection.db;
+  const {confirmGoogleSubject}=appRequire('./server/notcards/google-subject.cjs');
+  const userModel=mongoose.models.User;
+  const legacy={_id:new mongoose.Types.ObjectId(),email:'account@example.invalid',provider:'google',emailVerified:true};
+  await userModel.collection.insertOne({...legacy});
+  const profile={id:'first-verified-subject',email:legacy.email,emailVerified:true};
+  await assert.rejects(confirmGoogleSubject(userModel,{...legacy},{...profile,emailVerified:false}));
+  await confirmGoogleSubject(userModel,{...legacy},profile);
+  await assert.rejects(confirmGoogleSubject(userModel,{...legacy},{...profile,id:'different-subject'}));
+  assert.equal((await userModel.findById(legacy._id).lean()).googleId,profile.id);
   const launches=connection.collection('botanic_notcards_launches');
   const subject=randomUUID(),userId=new mongoose.Types.ObjectId().toString(),id=randomUUID(),jti=randomUUID();
   const question='Which source is attached?',cardId='aBcDeF12345';
