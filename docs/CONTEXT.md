@@ -6,7 +6,7 @@
 
 ## Notcards web notebook (2026-11-16)
 
-The next signed-in acceptance check starts on the collection, holds the folders response until after a card opens, and verifies the same tab stays on that card. A failed caption import must accept an explicit retry, show an upstream rate-limit deadline when applicable, and persist successful captions. Live testing on lab1 observed HTTP 429 on YouTube's caption endpoint.
+The signed-in navigation and caption-retry fix shipped to dev at `b474908`. All three original collection cards opened in the same tab. A fourth card's live retry showed YouTube's rate limit. The visible YouTube transcript panel supplied 76 caption rows; reopening that notebook retained them. The full suite passed 190 tests. The standalone browser check holds a folders response until after navigation, retries a failed import, and verifies captions after reload.
 
 The dev site runs the signed native Botanic handoff and metered summary adapter with both features gated. The 186-test platform suite passed. Loopback tests verify an owned conversation can be bound, reopened, and unlinked after deletion while the card stays intact. Real chat still needs the native Botanic hooks mounted and configured.
 

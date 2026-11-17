@@ -833,3 +833,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Reconcile the shared registry through the reviewed maintenance flow, then verify the dedicated lanes. Follow with bounded live summaries after operator approval and a real native Botanic login, send, reopen and delete test in staging.
+
+## 2026-11-17 — Card navigation and caption retries
+
+### Accomplishments
+
+- Deployed `b474908` on the development site. Opened all three supplied videos from the signed-in collection in the same tab. Retried an existing failed Ethereum card, observed YouTube's limit, recovered 76 timed rows through the ordinary transcript panel, and confirmed its real title and source survived reload.
+- The cross-platform suite passed 190 tests. The Chromium regression held a folders request open during card navigation, retried a failed import and confirmed saved captions after reload.
+
+### Decisions
+
+- Display the retry time returned by the caption importer. Retain same-owner pasted source provenance when recovering a duplicate video. Enable a first manual retry immediately after generic failures.
+
+### Blockers
+
+- YouTube limited lab1's unauthenticated caption requests. A first-time remote import can still need a later retry or a transcript from YouTube's visible panel. The shared gateway registry still lacks the Notcards key and lanes.
+
+### Next
+
+- Reconcile the shared gateway drift and run the approved-lane checks. Wire the native Botanic hooks in staging before the first real shared chat test.

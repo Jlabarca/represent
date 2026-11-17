@@ -31,6 +31,19 @@ Paste a YouTube link into the note field and leave the optional title empty to u
 
 ## Caveats
 
+A YouTube HTTP 429 makes the retry button show the next allowed time in the
+user's language. Earlier transient failures allow an immediate first manual
+retry. When YouTube still supplies no captions, Notcards can reuse captions
+from another copy of the same video in the signed-in library. Pasted copies
+must agree before they can be reused. Source notes and conversations from
+the other card are excluded.
+
+Run `scripts/notcards-browser-check.mjs` for collection navigation, authentication
+startup or importer changes. It accepts `NOTCARDS_PLAYWRIGHT_PATH` for an existing
+Playwright installation and `NOTCARDS_CHROMIUM` for its browser executable. The
+check uses a temporary library and a deterministic caption source, and makes
+no model calls.
+
 The native Botanic handoff creates its first conversation when the owner sends
 the first question in Botanic. A signed callback records its URL on the card.
 The notebook's Questions tab then reopens that conversation. If Botanic
