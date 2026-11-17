@@ -17,6 +17,11 @@ function createNotcardsLaunchStore({pending,clock=()=>Date.now()}={}){
       catch(error){if(error?.code===11000)return false;throw error;}
     },
     getPending(jti){return pending.findOne({jti,state:'pending',expiresAt:{$gt:new Date(clock())}});},
+    async claimFirstTurn({jti,subject,conversationId}){
+      const result=await pending.updateOne({jti,subject,state:'pending',expiresAt:{$gt:new Date(clock())},
+        $or:[{claimedConversation:{$exists:false}},{claimedConversation:conversationId}]},{$set:{claimedConversation:conversationId}});
+      return result.matchedCount===1;
+    },
     async bindPending({jti,subject,conversationId,now=clock(),userId}){
       const query={jti,subject,state:'pending',expiresAt:{$gt:new Date(now)}};
       const update=await pending.updateOne(query,{$set:{state:'bound',conversationId,botanicUserId:String(userId),boundAt:now,receiptRetryAt:now},$unset:{question:''}});

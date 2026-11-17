@@ -64,6 +64,26 @@ REP-8's generic aliases/old environment setting and tentative shared `represent`
 | App adapter and token-free tests | deployed gated to dev; three transcripts and deep redo verified on loopback |
 | Public service capacity/per-account quotas | proposed, not configured |
 
+### Shared lab1 prerequisite checked November 17
+
+Lab1's gateway liveliness endpoint returned 200. Registry revision
+`3ab596405829` still contains neither the Notcards key nor its lanes. The
+previous reviewed Apply rolled back on global verification. A read-only run
+of Ghost's `route_console.prepare` accepted an update to the existing
+`botanic-default` key that retains its three recorded lanes and adds its
+three existing live grants `claude-max-haiku`, `claude-max` and
+`claude-max-opus`. All six names already exist in the registry. This update
+belongs to Botanic. The proposed Notcards key still forbids the Max broker.
+
+The gateway-owned Codex login reports false. Its four subscription lanes are
+declared but unserved. The operator can restore that login through Ghost's
+documented device-login flow, or authorize a separate maintained change to
+represent the expected logged-out state. Verify unrelated model and key drift
+as usual. Review the combined reconciliation and Notcards changes, record the
+actual Apply SHA, then run the own-key probes and approved pilot. The proposed
+pilot cap is USD 0.25 total, including both probes, the three summaries and
+one deep redo.
+
 ## Post-Apply application work
 
 POST to `http://localhost:4000/v1/chat/completions` from the app server using `model: "clay-notes-summary"` or the explicitly selected deep lane. Classify `x-litellm-model-api-base`, response model and reported cost. Missing or contradictory attribution stays unknown, with conservative spend reservation; never infer free service from an alias. Reconcile actual/unknown charges, reject exhausted caps before inference, retain notebooks on failure and require an explicit retry rather than an automatic billable loop. Add loopback-stub tests for paid/local serving, missing headers/cost, exhausted cap, truncation, lane selection, duplicate jobs and concurrent account reservations. Record the actual Apply SHA in the implementation reference. No new-lane live call is part of preparation.

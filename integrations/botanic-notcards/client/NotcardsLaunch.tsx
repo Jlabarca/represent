@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "~/hooks/AuthContext";
 
-type Pending = { jti: string; cardId: string; question: string };
+type Pending = { jti: string; cardId: string; question: string; agentId: string };
 
 /**
  * Render only in the Notcards native workspace. The trusted server endpoint
  * returns a launch only after validating the signed-in Google `googleId`.
  * This component never sends a message; it only offers a one-time composer fill.
  */
-export function NotcardsLaunch() {
+export function NotcardsLaunch({ agentId }: { agentId?: string | null }) {
   const { isAuthenticated, token, user } = useAuthContext();
   const [pending, setPending] = useState<Pending | null>(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    if (!isAuthenticated || user?.provider !== "google" || !token) return;
+    setPending(null);
+    setLoaded(false);
+    setError("");
+    if (!agentId || !isAuthenticated || user?.provider !== "google" || !token) return;
     let cancelled = false;
     fetch("/api/botanic/notcards/pending", {
       headers: { Authorization: `Bearer ${token}` },
@@ -23,10 +26,10 @@ export function NotcardsLaunch() {
     }).then(async response => {
       if (!response.ok) return null;
       return response.json() as Promise<Pending>;
-    }).then(value => { if (!cancelled && value?.jti) setPending(value); })
+    }).then(value => { if (!cancelled && value?.jti && value.agentId === agentId) setPending(value); })
       .catch(() => { if (!cancelled) setError("Notcards launch unavailable."); });
     return () => { cancelled = true; };
-  }, [isAuthenticated, token, user?.provider]);
+  }, [agentId, isAuthenticated, token, user?.provider, user?.id]);
 
   function fillComposer(question = pending?.question) {
     if (!question) return false;

@@ -4,7 +4,7 @@ const {createNotcardsLaunchLedger,signBindingAssertion,signDeletionAssertion}=re
 const {startReceiptDelivery}=require('./receipts.cjs');
 
 const cookieValue=(header,name)=>String(header||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(`${name}=`))?.slice(name.length+1)||null;
-function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publicKey,bindingPrivateKey=null,publishBinding=null,requireJwtAuth,verifyOwnedConversation,clock=()=>Date.now()}={}){
+function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publicKey,bindingPrivateKey=null,publishBinding=null,requireJwtAuth,verifyOwnedConversation,agentId=null,clock=()=>Date.now()}={}){
   if(!express||!store||!requireJwtAuth)throw new Error('Botanic launch router dependencies are incomplete');
   const ledger=createNotcardsLaunchLedger({db:store,notcardsOrigin,audience,publicKey,clock});
   if(bindingPrivateKey&&!publishBinding){
@@ -25,7 +25,7 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
       const accepted=await ledger.accept({origin:req.get('origin'),ticket:req.body?.ticket,question:req.body?.question,context});
       res.set('Cache-Control','no-store');
       res.cookie('__Host-notcards_launch',accepted.jti,{httpOnly:true,secure:true,sameSite:'lax',path:'/',maxAge:Math.max(0,accepted.expiresAt-clock())});
-      return res.redirect(303,'/');
+      return res.redirect(303,agentId?'/c/new?agent_id='+encodeURIComponent(agentId):'/');
     }catch(error){return res.status(error.status||400).json({code:error.code||'invalid_launch'});}
   });
   router.use(requireJwtAuth);
@@ -33,7 +33,7 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
     try{
       const result=await ledger.reclaim({jti:cookieValue(req.get('cookie'),'__Host-notcards_launch'),user:req.user});
       const {context:_privateSourceContext,...composerPayload}=result;
-      res.set('Cache-Control','private, no-store').json(composerPayload);
+      res.set('Cache-Control','private, no-store').json({...composerPayload,agentId});
     }catch(error){res.status(error.status||404).set('Cache-Control','no-store').json({code:error.code||'launch_unavailable'});}
   });
   router.get('/cards/:cardId',async(req,res)=>{
@@ -69,15 +69,16 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
       archived.push({cardId:binding.cardId,conversationId,assertion});
     }
     return archived;
-  },async applyToAgent(req,agent,{agentId}={}){
+  },async applyToAgent(req,agent,{agentId,conversationId=req.body?.conversationId,acceptFirstQuestion=()=>true}={}){
     if(agent?.id!==agentId||!req.user||req.user.provider!=='google'||!req.user.googleId)return agent;
-    const conversationId=req.body?.conversationId;
     if(typeof conversationId!=='string'||!conversationId)return agent;
     let binding=await store.contextForConversation({subject:req.user.googleId,conversationId,userId:String(req.user.id)});
     if(!binding){
       const jti=cookieValue(req.headers?.cookie,'__Host-notcards_launch');
       if(jti){
-        try{binding=await ledger.reclaim({jti,user:req.user});req.notcardsPendingBinding={jti,cardId:binding.cardId,subject:req.user.googleId,conversationId};}
+        try{binding=await ledger.reclaim({jti,user:req.user});
+          if(!await acceptFirstQuestion(binding))return agent;
+          req.notcardsPendingBinding={jti,cardId:binding.cardId,subject:req.user.googleId,conversationId};}
         catch{return agent;}
       }
     }

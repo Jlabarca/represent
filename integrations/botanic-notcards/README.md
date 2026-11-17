@@ -1,133 +1,36 @@
-# Notcards native Botanic handoff (proposal artifact)
+# Native Botanic chats for Notcards
 
-This directory is a Notcards-owned, reviewable integration artifact. It is **not
-deployed** and does not change the shared Botanic checkout. The handoff launches
-the normal Botanic conversation UI at top level; it is not chat embedded in the
-Notcards card detail.
+One shared notes assistant serves separate conversations. A card owns the link to its conversation. Opening a notebook costs no model tokens. The first question opens Botanic’s native composer. The owner reviews it and presses Send.
 
-## Transport contract
+## Build and configuration
 
-1. Notcards issues a five-minute Ed25519-signed ticket bound to its exact HTTPS
-   issuer, the exact Botanic HTTPS audience, verified Google OIDC subject, card
-   ID, random one-time `jti`, and SHA-256 of the canonical payload. The ticket
-   contains no question or source text. Notcards returns `{ticket, question,
-   context}` to its authenticated page. That page submits those fields in a
-   top-level HTML form POST to Botanic; the question/context are never URL data.
-2. Botanic's unauthenticated launch POST checks the exact `Origin`, ticket
-   signature/issuer/audience/expiry and payload digest, then stores a durable
-   pending row and a short-lived `__Host-notcards_launch` HttpOnly, Secure,
-   SameSite=Lax cookie. It does not assume the Botanic login cookie accompanies
-   a cross-site POST. It responds with a clean `303 /`.
-3. The Botanic page performs its normal Google login if needed. On a same-origin
-   authenticated GET, the extension compares `req.user.provider === 'google'`
-   and `req.user.googleId === pending.subject`; mismatch gets no card/question
-   data and does not consume the owner's launch. Only after this equality can
-   the owner reclaim that pending launch. OAuth's return is a top-level GET, so
-   the newly set Lax handoff cookie is sent. The pre-existing auth cookie is not
-   required on the launch POST.
-4. `NotcardsLaunch` fills an empty native composer once and never submits. The
-   user reviews the first question and presses native Botanic Send exactly once.
-   The pending endpoint returns only the first question, never the source
-   context. The existing Botanic conversation/message pipeline remains the sole
-   chat path. Opening a card, accepting a launch or previewing pending state do
-   not create a conversation.
-5. The Botanic generation hook reads the pending context and adds it as bounded
-   untrusted source material, but does not bind yet. After the ordinary
-   controller has persisted the conversation and first message, its completion
-   hook must verify `db.getConvo(userId, conversationId)` and persisted
-   user/assistant messages, then call `confirmGeneratedConversation`. This
-   records the exact Google subject, Botanic internal user, card and
-   server-generated `conversationId`. Reopening reads that binding. The Mongo
-   indexes enforce one active `(googleId, cardId)` and unique
-   `(googleId, conversationId)`; an explicit fresh launch needs confirmation
-   that the previous owned conversation was deleted and an archived binding.
-6. `confirmGeneratedConversation` returns a short-lived Botanic-signed JWS
-   with `{iss:botanicOrigin,aud:notcardsOrigin,sub:googleId,
-   event:'conversation_bound',card_id,jti,conversation_id,iat,exp}`. A confirmed
-   delete uses the same claims with `event:'conversation_deleted'` and the
-   original launch `jti`. Notcards verifies this with Botanic's public key,
-   matches the launch `jti`/subject/card, then writes or archives its durable
-   owner/card binding. Callback retries must accept the same `jti` and same
-   conversation idempotently. Keep callback delivery in a durable outbox; a
-   Notcards outage must not fail the already-persisted Botanic turn. Later
-   saved turns can regenerate the assertion without resending the first prompt.
+The standalone staging overlay targets a clean LibreChat checkout at revision `e8f3be08623663d4ad7f7241e693c94469b63bb0` and the v0.8.8 runtime pinned in this directory’s Dockerfile. Run `apply-staging.py` with the checkout’s absolute path, then use that checkout as the Docker build context with this Dockerfile. The script verifies the revision and upstream source anchors before writing. A deployment that already carries another native overlay needs a combined build and validation.
 
-## Required Notcards-side issuer
+| Setting | Host | Purpose |
+| --- | --- | --- |
+| `NOTCARDS_PUBLIC_ORIGIN` | Notcards | Exact HTTPS origin of the signed-in notebook |
+| `NOTCARDS_BOTANIC_ORIGIN` | Notcards | Exact HTTPS origin of the chat |
+| `NOTCARDS_BOTANIC_LAUNCH_PRIVATE_KEY` | Notcards | Sign launches |
+| `NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY` | Notcards | Verify the chat’s receipts |
+| `BOTANIC_NOTCARDS_ORIGIN` | Botanic | Exact HTTPS origin of Notcards |
+| `BOTANIC_NOTCARDS_CHAT_ORIGIN` | Botanic | Exact HTTPS origin of Botanic |
+| `BOTANIC_NOTCARDS_AGENT_ID` | Botanic | Existing shared notes agent accessible to the intended users |
+| `BOTANIC_NOTCARDS_LAUNCH_PUBLIC_KEY` | Botanic | Verify launches |
+| `BOTANIC_NOTCARDS_RECEIPT_PRIVATE_KEY` | Botanic | Sign conversation receipts |
 
-Mount an authenticated cookie-only `POST /api/notes/:id/botanic-launch`. Check
-same-origin `Origin`, verify card ownership from the Notcards session, derive
-issuer/subject only from the verified Google user record, load the card context
-server-side, enforce 4,000-character question and 128 KiB canonical context
-limits, and issue the ticket. Keep only `jti`, owner hash, card ID, payload hash,
-expiry and status in Notcards SQLite; never persist raw first question/context.
-The HTML form target must be a configured exact Botanic origin, with
-`target="_blank"` and `rel="noopener"`; `noopener` means the form POST itself
-must carry the envelope. Do not place any private values in query/hash/referrer.
+Use separate Ed25519 key pairs for the two directions. The native hooks stay dormant until an agent ID is configured. Provision the agent with the intended notes instructions, model, user access, and tool policy. Register Google login on the chat origin. A Notcards web session and a Botanic Google session may have different cookies; their verified Google subjects must agree.
 
-## Botanic deployment hooks
+## Launch and persistence
 
-Represent's development server implements the issuer and reverse callback. Set
-`NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY` on Notcards to Botanic's dedicated public
-verification key. Botanic delivers `{"assertion":"<signed assertion>"}` to
-`POST /api/botanic/receipt` server to server. The receiver checks the issuing
-Google subject, card, original launch ID, event, time and exact service origins.
-A delayed binding receipt cannot revive a deleted conversation. The authenticated
-GET on the card's `botanic-launch` endpoint returns the canonical conversation
-URL when bound. The loopback regression exercises both directions. Production
-activation still needs the native hooks listed below. Include `server/receipts.cjs`
-in the overlay. The Mongo update marks a receipt due in the same write as the
-bind or deletion. The worker signs fresh assertions on retry and acknowledges
-delivery against the exact event state.
+1. A signed-in notebook posts its question to `/api/notes/{id}/botanic-launch`. Notcards checks the cookie session, request origin and owned card, loads its source context server-side, and signs a five-minute ticket containing the Google subject, card ID, one-time launch ID and payload hash. The question and context travel in a top-level form POST. They stay out of URLs.
+2. Botanic verifies the exact Notcards origin and signature before storing the pending handoff. A Secure, HttpOnly, SameSite=Lax cookie allows the native page to resume after Google login. The redirect selects the configured agent. The pending endpoint checks the signed-in Google subject, and the new composer only fills a question for its current agent.
+3. A first native send must match the pending question and have no parent or existing conversation. An atomic Mongo claim prevents the same handoff from attaching context to two conversations. Only the matching agent receives the quoted source material.
+4. After the normal terminal save, the hook checks the owned conversation and both persisted user and assistant messages. A signed `conversation_bound` receipt associates that conversation with its originating card. The card's Questions tab then opens its canonical Botanic URL.
+5. Individual and bulk deletion hooks archive confirmed owner-scoped conversation IDs and send `conversation_deleted`. The card and its personal notes, summaries and source survive. An older duplicate binding receipt cannot revive the deleted conversation. A fresh question can start a new one.
+6. Each Mongo binding or deletion write marks its receipt due. The delivery worker signs a fresh assertion on retry and acknowledges only the corresponding row state. Notcards accepts callbacks at `POST /api/botanic/receipt`, matching issuer, audience, signature, original launch, card, conversation and Google subject.
 
-- Add `server/launch.cjs` to the native overlay's declared/hash-locked files.
-- Add `server/store.cjs` and initialize the `botanic_notcards_launches` Mongo
-  collection's unique `jti`, active Google-subject/card and bound
-  Google-subject/conversation indexes plus TTL cleanup for pending rows only.
-  Keep bound context for future turns but erase the first question on bind.
-  Expired pending rows can be replaced and their raw payload is removed; bound
-  rows remain durable until deletion is confirmed.
-- Mount the unauthenticated `POST /api/botanic/notcards/launch` before
-  `requireJwtAuth`; it accepts only the configured Notcards origin and signed
-  bounded envelope. Mount authenticated `GET /api/botanic/notcards/pending`
-  after `requireJwtAuth`; it reclaims using the pending cookie and exact Google
-  `googleId`. Authenticated `GET /api/botanic/notcards/cards/:cardId` reads only
-  an existing owner/card binding, verifies it with `db.getConvo(userId,id)` and
-  returns the native `/c/:conversationId` URL. A mismatch is empty; database
-  outage is unavailable; confirmed owner-scoped not-found archives the binding
-  and returns a signed `conversation_deleted` assertion. It never creates a chat.
-- Mount the React component only in the registered Notcards agent workspace;
-  preserve the standard composer/send path.
-- Extend the normal `ResumableAgentController` initialization hook in
-  `api/server/controllers/agents/request.js` through the `initializeClient`
-  callback in `api/server/services/Endpoints/agents/initialize.js` (the same
-  hook where the
-  Causa overlay calls `router.cjs.applyPreferences`) to read pending source for
-  an actual Notcards-agent generation. The `conversationId` is already
-  server-generated there. Append context as untrusted quoted source, not
-  policy/instructions. Add a post-persistence completion hook in the ordinary
-  `request.js` terminal-save path after `saveMessage` and message-reference
-  recovery to invoke `confirmGeneratedConversation` only after
-  owner-scoped root-conversation and message checks. The proposed helper does
-  not claim to be wired into the pinned upstream yet.
-- In the pinned `api/server/routes/convos.js` delete handlers, call
-  `archiveDeletedConversations` only after `db.deleteConvos` returns its
-  owner-scoped deleted ID list (including the final cascade list before the
-  successful response). It archives mappings for the same native Google
-  subject and Botanic user and returns signed `conversation_deleted` assertions
-  for the Notcards callback. No Notcards card data is deleted. The helper is not
-  wired to the shared checkout; bulk deletion hooks need the same post-delete
-  evidence rule.
+## Verification and rollout
 
-## Key/configuration and activation gates
+Run the issuer, native receiver, card chat and loopback tests under `tests/`. For the packaged runtime, `smoke-staging.ps1` starts an isolated, disposable Mongo and verifies matching subjects, first-turn context, persisted native messages, and confirmed deletion. It publishes no ports and invokes no model. The browser check in `scripts/notcards-browser-check.mjs` covers the separate signed-in notebook navigation and caption retry workflow.
 
-Generate two independent Ed25519 key pairs: Notcards signs launch tickets and
-Botanic signs binding assertions. Keep each private key only on its respective
-service and configure the peer's public key for verification, plus exact origins,
-issuer/audience and TTL. Do not reuse gateway/provider API keys. Register the
-Notcards Botanic agent in the existing native registry with its own approved
-Google subject rule, agent and project IDs; current Causa registry and policy
-do not grant Notcards access. Apply the patch to the exact pinned LibreChat
-checkout, add migrations/indexes, run fixture tests and native login/send/delete
-regressions in staging, and obtain explicit operator approval before staging or
-production registration/deployment. No actual integration, endpoint, Google
-OAuth, agent, project, or deployment is claimed by this artifact.
+Before exposing native chat, run a real Google login and a first question on a staging origin with its registered assistant and approved inference lane. Reopen the same conversation from both products, delete the test conversation in Botanic, reopen the original card, and explicitly start a replacement. Deploying the image or registering the agent on the shared service is a separate operator action.
