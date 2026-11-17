@@ -6,7 +6,7 @@ import {join} from 'node:path';
 import {createHash} from 'node:crypto';
 import {createServer} from 'node:http';
 import {NotcardsStore} from '../src/notcards/store.mjs';
-import {Gateway} from '../src/clay-notes/core.mjs';
+import {Gateway,DEFAULT_PROMPT,SUMMARY_MAX_COMPLETION_TOKENS} from '../src/clay-notes/core.mjs';
 import {NotcardsVideoSummary,classifySummaryAttribution,summaryRuntimeFromEnv} from '../src/notcards/video-summary.mjs';
 import {startNotcardsServer} from '../src/notcards/server.mjs';
 
@@ -14,7 +14,7 @@ const userInfo=(subject)=>({issuer:'https://accounts.google.com',subject,email:`
 const activation={applySha:'b'.repeat(40),laneTestPassed:true,paidCallsAuthorized:true};
 const completion={overview:'The speaker presents a central claim.',statements:[{text:'The process is iterative.',sources:[0]}],conclusions:[{text:'Iteration improves the result.',sources:[1]}]};
 
-async function harness(t,{cap=1,cost='0.01',hold=false}={}){
+async function harness(t,{cap=1,cost='0.01',hold=false,httpStatus=200}={}){
   const directory=await mkdtemp(join(tmpdir(),'notcards-summary-'));
   const store=await new NotcardsStore({directory,videoImporter:{close:async()=>{}}}).init();t.after(async()=>{await store.close();await rm(directory,{recursive:true,force:true});});
   const user=store.user(userInfo('owner'));
@@ -28,7 +28,7 @@ async function harness(t,{cap=1,cost='0.01',hold=false}={}){
     let raw='';for await(const chunk of req)raw+=chunk;
     const body=JSON.parse(raw);assert.ok(['clay-notes-summary','clay-notes-deep'].includes(body.model));
     if(hold)await new Promise(resolve=>{release=resolve;});
-    res.writeHead(200,{'content-type':'application/json','x-litellm-response-cost':cost,'x-litellm-model-api-base':'https://openrouter.ai/api/v1'});
+    res.writeHead(httpStatus,{'content-type':'application/json','x-litellm-response-cost':cost,'x-litellm-model-api-base':'https://openrouter.ai/api/v1?api_key=do-not-persist'});
     res.end(JSON.stringify({model:'google/gemini-2.5-flash-lite',usage:{total_tokens:20},choices:[{finish_reason:'stop',message:{content:JSON.stringify(completion)}}]}));
   });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>{server.closeAllConnections();server.close(resolve)}));
@@ -51,6 +51,7 @@ test('posts the exact summary lane to loopback and persists an owner-scoped revi
   assert.equal(h.calls(),1);assert.equal(first.note.revisions.length,1);assert.equal(replay.replayed,true);
   assert.equal(first.note.revisions[0].metrics.requestedModel,'clay-notes-summary');
   assert.equal(first.note.revisions[0].metrics.costUsd,0.01);assert.equal(first.note.revisions[0].metrics.attribution,'known');assert.equal(first.note.revisions[0].metrics.servingHop,'openrouter-lab1');
+  assert.equal(first.note.revisions[0].metrics.modelApiBase,undefined);assert.equal(first.note.revisions[0].metrics.modelApiHost,undefined);assert.equal(first.note.revisions[0].metrics.reportedCostRaw,undefined);assert.equal(first.note.revisions[0].metrics.callId,undefined);assert.equal(JSON.stringify(first.note.revisions[0].metrics).includes('do-not-persist'),false);
   const spend=h.store.db.prepare('SELECT state,cost_usd FROM notcards_summary_spend WHERE user_id=? AND request_id=?').get(h.user.id,requestId);
   assert.equal(spend.state,'completed');assert.equal(spend.cost_usd,0.01);
 });
@@ -74,7 +75,18 @@ test('charges the reservation when response cost attribution is missing',async t
   const h=await harness(t,{cap:0.05,cost:''});
   await h.service.summarize(h.user.id,h.note.id,{requestId:'159cf56e-0e3d-4be0-8e21-c33cc30a9705'});
   const row=h.store.db.prepare('SELECT cost_usd FROM notcards_summary_spend WHERE user_id=?').get(h.user.id);
-  assert.equal(row.cost_usd,0.05);
+  const saved=await h.store.account(h.user.id).then(account=>account.notebook.get(h.note.id));
+  const expected=(Buffer.byteLength(JSON.stringify({question:DEFAULT_PROMPT,transcript:saved.segments}))+4096)*1e-7+SUMMARY_MAX_COMPLETION_TOKENS*5e-7;
+  assert.equal(row.cost_usd,expected);assert.ok(row.cost_usd<0.05);
+});
+
+test('settles a failed gateway request at its own reserved amount rather than the maximum call cap',async t=>{
+  const h=await harness(t,{cap:1,cost:'0.049',httpStatus:503});
+  await assert.rejects(h.service.summarize(h.user.id,h.note.id,{requestId:'5b2ec237-9452-4a5f-a69d-c450b76504ea'}),/HTTP 503/);
+  const row=h.store.db.prepare('SELECT state,cost_usd,reported_cost_usd,reserved_usd FROM notcards_summary_spend WHERE user_id=?').get(h.user.id);
+  const saved=await h.store.account(h.user.id).then(account=>account.notebook.get(h.note.id));
+  const expected=(Buffer.byteLength(JSON.stringify({question:DEFAULT_PROMPT,transcript:saved.segments}))+4096)*1e-7+SUMMARY_MAX_COMPLETION_TOKENS*5e-7;
+  assert.equal(row.state,'failed');assert.equal(row.reserved_usd,0);assert.equal(row.cost_usd,expected);assert.equal(row.reported_cost_usd,0.049);assert.ok(row.cost_usd<0.05);
 });
 
 test('keeps unrecognized, missing and contradictory hop attribution unknown and reserved',()=>{
@@ -104,7 +116,6 @@ test('reconciles a reservation left by restart and will not replay a possibly ch
 test('normal hosted config and note routes gate, enqueue once, and autosummarize a pasted video transcript',async t=>{
   const h=await harness(t),token=h.store.issueSession(h.user.id).token;
   const app=await startNotcardsServer({store:h.store,port:0,summaryConfig:{gateway:h.gateway,configurationValid:true,activation,maxAccountSpendUsd:0.05,maxCallReservationUsd:0.05}});
-  t.after(()=>app.close());
   const headers={cookie:`notcards_session=${token}`,origin:app.url,'content-type':'application/json'};
   let response=await fetch(`${app.url}/api/config`,{headers});const config=await response.json();assert.equal(config.gatewayConfigured,true);assert.deepEqual(config.models,['cheap']);
   const note=await h.store.createNote(h.user.id,{url:'https://www.youtube.com/watch?v=X6J3ByTqhLY',title:'Manual transcript',content:'The process is iterative.\nIteration improves the result.'});
@@ -115,6 +126,24 @@ test('normal hosted config and note routes gate, enqueue once, and autosummarize
   assert.equal(saved.state,'ready',saved.error);assert.equal(saved.revisions.length,1);assert.equal(h.calls(),1);
   response=await fetch(`${app.url}/api/notes/${note.id}/summarize`,{method:'POST',headers,body:JSON.stringify({model:'cheap'})});assert.equal(response.status,202);
   assert.equal(h.calls(),1);
+  await app.close();
+});
+
+test('manual route returns pre-dispatch budget errors and repeated opens retain an automatic failure',async t=>{
+  const h=await harness(t,{cap:0.05,cost:'0.049'}),token=h.store.issueSession(h.user.id).token;
+  await h.service.summarize(h.user.id,h.note.id,{requestId:'8e336b49-3ea7-46c2-a182-c06f7109a128'});
+  const app=await startNotcardsServer({store:h.store,port:0,summaryConfig:{gateway:h.gateway,configurationValid:true,activation,maxAccountSpendUsd:0.05,maxCallReservationUsd:0.05}});
+  const headers={cookie:`notcards_session=${token}`,origin:app.url,'content-type':'application/json'};
+  const video=await h.store.createNote(h.user.id,{url:'https://www.youtube.com/watch?v=t2_F7Fn8vYA',title:'Transcript card',content:'The process is iterative.\nIteration improves the result.'});
+  let response=await fetch(`${app.url}/api/notes/${video.id}/summarize`,{method:'POST',headers,body:JSON.stringify({model:'cheap'})});
+  assert.equal(response.status,429);assert.equal((await response.json()).code,'summary_spend_limit');assert.equal(h.calls(),1);
+  response=await fetch(`${app.url}/api/notes/${video.id}`,{headers});assert.equal(response.status,200);
+  let saved;for(let attempt=0;attempt<100;attempt++){saved=await h.store.account(h.user.id).then(account=>account.notebook.get(video.id));if(saved.state==='error')break;await new Promise(resolve=>setTimeout(resolve,20));}
+  assert.equal(saved.state,'error');const journalBefore=h.store.db.prepare('SELECT COUNT(*) AS count FROM notcards_summary_spend').get().count;
+  response=await fetch(`${app.url}/api/notes/${video.id}`,{headers});assert.equal(response.status,200);
+  assert.equal((await response.json()).state,'error');assert.equal(h.calls(),1);
+  assert.equal(h.store.db.prepare('SELECT COUNT(*) AS count FROM notcards_summary_spend').get().count,journalBefore);
+  await app.close();
 });
 
 test('cost ceiling rejects oversized deep input before dispatch and blocks when remaining budget is too small',async t=>{

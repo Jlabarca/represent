@@ -78,6 +78,18 @@ export async function boundedText(response, limit = 1_500_000) {
   return Buffer.concat(chunks).toString('utf8');
 }
 
+function safeGatewayHost(value) {
+  try { const url=new URL(value);if(!['http:','https:'].includes(url.protocol)||url.username||url.password)return null;return url.hostname.toLowerCase(); }
+  catch { return null; }
+}
+function safeProviderModel(value) { return typeof value==='string'&&value.length<=200&&/^[A-Za-z0-9._:/+-]+$/.test(value)?value:null; }
+function safeUsage(value) {
+  if(!value||typeof value!=='object'||Array.isArray(value))return null;
+  const output={};for(const key of ['prompt_tokens','completion_tokens','total_tokens','input_tokens','output_tokens','cache_read_input_tokens','cache_creation_input_tokens'])if(Number.isSafeInteger(value[key])&&value[key]>=0)output[key]=value[key];
+  return Object.keys(output).length?output:null;
+}
+function safeReportedCost(value) { return value !== null && value.trim() !== '' && Number.isFinite(Number(value)) && Number(value) >= 0 ? Number(value) : null; }
+
 export class Gateway {
   constructor({url = 'http://127.0.0.1:4000/v1', key, models = ['cheap', 'smart', 'local'], fetcher = fetch} = {}) {
     const parsed = new URL(url);
@@ -107,7 +119,13 @@ export class Gateway {
         {role:'user',content:JSON.stringify({question: question || DEFAULT_PROMPT, transcript:segments})}
       ]})
     });
-    if (!response.ok) throw new Error(`Ghost request failed (HTTP ${response.status}). Retry explicitly; requests can be billable.`);
+    if (!response.ok) {
+      const error=new Error(`Ghost request failed (HTTP ${response.status}). Retry explicitly; requests can be billable.`);
+      const reportedCostUsd=safeReportedCost(response.headers.get('x-litellm-response-cost'));
+      error.gatewayMetrics={requestedModel:model,responseModel:null,modelApiHost:safeGatewayHost(response.headers.get('x-litellm-model-api-base')),reportedCostUsd,costUsd:reportedCostUsd,durationMs:Math.round(performance.now()-started)};
+      await response.body?.cancel().catch(()=>{});
+      throw error;
+    }
     const body = JSON.parse(await boundedText(response));
     if (body.choices?.[0]?.finish_reason !== 'stop') throw new Error('Ghost returned an incomplete answer; previous content was preserved');
     let result;
@@ -119,9 +137,8 @@ export class Gateway {
     } else {
       if (!validText(result.overview, 4000) || !['statements','conclusions'].every(key => Array.isArray(result[key]) && result[key].length > 0 && result[key].length <= 12 && result[key].every(item => validText(item.text, 2500) && validSources(item.sources)))) throw new Error('Summary has invalid content or source references');
     }
-    const cost = response.headers.get('x-litellm-response-cost');
-    const costUsd=cost !== null && cost.trim() !== '' && Number.isFinite(Number(cost)) && Number(cost) >= 0 ? Number(cost) : null;
-    return {result, metrics:{requestedModel:model, responseModel:body.model || null, modelApiBase:response.headers.get('x-litellm-model-api-base'), reportedCostRaw:cost, costUsd, reportedCostUsd:costUsd, usage:body.usage || null, durationMs:Math.round(performance.now() - started), callId:response.headers.get('x-litellm-call-id')}};
+    const costUsd=safeReportedCost(response.headers.get('x-litellm-response-cost'));
+    return {result, metrics:{requestedModel:model, responseModel:safeProviderModel(body.model), modelApiHost:safeGatewayHost(response.headers.get('x-litellm-model-api-base')), costUsd, reportedCostUsd:costUsd, usage:safeUsage(body.usage), durationMs:Math.round(performance.now() - started)}};
   }
 }
 

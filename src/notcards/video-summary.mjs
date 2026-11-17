@@ -14,20 +14,26 @@ const expectedProviderForModel=model=>{
   return null;
 };
 export function classifySummaryAttribution(metrics={},requestedLane='clay-notes-summary'){
-  const rawBase=typeof metrics.modelApiBase==='string'?metrics.modelApiBase.trim():'';
+  const rawBase=typeof metrics.modelApiHost==='string'?metrics.modelApiHost.trim():typeof metrics.modelApiBase==='string'?metrics.modelApiBase.trim():'';
   const rawModel=typeof metrics.responseModel==='string'?metrics.responseModel.trim():'';
   const cost=metrics.reportedCostUsd??metrics.costUsd;
   const numericCost=typeof cost==='number'&&Number.isFinite(cost)&&cost>=0?cost:null;
-  let base=null,host='';
-  try{const parsed=new URL(rawBase);if(['http:','https:'].includes(parsed.protocol)&&!parsed.username&&!parsed.password&&!parsed.search&&!parsed.hash){base=parsed.href;host=parsed.hostname.toLowerCase();}}catch{}
+  let host='';
+  if(/^[a-z0-9.-]+$/i.test(rawBase))host=rawBase.toLowerCase();
+  else try{const parsed=new URL(rawBase);if(['http:','https:'].includes(parsed.protocol)&&!parsed.username&&!parsed.password)host=parsed.hostname.toLowerCase();}catch{}
   const upstream=host==='openrouter.ai'||host==='openrouter'||host==='openrouter-lab1'?'openrouter-lab1':host==='api.anthropic.com'||host==='anthropic'||host==='anthropic-lab1'?'anthropic-lab1':host==='ollama'?'ollama':null;
-  const malformedCost=metrics.reportedCostRaw!=null&&numericCost===null;
   let attribution='known';
   const expected=expectedProviderForModel(rawModel);
   const laneAllows=requestedLane==='clay-notes-summary'?['openrouter-lab1','anthropic-lab1','ollama']:requestedLane==='clay-notes-deep'?['anthropic-lab1']:[];
-  if(!base||!rawModel||numericCost===null||!upstream||!expected)attribution='unknown';
-  else if(malformedCost||expected!==upstream||!laneAllows.includes(upstream)||(upstream==='ollama'&&numericCost!==0))attribution='contradictory';
+  if(!host||!rawModel||numericCost===null||!upstream||!expected)attribution='unknown';
+  else if(expected!==upstream||!laneAllows.includes(upstream)||(upstream==='ollama'&&numericCost!==0))attribution='contradictory';
   return {attribution,servingHop:attribution==='known'?upstream:null,responseModel:rawModel||null,reportedCostUsd:numericCost,chargedCostUsd:attribution==='known'?numericCost:null};
+}
+
+function safeRevisionMetrics(metrics,lane,attribution,charged){
+  const responseModel=typeof metrics.responseModel==='string'&&metrics.responseModel.length<=200&&/^[A-Za-z0-9._:/+-]+$/.test(metrics.responseModel)?metrics.responseModel:null;
+  const usage={};if(metrics.usage&&typeof metrics.usage==='object'&&!Array.isArray(metrics.usage))for(const key of ['prompt_tokens','completion_tokens','total_tokens','input_tokens','output_tokens','cache_read_input_tokens','cache_creation_input_tokens'])if(Number.isSafeInteger(metrics.usage[key])&&metrics.usage[key]>=0)usage[key]=metrics.usage[key];
+  return {requestedModel:lane,responseModel,attribution:attribution.attribution,servingHop:attribution.servingHop,reportedCostUsd:attribution.reportedCostUsd,costUsd:charged,...(Number.isFinite(metrics.durationMs)&&metrics.durationMs>=0?{durationMs:Math.round(metrics.durationMs)}:{}),...(Object.keys(usage).length?{usage}:{})};
 }
 
 function allowedRuntimeUrl(value){try{const url=new URL(value);return url.protocol==='http:'&&['127.0.0.1','localhost','[::1]','host.docker.internal'].includes(url.hostname)&&url.port==='4000'&&url.pathname==='/v1'&&!url.username&&!url.password&&!url.search&&!url.hash;}catch{return false;}}
@@ -70,10 +76,12 @@ export class NotcardsVideoSummary {
     this.db.exec(`CREATE TABLE IF NOT EXISTS notcards_summary_spend (
       user_id TEXT NOT NULL, request_id TEXT NOT NULL, note_id TEXT NOT NULL, lane TEXT NOT NULL,
       payload_hash TEXT NOT NULL, period_start INTEGER NOT NULL, cost_usd REAL NOT NULL,
-      reserved_usd REAL NOT NULL, state TEXT NOT NULL CHECK(state IN ('reserved','completed','failed')),
-      revision_id TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL,
+      reported_cost_usd REAL, reserved_usd REAL NOT NULL, state TEXT NOT NULL CHECK(state IN ('reserved','completed','failed')),
+      revision_id TEXT, failure_reason TEXT, created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL,
       PRIMARY KEY(user_id,request_id)
     ); CREATE INDEX IF NOT EXISTS notcards_summary_spend_period ON notcards_summary_spend(user_id,period_start,state);`);
+    if(!this.db.prepare('PRAGMA table_info(notcards_summary_spend)').all().some(column=>column.name==='failure_reason'))this.db.exec('ALTER TABLE notcards_summary_spend ADD COLUMN failure_reason TEXT');
+    if(!this.db.prepare('PRAGMA table_info(notcards_summary_spend)').all().some(column=>column.name==='reported_cost_usd'))this.db.exec('ALTER TABLE notcards_summary_spend ADD COLUMN reported_cost_usd REAL');
     // A reservation left by a prior process may have reached the provider. Settle it at
     // the full configured reserve and never silently repeat that id after restart.
     this.db.prepare("UPDATE notcards_summary_spend SET state='failed',cost_usd=reserved_usd,reserved_usd=0,updated_at=? WHERE state='reserved'").run(this.clock());
@@ -96,29 +104,49 @@ export class NotcardsVideoSummary {
       return {replay:null};
     });
   }
-  _settle(userId,requestId,{state,cost=0,revisionId=null}){this._transaction(()=>this.db.prepare('UPDATE notcards_summary_spend SET state=?,cost_usd=?,reserved_usd=0,revision_id=?,updated_at=? WHERE user_id=? AND request_id=?').run(state,cost,revisionId,this.clock(),userId,requestId));}
-  async summarize(userId,noteId,{model='summary',requestId=randomUUID()}={}){
+  _settle(userId,requestId,{state,cost=0,reportedCostUsd=null,revisionId=null,failureReason=null}){this._transaction(()=>this.db.prepare('UPDATE notcards_summary_spend SET state=?,cost_usd=?,reported_cost_usd=?,reserved_usd=0,revision_id=?,failure_reason=?,updated_at=? WHERE user_id=? AND request_id=?').run(state,cost,reportedCostUsd,revisionId,failureReason,this.clock(),userId,requestId));}
+  async _prepare(userId,noteId,model,requestId){
+    const lane=LANES[model];
+    if(!lane)throw problem(400,'summary_lane_invalid','Choose the summary lane or explicitly select deep regeneration.');
+    if(!this.gateway.models?.includes(lane)||(model==='deep'&&!this.deepEnabled))throw problem(503,'summary_lane_unavailable','The selected Notcards lane is not enabled in this server configuration.');
+    const account=await this.store.account(userId),note=await account.notebook.get(noteId);
+    if(!note)throw problem(404,'notebook_not_found','Notebook not found.');
+    if(!note.segments?.length)throw problem(409,'transcript_required','A transcript is needed before summarizing.');
+    const originalTranscriptHash=note.transcriptHash||sha(JSON.stringify(note.segments));
+    const payloadHash=sha(JSON.stringify({noteId,transcriptHash:originalTranscriptHash,lane}));
+    const rate=this.rates[model];if(!rate)throw problem(503,'summary_lane_unavailable','No reviewed price bounds are configured for this lane.');
+    const requestBytes=Buffer.byteLength(JSON.stringify({question:DEFAULT_PROMPT,transcript:note.segments}))+4096;
+    const reserveUsd=requestBytes*rate.inputUsdPerToken+SUMMARY_MAX_COMPLETION_TOKENS*rate.outputUsdPerToken;
+    if(!Number.isFinite(reserveUsd)||reserveUsd>this.maxCallReservationUsd+1e-9)throw problem(413,'summary_cost_bound_exceeded','This transcript exceeds the configured per-call cost bound. Its full text is preserved; use a smaller source or a reviewed higher bound.');
+    const reservation=this._reserve({userId,noteId,requestId,lane,payloadHash,reserveUsd,now:this.clock()});
+    if(reservation.replay){
+      if(reservation.replay.state==='completed')return {account,note,replay:true};
+      if(reservation.replay.state==='reserved')throw problem(409,'summary_pending','This summary request is already in progress.');
+      throw problem(409,'summary_retry_new_request','This summary request failed; retry explicitly with a new request id.');
+    }
+    return {account,note,replay:false,lane,originalTranscriptHash,reserveUsd};
+  }
+  async _start(userId,noteId,{model='summary',requestId=randomUUID(),wait=true}={}){
     if(this.closed)throw problem(503,'summary_service_closing','Summary generation is shutting down.');
     if(!this.enabled)throw problem(503,'ai_setup_pending','AI summaries are waiting for operator Apply and paid-call authorization.');
-    if(!Object.hasOwn(LANES,model))throw problem(400,'summary_lane_invalid','Choose the summary lane or explicitly select deep regeneration.');
-    const lane=LANES[model];
-    if(!this.gateway.models?.includes(lane)||(model==='deep'&&!this.deepEnabled))throw problem(503,'summary_lane_unavailable','The selected Notcards lane is not enabled in this server configuration.');
     if(!UUID.test(requestId||''))throw problem(400,'summary_request_id_invalid','A valid request id is required.');
     const jobKey=`${userId}:${noteId}:${requestId}`;
-    if(this.jobs.has(jobKey))return this.jobs.get(jobKey);
-    const task=this._run(userId,noteId,requestId,lane);
+    if(this.jobs.has(jobKey)){if(wait)return this.jobs.get(jobKey);return {state:'summarizing',requestId};}
+    const prepared=await this._prepare(userId,noteId,model,requestId);
+    if(prepared.replay)return wait?{note:await prepared.account.notebook.get(noteId),replayed:true,requestId}:{state:'ready',requestId};
+    const task=this._runPrepared(userId,noteId,requestId,prepared);
     this.jobs.set(jobKey,task);
-    try{return await task;}finally{if(this.jobs.get(jobKey)===task)this.jobs.delete(jobKey);}
+    void task.finally(()=>{if(this.jobs.get(jobKey)===task)this.jobs.delete(jobKey);}).catch(()=>{});
+    if(!wait){void task.catch(()=>{});return {state:'queued',requestId};}
+    return task;
   }
-  async enqueue(userId,noteId,options={}){
-    if(this.closed)throw problem(503,'summary_service_closing','Summary generation is shutting down.');
-    if(!this.enabled)throw problem(503,'ai_setup_pending','AI summaries are waiting for operator Apply and paid-call authorization.');
-    const requestId=options.requestId||randomUUID();
-    const jobKey=`${userId}:${noteId}:${requestId}`;
-    if(this.jobs.has(jobKey))return {state:'summarizing',requestId};
-    const job=this.summarize(userId,noteId,{...options,requestId});
-    void job.catch(()=>{});
-    return {state:'queued',requestId};
+  async summarize(userId,noteId,{model='summary',requestId=randomUUID()}={}){return this._start(userId,noteId,{model,requestId,wait:true});}
+  async enqueue(userId,noteId,options={}){return this._start(userId,noteId,{...options,requestId:options.requestId||randomUUID(),wait:false});}
+  async _persistAutoFailure(userId,noteId,requestId,error){
+    const account=await this.store.account(userId),note=await account.notebook.get(noteId);if(!note)return;
+    const lane=LANES.summary,hash=note.transcriptHash||sha(JSON.stringify(note.segments||[])),payloadHash=sha(JSON.stringify({noteId,transcriptHash:hash,lane})),now=this.clock(),reason=String(error?.code||'summary_failed').slice(0,120);
+    this._transaction(()=>this.db.prepare("INSERT OR IGNORE INTO notcards_summary_spend(user_id,request_id,note_id,lane,payload_hash,period_start,cost_usd,reserved_usd,state,revision_id,failure_reason,created_at,updated_at) VALUES(?,?,?,?,?,?,0,0,'failed',NULL,?,?,?)").run(userId,requestId,noteId,lane,payloadHash,now,reason,now,now));
+    await account.notebook.mutate(noteId,n=>{if(n.state==='awaiting_summary'&&(n.transcriptHash||sha(JSON.stringify(n.segments||[])))===hash){n.state='error';n.error=String(error?.message||'Automatic summary could not start.').slice(0,1000);}});
   }
   async enqueueAuto(userId,noteId){
     if(this.closed||!this.enabled)return {state:'disabled'};
@@ -127,44 +155,28 @@ export class NotcardsVideoSummary {
     try{videoIdentity(note.url);}catch{return {state:'not_video'};}
     const transcriptHash=note.transcriptHash||sha(JSON.stringify(note.segments));
     if(note.revisions?.some(revision=>revision.transcriptHash===transcriptHash))return {state:'ready'};
-    const digest=sha(`${userId}\0${noteId}\0${transcriptHash}\0${LANES.summary}`);
-    const requestId=`${digest.slice(0,8)}-${digest.slice(8,12)}-4${digest.slice(13,16)}-a${digest.slice(17,20)}-${digest.slice(20,32)}`;
-    const prior=this.db.prepare('SELECT state FROM notcards_summary_spend WHERE user_id=? AND request_id=?').get(userId,requestId);
-    if(prior)return {state:prior.state==='completed'?'ready':prior.state==='reserved'?'summarizing':'error',requestId};
+    const digest=sha(`${userId}\0${noteId}\0${transcriptHash}\0${LANES.summary}`),requestId=`${digest.slice(0,8)}-${digest.slice(8,12)}-4${digest.slice(13,16)}-a${digest.slice(17,20)}-${digest.slice(20,32)}`;
+    const prior=this.db.prepare('SELECT state,failure_reason FROM notcards_summary_spend WHERE user_id=? AND request_id=?').get(userId,requestId);
+    if(prior){if(prior.state==='failed')await this._persistAutoFailure(userId,noteId,requestId,{code:prior.failure_reason||'summary_failed',message:note.error||'Automatic summary failed; use the explicit retry action.'});return {state:prior.state==='completed'?'ready':prior.state==='reserved'?'summarizing':'error',requestId};}
     try{await this.summarize(userId,noteId,{model:'summary',requestId});return {state:'ready',requestId};}
-    catch(error){return {state:'error',requestId,code:error.code||'summary_failed'};}
+    catch(error){await this._persistAutoFailure(userId,noteId,requestId,error).catch(()=>{});return {state:'error',requestId,code:error.code||'summary_failed'};}
   }
-  async _run(userId,noteId,requestId,lane){
-    const account=await this.store.account(userId),note=await account.notebook.get(noteId);
-    if(!note)throw problem(404,'notebook_not_found','Notebook not found.');
-    if(!note.segments?.length)throw problem(409,'transcript_required','A transcript is needed before summarizing.');
-    const originalTranscriptHash=note.transcriptHash||sha(JSON.stringify(note.segments));
-    const payloadHash=sha(JSON.stringify({noteId,transcriptHash:originalTranscriptHash,lane}));
-    const rate=this.rates[lane==='clay-notes-summary'?'summary':'deep'];
-    if(!rate)throw problem(503,'summary_lane_unavailable','No reviewed price bounds are configured for this lane.');
-    const requestBytes=Buffer.byteLength(JSON.stringify({question:DEFAULT_PROMPT,transcript:note.segments}))+4096;
-    const reserveUsd=requestBytes*rate.inputUsdPerToken+SUMMARY_MAX_COMPLETION_TOKENS*rate.outputUsdPerToken;
-    if(!Number.isFinite(reserveUsd)||reserveUsd>this.maxCallReservationUsd+1e-9)throw problem(413,'summary_cost_bound_exceeded','This transcript exceeds the configured per-call cost bound. Its full text is preserved; use a smaller source or a reviewed higher bound.');
-    const now=this.clock(),reservation=this._reserve({userId,noteId,requestId,lane,payloadHash,reserveUsd,now});
-    if(reservation.replay){
-      if(reservation.replay.state==='completed')return {note:await account.notebook.get(noteId),replayed:true,requestId};
-      if(reservation.replay.state==='reserved')throw problem(409,'summary_pending','This summary request is already in progress.');
-      throw problem(409,'summary_retry_new_request','This summary request failed; retry explicitly with a new request id.');
-    }
+  async _runPrepared(userId,noteId,requestId,prepared){
+    const {account,note,lane,originalTranscriptHash,reserveUsd}=prepared;let settlementCost=reserveUsd,reportedCostUsd=null;
     try{
       await account.notebook.mutate(noteId,n=>{if((n.transcriptHash||sha(JSON.stringify(n.segments||[])))!==originalTranscriptHash)throw problem(409,'transcript_changed','Transcript changed before generation began.');n.state='summarizing';n.error=null;});
       const {result,metrics={}}=await this.gateway.complete({model:lane,segments:note.segments});
       const attribution=classifySummaryAttribution(metrics,lane);
-      const charged=attribution.attribution==='known'?attribution.reportedCostUsd:this.maxCallReservationUsd;
-      const revisionId=randomUUID();
+      reportedCostUsd=attribution.reportedCostUsd;settlementCost=attribution.attribution==='known'?reportedCostUsd:reserveUsd;
+      const revisionId=randomUUID(),persistedMetrics=safeRevisionMetrics(metrics,lane,attribution,settlementCost);
       const saved=await account.notebook.mutate(noteId,n=>{
         const currentHash=n.transcriptHash||sha(JSON.stringify(n.segments||[]));
         if(currentHash!==originalTranscriptHash)throw problem(409,'transcript_changed','Transcript changed during generation. Retry with the current transcript.');
-        n.revisions??=[];n.revisions.push({id:revisionId,createdAt:new Date(this.clock()).toISOString(),transcriptHash:currentHash,segments:n.segments,...result,metrics:{...metrics,requestedModel:lane,attribution:attribution.attribution,servingHop:attribution.servingHop,reportedCostUsd:attribution.reportedCostUsd,costUsd:charged}});n.state='ready';n.error=null;
+        n.revisions??=[];n.revisions.push({id:revisionId,createdAt:new Date(this.clock()).toISOString(),transcriptHash:currentHash,segments:n.segments,...result,metrics:persistedMetrics});n.state='ready';n.error=null;
       });
-      this._settle(userId,requestId,{state:'completed',cost:charged,revisionId});
+      this._settle(userId,requestId,{state:'completed',cost:settlementCost,reportedCostUsd,revisionId});
       return {note:saved,replayed:false,requestId};
-    }catch(error){await account.notebook.mutate(noteId,n=>{if(n.state==='summarizing') {n.state=n.revisions?.length?'ready':'error';n.error=error.message;}}).catch(()=>{});this._settle(userId,requestId,{state:'failed',cost:this.maxCallReservationUsd});throw error;}
+    }catch(error){const failedAttribution=error.gatewayMetrics?classifySummaryAttribution(error.gatewayMetrics,lane):null;if(failedAttribution){reportedCostUsd=failedAttribution.reportedCostUsd;settlementCost=failedAttribution.attribution==='known'?reportedCostUsd:reserveUsd;}await account.notebook.mutate(noteId,n=>{if(n.state==='summarizing'){n.state=n.revisions?.length?'ready':'error';n.error=String(error.message||'Summary failed.').slice(0,1000);}}).catch(()=>{});this._settle(userId,requestId,{state:'failed',cost:settlementCost,reportedCostUsd,failureReason:error.code||'summary_failed'});throw error;}
   }
   async close(){this.closed=true;await Promise.allSettled([...this.jobs.values()]);}
 }
