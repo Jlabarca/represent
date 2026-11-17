@@ -6,6 +6,8 @@
 
 ## Notcards web notebook (2026-11-16)
 
+The next signed-in acceptance check starts on the collection, holds the folders response until after a card opens, and verifies the same tab stays on that card. A failed caption import must accept an explicit retry, show an upstream rate-limit deadline when applicable, and persist successful captions. Live testing on lab1 observed HTTP 429 on YouTube's caption endpoint.
+
 The dev site runs the signed native Botanic handoff and metered summary adapter with both features gated. The 186-test platform suite passed. Loopback tests verify an owned conversation can be bound, reopened, and unlinked after deletion while the card stays intact. Real chat still needs the native Botanic hooks mounted and configured.
 
 The three requested videos were saved through the Google-authenticated web app. YouTube’s visible Show transcript panel provided 165, 191 and 90 timed rows in request order after the automatic importer failed. Each card’s URL, first caption and count were verified after reopening. A signed-in reload of the deployed NEAR notebook retained all 90 segments.
