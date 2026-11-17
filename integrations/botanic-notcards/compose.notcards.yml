@@ -1,5 +1,5 @@
 services:
   librechat:
-    image: notcards-botanic:rep12-localized
+    image: notcards-botanic:rep12-card-route
     env_file:
       - ./notcards-bridge.env

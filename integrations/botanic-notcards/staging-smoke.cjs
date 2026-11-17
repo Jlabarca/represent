@@ -13,6 +13,11 @@ const {Constants}=appRequire('librechat-data-provider');
 async function main(){
   // Deliberately fixed to the private, disposable smoke network.
   if(process.env.NOTCARDS_DISPOSABLE_SMOKE!=='1')throw Error('Use a disposable Mongo container with network disabled');
+  const entrypoint=require('node:fs').readFileSync('/app/api/server/index.js','utf8');
+  const cardMount=entrypoint.indexOf("app.use('/api/botanic/notcards',");
+  const sharedMount=entrypoint.indexOf("app.use('/api/botanic',");
+  assert.ok(cardMount>=0,'Missing Notcards router in the packaged server');
+  assert.ok(sharedMount<0||cardMount<sharedMount,'The shared JWT middleware intercepts the signed Notcards launch');
   await mongoose.connect('mongodb://127.0.0.1:27017/notcards_fixture',{serverSelectionTimeoutMS:15000});
   createModels(mongoose);
   const launchKeys=generateKeyPairSync('ed25519'),receiptKeys=generateKeyPairSync('ed25519');

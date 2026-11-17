@@ -33,7 +33,10 @@ def apply(upstream, shared=False):
            "        if (provider === 'google' && process.env.BOTANIC_NOTCARDS_AGENT_ID) {\n" +
            "          await require('~/server/notcards/google-subject.cjs').confirmGoogleSubject(\n" +
            "            require('mongoose').models.User, existingUser, { id, email, emailVerified });\n        }")
-    mount = "  app.use('/api/mcp', routes.mcp);"
+    # The shared parent authenticates every remaining /api/botanic request.
+    # The signed top-level form must reach the narrower router first.
+    mount = ("  app.use('/api/botanic', require('./botanic/router.cjs').router);"
+             if shared else "  app.use('/api/mcp', routes.mcp);")
     insert("api/server/index.js", mount, "  app.use('/api/botanic/notcards', " + native + ".route);\n" + mount)
     primary = ("Promise.resolve(endpointOption.agent).then(agent => require('~/server/botanic/router.cjs').applyPreferences(req, agent))"
                if shared else "endpointOption.agent")
