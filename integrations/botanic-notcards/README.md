@@ -4,6 +4,10 @@ One shared notes assistant serves separate conversations. A card owns the link t
 
 ## Build and configuration
 
+The reusable home adapter and remaining Botanic work are described in [Botanic card home](../../docs/design/botanic-card-home.md). Its expanded card list is local preparation for adoption.
+
+For the current preset release, generate `librechat.notcards.yaml` from the active combined config with `prepare-config.py`. The override mounts that generated file and selects `notcards-botanic:rep12-card-spec`. The script adds the visible `notcards` model spec that selects the existing shared assistant. It verifies the existing local-model preset and preserves model-spec enforcement.
+
 The shared build includes the existing Causa overlay with manifest SHA-256 `fea5fd989487c9ae175adcecc52da3063affaa806afc51c87b42d4838af6943e`. Layer `compose.notcards.yml` last over the base, prod1, Causa and native files. The specific Notcards router must mount ahead of the shared Botanic router so it can validate a signed card form. The protected routes still use native JWT authentication. Prod1 runs `notcards-botanic:rep12-card-route`. To roll back only the routing change, use the release's previous override with the `rep12-localized` image.
 
 The seeded shared assistant is `agent_notcards`, on the existing Botanic local provider with `botanic-free`. It has no tools. Viewer grants refer only to the assistant. Card contents and conversation receipts still require the exact Google subject. For previously provisioned Google accounts missing that subject, a fresh verified Google OAuth callback claims it atomically. A mismatched existing subject is refused. The deployed Notcards origin and Botanic origin are `https://not.maremoto.dev` and `https://botanic.maremoto.dev`.

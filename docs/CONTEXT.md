@@ -6,11 +6,11 @@
 
 ## Notcards web notebook (2026-11-17)
 
-Botanic home preparation: keep existing notebooks and native chats in their owning services. Prepare an opt-in card list with active owner-scoped conversation IDs, a framework-free join for Botanic's authorized conversation list, and an implementation handoff for the native home. The signed-in root and workspace layout belong to the Botanic rollout.
+Botanic home preparation is committed at `6af1916`. The opt-in card list returns active owner-scoped conversation IDs, and a framework-free adapter joins it to the authorized native chat list. Existing chats, note-only cards and bound notebooks appear once. The integration plan is in `docs/design/botanic-card-home.md`. These changes are verified locally. The default home, native workspace and authenticated API bridge remain Botanic adoption work.
 
 The pilot owner's Google subjects match across the two services. A server routing error intercepted the signed card form before its validator and returned “No auth token”. Prod1 now serves the card router before the shared parent. The public form reaches its validator and private reads require login.
 
-The first hosted card launch was accepted after the route fix. Its send stopped at the shared server's enforced model-spec check. Register a named local-model preset for the existing assistant and include it in the launch and post-login URLs.
+The first hosted card launch was accepted after the route fix. Its send stopped at the shared server's enforced model-spec check. The named Notcards preset, matching launch and post-login URLs are now deployed. Production's resolver selects the seeded assistant. Lab1's port 4001 bridge had lost its published port and was recreated from its existing compose file. Botanic's local inference and the reported Max-key denial still need end-to-end verification.
 
 Shared Botanic now runs the qualified combined Causa and Notcards image on prod1. The shared assistant uses Botanic local. The Notcards site offers the signed card handoff on the questions tab. Final live verification needs the first send and reopen from the pilot card. An authenticated session opened the three real summary revisions in the hosted website.
 

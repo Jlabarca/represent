@@ -909,3 +909,25 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Confirm the first native reply, its signed receipt and reopening the same conversation from the NEAR card.
+
+## 2026-11-17 — Native model preset and reusable home preparation
+
+### Accomplishments
+
+- Fixed the native preset selection after the first accepted form failed with “No model spec selected”. Production's own resolver confirms the assistant and preset, and the public client matches the container. The native Mongo smoke and all 194 pre-home platform checks passed.
+- Restored the existing lab1 bridge's published port 4001. Prod1 received HTTP 200 through the restored connection. Model completion remains unverified.
+- Prepared the optional owner-scoped card/conversation list and pure session-list adapter in commit `6af1916`. Added regression coverage for linked chats, native-only chats, note-only cards, authenticated listing, cross-owner isolation and deleted bindings. Wrote the Botanic adoption plan.
+- The complete post-change platform suite passed 195 tests, with zero failures or skips.
+
+### Decisions
+
+- Keep notebook storage and ingestion services reusable while Botanic owns the signed-in home and native conversation UI. Existing chat sessions can appear as cards before they acquire notebook attachments.
+- The home preparation is local code. A Botanic rollout still needs the account-scoped API adapter and native board renderer.
+
+### Blockers
+
+- A successful live inference and bound conversation are still pending. The reported Max-model access error and local model health remain part of the Botanic repair work.
+
+### Next
+
+- Adopt the prepared adapter in Botanic, implement the unified two-panel workspace and verify the old-chat and note-only cases alongside the live video chat.
