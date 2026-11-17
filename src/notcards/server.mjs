@@ -157,7 +157,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       if(reqUrl.pathname.startsWith('/api/')){
         if(requestOrigin&&!extensionRequest&&requestOrigin!==origin)throw problem(403,'Request origin is not allowed');
         if(reqUrl.pathname==='/api/session'&&req.method==='GET'){
-          const current=resolveUser();return json(200,current?{authenticated:true,user:current.user,cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)}:{authenticated:false,user:null,cacheScope:null,googleConfigured:Boolean(identityService.configured)});
+          const current=resolveUser();return json(200,current?{authenticated:true,user:{...current.user,...persistence.language(current.user.id)},cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)}:{authenticated:false,user:null,cacheScope:null,googleConfigured:Boolean(identityService.configured)});
         }
         const current=resolveUser();if(!current)return json(401,{code:'sign_in_required',error:'Sign in to your Notcards account to continue.'});
         const cardChatMatch=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/chat(?:\/(reset))?$/.exec(reqUrl.pathname);
@@ -166,6 +166,9 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         if(reqUrl.pathname==='/api/composer'&&current.auth!=='cookie')throw problem(403,'Composer drafts require a signed-in web session.');
         if(req.method!=='GET')requireOrigin({allowExtension:current.auth==='bearer'});
         const account=await persistence.account(current.user.id),path=reqUrl.pathname;
+        if(path==='/api/preferences'&&req.method==='PATCH')return json(200,persistence.setLanguage(current.user.id,await readBody(req,1024)));
+        const translation=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/translations$/.exec(path);
+        if(translation&&req.method==='POST')return json(200,await videoSummary.translate(current.user.id,translation[1],await readBody(req,2048)));
         if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:videoSummary.status().available,models:videoSummary.status().models,defaultModel:videoSummary.status().defaultModel,generationAvailable:videoSummary.status().available,queueSize:videoSummary.jobs.size,summary:videoSummary.status(),chatConfigured:Boolean(cardChat?.capabilities().available),botanicLaunchAvailable:Boolean(botanicLaunch),...(botanicLaunch?{botanicOrigin:botanicLaunch.botanicOrigin}:{}),cardChat:cardChat?.capabilities()||{available:false,lazyFirstQuestion:true,ownerScopedBindings:true,idempotentRequests:false,deletionConfirmation:false,canonicalConversationUrl:false,rawPromptPersistence:false}});
         const botanicLaunchMatch=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/botanic-launch$/.exec(path);
         if(botanicLaunchMatch){

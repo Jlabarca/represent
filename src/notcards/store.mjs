@@ -5,6 +5,7 @@ import {join} from 'node:path';
 import {NotebookStore, videoIdentity, replaceFile, parseTranscript} from '../clay-notes/core.mjs';
 import {extractLinks, sourceTypeForLink, youtubeVideo} from '../clay-notes/web/composer-links.mjs';
 import {VideoImportService} from './video-import.mjs';
+import {locales} from '../clay-notes/web/i18n.mjs';
 
 const hashHex = value => createHash('sha256').update(value).digest('hex');
 const hashChallenge = value => createHash('sha256').update(value).digest('base64url');
@@ -42,6 +43,7 @@ export class NotcardsStore {
     this.db.exec('PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;');
     this.db.exec(`
       CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, issuer TEXT NOT NULL, subject TEXT NOT NULL, email TEXT NOT NULL, display_name TEXT NOT NULL, created_at INTEGER NOT NULL, UNIQUE(issuer, subject));
+      CREATE TABLE IF NOT EXISTS account_language (user_id TEXT PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE, preference TEXT NOT NULL, locale TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS sessions (token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires_at INTEGER NOT NULL);
       CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id);
       CREATE TABLE IF NOT EXISTS extension_codes (code_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, challenge TEXT NOT NULL, redirect_uri TEXT NOT NULL, state TEXT NOT NULL, expires_at INTEGER NOT NULL);
@@ -70,6 +72,18 @@ export class NotcardsStore {
     const expiresAt = this.clock() + 14 * 24 * 60 * 60_000;
     this.db.prepare('INSERT INTO sessions(token_hash,user_id,expires_at) VALUES(?,?,?)').run(hashHex(token),userId,expiresAt);
     return {token,expiresAt};
+  }
+
+  language(userId) {
+    return this.db.prepare('SELECT preference AS languagePreference, locale FROM account_language WHERE user_id=?').get(userId) ||
+      {languagePreference:'auto',locale:null};
+  }
+
+  setLanguage(userId,{languagePreference,locale}) {
+    if(!locales.some(item=>item.id===locale)||(languagePreference!=='auto'&&languagePreference!==locale))
+      throw problem(400,'Choose a supported language.','unsupported_language');
+    this.db.prepare('INSERT INTO account_language VALUES(?,?,?) ON CONFLICT(user_id) DO UPDATE SET preference=excluded.preference,locale=excluded.locale').run(userId,languagePreference,locale);
+    return this.language(userId);
   }
 
   session(token) {

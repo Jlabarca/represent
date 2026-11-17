@@ -1,5 +1,6 @@
 import {createHash, randomUUID} from 'node:crypto';
 import {videoIdentity,DEFAULT_PROMPT,SUMMARY_MAX_COMPLETION_TOKENS} from '../clay-notes/core.mjs';
+import {locales} from '../clay-notes/web/i18n.mjs';
 
 const sha=value=>createHash('sha256').update(value).digest('hex');
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -88,10 +89,14 @@ export class NotcardsVideoSummary {
   }
   status(){return {available:this.enabled,defaultModel:'cheap',models:this.enabled?['cheap',...(this.deepEnabled?['smart']:[])]:[],defaultLane:LANES.summary,deepLaneAvailable:this.deepEnabled,reason:this.enabled?null:'gateway_setup_pending'};}
   _transaction(work){this.db.exec('BEGIN IMMEDIATE');try{const value=work();this.db.exec('COMMIT');return value;}catch(error){this.db.exec('ROLLBACK');throw error;}}
-  _reserve({userId,noteId,requestId,lane,payloadHash,reserveUsd,now}){
+  _reserve({userId,noteId,requestId,lane,payloadHash,reserveUsd,now,reuseContent=false}){
     return this._transaction(()=>{
       const prior=this.db.prepare('SELECT * FROM notcards_summary_spend WHERE user_id=? AND request_id=?').get(userId,requestId);
       if(prior){if(prior.payload_hash!==payloadHash)throw problem(409,'summary_idempotency_conflict','This request id was already used for different content.');return {replay:prior};}
+      if(reuseContent){
+        const same=this.db.prepare("SELECT state FROM notcards_summary_spend WHERE user_id=? AND payload_hash=? AND state IN ('reserved','completed')").get(userId,payloadHash);
+        if(same)return {replay:same};
+      }
       const cutoff=now-30*24*60*60*1000;
       this.db.prepare("DELETE FROM notcards_summary_spend WHERE period_start<? AND state<>'reserved'").run(cutoff);
       const rows=this.db.prepare('SELECT COUNT(*) AS count FROM notcards_summary_spend WHERE user_id=?').get(userId).count;
@@ -113,7 +118,8 @@ export class NotcardsVideoSummary {
     if(!note)throw problem(404,'notebook_not_found','Notebook not found.');
     if(!note.segments?.length)throw problem(409,'transcript_required','A transcript is needed before summarizing.');
     const originalTranscriptHash=note.transcriptHash||sha(JSON.stringify(note.segments));
-    const payloadHash=sha(JSON.stringify({noteId,transcriptHash:originalTranscriptHash,lane}));
+    const language=this.store.language(userId).locale||'en';
+    const payloadHash=sha(JSON.stringify({noteId,transcriptHash:originalTranscriptHash,lane,...(language!=='en'?{language}:{})}));
     const rate=this.rates[model];if(!rate)throw problem(503,'summary_lane_unavailable','No reviewed price bounds are configured for this lane.');
     const requestBytes=Buffer.byteLength(JSON.stringify({question:DEFAULT_PROMPT,transcript:note.segments}))+4096;
     const reserveUsd=requestBytes*rate.inputUsdPerToken+SUMMARY_MAX_COMPLETION_TOKENS*rate.outputUsdPerToken;
@@ -124,7 +130,7 @@ export class NotcardsVideoSummary {
       if(reservation.replay.state==='reserved')throw problem(409,'summary_pending','This summary request is already in progress.');
       throw problem(409,'summary_retry_new_request','This summary request failed; retry explicitly with a new request id.');
     }
-    return {account,note,replay:false,lane,originalTranscriptHash,reserveUsd};
+    return {account,note,replay:false,lane,originalTranscriptHash,reserveUsd,language};
   }
   async _start(userId,noteId,{model='summary',requestId=randomUUID(),wait=true}={}){
     if(this.closed)throw problem(503,'summary_service_closing','Summary generation is shutting down.');
@@ -165,18 +171,67 @@ export class NotcardsVideoSummary {
     const {account,note,lane,originalTranscriptHash,reserveUsd}=prepared;let settlementCost=reserveUsd,reportedCostUsd=null;
     try{
       await account.notebook.mutate(noteId,n=>{if((n.transcriptHash||sha(JSON.stringify(n.segments||[])))!==originalTranscriptHash)throw problem(409,'transcript_changed','Transcript changed before generation began.');n.state='summarizing';n.error=null;});
-      const {result,metrics={}}=await this.gateway.complete({model:lane,segments:note.segments});
+      const {result,metrics={}}=await this.gateway.complete({model:lane,segments:note.segments,language:prepared.language});
       const attribution=classifySummaryAttribution(metrics,lane);
       reportedCostUsd=attribution.reportedCostUsd;settlementCost=attribution.attribution==='known'?reportedCostUsd:reserveUsd;
       const revisionId=randomUUID(),persistedMetrics=safeRevisionMetrics(metrics,lane,attribution,settlementCost);
       const saved=await account.notebook.mutate(noteId,n=>{
         const currentHash=n.transcriptHash||sha(JSON.stringify(n.segments||[]));
         if(currentHash!==originalTranscriptHash)throw problem(409,'transcript_changed','Transcript changed during generation. Retry with the current transcript.');
-        n.revisions??=[];n.revisions.push({id:revisionId,createdAt:new Date(this.clock()).toISOString(),transcriptHash:currentHash,segments:n.segments,...result,metrics:persistedMetrics});n.state='ready';n.error=null;
+        n.revisions??=[];n.revisions.push({id:revisionId,createdAt:new Date(this.clock()).toISOString(),transcriptHash:currentHash,segments:n.segments,...result,language:prepared.language,metrics:persistedMetrics});n.state='ready';n.error=null;
       });
       this._settle(userId,requestId,{state:'completed',cost:settlementCost,reportedCostUsd,revisionId});
       return {note:saved,replayed:false,requestId};
     }catch(error){const failedAttribution=error.gatewayMetrics?classifySummaryAttribution(error.gatewayMetrics,lane):null;if(failedAttribution){reportedCostUsd=failedAttribution.reportedCostUsd;settlementCost=failedAttribution.attribution==='known'?reportedCostUsd:reserveUsd;}await account.notebook.mutate(noteId,n=>{if(n.state==='summarizing'){n.state=n.revisions?.length?'ready':'error';n.error=String(error.message||'Summary failed.').slice(0,1000);}}).catch(()=>{});this._settle(userId,requestId,{state:'failed',cost:settlementCost,reportedCostUsd,failureReason:error.code||'summary_failed'});throw error;}
+  }
+  async translate(userId,noteId,{revisionId,locale,requestId}){
+    if(!locales.some(item=>item.id===locale)||typeof revisionId!=='string'||!UUID.test(requestId||''))throw problem(400,'translation_invalid','Choose a revision and a supported language.');
+    const account=await this.store.account(userId),note=await account.notebook.get(noteId);
+    const original=note?.revisions?.find(r=>r.id===revisionId);
+    if(!original)throw problem(404,'revision_not_found','Summary revision not found.');
+    if(original.language===locale||original.translations?.[locale])return {note};
+    if(this.closed||!this.enabled)throw problem(503,'ai_setup_pending','Translation is unavailable.');
+    const texts=[original.overview,...original.statements.map(item=>item.text),...original.conclusions.map(item=>item.text)];
+    const lane=LANES.summary,rate=this.rates.summary;
+    const reserveUsd=(Buffer.byteLength(JSON.stringify({texts}))+4096)*rate.inputUsdPerToken+SUMMARY_MAX_COMPLETION_TOKENS*rate.outputUsdPerToken;
+    if(reserveUsd>this.maxCallReservationUsd)throw problem(413,'summary_cost_bound_exceeded','Translation exceeds the per-call allowance.');
+    const payloadHash='translation:'+sha(JSON.stringify([noteId,revisionId,locale,texts]));
+    const jobKey=userId+':'+payloadHash;
+    if(this.jobs.has(jobKey))return this.jobs.get(jobKey);
+    const {replay}=this._reserve({userId,noteId,requestId,lane,payloadHash,reserveUsd,now:this.clock(),reuseContent:true});
+    if(replay){
+      const latest=await account.notebook.get(noteId);
+      if(latest?.revisions?.find(r=>r.id===revisionId)?.translations?.[locale])return {note:latest};
+      throw problem(409,'translation_retry','Translation is pending or the previous attempt failed.');
+    }
+    const execute=async()=>{
+      let cost=reserveUsd,reportedCostUsd=null;
+      try{
+        const {result,metrics}=await this.gateway.complete({model:lane,texts,language:locale});
+        const attribution=classifySummaryAttribution(metrics,lane);
+        reportedCostUsd=attribution.reportedCostUsd;
+        if(attribution.attribution==='known')cost=reportedCostUsd;
+        const saved=await account.notebook.mutate(noteId,current=>{
+          const revision=current.revisions.find(r=>r.id===revisionId);
+          if(!revision)throw problem(409,'revision_changed','Summary revision changed.');
+          if(!revision.language&&locales.some(item=>item.id===result.sourceLanguage)){
+            revision.language=result.sourceLanguage;
+            revision.languageDetected=true;
+          }
+          let index=1;
+          const items=entries=>entries.map(item=>({...item,text:result.texts[index++]}));
+          revision.translations??={};
+          revision.translations[locale]={overview:result.texts[0],statements:items(revision.statements),conclusions:items(revision.conclusions)};
+        });
+        this._settle(userId,requestId,{state:'completed',cost,reportedCostUsd,revisionId});
+        return {note:saved};
+      }catch(error){
+        if(error.gatewayMetrics){const a=classifySummaryAttribution(error.gatewayMetrics,lane);reportedCostUsd=a.reportedCostUsd;if(a.attribution==='known')cost=reportedCostUsd;}
+        this._settle(userId,requestId,{state:'failed',cost,reportedCostUsd,revisionId,failureReason:'translation_failed'});throw error;
+      }
+    };
+    const job=execute();this.jobs.set(jobKey,job);
+    try{return await job;}finally{this.jobs.delete(jobKey);}
   }
   async close(){this.closed=true;await Promise.allSettled([...this.jobs.values()]);}
 }

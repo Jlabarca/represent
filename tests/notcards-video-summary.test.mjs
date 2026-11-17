@@ -29,13 +29,35 @@ async function harness(t,{cap=1,cost='0.01',hold=false,httpStatus=200}={}){
     const body=JSON.parse(raw);assert.ok(['clay-notes-summary','clay-notes-deep'].includes(body.model));
     if(hold)await new Promise(resolve=>{release=resolve;});
     res.writeHead(httpStatus,{'content-type':'application/json','x-litellm-response-cost':cost,'x-litellm-model-api-base':'https://openrouter.ai/api/v1?api_key=do-not-persist'});
-    res.end(JSON.stringify({model:'google/gemini-2.5-flash-lite',usage:{total_tokens:20},choices:[{finish_reason:'stop',message:{content:JSON.stringify(completion)}}]}));
+    const texts=JSON.parse(body.messages[1].content).texts;
+    const result=texts?{texts:texts.map(text=>'Traducción: '+text)}:completion;
+    res.end(JSON.stringify({model:'google/gemini-2.5-flash-lite',usage:{total_tokens:20},choices:[{finish_reason:'stop',message:{content:JSON.stringify(result)}}]}));
   });
   await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));t.after(()=>new Promise(resolve=>{server.closeAllConnections();server.close(resolve)}));
   const gateway=new Gateway({url:`http://127.0.0.1:${server.address().port}/v1`,key:'isolated-test-key',models:['clay-notes-summary','clay-notes-deep']});
   const service=new NotcardsVideoSummary({store,gateway,activation,maxAccountSpendUsd:cap,maxCallReservationUsd:Math.min(0.05,cap)});
   return {store,user,note,gateway,service,calls:()=>calls,release:()=>release?.()};
 }
+
+test('saves account language and caches each revision translation without replacing its citations or original',async t=>{
+  const h=await harness(t);
+  const options={languagePreference:'fr',locale:'fr'};
+  assert.deepEqual({...h.store.setLanguage(h.user.id,options)},options);
+  assert.throws(()=>h.store.setLanguage(h.user.id,{languagePreference:'fr',locale:'es'}));
+  const generated=await h.service.summarize(h.user.id,h.note.id);
+  const revision=generated.note.revisions[0];
+  assert.equal(revision.language,'fr');
+  const translation={revisionId:revision.id,locale:'es',requestId:crypto.randomUUID()};
+  const [a,b]=await Promise.all([h.service.translate(h.user.id,h.note.id,translation),h.service.translate(h.user.id,h.note.id,{...translation,requestId:crypto.randomUUID()})]);
+  assert.deepEqual(a.note.revisions,b.note.revisions);
+  assert.deepEqual(a.note.revisions[0].statements,revision.statements);
+  assert.deepEqual(a.note.revisions[0].translations.es.statements[0].sources,revision.statements[0].sources);
+  assert.match(a.note.revisions[0].translations.es.overview,/Traducción/);
+  await h.service.translate(h.user.id,h.note.id,{...translation,requestId:crypto.randomUUID()});
+  const another=h.store.user(userInfo('another')).id;
+  await assert.rejects(h.service.translate(another,h.note.id,translation),/not found/);
+  assert.equal(h.calls(),2);
+});
 
 test('keeps summary unavailable until Apply, lane-test and paid authorization are all present',async t=>{
   const h=await harness(t);const gated=new NotcardsVideoSummary({store:h.store,gateway:h.gateway,activation:{...activation,paidCallsAuthorized:false}});
