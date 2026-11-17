@@ -42,7 +42,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
   const models=[];
   if(requestedSummary.activation?.summaryLaneTestPassed===true||requestedSummary.activation?.laneTestPassed===true)models.push('clay-notes-summary');
   if(requestedSummary.activation?.deepLaneTestPassed===true)models.push('clay-notes-deep');
-  const summaryGateway=requestedSummary.gateway||new Gateway({url:requestedSummary.url||'http://127.0.0.1:4000/v1',key:requestedSummary.key||undefined,models});
+  const summaryGateway=requestedSummary.gateway||new Gateway({url:requestedSummary.url||'http://127.0.0.1:4000/v1',key:requestedSummary.key||undefined,models,allowDockerHost:true});
   const summaryActivation=requestedSummary.configurationValid===true?requestedSummary.activation:{};
   const videoSummary=new NotcardsVideoSummary({store:persistence,gateway:summaryGateway,activation:summaryActivation,maxAccountSpendUsd:safeMax,maxServiceSpendUsd:safeService,maxCallReservationUsd:safeReservation,rates:requestedSummary.configurationValid===true?requestedSummary.rates:undefined});
   const priorVideoReady=persistence.onVideoReady;

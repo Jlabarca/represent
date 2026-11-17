@@ -91,10 +91,11 @@ function safeUsage(value) {
 function safeReportedCost(value) { return value !== null && value.trim() !== '' && Number.isFinite(Number(value)) && Number(value) >= 0 ? Number(value) : null; }
 
 export class Gateway {
-  constructor({url = 'http://127.0.0.1:4000/v1', key, models = ['cheap', 'smart', 'local'], fetcher = fetch} = {}) {
+  constructor({url = 'http://127.0.0.1:4000/v1', key, models = ['cheap', 'smart', 'local'], fetcher = fetch, allowDockerHost = false} = {}) {
     const parsed = new URL(url);
     if (!['http:', 'https:'].includes(parsed.protocol) || parsed.username || parsed.password || parsed.search || parsed.hash) throw new Error('Invalid Ghost gateway URL');
-    if (parsed.protocol !== 'https:' && !['127.0.0.1', 'localhost', '[::1]'].includes(parsed.hostname)) throw new Error('Remote gateway requires HTTPS');
+    const dockerHost = allowDockerHost && parsed.href === 'http://host.docker.internal:4000/v1';
+    if (parsed.protocol !== 'https:' && !dockerHost && !['127.0.0.1', 'localhost', '[::1]'].includes(parsed.hostname)) throw new Error('Remote gateway requires HTTPS');
     this.url = url.replace(/\/$/, '').replace(/\/v1$/, '') + '/v1';
     this.key = key; this.models = [...new Set(models)]; this.fetcher = fetcher;
   }
