@@ -60,6 +60,13 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 
 ## Key Files Reference
 
+### Continuation plan for REP-12.2.2
+
+1. Run the checked Ghost console transaction on lab1. Record its Apply SHA and actual lane tests. Verify the dedicated host credential by name only.
+2. Exercise the normal private notebook summary API with loopback responses, actual hop accounting, per-owner reservations, duplicate protection and recoverable import jobs. Enable the hosted gateway only after the approved transaction succeeds.
+3. Verify the signed-in board, each source ID, transcript count, source text, loading/error copy and summary outcome for the three supplied videos. Test YouTube’s public transcript panel as an unattended importer fallback and distinguish it from operator-assisted capture.
+4. Stage a Botanic-native owner-verified conversation integration. Verify first question, follow-up, registration and confirmed deletion before enabling chat. Production rollout remains a separate operator action.
+
 Shared web UI under src/clay-notes/web and hosted creation in src/notcards. Exercise the app through the served web shell.
 
 ## Architecture Notes
