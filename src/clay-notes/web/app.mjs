@@ -1,8 +1,8 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-5';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-6';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
-import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-5';
+import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-6';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
@@ -82,6 +82,7 @@ function startNote(){
   composer.focus();
 }
 function renderLibrary(){
+  if(state.user&&location.hash)return;
   document.documentElement.dataset.screen='collection';
   state.samplePreview=false;
   const editing=$('#quick-note-slot')?.contains(document.activeElement)?document.activeElement:null;
@@ -118,7 +119,10 @@ function citations(sources,kind='summary',item='') {return (sources || []).map(i
 function sourcePanel(note){
   const video=videoSource(note),status=videoImportStatus(note),needsRetry=video&&!state.samplePreview&&!state.local&&['failed','unavailable'].includes(status);
   const player=video?`<div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?rel=0&playsinline=1" title="${h('YouTube video player')}: ${escape(note.title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:coverSource(note)?`<img class="source-cover" src="${escape(coverSource(note))}" alt="${h('Source cover')}" loading="lazy">`:'';
-  const importState=video?state.samplePreview?`<p class="video-import-state">${h('Public video preview; captions are not included.')}</p>`:status==='pending'?`<p class="video-import-state pending"><span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}</p>`:status==='ready'?`<p class="video-import-state ready">✦ ${h('Captions ready')}</p>`:needsRetry?`<div class="video-import-state failed"><p>${h(status==='unavailable'?'Captions are unavailable for this video.':'Caption import failed.')}</p><button class="quiet-button" type="button" data-action="retry-video-import">${h('Retry caption import')} ↻</button></div>`:'' :'';
+  const policy=note.videoImport||{};
+  const retryTime=policy.reason==='youtube_rate_limited'||policy.attemptCount>1?Date.parse(policy.retryAllowedAt)||0:0;
+  const cooldown=retryTime>Date.now();
+  const importState=video?state.samplePreview?`<p class="video-import-state">${h('Public video preview; captions are not included.')}</p>`:status==='pending'?`<p class="video-import-state pending"><span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}</p>`:status==='ready'?`<p class="video-import-state ready">✦ ${h('Captions ready')}</p>`:needsRetry?`<div class="video-import-state failed"><p>${h(note.videoImport?.reason==='youtube_rate_limited'?'YouTube is limiting caption requests.':status==='unavailable'?'Captions are unavailable for this video.':'Caption import failed.')}</p><button class="quiet-button" type="button" data-action="retry-video-import" data-ready-at="${retryTime}" ${cooldown?'disabled':''}>${cooldown?h('Retry after {time}',{time:new Date(retryTime).toLocaleTimeString(locale)}):h('Retry caption import')+' ↻'}</button></div>`:'' :'';
   const manualFallback=video&&needsRetry?`<button type="button" class="quiet-button" data-action="tab" data-tab="transcript">${h('Paste transcript instead')}</button>`:'';
   const description=note.segments.length?`${note.segments.length} ${h(video?'transcript segments':'source segments')} · ${escape(note.transcriptSource||'captured source')}`:h(videoSourceMessageKey(note,{isVideo:video,status,preview:state.samplePreview}));
   return `<section class="source-card">${player}<div class="source-card-content"><div class="source-card-heading"><strong>${h(video?'Original video':sourceLabel(note))}</strong>${note.url?`<a class="source-link" href="${escape(canonicalizeLink(note.url)||note.url)}" target="_blank" rel="noopener noreferrer">${h(video?'Open on YouTube':'Open source')} ↗</a>`:''}</div><p>${description}</p>${importState}${manualFallback}</div></section>`;
@@ -266,7 +270,7 @@ async function refresh(){
   try{
     if(id){
       const note=await api(`/notes/${encodeURIComponent(id)}`);
-      if(current()){state.note=note;renderNotebook();}
+      if(current()){state.note=note;renderNotebook();window.scrollTo(0,0);}
     }else{
       const notes=await api('/notes');
       if(current()){state.notes=notes;writeLibraryCache(localStorage,notes,Date.now(),scope||'local');renderLibrary();}
@@ -274,12 +278,19 @@ async function refresh(){
   }catch(error){if(current())throw error;}
 }
 document.addEventListener('click',async event=>{
-  const button=event.target.closest('[data-action]');if(!button)return;
-  const action=button.dataset.action;
+  const button=event.target.closest('[data-action]')||(!event.target.closest('button,a,input')&&event.target.closest('.note-card[data-id]'));
+  if(!button||state.dragging)return;
+  const action=button.dataset.action||'open';
   try{
     if(action==='add')startNote();
     if(action==='signin'){event.preventDefault();signInForNotes();}
-    if(action==='open'){if(!state.user){event.preventDefault();const sample=sampleNotes.find(note=>note.id===button.dataset.id);if(sample)location.hash=`sample=${encodeURIComponent(sample.id)}`;return;}location.hash=`note=${encodeURIComponent(button.dataset.id)}`;}
+    if(action==='open'){
+      if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+      event.preventDefault();
+      const id=button.dataset.id;
+      const hash=state.user?'#note='+encodeURIComponent(id):'#sample='+encodeURIComponent(id);
+      if(location.hash===hash)await refresh();else location.hash=hash;
+    }
     if(action==='library'){location.hash='';state.evidence=null;state.revision=null;}
     if(action==='tab'){state.tab=button.dataset.tab;renderNotebook();}
     if(action==='cover'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{coverImage:button.dataset.image||null}});renderNotebook();}
@@ -299,7 +310,12 @@ document.addEventListener('click',async event=>{
       const updated=await api(`/notes/${note.id}`);
       if(viewingNotebook(note.id,scope)){state.revision=null;state.note=updated;renderNotebook();}
     }
-    if(action==='retry-video-import'){button.disabled=true;await api(`/notes/${encodeURIComponent(state.note.id)}/video-import`,{method:'POST'});state.note=await api(`/notes/${encodeURIComponent(state.note.id)}`);renderNotebook();}
+    if(action==='retry-video-import'){
+      const id=state.note.id,scope=state.cacheScope;
+      button.disabled=true;button.textContent=t('Fetching captions');
+      const updated=await api(`/notes/${encodeURIComponent(id)}/video-import`,{method:'POST'});
+      if(viewingNotebook(id,scope)){state.note=updated;renderNotebook();}
+    }
     if(action==='cite'){const note=state.note;const revision=note.revisions[state.revision ?? note.revisions.length-1];const segments=button.dataset.kind==='question'?note.conversations.find(q=>q.id===button.dataset.item)?.segments:revision?.segments;state.evidence=segments?.find(s=>s.id===Number(button.dataset.source));renderEvidence();$('#evidence')?.scrollIntoView({behavior:'smooth',block:'nearest'});}
     if(action==='close-evidence'){state.evidence=null;renderEvidence();}
   }catch(error){toast(error.message);button.disabled=false;}
@@ -408,6 +424,8 @@ async function refreshSession(){
 }
 void startLibrary();
 setInterval(async()=>{
+  const retry=document.querySelector('[data-action="retry-video-import"][data-ready-at]:disabled');
+  if(retry&&Number(retry.dataset.readyAt)>0&&Number(retry.dataset.readyAt)<=Date.now()){retry.disabled=false;retry.removeAttribute('data-ready-at');retry.textContent=t('Retry caption import')+' ↻';}
   if(document.hidden||state.busy||state.dragging||!state.user||state.samplePreview)return;
   try{
     if(state.note){

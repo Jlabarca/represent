@@ -147,20 +147,29 @@ async function capturePage(wantTranscript, expectedId) {
       if (json.events?.some(event => event.segs?.some(segment => segment.utf8?.trim()))) return {transcript: json, source: `youtube-captions:${track.languageCode || 'unknown'}`};
     } catch { /* Fall back to the visible transcript. */ }
   }
-  const readRows = () => [...document.querySelectorAll('ytd-transcript-segment-renderer')].map(row => {
-    const text = row.querySelector('.segment-text')?.textContent?.trim();
-    const parts = (row.querySelector('.segment-timestamp')?.textContent || '0').trim().split(':').map(Number);
+  const readRows = () => [...document.querySelectorAll('ytd-transcript-segment-renderer, transcript-segment-view-model')].map(row => {
+    const text = row.querySelector('.segment-text, .ytAttributedStringHost')?.textContent?.trim();
+    const parts = (row.querySelector('.segment-timestamp, .ytwTranscriptSegmentViewModelTimestamp')?.textContent || '0').trim().split(':').map(Number);
     return {text, start: parts.reduce((total, part) => total * 60 + part, 0)};
   }).filter(row => row.text);
   let transcript = readRows();
   if (!transcript.length) {
-    const button = [...document.querySelectorAll('button,ytd-button-renderer')].find(item => /^(show transcript|mostrar transcripci[oÃ³]n)$/i.test(item.textContent?.trim() || ''));
+    const findAction=()=>document.querySelector('ytd-video-description-transcript-section-renderer button') || [...document.querySelectorAll('button,ytd-button-renderer')].find(item=>/^(show transcript|mostrar transcripci[o\u00f3]n)$/i.test(item.textContent?.trim()||''));
+    let button=findAction();
+    if(!button){
+      document.querySelector('ytd-watch-metadata #description-inline-expander #expand')?.click();
+      for(let attempt=0;attempt<6&&!button;attempt++){
+        await new Promise(resolve=>setTimeout(resolve,150));
+        button=findAction();
+      }
+    }
     button?.click();
     if (button) for (let attempt = 0; attempt < 12 && !transcript.length; attempt++) {
       await new Promise(resolve => setTimeout(resolve, 250));
       transcript = readRows();
     }
   }
+  if(location.href!==pageUrl.href && new URL(location.href).searchParams.get('v')!==expectedId)throw new Error('Video changed during capture.');
   return transcript.length ? {transcript, source: 'youtube-transcript-panel'} : {error: 'YouTube captions were unavailable. The card was saved without them.'};
 }
 

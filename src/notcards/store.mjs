@@ -234,7 +234,7 @@ export class NotcardsStore {
     if(note.videoImport?.status==='pending')return this.scheduleVideoImport(userId,noteId);
     if(!['failed','unavailable'].includes(note.videoImport?.status))return this.ensureVideoImport(userId,noteId);
     const now=this.clock(),retryAt=Date.parse(note.videoImport.retryAllowedAt||'');
-    if(Number.isFinite(retryAt)&&retryAt>now)return note;
+    if(Number.isFinite(retryAt)&&retryAt>now&&(note.videoImport.reason==='youtube_rate_limited'||note.videoImport.attemptCount>1))return note;
     note=await this.withAccountWrite(account,()=>account.notebook.mutate(noteId,current=>{
       const old=current.videoImport||{};
       if(['failed','unavailable'].includes(old.status))current.videoImport={...old,status:'pending',startedAt:new Date(now).toISOString(),attemptCount:(old.attemptCount||1)+1,retryAllowedAt:new Date(now+30_000).toISOString()};
@@ -269,12 +269,19 @@ export class NotcardsStore {
       let savedTranscript=null;
       if(!result.segments?.length&&!current.segments?.length&&(result.status==='unavailable'||result.status==='failed')){
         const identity=videoIdentity(current.url),otherNotes=await account.notebook.list();
-        const matching=otherNotes.find(other=>other.id!==noteId&&other.segments?.length&&(typeof other.transcriptSource==='string'&&(['youtube-captions','youtube-public-captions','youtube-transcript-panel'].includes(other.transcriptSource)||other.transcriptSource.startsWith('youtube-captions:')))&&(()=>{try{return videoIdentity(other.url).id===identity.id;}catch{return false;}})());
-        if(matching)savedTranscript=matching;
+        const copies=otherNotes.filter(other=>other.id!==noteId&&other.segments?.length&&youtubeVideo(other.url)?.id===identity.id);
+        savedTranscript=copies.find(other=>['youtube-captions','youtube-public-captions','youtube-transcript-panel'].includes(other.transcriptSource)||other.transcriptSource?.startsWith('youtube-captions:'));
+        if(!savedTranscript){
+          const pasted=copies.filter(other=>other.transcriptSource==='paste');
+          const distinct=new Set(pasted.map(other=>other.transcriptHash||hashHex(JSON.stringify(other.segments))));
+          if(distinct.size===1)savedTranscript=pasted[0];
+        }
       }
       const now=new Date(this.clock()).toISOString();
       return account.notebook.mutate(noteId,note=>{
-        const imported={status:result.status,completedAt:now,attemptCount:note.videoImport?.attemptCount||1,...(['unavailable','failed'].includes(result.status)?{retryAllowedAt:new Date(this.clock()+30_000).toISOString()}:{}),...(result.reason?{reason:result.reason}:{})};
+        const attempts=note.videoImport?.attemptCount||1;
+        const retryDelay=result.retryMs||(attempts>1?30_000:0);
+        const imported={status:result.status,completedAt:now,attemptCount:attempts,...(['unavailable','failed'].includes(result.status)&&retryDelay?{retryAllowedAt:new Date(this.clock()+retryDelay).toISOString()}:{}),...(result.reason?{reason:result.reason}:{})};
         const legacyUrlTitle = note.title && youtubeVideo(note.title)?.id === videoIdentity(note.url).id;
         if(result.title && !note.titleManuallySet && (!note.title || legacyUrlTitle || ['Untitled video','Untitled research'].includes(note.title)))note.title=result.title;
         if(result.channel&&!note.channel)note.channel=result.channel;
@@ -289,6 +296,7 @@ export class NotcardsStore {
             imported.generationRequestId=requestId;
           }
         }
+        if(note.segments?.length){imported.status='ready';delete imported.reason;delete imported.retryAllowedAt;}
         note.videoImport=imported;
       });
     });

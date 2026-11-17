@@ -216,6 +216,8 @@ const composerRows=[
   ["Card size", "Tamaño de las cartas", "Tamanho dos cartões", "Taille des cartes", "Kartengröße", "Dimensione delle carte", "カードのサイズ", "卡片大小", "حجم البطاقات", "कार्ड का आकार"]
 ];
 const webBookRows=[
+  ["YouTube is limiting caption requests.","YouTube is limiting caption requests.","YouTube está limitando las solicitudes de subtítulos.","O YouTube está limitando as solicitações de legendas.","YouTube limite les demandes de sous-titres.","YouTube begrenzt die Anfragen für Untertitel.","YouTube sta limitando le richieste di sottotitoli.","YouTube が字幕のリクエストを制限しています。","YouTube 正在限制字幕请求。","يحدّ YouTube من طلبات الترجمة.","YouTube सबटाइटल अनुरोधों को सीमित कर रहा है।"],
+  ["Retry after {time}","Retry after {time}","Reintentar después de las {time}","Tentar novamente após {time}","Réessayer après {time}","Ab {time} erneut versuchen","Riprova dopo le {time}","{time} 以降に再試行","{time} 后重试","أعد المحاولة بعد {time}","{time} के बाद फिर कोशिश करें"],
   ["Open notebook","Open notebook","Abrir cuaderno","Abrir caderno","Ouvrir le carnet","Notizbuch öffnen","Apri quaderno","ノートブックを開く","打开笔记本","افتح الدفتر","नोटबुक खोलें"],
   ["Fetching captions","Fetching captions","Obteniendo subtítulos","Buscando legendas","Récupération des sous-titres","Untertitel werden geladen","Recupero dei sottotitoli","字幕を取得中","正在获取字幕","جارٍ جلب التسميات","कैप्शन प्राप्त हो रहे हैं"],
   ["YouTube video player","YouTube video player","Reproductor de YouTube","Reprodutor do YouTube","Lecteur vidéo YouTube","YouTube-Videoplayer","Lettore video YouTube","YouTube 動画プレーヤー","YouTube 视频播放器","مشغل فيديو YouTube","YouTube वीडियो प्लेयर"],

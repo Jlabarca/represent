@@ -73,6 +73,23 @@ test('returns unavailable for genuinely empty public captions while retaining me
   assert.equal(result.status,'unavailable');assert.equal(result.reason,'captions_unavailable');assert.equal(result.title,'Public title abcdefghijk');
 });
 
+test('YouTube rate limits preserve the title and retry time without re-requesting the blocked track',async()=>{
+  const calls=[];
+  const service=new VideoImportService({enabled:true,retries:2,fetcher:async url=>{
+    const path=new URL(url).pathname;calls.push(path);
+    if(path==='/oembed')return metadata('abcdefghijk');
+    if(path==='/watch')return new Response(playerHtml('abcdefghijk',{showTranscript:true}));
+    if(path==='/api/timedtext')return new Response('',{status:429,headers:{'Retry-After':'91'}});
+    throw Error('Unexpected request '+path);
+  }});
+  try{
+    const note=await service.enqueue(video('abcdefghijk').url);
+    assert.equal(note.reason,'youtube_rate_limited');assert.equal(note.retryMs,91000);
+    assert.equal(note.title,'Public title abcdefghijk');
+    assert.deepEqual(calls,['/oembed','/watch','/api/timedtext']);
+  }finally{await service.close();}
+});
+
 test('caps import concurrency, retries transient errors, and aborts outstanding jobs on close',async()=>{
   let active=0,highWater=0,calls=0;
   const service=new VideoImportService({enabled:true,concurrency:2,retries:1,retryDelayMs:0,fetcher:async url=>{
@@ -158,4 +175,30 @@ test('a web composer paste with an empty title adopts the video title even witho
   await Promise.all(store.videoImportJobs.values());
   const note=await (await store.account(user.id)).notebook.get(result.ids[0]);
   assert.equal(note.title,'Source title');assert.equal(note.videoImport.status,'unavailable');
+});
+test('legacy and modern transcript rows retain source text and nonzero timestamps',()=>{
+  const body={segments:[
+    {transcriptSegmentRenderer:{startMs:'1400',snippet:{runs:[{text:'Legacy caption'}]}}},
+    {transcriptSegmentViewModel:{startTimeText:{content:'1:09'},snippet:{content:'Modern caption'}}}
+  ]};
+  assert.deepEqual(videoImportInternals.parseTranscriptResponse(body).map(({start,text})=>[start,text]),[[1.4,'Legacy caption'],[69,'Modern caption']]);
+});
+
+test('rate-limited duplicate videos recover only an unambiguous transcript pasted by the same owner',async t=>{
+  const directory=await mkdtemp(join(tmpdir(),'notcards-account-captions-'));
+  const store=await new NotcardsStore({directory,videoImporter:{enqueue:async()=>({status:'failed',reason:'youtube_rate_limited',retryMs:60000}),close:async()=>{}}}).init();
+  t.after(async()=>{await store.close();await rm(directory,{recursive:true,force:true});});
+  const owner=subject=>store.user({issuer:'https://accounts.google.com',subject,email:subject+'@example.invalid',displayName:subject});
+  const a=owner('first'),b=owner('second'),url=video('abcdefghijk').url;
+  const create=async user=>{
+    const result=await store.compose(user.id,{draftId:crypto.randomUUID(),body:url,title:'Saved video',split:false,folderId:null});
+    await Promise.all(store.videoImportJobs.values());
+    return (await store.account(user.id)).notebook.get(result.ids[0]);
+  };
+  const first=await create(a);
+  await store.updateTranscript(a.id,first.id,{transcript:'0:12 Caption from my copy'});
+  const duplicate=await create(a);
+  assert.equal(duplicate.videoImport.status,'ready');assert.equal(duplicate.videoImport.transcriptReusedFrom,first.id);
+  assert.equal(duplicate.segments[0].text,'Caption from my copy');
+  const foreign=await create(b);assert.equal(foreign.segments.length,0);assert.equal(foreign.videoImport.reason,'youtube_rate_limited');
 });

@@ -87,10 +87,16 @@ function parseTranscriptResponse(body){
   const rows=[];
   const visit=node=>{
     if(!node||typeof node!=='object')return;
-    const segment=node.transcriptSegmentRenderer;
+    const segment=node.transcriptSegmentRenderer||node.transcriptSegmentViewModel;
     if(segment){
-      const snippet=segment.snippet||{},text=Array.isArray(snippet.runs)?snippet.runs.map(run=>run.text||'').join(''):snippet.simpleText||'';
-      const start=Number(snippet.startMs||0)/1000;if(text.trim())rows.push({start,text});
+      const snippet=segment.snippet||segment.snippetText||segment.text||{};
+      const runs=Array.isArray(snippet.runs)?snippet.runs.map(run=>run.text||'').join(''):'';
+      const text=runs||snippet.simpleText||snippet.content||segment.content||'';
+      const ms=segment.startMs??segment.startTimeMs??snippet.startMs;
+      const timestamp=segment.startTimeText?.content||segment.startTimeText?.simpleText||'';
+      const seconds=/^\d+(?::[0-5]\d){1,2}$/.test(timestamp)?timestamp.split(':').reduce((total,part)=>total*60+Number(part),0):0;
+      const start=ms!=null&&Number.isFinite(Number(ms))?Number(ms)/1000:seconds;
+      if(typeof text==='string'&&text.trim())rows.push({start,text});
     }
     for(const value of Object.values(node))visit(value);
   };
@@ -126,6 +132,11 @@ export class VideoImportService{
         controller=new AbortController();this.controllers.add(controller);
         const response=await this.fetcher(url,{...init,method:init.method||'GET',headers:{Accept:'application/json,text/html;q=0.9,*/*;q=0.1',...(init.headers||{})},credentials:'omit',redirect:'error',signal:AbortSignal.any([AbortSignal.timeout(this.timeoutMs),controller.signal])});
         if(response.status===404||response.status===410)return {unavailable:true};
+        if(response.status===429){
+          const value=response.headers.get('retry-after');
+          const delay=value&&/^\d+$/.test(value)?Number(value)*1000:Date.parse(value)-Date.now();
+          return {unavailable:true,rateLimited:true,retryMs:Number.isFinite(delay)?Math.min(86400000,Math.max(30000,delay)):60000};
+        }
         if(!response.ok){if(response.status>=500||response.status===429)throw Object.assign(new Error(`YouTube returned HTTP ${response.status}`),{retryable:true});return {unavailable:true};}
         return {text:await boundedBody(response,limit)};
       }catch(error){last=error;if(attempt>=this.retries||this.closed)break;await new Promise(resolve=>setTimeout(resolve,this.retryDelayMs));}
@@ -137,6 +148,7 @@ export class VideoImportService{
   async import(identity){
     const oembed=new URL(OEMBED);oembed.searchParams.set('url',identity.url);oembed.searchParams.set('format','json');
     const metadataResponse=await this.request(oembed,MAX_OEMBED);
+    if(metadataResponse.rateLimited)return {status:'failed',reason:'youtube_rate_limited',retryMs:metadataResponse.retryMs};
     if(metadataResponse.unavailable)return {status:'unavailable',reason:'metadata_unavailable'};
     let metadata;try{metadata=JSON.parse(metadataResponse.text);}catch{return {status:'unavailable',reason:'metadata_invalid'};}
     if(typeof metadata.title!=='string'||!metadata.title.trim())return {status:'unavailable',reason:'metadata_missing'};
@@ -145,7 +157,7 @@ export class VideoImportService{
     const watchUrl=`https://www.youtube.com/watch?v=${identity.id}`;
     let page;
     try{page=await this.request(watchUrl,MAX_EMBED);}catch{return {status:'failed',reason:'player_request_failed',title:metadata.title,channel:metadata.author_name||'',thumbnail};}
-    if(page.unavailable)return {status:'unavailable',reason:'player_unavailable',title:metadata.title,channel:metadata.author_name||'',thumbnail};
+    if(page.unavailable)return {status:page.rateLimited?'failed':'unavailable',reason:page.rateLimited?'youtube_rate_limited':'player_unavailable',retryMs:page.retryMs,title:metadata.title,channel:metadata.author_name||'',thumbnail};
     let player=parsePlayerResponse(page.text);
     if(!publicTracks(player).length){
       const embedResponse=await this.request(`https://www.youtube-nocookie.com/embed/${identity.id}`,MAX_EMBED).catch(()=>null);
@@ -156,6 +168,7 @@ export class VideoImportService{
     if(track){
       const captionUrl=safeCaptionUrl(track.baseUrl);let captionsResponse;
       try{captionsResponse=await this.request(captionUrl,MAX_CAPTIONS);}catch{trackFailure=true;}
+      if(captionsResponse?.rateLimited)return {status:'failed',reason:'youtube_rate_limited',retryMs:captionsResponse.retryMs,...metadataResult};
       if(captionsResponse&&!captionsResponse.unavailable)try{segments=parseJson3(captionsResponse.text);}catch{segments=[];}
     }
     if(!segments.length){
@@ -166,6 +179,7 @@ export class VideoImportService{
         if(context.client?.visitorData)headers['X-Goog-Visitor-Id']=context.client.visitorData;
         try{
           const transcriptResponse=await this.request(apiUrl,MAX_CAPTIONS,{method:'POST',headers,body:JSON.stringify({context,params:endpoint.params})});
+          if(transcriptResponse.rateLimited)return {status:'failed',reason:'youtube_rate_limited',retryMs:transcriptResponse.retryMs,...metadataResult};
           if(!transcriptResponse.unavailable){let responseBody;try{responseBody=JSON.parse(transcriptResponse.text);}catch{responseBody=null;}segments=parseTranscriptResponse(responseBody);if(segments.length)track={languageCode:''};}
         }catch{trackFailure=true;}
       }
