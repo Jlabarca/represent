@@ -12,6 +12,7 @@ import {NotcardsVideoSummary,summaryRuntimeFromEnv} from './video-summary.mjs';
 import {BotanicLaunchIssuer,botanicLaunchConfig} from './botanic-launch.mjs';
 import {BotanicReceipts} from './botanic-receipts.mjs';
 import {BotanicNotebookAccess} from './botanic-access.mjs';
+import {BotanicCompanionService} from './botanic-companion.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const web=join(root,'..','clay-notes','web');
@@ -65,7 +66,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       };
     }}):null;
   const launchConfig=botanicLaunchConfig();
-  let botanicLaunch=null,botanicReceipts=null,botanicAccess=null;
+  let botanicLaunch=null,botanicReceipts=null,botanicAccess=null,botanicCompanion=null;
   if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
   const extensionOrigins=extensionIds.map(id=>`chrome-extension://${id}`);
   let origin,identityService;
@@ -74,7 +75,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
     try{
       const requestOrigin=req.headers.origin;
       const reqUrl=new URL(req.url,origin);
-      let bridgePrincipal=null,bridgeBody=null;
+      let bridgePrincipal=null,bridgeBody=null,bridgeSubject=null;
       if(req.headers.host!==new URL(origin).host)throw problem(403,'Unknown Notcards host');
       const extensionRequest=extensionOrigins.includes(requestOrigin);
       if(extensionRequest){res.setHeader('Access-Control-Allow-Origin',requestOrigin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','authorization, content-type, idempotency-key');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');}
@@ -92,6 +93,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         for await(const chunk of req){size+=chunk.length;if(size>max)throw problem(413,'Request body is too large');chunks.push(chunk);}
         bridgeBody=Buffer.concat(chunks);
         const verified=botanicAccess.verify(assertion,{method:req.method,path:bridgePath,body:bridgeBody});
+        bridgeSubject=verified.subject;
         const user=persistence.db.prepare('SELECT id,email,display_name AS displayName FROM users WHERE issuer=? AND subject=?').get('https://accounts.google.com',verified.subject);
         if(!user)throw problem(401,'Sign in to Notcards to continue.','sign_in_required');
         bridgePrincipal={user,auth:'botanic'};
@@ -174,6 +176,11 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
           const current=bridgePrincipal,path=reqUrl.pathname,query=reqUrl.search;
           const parseBridgeBody=()=>{try{const value=JSON.parse(bridgeBody.toString('utf8')||'{}');if(!value||Array.isArray(value)||typeof value!=='object')throw new Error();return value;}catch{throw problem(400,'Request JSON is invalid');}};
           const account=await persistence.account(current.user.id);
+          if(path==='/api/botanic/companion'&&req.method==='POST'){
+            if(!botanicCompanion)throw problem(503,'Botanic companions are unavailable.','botanic_companion_unavailable');
+            const input=parseBridgeBody();
+            return json(201,await botanicCompanion.create({...input,principal:current,verifiedSubject:bridgeSubject}));
+          }
           if(path==='/api/session'&&req.method==='GET')return json(200,{authenticated:true,user:{...current.user,...persistence.language(current.user.id)},cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)});
           if(path==='/api/notes'&&req.method==='GET'){
             const notes=await persistence.listNotes(current.user.id);
@@ -318,6 +325,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         if(!user)return null;const account=await persistence.account(user.id),note=await account.notebook.get(cardId);if(!note)return null;
         return {title:String(note.title||'').slice(0,500),url:typeof note.url==='string'?note.url:null,sourceType:String(note.sourceType||'video').slice(0,40),transcript:Array.isArray(note.segments)?note.segments.map(segment=>({start:Number.isFinite(Number(segment.start))?Number(segment.start):null,text:String(segment.text??'')})):[],personalNotes:typeof note.personalNotes==='string'?note.personalNotes:'',overview:String(note.revisions?.at(-1)?.overview||'').slice(0,20_000),sourceLinks:Array.isArray(note.sourceLinks)?note.sourceLinks.map(link=>typeof link==='string'?link:link?.url).filter(link=>typeof link==='string'&&link.length<=2000).slice(0,20):[]};
       }});
+    botanicCompanion=new BotanicCompanionService({store:persistence,launchIssuer:botanicLaunch});
   }
   const url=new URL(origin);
   if(url.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(url.hostname))throw new Error('NOTCARDS_PUBLIC_ORIGIN must use HTTPS outside loopback development');

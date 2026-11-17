@@ -6,6 +6,7 @@ const digest=bytes=>createHash('sha256').update(bytes).digest('base64url');
 const exactOrigin=value=>{const url=new URL(value);if(url.protocol!=='https:'||url.username||url.password||url.pathname!=='/'||url.search||url.hash)throw new Error('Botanic origins must be exact HTTPS origins');return url.origin;};
 export const botanicNotebookPathAllowed=(method,path)=>{
   if(method==='GET'&&path==='/api/session')return true;
+  if(method==='POST'&&path==='/api/botanic/companion')return true;
   if(method==='GET'&&(path==='/api/notes'||path==='/api/notes?include=conversation'))return true;
   if(method==='POST'&&path==='/api/notes')return true;
   const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(\/images(?:\/[a-f0-9-]{36})?|\/botanic-launch)?$/i.exec(path);

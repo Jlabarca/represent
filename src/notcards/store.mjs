@@ -235,6 +235,21 @@ export class NotcardsStore {
     return video&&scheduleVideoWork?this.scheduleVideoImport(userId,note.id):note;
   }
 
+  async ensureBotanicCompanionNote(userId,{cardId,conversationId,title}={}) {
+    if(!/^[A-Za-z0-9_-]{11}$/.test(cardId||'')||!/^([0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})$/i.test(conversationId||''))throw problem(400,'Botanic conversation companion is invalid');
+    const account=await this.account(userId);
+    return this.withAccountWrite(account,async()=>{
+      const existing=await account.notebook.get(cardId);
+      if(existing){if(existing.botanicConversationId!==conversationId||existing.sourceType!=='botanic-conversation')throw problem(409,'Companion notebook ID is already occupied.','companion_card_collision');return existing;}
+      const normalized=clean(title,500);if(!normalized)throw problem(400,'A companion notebook title is required.');
+      const note={id:cardId,url:null,title:normalized,channel:null,thumbnail:null,createdAt:new Date(this.clock()).toISOString(),updatedAt:new Date(this.clock()).toISOString(),state:'awaiting_transcript',error:null,segments:[],revisions:[],conversations:[],personalNotes:'',pinned:false,color:'cream',finish:null,transcriptSource:null,sourceType:'botanic-conversation',folderId:null,botanicConversationId:conversationId};
+      await this.assertCapacity(account,{newNote:true,additionalBytes:Buffer.byteLength(JSON.stringify(note))+2048});
+      // This direct notebook write deliberately avoids video-ready/import hooks.
+      await account.notebook.put(note);
+      return note;
+    });
+  }
+
   async ensureVideoImport(userId,noteId) {
     const account=await this.account(userId),note=await account.notebook.get(noteId);
     if(!note?.url)return note;
