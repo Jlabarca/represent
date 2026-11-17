@@ -76,6 +76,10 @@ test('signed Notcards envelope reaches the native Botanic loopback receiver and 
   const callbackPost=assertion=>api('/api/botanic/receipt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({assertion})});
   const cardRoute='/api/notes/'+note.id+'/botanic-launch';
   const currentLink=async()=>(await (await api(cardRoute,{headers})).json()).conversationUrl;
+  const listWithChats=async()=>(await (await api('/api/notes?include=conversation',{headers})).json()).find(card=>card.id===note.id);
+  assert.equal((await api('/api/notes?include=conversation')).status,401);
+  assert.equal(Object.hasOwn((await (await api('/api/notes',{headers})).json())[0],'conversationId'),false);
+  assert.equal((await listWithChats()).conversationId,null);
   assert.equal(await currentLink(),null);
   assert.equal((await callbackPost(signBindingAssertion({...args,privateKey}))).status,401);
   assert.equal((await callbackPost(signBindingAssertion({...args,user:{provider:'google',googleId:'another-account'}}))).status,409);
@@ -83,8 +87,15 @@ test('signed Notcards envelope reaches the native Botanic loopback receiver and 
   assert.equal((await callbackPost(bound)).status,200);
   assert.equal((await callbackPost(bound)).status,200);
   assert.equal(await currentLink(),botanicOrigin+'/c/'+args.conversationId);
+  assert.equal((await listWithChats()).conversationId,args.conversationId);
+  const other=app.store.user({...identity.user,subject:'second-fixture-owner',email:'other@example.test'});
+  const otherCookie='notcards_session='+app.store.issueSession(other.id).token;
+  const otherCards=await api('/api/notes?include=conversation',{headers:{Cookie:otherCookie}});
+  assert.equal(otherCards.status,200);
+  assert.deepEqual(await otherCards.json(),[]);
   assert.equal((await api(cardRoute,{method:'POST',headers,body:JSON.stringify({requestId:'new_request_123',question:'Duplicate?'})})).status,409);
   assert.equal((await callbackPost(signDeletionAssertion(args))).status,200);
+  assert.equal((await listWithChats()).conversationId,null);
   assert.equal((await callbackPost(bound)).status,200);
   assert.equal(await currentLink(),null);
   assert.equal((await api('/api/notes/'+note.id,{headers})).status,200);

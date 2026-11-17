@@ -213,7 +213,14 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         if(path==='/api/order'&&req.method==='PATCH')return json(200,{ids:await persistence.reorder(current.user.id,(await readBody(req)).ids)});
         const media=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/images(?:\/([a-f0-9-]{36}))?$/i.exec(path);
         if(media){const [,id,imageId]=media;const note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');if(!imageId&&req.method==='POST')return json(201,await persistence.addImage(current.user.id,id,await readBody(req,2_850_000)));if(imageId&&req.method==='GET'){const image=await account.notebook.image(id,imageId);if(!image)throw problem(404,'Image not found');res.writeHead(200,{'Content-Type':image.mime,'Content-Length':image.data.length,'Cache-Control':'private, no-store'});return res.end(image.data);}throw problem(405,'Method not allowed');}
-        if(path==='/api/notes'&&req.method==='GET')return json(200,await persistence.listNotes(current.user.id));
+        if(path==='/api/notes'&&req.method==='GET'){
+          const notes=await persistence.listNotes(current.user.id);
+          if(reqUrl.searchParams.get('include')!=='conversation')return json(200,notes);
+          if(!botanicReceipts)throw problem(503,'Botanic conversation links are unavailable.');
+          const owner=persistence.db.prepare('SELECT subject FROM users WHERE id=?').get(current.user.id);
+          const links=botanicReceipts.activeForSubject(owner.subject);
+          return json(200,notes.map(note=>({...note,conversationId:links.get(note.id)??null})));
+        }
         if(path==='/api/composer'&&req.method==='POST')return json(201,await persistence.compose(current.user.id,await readBody(req,100_000)));
         if(path==='/api/notes'&&req.method==='POST')return json(201,await persistence.createNote(current.user.id,await readBody(req)));
         if(path==='/api/capture'&&req.method==='POST'){

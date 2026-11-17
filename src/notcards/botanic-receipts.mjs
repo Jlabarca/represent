@@ -25,6 +25,13 @@ export class BotanicReceipts {
     return active?new URL('/c/'+active.conversation_id,this.botanicOrigin).href:null;
   }
 
+  activeForSubject(subject) {
+    const rows = this.db.prepare(
+      'SELECT card_id, conversation_id FROM notcards_botanic_receipts WHERE owner_hash=? AND deleted=0'
+    ).all(ownerHash(subject));
+    return new Map(rows.map(row => [row.card_id, row.conversation_id]));
+  }
+
   accept(assertion) {
     if(typeof assertion!=='string'||assertion.length>4096)throw reject();
     const parts=assertion.split('.');
