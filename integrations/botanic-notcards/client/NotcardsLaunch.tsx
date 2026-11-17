@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useAuthContext } from "~/hooks/AuthContext";
+import { useTranslation } from "react-i18next";
+import { persistRedirectToSession } from "~/utils/redirect";
+import { launchLabels } from "./notcards-launch-labels";
 
 type Pending = { jti: string; cardId: string; question: string; agentId: string };
 
@@ -10,6 +13,9 @@ type Pending = { jti: string; cardId: string; question: string; agentId: string 
  */
 export function NotcardsLaunch({ agentId }: { agentId?: string | null }) {
   const { isAuthenticated, token, user } = useAuthContext();
+  const { i18n } = useTranslation();
+  const labels=launchLabels(i18n.resolvedLanguage || i18n.language);
+  const [loginNeeded,setLoginNeeded]=useState(false);
   const [pending, setPending] = useState<Pending | null>(null);
   const [error, setError] = useState("");
   const [loaded, setLoaded] = useState(false);
@@ -17,30 +23,35 @@ export function NotcardsLaunch({ agentId }: { agentId?: string | null }) {
     setPending(null);
     setLoaded(false);
     setError("");
-    if (!agentId || !isAuthenticated || user?.provider !== "google" || !token) return;
+    setLoginNeeded(false);
+    if (!agentId || !isAuthenticated || !token) return;
     let cancelled = false;
     fetch("/api/botanic/notcards/pending", {
       headers: { Authorization: `Bearer ${token}` },
       credentials: "same-origin",
       cache: "no-store",
     }).then(async response => {
-      if (!response.ok) return null;
+      if (!response.ok) {
+        const refusal=await response.json().catch(()=>null);
+        if(!cancelled && refusal?.agentId===agentId && ["google_sign_in_required","launch_owner_mismatch"].includes(refusal.code))setLoginNeeded(true);
+        return null;
+      }
       return response.json() as Promise<Pending>;
     }).then(value => { if (!cancelled && value?.jti && value.agentId === agentId) setPending(value); })
-      .catch(() => { if (!cancelled) setError("Notcards launch unavailable."); });
+      .catch(() => { if (!cancelled) setError(labels.unavailable); });
     return () => { cancelled = true; };
   }, [agentId, isAuthenticated, token, user?.provider, user?.id]);
 
   function fillComposer(question = pending?.question) {
     if (!question) return false;
     const input = document.querySelector<HTMLTextAreaElement>("#prompt-textarea");
-    if (!input) { setError("Open a new Notcards chat to load its first question."); return false; }
-    if (input.value.trim()) { setError("The composer already has text. Clear it before loading the Notcards question."); return false; }
+    if (!input) { setError(labels.unavailable); return false; }
+    if (input.value.trim()) { setError(labels.clear); return false; }
     const setter = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, "value")?.set;
     setter?.call(input, question);
     input.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "insertText", data: question }));
     setLoaded(true);
-    setError("First question loaded. Review it and press Botanic Send once.");
+    setError(labels.review);
     return true;
   }
 
@@ -61,10 +72,11 @@ export function NotcardsLaunch({ agentId }: { agentId?: string | null }) {
     return () => { done = true; observer.disconnect(); window.clearTimeout(timeout); };
   }, [pending]);
 
+  if(loginNeeded && agentId)return <p role="status"><a href="/oauth/google" onClick={()=>persistRedirectToSession('/c/new?agent_id='+encodeURIComponent(agentId))}>{labels.login}</a></p>;
   if (!pending) return error ? <p role="status">{error}</p> : null;
   return <aside aria-label="Notcards handoff" data-testid="notcards-launch">
-    <p>Notcards card ready. Its saved source context will be added to this conversation.</p>
-    {!loaded && <button type="button" onClick={() => fillComposer()}>Load first question</button>}
+    <p>{labels.ready}</p>
+    {!loaded && <button type="button" onClick={() => fillComposer()}>{labels.load}</button>}
     {error && <p role="status">{error}</p>}
   </aside>;
 }

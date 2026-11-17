@@ -30,11 +30,13 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
   });
   router.use(requireJwtAuth);
   router.get('/pending',async(req,res)=>{
+    const jti=cookieValue(req.get('cookie'),'__Host-notcards_launch');
+    if(!jti)return res.status(404).set('Cache-Control','no-store').json({code:'launch_unavailable'});
     try{
-      const result=await ledger.reclaim({jti:cookieValue(req.get('cookie'),'__Host-notcards_launch'),user:req.user});
+      const result=await ledger.reclaim({jti,user:req.user});
       const {context:_privateSourceContext,...composerPayload}=result;
       res.set('Cache-Control','private, no-store').json({...composerPayload,agentId});
-    }catch(error){res.status(error.status||404).set('Cache-Control','no-store').json({code:error.code||'launch_unavailable'});}
+    }catch(error){res.status(error.status||404).set('Cache-Control','no-store').json({code:error.code||'launch_unavailable',agentId});}
   });
   router.get('/cards/:cardId',async(req,res)=>{
     try{

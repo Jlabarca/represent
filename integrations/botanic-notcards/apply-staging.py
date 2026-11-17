@@ -63,6 +63,7 @@ def apply(upstream, shared=False):
             target.write(content)
     shutil.copytree(source / "server", server)
     shutil.copyfile(source / "client/NotcardsLaunch.tsx", client)
+    shutil.copyfile(source / "client/notcards-launch-labels.ts", client.parent / "notcards-launch-labels.ts")
 
 
 if __name__ == "__main__":
