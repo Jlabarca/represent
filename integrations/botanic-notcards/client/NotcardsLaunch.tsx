@@ -72,7 +72,7 @@ export function NotcardsLaunch({ agentId }: { agentId?: string | null }) {
     return () => { done = true; observer.disconnect(); window.clearTimeout(timeout); };
   }, [pending]);
 
-  if(loginNeeded && agentId)return <p role="status"><a href="/oauth/google" onClick={()=>persistRedirectToSession('/c/new?agent_id='+encodeURIComponent(agentId))}>{labels.login}</a></p>;
+  if(loginNeeded && agentId)return <p role="status"><a href="/oauth/google" onClick={()=>persistRedirectToSession('/c/new?agent_id='+encodeURIComponent(agentId)+'&spec=notcards')}>{labels.login}</a></p>;
   if (!pending) return error ? <p role="status">{error}</p> : null;
   return <aside aria-label="Notcards handoff" data-testid="notcards-launch">
     <p>{labels.ready}</p>

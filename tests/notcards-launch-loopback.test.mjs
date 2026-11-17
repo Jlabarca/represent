@@ -60,12 +60,13 @@ test('signed Notcards envelope reaches the native Botanic loopback receiver and 
   assert.equal(issued.status,200);const envelope=await issued.json();assert.deepEqual(envelope.context.transcript,[{start:0,text:'Source context from the account-owned note.'}]);
 
   const routes=[],pending=new Map();const store={async insertPending(row){if(pending.has(row.jti))return false;pending.set(row.jti,{...row});return true;},async getPending(jti){return pending.get(jti)||null;},async bindPending(){return null;}};
-  const routed=createNotcardsLaunchRouter({express:fakeExpress(routes),store,notcardsOrigin,audience:botanicOrigin,publicKey,requireJwtAuth(req,_res,next){req.user={provider:'google',googleId:subject,id:'native-owner'};return next();}});
+  const routed=createNotcardsLaunchRouter({express:fakeExpress(routes),store,notcardsOrigin,audience:botanicOrigin,publicKey,agentId:'agent_notcards',requireJwtAuth(req,_res,next){req.user={provider:'google',googleId:subject,id:'native-owner'};return next();}});
   receiver=receiverHttp(routes);await new Promise(resolve=>receiver.listen(0,'127.0.0.1',resolve));
   const receiverUrl=`http://127.0.0.1:${receiver.address().port}`;
   const form=new URLSearchParams({ticket:envelope.ticket,question:envelope.question,context:JSON.stringify(envelope.context)});
   const accepted=await fetch(`${receiverUrl}/launch`,{method:'POST',headers:{Origin:notcardsOrigin,'Content-Type':'application/x-www-form-urlencoded'},body:form,redirect:'manual'});
   assert.equal(accepted.status,303);const launchCookie=accepted.headers.get('set-cookie');assert.match(launchCookie,/__Host-notcards_launch=/);assert.match(launchCookie,/HttpOnly; Secure; SameSite=Lax/);
+  assert.equal(accepted.headers.get('location'),'/c/new?agent_id=agent_notcards&spec=notcards');
   const pendingResponse=await fetch(`${receiverUrl}/pending`,{headers:{Cookie:launchCookie.split(';')[0]}});
   assert.equal(pendingResponse.status,200);const reclaimed=await pendingResponse.json();assert.equal(reclaimed.cardId,note.id);assert.equal(reclaimed.question,envelope.question);
   assert.equal(pending.get(reclaimed.jti).subject,subject);assert.deepEqual(pending.get(reclaimed.jti).context,envelope.context);

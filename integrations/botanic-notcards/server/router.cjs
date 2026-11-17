@@ -25,7 +25,7 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
       const accepted=await ledger.accept({origin:req.get('origin'),ticket:req.body?.ticket,question:req.body?.question,context});
       res.set('Cache-Control','no-store');
       res.cookie('__Host-notcards_launch',accepted.jti,{httpOnly:true,secure:true,sameSite:'lax',path:'/',maxAge:Math.max(0,accepted.expiresAt-clock())});
-      return res.redirect(303,agentId?'/c/new?agent_id='+encodeURIComponent(agentId):'/');
+      return res.redirect(303,agentId?'/c/new?agent_id='+encodeURIComponent(agentId)+'&spec=notcards':'/');
     }catch(error){return res.status(error.status||400).json({code:error.code||'invalid_launch'});}
   });
   router.use(requireJwtAuth);
