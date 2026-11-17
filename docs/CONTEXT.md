@@ -10,6 +10,8 @@ On lab1 the three requested videos were saved as separate cards in one Google-au
 
 The web app is the primary entry point. Opening a card shows its full notebook, editable notes and source material. YouTube cards include a player. The first submitted question should create one owner-bound Botanic conversation. Removing that conversation in Botanic leaves the card and all saved notes intact. Direct summaries require the dedicated gateway Apply. The unpacked extension is an optional capture shortcut.
 
+The approved networking repair restored lab1's original tailnet address and both LiteLLM port bindings. Liveliness returned HTTP 200 both from Windows and from the Notcards app container. On retry, the checked Ghost transaction reached final live verification and rolled back. The lab1 registry omits three existing Botanic Max models documented in Botanic's README, and declares four Codex subscription lanes while the gateway's own ChatGPT login is absent. The host credential is still reserved for Notcards. The gateway registry is unchanged. Hosted summary code has been exercised using loopback transport and the three real source transcripts. The full checkpoint just before that adapter passed 163 tests across Linux and Windows NTFS.
+
 ## Notcards collection composer (2026-11-16)
 
 The hosted collection provides an inline note composer with first-link type inference and an optional split per link. Desktop users choose the card size in Settings. Phones open at the collection header and scroll vertically through centered cards. [Implementation](orkest/done/notcards-composer.imp.md).
