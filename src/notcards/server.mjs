@@ -11,6 +11,7 @@ import {Gateway} from '../clay-notes/core.mjs';
 import {NotcardsVideoSummary,summaryRuntimeFromEnv} from './video-summary.mjs';
 import {BotanicLaunchIssuer,botanicLaunchConfig} from './botanic-launch.mjs';
 import {BotanicReceipts} from './botanic-receipts.mjs';
+import {BotanicNotebookAccess} from './botanic-access.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const web=join(root,'..','clay-notes','web');
@@ -64,7 +65,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       };
     }}):null;
   const launchConfig=botanicLaunchConfig();
-  let botanicLaunch=null,botanicReceipts=null;
+  let botanicLaunch=null,botanicReceipts=null,botanicAccess=null;
   if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
   const extensionOrigins=extensionIds.map(id=>`chrome-extension://${id}`);
   let origin,identityService;
@@ -73,6 +74,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
     try{
       const requestOrigin=req.headers.origin;
       const reqUrl=new URL(req.url,origin);
+      let bridgePrincipal=null,bridgeBody=null;
       if(req.headers.host!==new URL(origin).host)throw problem(403,'Unknown Notcards host');
       const extensionRequest=extensionOrigins.includes(requestOrigin);
       if(extensionRequest){res.setHeader('Access-Control-Allow-Origin',requestOrigin);res.setHeader('Vary','Origin');res.setHeader('Access-Control-Allow-Headers','authorization, content-type, idempotency-key');res.setHeader('Access-Control-Allow-Methods','GET, POST, PATCH, OPTIONS');}
@@ -82,10 +84,23 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       res.setHeader('X-Frame-Options','DENY');
       res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'${botanicLaunch?` ${botanicLaunch.botanicOrigin}`:''}`);
       res.setHeader('Cache-Control','no-store');
+      const assertion=req.headers['x-botanic-assertion'];
+      if(assertion!==undefined){
+        if(Object.hasOwn(req.headers,'origin')||Object.hasOwn(req.headers,'cookie')||Object.hasOwn(req.headers,'authorization')||Array.isArray(assertion)||!botanicAccess)throw problem(403,'Botanic server authentication is not allowed on this request.','botanic_auth_rejected');
+        const bridgePath=reqUrl.pathname+(reqUrl.search||'');
+        const max=req.method==='POST'&&reqUrl.pathname.endsWith('/images')?2_850_000:100_000,chunks=[];let size=0;
+        for await(const chunk of req){size+=chunk.length;if(size>max)throw problem(413,'Request body is too large');chunks.push(chunk);}
+        bridgeBody=Buffer.concat(chunks);
+        const verified=botanicAccess.verify(assertion,{method:req.method,path:bridgePath,body:bridgeBody});
+        const user=persistence.db.prepare('SELECT id,email,display_name AS displayName FROM users WHERE issuer=? AND subject=?').get('https://accounts.google.com',verified.subject);
+        if(!user)throw problem(401,'Sign in to Notcards to continue.','sign_in_required');
+        bridgePrincipal={user,auth:'botanic'};
+      }
       const cookieValue=name=>req.headers.cookie?.split(';').map(item=>item.trim()).find(item=>item.startsWith(`${name}=`))?.slice(name.length+1)||null;
       const clearCookie=(name,path='/')=>`${name}=; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=0${new URL(origin).protocol==='https:'?'; Secure':''}`;
       const setCookie=(name,value,path='/',age=1_209_600)=>`${name}=${value}; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=${age}${new URL(origin).protocol==='https:'?'; Secure':''}`;
       const resolveUser=()=>{
+        if(bridgePrincipal)return bridgePrincipal;
         // Explicit extension credentials identify the owner of a queued capture.
         // An ambient website cookie can belong to a different signed-in account.
         if(req.headers.authorization){
@@ -155,6 +170,32 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         res.writeHead(200,{'Content-Type':'application/zip','Content-Length':data.length,'Content-Disposition':'attachment; filename="notcards-dev.zip"','Cache-Control':'no-cache, must-revalidate'});return res.end(data);
       }
       if(reqUrl.pathname.startsWith('/api/')){
+        if(bridgePrincipal){
+          const current=bridgePrincipal,path=reqUrl.pathname,query=reqUrl.search;
+          const parseBridgeBody=()=>{try{const value=JSON.parse(bridgeBody.toString('utf8')||'{}');if(!value||Array.isArray(value)||typeof value!=='object')throw new Error();return value;}catch{throw problem(400,'Request JSON is invalid');}};
+          const account=await persistence.account(current.user.id);
+          if(path==='/api/session'&&req.method==='GET')return json(200,{authenticated:true,user:{...current.user,...persistence.language(current.user.id)},cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)});
+          if(path==='/api/notes'&&req.method==='GET'){
+            const notes=await persistence.listNotes(current.user.id);
+            if(query!=='?include=conversation')return json(200,notes);
+            if(!botanicReceipts)throw problem(503,'Botanic conversation links are unavailable.');
+            const owner=persistence.db.prepare('SELECT subject FROM users WHERE id=?').get(current.user.id),links=botanicReceipts.activeForSubject(owner.subject);
+            return json(200,notes.map(note=>({...note,conversationId:links.get(note.id)??null})));
+          }
+          if(path==='/api/notes'&&req.method==='POST')return json(201,await persistence.createNote(current.user.id,parseBridgeBody(),{scheduleVideoWork:false}));
+          const launch=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/botanic-launch$/.exec(path);
+          if(launch){const id=launch[1],note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found.');
+            const owner=persistence.db.prepare('SELECT subject FROM users WHERE id=?').get(current.user.id);
+            if(req.method==='GET')return json(200,{conversationUrl:botanicReceipts?.forCard(owner.subject,id)||null});
+            if(!botanicLaunch)throw problem(503,'Botanic launch is not configured.');const input=parseBridgeBody(),requestId=req.headers['idempotency-key']||input.requestId;
+            return json(200,await botanicLaunch.issue({principal:{...current,auth:'botanic'},cardId:id,requestId,question:input.question}));
+          }
+          const media=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/images(?:\/([a-f0-9-]{36}))?$/i.exec(path);
+          if(media){const [,id,imageId]=media,note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found.');if(!imageId&&req.method==='GET')return json(200,note.images||[]);if(!imageId&&req.method==='POST')return json(201,await persistence.addImage(current.user.id,id,parseBridgeBody()));if(imageId&&req.method==='GET'){const image=await account.notebook.image(id,imageId);if(!image)throw problem(404,'Image not found.');res.writeHead(200,{'Content-Type':image.mime,'Content-Length':image.data.length,'Cache-Control':'private, no-store'});return res.end(image.data);}throw problem(405,'Method not allowed');}
+          const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})$/.exec(path);
+          if(match){const id=match[1],note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found.');if(req.method==='GET')return json(200,note);return json(200,await persistence.updateNote(current.user.id,id,parseBridgeBody()));}
+          throw problem(403,'Botanic route is not allowed.','botanic_route_rejected');
+        }
         if(requestOrigin&&!extensionRequest&&requestOrigin!==origin)throw problem(403,'Request origin is not allowed');
         if(reqUrl.pathname==='/api/session'&&req.method==='GET'){
           const current=resolveUser();return json(200,current?{authenticated:true,user:{...current.user,...persistence.language(current.user.id)},cacheScope:current.user.id,googleConfigured:Boolean(identityService.configured)}:{authenticated:false,user:null,cacheScope:null,googleConfigured:Boolean(identityService.configured)});
@@ -269,6 +310,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
   const receiptPem=process.env.NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY;
   if(launchConfig&&launchConfig.issuer===origin&&receiptPem){
     botanicReceipts=new BotanicReceipts(persistence.db,{publicKey:receiptPem.replace(/\\n/g,'\n'),botanicOrigin:launchConfig.audience,notcardsOrigin:origin});
+    botanicAccess=new BotanicNotebookAccess(persistence.db,{publicKey:receiptPem.replace(/\\n/g,'\n'),botanicOrigin:launchConfig.audience,notcardsOrigin:origin});
     botanicLaunch=new BotanicLaunchIssuer({db:persistence.db,privateKey:launchConfig.privateKey,issuer:launchConfig.issuer,audience:launchConfig.audience,botanicOrigin:launchConfig.botanicOrigin,
       resolveVerifiedOwner:principal=>principal?.id?persistence.db.prepare('SELECT issuer,subject FROM users WHERE id=?').get(principal.id):null,
       loadCardContext:async({owner,cardId})=>{

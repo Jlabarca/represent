@@ -215,7 +215,7 @@ export class NotcardsStore {
     if(bytes>this.maxBytes)throw problem(409,`This account has reached its ${Math.round(this.maxBytes/1024/1024)} MiB storage limit`);
   }
 
-  async createNote(userId,input) {
+  async createNote(userId,input,{scheduleVideoWork=true}={}) {
     const account=await this.account(userId);
     let video=null;
     const note=await this.withAccountWrite(account,async()=>{
@@ -232,7 +232,7 @@ export class NotcardsStore {
       if (typeof content==='string' && content.trim()) note=await account.notebook.transcript(note.id,content,input.source || 'pasted text');
       return note;
     });
-    return video?this.scheduleVideoImport(userId,note.id):note;
+    return video&&scheduleVideoWork?this.scheduleVideoImport(userId,note.id):note;
   }
 
   async ensureVideoImport(userId,noteId) {

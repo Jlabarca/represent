@@ -45,7 +45,7 @@ export class BotanicLaunchIssuer{
     return `${input}.${signature}`;
   }
   async issue({principal,cardId,requestId,question}={}){
-    if(!principal||principal.auth!=='cookie')throw fail(403,'cookie_session_required','Botanic launch requires your signed-in Notcards browser session.');
+    if(!principal||!['cookie','botanic'].includes(principal.auth))throw fail(403,'cookie_session_required','Botanic launch requires a signed-in Notcards account or verified Botanic assertion.');
     if(!/^[A-Za-z0-9_-]{11}$/.test(cardId||''))throw fail(400,'invalid_card_id','Notebook id is invalid.');
     if(typeof requestId!=='string'||!/^[A-Za-z0-9_-]{8,128}$/.test(requestId))throw fail(400,'invalid_request_id','Request id is invalid.');
     if(typeof question!=='string'||!question.trim()||question.length>BOTANIC_LAUNCH_MAX_QUESTION)throw fail(400,'invalid_question','Enter a question of at most 4,000 characters.');
