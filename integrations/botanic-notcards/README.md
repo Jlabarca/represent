@@ -74,8 +74,10 @@ Google subject, card, original launch ID, event, time and exact service origins.
 A delayed binding receipt cannot revive a deleted conversation. The authenticated
 GET on the card's `botanic-launch` endpoint returns the canonical conversation
 URL when bound. The loopback regression exercises both directions. Production
-activation still needs the native hooks listed below and durable delivery of
-freshly signed callbacks on transient failure.
+activation still needs the native hooks listed below. Include `server/receipts.cjs`
+in the overlay. The Mongo update marks a receipt due in the same write as the
+bind or deletion. The worker signs fresh assertions on retry and acknowledges
+delivery against the exact event state.
 
 - Add `server/launch.cjs` to the native overlay's declared/hash-locked files.
 - Add `server/store.cjs` and initialize the `botanic_notcards_launches` Mongo

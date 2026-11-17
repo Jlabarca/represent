@@ -6,6 +6,23 @@ import {createRequire} from 'node:module';
 const require=createRequire(import.meta.url);
 const {createNotcardsLaunchLedger,canonical}=require('../integrations/botanic-notcards/server/launch.cjs');
 const {createNotcardsLaunchRouter}=require('../integrations/botanic-notcards/server/router.cjs');
+const {startReceiptDelivery}=require('../integrations/botanic-notcards/server/receipts.cjs');
+
+test('pending deletion survives a failed callback and signs a fresh receipt on delivery',async t=>{
+  const row={state:'deleted',subject:'owner',jti:'38dc1495-01ba-4f57-a053-86043c8d240c',cardId:'Abcdefghi12',conversationId:'63851282-549f-409c-8c93-610469a9a8d1'};
+  const attempts=[],results=[];
+  let now=1_800_000_000_000;
+  const worker=startReceiptDelivery({privateKey:generateKeyPairSync('ed25519').privateKey,
+    issuer:'https://chat.example',audience:'https://notcards.example',clock:()=>now,
+    store:{dueReceipts:()=>results.includes(true)?[]:[row],finishReceipt:(_,success)=>results.push(success)},
+    publish:({assertion})=>{attempts.push(JSON.parse(Buffer.from(assertion.split('.')[1],'base64url')));if(attempts.length===1)throw Error('offline');}});
+  t.after(()=>worker.close());
+  await worker.flush();now+=65_000;await worker.flush();await worker.flush();
+  assert.deepEqual(results,[false,true]);
+  assert.equal(attempts[0].jti,attempts[1].jti);
+  assert.ok(attempts[1].iat>attempts[0].exp);
+  assert.equal(attempts[1].event,'conversation_deleted');
+});
 const origin='https://notcards.example.test';
 const audience='https://botanic.example.test';
 const google={provider:'google',googleId:'google-sub-alice'};

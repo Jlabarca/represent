@@ -1,11 +1,20 @@
 'use strict';
 
 const {createNotcardsLaunchLedger,signBindingAssertion,signDeletionAssertion}=require('./launch.cjs');
+const {startReceiptDelivery}=require('./receipts.cjs');
 
 const cookieValue=(header,name)=>String(header||'').split(';').map(x=>x.trim()).find(x=>x.startsWith(`${name}=`))?.slice(name.length+1)||null;
 function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publicKey,bindingPrivateKey=null,publishBinding=null,requireJwtAuth,verifyOwnedConversation,clock=()=>Date.now()}={}){
   if(!express||!store||!requireJwtAuth)throw new Error('Botanic launch router dependencies are incomplete');
   const ledger=createNotcardsLaunchLedger({db:store,notcardsOrigin,audience,publicKey,clock});
+  if(bindingPrivateKey&&!publishBinding){
+    publishBinding=async body=>{
+      const response=await fetch(new URL('/api/botanic/receipt',notcardsOrigin),{method:'POST',redirect:'error',
+        headers:{'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(5_000)});
+      if(!response.ok)throw new Error('Callback delivery failed');
+    };
+  }
+  const delivery=bindingPrivateKey&&store.dueReceipts?startReceiptDelivery({store,privateKey:bindingPrivateKey,issuer:audience,audience:notcardsOrigin,publish:publishBinding,clock}):null;
   const router=express.Router();
   // This is deliberately before requireJwtAuth. A cross-site top-level POST does
   // not carry the Lax Botanic login cookie; the signed ticket is pre-auth evidence.
@@ -107,6 +116,6 @@ function createNotcardsLaunchRouter({express,store,notcardsOrigin,audience,publi
     if(remains!==false)return false;
     return store.archiveConfirmedDeletion({subject:user.googleId,cardId:binding.cardId,conversationId,userId,now:clock()});
   }};
-  return api;
+  return {...api,close:()=>delivery?.close()};
 }
 module.exports={createNotcardsLaunchRouter};
