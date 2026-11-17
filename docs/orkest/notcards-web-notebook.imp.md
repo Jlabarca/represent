@@ -62,6 +62,8 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 
 ### Continuation plan for REP-12.2.2
 
+Persist account language in the hosted store, carry it into new revisions, and translate existing revisions on explicit request using the same budget ledger. Render translations without changing their originals or citation links. Verify owner isolation, supported locales, cached repeated reads and at least one real translation. Compose the Notcards bridge with the exact shared Botanic overlay, qualify legacy Google accounts on a verified sign-in and deploy the tested build. Verify from the web notebook and native conversation.
+
 November 17 acceptance work: preserve the existing Botanic grants through the guarded Ghost transaction, account for logged-out lab1 subscription models, verify the dedicated lanes and record combined spend. Exercise all three saved cards and launch a real native card conversation. Update timestamp and evidence controls in `src/clay-notes/web/app.mjs` with a same-tab browser regression in `scripts/notcards-browser-check.mjs`. Integrate the isolated visual review in `src/clay-notes/web/style.css` and version the web entry point. Verify the hosted build before recording acceptance.
 
 1. Run the checked Ghost console transaction on lab1. Record its Apply SHA and actual lane tests. Verify the dedicated host credential by name only.

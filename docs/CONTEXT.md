@@ -6,6 +6,8 @@
 
 ## Notcards web notebook (2026-11-16)
 
+The November 17 gateway Apply succeeded at Ghost `3438f4f5898f7863d293532187149ac2c84ad25d`. Both app-key probes passed. The signed-in web collection has real summaries for all three trial videos. The pilot had USD 0.0491992 in reported spend after the probes, three saved summaries and one invalid response. The operator authorized deployment on shared Botanic and waived the additional backup for test data. Account language and on-demand translations must preserve each saved original.
+
 On November 17 the operator authorized lab1 reconciliation and up to USD 1 in total for real lane probes, three video summaries and a Botanic card turn. The notebook and collection should share a monochrome theme with restrained blue highlights. Transcript controls should seek the embedded video.
 
 The signed-in navigation and caption-retry fix shipped to dev at `b474908`. All three original collection cards opened in the same tab. A fourth card's live retry showed YouTube's rate limit. The visible YouTube transcript panel supplied 76 caption rows; reopening that notebook retained them. The full suite passed 190 tests. The standalone browser check holds a folders response until after navigation, retries a failed import, and verifies captions after reload.
