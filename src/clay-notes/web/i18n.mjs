@@ -5,6 +5,7 @@ export const locales = [
 ];
 // Authored UI phrases only. Captured video text and personal/model content never pass through this catalog.
 const rows = [
+['Botanic chat is unavailable right now. Your notebook and notes are still here.','El chat de Botanic no está disponible ahora. Tu cuaderno y tus notas siguen aquí.','O chat do Botanic não está disponível agora. Seu caderno e suas notas continuam aqui.','Le chat Botanic est indisponible pour le moment. Votre carnet et vos notes sont toujours là.','Der Botanic-Chat ist momentan nicht verfügbar. Dein Notizbuch und deine Notizen sind weiterhin da.','La chat Botanic non è disponibile al momento. Il tuo taccuino e le tue note sono ancora qui.','Botanic チャットは現在利用できません。ノートブックとメモは引き続き利用できます。','Botanic 聊天目前不可用。你的笔记本和笔记仍在这里。','محادثة Botanic غير متاحة الآن. لا يزال دفتر ملاحظاتك وملاحظاتك هنا.','Botanic चैट अभी उपलब्ध नहीं है। आपकी नोटबुक और नोट्स यहीं हैं।'],
 ['My library','Mi biblioteca','Minha biblioteca','Ma bibliothèque','Meine Bibliothek','La mia raccolta','ライブラリ','我的笔记库','مكتبتي','मेरी लाइब्रेरी'],
 ['Pinned','Fijadas','Fixadas','Épinglées','Angeheftet','In evidenza','固定済み','已置顶','المثبتة','पिन किए गए'],
 ['Connect Chrome','Conectar Chrome','Conectar Chrome','Connecter Chrome','Chrome verbinden','Collega Chrome','Chrome に接続','连接 Chrome','ربط Chrome','Chrome जोड़ें'],

@@ -1,8 +1,8 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-2';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-4';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
-import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards} from './collection.mjs';
+import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-4';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
@@ -38,7 +38,7 @@ const time=value=>{const n=Math.floor(Number(value)||0);return n>=3600?`${Math.f
 const date=value=>new Date(value).toLocaleDateString(locale,{month:'short',day:'numeric'});
 const videoSource=note=>note?.url?youtubeVideo(note.url):null;
 const isVideoNote=note=>note?.sourceType==='video'||Boolean(videoSource(note));
-const videoImportStatus=note=>note?.videoImport?.status||(state.samplePreview||state.local?'unavailable':note?.state==='awaiting_transcript'?'pending':note?.segments?.length?'ready':note?.state==='error'?'failed':'pending');
+const videoImportStatus=note=>readVideoImportStatus(note,{isVideo:isVideoNote(note),local:state.local,preview:state.samplePreview});
 const sourceLabel=note=>isVideoNote(note)?t('YouTube'):note?.url?t('Web source'):t('Text source');
 const labels={awaiting_transcript:'Needs transcript',awaiting_summary:'Ready to summarize',queued:'In the queue',summarizing:'Finding the good parts…',ready:'Ready to read',error:'Needs attention'};
 const status=note=>`<span class="status ${escape(note.state)}">${note.state==='ready'?'✦ ':''}${h(labels[note.state] || note.state)}</span>`;
@@ -110,7 +110,7 @@ function renderCards(){
   $('#main').dataset.hasNotes=String(source.length>0);$('#note-count').textContent=`${notes.length} ${h('cartas')}`;
   $('#sync-state').textContent=state.sync==='cache'?t('Saved on this device. Refreshing…'):state.sync==='loading'?t('Refreshing…'):state.sync==='error'?t('Offline. Showing saved notes.'):'';
   if(!notes.length){$('#cards').innerHTML=`<div class="empty"><div><h3>${state.user?h('No notes found.'):h('Tu colección empieza aquí.')}</h3><p>${state.user?h('Try another title, channel, or idea.'):h('Inicia sesión para guardar videos, documentos e ideas.')}</p></div></div>`;return;}
-  $('#cards').innerHTML=`<div class="grid ${state.view==='grid'?'compact-grid':''}">${notes.map(note=>{const art=cardArt(note),pending=videoImportStatus(note)==='pending';return `<article data-id="${note.id}" class="note-card ${finishFor(note)}" data-finish="${finishFor(note)}"><div class="card-surface"><a class="note-card-link" href="#note=${encodeURIComponent(note.id)}" data-action="open" data-id="${escape(note.id)}" aria-label="${h('Open notebook')}: ${escape(note.title)}"></a><img class="card-art" src="${escape(art.src)}" data-fallback="${escape(art.fallback)}" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"><div class="card-shade"></div><div class="card-foil"></div><div class="card-rim"></div><div class="card-top"><span class="foil-badge">${h(finishFor(note)==='classic'?'CLÁSICA':finishFor(note)==='spectrum'?'HOLO · ESPECTRO':'HOLO · PRISMA')}</span>${state.user?`<button class="pin" aria-label="${note.pinned?t('Unpin'):t('Pin')} ${escape(note.title)}" data-action="pin" data-id="${note.id}">${note.pinned?'◆':'◇'} ${note.pinned?h('Fijada'):''}</button>`:note.pinned?`<span class="pin sample-pin">◆ ${h('Fijada')}</span>`:''}</div><div class="card-meta">▶ &nbsp;${h(sourceLabel(note))} · <span dir="auto">${escape(note.channel||sourceLabel(note))}</span></div><div class="card-text"><button class="card-title" dir="auto" data-action="open" data-id="${escape(note.id)}">${escape(note.title)}</button></div><div class="card-footer"><span>${pending?`<span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}`:note.state==='ready'?h('IA lista'):state.user?escape(t(labels[note.state]||note.state)):h('Muestra pública')}</span>${state.user&&state.sort==='manual'?`<button class="card-grab" data-id="${escape(note.id)}" aria-label="${h('Move card')}" title="${h('Move card')}">⠿</button>`:''}<span class="card-actions">${note.state==='ready'?`${note.statementCount} ${h('ideas')}`:h('Vista previa')}<button class="open-card" data-action="open" data-id="${escape(note.id)}" aria-label="${h('Open card')}">↗</button></span></div></div></article>`}).join('')}</div>`;
+  $('#cards').innerHTML=`<div class="grid ${state.view==='grid'?'compact-grid':''}">${notes.map(note=>{const art=cardArt(note),pending=isVideoNote(note)&&videoImportStatus(note)==='pending';return `<article data-id="${note.id}" class="note-card ${finishFor(note)}" data-finish="${finishFor(note)}"><div class="card-surface"><a class="note-card-link" href="#note=${encodeURIComponent(note.id)}" data-action="open" data-id="${escape(note.id)}" aria-label="${h('Open notebook')}: ${escape(note.title)}"></a><img class="card-art" src="${escape(art.src)}" data-fallback="${escape(art.fallback)}" alt="" loading="eager" decoding="async" referrerpolicy="no-referrer"><div class="card-shade"></div><div class="card-foil"></div><div class="card-rim"></div><div class="card-top"><span class="foil-badge">${h(finishFor(note)==='classic'?'CLÁSICA':finishFor(note)==='spectrum'?'HOLO · ESPECTRO':'HOLO · PRISMA')}</span>${state.user?`<button class="pin" aria-label="${note.pinned?t('Unpin'):t('Pin')} ${escape(note.title)}" data-action="pin" data-id="${note.id}">${note.pinned?'◆':'◇'} ${note.pinned?h('Fijada'):''}</button>`:note.pinned?`<span class="pin sample-pin">◆ ${h('Fijada')}</span>`:''}</div><div class="card-meta">▶ &nbsp;${h(sourceLabel(note))} · <span dir="auto">${escape(note.channel||sourceLabel(note))}</span></div><div class="card-text"><button class="card-title" dir="auto" data-action="open" data-id="${escape(note.id)}">${escape(note.title)}</button></div><div class="card-footer"><span>${pending?`<span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}`:note.state==='ready'?h('IA lista'):state.user?escape(t(labels[note.state]||note.state)):h('Muestra pública')}</span>${state.user&&state.sort==='manual'?`<button class="card-grab" data-id="${escape(note.id)}" aria-label="${h('Move card')}" title="${h('Move card')}">⠿</button>`:''}<span class="card-actions">${note.state==='ready'?`${note.statementCount} ${h('ideas')}`:h('Vista previa')}<button class="open-card" data-action="open" data-id="${escape(note.id)}" aria-label="${h('Open card')}">↗</button></span></div></div></article>`}).join('')}</div>`;
   bindCards();animateCards($('#cards'),before);
 }
 
@@ -119,8 +119,9 @@ function sourcePanel(note){
   const video=videoSource(note),status=videoImportStatus(note),needsRetry=video&&!state.samplePreview&&!state.local&&['failed','unavailable'].includes(status);
   const player=video?`<div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?rel=0&playsinline=1" title="${h('YouTube video player')}: ${escape(note.title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:coverSource(note)?`<img class="source-cover" src="${escape(coverSource(note))}" alt="${h('Source cover')}" loading="lazy">`:'';
   const importState=video?state.samplePreview?`<p class="video-import-state">${h('Public video preview; captions are not included.')}</p>`:status==='pending'?`<p class="video-import-state pending"><span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}</p>`:status==='ready'?`<p class="video-import-state ready">✦ ${h('Captions ready')}</p>`:needsRetry?`<div class="video-import-state failed"><p>${h(status==='unavailable'?'Captions are unavailable for this video.':'Caption import failed.')}</p><button class="quiet-button" type="button" data-action="retry-video-import">${h('Retry caption import')} ↻</button></div>`:'' :'';
-  const manualFallback=video&&needsRetry?`<details class="manual-transcript"><summary>${h('Paste transcript instead')}</summary>${transcriptForm()}</details>`:'';
-  return `<section class="source-card">${player}<div class="source-card-content"><div class="source-card-heading"><strong>${h(video?'Original video':sourceLabel(note))}</strong>${note.url?`<a class="source-link" href="${escape(canonicalizeLink(note.url)||note.url)}" target="_blank" rel="noopener noreferrer">${h(video?'Open on YouTube':'Open source')} ↗</a>`:''}</div><p>${note.segments.length?`${note.segments.length} ${h(video?'transcript segments':'source segments')} · ${escape(note.transcriptSource||'captured source')}`:h(video?'The video can play while captions load.':'Your note is saved; add source text whenever you like.')}</p>${importState}${manualFallback}</div></section>`;
+  const manualFallback=video&&needsRetry?`<button type="button" class="quiet-button" data-action="tab" data-tab="transcript">${h('Paste transcript instead')}</button>`:'';
+  const description=note.segments.length?`${note.segments.length} ${h(video?'transcript segments':'source segments')} · ${escape(note.transcriptSource||'captured source')}`:h(videoSourceMessageKey(note,{isVideo:video,status,preview:state.samplePreview}));
+  return `<section class="source-card">${player}<div class="source-card-content"><div class="source-card-heading"><strong>${h(video?'Original video':sourceLabel(note))}</strong>${note.url?`<a class="source-link" href="${escape(canonicalizeLink(note.url)||note.url)}" target="_blank" rel="noopener noreferrer">${h(video?'Open on YouTube':'Open source')} ↗</a>`:''}</div><p>${description}</p>${importState}${manualFallback}</div></section>`;
 }
 function renderNotebook(){
   document.documentElement.dataset.screen='notebook';
@@ -143,7 +144,22 @@ function renderNotebook(){
   if(previousFocus&&$(`#${previousFocus}`)){const restored=$(`#${previousFocus}`);restored.focus({preventScroll:true});if(caret&&typeof restored.setSelectionRange==='function')restored.setSelectionRange(...caret);}
 }
 function transcriptForm(){const video=isVideoNote(state.note);return `<form id="transcript-form" class="transcript-form"><label for="transcript-input">${h(video?"Paste the video transcript":"Paste source text")}</label><p class="small">${h(video?"Automatic caption import did not work. Paste captions here if you have them.":"Add the text you want this notebook to use as its source.")}</p><textarea id="transcript-input" required placeholder="${video?'0:00 The first idea…&#10;1:24 The next idea…':h('Paste source text here…')}" maxlength="800000"></textarea><button class="dark-button" ${state.busy?'disabled':''}>${h(video?"Save transcript":"Save source text")} →</button></form>`;}
-function bindTranscript(){ $('#transcript-form')?.addEventListener('submit',async event=>{event.preventDefault();const transcript=$('#transcript-input').value;const button=event.submitter;button.disabled=true;try{await api(`/notes/${state.note.id}/transcript`,{method:'POST',data:{transcript,source:'paste',model:state.model}});state.note=await api(`/notes/${state.note.id}`);state.tab='summary';renderNotebook();}catch(error){toast(error.message);button.disabled=false;}}); }
+function bindTranscript(){
+  const id=state.note.id, scope=state.cacheScope;
+  $('#transcript-form')?.addEventListener('submit',async event=>{
+    event.preventDefault();
+    if(!viewingNotebook(id,scope))return;
+    const transcript=event.currentTarget.querySelector('textarea').value, button=event.submitter;
+    button.disabled=true;
+    try{
+      await api(`/notes/${id}/transcript`,{method:'POST',data:{transcript,source:'paste',model:state.model}});
+      if(!viewingNotebook(id,scope))return;
+      const updated=await api(`/notes/${id}`);
+      if(viewingNotebook(id,scope)){state.note=updated;state.tab='summary';renderNotebook();}
+    }catch(error){if(viewingNotebook(id,scope))toast(error.message);}
+    finally{if(button.isConnected)button.disabled=false;}
+  });
+}
 const chatDrafts = new Map();
 async function renderCardChat(target, note) {
   const draftKey = state.cacheScope + "/" + note.id;
@@ -155,7 +171,7 @@ async function renderCardChat(target, note) {
     if (!isCurrent()) return;
     const draft = chatDrafts.get(draftKey) || {question:'', requestId:crypto.randomUUID()};
     const link = chat.conversationUrl ? `<a class="light-button" rel="noopener noreferrer" target="_blank" href="${escape(chat.conversationUrl)}">${h('Open Botanic chat')} ↗</a>` : '';
-    target.innerHTML = `<h2 class="section-title">Botanic</h2>${link}${chat.canAsk ? `<form id="botanic-question"><label for="question">${h('Ask a question')}</label><textarea id="question" maxlength="5000" required dir="auto">${escape(draft.question)}</textarea><button class="dark-button">${h('Ask a question')}</button></form>` : ''}${chat.canReset ? `<button id="reset-card-chat" class="quiet-button">${h('Start fresh after deletion')}</button>` : ''}<p id="chat-status" role="status"></p>`;
+    target.innerHTML = `<h2 class="section-title">Botanic</h2>${link}${chat.canAsk ? `<form id="botanic-question"><label for="question">${h('Ask a question')}</label><textarea id="question" maxlength="5000" required dir="auto">${escape(draft.question)}</textarea><button class="dark-button">${h('Ask a question')}</button></form>` : ''}${!chat.canAsk&&!chat.canReset?`<p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`:''}${chat.canReset ? `<button id="reset-card-chat" class="quiet-button">${h('Start fresh after deletion')}</button>` : ''}<p id="chat-status" role="status"></p>`;
     target.querySelector('#reset-card-chat')?.addEventListener('click',async e=>{
       e.currentTarget.disabled=true;
       try{await api(path+'/reset',{method:'POST',data:{expectedConversationId:chat.conversationId}});chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;target.querySelector('#reset-card-chat').disabled=false;}}
@@ -167,7 +183,7 @@ async function renderCardChat(target, note) {
       try{const result=await api(path,{method:'POST',data:request});if(result.state==='bound')chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}
       catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;field.readOnly=false;target.querySelector('button[type=submit],#botanic-question button').disabled=false;}}
     });
-  } catch(error){if(isCurrent()) target.textContent=error.message;}
+  } catch(error){if(isCurrent()) target.innerHTML=`<h2 class="section-title">Botanic</h2><p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`;}
 }
 function renderNotebookContent(){
   const n=state.note, target=$('#notebook-content');
@@ -177,7 +193,7 @@ function renderNotebookContent(){
     target.innerHTML=`<h2 class="section-title">${h("The source, in its own words.")}</h2><p class="small">${n.segments.length?t(video?"Captured captions may contain transcription mistakes. Click a timestamp to watch the original.":"Source text captured for this notebook."):pending?t("Fetching captions from YouTube. You can keep watching while we work."):video?t("Captions could not be fetched. The video is still available above."):t("Add source text to start the summary.")}</p>${pending?`<div class="import-progress" role="status"><span class="import-spinner" aria-hidden="true"></span><div><strong>${h('Fetching captions')}</strong><p class="small">${h('You can leave this page. Captions will appear when ready.')}</p></div></div>`:''}${n.segments.length?`<details><summary class="small">${h(video?"Replace transcript":"Replace source text")}</summary>${transcriptForm()}</details><div class="transcript-list">${n.segments.map(s=>`<div class="segment">${video&&n.url?`<a href="${escape(videoSource(n)?.url||canonicalizeLink(n.url))}&t=${Math.floor(s.start)}s" target="_blank" rel="noopener noreferrer">${time(s.start)} ↗</a>`:`<span>${video?time(s.start):''}</span>`}<span dir="auto">${escape(s.text)}</span></div>`).join('')}</div>`:fallback||!video?transcriptForm():''}`;if(fallback||!video||n.segments.length)bindTranscript();return;
   }
   if(state.tab==='questions'){
-    if(!state.local&&!state.samplePreview&&state.config.chatConfigured){void renderCardChat(target,n);return;}
+    if(!state.local&&!state.samplePreview){void renderCardChat(target,n);return;}
     const askDisabled=!n.segments.length||state.busy||isGenerating(n)||!state.config.gatewayConfigured;
     target.innerHTML=`<h2 class="section-title">${h("Pull on an interesting thread.")}</h2><p class="small">${h("Ask about the captured transcript. Each question makes a new gateway request.")}</p>${!state.config.gatewayConfigured?`<p class="ai-unavailable" role="status">${h('AI chat is not configured. Your source and personal notes remain available.')}</p>`:''}<form id="ask-form" class="ask-form"><label class="screen-reader" for="question">${h("Your question")}</label><textarea id="question" maxlength="4000" required placeholder="${h("What evidence supports the main conclusion?")}" ${askDisabled?'disabled':''}></textarea><div class="form-actions"><select class="model-select" aria-label="${h("Question model")}" id="question-model" ${!state.config.gatewayConfigured?'disabled':''}>${modelOptions()}</select><button class="dark-button" ${askDisabled?'disabled':''}>${state.busy?t("Thinking…"):t("Ask this video")} →</button></div></form>${!n.segments.length?`<p class="small">${h(videoImportStatus(n)==='pending'?'Fetching captions from YouTube. You can keep watching while we work.':"Add a transcript first.")}</p>`:''}${n.conversations.slice().reverse().map(q=>`<article class="conversation"><h3>${escape(q.question)}</h3><p>${escape(q.answer)} ${citations(q.sources,'question',q.id)}</p><span class="small">${escape(q.metrics.responseModel || q.metrics.requestedModel || 'Gateway model')}</span></article>`).join('')}`;
     $('#question-model').addEventListener('change',e=>{state.model=e.target.value;});
@@ -206,11 +222,30 @@ function renderEvidence(){
   const evidence=state.evidence;
   target.innerHTML=evidence?`<section class="evidence-box" aria-label="${h("Supporting transcript")}"><button class="icon-button" data-action="close-evidence" aria-label="${h("Close evidence")}">×</button><span class="eyebrow">${h(isVideoNote(state.note)?"IN THE TRANSCRIPT":"IN THE SOURCE")}</span><blockquote dir="auto">“${escape(evidence.text)}”</blockquote>${isVideoNote(state.note)&&state.note.url?`<a class="source-link" href="${escape(state.note.url)}&t=${Math.floor(evidence.start)}s" target="_blank" rel="noreferrer">${h("Watch at")} ${time(evidence.start)} ↗</a>`:state.note.url?`<a class="source-link" href="${escape(state.note.url)}" target="_blank" rel="noreferrer">${h("Open source")} ↗</a>`:''}</section>`:'';
 }
+function viewingNotebook(id,scope){
+  return scope===state.cacheScope && new URLSearchParams(location.hash.slice(1)).get('note')===id;
+}
+let refreshSequence=0;
 async function refresh(){
+  const sequence=++refreshSequence, hash=location.hash, scope=state.cacheScope;
+  const current=()=>sequence===refreshSequence && location.hash===hash && state.cacheScope===scope;
   const params=new URLSearchParams(location.hash.slice(1)),sampleId=params.get('sample'),id=params.get('note');
   if(sampleId){const sample=sampleNotes.find(note=>note.id===sampleId);if(!sample)throw new Error('Invalid sample link');state.samplePreview=true;state.note={...sample,segments:[],revisions:[],conversations:[],images:[],personalNotes:''};state.tab='summary';renderNotebook();return;}
-  if(id){if(!/^[A-Za-z0-9_-]{1,128}$/.test(id))throw new Error('Invalid notebook link');state.samplePreview=false;state.note=await api(`/notes/${encodeURIComponent(id)}`);renderNotebook();}
-  else{state.samplePreview=false;state.notes=await api('/notes');writeLibraryCache(localStorage,state.notes,Date.now(),state.cacheScope||'local');renderLibrary();}
+  state.samplePreview=false;
+  if(id && !/^[A-Za-z0-9_-]{1,128}$/.test(id))throw new Error('Invalid notebook link');
+  if(state.note && state.note.id!==id){
+    state.note=null;
+    $('#main').replaceChildren();
+  }
+  try{
+    if(id){
+      const note=await api(`/notes/${encodeURIComponent(id)}`);
+      if(current()){state.note=note;renderNotebook();}
+    }else{
+      const notes=await api('/notes');
+      if(current()){state.notes=notes;writeLibraryCache(localStorage,notes,Date.now(),scope||'local');renderLibrary();}
+    }
+  }catch(error){if(current())throw error;}
 }
 document.addEventListener('click',async event=>{
   const button=event.target.closest('[data-action]');if(!button)return;
@@ -336,7 +371,14 @@ void startLibrary();
 setInterval(async()=>{
   if(document.hidden||state.busy||state.dragging||!state.user||state.samplePreview)return;
   try{
-    if(state.note){const updated=await api(`/notes/${encodeURIComponent(state.note.id)}`);if(updated.updatedAt!==state.note.updatedAt||JSON.stringify(updated.videoImport)!==JSON.stringify(state.note.videoImport)){state.note=updated;renderNotebook();}}
+    if(state.note){
+      const {id}=state.note,scope=state.cacheScope;
+      const updated=await api(`/notes/${encodeURIComponent(id)}`);
+      if(viewingNotebook(id,scope) && state.note?.id===id &&
+        (updated.updatedAt!==state.note.updatedAt || JSON.stringify(updated.videoImport)!==JSON.stringify(state.note.videoImport))){
+        state.note=updated;renderNotebook();
+      }
+    }
     else{const updated=await api('/notes');if(JSON.stringify(updated)!==JSON.stringify(state.notes)){state.notes=updated;writeLibraryCache(localStorage,updated,Date.now(),state.cacheScope);if($('#cards'))renderCards();}}
   }catch{/* Preserve visible content through temporary disconnects. */}
 },2500);

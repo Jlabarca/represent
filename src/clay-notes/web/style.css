@@ -175,7 +175,7 @@ html[data-theme=dark] .quick-note { background: #202124; border-color: #53555b; 
 .quick-note [hidden] { display: none !important; }
 .quick-note .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }
 .quick-note-toggle { display:flex; align-items:center; justify-content:space-between; width:100%; min-height:55px; text-align:start; padding:12px 22px; border:0; border-radius:inherit; background:transparent; color:var(--muted,var(--ink)); font:inherit; font-weight:600; font-size:1.05rem; cursor:text; }
-.quick-note-toggle::after { content:'Ã¯Â¼â€¹'; font-size:1.45rem; font-weight:400; opacity:.78; }
+.quick-note-toggle::after { content:"\FF0B"; font-size:1.45rem; font-weight:400; opacity:.78; }
 .quick-note-form { display:grid; gap:8px; padding:14px 19px 10px; }
 .quick-note label { display:block; margin:0; }
 .quick-note .quick-title-caption,.quick-title-label .optional { display:none; }
