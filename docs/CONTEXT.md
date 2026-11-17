@@ -8,6 +8,8 @@
 
 The pilot owner's Google subjects match across the two services. A server routing error intercepted the signed card form before its validator and returned “No auth token”. Prod1 now serves the card router before the shared parent. The public form reaches its validator and private reads require login.
 
+The first hosted card launch was accepted after the route fix. Its send stopped at the shared server's enforced model-spec check. Register a named local-model preset for the existing assistant and include it in the launch and post-login URLs.
+
 Shared Botanic now runs the qualified combined Causa and Notcards image on prod1. The shared assistant uses Botanic local. The Notcards site offers the signed card handoff on the questions tab. Final live verification needs the first send and reopen from the pilot card. An authenticated session opened the three real summary revisions in the hosted website.
 
 Notcards persists account language, records the language of new summaries and caches on-demand translations by revision and language. The English-to-Spanish browser test preserved the original and reused the translation on reload. A second browser profile with English system settings loaded the same account in Arabic with right-to-left mobile layout. The eight charged calls in the gateway ledger total USD 0.0494749.

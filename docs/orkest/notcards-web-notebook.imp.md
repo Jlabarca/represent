@@ -25,6 +25,8 @@ The hosted notebooks have saved takeaways for all three requested videos. Accoun
 
 ## Known Bugs
 
+First-send preset plan (November 17). Extend the deployed LibreChat model-spec list with a visible Notcards agents preset for the existing local assistant. Select it in the form redirect and post-Google return, exercise the redirect in the existing loopback test, validate the resulting config and native image, and retry the signed card turn. Preserve other model specs and their enforcement.
+
 Hosted first-send repair plan (November 17). Put the signed Notcards form handler before the shared parent router. Add a packaged mount-order regression check, rerun the native ownership smoke, deploy a versioned server-only image, and verify that the public form reaches its own validator while protected reads still require login. Then verify a genuine card launch and bound conversation in the owner's browser.
 
 The YouTube button reports Request origin is not allowed after login. Verify the real browser wire behavior.
