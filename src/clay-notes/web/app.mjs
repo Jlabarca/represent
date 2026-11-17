@@ -1,8 +1,8 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-6';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-7';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
-import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-6';
+import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-7';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
@@ -116,9 +116,14 @@ function renderCards(){
 }
 
 function citations(sources,kind='summary',item='') {return (sources || []).map(index=>`<button class="citation" title="${h("Read supporting transcript")}" aria-label="${h("Read supporting segment")} ${index+1}" data-action="cite" data-source="${index}" data-kind="${kind}" data-item="${item}">[${index+1}]</button>`).join('');}
+function seekButton(start,label=false){
+  const seconds=Math.max(0,Math.floor(Number(start)||0));
+  const description=h('Watch at')+' '+time(seconds);
+  return `<button type="button" class="seek-time source-link" data-action="seek-video" data-seconds="${seconds}" aria-label="${description}">${label?description:time(seconds)}</button>`;
+}
 function sourcePanel(note){
   const video=videoSource(note),status=videoImportStatus(note),needsRetry=video&&!state.samplePreview&&!state.local&&['failed','unavailable'].includes(status);
-  const player=video?`<div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?rel=0&playsinline=1" title="${h('YouTube video player')}: ${escape(note.title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:coverSource(note)?`<img class="source-cover" src="${escape(coverSource(note))}" alt="${h('Source cover')}" loading="lazy">`:'';
+  const player=video?`<div class="video-player"><iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(video.id)}?rel=0&playsinline=1" title="${h('YouTube video player')}: ${escape(note.title)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`:coverSource(note)?`<img class="source-cover" src="${escape(coverSource(note))}" alt="${h('Source cover')}" loading="lazy">`:'';
   const policy=note.videoImport||{};
   const retryTime=policy.reason==='youtube_rate_limited'||policy.attemptCount>1?Date.parse(policy.retryAllowedAt)||0:0;
   const cooldown=retryTime>Date.now();
@@ -220,7 +225,7 @@ function renderNotebookContent(){
   if(state.samplePreview){target.innerHTML=`<div class="sample-detail-copy"><h2>${h('Public video preview')}</h2><p>${h('Play the source above. Sign in to save it as a notebook and add your own notes.')}</p><a class="dark-button" href="#" data-action="signin">${h('Sign in with Google')} ↗</a></div>`;return;}
   if(state.tab==='transcript'){
     const video=isVideoNote(n),importStatus=videoImportStatus(n),pending=video&&importStatus==='pending',fallback=video&&['failed','unavailable'].includes(importStatus);
-    target.innerHTML=`<h2 class="section-title">${h("The source, in its own words.")}</h2><p class="small">${n.segments.length?t(video?"Captured captions may contain transcription mistakes. Click a timestamp to watch the original.":"Source text captured for this notebook."):pending?t("Fetching captions from YouTube. You can keep watching while we work."):video?t("Captions could not be fetched. The video is still available above."):t("Add source text to start the summary.")}</p>${pending?`<div class="import-progress" role="status"><span class="import-spinner" aria-hidden="true"></span><div><strong>${h('Fetching captions')}</strong><p class="small">${h('You can leave this page. Captions will appear when ready.')}</p></div></div>`:''}${n.segments.length?`<details><summary class="small">${h(video?"Replace transcript":"Replace source text")}</summary>${transcriptForm()}</details><div class="transcript-list">${n.segments.map(s=>`<div class="segment">${video&&n.url?`<a href="${escape(videoSource(n)?.url||canonicalizeLink(n.url))}&t=${Math.floor(s.start)}s" target="_blank" rel="noopener noreferrer">${time(s.start)} ↗</a>`:`<span>${video?time(s.start):''}</span>`}<span dir="auto">${escape(s.text)}</span></div>`).join('')}</div>`:fallback||!video?transcriptForm():''}`;if(fallback||!video||n.segments.length)bindTranscript();return;
+    target.innerHTML=`<h2 class="section-title">${h("The source, in its own words.")}</h2><p class="small">${n.segments.length?t(video?"Captured captions may contain transcription mistakes. Click a timestamp to watch the original.":"Source text captured for this notebook."):pending?t("Fetching captions from YouTube. You can keep watching while we work."):video?t("Captions could not be fetched. The video is still available above."):t("Add source text to start the summary.")}</p>${pending?`<div class="import-progress" role="status"><span class="import-spinner" aria-hidden="true"></span><div><strong>${h('Fetching captions')}</strong><p class="small">${h('You can leave this page. Captions will appear when ready.')}</p></div></div>`:''}${n.segments.length?`<details><summary class="small">${h(video?"Replace transcript":"Replace source text")}</summary>${transcriptForm()}</details><div class="transcript-list">${n.segments.map(s=>`<div class="segment">${video&&n.url?seekButton(s.start):`<span>${video?time(s.start):''}</span>`}<span dir="auto">${escape(s.text)}</span></div>`).join('')}</div>`:fallback||!video?transcriptForm():''}`;if(fallback||!video||n.segments.length)bindTranscript();return;
   }
   if(state.tab==='questions'){
     if(!state.local&&!state.samplePreview){void renderCardChat(target,n);return;}
@@ -250,7 +255,7 @@ function renderNotebookContent(){
 function renderEvidence(){
   const target=$('#evidence');if(!target)return;
   const evidence=state.evidence;
-  target.innerHTML=evidence?`<section class="evidence-box" aria-label="${h("Supporting transcript")}"><button class="icon-button" data-action="close-evidence" aria-label="${h("Close evidence")}">×</button><span class="eyebrow">${h(isVideoNote(state.note)?"IN THE TRANSCRIPT":"IN THE SOURCE")}</span><blockquote dir="auto">“${escape(evidence.text)}”</blockquote>${isVideoNote(state.note)&&state.note.url?`<a class="source-link" href="${escape(state.note.url)}&t=${Math.floor(evidence.start)}s" target="_blank" rel="noreferrer">${h("Watch at")} ${time(evidence.start)} ↗</a>`:state.note.url?`<a class="source-link" href="${escape(state.note.url)}" target="_blank" rel="noreferrer">${h("Open source")} ↗</a>`:''}</section>`:'';
+  target.innerHTML=evidence?`<section class="evidence-box" aria-label="${h("Supporting transcript")}"><button class="icon-button" data-action="close-evidence" aria-label="${h("Close evidence")}">×</button><span class="eyebrow">${h(isVideoNote(state.note)?"IN THE TRANSCRIPT":"IN THE SOURCE")}</span><blockquote dir="auto">“${escape(evidence.text)}”</blockquote>${isVideoNote(state.note)&&state.note.url?seekButton(evidence.start,true):state.note.url?`<a class="source-link" href="${escape(state.note.url)}" target="_blank" rel="noreferrer">${h("Open source")} ↗</a>`:''}</section>`:'';
 }
 function viewingNotebook(id,scope){
   return scope===state.cacheScope && new URLSearchParams(location.hash.slice(1)).get('note')===id;
@@ -292,7 +297,22 @@ document.addEventListener('click',async event=>{
       if(location.hash===hash)await refresh();else location.hash=hash;
     }
     if(action==='library'){location.hash='';state.evidence=null;state.revision=null;}
-    if(action==='tab'){state.tab=button.dataset.tab;renderNotebook();}
+    if(action==='seek-video'){
+      const frame=$('.video-player iframe'),seconds=Number(button.dataset.seconds);
+      if(!frame||!Number.isSafeInteger(seconds)||seconds<0)return;
+      const url=new URL(frame.src);
+      url.searchParams.set('start',String(seconds));url.searchParams.set('autoplay','1');
+      frame.src=url.href;
+      frame.scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+    }
+    if(action==='tab'){
+      state.tab=button.dataset.tab;
+      for(const tab of document.querySelectorAll('[role="tab"][data-tab]')){
+        const selected=tab.dataset.tab===state.tab;
+        tab.classList.toggle('active',selected);tab.setAttribute('aria-selected',String(selected));
+      }
+      renderNotebookContent();
+    }
     if(action==='cover'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{coverImage:button.dataset.image||null}});renderNotebook();}
     if(action==='pin'){const note=state.note?.id===button.dataset.id?state.note:state.notes.find(n=>n.id===button.dataset.id);await api(`/notes/${note.id}`,{method:'PATCH',data:{pinned:!note.pinned}});await refresh();}
     if(action==='color'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{color:button.dataset.color}});renderNotebook();}

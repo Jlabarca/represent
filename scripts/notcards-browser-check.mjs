@@ -44,7 +44,19 @@ try{
   await page.reload();
   await page.getByRole('tab',{name:'Transcript'}).click();
   await page.getByText('Recovered caption',{exact:true}).waitFor();
-  console.log('PASS: collection card click survives late folders, Retry starts a second import, and saved captions survive reload.');
+  const notebookUrl=page.url();
+  await page.getByRole('button',{name:'Watch at 0:12'}).click();
+  const player=page.locator('.video-player iframe');
+  const playerUrl=new URL(await player.getAttribute('src'));
+  assert.equal(playerUrl.origin,'https://www.youtube-nocookie.com');
+  assert.equal(playerUrl.pathname,'/embed/X6J3ByTqhLY');
+  assert.equal(playerUrl.searchParams.get('start'),'12');
+  assert.equal(playerUrl.searchParams.get('autoplay'),'1');
+  await page.getByRole('tab',{name:'The takeaway'}).click();
+  assert.equal(await player.getAttribute('src'),playerUrl.href);
+  assert.equal(context.pages().length,1);
+  assert.equal(page.url(),notebookUrl);
+  console.log('PASS: card navigation, caption retry, persisted captions, embedded timestamp and player continuity across tabs.');
 }finally{
   await browser?.close();await server?.close();await rm(directory,{recursive:true,force:true});
 }
