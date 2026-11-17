@@ -8,7 +8,7 @@
 
 The signed-in navigation and caption-retry fix shipped to dev at `b474908`. All three original collection cards opened in the same tab. A fourth card's live retry showed YouTube's rate limit. The visible YouTube transcript panel supplied 76 caption rows; reopening that notebook retained them. The full suite passed 190 tests. The standalone browser check holds a folders response until after navigation, retries a failed import, and verifies captions after reload.
 
-The dev site runs the signed native Botanic handoff and metered summary adapter with both features gated. The 186-test platform suite passed. Loopback tests verify an owned conversation can be bound, reopened, and unlinked after deletion while the card stays intact. Real chat still needs the native Botanic hooks mounted and configured.
+The dev site runs the signed native Botanic handoff and metered summary adapter with both features gated. Loopback tests verify an owned conversation can be bound, reopened, and unlinked after deletion while the card stays intact. The staging integration targets LibreChat revision `e8f3be08623663d4ad7f7241e693c94469b63bb0`. Mount the launch route, scope the composer to the shared Notcards agent, attach source only to an owned native send, acknowledge persisted messages and propagate confirmed deletions. Validate the overlay in a disposable checkout before touching the shared service.
 
 The three requested videos were saved through the Google-authenticated web app. YouTube’s visible Show transcript panel provided 165, 191 and 90 timed rows in request order after the automatic importer failed. Each card’s URL, first caption and count were verified after reopening. A signed-in reload of the deployed NEAR notebook retained all 90 segments.
 
