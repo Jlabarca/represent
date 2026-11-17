@@ -25,6 +25,8 @@ The hosted notebooks have saved takeaways for all three requested videos. Accoun
 
 ## Known Bugs
 
+Hosted first-send repair plan (November 17). Put the signed Notcards form handler before the shared parent router. Add a packaged mount-order regression check, rerun the native ownership smoke, deploy a versioned server-only image, and verify that the public form reaches its own validator while protected reads still require login. Then verify a genuine card launch and bound conversation in the owner's browser.
+
 The YouTube button reports Request origin is not allowed after login. Verify the real browser wire behavior.
 
 ## What Needs Testing

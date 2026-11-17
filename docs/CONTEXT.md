@@ -6,6 +6,8 @@
 
 ## Notcards web notebook (2026-11-17)
 
+The pilot Google identity is confirmed on shared Botanic. The first card launch returned HTTP 401 before it reached the Notcards handler. The shared parent router runs its login middleware before the more specific card router. Correct the mount order, exercise the packaged server and repeat the hosted launch check.
+
 Shared Botanic now runs the qualified combined Causa and Notcards image on prod1. The shared assistant uses Botanic local. The Notcards site offers the signed card handoff on the questions tab. Final live first-send and reopen verification needs a fresh Google login on Botanic for the same owner. An authenticated session previously created on Notcards successfully opened the three real summary revisions in the hosted website.
 
 Notcards persists account language, records the language of new summaries and caches on-demand translations by revision and language. The English-to-Spanish browser test preserved the original and reused the translation on reload. A second browser profile with English system settings loaded the same account in Arabic with right-to-left mobile layout. The eight charged calls in the gateway ledger total USD 0.0494749.
