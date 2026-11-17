@@ -259,7 +259,20 @@ document.addEventListener('click',async event=>{
     if(action==='cover'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{coverImage:button.dataset.image||null}});renderNotebook();}
     if(action==='pin'){const note=state.note?.id===button.dataset.id?state.note:state.notes.find(n=>n.id===button.dataset.id);await api(`/notes/${note.id}`,{method:'PATCH',data:{pinned:!note.pinned}});await refresh();}
     if(action==='color'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{color:button.dataset.color}});renderNotebook();}
-    if(action==='redo'){button.disabled=true;await api(`/notes/${state.note.id}/summarize`,{method:'POST',data:{model:state.model}});state.revision=null;state.note=await api(`/notes/${state.note.id}`);renderNotebook();}
+    if(action==='redo'){
+      const note=state.note,scope=state.cacheScope,model=state.model;
+      if(!note||!viewingNotebook(note.id,scope))return;
+      button.disabled=true;
+      const revision=note.revisions?.at(-1)?.id||'first';
+      const operation=['notcards.summary',scope,note.id,model,note.transcriptHash||'',revision].join(':');
+      let requestId=crypto.randomUUID();
+      try{requestId=sessionStorage.getItem(operation)||requestId;sessionStorage.setItem(operation,requestId);}catch{}
+      await api(`/notes/${note.id}/summarize`,{method:'POST',data:{model,requestId}});
+      try{sessionStorage.removeItem(operation);}catch{}
+      if(!viewingNotebook(note.id,scope))return;
+      const updated=await api(`/notes/${note.id}`);
+      if(viewingNotebook(note.id,scope)){state.revision=null;state.note=updated;renderNotebook();}
+    }
     if(action==='retry-video-import'){button.disabled=true;await api(`/notes/${encodeURIComponent(state.note.id)}/video-import`,{method:'POST'});state.note=await api(`/notes/${encodeURIComponent(state.note.id)}`);renderNotebook();}
     if(action==='cite'){const note=state.note;const revision=note.revisions[state.revision ?? note.revisions.length-1];const segments=button.dataset.kind==='question'?note.conversations.find(q=>q.id===button.dataset.item)?.segments:revision?.segments;state.evidence=segments?.find(s=>s.id===Number(button.dataset.source));renderEvidence();$('#evidence')?.scrollIntoView({behavior:'smooth',block:'nearest'});}
     if(action==='close-evidence'){state.evidence=null;renderEvidence();}

@@ -2,11 +2,13 @@ import http from 'node:http';
 import {readFile} from 'node:fs/promises';
 import {join,dirname,extname} from 'node:path';
 import {fileURLToPath} from 'node:url';
-import {randomBytes} from 'node:crypto';
+import {randomBytes,randomUUID} from 'node:crypto';
 import {GoogleIdentity} from './identity.mjs';
 import {NotcardsStore,isAllowedExtensionRedirect} from './store.mjs';
 import {VideoImportService} from './video-import.mjs';
 import {NotcardsCardChatService} from './card-chat.mjs';
+import {Gateway} from '../clay-notes/core.mjs';
+import {NotcardsVideoSummary,summaryRuntimeFromEnv} from './video-summary.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const web=join(root,'..','clay-notes','web');
@@ -26,10 +28,23 @@ async function readBody(req,limit=1_000_000){
 
 const EXTENSION_ID=/^[a-p]{32}$/;
 
-export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,storeExtensionId=process.env.NOTCARDS_STORE_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null,videoImporter,onVideoReady,botanicConnector=null}={}){
+export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_DIR||'./notcards-data',host=process.env.NOTCARDS_HOST||'127.0.0.1',port=Number(process.env.NOTCARDS_PORT||8080),publicOrigin=process.env.NOTCARDS_PUBLIC_ORIGIN,extensionId=process.env.NOTCARDS_EXTENSION_ID,storeExtensionId=process.env.NOTCARDS_STORE_EXTENSION_ID,extensionZip=process.env.NOTCARDS_EXTENSION_ZIP||null,identity=null,store=null,videoImporter,onVideoReady,botanicConnector=null,summaryConfig=null}={}){
   const extensionIds=[...new Set([extensionId,storeExtensionId].filter(Boolean))];
   if(extensionIds.some(id=>!EXTENSION_ID.test(id)))throw new Error('Configured Notcards extension IDs must be exact Chromium IDs');
+  const ownsPersistence=!store;
   const persistence=store||await new NotcardsStore({directory,extensionIds,videoImporter:videoImporter ?? new VideoImportService({enabled:Boolean(publicOrigin)}),onVideoReady}).init();
+  const requestedSummary=summaryConfig||summaryRuntimeFromEnv();
+  const safeMax=Number.isFinite(requestedSummary.maxAccountSpendUsd)&&requestedSummary.maxAccountSpendUsd>0&&requestedSummary.maxAccountSpendUsd<=1?requestedSummary.maxAccountSpendUsd:1;
+  const safeService=Number.isFinite(requestedSummary.maxServiceSpendUsd)&&requestedSummary.maxServiceSpendUsd>0&&requestedSummary.maxServiceSpendUsd<=1?requestedSummary.maxServiceSpendUsd:1;
+  const safeReservation=Number.isFinite(requestedSummary.maxCallReservationUsd)&&requestedSummary.maxCallReservationUsd>0&&requestedSummary.maxCallReservationUsd<=Math.min(safeMax,safeService)?requestedSummary.maxCallReservationUsd:Math.min(0.05,safeMax,safeService);
+  const models=[];
+  if(requestedSummary.activation?.summaryLaneTestPassed===true||requestedSummary.activation?.laneTestPassed===true)models.push('clay-notes-summary');
+  if(requestedSummary.activation?.deepLaneTestPassed===true)models.push('clay-notes-deep');
+  const summaryGateway=requestedSummary.gateway||new Gateway({url:requestedSummary.url||'http://127.0.0.1:4000/v1',key:requestedSummary.key||undefined,models});
+  const summaryActivation=requestedSummary.configurationValid===true?requestedSummary.activation:{};
+  const videoSummary=new NotcardsVideoSummary({store:persistence,gateway:summaryGateway,activation:summaryActivation,maxAccountSpendUsd:safeMax,maxServiceSpendUsd:safeService,maxCallReservationUsd:safeReservation,rates:requestedSummary.configurationValid===true?requestedSummary.rates:undefined});
+  const priorVideoReady=persistence.onVideoReady;
+  persistence.onVideoReady=async({userId,noteId,...rest})=>{if(priorVideoReady)await priorVideoReady({userId,noteId,...rest});if(videoSummary.status().available)return videoSummary.enqueueAuto(userId,noteId);};
   const cardChat=botanicConnector?new NotcardsCardChatService({db:persistence.db,connector:botanicConnector,
     resolveVerifiedOwner:async principal=>principal?.id?persistence.db.prepare('SELECT issuer,subject FROM users WHERE id=?').get(principal.id):null,
     loadCardContext:async({owner,cardId})=>{
@@ -140,7 +155,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         if(reqUrl.pathname==='/api/composer'&&current.auth!=='cookie')throw problem(403,'Composer drafts require a signed-in web session.');
         if(req.method!=='GET')requireOrigin({allowExtension:current.auth==='bearer'});
         const account=await persistence.account(current.user.id),path=reqUrl.pathname;
-        if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:false,models:[],defaultModel:null,generationAvailable:false,queueSize:0,chatConfigured:Boolean(cardChat?.capabilities().available),cardChat:cardChat?.capabilities()||{available:false,lazyFirstQuestion:true,ownerScopedBindings:true,idempotentRequests:false,deletionConfirmation:false,canonicalConversationUrl:false,rawPromptPersistence:false}});
+        if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:videoSummary.status().available,models:videoSummary.status().models,defaultModel:videoSummary.status().defaultModel,generationAvailable:videoSummary.status().available,queueSize:videoSummary.jobs.size,summary:videoSummary.status(),chatConfigured:Boolean(cardChat?.capabilities().available),cardChat:cardChat?.capabilities()||{available:false,lazyFirstQuestion:true,ownerScopedBindings:true,idempotentRequests:false,deletionConfirmation:false,canonicalConversationUrl:false,rawPromptPersistence:false}});
         if(cardChatMatch){
           if(!cardChat)throw problem(503,'Botanic chat connector is not configured.','chat_not_configured');
           const [,noteId,reset]=cardChatMatch;
@@ -177,10 +192,16 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         }
         const match=/^\/api\/notes\/([A-Za-z0-9_-]{11})(?:\/(transcript|summarize|ask|video-import))?$/.exec(path);
         if(match){const [,id,action]=match,note=await account.notebook.get(id);if(!note)throw problem(404,'Notebook not found');
-          if(!action&&req.method==='GET')return json(200,await persistence.ensureVideoImport(current.user.id,id));
+          if(!action&&req.method==='GET'){const opened=await persistence.ensureVideoImport(current.user.id,id);if(opened?.state==='awaiting_summary')void videoSummary.enqueueAuto(current.user.id,id).catch(()=>{});return json(200,opened);}
           if(action==='video-import'&&req.method==='POST')return json(200,await persistence.retryVideoImport(current.user.id,id));
           if(!action&&req.method==='PATCH')return json(200,await persistence.updateNote(current.user.id,id,await readBody(req)));
-          if(req.method==='POST'&&['summarize','ask'].includes(action))throw problem(503,'AI summaries are waiting for the Notcards Ghost gateway lane to be applied.','ai_setup_pending');
+          if(req.method==='POST'&&action==='summarize'){
+            const input=await readBody(req,10_000);const model=['smart','deep'].includes(input.model)?'deep':['cheap','summary',undefined].includes(input.model)?'summary':null;
+            if(!model)throw problem(400,'summary_lane_invalid','Choose the summary or deep model.');
+            const queued=await videoSummary.enqueue(current.user.id,id,{model,requestId:input.requestId||randomUUID()});
+            return json(202,{id,state:queued.state,requestId:queued.requestId});
+          }
+          if(req.method==='POST'&&action==='ask')throw problem(503,'AI chat is not enabled for this account.','ai_setup_pending');
           if(req.method==='POST'&&action==='transcript'){
             const input=await readBody(req);const updated=await persistence.updateTranscript(current.user.id,id,input);return json(200,{id,state:updated.state});
           }
@@ -210,5 +231,5 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
   const url=new URL(origin);
   if(url.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(url.hostname))throw new Error('NOTCARDS_PUBLIC_ORIGIN must use HTTPS outside loopback development');
   identityService=identity||new GoogleIdentity({publicOrigin:origin});
-  return {server,url:origin,identity:identityService,store:persistence,cardChat,async close(){const closed=new Promise(resolve=>server.close(resolve));server.closeAllConnections();await closed;await persistence.close?.();}};
+  return {server,url:origin,identity:identityService,store:persistence,cardChat,videoSummary,async close(){const closed=new Promise(resolve=>server.close(resolve));server.closeAllConnections();await closed;await videoSummary.close();if(ownsPersistence)await persistence.close?.();}};
 }
