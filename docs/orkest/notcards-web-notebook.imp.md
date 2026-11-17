@@ -17,6 +17,10 @@ Only the first submitted question should create a Botanic conversation. A delete
 
 ## Architecture
 
+### Botanic home preparation
+
+Prepare the Notcards half of a session-based default home. Add optional conversation IDs to the existing private card list with one receipt lookup, combine those cards with authorized native chat summaries in a portable adapter, and cover note-only, native-only, linked, deleted and duplicate entries. Document the remaining identity integration, native routes, layout and rollout in `docs/design/botanic-card-home.md`. This slice is local preparation for adoption in Botanic.
+
 Use verified Google identity, private notebooks and canonical source URLs. Render video embeds from validated YouTube IDs and keep account notes editable independently of AI. Authenticate unpacked capture with scoped grants and PKCE.
 
 ## Current State

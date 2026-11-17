@@ -6,6 +6,8 @@
 
 ## Notcards web notebook (2026-11-17)
 
+Botanic home preparation: keep existing notebooks and native chats in their owning services. Prepare an opt-in card list with active owner-scoped conversation IDs, a framework-free join for Botanic's authorized conversation list, and an implementation handoff for the native home. The signed-in root and workspace layout belong to the Botanic rollout.
+
 The pilot owner's Google subjects match across the two services. A server routing error intercepted the signed card form before its validator and returned “No auth token”. Prod1 now serves the card router before the shared parent. The public form reaches its validator and private reads require login.
 
 The first hosted card launch was accepted after the route fix. Its send stopped at the shared server's enforced model-spec check. Register a named local-model preset for the existing assistant and include it in the launch and post-login URLs.
