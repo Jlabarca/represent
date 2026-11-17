@@ -813,3 +813,23 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Restore the shared gateway binding with operator approval, retry its reviewed configuration and record the resulting commit. Verify automated caption retrieval, direct summaries and the native Botanic owner binding before promoting REP-12.
+
+## 2026-11-16 — REP-12 development notebook and lab1 repair
+
+### Accomplishments
+
+- Restored Tailscale and both original LiteLLM bindings. The host and development app reached the gateway. Retried the reviewed Apply and verified rollback on pre-existing drift.
+- Deployed the summary adapter and native Botanic handoff to the development web app with inference disabled. Verified the refreshed signed-in NEAR notebook retained its 90 segments. The complete platform gate passed 186 tests across Linux and Windows NTFS.
+- Tested signed conversation binding, reopening, duplicate and out-of-order callbacks, deletion and explicit fresh launch on loopback. Tested all three real transcripts against local deterministic transport, including a deep redo.
+
+### Decisions
+
+- A card retains its transcript and personal notes when a signed Botanic deletion receipt arrives. Only sending a new question initiates a replacement conversation. Google subject and original launch ID bind each receipt to its owner and card.
+
+### Blockers
+
+- The live gateway rejected the global check for four unserved Codex subscription lanes and three existing Botanic Max grants missing from the registry. There is no successful Apply SHA. Production Botanic still needs native route and message hooks and signing configuration.
+
+### Next
+
+- Reconcile the shared registry through the reviewed maintenance flow, then verify the dedicated lanes. Follow with bounded live summaries after operator approval and a real native Botanic login, send, reopen and delete test in staging.

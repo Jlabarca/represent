@@ -61,7 +61,7 @@ REP-8's generic aliases/old environment setting and tentative shared `represent`
 | clay-notes-summary own-key lane-test | pending |
 | clay-notes-deep own-key lane-test | pending |
 | Separate paid-call allowance/cap | pending |
-| Post-Apply app wiring and token-free tests | pending |
+| App adapter and token-free tests | deployed gated to dev; three transcripts and deep redo verified on loopback |
 | Public service capacity/per-account quotas | proposed, not configured |
 
 ## Post-Apply application work

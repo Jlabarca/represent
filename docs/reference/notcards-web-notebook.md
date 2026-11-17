@@ -31,6 +31,14 @@ Paste a YouTube link into the note field and leave the optional title empty to u
 
 ## Caveats
 
+The native Botanic handoff creates its first conversation when the owner sends
+the first question in Botanic. A signed callback records its URL on the card.
+The notebook's Questions tab then reopens that conversation. If Botanic
+confirms deletion, the card keeps its source, notes and summaries, and the
+owner can explicitly start a new conversation. Both directions were tested
+over loopback. The shared Botanic deployment still needs the registered agent,
+native hooks and callback signing configuration.
+
 Videos may be removed, restricted, captionless, or configured to disallow embedding. A listed caption track can also return an empty body. A successful title lookup does not establish that a transcript or an AI takeaway exists. AI takeaways require the approved dedicated gateway. Live card chat also requires owner-verified integration on the Botanic service.
 
 ## Related Docs

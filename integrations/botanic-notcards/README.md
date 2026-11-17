@@ -66,6 +66,17 @@ must carry the envelope. Do not place any private values in query/hash/referrer.
 
 ## Botanic deployment hooks
 
+Represent's development server implements the issuer and reverse callback. Set
+`NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY` on Notcards to Botanic's dedicated public
+verification key. Botanic delivers `{"assertion":"<signed assertion>"}` to
+`POST /api/botanic/receipt` server to server. The receiver checks the issuing
+Google subject, card, original launch ID, event, time and exact service origins.
+A delayed binding receipt cannot revive a deleted conversation. The authenticated
+GET on the card's `botanic-launch` endpoint returns the canonical conversation
+URL when bound. The loopback regression exercises both directions. Production
+activation still needs the native hooks listed below and durable delivery of
+freshly signed callbacks on transient failure.
+
 - Add `server/launch.cjs` to the native overlay's declared/hash-locked files.
 - Add `server/store.cjs` and initialize the `botanic_notcards_launches` Mongo
   collection's unique `jti`, active Google-subject/card and bound
