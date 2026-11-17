@@ -35,6 +35,7 @@ test('quick-note plus glyph uses a CSS escape and page assets are cache-busted',
   ]);
   assert.match(css,/\.quick-note-toggle::after\s*\{\s*content:"\\FF0B"/);
   assert.doesNotMatch(css,/Ã¯Â¼|â€¹/);
-  assert.match(html,/style\.css\?v=webbook-4/);
-  assert.match(html,/app\.mjs\?v=webbook-4/);
+  const styleVersion=html.match(/style\.css\?v=webbook-(\d+)/)?.[1];
+  assert.ok(Number(styleVersion)>=4);
+  assert.equal(html.match(/app\.mjs\?v=webbook-(\d+)/)?.[1],styleVersion);
 });
