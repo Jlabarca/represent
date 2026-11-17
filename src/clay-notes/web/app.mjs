@@ -180,7 +180,18 @@ async function renderCardChat(target, note) {
       document.body.append(form);form.submit();form.remove();status.textContent='';
     }catch(error){status.textContent=error.message;button.disabled=false;}
   });
-  target.innerHTML = `<h2 class="section-title">Botanic</h2>${launchShelf()}<p role="status">${h('Opening your notebook…')}</p>`;bindLaunch();
+  target.innerHTML = `<h2 class="section-title">Botanic</h2><p role="status">${h('Opening your notebook…')}</p>`;
+  if(launchEnabled){
+    try{
+      const {conversationUrl}=await api(`/notes/${encodeURIComponent(note.id)}/botanic-launch`);
+      if(!isCurrent())return;
+      target.innerHTML=`<h2 class="section-title">Botanic</h2>`+(conversationUrl
+        ? `<a class="light-button" rel="noopener noreferrer" target="_blank" href="${escape(conversationUrl)}">${h('Open Botanic chat')} ↗</a>`
+        : launchShelf());
+      bindLaunch();
+    }catch(error){if(isCurrent())target.querySelector('[role=status]').textContent=error.message;}
+    return;
+  }
   try {
     const chat = await api(path);
     if (!isCurrent()) return;

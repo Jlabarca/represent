@@ -1,11 +1,12 @@
 'use strict';
 
-const {createHash,createPublicKey,verify}=require('node:crypto');
+const {createHash,createPrivateKey,createPublicKey,sign,verify}=require('node:crypto');
 
 const MAX_QUESTION=4000;
 const MAX_CONTEXT_BYTES=128_000;
 const MAX_TTL_SECONDS=5*60;
 const ID=/^[A-Za-z0-9_-]{8,96}$/;
+const CARD_ID=/^[A-Za-z0-9_-]{11}$/;
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const sha=value=>createHash('sha256').update(value).digest('base64url');
 const fail=(code,status=400)=>Object.assign(new Error(code),{code,status});
@@ -22,9 +23,21 @@ function verifiedTicket(compact,publicKey,{issuer,audience,clock=()=>Date.now()}
   const verificationKey=publicKey?.type==='public'?publicKey:createPublicKey(publicKey);
   if(header.alg!=='EdDSA'||header.typ!=='JWT'||!verify(null,Buffer.from(`${parts[0]}.${parts[1]}`),verificationKey,Buffer.from(parts[2],'base64url')))throw fail('invalid_launch');
   const now=Math.floor(clock()/1000);
-  if(claims.iss!==issuer||claims.aud!==audience||typeof claims.sub!=='string'||!claims.sub||claims.sub.length>255||!ID.test(claims.jti||'')||!ID.test(claims.card_id||'')||!Number.isInteger(claims.iat)||!Number.isInteger(claims.exp)||claims.iat>now+30||claims.exp<=now||claims.exp<=claims.iat||claims.exp-claims.iat>MAX_TTL_SECONDS||typeof claims.payload_sha256!=='string')throw fail('invalid_or_expired_launch',401);
+  if(claims.iss!==issuer||claims.aud!==audience||typeof claims.sub!=='string'||!claims.sub||claims.sub.length>255||/[\u0000-\u0020\u007f]/.test(claims.sub)||!ID.test(claims.jti||'')||!CARD_ID.test(claims.card_id||'')||!Number.isInteger(claims.iat)||!Number.isInteger(claims.exp)||claims.iat>now+30||claims.exp<=now||claims.exp<=claims.iat||claims.exp-claims.iat>MAX_TTL_SECONDS||typeof claims.payload_sha256!=='string')throw fail('invalid_or_expired_launch',401);
   return claims;
 }
+function signConversationAssertion({event='conversation_bound',privateKey,issuer,audience,user,cardId,launchJti,conversationId,clock=()=>Date.now(),ttlSeconds=60}={}){
+  if(!privateKey||!user||user.provider!=='google'||typeof user.googleId!=='string'||!UUID.test(conversationId||'')||!ID.test(launchJti||'')||!CARD_ID.test(cardId||''))throw fail('invalid_binding_assertion');
+  const issUrl=new URL(issuer),audUrl=new URL(audience);
+  if(issUrl.protocol!=='https:'||issUrl.origin!==issuer||audUrl.protocol!=='https:'||audUrl.origin!==audience||!Number.isInteger(ttlSeconds)||ttlSeconds<15||ttlSeconds>300)throw fail('invalid_binding_assertion');
+  if(!['conversation_bound','conversation_deleted'].includes(event))throw fail('invalid_binding_assertion');
+  const iat=Math.floor(clock()/1000),claims={iss:issuer,aud:audience,sub:user.googleId,event,card_id:cardId,jti:launchJti,conversation_id:conversationId,iat,exp:iat+ttlSeconds};
+  const header=Buffer.from(JSON.stringify({alg:'EdDSA',typ:'JWT'})).toString('base64url'),payload=Buffer.from(JSON.stringify(claims)).toString('base64url'),body=`${header}.${payload}`;
+  const signingKey=privateKey?.type==='private'?privateKey:createPrivateKey(privateKey);
+  return `${body}.${sign(null,Buffer.from(body),signingKey).toString('base64url')}`;
+}
+const signBindingAssertion=options=>signConversationAssertion({...options,event:'conversation_bound'});
+const signDeletionAssertion=options=>signConversationAssertion({...options,event:'conversation_deleted'});
 
 /**
  * Botanic-side durable launch ledger. Mount its adapter before application routes.
@@ -42,7 +55,7 @@ function createNotcardsLaunchLedger({db,notcardsOrigin,audience,publicKey,clock=
     async accept({origin:requestOrigin,ticket,question,context}){
       if(requestOrigin!==origin)throw fail('origin_not_allowed',403);
       const claims=verifiedTicket(ticket,publicKey,{issuer:origin,audience,clock});
-      if(typeof question!=='string'||!question.trim()||question.length>MAX_QUESTION||!context||typeof context!=='object'||Buffer.byteLength(canonical(context))>MAX_CONTEXT_BYTES)throw fail('invalid_launch_payload',413);
+      if(typeof question!=='string'||!question.trim()||question.length>MAX_QUESTION||!context||typeof context!=='object'||Array.isArray(context)||Buffer.byteLength(canonical(context))>MAX_CONTEXT_BYTES)throw fail('invalid_launch_payload',413);
       const payloadSha=sha(canonical({cardId:claims.card_id,question:question.trim(),context}));
       if(payloadSha!==claims.payload_sha256)throw fail('launch_payload_mismatch',401);
       const row={jti:claims.jti,issuer:claims.iss,subject:claims.sub,cardId:claims.card_id,question:question.trim(),context,expiresAt:claims.exp*1000,state:'pending',conversationId:null};
@@ -61,9 +74,9 @@ function createNotcardsLaunchLedger({db,notcardsOrigin,audience,publicKey,clock=
       if(typeof conversationId!=='string'||!UUID.test(conversationId)||typeof userId!=='string'||!userId)throw fail('invalid_conversation',400);
       const row=await db.bindPending({jti,subject:user.googleId,conversationId,now:clock(),userId});
       if(!row)throw fail('launch_unavailable_or_owner_mismatch',404);
-      return {cardId:row.cardId,context:row.context,conversationId:row.conversationId};
+      return {jti:row.jti,cardId:row.cardId,context:row.context,conversationId:row.conversationId};
     }
   };
 }
 
-module.exports={createNotcardsLaunchLedger,verifiedTicket,canonical,MAX_CONTEXT_BYTES,MAX_QUESTION};
+module.exports={createNotcardsLaunchLedger,verifiedTicket,signBindingAssertion,signDeletionAssertion,canonical,MAX_CONTEXT_BYTES,MAX_QUESTION};

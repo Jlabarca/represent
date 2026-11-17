@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createHash,generateKeyPairSync,sign} from 'node:crypto';
+import {createHash,generateKeyPairSync,sign,verify} from 'node:crypto';
 import {createRequire} from 'node:module';
 
 const require=createRequire(import.meta.url);
@@ -87,11 +87,13 @@ test('native route accepts a cross-site top-level POST with no Botanic cookie, t
     async getPending(jti){return memoryRows.get(jti)||null;},
     async bindPending({jti,subject,conversationId,now,userId}){const row=memoryRows.get(jti);if(!row||row.subject!==subject||row.expiresAt<=now)return null;if(row.state==='bound')return row.conversationId===conversationId&&row.botanicUserId===String(userId)?row:null;row.state='bound';row.conversationId=conversationId;row.botanicUserId=String(userId);row.question=undefined;return row;},
     async contextForConversation({subject,conversationId,userId}){return [...memoryRows.values()].find(x=>x.subject===subject&&x.conversationId===conversationId&&x.botanicUserId===String(userId)&&x.state==='bound')||null;},
-    async archiveConfirmedDeletion({subject,cardId,conversationId,userId}){const row=[...memoryRows.values()].find(x=>x.subject===subject&&x.cardId===cardId&&x.conversationId===conversationId&&x.botanicUserId===String(userId)&&x.state==='bound');if(!row)return false;row.state='deleted';return true;}
+    async bindingForCard({subject,cardId,userId}){return [...memoryRows.values()].find(x=>x.subject===subject&&x.cardId===cardId&&x.botanicUserId===String(userId)&&x.state==='bound')||null;},
+    async archiveConfirmedDeletion({subject,cardId,conversationId,userId}){const row=[...memoryRows.values()].find(x=>x.subject===subject&&x.cardId===cardId&&x.conversationId===conversationId&&x.botanicUserId===String(userId)&&x.state==='bound');if(!row)return false;row.state='deleted';row.context=undefined;row.question=undefined;return true;}
   };
   const fakeExpress={Router(){return {post(...args){routes.push(['POST',...args]);},use(...args){routes.push(['USE',...args]);},get(...args){routes.push(['GET',...args]);}};},urlencoded(){return (_req,_res,next)=>next?.();}};
   const keyPair=generateKeyPairSync('ed25519');
-  const routed=createNotcardsLaunchRouter({express:fakeExpress,store,notcardsOrigin:origin,audience,publicKey:keyPair.publicKey,requireJwtAuth(){},clock:()=>1_800_000_000_000});
+  const botanicKeyPair=generateKeyPairSync('ed25519'),published=[];
+  const routed=createNotcardsLaunchRouter({express:fakeExpress,store,notcardsOrigin:origin,audience,publicKey:keyPair.publicKey,bindingPrivateKey:botanicKeyPair.privateKey,publishBinding:async value=>published.push(value.assertion),requireJwtAuth(){},clock:()=>1_800_000_000_000});
   const payloadSha=sha(canonical({cardId,question:payload.question,context:payload.context}));
   const claims={iss:origin,aud:audience,sub:google.googleId,card_id:cardId,jti:'launch_route_01',iat:1_800_000_000,exp:1_800_000_240,payload_sha256:payloadSha};
   const part=b64({alg:'EdDSA',typ:'JWT'}),body=`${part}.${b64(claims)}`,ticket=`${body}.${sign(null,Buffer.from(body),keyPair.privateKey).toString('base64url')}`;
@@ -118,18 +120,43 @@ test('native route accepts a cross-site top-level POST with no Botanic cookie, t
   assert.equal(memoryRows.get(claims.jti).state,'pending');
   const bound=await routed.confirmGeneratedConversation(req,{conversationId:conversation1,verifyOwnedConversation:async(userId,id)=>userId==='botanic-alice'&&id===conversation1});
   assert.equal(bound.conversationId,conversation1);
+  const [assertionHead,assertionBody,assertionSig]=bound.assertion.split('.');
+  assert.equal(verify(null,Buffer.from(`${assertionHead}.${assertionBody}`),botanicKeyPair.publicKey,Buffer.from(assertionSig,'base64url')),true);
+  const assertionClaims=JSON.parse(Buffer.from(assertionBody,'base64url').toString('utf8'));
+  assert.equal(assertionClaims.event,'conversation_bound');
+  assert.equal(assertionClaims.exp-assertionClaims.iat,60);
+  assert.deepEqual({iss:assertionClaims.iss,aud:assertionClaims.aud,sub:assertionClaims.sub,card_id:assertionClaims.card_id,conversation_id:assertionClaims.conversation_id,jti:assertionClaims.jti},{iss:audience,aud:origin,sub:google.googleId,card_id:cardId,conversation_id:conversation1,jti:claims.jti});
+  assert.equal(published.length,1);
   const resumed=await routed.applyToAgent({headers:{},body:{conversationId:conversation1},user:{...google,id:'botanic-alice'}},{id:'notcards-agent',instructions:'Base rules.'},{agentId:'notcards-agent'});
   assert.match(resumed.instructions,/Private source/);
+  assert.equal((await routed.confirmGeneratedConversation({user:{...google,id:'botanic-alice'},body:{conversationId:conversation1}},{conversationId:conversation1,verifyOwnedConversation:async()=>true})).jti,claims.jti);
+  assert.equal(published.length,2,'callback retry after a lost response must be idempotently publishable');
   const duplicate=await routed.ledger.accept({origin,ticket:ticket,question:payload.question,context:payload.context}).catch(e=>e.code);
   assert.equal(duplicate,'launch_replayed');
   assert.equal(memoryRows.get(claims.jti).state,'bound');
   assert.equal(memoryRows.get(claims.jti).question,undefined);
   assert.equal((await store.contextForConversation({subject:google.googleId,conversationId:conversation1,userId:'botanic-alice'})).cardId,cardId);
-  assert.equal(await routed.archiveConfirmedDeletion({user:google,userId:'botanic-alice',conversationId:conversation1,verifyOwnedConversation:async()=>true}),false);
-  assert.equal(await routed.archiveConfirmedDeletion({user:google,userId:'botanic-alice',conversationId:conversation1,verifyOwnedConversation:async()=>{throw new Error('database unavailable');}}),false);
-  assert.equal(await routed.archiveConfirmedDeletion({user:google,userId:'botanic-alice',conversationId:conversation1,verifyOwnedConversation:async()=>false}),true);
+  assert.deepEqual(await routed.openBoundCard({user:google,userId:'botanic-alice',cardId,verifyOwnedConversation:async()=>true}),{state:'bound',conversationId:conversation1,conversationUrl:`${audience}/c/${conversation1}`});
+  assert.deepEqual(await routed.openBoundCard({user:{provider:'google',googleId:'google-sub-bob'},userId:'botanic-bob',cardId,verifyOwnedConversation:async()=>true}),{state:'empty',conversationUrl:null});
+  assert.equal((await routed.openBoundCard({user:google,userId:'botanic-alice',cardId,verifyOwnedConversation:async()=>{throw new Error('database unavailable');}})).state,'unavailable');
+  const removed=await routed.openBoundCard({user:google,userId:'botanic-alice',cardId,verifyOwnedConversation:async()=>false});
+  assert.equal(removed.state,'deleted');
+  assert.equal(removed.canStart,true);
+  const [deleteHead,deleteBody,deleteSig]=published.at(-1).split('.');
+  assert.equal(verify(null,Buffer.from(`${deleteHead}.${deleteBody}`),botanicKeyPair.publicKey,Buffer.from(deleteSig,'base64url')),true);
+  assert.equal(JSON.parse(Buffer.from(deleteBody,'base64url').toString('utf8')).event,'conversation_deleted');
   assert.equal(memoryRows.get(claims.jti).state,'deleted');
+  assert.equal(memoryRows.get(claims.jti).cardId,cardId,'deleting the Botanic conversation preserves its card binding record');
   const nextClaims={...claims,jti:'launch_route_02'};
   const nextBody=`${part}.${b64(nextClaims)}`,nextTicket=`${nextBody}.${sign(null,Buffer.from(nextBody),keyPair.privateKey).toString('base64url')}`;
   assert.equal((await routed.ledger.accept({origin,ticket:nextTicket,question:payload.question,context:payload.context})).jti,nextClaims.jti);
+  await routed.ledger.reclaim({jti:nextClaims.jti,user:google});
+  await routed.ledger.bind({jti:nextClaims.jti,user:google,conversationId:conversation2,userId:'botanic-alice'});
+  assert.deepEqual(await routed.archiveDeletedConversations({user:{provider:'google',googleId:'google-sub-bob'},userId:'botanic-bob',conversationIds:[conversation2]}),[]);
+  const deletionEvents=await routed.archiveDeletedConversations({user:{...google,id:'botanic-alice'},userId:'botanic-alice',conversationIds:[conversation2]});
+  assert.equal(deletionEvents.length,1);
+  assert.equal(deletionEvents[0].cardId,cardId);
+  const deletionClaims=JSON.parse(Buffer.from(deletionEvents[0].assertion.split('.')[1],'base64url').toString('utf8'));
+  assert.equal(deletionClaims.event,'conversation_deleted');
+  assert.equal(memoryRows.get(nextClaims.jti).state,'deleted');
 });

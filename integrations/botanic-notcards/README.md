@@ -41,6 +41,16 @@ Notcards card detail.
    indexes enforce one active `(googleId, cardId)` and unique
    `(googleId, conversationId)`; an explicit fresh launch needs confirmation
    that the previous owned conversation was deleted and an archived binding.
+6. `confirmGeneratedConversation` returns a short-lived Botanic-signed JWS
+   with `{iss:botanicOrigin,aud:notcardsOrigin,sub:googleId,
+   event:'conversation_bound',card_id,jti,conversation_id,iat,exp}`. A confirmed
+   delete uses the same claims with `event:'conversation_deleted'` and the
+   original launch `jti`. Notcards verifies this with Botanic's public key,
+   matches the launch `jti`/subject/card, then writes or archives its durable
+   owner/card binding. Callback retries must accept the same `jti` and same
+   conversation idempotently. Keep callback delivery in a durable outbox; a
+   Notcards outage must not fail the already-persisted Botanic turn. Later
+   saved turns can regenerate the assertion without resending the first prompt.
 
 ## Required Notcards-side issuer
 
@@ -59,30 +69,47 @@ must carry the envelope. Do not place any private values in query/hash/referrer.
 - Add `server/launch.cjs` to the native overlay's declared/hash-locked files.
 - Add `server/store.cjs` and initialize the `botanic_notcards_launches` Mongo
   collection's unique `jti`, active Google-subject/card and bound
-  Google-subject/conversation indexes. Keep bound context for future turns but
-  erase the first question on bind. Expired pending rows can be replaced;
-  bound rows remain durable until deletion is confirmed.
+  Google-subject/conversation indexes plus TTL cleanup for pending rows only.
+  Keep bound context for future turns but erase the first question on bind.
+  Expired pending rows can be replaced and their raw payload is removed; bound
+  rows remain durable until deletion is confirmed.
 - Mount the unauthenticated `POST /api/botanic/notcards/launch` before
   `requireJwtAuth`; it accepts only the configured Notcards origin and signed
   bounded envelope. Mount authenticated `GET /api/botanic/notcards/pending`
   after `requireJwtAuth`; it reclaims using the pending cookie and exact Google
-  `googleId`.
+  `googleId`. Authenticated `GET /api/botanic/notcards/cards/:cardId` reads only
+  an existing owner/card binding, verifies it with `db.getConvo(userId,id)` and
+  returns the native `/c/:conversationId` URL. A mismatch is empty; database
+  outage is unavailable; confirmed owner-scoped not-found archives the binding
+  and returns a signed `conversation_deleted` assertion. It never creates a chat.
 - Mount the React component only in the registered Notcards agent workspace;
   preserve the standard composer/send path.
-- Extend the normal `AgentController` initialization hook in
-  `api/server/services/Endpoints/agents/initialize.js` (same hook where the
+- Extend the normal `ResumableAgentController` initialization hook in
+  `api/server/controllers/agents/request.js` through the `initializeClient`
+  callback in `api/server/services/Endpoints/agents/initialize.js` (the same
+  hook where the
   Causa overlay calls `router.cjs.applyPreferences`) to read pending source for
   an actual Notcards-agent generation. The `conversationId` is already
   server-generated there. Append context as untrusted quoted source, not
   policy/instructions. Add a post-persistence completion hook in the ordinary
-  agents chat route to invoke `confirmGeneratedConversation` only after
+  `request.js` terminal-save path after `saveMessage` and message-reference
+  recovery to invoke `confirmGeneratedConversation` only after
   owner-scoped root-conversation and message checks. The proposed helper does
   not claim to be wired into the pinned upstream yet.
+- In the pinned `api/server/routes/convos.js` delete handlers, call
+  `archiveDeletedConversations` only after `db.deleteConvos` returns its
+  owner-scoped deleted ID list (including the final cascade list before the
+  successful response). It archives mappings for the same native Google
+  subject and Botanic user and returns signed `conversation_deleted` assertions
+  for the Notcards callback. No Notcards card data is deleted. The helper is not
+  wired to the shared checkout; bulk deletion hooks need the same post-delete
+  evidence rule.
 
 ## Key/configuration and activation gates
 
-Generate a dedicated Ed25519 key pair for this integration. Configure only the
-private key on Notcards and only the public key on Botanic, plus exact origins,
+Generate two independent Ed25519 key pairs: Notcards signs launch tickets and
+Botanic signs binding assertions. Keep each private key only on its respective
+service and configure the peer's public key for verification, plus exact origins,
 issuer/audience and TTL. Do not reuse gateway/provider API keys. Register the
 Notcards Botanic agent in the existing native registry with its own approved
 Google subject rule, agent and project IDs; current Causa registry and policy

@@ -1,7 +1,7 @@
 import {createHash,createPrivateKey,randomUUID,sign} from 'node:crypto';
 
 export const BOTANIC_LAUNCH_MAX_QUESTION=4000;
-export const BOTANIC_LAUNCH_MAX_CONTEXT_BYTES=128*1024;
+export const BOTANIC_LAUNCH_MAX_CONTEXT_BYTES=128_000;
 const fail=(status,code,message)=>Object.assign(new Error(message),{status,code});
 export function canonical(value){
   if(value===null)return 'null';
@@ -60,7 +60,8 @@ export class BotanicLaunchIssuer{
     const now=Math.floor(this.clock()/1000),expiresAt=now+300;
     this.db.exec('BEGIN IMMEDIATE');
     try{
-      this.db.prepare("DELETE FROM notcards_botanic_launches WHERE expires_at<?").run(now);
+      // A native first turn may finish after the five-minute handoff expires.
+      this.db.prepare("DELETE FROM notcards_botanic_launches WHERE expires_at<?").run(now-86400);
       const prior=this.db.prepare('SELECT * FROM notcards_botanic_launches WHERE owner_hash=? AND request_hash=?').get(ownerHash,requestHash);
       let row;
       if(prior){

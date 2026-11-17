@@ -33,6 +33,9 @@ function receiverHttp(routes){
 test('signed Notcards envelope reaches the native Botanic loopback receiver and owner reclaims it',async t=>{
   const previous={key:process.env.NOTCARDS_BOTANIC_LAUNCH_PRIVATE_KEY,botanic:process.env.NOTCARDS_BOTANIC_ORIGIN,origin:process.env.NOTCARDS_PUBLIC_ORIGIN};
   const {privateKey,publicKey}=generateKeyPairSync('ed25519');
+  const signing=generateKeyPairSync('ed25519'),previousVerifyKey=process.env.NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY;
+  process.env.NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY=signing.publicKey.export({type:'spki',format:'pem'}).toString();
+  t.after(()=>{if(previousVerifyKey===undefined)delete process.env.NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY;else process.env.NOTCARDS_BOTANIC_RECEIPT_PUBLIC_KEY=previousVerifyKey;});
   process.env.NOTCARDS_BOTANIC_LAUNCH_PRIVATE_KEY=privateKey.export({type:'pkcs8',format:'pem'}).toString();
   process.env.NOTCARDS_BOTANIC_ORIGIN=botanicOrigin;process.env.NOTCARDS_PUBLIC_ORIGIN=notcardsOrigin;
   const directory=await mkdtemp(join(tmpdir(),'notcards-botanic-loopback-'));
@@ -67,4 +70,22 @@ test('signed Notcards envelope reaches the native Botanic loopback receiver and 
   assert.equal(pendingResponse.status,200);const reclaimed=await pendingResponse.json();assert.equal(reclaimed.cardId,note.id);assert.equal(reclaimed.question,envelope.question);
   assert.equal(pending.get(reclaimed.jti).subject,subject);assert.deepEqual(pending.get(reclaimed.jti).context,envelope.context);
   await routed.ledger.reclaim({jti:reclaimed.jti,user:{provider:'google',googleId:'some-other-owner'}}).then(()=>assert.fail('foreign owner should be rejected'),error=>assert.equal(error.code,'launch_owner_mismatch'));
+  const {signBindingAssertion,signDeletionAssertion}=require('../integrations/botanic-notcards/server/launch.cjs');
+  const args={privateKey:signing.privateKey,issuer:botanicOrigin,audience:notcardsOrigin,user:{provider:'google',googleId:subject},cardId:note.id,launchJti:reclaimed.jti,conversationId:'65edc781-c210-4309-9a7b-ef433cb82a1a'};
+  const callbackPost=assertion=>api('/api/botanic/receipt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({assertion})});
+  const cardRoute='/api/notes/'+note.id+'/botanic-launch';
+  const currentLink=async()=>(await (await api(cardRoute,{headers})).json()).conversationUrl;
+  assert.equal(await currentLink(),null);
+  assert.equal((await callbackPost(signBindingAssertion({...args,privateKey}))).status,401);
+  assert.equal((await callbackPost(signBindingAssertion({...args,user:{provider:'google',googleId:'another-account'}}))).status,409);
+  const bound=signBindingAssertion(args);
+  assert.equal((await callbackPost(bound)).status,200);
+  assert.equal((await callbackPost(bound)).status,200);
+  assert.equal(await currentLink(),botanicOrigin+'/c/'+args.conversationId);
+  assert.equal((await api(cardRoute,{method:'POST',headers,body:JSON.stringify({requestId:'new_request_123',question:'Duplicate?'})})).status,409);
+  assert.equal((await callbackPost(signDeletionAssertion(args))).status,200);
+  assert.equal((await callbackPost(bound)).status,200);
+  assert.equal(await currentLink(),null);
+  assert.equal((await api('/api/notes/'+note.id,{headers})).status,200);
+  assert.equal((await api(cardRoute,{method:'POST',headers,body:JSON.stringify({requestId:'new_request_124',question:'Start again?'})})).status,200);
 });
