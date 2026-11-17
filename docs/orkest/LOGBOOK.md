@@ -890,3 +890,22 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Send a question from a hosted card after Google sign-in, reopen the same conversation from the card and verify its signed receipt.
+
+## 2026-11-17 — Shared Botanic card launch routing
+
+### Accomplishments
+
+- Reproduced the reported 401 on the public card-launch form. The prior packaged image failed a new mount-order assertion. The corrected image passed the assertion and the existing Mongo ownership, saved-message and deletion checks. The public form now reaches its own validator and protected reads return 401 to an anonymous client.
+- Confirmed the pilot owner's verified Google subjects match across Notcards and Botanic.
+
+### Decisions
+
+- Deployed a one-file image change that mounts the signed Notcards router before the parent JWT middleware. Prod1 reports healthy on image `c8d08c1744a0961c6b0ff80a6680028512f888b72d9077146d3326b105753470`.
+
+### Blockers
+
+- The original form submissions stopped before Botanic stored the launch. Live verification needs a fresh card submission from the signed-in browser.
+
+### Next
+
+- Confirm the first native reply, its signed receipt and reopening the same conversation from the NEAR card.
