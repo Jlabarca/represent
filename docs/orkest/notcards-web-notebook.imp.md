@@ -4,7 +4,7 @@ id: REP-12
 ---
 # REP-12: NOTCARDS-WEB-NOTEBOOK
 
-> Updated: 2026-11-16
+> Updated: 2026-11-17
 > Prior-art sweep: REP-11 composer, hosted server, release ZIP, Botanic site registry and card conversation integration design.
 
 ## AI Continuation Prompt
@@ -21,7 +21,7 @@ Use verified Google identity, private notebooks and canonical source URLs. Rende
 
 ## Current State
 
-REP-11 shipped the board and composer. The hosted server returns 503 for all chat and summary requests.
+The hosted notebooks have saved takeaways for all three requested videos. Account language, original revision language and cached on-demand translations are live. Shared Botanic serves the native card handoff. First send and reopen through the pilot owner's Google session are awaiting verification.
 
 ## Known Bugs
 
@@ -37,7 +37,7 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 |---|---|---|---|---|
 | REP-12.1 | Shipped | current | current | Web notebook and unpacked capture |
 
-| REP-12.2 | planned | current | current | Owned AI conversations and dedicated gateway |
+| REP-12.2 | In progress | current | current | Owned AI conversations and dedicated gateway |
 
 ## Checklist
 
@@ -56,7 +56,8 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 >   skip_budget: 0
 
 - [x] REP-12.2.1 — Establish verified card-owner bindings, lazy creation, explicit recovery after remote deletion and one conversation visible in Botanic. — evidence: node tmp/webbook-chat-assert.mjs: 1/1 passed, skipped=0, output sha256=fe44f48ec5de0d05943cc86bdb71cc1fc4452025d5a3f05ce93b18c219130612
-- [ ] REP-12.2.2 — After operator Apply evidence, connect and verify direct summary lanes with the approved spend fence and independently authorized live acceptance.
+- [x] REP-12.2.2 — The guarded Ghost Apply committed 3438f4f5898f7863d293532187149ac2c84ad25d. Both owning-key probes passed; the Google-authenticated website saved one takeaway for each supplied video. Evidence: docs/design/clay-notes-gateway-request.md.
+- [ ] REP-12.2.3 — Verify first send and reopen of the same saved conversation through the shared Botanic Google session. Combined production image, assistant, launch route, callback reachability and owner-isolation checks are qualified.
 
 ## Key Files Reference
 

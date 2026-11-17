@@ -49,11 +49,18 @@ the first question in Botanic. A signed callback records its URL on the card.
 The notebook's Questions tab then reopens that conversation. If Botanic
 confirms deletion, the card keeps its source, notes and summaries, and the
 owner can explicitly start a new conversation. Both directions were tested
-over loopback. The shared Botanic deployment still needs the registered agent,
-native hooks and callback signing configuration.
+over loopback. Shared Botanic now runs the registered notes assistant, native
+hooks and signed callbacks. The pilot owner still needs to verify the first
+send and reopen from the hosted site.
 
 Videos may be removed, restricted, captionless, or configured to disallow embedding. A listed caption track can also return an empty body. A successful title lookup does not establish that a transcript or an AI takeaway exists. AI takeaways require the approved dedicated gateway. Live card chat also requires owner-verified integration on the Botanic service.
 
+## Account language and live notebook verification
+
+The hosted UI defaults to the browser language. Signed-in choices persist on the account. Generated summary revisions record their output language. On-demand translation keeps the original and its citations and caches the translation on that revision. A translation of an older unlabeled original may record the model-detected source language. Turning a transcript or evidence timestamp into a play action now updates the embedded player and preserves the notebook URL.
+
+The live trial used the Google account's three signed-in notebooks. Cards axmMwD_2sqM, HkhBlOB9suT and fQV0qiZFu9t retained 165, 191 and 90 caption segments. The first and third used the summary lane; the second used the deep lane after an invalid JSON response. Those transcripts had been obtained using YouTube’s transcript panel when server-side requests were rate-limited.
+
 ## Related Docs
 
-[Collection composer](notcards-composer.md) · [Botanic design](../design/notcards-botanic-integration.md) · [Gateway request](../handoffs/GATEWAY-REQUEST-2026-11-15.md)
+[Collection composer](notcards-composer.md) · [Botanic design](../design/notcards-botanic-integration.md) · [Gateway request](../design/clay-notes-gateway-request.md)

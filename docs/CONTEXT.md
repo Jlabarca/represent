@@ -2,9 +2,13 @@
 
 > Living doc. Single source of truth for project state, decisions, and current sprint.
 > See `DOCS-PROTOCOL.md` for the rules that govern this file.
-> Updated: 2026-11-16
+> Updated: 2026-11-17
 
-## Notcards web notebook (2026-11-16)
+## Notcards web notebook (2026-11-17)
+
+Shared Botanic now runs the qualified combined Causa and Notcards image on prod1. The shared assistant uses Botanic local. The Notcards site offers the signed card handoff on the questions tab. Final live first-send and reopen verification needs a fresh Google login on Botanic for the same owner. An authenticated session previously created on Notcards successfully opened the three real summary revisions in the hosted website.
+
+Notcards persists account language, records the language of new summaries and caches on-demand translations by revision and language. The English-to-Spanish browser test preserved the original and reused the translation on reload. A second browser profile with English system settings loaded the same account in Arabic with right-to-left mobile layout. The eight charged calls in the gateway ledger total USD 0.0494749.
 
 The November 17 gateway Apply succeeded at Ghost `3438f4f5898f7863d293532187149ac2c84ad25d`. Both app-key probes passed. The signed-in web collection has real summaries for all three trial videos. The pilot had USD 0.0491992 in reported spend after the probes, three saved summaries and one invalid response. The operator authorized deployment on shared Botanic and waived the additional backup for test data. Account language and on-demand translations must preserve each saved original.
 

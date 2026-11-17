@@ -1,5 +1,9 @@
 # Gateway request — Clay Notes hosted service, lab1
 
+## Applied on November 17
+
+The authorized Ghost transaction committed `3438f4f5898f7863d293532187149ac2c84ad25d`. The app uses `LITELLM_KEY_CLAY_NOTES`. Its summary, deep and console-generated default lanes share USD 1 per 30 days. Both app-key arithmetic probes passed. The summary probe used Claude Haiku after one fallback and cost USD 0.0000038. The deep probe used its first hop and cost USD 0.000176. The ledger recorded eight charged calls totaling USD 0.0494749, covering both probes, three saved video summaries, one invalid response, and two translation tests. The Notcards service and per-account fences are USD 0.80, with USD 0.12 maximum reserved per request.
+
 ## Latest lab1 transaction, 2026-11-16
 
 The operator subsequently requested “create the Notcards gateway key and lanes” and answered “go wth recommended” to the scoped one-shot Review/Apply and the console-generated alias. This supersedes the original manual-Apply handoff below for this lab1 transaction. The key name remains `LITELLM_KEY_CLAY_NOTES`. Its value was generated once in the host environment and was never printed. The four staged objects were the public key, the summary lane (selected default), the deep lane, and the mandatory `clay-notes-default` copy of the cheap chain. They share the key’s USD 1 per 30 days. The key forbids `max-broker`.

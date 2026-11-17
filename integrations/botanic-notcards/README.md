@@ -4,6 +4,10 @@ One shared notes assistant serves separate conversations. A card owns the link t
 
 ## Build and configuration
 
+On November 17 the operator approved a shared prod1 rollout and waived a separate test-data backup. The build includes the existing Causa overlay with manifest SHA-256 `fea5fd989487c9ae175adcecc52da3063affaa806afc51c87b42d4838af6943e`. The localized lab1 candidate was `6bd1055596ed63b39a16122bf11b9d331e5042968a05d597fabe67e8c29798d3`. The built client and declared server changes were layered over prod1's own Botanic image. Prod1 runs `notcards-botanic:rep12-localized`, with `compose.notcards.yml` layered last over the base, prod1, Causa and native files. Recreating only librechat using the previous four-file composition restores the prior runtime. Preserve verified Google identities and native conversation data on rollback.
+
+The seeded shared assistant is `agent_notcards`, on the existing Botanic local provider with `botanic-free`. It has no tools. Viewer grants refer only to the assistant. Card contents and conversation receipts still require the exact Google subject. For previously provisioned Google accounts missing that subject, a fresh verified Google OAuth callback claims it atomically. A mismatched existing subject is refused. The deployed Notcards origin and Botanic origin are `https://not.maremoto.dev` and `https://botanic.maremoto.dev`.
+
 The standalone staging overlay targets a clean LibreChat checkout at revision `e8f3be08623663d4ad7f7241e693c94469b63bb0` and the v0.8.8 runtime pinned in this directory’s Dockerfile. Run `apply-staging.py` with the checkout’s absolute path, then use that checkout as the Docker build context with this Dockerfile. The script verifies the revision and upstream source anchors before writing. A deployment that already carries another native overlay needs a combined build and validation.
 
 | Setting | Host | Purpose |

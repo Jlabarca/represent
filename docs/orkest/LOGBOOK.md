@@ -870,3 +870,23 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Resolve the four Codex subscription lanes, complete a reviewed Apply, and run the authorized bounded pilot. Configure the shared notes agent and signing keys on the selected Botanic deployment, then validate login, send, reopen and confirmed deletion with a real user.
+
+## 2026-11-17 — Hosted Notcards, account language and shared Botanic
+
+### Accomplishments
+
+- Verified real takeaways from three videos on the signed-in website. Transcript timestamps seek its embedded player. The collection and notebook use monochrome surfaces and blue focus indicators.
+- Released ten account languages, per-revision output language and cached translations. Verified original and translated text in Chromium and Arabic right-to-left layout in a new browser profile. The platform suite passed all 194 tests. Browser navigation, retry, embedded timestamp and playback continuity passed.
+- Shipped the localized native card launcher to shared Botanic. The packaged Mongo smoke covered verified ownership, first send and confirmed remote deletion. The production container reported healthy.
+
+### Decisions
+
+- The operator authorized the shared rollout, waived an additional test-data backup, and capped the live pilot at USD 1. Direct Notcards usage totaled USD 0.0494749 across eight charged requests. Botanic chats use its existing local model lane.
+
+### Blockers
+
+- The pilot Botanic account requires a fresh Google OAuth callback to confirm its Google subject. At last check, production had no bound card conversation. YouTube had also rate-limited server requests for the trial videos. Their saved transcripts came from the YouTube transcript panel.
+
+### Next
+
+- Send a question from a hosted card after Google sign-in, reopen the same conversation from the card and verify its signed receipt.
