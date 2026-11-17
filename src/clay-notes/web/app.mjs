@@ -82,7 +82,7 @@ function startNote(){
   composer.focus();
 }
 function renderLibrary(){
-  if(state.user&&location.hash)return;
+  if(state.user&&/^#(?:note|sample)=/.test(location.hash))return;
   document.documentElement.dataset.screen='collection';
   state.samplePreview=false;
   const editing=$('#quick-note-slot')?.contains(document.activeElement)?document.activeElement:null;
