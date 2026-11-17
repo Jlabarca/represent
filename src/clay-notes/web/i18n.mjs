@@ -249,7 +249,17 @@ const webBookRows=[
   ["Notebook title","Notebook title","Título del cuaderno","Título do caderno","Titre du carnet","Notizbuchtitel","Titolo del quaderno","ノートブックのタイトル","笔记本标题","عنوان الدفتر","नोटबुक शीर्षक"],
   ["Save title","Save title","Guardar título","Salvar título","Enregistrer le titre","Titel speichern","Salva titolo","タイトルを保存","保存标题","حفظ العنوان","शीर्षक सहेजें"]
 ].map(row=>row.length===locales.length+1 ? [row[0],...row.slice(2)] : row);
-export const catalogs=Object.fromEntries(locales.map((locale,index)=>[locale.id,Object.fromEntries([...rows,...extraRows,...collectionRows,...sourceRows,...albumRows,...albumFinishRows,...albumExtraRows,...composerRows,...webBookRows].map(row=>[row[0],row[index]]))]));
+const summaryLanguageRows=[
+  ['Translate summary to {language}','Traducir resumen a {language}','Traduzir resumo para {language}','Traduire le résumé en {language}','Zusammenfassung auf {language} übersetzen','Traduci il riepilogo in {language}','要約を{language}に翻訳','将摘要翻译为{language}','ترجمة الملخص إلى {language}','सारांश का {language} में अनुवाद करें'],
+  ['Show original summary','Mostrar resumen original','Mostrar resumo original','Afficher le résumé original','Originale Zusammenfassung anzeigen','Mostra il riepilogo originale','元の要約を表示','显示原始摘要','عرض الملخص الأصلي','मूल सारांश दिखाएँ'],
+  ['Show translation in {language}','Mostrar traducción en {language}','Mostrar tradução em {language}','Afficher la traduction en {language}','Übersetzung auf {language} anzeigen','Mostra la traduzione in {language}','{language}の翻訳を表示','显示{language}译文','عرض الترجمة باللغة {language}','{language} में अनुवाद दिखाएँ'],
+  ['Translating summary…','Traduciendo el resumen…','Traduzindo o resumo…','Traduction du résumé…','Zusammenfassung wird übersetzt…','Traduzione del riepilogo…','要約を翻訳中…','正在翻译摘要…','جارٍ ترجمة الملخص…','सारांश का अनुवाद हो रहा है…'],
+  ['Translation failed. Try again.','La traducción falló. Inténtalo de nuevo.','A tradução falhou. Tente novamente.','Échec de la traduction. Réessayez.','Übersetzung fehlgeschlagen. Bitte erneut versuchen.','Traduzione non riuscita. Riprova.','翻訳できませんでした。もう一度お試しください。','翻译失败，请重试。','فشلت الترجمة. حاول مرة أخرى.','अनुवाद विफल हुआ। फिर से प्रयास करें।'],
+  ['Summary language','Idioma del resumen','Idioma do resumo','Langue du résumé','Sprache der Zusammenfassung','Lingua del riepilogo','要約の言語','摘要语言','لغة الملخص','सारांश की भाषा'],
+  ['Language preference could not be saved.','No se pudo guardar la preferencia de idioma.','Não foi possível salvar a preferência de idioma.','Impossible d’enregistrer la préférence de langue.','Spracheinstellung konnte nicht gespeichert werden.','Impossibile salvare la preferenza della lingua.','言語設定を保存できませんでした。','无法保存语言偏好设置。','تعذّر حفظ تفضيل اللغة.','भाषा की प्राथमिकता सहेजी नहीं जा सकी।'],
+  ['Translated to {language}','Traducido al {language}','Traduzido para {language}','Traduit en {language}','Auf {language} übersetzt','Tradotto in {language}','{language}に翻訳済み','已翻译为{language}','مترجم إلى {language}','{language} में अनुवादित']
+];
+export const catalogs=Object.fromEntries(locales.map((locale,index)=>[locale.id,Object.fromEntries([...rows,...extraRows,...collectionRows,...sourceRows,...albumRows,...albumFinishRows,...albumExtraRows,...composerRows,...webBookRows,...summaryLanguageRows].map(row=>[row[0],row[index]]))]));
 for(const [key,value] of Object.entries(englishAlbumLabels))catalogs.en[key]=value;
 export function resolveLocale(preferences=[]){
   for(const preference of typeof preferences==='string'?[preferences]:preferences){
@@ -258,6 +268,15 @@ export function resolveLocale(preferences=[]){
     if(match)return match.id;
   }
   return 'en';
+}
+export function normalizeLanguagePreference(preference){
+  if(preference==='auto')return 'auto';
+  const value=String(preference||'').toLowerCase();
+  return locales.find(item=>item.id.toLowerCase()===value)?.id||'auto';
+}
+export function resolveLanguagePreference(preference,browserLanguages=['en']){
+  const language=normalizeLanguagePreference(preference);
+  return {language,locale:resolveLocale(language==='auto'?browserLanguages:[language])};
 }
 export function translate(locale,key,values={}){return (catalogs[resolveLocale(locale)]?.[key] || catalogs.en[key] || key).replace(/\{(\w+)\}/g,(all,name)=>Object.hasOwn(values,name)?String(values[name]):all);}
 export function direction(locale){return locales.find(item=>item.id===resolveLocale(locale))?.dir || 'ltr';}

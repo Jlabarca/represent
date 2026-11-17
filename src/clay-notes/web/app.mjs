@@ -1,8 +1,8 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-7';
+import {locales,resolveLocale,resolveLanguagePreference,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-8';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
-import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-7';
+import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-8';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
@@ -18,7 +18,7 @@ function applyLanguage(){
   $('#theme').innerHTML=['auto','light','dark'].map(value=>`<option value="${value}">${h({auto:'Automatic',light:'Light',dark:'Dark'}[value])}</option>`).join('');$('#theme').value=themePreference;
 }
 function applyTheme(){document.documentElement.dataset.theme=resolveTheme(themePreference,systemTheme.matches);if($('#theme'))$('#theme').value=themePreference;}
-const state={notes:[],note:null,config:{models:[]},user:null,local:false,googleConfigured:false,cacheScope:'local',folders:[],folderId:'all',view:'album',explore:false,pinned:false,query:'',sort:'newest',filter:'all',sync:'loading',dragging:false,tab:'summary',revision:null,model:'cheap',evidence:null,drafts:new Map(),busy:false};
+const state={notes:[],note:null,config:{models:[]},user:null,local:false,googleConfigured:false,cacheScope:'local',folders:[],folderId:'all',view:'album',explore:false,pinned:false,query:'',sort:'newest',filter:'all',sync:'loading',dragging:false,tab:'summary',revision:null,summaryDisplay:'auto',translationBusy:false,model:'cheap',evidence:null,drafts:new Map(),busy:false};
 const sampleNotes=[
   {id:'Ecuit73WzV0',url:'https://www.youtube.com/watch?v=Ecuit73WzV0',title:'The NEAR Protocol Pivot Nobody Saw',channel:'Bitcoin Strategy',thumbnail:'https://i.ytimg.com/vi/Ecuit73WzV0/maxresdefault.jpg',state:'sample',finish:'prism',folderId:'sample-markets',pinned:true,createdAt:'2026-11-15T00:00:00.000Z',statementCount:0},
   {id:'X6J3ByTqhLY',url:'https://www.youtube.com/watch?v=X6J3ByTqhLY',title:'¿Seguirá cayendo Bitcoin?',channel:'KManuS88',thumbnail:'https://i.ytimg.com/vi/X6J3ByTqhLY/maxresdefault.jpg',state:'sample',finish:'classic',folderId:'sample-markets',pinned:false,createdAt:'2026-11-14T00:00:00.000Z',statementCount:0},
@@ -30,9 +30,9 @@ const bookmarkIcon='<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><pat
 const finishFor=cardFinish;
 let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>{$('#toast').hidden=true;},5500);}
-async function api(path,{method='GET',data}={}){
-  try{return await requestJSON(fetch,`/api${path}`,{method,headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{})});}
-  catch(error){if(error.code==='web_session_expired')error.message=t('Your local session expired. Reload Clay Notes.');if(error.code==='sign_in_required'){composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';renderLibrary();}throw error;}
+async function api(path,{method='GET',data,signal}={}){
+  try{return await requestJSON(fetch,`/api${path}`,{method,headers:data?{'Content-Type':'application/json'}:{},...(data?{body:JSON.stringify(data)}:{}),...(signal?{signal}:{})});}
+  catch(error){if(error.code==='web_session_expired')error.message=t('Your local session expired. Reload Clay Notes.');if(error.code==='sign_in_required'){cancelLanguageSync();composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;applyDeviceLanguage();location.hash='';renderLibrary();}throw error;}
 }
 const time=value=>{const n=Math.floor(Number(value)||0);return n>=3600?`${Math.floor(n/3600)}:${String(Math.floor(n/60)%60).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`:`${Math.floor(n/60)}:${String(n%60).padStart(2,'0')}`;};
 const date=value=>new Date(value).toLocaleDateString(locale,{month:'short',day:'numeric'});
@@ -184,7 +184,7 @@ async function renderCardChat(target, note) {
     try{
       const envelope=await api(`/notes/${encodeURIComponent(note.id)}/botanic-launch`,{method:'POST',data:{question,requestId:request.requestId}});
       const expected=new URL(state.config.botanicOrigin);if(expected.protocol!=='https:'||expected.origin!==state.config.botanicOrigin||envelope.botanicOrigin!==expected.origin)throw new Error(t('Botanic chat is unavailable right now. Your notebook and notes are still here.'));
-      const form=document.createElement('form');form.method='POST';form.action=new URL('/api/botanic/notcards/launch',expected.origin).href;form.target='_blank';form.setAttribute('rel','noopener');form.hidden=true;
+      const form=document.createElement('form');form.method='POST';form.action=new URL('/api/botanic/notcards/launch',expected.origin).href;form.hidden=true;
       for(const [name,value] of Object.entries({ticket:envelope.ticket,question:envelope.question,context:JSON.stringify(envelope.context)})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.append(input);}
       document.body.append(form);form.submit();form.remove();status.textContent='';
     }catch(error){status.textContent=error.message;button.disabled=false;}
@@ -247,10 +247,25 @@ function renderNotebookContent(){
     target.innerHTML=`${error}<div class="generation"><div class="orb ${isGenerating(n)||importPending?'is-working':''}" aria-hidden="true">✦</div><h2>${escape(headline)}</h2><p>${escape(detail)}</p></div>${importPending?`<p class="import-progress" role="status"><span class="import-spinner" aria-hidden="true"></span>${h('Fetching captions')}</p>`:''}${summaryState}${sourceText}${importFailed||(!video&&!n.segments.length)?transcriptForm():''}`;
     bindTranscript();$('#summary-model')?.addEventListener('change',e=>{state.model=e.target.value;});return;
   }
-  const list=items=>`<ol class="claims">${items.map((item,index)=>`<li><span class="claim-number">${String(index+1).padStart(2,'0')}</span><div>${escape(item.text)} ${citations(item.sources)}</div></li>`).join('')}</ol>`;
+  const availableTranslation=revision.translations?.[locale];
+  const selectedTranslation=state.summaryDisplay!=='original'?availableTranslation:null;
+  const originalLocale=revision.language?resolveLocale([revision.language]):null;
+  const shouldOfferTranslation=!state.samplePreview&&!state.local&&Boolean(state.user)&&!availableTranslation&&(originalLocale===null||originalLocale!==locale);
+  const languageName=locales.find(item=>item.id===locale)?.name||locale;
+  const translationActions=selectedTranslation
+    ? `<div class="summary-language" role="group" aria-label="${h('Summary language')}"><span>${h('Translated to {language}',{language:languageName})}</span><button class="quiet-button" type="button" data-action="show-original-summary">${h('Show original summary')}</button></div>`
+    : shouldOfferTranslation
+      ? `<div class="summary-language" role="group" aria-label="${h('Summary language')}"><button class="quiet-button" type="button" data-action="translate-summary" ${state.translationBusy?'disabled':''}>${state.translationBusy?h('Translating summary…'):h('Translate summary to {language}',{language:languageName})}</button></div>`
+      : availableTranslation&&!state.samplePreview
+        ? `<div class="summary-language" role="group" aria-label="${h('Summary language')}"><button class="quiet-button" type="button" data-action="show-translation-summary">${h('Show translation in {language}',{language:languageName})}</button></div>`
+        : '';
+  const shownOverview=selectedTranslation?.overview||revision.overview;
+  const shownStatements=selectedTranslation?.statements||revision.statements;
+  const shownConclusions=selectedTranslation?.conclusions||revision.conclusions;
+  const list=(items,originalItems)=>`<ol class="claims">${items.map((item,index)=>{const text=typeof item==='string'?item:item?.text||'';const sources=Array.isArray(item?.sources)?item.sources:originalItems[index]?.sources;return `<li><span class="claim-number">${String(index+1).padStart(2,'0')}</span><div dir="auto">${escape(text)} ${citations(sources)}</div></li>`;}).join('')}</ol>`;
   const metrics=revision.metrics;
-  target.innerHTML=`${error}${controls}${isGenerating(n)?`<p class="small">${h("A new version is on its way. Your current takeaway stays here.")}</p>`:''}<p class="overview">${escape(revision.overview)}</p><h2 class="section-title"><span class="section-glyph" aria-hidden="true">≋</span>${h("Main statements")}</h2>${list(revision.statements)}<section class="conclusion-box"><h2 class="section-title"><span aria-hidden="true">↗</span>${h("What it comes down to")}</h2>${list(revision.conclusions)}</section><p class="revision-meta">${h("AI summary of the speaker’s claims. Check the source before relying on it.")}<br>${h("Requested")} ${escape(metrics.requestedModel || t("unknown"))} · ${h("Served")} ${escape(metrics.responseModel || t("model not reported"))} · ${metrics.costUsd===null||metrics.costUsd===undefined?t("Cost not reported"):`$${Number(metrics.costUsd).toFixed(5)}`} · ${Math.round((metrics.durationMs || 0)/1000)}s · ${escape(date(revision.createdAt))}</p>`;
-  $('#revision').addEventListener('change',e=>{state.revision=Number(e.target.value);state.evidence=null;renderNotebookContent();renderEvidence();});$('#summary-model').addEventListener('change',e=>{state.model=e.target.value;});
+  target.innerHTML=`${error}${controls}${translationActions}${isGenerating(n)?`<p class="small">${h("A new version is on its way. Your current takeaway stays here.")}</p>`:''}<p class="overview" dir="auto">${escape(shownOverview)}</p><h2 class="section-title"><span class="section-glyph" aria-hidden="true">≋</span>${h("Main statements")}</h2>${list(shownStatements,revision.statements)}<section class="conclusion-box"><h2 class="section-title"><span aria-hidden="true">↗</span>${h("What it comes down to")}</h2>${list(shownConclusions,revision.conclusions)}</section><p class="revision-meta">${h("AI summary of the speaker’s claims. Check the source before relying on it.")}<br>${h("Requested")} ${escape(metrics.requestedModel || t("unknown"))} · ${h("Served")} ${escape(metrics.responseModel || t("model not reported"))} · ${metrics.costUsd===null||metrics.costUsd===undefined?t("Cost not reported"):`$${Number(metrics.costUsd).toFixed(5)}`} · ${Math.round((metrics.durationMs || 0)/1000)}s · ${escape(date(revision.createdAt))}</p>`;
+  $('#revision').addEventListener('change',e=>{state.revision=Number(e.target.value);state.summaryDisplay='auto';state.evidence=null;renderNotebookContent();renderEvidence();});$('#summary-model').addEventListener('change',e=>{state.model=e.target.value;});
 }
 function renderEvidence(){
   const target=$('#evidence');if(!target)return;
@@ -269,7 +284,7 @@ async function refresh(){
   state.samplePreview=false;
   if(id && !/^[A-Za-z0-9_-]{1,128}$/.test(id))throw new Error('Invalid notebook link');
   if(state.note && state.note.id!==id){
-    state.note=null;
+    state.note=null;state.summaryDisplay='auto';state.translationBusy=false;
     $('#main').replaceChildren();
   }
   try{
@@ -312,6 +327,23 @@ document.addEventListener('click',async event=>{
         tab.classList.toggle('active',selected);tab.setAttribute('aria-selected',String(selected));
       }
       renderNotebookContent();
+    }
+    if(action==='show-original-summary'){state.summaryDisplay='original';renderNotebookContent();}
+    if(action==='show-translation-summary'){state.summaryDisplay=locale;renderNotebookContent();}
+    if(action==='translate-summary'){
+      const note=state.note,scope=state.cacheScope,revision=note?.revisions?.[state.revision??note.revisions.length-1],targetLocale=locale;
+      if(!note||!revision||!viewingNotebook(note.id,scope)||state.local)return;
+      state.translationBusy=true;renderNotebookContent();
+      const operation=['notcards.translation',scope,note.id,revision.id,targetLocale].join(':');
+      let requestId=crypto.randomUUID();try{requestId=sessionStorage.getItem(operation)||requestId;sessionStorage.setItem(operation,requestId);}catch{}
+      try{
+        const result=await api(`/notes/${encodeURIComponent(note.id)}/translations`,{method:'POST',data:{revisionId:revision.id,locale:targetLocale,requestId}});
+        if(!result?.note)throw new Error('Translation response was incomplete');
+        try{sessionStorage.removeItem(operation);}catch{}
+        if(viewingNotebook(note.id,scope)){state.note=result.note;state.summaryDisplay=targetLocale;state.translationBusy=false;renderNotebookContent();}
+      }catch{
+        if(viewingNotebook(note.id,scope)){state.translationBusy=false;renderNotebookContent();toast(t('Translation failed. Try again.'));}
+      }
     }
     if(action==='cover'){state.note=await api(`/notes/${state.note.id}`,{method:'PATCH',data:{coverImage:button.dataset.image||null}});renderNotebook();}
     if(action==='pin'){const note=state.note?.id===button.dataset.id?state.note:state.notes.find(n=>n.id===button.dataset.id);await api(`/notes/${note.id}`,{method:'PATCH',data:{pinned:!note.pinned}});await refresh();}
@@ -357,7 +389,7 @@ $('#connect').addEventListener('click',event=>{if(state.local){event.preventDefa
 document.querySelectorAll('.close-dialog').forEach(button=>button.addEventListener('click',()=>button.closest('dialog').close()));
 $('#copy-code')?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText($('#pairing-code').value);toast(t('Pairing code copied. Paste it in extension settings.'));}catch{$('#pairing-code').type='text';$('#pairing-code').select();toast(t('Select and copy the pairing code.'));}});
 $('#folder-form')?.addEventListener('submit',async event=>{event.preventDefault();if(!state.user){toast(t('Sign in to create folders.'));return;}const name=$('#folder-name').value.trim();if(!name)return;try{const folder=await api('/folders',{method:'POST',data:{name}});state.folders.push(folder);$('#folder-dialog').close();$('#folder-form').reset();renderLibrary();}catch(error){toast(error.message);}});
-$('#logout')?.addEventListener('click',async()=>{try{await fetch('/auth/logout',{method:'POST',credentials:'same-origin'});composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;location.hash='';$('#settings-dialog').close();renderLibrary();}catch(error){toast(error.message);}});
+$('#logout')?.addEventListener('click',async()=>{try{await fetch('/auth/logout',{method:'POST',credentials:'same-origin'});cancelLanguageSync();composer.clear();state.user=null;state.notes=[];state.folders=[];state.note=null;state.summaryDisplay='auto';state.translationBusy=false;location.hash='';$('#settings-dialog').close();applyDeviceLanguage();renderLibrary();}catch(error){toast(error.message);}});
 $('#add-form').addEventListener('submit',async event=>{
   event.preventDefault();$('#save-video').disabled=true;$('#add-error').textContent='';
   const sourceType=$('#source-kind').value,url=$('#video-url').value.trim(),text=$('#video-transcript').value.trim(),title=$('#video-title').value.trim();
@@ -400,18 +432,52 @@ cardSize.addEventListener('input',()=>{
   try{localStorage?.setItem('notcards-card-size',cardSize.value);}catch{}
 });
 $('#settings').addEventListener('click',()=>$('#settings-dialog').showModal());
-function changeLanguage(preference){
-  const ids=['question','transcript-input'];const drafts=new Map(ids.map(id=>[id,$(`#${id}`)?.value]));
-  languagePreference=preference==='auto'?'auto':resolveLocale(preference);locale=resolveLocale(languagePreference==='auto'?browserLanguages():[languagePreference]);try{if(localStorage)localStorage.setItem('clay-notes-language',languagePreference);}catch{/* Browser storage may be disabled. */}
+let languageSyncController=null;
+function cancelLanguageSync(){languageSyncController?.abort();languageSyncController=null;}
+function syncAccountLanguage(ownerId=state.user?.id){
+  if(!ownerId||state.local||state.user?.id!==ownerId)return;
+  cancelLanguageSync();
+  const controller=new AbortController();languageSyncController=controller;
+  const data={languagePreference,locale};
+  void api('/preferences',{method:'PATCH',data,signal:controller.signal}).then(saved=>{
+    if(state.user?.id===ownerId&&languagePreference===data.languagePreference&&locale===data.locale)state.user={...state.user,...saved};
+  }).catch(error=>{
+    if(error.name!=='AbortError'&&state.user?.id===ownerId)toast(t('Language preference could not be saved.'));
+  }).finally(()=>{if(languageSyncController===controller)languageSyncController=null;});
+}
+function renderForLanguage(drafts){
   applyLanguage();if(state.note)renderNotebook();else renderLibrary();
   for(const [id,value] of drafts)if(value!==undefined && $(`#${id}`))$(`#${id}`).value=value;
+}
+function applyAccountLanguage(user){
+  const resolved=resolveLanguagePreference(user?.languagePreference,browserLanguages());
+  const missing=!Object.hasOwn(user||{},'languagePreference');
+  languagePreference=resolved.language;locale=resolved.locale;state.user={...user,languagePreference};state.summaryDisplay='auto';
+  try{localStorage?.removeItem('clay-notes-language');}catch{/* Account preferences are never kept in shared browser storage. */}
+  renderForLanguage(new Map());
+  if(languagePreference==='auto'||missing)syncAccountLanguage(state.user.id);
+}
+function applyDeviceLanguage(){
+  const resolved=readPreferences(localStorage,browserLanguages(),systemTheme.matches);
+  languagePreference=resolved.language;locale=resolved.locale;state.summaryDisplay='auto';renderForLanguage(new Map());
+}
+function changeLanguage(preference,{fromSystem=false}={}){
+  const ids=['question','transcript-input','botanic-launch-question'];const drafts=new Map(ids.map(id=>[id,$(`#${id}`)?.value]));
+  const previousPreference=languagePreference,previousLocale=locale;
+  const resolved=resolveLanguagePreference(preference,browserLanguages());languagePreference=resolved.language;locale=resolved.locale;state.summaryDisplay='auto';
+  if(state.user&&!state.local){
+    try{localStorage?.removeItem('clay-notes-language');}catch{}
+    state.user={...state.user,languagePreference};
+  }else{try{localStorage?.setItem('clay-notes-language',languagePreference);}catch{/* Browser storage may be disabled. */}}
+  renderForLanguage(drafts);
+  if(state.user&&!state.local&&(!fromSystem||previousLocale!==locale||previousPreference!==languagePreference))syncAccountLanguage(state.user.id);
 }
 $('#language').addEventListener('change',event=>changeLanguage(event.target.value));
 $('#theme').addEventListener('change',event=>{
   themePreference=['light','dark'].includes(event.target.value)?event.target.value:'auto';try{localStorage?.setItem('clay-notes-theme',themePreference);}catch{}applyTheme();
 });
 systemTheme.addEventListener?.('change',()=>{if(themePreference==='auto')applyTheme();});
-window.addEventListener('languagechange',()=>{if(languagePreference==='auto')changeLanguage('auto');});
+window.addEventListener('languagechange',()=>{if(languagePreference==='auto'&&resolveLanguagePreference('auto',browserLanguages()).locale!==locale)changeLanguage('auto',{fromSystem:true});});
 renderLibrary();
 async function bootUserLibrary(){
   state.cacheScope=state.user?state.user.id:'local';
@@ -427,7 +493,7 @@ async function startLibrary(){
     if(!response.ok)throw new Error('Session check failed');
     const session=await response.json();state.googleConfigured=session.googleConfigured===true;
     if(!session.authenticated){state.user=null;state.local=false;renderLibrary();return;}
-    state.local=false;state.user=session.user;await bootUserLibrary();
+    state.local=false;state.user=session.user;applyAccountLanguage(session.user);await bootUserLibrary();
   }catch{state.user=null;state.local=false;renderLibrary();}
 }
 async function refreshSession(){
@@ -436,10 +502,19 @@ async function refreshSession(){
     const response=await fetch('/api/session',{credentials:'same-origin'});if(!response.ok)return;
     const session=await response.json(),nextId=session.authenticated?session.user.id:null,currentId=state.user?.id||null;
     state.googleConfigured=session.googleConfigured===true;
-    if(nextId===currentId)return;
+    if(nextId===currentId){
+      if(session.authenticated){
+        const resolved=resolveLanguagePreference(session.user.languagePreference,browserLanguages());
+        if(resolved.language!==languagePreference||resolved.locale!==locale){state.user=session.user;applyAccountLanguage(session.user);}
+        else state.user={...session.user,languagePreference:resolved.language};
+      }
+      return;
+    }
+    cancelLanguageSync();
     if(currentId)composer.clear();
-    state.note=null;state.notes=[];state.folders=[];state.user=session.authenticated?session.user:null;location.hash='';
-    renderLibrary();if(state.user)await bootUserLibrary();
+    state.note=null;state.notes=[];state.folders=[];state.user=session.authenticated?session.user:null;state.summaryDisplay='auto';state.translationBusy=false;location.hash='';
+    if(state.user)applyAccountLanguage(state.user);else{applyDeviceLanguage();renderLibrary();}
+    if(state.user)await bootUserLibrary();
   }catch{/* Keep the current account visible until a definite session response arrives. */}
 }
 void startLibrary();

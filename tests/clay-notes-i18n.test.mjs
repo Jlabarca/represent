@@ -1,10 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readdir,readFile} from 'node:fs/promises';
-import {resolveLocale,translate,direction,locales,catalogs} from '../src/clay-notes/web/i18n.mjs';
+import {resolveLocale,normalizeLanguagePreference,resolveLanguagePreference,translate,direction,locales,catalogs} from '../src/clay-notes/web/i18n.mjs';
 test('regional browser preferences select a supported interface language',()=>{
   assert.equal(resolveLocale(['es-CL','en-US']),'es','Spanish regional preference must select Spanish');
   assert.equal(resolveLocale(['pt-BR']),'pt');
+});
+test('account language preferences accept only Automatic or a supported locale',()=>{
+  assert.deepEqual(resolveLanguagePreference('auto',['ar-EG','en']),{language:'auto',locale:'ar'});
+  assert.deepEqual(resolveLanguagePreference('zh-CN',['es']),{language:'zh-CN',locale:'zh-CN'});
+  assert.equal(normalizeLanguagePreference('fr'),'fr');
+  assert.equal(normalizeLanguagePreference('es-MX'),'auto');
+  assert.equal(normalizeLanguagePreference(undefined),'auto');
 });
 test('Spanish controls, English fallback and unsupported locale preferences are predictable',()=>{
   assert.equal(translate('es','Save a video'),'Guardar un video');
@@ -29,5 +36,27 @@ test('UI source translates authored labels while preserving captured/model/perso
   const source=await readFile(new URL('../src/clay-notes/web/app.mjs',import.meta.url),'utf8');
   assert.match(source,/escape\(n\.title\)/);assert.match(source,/escape\(q\.answer\)/);assert.match(source,/escape\(s\.text\)/);
   assert.doesNotMatch(source,/(?:t|h)\((?:n\.title|q\.answer|s\.text|draft)\)/);
-  assert.match(source,/localStorage\.setItem\('clay-notes-language'/);
+  assert.match(source,/localStorage\?\.setItem\('clay-notes-language'/);
+});
+
+test('summary translations preserve original revisions and localize account actions',async()=>{
+  const source=await readFile(new URL('../src/clay-notes/web/app.mjs',import.meta.url),'utf8');
+  assert.match(source,/session\.user\.languagePreference/);
+  assert.match(source,/api\('\/preferences',\{method:'PATCH',data,/);
+  assert.match(source,/revision\.translations\?\.\[locale\]/);
+  assert.match(source,/resolveLocale\(\[revision\.language\]\)/);
+  assert.match(source,/\/translations`\s*,?\{method:'POST',data:\{revisionId:revision\.id,locale:targetLocale,requestId\}\}/);
+  assert.match(source,/data-action="show-original-summary"/);
+  assert.match(source,/data-action="show-translation-summary"/);
+  assert.doesNotMatch(source,/form\.target='_blank'|setAttribute\('rel','noopener'\)/);
+  assert.match(source,/window\.addEventListener\('hashchange'.*refresh\(\)/);
+  assert.match(source,/escape\(s\.text\)/);
+  assert.match(source,/i18n\.mjs\?v=webbook-8/);
+  assert.match(source,/collection\.mjs\?v=webbook-8/);
+  const html=await readFile(new URL('../src/clay-notes/web/index.html',import.meta.url),'utf8');
+  assert.match(html,/style\.css\?v=webbook-8/);
+  assert.match(html,/app\.mjs\?v=webbook-8/);
+  const css=await readFile(new URL('../src/clay-notes/web/style.css',import.meta.url),'utf8');
+  assert.match(css,/html\[data-theme="dark"\] \.citation \{ background:var\(--accent-soft\); color:var\(--accent\); \}/);
+  assert.match(css,/\.source-card p,\.source-card \.small,\.source-card \.video-import-state \{ color:var\(--muted\); \}/);
 });

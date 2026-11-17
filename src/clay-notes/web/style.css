@@ -275,6 +275,18 @@ html[data-theme=dark] .ai-unavailable,html[data-theme=dark] .sample-detail-copy,
 
 .botanic-launch-shelf{margin:18px 0 24px;padding:20px 22px;border:1px solid var(--line);border-radius:20px;background:var(--cream)}.botanic-launch-shelf h3{margin:0 0 7px;font-size:17px}.botanic-launch-shelf p{max-width:60ch}.botanic-launch-shelf label{margin:15px 0 8px}.botanic-launch-shelf textarea{width:100%;min-height:88px;resize:vertical;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fffefb;font:inherit}.botanic-launch-shelf .dark-button{margin-top:10px}.botanic-launch-shelf #botanic-launch-status{min-height:1em;margin:8px 0 0}
 
+.summary-language { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin:-10px 0 20px; padding:10px 12px; border:1px solid var(--line); border-radius:12px; color:var(--muted); font-size:12px; }
+.summary-language .quiet-button { min-height:36px; padding:7px 11px; border:1px solid var(--line); border-radius:9px; color:var(--accent-strong); background:var(--surface); }
+.summary-language .quiet-button:hover:not(:disabled) { background:var(--accent-soft); }
+.summary-language .quiet-button:disabled { cursor:wait; opacity:.78; }
+.citation { background:var(--accent-soft); color:var(--accent-strong); border-color:transparent; }
+html[data-theme="dark"] .citation { background:var(--accent-soft); color:var(--accent); }
+.source-card p,.source-card .small,.source-card .video-import-state { color:var(--muted); }
+.source-card .video-import-state.ready { color:var(--accent-strong); }
+html[data-theme="dark"] .source-card p,html[data-theme="dark"] .source-card .small,
+html[data-theme="dark"] .source-card .video-import-state { color:var(--muted); }
+html[data-theme="dark"] .source-card .video-import-state.ready { color:var(--accent); }
+
 /* Notcards UI finish: monochrome surfaces, a quiet blue interaction accent. */
 html {
   --accent: #79aaff;
