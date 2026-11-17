@@ -1,5 +1,11 @@
 # Gateway request — Clay Notes hosted service, lab1
 
+## Latest lab1 transaction, 2026-11-16
+
+The operator subsequently requested “create the Notcards gateway key and lanes” and answered “go wth recommended” to the scoped one-shot Review/Apply and the console-generated alias. This supersedes the original manual-Apply handoff below for this lab1 transaction. The key name remains `LITELLM_KEY_CLAY_NOTES`. Its value was generated once in the host environment and was never printed. The four staged objects were the public key, the summary lane (selected default), the deep lane, and the mandatory `clay-notes-default` copy of the cheap chain. They share the key’s USD 1 per 30 days. The key forbids `max-broker`.
+
+Ghost’s host executor passed Review. Apply failed during gateway preflight because Windows had no listener on port 4000; no registry, consumers or gateway config changes were left by the transaction. The healthy container still declared a port binding to a Tailscale address that Windows no longer had. The traffic key is not live until the console reports a successful Apply. No SHA, lane-test result or live inference charge was recorded for this attempt.
+
 > 2026-11-16: The public product is **Notcards**, initially at `not.maremoto.dev`. The existing request below still identifies its dedicated internal key and two lanes. The brand change does not grant permission to Apply or make paid calls.
 
 > Revised2026-11-15 after the user selected SaaS at `clay.maremoto.dev`. **Pending operator Review/Apply.** Supersedes the unapplied internal/operator smart/Max proposal. [Onboarding workflow](../../../Ghost/docs/guides/ai-gateway-app-onboarding.md), [console reference](../../../Ghost/docs/reference/ai-gateway-console.md), [service design](clay-notes-service-roadmap.md).

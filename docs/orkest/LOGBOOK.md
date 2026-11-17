@@ -795,3 +795,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Complete the owner-bound card conversation lifecycle and present the Botanic deployment change for review. Obtain the operator's gateway Apply SHA and lane-test results before live inference.
+
+## 2026-11-16 — REP-12 signed-in video acceptance
+
+### Accomplished
+
+- Imported all three supplied links in the hosted web app using Google sign-in. Verified titles, video sources, player frames and saved transcripts by reopening the three cards. Corrected stale form submission and refresh races, duplicate transcript fields, misleading capture states, and the hosted chat status. Deployed `bde295e` to the development site and verified its captions-ready and Botanic-unavailable states there. The focused suite passed 17 tests and a Chromium navigation regression passed with two distinct private notes.
+
+### Decisions
+
+- The operator approved the lab1 one-shot executor and the console-generated cheap alias. The requested summary lane stays the public key’s default and all lanes share USD 1 per 30 days. Represent’s Codex reserve is a separate project setting.
+
+### Blockers
+
+- The dedicated host credential exists and policy Review passed. The live gateway Apply could not reach localhost during preflight. Windows had no assigned lab1 Tailscale address or gateway listener. No administrative transaction remained pending on disk.
+
+### Next
+
+- Restore the shared gateway binding with operator approval, retry its reviewed configuration and record the resulting commit. Verify automated caption retrieval, direct summaries and the native Botanic owner binding before promoting REP-12.

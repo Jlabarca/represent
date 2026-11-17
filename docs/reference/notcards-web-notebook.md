@@ -21,6 +21,8 @@ The collection and detail views live in `src/clay-notes/web/app.mjs`. The hosted
 
 ### Optional Botanic chat
 
+The signed-in development board was exercised with the three requested YouTube watch URLs in a single multi-link paste. It created three cards with the real video titles. Each private detail displayed the matching player. The public caption fetch failed for all three even though YouTube’s own Show transcript panel displayed text. Operator-assisted import preserved 165, 191 and 90 timestamped segments respectively. Reopening each notebook confirmed the source video and first segment. Saved transcript content now takes precedence over stale import errors. A delayed response from a previously open card can no longer replace the current detail during navigation, and pending transcript writes are bound to the originating card.
+
 The authenticated `/api/config` response reports chat availability independently of summary availability. An enabled trusted connector handles GET and POST on `/api/notes/{id}/chat` and POST on `/api/notes/{id}/chat/reset`. The server resolves the signed-in owner's issuer and subject, loads source context from the matching account and binds the remote conversation ID to the card on the first question. A repeated request ID can be recovered without opening another conversation. The reset checks the expected conversation and demands positive deletion confirmation from the connector. Opening a notebook, a remote timeout or a failed confirmation leaves the binding intact. The public development deployment still requires a registered Botanic site and an authenticated connector.
 
 ## Usage Guide
