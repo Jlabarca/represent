@@ -26,6 +26,12 @@ test('all offered locales translate every authored catalog entry and Arabic is R
   assert.equal(direction('ar-EG'),'rtl');assert.equal(direction('es'),'ltr');
   assert.notEqual(translate('ar','My library'),'My library');assert.notEqual(translate('hi','Save my notes'),'Save my notes');
 });
+test('source metadata and route model labels are localized in every interface language',()=>{
+  for(const locale of locales){
+    for(const key of ['source segments','transcript segments','captured source','paste','cheap','smart','clay-notes-summary','clay-notes-deep','clay-notes-default','Open card','Source cover','Sign in with Google','Paste source text here…','Opening your notebook…','Add source text to start the summary.','YouTube captions are being fetched automatically.','Open source','Sign in to create folders.','NEW RESEARCH']) assert.ok(catalogs[locale.id][key]?.trim(),`${locale.id}: ${key} missing`);
+    if(locale.id!=='en')for(const key of ['source segments','captured source','cheap','clay-notes-summary','Open card','Sign in to create folders.']) assert.notEqual(translate(locale.id,key),key,`${locale.id}: ${key} untranslated`);
+  }
+});
 test('Chrome locales include manifest and pairing messages without incomplete placeholders',async()=>{
   const root=new URL('../extensions/clay-notes/',import.meta.url);
   const manifest=JSON.parse(await readFile(new URL('manifest.json',root),'utf8'));
@@ -51,11 +57,11 @@ test('summary translations preserve original revisions and localize account acti
   assert.doesNotMatch(source,/form\.target='_blank'|setAttribute\('rel','noopener'\)/);
   assert.match(source,/window\.addEventListener\('hashchange'.*refresh\(\)/);
   assert.match(source,/escape\(s\.text\)/);
-  assert.match(source,/i18n\.mjs\?v=webbook-8/);
-  assert.match(source,/collection\.mjs\?v=webbook-8/);
+  assert.match(source,/i18n\.mjs\?v=webbook-9/);
+  assert.match(source,/collection\.mjs\?v=webbook-9/);
   const html=await readFile(new URL('../src/clay-notes/web/index.html',import.meta.url),'utf8');
-  assert.match(html,/style\.css\?v=webbook-8/);
-  assert.match(html,/app\.mjs\?v=webbook-8/);
+  assert.match(html,/style\.css\?v=webbook-9/);
+  assert.match(html,/app\.mjs\?v=webbook-9/);
   const css=await readFile(new URL('../src/clay-notes/web/style.css',import.meta.url),'utf8');
   assert.match(css,/html\[data-theme="dark"\] \.citation \{ background:var\(--accent-soft\); color:var\(--accent\); \}/);
   assert.match(css,/\.source-card p,\.source-card \.small,\.source-card \.video-import-state \{ color:var\(--muted\); \}/);
