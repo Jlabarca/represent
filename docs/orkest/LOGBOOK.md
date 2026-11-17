@@ -852,3 +852,21 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Reconcile the shared gateway drift and run the approved-lane checks. Wire the native Botanic hooks in staging before the first real shared chat test.
+
+## 2026-11-17 — Pinned native chat build
+
+### Accomplishments
+
+- Built the Notcards staging image from a disposable checkout of the pinned LibreChat source. The compiled frontend and runtime contain the Notcards route, native composer, post-persistence binding and deletion hooks. The packaged image passed the real Mongo smoke test. The full product suite passed 190 checks and the final signed-in browser regression passed.
+
+### Decisions
+
+- Scope first-turn context to the selected agent and the matching Google subject, question and native conversation. The test uses a temporary Mongo with networking disabled. The hosted ZIP is version 0.3.3.
+
+### Blockers
+
+- The shared Botanic and gateway deployments still need operator action before real inference. Ghost's read-only preparation accepts reconciling Botanic's six existing grants. Lab1's gateway-owned Codex login is still absent.
+
+### Next
+
+- Resolve the four Codex subscription lanes, complete a reviewed Apply, and run the authorized bounded pilot. Configure the shared notes agent and signing keys on the selected Botanic deployment, then validate login, send, reopen and confirmed deletion with a real user.
