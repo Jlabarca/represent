@@ -62,6 +62,8 @@ Unpacked Chrome authentication and capture, source rendering, card activation, e
 
 ### Continuation plan for REP-12.2.2
 
+November 17 acceptance work: preserve the existing Botanic grants through the guarded Ghost transaction, account for logged-out lab1 subscription models, verify the dedicated lanes and record combined spend. Exercise all three saved cards and launch a real native card conversation. Update timestamp and evidence controls in `src/clay-notes/web/app.mjs` with a same-tab browser regression in `scripts/notcards-browser-check.mjs`. Integrate the isolated visual review in `src/clay-notes/web/style.css` and version the web entry point. Verify the hosted build before recording acceptance.
+
 1. Run the checked Ghost console transaction on lab1. Record its Apply SHA and actual lane tests. Verify the dedicated host credential by name only.
 2. Exercise the normal private notebook summary API with loopback responses, actual hop accounting, per-owner reservations, duplicate protection and recoverable import jobs. Enable the hosted gateway only after the approved transaction succeeds.
 3. Verify the signed-in board, each source ID, transcript count, source text, loading/error copy and summary outcome for the three supplied videos. Test YouTube’s public transcript panel as an unattended importer fallback and distinguish it from operator-assisted capture.

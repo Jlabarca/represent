@@ -6,6 +6,8 @@
 
 ## Notcards web notebook (2026-11-16)
 
+On November 17 the operator authorized lab1 reconciliation and up to USD 1 in total for real lane probes, three video summaries and a Botanic card turn. The notebook and collection should share a monochrome theme with restrained blue highlights. Transcript controls should seek the embedded video.
+
 The signed-in navigation and caption-retry fix shipped to dev at `b474908`. All three original collection cards opened in the same tab. A fourth card's live retry showed YouTube's rate limit. The visible YouTube transcript panel supplied 76 caption rows; reopening that notebook retained them. The full suite passed 190 tests. The standalone browser check holds a folders response until after navigation, retries a failed import, and verifies captions after reload.
 
 The dev site runs the signed native Botanic handoff and metered summary adapter with both features gated. The standalone Botanic staging image built at `36f8636` against pinned LibreChat revision `e8f3be08623663d4ad7f7241e693c94469b63bb0`. The packaged image passed the isolated native Mongo check for first-send ownership, persisted user and assistant messages, and confirmed deletion. A real Google login and chat turn on an authorized staging deployment still need a registered agent, signing configuration and served lane. The web dev release includes the final accessibility navigation fix at `44afba9` and serves extension ZIP 0.3.3.
