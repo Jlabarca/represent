@@ -1,8 +1,8 @@
-import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-4';
+import {locales,resolveLocale,translate,direction,localizeStatic,readPreferences,resolveTheme,pendingNoteMessage} from './i18n.mjs?v=webbook-5';
 import {requestJSON} from './session.mjs';
 import {createComposer} from './composer.mjs';
 import {youtubeVideo,canonicalizeLink} from './composer-links.mjs';
-import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-4';
+import {bootCollection,writeLibraryCache,sortCollection,mergeVisibleOrder,coverSource,cardArt,cardFinish,animateCards,videoImportStatus as readVideoImportStatus,videoSourceMessageKey} from './collection.mjs?v=webbook-5';
 const $=selector=>document.querySelector(selector);
 const escape=value=>String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let localStorage;try{localStorage=window.localStorage;}catch{/* Automatic settings work without storage. */}
@@ -161,17 +161,32 @@ function bindTranscript(){
   });
 }
 const chatDrafts = new Map();
+const botanicLaunchDrafts = new Map();
 async function renderCardChat(target, note) {
   const draftKey = state.cacheScope + "/" + note.id;
   const path = `/notes/${encodeURIComponent(note.id)}/chat`;
   const isCurrent = () => state.note?.id === note.id && state.tab === 'questions' && target.isConnected;
-  target.innerHTML = `<h2 class="section-title">Botanic</h2><p role="status">${h('Opening your notebook…')}</p>`;
+  const launchEnabled=!state.local&&!state.samplePreview&&state.config.botanicLaunchAvailable===true&&typeof state.config.botanicOrigin==='string';
+  const launchShelf=()=>launchEnabled?`<section class="botanic-launch-shelf"><h3>${h('Explore this notebook with Botanic')}</h3><p class="small">${h('Your question and source context will be sent to Botanic. Review and send it there.')}</p><form id="botanic-launch-form"><label for="botanic-launch-question">${h('Ask a question')}</label><textarea id="botanic-launch-question" maxlength="4000" required dir="auto"></textarea><button class="dark-button" type="submit">${h('Open in Botanic')} ↗</button><p id="botanic-launch-status" class="small" role="status"></p></form></section>`:'';
+  const bindLaunch=()=>target.querySelector('#botanic-launch-form')?.addEventListener('submit',async event=>{
+    event.preventDefault();const question=target.querySelector('#botanic-launch-question').value.trim();if(!question)return;
+    const prior=botanicLaunchDrafts.get(draftKey),request=prior?.question===question?prior:{question,requestId:crypto.randomUUID()};botanicLaunchDrafts.set(draftKey,request);
+    const button=event.submitter,status=target.querySelector('#botanic-launch-status');button.disabled=true;status.textContent=t('Opening your notebook…');
+    try{
+      const envelope=await api(`/notes/${encodeURIComponent(note.id)}/botanic-launch`,{method:'POST',data:{question,requestId:request.requestId}});
+      const expected=new URL(state.config.botanicOrigin);if(expected.protocol!=='https:'||expected.origin!==state.config.botanicOrigin||envelope.botanicOrigin!==expected.origin)throw new Error(t('Botanic chat is unavailable right now. Your notebook and notes are still here.'));
+      const form=document.createElement('form');form.method='POST';form.action=new URL('/api/botanic/notcards/launch',expected.origin).href;form.target='_blank';form.setAttribute('rel','noopener');form.hidden=true;
+      for(const [name,value] of Object.entries({ticket:envelope.ticket,question:envelope.question,context:JSON.stringify(envelope.context)})){const input=document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.append(input);}
+      document.body.append(form);form.submit();form.remove();status.textContent='';
+    }catch(error){status.textContent=error.message;button.disabled=false;}
+  });
+  target.innerHTML = `<h2 class="section-title">Botanic</h2>${launchShelf()}<p role="status">${h('Opening your notebook…')}</p>`;bindLaunch();
   try {
     const chat = await api(path);
     if (!isCurrent()) return;
     const draft = chatDrafts.get(draftKey) || {question:'', requestId:crypto.randomUUID()};
     const link = chat.conversationUrl ? `<a class="light-button" rel="noopener noreferrer" target="_blank" href="${escape(chat.conversationUrl)}">${h('Open Botanic chat')} ↗</a>` : '';
-    target.innerHTML = `<h2 class="section-title">Botanic</h2>${link}${chat.canAsk ? `<form id="botanic-question"><label for="question">${h('Ask a question')}</label><textarea id="question" maxlength="5000" required dir="auto">${escape(draft.question)}</textarea><button class="dark-button">${h('Ask a question')}</button></form>` : ''}${!chat.canAsk&&!chat.canReset?`<p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`:''}${chat.canReset ? `<button id="reset-card-chat" class="quiet-button">${h('Start fresh after deletion')}</button>` : ''}<p id="chat-status" role="status"></p>`;
+    target.innerHTML = `<h2 class="section-title">Botanic</h2>${launchShelf()}${link}${chat.canAsk ? `<form id="botanic-question"><label for="question">${h('Ask a question')}</label><textarea id="question" maxlength="5000" required dir="auto">${escape(draft.question)}</textarea><button class="dark-button">${h('Ask a question')}</button></form>` : ''}${!chat.canAsk&&!chat.canReset?`<p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`:''}${chat.canReset ? `<button id="reset-card-chat" class="quiet-button">${h('Start fresh after deletion')}</button>` : ''}<p id="chat-status" role="status"></p>`;bindLaunch();
     target.querySelector('#reset-card-chat')?.addEventListener('click',async e=>{
       e.currentTarget.disabled=true;
       try{await api(path+'/reset',{method:'POST',data:{expectedConversationId:chat.conversationId}});chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;target.querySelector('#reset-card-chat').disabled=false;}}
@@ -183,7 +198,7 @@ async function renderCardChat(target, note) {
       try{const result=await api(path,{method:'POST',data:request});if(result.state==='bound')chatDrafts.delete(draftKey);if(isCurrent())await renderCardChat(target,note);}
       catch(error){if(isCurrent()){target.querySelector('#chat-status').textContent=error.message;field.readOnly=false;target.querySelector('button[type=submit],#botanic-question button').disabled=false;}}
     });
-  } catch(error){if(isCurrent()) target.innerHTML=`<h2 class="section-title">Botanic</h2><p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`;}
+  } catch(error){if(isCurrent()) {target.innerHTML=`<h2 class="section-title">Botanic</h2>${launchShelf()}<p class="ai-unavailable" role="status">${h('Botanic chat is unavailable right now. Your notebook and notes are still here.')}</p>`;bindLaunch();}}
 }
 function renderNotebookContent(){
   const n=state.note, target=$('#notebook-content');

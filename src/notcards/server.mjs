@@ -9,6 +9,7 @@ import {VideoImportService} from './video-import.mjs';
 import {NotcardsCardChatService} from './card-chat.mjs';
 import {Gateway} from '../clay-notes/core.mjs';
 import {NotcardsVideoSummary,summaryRuntimeFromEnv} from './video-summary.mjs';
+import {BotanicLaunchIssuer,botanicLaunchConfig} from './botanic-launch.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const web=join(root,'..','clay-notes','web');
@@ -61,6 +62,8 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         sourceLinks:Array.isArray(note.sourceLinks)?note.sourceLinks.map(link=>typeof link==='string'?link:link?.url).filter(link=>typeof link==='string'&&link.length<=2000).slice(0,20):[]
       };
     }}):null;
+  const launchConfig=botanicLaunchConfig();
+  let botanicLaunch=null;
   if(publicOrigin){const configured=new URL(publicOrigin);if(configured.pathname!=='/'||configured.search||configured.hash||configured.username||configured.password||(configured.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(configured.hostname)))throw new Error('NOTCARDS_PUBLIC_ORIGIN must be an HTTPS origin outside loopback development');}
   const extensionOrigins=extensionIds.map(id=>`chrome-extension://${id}`);
   let origin,identityService;
@@ -76,7 +79,7 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
       res.setHeader('X-Content-Type-Options','nosniff');
       res.setHeader('Referrer-Policy','strict-origin-when-cross-origin');
       res.setHeader('X-Frame-Options','DENY');
-      res.setHeader('Content-Security-Policy',"default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
+      res.setHeader('Content-Security-Policy',`default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' https://i.ytimg.com data:; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'${botanicLaunch?` ${botanicLaunch.botanicOrigin}`:''}`);
       res.setHeader('Cache-Control','no-store');
       const cookieValue=name=>req.headers.cookie?.split(';').map(item=>item.trim()).find(item=>item.startsWith(`${name}=`))?.slice(name.length+1)||null;
       const clearCookie=(name,path='/')=>`${name}=; HttpOnly; SameSite=Lax; Path=${path}; Max-Age=0${new URL(origin).protocol==='https:'?'; Secure':''}`;
@@ -155,7 +158,16 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
         if(reqUrl.pathname==='/api/composer'&&current.auth!=='cookie')throw problem(403,'Composer drafts require a signed-in web session.');
         if(req.method!=='GET')requireOrigin({allowExtension:current.auth==='bearer'});
         const account=await persistence.account(current.user.id),path=reqUrl.pathname;
-        if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:videoSummary.status().available,models:videoSummary.status().models,defaultModel:videoSummary.status().defaultModel,generationAvailable:videoSummary.status().available,queueSize:videoSummary.jobs.size,summary:videoSummary.status(),chatConfigured:Boolean(cardChat?.capabilities().available),cardChat:cardChat?.capabilities()||{available:false,lazyFirstQuestion:true,ownerScopedBindings:true,idempotentRequests:false,deletionConfirmation:false,canonicalConversationUrl:false,rawPromptPersistence:false}});
+        if(path==='/api/config'&&req.method==='GET')return json(200,{gatewayConfigured:videoSummary.status().available,models:videoSummary.status().models,defaultModel:videoSummary.status().defaultModel,generationAvailable:videoSummary.status().available,queueSize:videoSummary.jobs.size,summary:videoSummary.status(),chatConfigured:Boolean(cardChat?.capabilities().available),botanicLaunchAvailable:Boolean(botanicLaunch),...(botanicLaunch?{botanicOrigin:botanicLaunch.botanicOrigin}:{}),cardChat:cardChat?.capabilities()||{available:false,lazyFirstQuestion:true,ownerScopedBindings:true,idempotentRequests:false,deletionConfirmation:false,canonicalConversationUrl:false,rawPromptPersistence:false}});
+        const botanicLaunchMatch=/^\/api\/notes\/([A-Za-z0-9_-]{11})\/botanic-launch$/.exec(path);
+        if(botanicLaunchMatch){
+          if(req.method!=='POST')throw problem(405,'Method not allowed');
+          if(current.auth!=='cookie')throw problem(403,'Botanic launch requires your signed-in Notcards browser session.','cookie_session_required');
+          requireOrigin();
+          if(!botanicLaunch)throw problem(503,'Botanic launch is not configured.');
+          const input=await readBody(req,20_000),requestId=req.headers['idempotency-key']||input.requestId;
+          return json(200,await botanicLaunch.issue({principal:current,cardId:botanicLaunchMatch[1],requestId,question:input.question}));
+        }
         if(cardChatMatch){
           if(!cardChat)throw problem(503,'Botanic chat connector is not configured.','chat_not_configured');
           const [,noteId,reset]=cardChatMatch;
@@ -228,6 +240,15 @@ export async function startNotcardsServer({directory=process.env.NOTCARDS_DATA_D
   await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(port,host,resolve);});
   const address=server.address();
   origin=publicOrigin?new URL(publicOrigin).origin:`http://127.0.0.1:${address.port}`;
+  if(launchConfig&&launchConfig.issuer===origin){
+    botanicLaunch=new BotanicLaunchIssuer({db:persistence.db,privateKey:launchConfig.privateKey,issuer:launchConfig.issuer,audience:launchConfig.audience,botanicOrigin:launchConfig.botanicOrigin,
+      resolveVerifiedOwner:principal=>principal?.id?persistence.db.prepare('SELECT issuer,subject FROM users WHERE id=?').get(principal.id):null,
+      loadCardContext:async({owner,cardId})=>{
+        const user=persistence.db.prepare('SELECT id FROM users WHERE issuer=? AND subject=?').get(owner.issuer,owner.subject);
+        if(!user)return null;const account=await persistence.account(user.id),note=await account.notebook.get(cardId);if(!note)return null;
+        return {title:String(note.title||'').slice(0,500),url:typeof note.url==='string'?note.url:null,sourceType:String(note.sourceType||'video').slice(0,40),transcript:Array.isArray(note.segments)?note.segments.map(segment=>({start:Number.isFinite(Number(segment.start))?Number(segment.start):null,text:String(segment.text??'')})):[],personalNotes:typeof note.personalNotes==='string'?note.personalNotes:'',overview:String(note.revisions?.at(-1)?.overview||'').slice(0,20_000),sourceLinks:Array.isArray(note.sourceLinks)?note.sourceLinks.map(link=>typeof link==='string'?link:link?.url).filter(link=>typeof link==='string'&&link.length<=2000).slice(0,20):[]};
+      }});
+  }
   const url=new URL(origin);
   if(url.protocol!=='https:'&&!['localhost','127.0.0.1','[::1]'].includes(url.hostname))throw new Error('NOTCARDS_PUBLIC_ORIGIN must use HTTPS outside loopback development');
   identityService=identity||new GoogleIdentity({publicOrigin:origin});

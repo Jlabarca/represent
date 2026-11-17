@@ -272,3 +272,5 @@ html[data-theme=dark] .ai-unavailable,html[data-theme=dark] .sample-detail-copy,
 @media(prefers-reduced-motion:reduce) {
   .import-spinner { animation:none; }
 }
+
+.botanic-launch-shelf{margin:18px 0 24px;padding:20px 22px;border:1px solid var(--line);border-radius:20px;background:var(--cream)}.botanic-launch-shelf h3{margin:0 0 7px;font-size:17px}.botanic-launch-shelf p{max-width:60ch}.botanic-launch-shelf label{margin:15px 0 8px}.botanic-launch-shelf textarea{width:100%;min-height:88px;resize:vertical;border:1px solid var(--line);border-radius:13px;padding:12px;background:#fffefb;font:inherit}.botanic-launch-shelf .dark-button{margin-top:10px}.botanic-launch-shelf #botanic-launch-status{min-height:1em;margin:8px 0 0}
