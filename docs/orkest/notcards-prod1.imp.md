@@ -26,11 +26,16 @@ _(none: the defaults below follow the earlier prod1 moves)_
 
 ## Current State
 
-Plan only.
+**Cut over 2026-11-19 09:05Z.** prod1 serves `not.maremoto.dev`; lab1's `notcards-dev` app and tunnel are stopped, and its volume and image are kept until 2026-12-03 for rollback. Details, rollback and deploy steps: `D:/ware/docs/reference/prod1.md` § notcards (ware `e54328e`).
+
+- Staging and cutover counts were equal: integrity `ok`, every table, and 12 note files with an identical hash. The env-value hash was equal too. The image layers are identical.
+- Public `/api/session` 200; `botanic-librechat` → `BOTANIC_NOTCARDS_ORIGIN/api/session` 200.
+- Backup: one real `prod1-backup.service` run wrote snapshot `33297ae3`. An R2 restore into a network-less container matched live.
+- Change from the plan: the app rejects any plain-http gateway except the literal `http://host.docker.internal:4000/v1` (`src/clay-notes/core.mjs:98`). So instead of overriding the URL, an nginx `gateway-relay` sidecar answers under that alias and forwards to lab1-bridge.
 
 ## Known Bugs
 
-_(none yet)_
+- Summaries depend on lab1 (hybrid gateway path). This is intended, not a regression: Home and the board do not depend on it.
 
 ## What Needs Testing
 
@@ -43,7 +48,7 @@ _(none yet)_
 
 | Phase | State | Model | Effort | Description |
 |---|---|---|---|---|
-| REP-13.1 | [ ] not started | Opus | high | Stage, cut over, back up and verify Notcards on prod1 |
+| REP-13.1 | [~] live except signed-in UI check | Opus | high | Stage, cut over, back up and verify Notcards on prod1 |
 
 ## Checklist
 
@@ -53,10 +58,10 @@ _(none yet)_
 > requires:
 >   skip_budget: 0
 
-- [ ] REP-13.1.1 — Staged on prod1 (image, env, credential, data snapshot), app healthy, tunnel not started, counts equal.
-- [ ] REP-13.1.2 — Cutover: lab1 app+tunnel stopped (volume and image kept), final copy, prod1 tunnel up, `/api/session` 200/401.
-- [ ] REP-13.1.3 — SQLite backup in `backup.sh`, one run proven by a restore with an integrity check.
-- [ ] REP-13.1.4 — Botanic Home lists notes; runbook stack list and rollback updated.
+- [x] REP-13.1.1 — Staged on prod1 (image, env, credential, data snapshot), app healthy, tunnel not started, counts equal. Evidence: counts/notesSha `116e35ee…`/envSha `c760ab84…` equal, layers equal.
+- [x] REP-13.1.2 — Cutover: lab1 app+tunnel stopped (volume and image kept), final copy, prod1 tunnel up, `/api/session` 200/401. Evidence: 09:05:27Z–09:05:58Z, 4 connections, public 200.
+- [x] REP-13.1.3 — SQLite backup in `backup.sh`, one run proven by a restore with an integrity check. Evidence: snapshot `33297ae3`, restore drill equal.
+- [ ] REP-13.1.4 — Botanic Home lists notes; runbook stack list and rollback updated. Runbook done (ware `e54328e`), and the server-to-server path from botanic-librechat returns 200. The signed-in UI check is pending the operator's sign-in.
 
 ## Key Files Reference
 

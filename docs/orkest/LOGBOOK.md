@@ -931,3 +931,9 @@ Operator runs the four explanations with the key, rates ten statements per folde
 ### Next
 
 - Adopt the prepared adapter in Botanic, implement the unified two-panel workspace and verify the old-chat and note-only cases alongside the live video chat.
+
+## 2026-11-19 — REP-13 NOTCARDS-PROD1
+
+- Moved `not.maremoto.dev` from lab1 Docker Desktop to prod1 after the lab1 engine outage (530/1033 on Botanic Home). Same named tunnel and hostname, so Botanic and the extension needed no config changes. Cutover 09:05:27Z–09:05:58Z; counts, note hash and env hash equal; public `/api/session` 200.
+- prod1 `backup.sh` gained a `sqlite` label (`VACUUM INTO` + integrity_check). The restore drill of snapshot `33297ae3` matched live. Runbook, rollback and deploy steps: ware `docs/reference/prod1.md` § notcards (`e54328e`).
+- The lab1 volume and image are kept until 2026-12-03 as rollback. The signed-in Botanic Home UI check is pending the operator's sign-in.
